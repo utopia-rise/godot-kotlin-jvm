@@ -44,21 +44,21 @@ public open class AudioStreamPlayback : RefCounted() {
    *
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_is_playing·is·not·implemented·for·AudioStreamPlayback")
   }
 
   /**
    *
    */
   public open fun _getLoopCount(): Long {
-    throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_get_loop_count·is·not·implemented·for·AudioStreamPlayback")
   }
 
   /**
    *
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_get_playback_position is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_get_playback_position·is·not·implemented·for·AudioStreamPlayback")
   }
 
   /**

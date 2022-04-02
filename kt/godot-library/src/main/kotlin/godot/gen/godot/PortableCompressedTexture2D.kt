@@ -91,8 +91,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     normalMap: Boolean = false,
     lossyQuality: Double = 0.8
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap,
-        DOUBLE to lossyQuality)
+    TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_CREATE_FROM_IMAGE, NIL)
   }

@@ -123,7 +123,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
    * This virtual method can be implemented to handle context menu items not handled by default. See [_setCreateOptions].
    */
   public open fun _handleMenuSelected(id: Long): Boolean {
-    throw NotImplementedError("_handle_menu_selected is not implemented for EditorResourcePicker")
+    throw NotImplementedError("_handle_menu_selected·is·not·implemented·for·EditorResourcePicker")
   }
 
   /**

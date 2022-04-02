@@ -759,7 +759,7 @@ public open class Node : Object() {
    * Call [updateConfigurationWarnings] when the warnings need to be updated for this node.
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
-    throw NotImplementedError("_get_configuration_warnings is not implemented for Node")
+    throw NotImplementedError("_get_configuration_warnings·is·not·implemented·for·Node")
   }
 
   /**
@@ -1602,8 +1602,7 @@ public open class Node : Object() {
     transferMode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
     channel: Long = 0
   ): Long {
-    TransferContext.writeArguments(STRING_NAME to method, LONG to rpcMode.id, BOOL to callLocal,
-        LONG to transferMode.id, LONG to channel)
+    TransferContext.writeArguments(STRING_NAME to method, LONG to rpcMode.id, BOOL to callLocal, LONG to transferMode.id, LONG to channel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -1614,8 +1613,7 @@ public open class Node : Object() {
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
   public open fun rpc(method: StringName, vararg __var_args: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, NIL)
   }
 
@@ -1627,8 +1625,7 @@ public open class Node : Object() {
     method: StringName,
     vararg __var_args: Any?
   ): Unit {
-    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to
-        it }.toTypedArray())
+    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, NIL)
   }
 

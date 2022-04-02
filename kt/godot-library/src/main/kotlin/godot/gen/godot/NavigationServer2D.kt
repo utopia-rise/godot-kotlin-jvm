@@ -140,8 +140,7 @@ public object NavigationServer2D : Object() {
     optimize: Boolean,
     layers: Long = 1
   ): PackedVector2Array {
-    TransferContext.writeArguments(_RID to map, VECTOR2 to origin, VECTOR2 to destination, BOOL to
-        optimize, LONG to layers)
+    TransferContext.writeArguments(_RID to map, VECTOR2 to origin, VECTOR2 to destination, BOOL to optimize, LONG to layers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_PATH,
         PACKED_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
@@ -363,8 +362,7 @@ public object NavigationServer2D : Object() {
     method: StringName,
     userdata: Any? = null
   ): Unit {
-    TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to
-        userdata)
+    TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_CALLBACK, NIL)
   }

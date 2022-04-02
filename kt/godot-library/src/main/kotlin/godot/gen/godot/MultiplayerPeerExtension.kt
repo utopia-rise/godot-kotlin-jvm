@@ -28,16 +28,14 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the available packet count is internally requested by the [godot.MultiplayerAPI].
    */
   public open fun _getAvailablePacketCount(): Long {
-    throw
-        NotImplementedError("_get_available_packet_count is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_available_packet_count·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
    * Called when the maximum allowed packet size (in bytes) is requested by the [godot.MultiplayerAPI].
    */
   public open fun _getMaxPacketSize(): Long {
-    throw
-        NotImplementedError("_get_max_packet_size is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_max_packet_size·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
@@ -50,8 +48,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the transfer channel to use is read on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferChannel]).
    */
   public open fun _getTransferChannel(): Long {
-    throw
-        NotImplementedError("_get_transfer_channel is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_transfer_channel·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
@@ -64,7 +61,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the transfer mode to use is read on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.transferMode]).
    */
   public open fun _getTransferMode(): Long {
-    throw NotImplementedError("_get_transfer_mode is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_transfer_mode·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
@@ -77,28 +74,28 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the ID of the [godot.MultiplayerPeer] who sent the most recent packet is requested (see [godot.MultiplayerPeer.getPacketPeer]).
    */
   public open fun _getPacketPeer(): Long {
-    throw NotImplementedError("_get_packet_peer is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_packet_peer·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
    * Called when the "is server" status is requested on the [godot.MultiplayerAPI]. See [godot.MultiplayerAPI.isServer].
    */
   public open fun _isServer(): Boolean {
-    throw NotImplementedError("_is_server is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_is_server·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
    * Called when the [godot.MultiplayerAPI] is polled. See [godot.MultiplayerAPI.poll].
    */
   public open fun _poll(): Long {
-    throw NotImplementedError("_poll is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_poll·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
    * Called when the unique ID of this [godot.MultiplayerPeer] is requested (see [godot.MultiplayerPeer.getUniqueId]).
    */
   public open fun _getUniqueId(): Long {
-    throw NotImplementedError("_get_unique_id is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_unique_id·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
@@ -111,16 +108,14 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the "refuse new connections" status is requested on this [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.refuseNewConnections]).
    */
   public open fun _isRefusingNewConnections(): Boolean {
-    throw
-        NotImplementedError("_is_refusing_new_connections is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_is_refusing_new_connections·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   /**
    * Called when the connection status is requested on the [godot.MultiplayerPeer] (see [godot.MultiplayerPeer.getConnectionStatus]).
    */
   public open fun _getConnectionStatus(): Long {
-    throw
-        NotImplementedError("_get_connection_status is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_get_connection_status·is·not·implemented·for·MultiplayerPeerExtension")
   }
 
   public companion object

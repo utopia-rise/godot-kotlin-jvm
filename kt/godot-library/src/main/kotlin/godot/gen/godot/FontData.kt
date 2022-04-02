@@ -520,8 +520,7 @@ public open class FontData : Resource() {
     spacingType: TextServer.SpacingType,
     `value`: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to spacingType.id, LONG to
-        value)
+    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to spacingType.id, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_SPACING, NIL)
   }
 
@@ -580,8 +579,7 @@ public open class FontData : Resource() {
     textureIndex: Long,
     image: Image
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex,
-        OBJECT to image)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex, OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_TEXTURE_IMAGE, NIL)
   }
 
@@ -607,8 +605,7 @@ public open class FontData : Resource() {
     textureIndex: Long,
     offset: PackedInt32Array
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex,
-        PACKED_INT_32_ARRAY to offset)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to textureIndex, PACKED_INT_32_ARRAY to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_TEXTURE_OFFSETS, NIL)
   }
 
@@ -670,8 +667,7 @@ public open class FontData : Resource() {
     glyph: Long,
     advance: Vector2
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to glyph, VECTOR2 to
-        advance)
+    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, LONG to glyph, VECTOR2 to advance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_GLYPH_ADVANCE, NIL)
   }
 
@@ -699,8 +695,7 @@ public open class FontData : Resource() {
     glyph: Long,
     offset: Vector2
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to
-        offset)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_GLYPH_OFFSET, NIL)
   }
 
@@ -726,8 +721,7 @@ public open class FontData : Resource() {
     glyph: Long,
     glSize: Vector2
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to
-        glSize)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, VECTOR2 to glSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_GLYPH_SIZE, NIL)
   }
 
@@ -753,8 +747,7 @@ public open class FontData : Resource() {
     glyph: Long,
     uvRect: Rect2
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, RECT2 to
-        uvRect)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, RECT2 to uvRect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_GLYPH_UV_RECT, NIL)
   }
 
@@ -780,8 +773,7 @@ public open class FontData : Resource() {
     glyph: Long,
     textureIdx: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, LONG to
-        textureIdx)
+    TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size, LONG to glyph, LONG to textureIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_GLYPH_TEXTURE_IDX, NIL)
   }
 
@@ -837,8 +829,7 @@ public open class FontData : Resource() {
     glyphPair: Vector2i,
     kerning: Vector2
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, VECTOR2I to glyphPair, VECTOR2
-        to kerning)
+    TransferContext.writeArguments(LONG to cacheIndex, LONG to size, VECTOR2I to glyphPair, VECTOR2 to kerning)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_KERNING, NIL)
   }
 

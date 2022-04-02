@@ -25,7 +25,7 @@ public open class AudioEffectInstance : RefCounted() {
    *
    */
   public open fun _processSilence(): Boolean {
-    throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
+    throw NotImplementedError("_process_silence·is·not·implemented·for·AudioEffectInstance")
   }
 
   public companion object

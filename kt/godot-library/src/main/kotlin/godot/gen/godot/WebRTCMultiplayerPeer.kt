@@ -36,8 +36,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     serverCompatibility: Boolean = false,
     channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()
   ): GodotError {
-    TransferContext.writeArguments(LONG to peerId, BOOL to serverCompatibility, ARRAY to
-        channelsConfig)
+    TransferContext.writeArguments(LONG to peerId, BOOL to serverCompatibility, ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_INITIALIZE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

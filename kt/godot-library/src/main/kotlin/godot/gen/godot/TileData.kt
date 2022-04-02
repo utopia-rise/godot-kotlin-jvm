@@ -287,8 +287,7 @@ public open class TileData : Object() {
     polygonIndex: Long,
     polygon: PackedVector2Array
   ): Unit {
-    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, PACKED_VECTOR2_ARRAY to
-        polygon)
+    TransferContext.writeArguments(LONG to layerId, LONG to polygonIndex, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEDATA_SET_COLLISION_POLYGON_POINTS, NIL)
   }

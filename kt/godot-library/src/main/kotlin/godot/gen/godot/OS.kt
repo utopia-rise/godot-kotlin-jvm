@@ -219,8 +219,7 @@ public object OS : Object() {
     readStderr: Boolean = false,
     openConsole: Boolean = false
   ): Long {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to
-        output, BOOL to readStderr, BOOL to openConsole)
+    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -261,8 +260,7 @@ public object OS : Object() {
     arguments: PackedStringArray,
     openConsole: Boolean = false
   ): Long {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to
-        openConsole)
+    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

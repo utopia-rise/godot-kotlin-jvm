@@ -140,8 +140,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL)
   }
 
@@ -219,8 +218,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL)
   }
 
@@ -300,8 +298,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL)
   }
 
@@ -381,8 +378,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT_SIZE, NIL)
   }
 
@@ -460,8 +456,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL)
   }
 
@@ -539,8 +534,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL)
   }
 
@@ -620,8 +614,7 @@ public open class Theme : Resource() {
     themeType: StringName,
     `value`: Any
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to
-        themeType, ANY to value)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
   }
 
@@ -637,8 +630,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Any? {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -655,8 +647,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Boolean {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_THEME_ITEM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -674,8 +665,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name,
-        STRING_NAME to themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_THEME_ITEM, NIL)
   }
 
@@ -691,8 +681,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to
-        themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL)
   }
 

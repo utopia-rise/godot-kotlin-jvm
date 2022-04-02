@@ -36,28 +36,28 @@ public open class AudioStream : Resource() {
    *
    */
   public open fun _instancePlayback(): AudioStreamPlayback? {
-    throw NotImplementedError("_instance_playback is not implemented for AudioStream")
+    throw NotImplementedError("_instance_playback·is·not·implemented·for·AudioStream")
   }
 
   /**
    *
    */
   public open fun _getStreamName(): String {
-    throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
+    throw NotImplementedError("_get_stream_name·is·not·implemented·for·AudioStream")
   }
 
   /**
    *
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_get_length is not implemented for AudioStream")
+    throw NotImplementedError("_get_length·is·not·implemented·for·AudioStream")
   }
 
   /**
    *
    */
   public open fun _isMonophonic(): Boolean {
-    throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
+    throw NotImplementedError("_is_monophonic·is·not·implemented·for·AudioStream")
   }
 
   /**

@@ -39,8 +39,7 @@ public open class PolygonPathFinder : Resource() {
    *
    */
   public open fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to
-        connections)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)
   }
 

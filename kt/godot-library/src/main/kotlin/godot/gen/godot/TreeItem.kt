@@ -391,8 +391,7 @@ public open class TreeItem internal constructor() : Object() {
     step: Double,
     expr: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(LONG to column, DOUBLE to min, DOUBLE to max, DOUBLE to step,
-        BOOL to expr)
+    TransferContext.writeArguments(LONG to column, DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE_CONFIG, NIL)
   }
 
@@ -620,8 +619,7 @@ public open class TreeItem internal constructor() : Object() {
     disabled: Boolean = false,
     tooltip: String = ""
   ): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled,
-        STRING to tooltip)
+    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
   }
 
@@ -910,8 +908,7 @@ public open class TreeItem internal constructor() : Object() {
    * Calls the `method` on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
    */
   public open fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CALL_RECURSIVE, NIL)
   }
 

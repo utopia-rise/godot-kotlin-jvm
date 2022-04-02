@@ -426,8 +426,7 @@ public open class RichTextLabel : Control() {
     color: Color = Color(Color(1, 1, 1, 1)),
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color,
-        LONG to inlineAlign.id)
+    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color, LONG to inlineAlign.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL)
   }
 
@@ -551,8 +550,7 @@ public open class RichTextLabel : Control() {
     language: String = "",
     stParser: Control.StructuredTextParser = Control.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
   ): Unit {
-    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to
-        language, LONG to stParser.id)
+    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
   }
 
@@ -630,8 +628,7 @@ public open class RichTextLabel : Control() {
     outlineSize: Long = 0,
     outlineColor: Color = Color(Color(0, 0, 0, 0))
   ): Unit {
-    TransferContext.writeArguments(STRING to string, OBJECT to font, LONG to size, RECT2 to
-        dropcapMargins, COLOR to color, LONG to outlineSize, COLOR to outlineColor)
+    TransferContext.writeArguments(STRING to string, OBJECT to font, LONG to size, RECT2 to dropcapMargins, COLOR to color, LONG to outlineSize, COLOR to outlineColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_DROPCAP, NIL)
   }
 

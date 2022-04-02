@@ -339,8 +339,7 @@ public open class Animation : Resource() {
     key: Any,
     transition: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to
-        transition)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to transition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, NIL)
   }
 
@@ -587,8 +586,7 @@ public open class Animation : Resource() {
     outHandle: Vector2 = Vector2(0.0, 0.0),
     handleMode: Animation.HandleMode = Animation.HandleMode.HANDLE_MODE_BALANCED
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to
-        inHandle, VECTOR2 to outHandle, LONG to handleMode.id)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to inHandle, VECTOR2 to outHandle, LONG to handleMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INSERT_KEY,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -616,8 +614,7 @@ public open class Animation : Resource() {
     inHandle: Vector2,
     balancedValueTimeRatio: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to inHandle, DOUBLE to
-        balancedValueTimeRatio)
+    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to inHandle, DOUBLE to balancedValueTimeRatio)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_IN_HANDLE, NIL)
   }
@@ -631,8 +628,7 @@ public open class Animation : Resource() {
     outHandle: Vector2,
     balancedValueTimeRatio: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to outHandle, DOUBLE to
-        balancedValueTimeRatio)
+    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, VECTOR2 to outHandle, DOUBLE to balancedValueTimeRatio)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_OUT_HANDLE, NIL)
   }
@@ -689,8 +685,7 @@ public open class Animation : Resource() {
     startOffset: Double = 0.0,
     endOffset: Double = 0.0
   ): Long {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, OBJECT to stream, DOUBLE to
-        startOffset, DOUBLE to endOffset)
+    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, OBJECT to stream, DOUBLE to startOffset, DOUBLE to endOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_INSERT_KEY,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -778,8 +773,7 @@ public open class Animation : Resource() {
     keyHandleMode: Animation.HandleMode,
     balancedValueTimeRatio: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, LONG to keyHandleMode.id,
-        DOUBLE to balancedValueTimeRatio)
+    TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx, LONG to keyHandleMode.id, DOUBLE to balancedValueTimeRatio)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_HANDLE_MODE, NIL)
   }

@@ -132,8 +132,7 @@ public open class Tween : RefCounted() {
     finalVal: Any,
     duration: Double
   ): PropertyTweener? {
-    TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE
-        to duration)
+    TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_PROPERTY, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
@@ -425,8 +424,7 @@ public open class Tween : RefCounted() {
     transType: Tween.TransitionType,
     easeType: Tween.EaseType
   ): Any? {
-    TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime,
-        DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+    TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }

@@ -197,8 +197,7 @@ public open class TextLine : RefCounted() {
     language: String = "",
     meta: Any? = null
   ): Boolean {
-    TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, DICTIONARY to
-        opentypeFeatures, STRING to language, ANY to meta)
+    TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_STRING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -212,8 +211,7 @@ public open class TextLine : RefCounted() {
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to
-        length)
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_ADD_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -343,8 +341,7 @@ public open class TextLine : RefCounted() {
     outlineSize: Long = 1,
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to
-        color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_DRAW_OUTLINE, NIL)
   }
 

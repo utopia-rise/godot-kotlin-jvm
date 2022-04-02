@@ -82,8 +82,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
     `property`: StringName,
     disable: Boolean
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property, BOOL to
-        disable)
+    TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property, BOOL to disable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_PROPERTY, NIL)
   }

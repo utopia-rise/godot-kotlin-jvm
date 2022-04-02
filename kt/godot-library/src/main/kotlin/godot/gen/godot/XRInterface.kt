@@ -189,8 +189,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     durationSec: Double,
     delaySec: Double
   ): Unit {
-    TransferContext.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to
-        frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
+    TransferContext.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_TRIGGER_HAPTIC_PULSE,
         NIL)
   }

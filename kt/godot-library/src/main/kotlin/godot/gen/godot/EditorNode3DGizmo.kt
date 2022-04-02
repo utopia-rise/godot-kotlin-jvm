@@ -55,7 +55,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleName(id: Long, secondary: Boolean): String {
-    throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_get_handle_name·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -64,7 +64,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _isHandleHighlighted(id: Long, secondary: Boolean): Boolean {
-    throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_is_handle_highlighted·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -73,7 +73,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleValue(id: Long, secondary: Boolean): Any? {
-    throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_get_handle_value·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -108,7 +108,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * Override this method to allow selecting subgizmos using mouse clicks. Given a `camera` and a `point` in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
   public open fun _subgizmosIntersectRay(camera: Camera3D, point: Vector2): Long {
-    throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_subgizmos_intersect_ray·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -116,8 +116,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Any?>):
       PackedInt32Array {
-    throw
-        NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_subgizmos_intersect_frustum·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -130,7 +129,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * Override this method to return the current transform of a subgizmo. This transform will be requested at the start of an edit and used as the `restore` argument in [_commitSubgizmos].
    */
   public open fun _getSubgizmoTransform(id: Long): Transform3D {
-    throw NotImplementedError("_get_subgizmo_transform is not implemented for EditorNode3DGizmo")
+    throw NotImplementedError("_get_subgizmo_transform·is·not·implemented·for·EditorNode3DGizmo")
   }
 
   /**
@@ -154,8 +153,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     billboard: Boolean = false,
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to
-        billboard, COLOR to modulate)
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to billboard, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_LINES, NIL)
   }
 
@@ -168,8 +166,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     transform: Transform3D = Transform3D(),
     skeleton: SkinReference? = null
   ): Unit {
-    TransferContext.writeArguments(OBJECT to mesh, OBJECT to material, TRANSFORM3D to transform,
-        OBJECT to skeleton)
+    TransferContext.writeArguments(OBJECT to mesh, OBJECT to material, TRANSFORM3D to transform, OBJECT to skeleton)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_MESH, NIL)
   }
 
@@ -218,8 +215,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     billboard: Boolean = false,
     secondary: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to handles, OBJECT to material,
-        PACKED_INT_32_ARRAY to ids, BOOL to billboard, BOOL to secondary)
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to handles, OBJECT to material, PACKED_INT_32_ARRAY to ids, BOOL to billboard, BOOL to secondary)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)
   }
 

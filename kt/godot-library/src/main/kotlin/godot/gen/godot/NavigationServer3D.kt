@@ -158,8 +158,7 @@ public object NavigationServer3D : Object() {
     optimize: Boolean,
     layers: Long = 1
   ): PackedVector3Array {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to
-        optimize, LONG to layers)
+    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to layers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
         PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
@@ -174,8 +173,7 @@ public object NavigationServer3D : Object() {
     end: Vector3,
     useCollision: Boolean = false
   ): Vector3 {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to
-        useCollision)
+    TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -416,8 +414,7 @@ public object NavigationServer3D : Object() {
     method: StringName,
     userdata: Any? = null
   ): Unit {
-    TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to
-        userdata)
+    TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
   }

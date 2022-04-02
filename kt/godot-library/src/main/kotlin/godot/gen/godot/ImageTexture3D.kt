@@ -42,8 +42,7 @@ public open class ImageTexture3D : Texture3D() {
     useMipmaps: Boolean,
     `data`: VariantArray<Any?>
   ): GodotError {
-    TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth,
-        BOOL to useMipmaps, ARRAY to data)
+    TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to useMipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

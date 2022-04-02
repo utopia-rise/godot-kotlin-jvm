@@ -381,7 +381,7 @@ public open class GraphEdit : Control() {
     slotIndex: Long,
     mousePosition: Vector2
   ): Boolean {
-    throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
+    throw NotImplementedError("_is_in_input_hotzone·is·not·implemented·for·GraphEdit")
   }
 
   /**
@@ -403,14 +403,14 @@ public open class GraphEdit : Control() {
     slotIndex: Long,
     mousePosition: Vector2
   ): Boolean {
-    throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
+    throw NotImplementedError("_is_in_output_hotzone·is·not·implemented·for·GraphEdit")
   }
 
   /**
    * Virtual method which can be overridden to customize how connections are drawn.
    */
   public open fun _getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
-    throw NotImplementedError("_get_connection_line is not implemented for GraphEdit")
+    throw NotImplementedError("_get_connection_line·is·not·implemented·for·GraphEdit")
   }
 
   /**
@@ -422,8 +422,7 @@ public open class GraphEdit : Control() {
     to: StringName,
     toPort: Long
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to
-        toPort)
+    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -437,8 +436,7 @@ public open class GraphEdit : Control() {
     to: StringName,
     toPort: Long
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to
-        toPort)
+    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -452,8 +450,7 @@ public open class GraphEdit : Control() {
     to: StringName,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to
-        toPort)
+    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
   }
 
@@ -467,8 +464,7 @@ public open class GraphEdit : Control() {
     toPort: Long,
     amount: Double
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to
-        toPort, DOUBLE to amount)
+    TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort, DOUBLE to amount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
         NIL)
   }

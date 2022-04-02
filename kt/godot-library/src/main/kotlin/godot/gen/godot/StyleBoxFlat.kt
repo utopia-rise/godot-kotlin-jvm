@@ -261,8 +261,7 @@ public open class StyleBoxFlat : StyleBox() {
     radiusBottomRight: Long,
     radiusBottomLeft: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to radiusTopLeft, LONG to radiusTopRight, LONG to
-        radiusBottomRight, LONG to radiusBottomLeft)
+    TransferContext.writeArguments(LONG to radiusTopLeft, LONG to radiusTopRight, LONG to radiusBottomRight, LONG to radiusBottomLeft)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_INDIVIDUAL, NIL)
   }
@@ -320,8 +319,7 @@ public open class StyleBoxFlat : StyleBox() {
     sizeRight: Double,
     sizeBottom: Double
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight,
-        DOUBLE to sizeBottom)
+    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight, DOUBLE to sizeBottom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_INDIVIDUAL, NIL)
   }

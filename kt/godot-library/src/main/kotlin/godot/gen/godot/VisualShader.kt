@@ -182,8 +182,7 @@ public open class VisualShader : Shader() {
     toNode: Long,
     toPort: Long
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to
-        toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_IS_NODE_CONNECTION,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -199,8 +198,7 @@ public open class VisualShader : Shader() {
     toNode: Long,
     toPort: Long
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to
-        toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CAN_CONNECT_NODES,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -216,8 +214,7 @@ public open class VisualShader : Shader() {
     toNode: Long,
     toPort: Long
   ): GodotError {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to
-        toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -232,8 +229,7 @@ public open class VisualShader : Shader() {
     toNode: Long,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to
-        toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
   }
 
@@ -247,8 +243,7 @@ public open class VisualShader : Shader() {
     toNode: Long,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to
-        toNode, LONG to toPort)
+    TransferContext.writeArguments(LONG to type.id, LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
         NIL)
   }

@@ -45,7 +45,7 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default `AStar2D` class.
    */
   public open fun _estimateCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
+    throw NotImplementedError("_estimate_cost·is·not·implemented·for·AStar2D")
   }
 
   /**
@@ -54,7 +54,7 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default `AStar2D` class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_compute_cost is not implemented for AStar2D")
+    throw NotImplementedError("_compute_cost·is·not·implemented·for·AStar2D")
   }
 
   /**

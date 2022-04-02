@@ -401,8 +401,7 @@ public open class GPUParticles2D : Node2D() {
     custom: Color,
     flags: Long
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to velocity, COLOR to color, COLOR
-        to custom, LONG to flags)
+    TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_EMIT_PARTICLE, NIL)
   }
 

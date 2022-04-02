@@ -118,8 +118,7 @@ public open class UPNPDevice : RefCounted() {
     proto: String = "UDP",
     duration: Long = 0
   ): Long {
-    TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to
-        proto, LONG to duration)
+    TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to proto, LONG to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_ADD_PORT_MAPPING, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

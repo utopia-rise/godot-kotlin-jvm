@@ -37,8 +37,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * Gets the list of extensions for files this loader is able to read.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw
-        NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_get_recognized_extensions·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
@@ -47,7 +46,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just handle `"Resource"` for them.
    */
   public open fun _handlesType(type: StringName): Boolean {
-    throw NotImplementedError("_handles_type is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_handles_type·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
@@ -56,14 +55,14 @@ public open class ResourceFormatLoader : RefCounted() {
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just return `"Resource"` for them.
    */
   public open fun _getResourceType(path: String): String {
-    throw NotImplementedError("_get_resource_type is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_get_resource_type·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
    *
    */
   public open fun _getResourceUid(path: String): Long {
-    throw NotImplementedError("_get_resource_uid is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_get_resource_uid·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
@@ -72,7 +71,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just return `"Resource"` for them.
    */
   public open fun _getDependencies(path: String, addTypes: Boolean): PackedStringArray {
-    throw NotImplementedError("_get_dependencies is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_get_dependencies·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
@@ -81,14 +80,14 @@ public open class ResourceFormatLoader : RefCounted() {
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
   public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): Long {
-    throw NotImplementedError("_rename_dependencies is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_rename_dependencies·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
    *
    */
   public open fun _exists(path: String): Boolean {
-    throw NotImplementedError("_exists is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_exists·is·not·implemented·for·ResourceFormatLoader")
   }
 
   /**
@@ -102,7 +101,7 @@ public open class ResourceFormatLoader : RefCounted() {
     useSubThreads: Boolean,
     cacheMode: Long
   ): Any? {
-    throw NotImplementedError("_load is not implemented for ResourceFormatLoader")
+    throw NotImplementedError("_load·is·not·implemented·for·ResourceFormatLoader")
   }
 
   public enum class CacheMode(

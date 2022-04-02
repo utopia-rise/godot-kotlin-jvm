@@ -652,8 +652,7 @@ public open class Object : KtObject() {
    * [/codeblocks]
    */
   public open fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
-    TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it
-        }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_EMIT_SIGNAL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -684,8 +683,7 @@ public open class Object : KtObject() {
    * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
    */
   public open fun call(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -716,8 +714,7 @@ public open class Object : KtObject() {
    * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
    */
   public open fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL_DEFERRED, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -1091,8 +1088,7 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?> = godot.core.variantArrayOf(),
     flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, ARRAY to binds, LONG
-        to flags)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, ARRAY to binds, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -1189,8 +1185,7 @@ public open class Object : KtObject() {
     n: Long,
     context: StringName = StringName("")
   ): String {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n,
-        STRING_NAME to context)
+    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR_N, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }

@@ -388,8 +388,7 @@ public open class Skeleton3D : Node3D() {
     amount: Double,
     persistent: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to
-        persistent)
+    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to persistent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_GLOBAL_POSE_OVERRIDE, NIL)
   }
@@ -446,8 +445,7 @@ public open class Skeleton3D : Node3D() {
     amount: Double,
     persistent: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to
-        persistent)
+    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to pose, DOUBLE to amount, BOOL to persistent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
   }

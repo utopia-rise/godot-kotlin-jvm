@@ -78,28 +78,28 @@ public open class AnimationNode : Resource() {
    * Gets all children nodes in order as a `name: node` dictionary. Only useful when inheriting [godot.AnimationRootNode].
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
+    throw NotImplementedError("_get_child_nodes·is·not·implemented·for·AnimationNode")
   }
 
   /**
    * Gets the property information for parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
-    throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
+    throw NotImplementedError("_get_parameter_list·is·not·implemented·for·AnimationNode")
   }
 
   /**
    * Gets a child node by index (used by editors inheriting from [godot.AnimationRootNode]).
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
-    throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
+    throw NotImplementedError("_get_child_by_name·is·not·implemented·for·AnimationNode")
   }
 
   /**
    * Gets the default value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
-    throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
+    throw NotImplementedError("_get_parameter_default_value·is·not·implemented·for·AnimationNode")
   }
 
   /**
@@ -110,21 +110,21 @@ public open class AnimationNode : Resource() {
    * This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).
    */
   public open fun _process(time: Double, seek: Boolean): Double {
-    throw NotImplementedError("_process is not implemented for AnimationNode")
+    throw NotImplementedError("_process·is·not·implemented·for·AnimationNode")
   }
 
   /**
    * Gets the text caption for this node (used by some editors).
    */
   public open fun _getCaption(): String {
-    throw NotImplementedError("_get_caption is not implemented for AnimationNode")
+    throw NotImplementedError("_get_caption·is·not·implemented·for·AnimationNode")
   }
 
   /**
    * Returns whether you want the blend tree editor to display filter editing on this node.
    */
   public open fun _hasFilter(): Boolean {
-    throw NotImplementedError("_has_filter is not implemented for AnimationNode")
+    throw NotImplementedError("_has_filter·is·not·implemented·for·AnimationNode")
   }
 
   /**
@@ -191,8 +191,7 @@ public open class AnimationNode : Resource() {
     blend: Double,
     pingponged: Long = 0
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL
-        to seeked, DOUBLE to blend, LONG to pingponged)
+    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, DOUBLE to blend, LONG to pingponged)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_ANIMATION, NIL)
   }
 
@@ -208,8 +207,7 @@ public open class AnimationNode : Resource() {
     filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     optimize: Boolean = true
   ): Double {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to
-        seek, DOUBLE to blend, LONG to filter.id, BOOL to optimize)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, DOUBLE to blend, LONG to filter.id, BOOL to optimize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_NODE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
@@ -225,8 +223,7 @@ public open class AnimationNode : Resource() {
     filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     optimize: Boolean = true
   ): Double {
-    TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, DOUBLE to
-        blend, LONG to filter.id, BOOL to optimize)
+    TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, DOUBLE to blend, LONG to filter.id, BOOL to optimize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_INPUT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }

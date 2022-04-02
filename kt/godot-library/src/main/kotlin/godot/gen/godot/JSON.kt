@@ -111,8 +111,7 @@ public open class JSON : RefCounted() {
     sortKeys: Boolean = true,
     fullPrecision: Boolean = false
   ): String {
-    TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to
-        fullPrecision)
+    TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }

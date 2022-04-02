@@ -114,8 +114,7 @@ public open class Skeleton2D : Node2D() {
     strength: Double,
     persistent: Boolean
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM2D to overridePose, DOUBLE to strength,
-        BOOL to persistent)
+    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM2D to overridePose, DOUBLE to strength, BOOL to persistent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
   }

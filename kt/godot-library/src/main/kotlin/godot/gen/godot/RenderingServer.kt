@@ -221,8 +221,7 @@ public object RenderingServer : Object() {
     mipmaps: Boolean,
     `data`: VariantArray<Any?>
   ): RID {
-    TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth,
-        BOOL to mipmaps, ARRAY to data)
+    TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to mipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_3D_CREATE,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -432,8 +431,7 @@ public object RenderingServer : Object() {
     texture: RID,
     index: Long = 0
   ): Unit {
-    TransferContext.writeArguments(_RID to shader, STRING_NAME to param, _RID to texture, LONG to
-        index)
+    TransferContext.writeArguments(_RID to shader, STRING_NAME to param, _RID to texture, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_DEFAULT_TEXTURE_PARAM, NIL)
   }
@@ -604,8 +602,7 @@ public object RenderingServer : Object() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFormat: Long = 0
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to
-        blendShapes, DICTIONARY to lods, LONG to compressFormat)
+    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_ADD_SURFACE_FROM_ARRAYS, NIL)
   }
@@ -738,8 +735,7 @@ public object RenderingServer : Object() {
     offset: Long,
     `data`: PackedByteArray
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY
-        to data)
+    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_UPDATE_VERTEX_REGION, NIL)
   }
@@ -753,8 +749,7 @@ public object RenderingServer : Object() {
     offset: Long,
     `data`: PackedByteArray
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY
-        to data)
+    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_UPDATE_ATTRIBUTE_REGION, NIL)
   }
@@ -768,8 +763,7 @@ public object RenderingServer : Object() {
     offset: Long,
     `data`: PackedByteArray
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY
-        to data)
+    TransferContext.writeArguments(_RID to mesh, LONG to surface, LONG to offset, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_UPDATE_SKIN_REGION, NIL)
   }
@@ -807,8 +801,7 @@ public object RenderingServer : Object() {
     colorFormat: Boolean = false,
     customDataFormat: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to multimesh, LONG to instances, LONG to transformFormat.id,
-        BOOL to colorFormat, BOOL to customDataFormat)
+    TransferContext.writeArguments(_RID to multimesh, LONG to instances, LONG to transformFormat.id, BOOL to colorFormat, BOOL to customDataFormat)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MULTIMESH_ALLOCATE_DATA, NIL)
   }
@@ -1182,8 +1175,7 @@ public object RenderingServer : Object() {
     shadow: Double,
     length: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin, DOUBLE to
-        shadow, DOUBLE to length)
+    TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin, DOUBLE to shadow, DOUBLE to length)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_DISTANCE_FADE, NIL)
   }
@@ -1508,8 +1500,7 @@ public object RenderingServer : Object() {
     begin: Double,
     length: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin, DOUBLE to
-        length)
+    TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin, DOUBLE to length)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_DECAL_SET_DISTANCE_FADE, NIL)
   }
@@ -1576,10 +1567,7 @@ public object RenderingServer : Object() {
     distanceField: PackedByteArray,
     levelCounts: PackedInt32Array
   ): Unit {
-    TransferContext.writeArguments(_RID to voxelGi, TRANSFORM3D to toCellXform,
-        godot.core.VariantType.AABB to aabb, VECTOR3I to octreeSize, PACKED_BYTE_ARRAY to
-        octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField,
-        PACKED_INT_32_ARRAY to levelCounts)
+    TransferContext.writeArguments(_RID to voxelGi, TRANSFORM3D to toCellXform, godot.core.VariantType.AABB to aabb, VECTOR3I to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VOXEL_GI_ALLOCATE_DATA, NIL)
   }
@@ -1767,9 +1755,7 @@ public object RenderingServer : Object() {
     tetrahedra: PackedInt32Array,
     bspTree: PackedInt32Array
   ): Unit {
-    TransferContext.writeArguments(_RID to lightmap, PACKED_VECTOR3_ARRAY to points,
-        PACKED_COLOR_ARRAY to pointSh, PACKED_INT_32_ARRAY to tetrahedra, PACKED_INT_32_ARRAY to
-        bspTree)
+    TransferContext.writeArguments(_RID to lightmap, PACKED_VECTOR3_ARRAY to points, PACKED_COLOR_ARRAY to pointSh, PACKED_INT_32_ARRAY to tetrahedra, PACKED_INT_32_ARRAY to bspTree)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_SET_PROBE_CAPTURE_DATA, NIL)
   }
@@ -2076,8 +2062,7 @@ public object RenderingServer : Object() {
     custom: Color,
     emitFlags: Long
   ): Unit {
-    TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform, VECTOR3 to velocity,
-        COLOR to color, COLOR to custom, LONG to emitFlags)
+    TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to emitFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_EMIT, NIL)
   }
 
@@ -2304,8 +2289,7 @@ public object RenderingServer : Object() {
     enterCallable: Callable,
     exitCallable: Callable
   ): Unit {
-    TransferContext.writeArguments(_RID to notifier, CALLABLE to enterCallable, CALLABLE to
-        exitCallable)
+    TransferContext.writeArguments(_RID to notifier, CALLABLE to enterCallable, CALLABLE to exitCallable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VISIBILITY_NOTIFIER_SET_CALLBACKS, NIL)
   }
@@ -2328,8 +2312,7 @@ public object RenderingServer : Object() {
     vertices: PackedVector3Array,
     indices: PackedInt32Array
   ): Unit {
-    TransferContext.writeArguments(_RID to occluder, PACKED_VECTOR3_ARRAY to vertices,
-        PACKED_INT_32_ARRAY to indices)
+    TransferContext.writeArguments(_RID to occluder, PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_OCCLUDER_SET_MESH,
         NIL)
   }
@@ -2354,8 +2337,7 @@ public object RenderingServer : Object() {
     zNear: Double,
     zFar: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to camera, DOUBLE to fovyDegrees, DOUBLE to zNear, DOUBLE to
-        zFar)
+    TransferContext.writeArguments(_RID to camera, DOUBLE to fovyDegrees, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_PERSPECTIVE, NIL)
   }
@@ -2384,8 +2366,7 @@ public object RenderingServer : Object() {
     zNear: Double,
     zFar: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to camera, DOUBLE to size, VECTOR2 to offset, DOUBLE to
-        zNear, DOUBLE to zFar)
+    TransferContext.writeArguments(_RID to camera, DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_FRUSTUM,
         NIL)
   }
@@ -2727,8 +2708,7 @@ public object RenderingServer : Object() {
     layer: Long,
     sublayer: Long
   ): Unit {
-    TransferContext.writeArguments(_RID to viewport, _RID to canvas, LONG to layer, LONG to
-        sublayer)
+    TransferContext.writeArguments(_RID to viewport, _RID to canvas, LONG to layer, LONG to sublayer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_CANVAS_STACKING, NIL)
   }
@@ -2947,8 +2927,7 @@ public object RenderingServer : Object() {
     bakeIrradiance: Boolean,
     size: Vector2i
   ): Image? {
-    TransferContext.writeArguments(_RID to sky, DOUBLE to energy, BOOL to bakeIrradiance, VECTOR2I
-        to size)
+    TransferContext.writeArguments(_RID to sky, DOUBLE to energy, BOOL to bakeIrradiance, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SKY_BAKE_PANORAMA,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
@@ -3042,8 +3021,7 @@ public object RenderingServer : Object() {
     reflectionSource: RenderingServer.EnvironmentReflectionSource =
         RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG
   ): Unit {
-    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to
-        energy, DOUBLE to skyContibution, LONG to reflectionSource.id)
+    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy, DOUBLE to skyContibution, LONG to reflectionSource.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_AMBIENT_LIGHT, NIL)
   }
@@ -3066,10 +3044,7 @@ public object RenderingServer : Object() {
     glowMapStrength: Double,
     glowMap: RID
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, PACKED_FLOAT_32_ARRAY to levels,
-        DOUBLE to intensity, DOUBLE to strength, DOUBLE to mix, DOUBLE to bloomThreshold, LONG to
-        blendMode.id, DOUBLE to hdrBleedThreshold, DOUBLE to hdrBleedScale, DOUBLE to
-        hdrLuminanceCap, DOUBLE to glowMapStrength, _RID to glowMap)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, PACKED_FLOAT_32_ARRAY to levels, DOUBLE to intensity, DOUBLE to strength, DOUBLE to mix, DOUBLE to bloomThreshold, LONG to blendMode.id, DOUBLE to hdrBleedThreshold, DOUBLE to hdrBleedScale, DOUBLE to hdrLuminanceCap, DOUBLE to glowMapStrength, _RID to glowMap)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_GLOW, NIL)
   }
@@ -3088,9 +3063,7 @@ public object RenderingServer : Object() {
     autoExpSpeed: Double,
     autoExpGrey: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure, DOUBLE to
-        white, BOOL to autoExposure, DOUBLE to minLuminance, DOUBLE to maxLuminance, DOUBLE to
-        autoExpSpeed, DOUBLE to autoExpGrey)
+    TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure, DOUBLE to white, BOOL to autoExposure, DOUBLE to minLuminance, DOUBLE to maxLuminance, DOUBLE to autoExpSpeed, DOUBLE to autoExpGrey)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_TONEMAP, NIL)
   }
@@ -3107,8 +3080,7 @@ public object RenderingServer : Object() {
     use1dColorCorrection: Boolean,
     colorCorrection: RID
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to brightness, DOUBLE to
-        contrast, DOUBLE to saturation, BOOL to use1dColorCorrection, _RID to colorCorrection)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to brightness, DOUBLE to contrast, DOUBLE to saturation, BOOL to use1dColorCorrection, _RID to colorCorrection)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_ADJUSTMENT, NIL)
   }
@@ -3124,8 +3096,7 @@ public object RenderingServer : Object() {
     fadeOut: Double,
     depthTolerance: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to maxSteps, DOUBLE to fadeIn,
-        DOUBLE to fadeOut, DOUBLE to depthTolerance)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to maxSteps, DOUBLE to fadeIn, DOUBLE to fadeOut, DOUBLE to depthTolerance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SSR,
         NIL)
   }
@@ -3145,9 +3116,7 @@ public object RenderingServer : Object() {
     lightAffect: Double,
     aoChannelAffect: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to radius, DOUBLE to
-        intensity, DOUBLE to power, DOUBLE to detail, DOUBLE to horizon, DOUBLE to sharpness, DOUBLE
-        to lightAffect, DOUBLE to aoChannelAffect)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to radius, DOUBLE to intensity, DOUBLE to power, DOUBLE to detail, DOUBLE to horizon, DOUBLE to sharpness, DOUBLE to lightAffect, DOUBLE to aoChannelAffect)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SSAO, NIL)
   }
@@ -3166,9 +3135,7 @@ public object RenderingServer : Object() {
     heightDensity: Double,
     aerialPerspective: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to
-        lightEnergy, DOUBLE to sunScatter, DOUBLE to density, DOUBLE to height, DOUBLE to
-        heightDensity, DOUBLE to aerialPerspective)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy, DOUBLE to sunScatter, DOUBLE to density, DOUBLE to height, DOUBLE to heightDensity, DOUBLE to aerialPerspective)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_FOG,
         NIL)
   }
@@ -3189,9 +3156,7 @@ public object RenderingServer : Object() {
     normalBias: Double,
     probeBias: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to cascades, DOUBLE to
-        minCellSize, LONG to yScale.id, BOOL to useOcclusion, DOUBLE to bounceFeedback, BOOL to
-        readSky, DOUBLE to energy, DOUBLE to normalBias, DOUBLE to probeBias)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to cascades, DOUBLE to minCellSize, LONG to yScale.id, BOOL to useOcclusion, DOUBLE to bounceFeedback, BOOL to readSky, DOUBLE to energy, DOUBLE to normalBias, DOUBLE to probeBias)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SDFGI, NIL)
   }
@@ -3214,10 +3179,7 @@ public object RenderingServer : Object() {
     temporalReprojectionAmount: Double,
     ambientInject: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density, COLOR to albedo,
-        COLOR to emission, DOUBLE to emissionEnergy, DOUBLE to anisotropy, DOUBLE to length, DOUBLE
-        to pDetailSpread, DOUBLE to giInject, BOOL to temporalReprojection, DOUBLE to
-        temporalReprojectionAmount, DOUBLE to ambientInject)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density, COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy, DOUBLE to anisotropy, DOUBLE to length, DOUBLE to pDetailSpread, DOUBLE to giInject, BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount, DOUBLE to ambientInject)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_VOLUMETRIC_FOG, NIL)
   }
@@ -3262,8 +3224,7 @@ public object RenderingServer : Object() {
     fadeoutFrom: Double,
     fadeoutTo: Double
   ): Unit {
-    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget,
-        LONG to blurPasses, DOUBLE to fadeoutFrom, DOUBLE to fadeoutTo)
+    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget, LONG to blurPasses, DOUBLE to fadeoutFrom, DOUBLE to fadeoutTo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SSAO_QUALITY, NIL)
   }
@@ -3279,8 +3240,7 @@ public object RenderingServer : Object() {
     fadeoutFrom: Double,
     fadeoutTo: Double
   ): Unit {
-    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget,
-        LONG to blurPasses, DOUBLE to fadeoutFrom, DOUBLE to fadeoutTo)
+    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget, LONG to blurPasses, DOUBLE to fadeoutFrom, DOUBLE to fadeoutTo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_ENVIRONMENT_SET_SSIL_QUALITY, NIL)
   }
@@ -3424,9 +3384,7 @@ public object RenderingServer : Object() {
     nearTransition: Double,
     amount: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to cameraEffects, BOOL to farEnable, DOUBLE to farDistance,
-        DOUBLE to farTransition, BOOL to nearEnable, DOUBLE to nearDistance, DOUBLE to
-        nearTransition, DOUBLE to amount)
+    TransferContext.writeArguments(_RID to cameraEffects, BOOL to farEnable, DOUBLE to farDistance, DOUBLE to farTransition, BOOL to nearEnable, DOUBLE to nearDistance, DOUBLE to nearTransition, DOUBLE to amount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR, NIL)
   }
@@ -3703,8 +3661,7 @@ public object RenderingServer : Object() {
     maxMargin: Double,
     fadeMode: RenderingServer.VisibilityRangeFadeMode
   ): Unit {
-    TransferContext.writeArguments(_RID to instance, DOUBLE to min, DOUBLE to max, DOUBLE to
-        minMargin, DOUBLE to maxMargin, LONG to fadeMode.id)
+    TransferContext.writeArguments(_RID to instance, DOUBLE to min, DOUBLE to max, DOUBLE to minMargin, DOUBLE to maxMargin, LONG to fadeMode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_GEOMETRY_SET_VISIBILITY_RANGE, NIL)
   }
@@ -3718,8 +3675,7 @@ public object RenderingServer : Object() {
     lightmapUvScale: Rect2,
     lightmapSlice: Long
   ): Unit {
-    TransferContext.writeArguments(_RID to instance, _RID to lightmap, RECT2 to lightmapUvScale,
-        LONG to lightmapSlice)
+    TransferContext.writeArguments(_RID to instance, _RID to lightmap, RECT2 to lightmapUvScale, LONG to lightmapSlice)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCE_GEOMETRY_SET_LIGHTMAP, NIL)
   }
@@ -4065,8 +4021,7 @@ public object RenderingServer : Object() {
     color: Color,
     width: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color,
-        DOUBLE to width)
+    TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_LINE, NIL)
   }
@@ -4081,8 +4036,7 @@ public object RenderingServer : Object() {
     width: Double = 1.0,
     antialiased: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
-        to colors, DOUBLE to width, BOOL to antialiased)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_POLYLINE, NIL)
   }
@@ -4125,8 +4079,7 @@ public object RenderingServer : Object() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, BOOL to tile, COLOR
-        to modulate, BOOL to transpose)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, BOOL to tile, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_TEXTURE_RECT, NIL)
   }
@@ -4143,8 +4096,7 @@ public object RenderingServer : Object() {
     outlineSize: Long = 0,
     pxRange: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect,
-        COLOR to modulate, LONG to outlineSize, DOUBLE to pxRange)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, LONG to outlineSize, DOUBLE to pxRange)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_MSDF_TEXTURE_RECT_REGION, NIL)
   }
@@ -4161,8 +4113,7 @@ public object RenderingServer : Object() {
     transpose: Boolean = false,
     clipUv: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect,
-        COLOR to modulate, BOOL to transpose, BOOL to clipUv)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_TEXTURE_RECT_REGION, NIL)
   }
@@ -4184,9 +4135,7 @@ public object RenderingServer : Object() {
     drawCenter: Boolean = true,
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, RECT2 to source, _RID to texture,
-        VECTOR2 to topleft, VECTOR2 to bottomright, LONG to xAxisMode.id, LONG to yAxisMode.id, BOOL
-        to drawCenter, COLOR to modulate)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, RECT2 to source, _RID to texture, VECTOR2 to topleft, VECTOR2 to bottomright, LONG to xAxisMode.id, LONG to yAxisMode.id, BOOL to drawCenter, COLOR to modulate)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_NINE_PATCH, NIL)
   }
@@ -4202,8 +4151,7 @@ public object RenderingServer : Object() {
     texture: RID,
     width: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
-        to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture, DOUBLE to width)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture, DOUBLE to width)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_PRIMITIVE, NIL)
   }
@@ -4218,8 +4166,7 @@ public object RenderingServer : Object() {
     uvs: PackedVector2Array = PackedVector2Array(),
     texture: RID = RID()
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
-        to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_POLYGON, NIL)
   }
@@ -4238,10 +4185,7 @@ public object RenderingServer : Object() {
     texture: RID = RID(),
     count: Long = -1
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_INT_32_ARRAY to indices,
-        PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs,
-        PACKED_INT_32_ARRAY to bones, PACKED_FLOAT_32_ARRAY to weights, _RID to texture, LONG to
-        count)
+    TransferContext.writeArguments(_RID to item, PACKED_INT_32_ARRAY to indices, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, PACKED_INT_32_ARRAY to bones, PACKED_FLOAT_32_ARRAY to weights, _RID to texture, LONG to count)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_TRIANGLE_ARRAY, NIL)
   }
@@ -4256,8 +4200,7 @@ public object RenderingServer : Object() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     texture: RID = RID()
   ): Unit {
-    TransferContext.writeArguments(_RID to item, _RID to mesh, TRANSFORM2D to transform, COLOR to
-        modulate, _RID to texture)
+    TransferContext.writeArguments(_RID to item, _RID to mesh, TRANSFORM2D to transform, COLOR to modulate, _RID to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_MESH, NIL)
   }
@@ -4316,8 +4259,7 @@ public object RenderingServer : Object() {
     sliceEnd: Double,
     offset: Double = 0.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, DOUBLE to animationLength, DOUBLE to sliceBegin,
-        DOUBLE to sliceEnd, DOUBLE to offset)
+    TransferContext.writeArguments(_RID to item, DOUBLE to animationLength, DOUBLE to sliceBegin, DOUBLE to sliceEnd, DOUBLE to offset)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_ANIMATION_SLICE, NIL)
   }
@@ -4408,8 +4350,7 @@ public object RenderingServer : Object() {
     enterCallable: Callable,
     exitCallable: Callable
   ): Unit {
-    TransferContext.writeArguments(_RID to item, BOOL to enable, RECT2 to area, CALLABLE to
-        enterCallable, CALLABLE to exitCallable)
+    TransferContext.writeArguments(_RID to item, BOOL to enable, RECT2 to area, CALLABLE to enterCallable, CALLABLE to exitCallable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_VISIBILITY_NOTIFIER, NIL)
   }
@@ -4425,8 +4366,7 @@ public object RenderingServer : Object() {
     fitMargin: Double = 0.0,
     blurMipmaps: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to item, LONG to mode.id, DOUBLE to clearMargin, BOOL to
-        fitEmpty, DOUBLE to fitMargin, BOOL to blurMipmaps)
+    TransferContext.writeArguments(_RID to item, LONG to mode.id, DOUBLE to clearMargin, BOOL to fitEmpty, DOUBLE to fitMargin, BOOL to blurMipmaps)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_CANVAS_GROUP_MODE, NIL)
   }
@@ -4700,8 +4640,7 @@ public object RenderingServer : Object() {
     shape: PackedVector2Array,
     closed: Boolean
   ): Unit {
-    TransferContext.writeArguments(_RID to occluderPolygon, PACKED_VECTOR2_ARRAY to shape, BOOL to
-        closed)
+    TransferContext.writeArguments(_RID to occluderPolygon, PACKED_VECTOR2_ARRAY to shape, BOOL to closed)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_OCCLUDER_POLYGON_SET_SHAPE, NIL)
   }
@@ -4919,8 +4858,7 @@ public object RenderingServer : Object() {
     scale: Boolean,
     useFilter: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, COLOR to color, BOOL to scale, BOOL to
-        useFilter)
+    TransferContext.writeArguments(OBJECT to image, COLOR to color, BOOL to scale, BOOL to useFilter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SET_BOOT_IMAGE, NIL)
   }
 

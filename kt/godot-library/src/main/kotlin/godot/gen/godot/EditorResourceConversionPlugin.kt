@@ -26,21 +26,21 @@ public open class EditorResourceConversionPlugin internal constructor() : RefCou
    *
    */
   public open fun _convertsTo(): String {
-    throw NotImplementedError("_converts_to is not implemented for EditorResourceConversionPlugin")
+    throw NotImplementedError("_converts_to·is·not·implemented·for·EditorResourceConversionPlugin")
   }
 
   /**
    *
    */
   public open fun _handles(resource: Resource): Boolean {
-    throw NotImplementedError("_handles is not implemented for EditorResourceConversionPlugin")
+    throw NotImplementedError("_handles·is·not·implemented·for·EditorResourceConversionPlugin")
   }
 
   /**
    *
    */
   public open fun _convert(resource: Resource): Resource? {
-    throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")
+    throw NotImplementedError("_convert·is·not·implemented·for·EditorResourceConversionPlugin")
   }
 
   public companion object

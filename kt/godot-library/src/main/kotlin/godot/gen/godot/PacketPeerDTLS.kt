@@ -55,8 +55,7 @@ public open class PacketPeerDTLS : PacketPeer() {
     forHostname: String = "",
     validCertificate: X509Certificate? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to packetPeer, BOOL to validateCerts, STRING to
-        forHostname, OBJECT to validCertificate)
+    TransferContext.writeArguments(OBJECT to packetPeer, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_CONNECT_TO_PEER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

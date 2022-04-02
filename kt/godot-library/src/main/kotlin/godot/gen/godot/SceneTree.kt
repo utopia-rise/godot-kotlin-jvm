@@ -363,8 +363,7 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg __var_args: Any?
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method, 
-        *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, NIL)
   }
 
@@ -389,8 +388,7 @@ public open class SceneTree : MainLoop() {
     `property`: String,
     `value`: Any
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY
-        to value)
+    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
   }
 
@@ -406,8 +404,7 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg __var_args: Any?
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map {
-        ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, NIL)
   }
 

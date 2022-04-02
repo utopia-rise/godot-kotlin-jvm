@@ -138,7 +138,7 @@ public open class TileMap : Node2D() {
    * **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
    */
   public open fun _useTileDataRuntimeUpdate(layer: Long, coords: Vector2i): Boolean {
-    throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMap")
+    throw NotImplementedError("_use_tile_data_runtime_update·is·not·implemented·for·TileMap")
   }
 
   /**
@@ -316,8 +316,7 @@ public open class TileMap : Node2D() {
     atlasCoords: Vector2i = Vector2i(-1.0, -1.0),
     alternativeTile: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to
-        atlasCoords, LONG to alternativeTile)
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
   }
 
@@ -397,8 +396,7 @@ public open class TileMap : Node2D() {
     coordsInPattern: Vector2i,
     pattern: TileMapPattern
   ): Vector2i {
-    TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern,
-        OBJECT to pattern)
+    TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
@@ -426,8 +424,7 @@ public open class TileMap : Node2D() {
     terrainSet: Long,
     ignoreEmptyTerrains: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, BOOL to
-        ignoreEmptyTerrains)
+    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, BOOL to ignoreEmptyTerrains)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_FROM_SURROUNDING_TERRAINS, NIL)
   }

@@ -112,8 +112,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     inputIndex: Long,
     outputNode: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex, STRING_NAME to
-        outputNode)
+    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex, STRING_NAME to outputNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,
         NIL)
   }

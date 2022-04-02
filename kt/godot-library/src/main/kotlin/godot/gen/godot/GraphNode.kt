@@ -262,9 +262,7 @@ public open class GraphNode : Container() {
     customLeft: Texture2D? = null,
     customRight: Texture2D? = null
   ): Unit {
-    TransferContext.writeArguments(LONG to idx, BOOL to enableLeft, LONG to typeLeft, COLOR to
-        colorLeft, BOOL to enableRight, LONG to typeRight, COLOR to colorRight, OBJECT to
-        customLeft, OBJECT to customRight)
+    TransferContext.writeArguments(LONG to idx, BOOL to enableLeft, LONG to typeLeft, COLOR to colorLeft, BOOL to enableRight, LONG to typeRight, COLOR to colorRight, OBJECT to customLeft, OBJECT to customRight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT, NIL)
   }
 

@@ -43,8 +43,7 @@ public open class ENetConnection : RefCounted() {
     inBandwidth: Long = 0,
     outBandwidth: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort, LONG to maxPeers, LONG
-        to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
+    TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort, LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST_BOUND,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -56,8 +55,7 @@ public open class ENetConnection : RefCounted() {
     inBandwidth: Long = 0,
     outBandwidth: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG
-        to outBandwidth)
+    TransferContext.writeArguments(LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

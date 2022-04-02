@@ -516,7 +516,7 @@ public open class Control : CanvasItem() {
    * **Note:** If you want to check if a point is inside the control, you can use `get_rect().has_point(point)`.
    */
   public open fun _hasPoint(position: Vector2): Boolean {
-    throw NotImplementedError("_has_point is not implemented for Control")
+    throw NotImplementedError("_has_point·is·not·implemented·for·Control")
   }
 
   /**
@@ -526,7 +526,7 @@ public open class Control : CanvasItem() {
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Any?> {
-    throw NotImplementedError("_structured_text_parser is not implemented for Control")
+    throw NotImplementedError("_structured_text_parser·is·not·implemented·for·Control")
   }
 
   /**
@@ -537,7 +537,7 @@ public open class Control : CanvasItem() {
    * **Note:** This method will not be called when the script is attached to a [godot.Control] node that already overrides its minimum size (e.g. [godot.Label], [godot.Button], [godot.PanelContainer] etc.). It can only be used with most basic GUI nodes, like [godot.Control], [godot.Container], [godot.Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size is not implemented for Control")
+    throw NotImplementedError("_get_minimum_size·is·not·implemented·for·Control")
   }
 
   /**
@@ -578,7 +578,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
-    throw NotImplementedError("_get_drag_data is not implemented for Control")
+    throw NotImplementedError("_get_drag_data·is·not·implemented·for·Control")
   }
 
   /**
@@ -619,7 +619,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any): Boolean {
-    throw NotImplementedError("_can_drop_data is not implemented for Control")
+    throw NotImplementedError("_can_drop_data·is·not·implemented·for·Control")
   }
 
   /**
@@ -744,7 +744,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
-    throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
+    throw NotImplementedError("_make_custom_tooltip·is·not·implemented·for·Control")
   }
 
   /**
@@ -891,8 +891,7 @@ public open class Control : CanvasItem() {
     keepOffset: Boolean = false,
     pushOppositeAnchor: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, BOOL to keepOffset, BOOL to
-        pushOppositeAnchor)
+    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, BOOL to keepOffset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHOR, NIL)
   }
 
@@ -931,8 +930,7 @@ public open class Control : CanvasItem() {
     offset: Double,
     pushOppositeAnchor: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, DOUBLE to offset, BOOL to
-        pushOppositeAnchor)
+    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor, DOUBLE to offset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHOR_AND_OFFSET, NIL)
   }
 

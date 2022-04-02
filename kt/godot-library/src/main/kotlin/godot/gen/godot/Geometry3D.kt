@@ -56,8 +56,7 @@ public object Geometry3D : Object() {
     sides: Long,
     axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to
-        axis.id)
+    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -73,8 +72,7 @@ public object Geometry3D : Object() {
     lats: Long,
     axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats,
-        LONG to axis.id)
+    TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats, LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -134,8 +132,7 @@ public object Geometry3D : Object() {
     b: Vector3,
     c: Vector3
   ): Any? {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b,
-        VECTOR3 to c)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_RAY_INTERSECTS_TRIANGLE,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -151,8 +148,7 @@ public object Geometry3D : Object() {
     b: Vector3,
     c: Vector3
   ): Any? {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b,
-        VECTOR3 to c)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_TRIANGLE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -167,8 +163,7 @@ public object Geometry3D : Object() {
     spherePosition: Vector3,
     sphereRadius: Double
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE
-        to sphereRadius)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_SPHERE, PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
@@ -183,8 +178,7 @@ public object Geometry3D : Object() {
     height: Double,
     radius: Double
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height, DOUBLE to
-        radius)
+    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height, DOUBLE to radius)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CYLINDER, PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array

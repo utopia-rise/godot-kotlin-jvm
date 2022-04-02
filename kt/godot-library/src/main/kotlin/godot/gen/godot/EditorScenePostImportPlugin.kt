@@ -43,16 +43,14 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    * Return true or false whether a given option should be visible. Return null to ignore.
    */
   public open fun _getInternalOptionVisibility(category: Long, option: String): Any? {
-    throw
-        NotImplementedError("_get_internal_option_visibility is not implemented for EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_internal_option_visibility·is·not·implemented·for·EditorScenePostImportPlugin")
   }
 
   /**
    * Return true whether updating the 3D view of the import dialog needs to be updated if an option has changed.
    */
   public open fun _getInternalOptionUpdateViewRequired(category: Long, option: String): Any? {
-    throw
-        NotImplementedError("_get_internal_option_update_view_required is not implemented for EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_internal_option_update_view_required·is·not·implemented·for·EditorScenePostImportPlugin")
   }
 
   /**
@@ -76,8 +74,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    * Return true or false whether a given option should be visible. Return null to ignore.
    */
   public open fun _getOptionVisibility(path: String, option: String): Any? {
-    throw
-        NotImplementedError("_get_option_visibility is not implemented for EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_option_visibility·is·not·implemented·for·EditorScenePostImportPlugin")
   }
 
   /**
@@ -122,8 +119,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     hintString: String = "",
     usageFlags: Long = 7
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to
-        hint.id, STRING to hintString, LONG to usageFlags)
+    TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to hint.id, STRING to hintString, LONG to usageFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION_ADVANCED, NIL)
   }

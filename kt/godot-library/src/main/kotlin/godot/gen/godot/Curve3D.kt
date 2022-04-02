@@ -87,8 +87,7 @@ public open class Curve3D : Resource() {
     `out`: Vector3 = Vector3(0.0, 0.0, 0.0),
     atPosition: Long = -1
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to
-        atPosition)
+    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL)
   }
 

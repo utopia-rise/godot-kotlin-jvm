@@ -48,28 +48,28 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the name of this interface.
    */
   public open fun _getName(): StringName {
-    throw NotImplementedError("_get_name is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_name·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns the capabilities of this interface.
    */
   public open fun _getCapabilities(): Long {
-    throw NotImplementedError("_get_capabilities is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_capabilities·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns `true` if this interface has been initialised.
    */
   public open fun _isInitialized(): Boolean {
-    throw NotImplementedError("_is_initialized is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_is_initialized·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Initializes the interface, returns `true` on success.
    */
   public open fun _initialize(): Boolean {
-    throw NotImplementedError("_initialize is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_initialize·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -82,57 +82,56 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns `true` if this interface supports this play area mode.
    */
   public open fun _supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
-    throw
-        NotImplementedError("_supports_play_area_mode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_supports_play_area_mode·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns the [enum XRInterface.PlayAreaMode] that sets up our play area.
    */
   public open fun _getPlayAreaMode(): Long {
-    throw NotImplementedError("_get_play_area_mode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_play_area_mode·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Set the play area mode for this interface.
    */
   public open fun _setPlayAreaMode(mode: Long): Boolean {
-    throw NotImplementedError("_set_play_area_mode is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_set_play_area_mode·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns an [godot.PackedVector3Array] that denotes the play areas boundaries (if applicable).
    */
   public open fun _getPlayArea(): PackedVector3Array {
-    throw NotImplementedError("_get_play_area is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_play_area·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns the size of our render target for this interface, this overrides the size of the [godot.Viewport] marked as the xr viewport.
    */
   public open fun _getRenderTargetSize(): Vector2 {
-    throw NotImplementedError("_get_render_target_size is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_render_target_size·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic.
    */
   public open fun _getViewCount(): Long {
-    throw NotImplementedError("_get_view_count is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_view_count·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns the [godot.Transform3D] that positions the [godot.XRCamera3D] in the world.
    */
   public open fun _getCameraTransform(): Transform3D {
-    throw NotImplementedError("_get_camera_transform is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_camera_transform·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns a [godot.Transform3D] for a given view.
    */
   public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
-    throw NotImplementedError("_get_transform_for_view is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_transform_for_view·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -144,8 +143,7 @@ public open class XRInterfaceExtension : XRInterface() {
     zNear: Double,
     zFar: Double
   ): PackedFloat64Array {
-    throw
-        NotImplementedError("_get_projection_for_view is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_projection_for_view·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -164,7 +162,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Called if this is our primary [godot.XRInterfaceExtension] before we start processing a [godot.Viewport] for every active XR [godot.Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering.
    */
   public open fun _preDrawViewport(renderTarget: RID): Boolean {
-    throw NotImplementedError("_pre_draw_viewport is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_pre_draw_viewport·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -189,23 +187,21 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns a [godot.PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
-    throw
-        NotImplementedError("_get_suggested_tracker_names is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_suggested_tracker_names·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns a [godot.PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list.
    */
   public open fun _getSuggestedPoseNames(trackerName: StringName): PackedStringArray {
-    throw
-        NotImplementedError("_get_suggested_pose_names is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_suggested_pose_names·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
    * Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking.
    */
   public open fun _getTrackingStatus(): Long {
-    throw NotImplementedError("_get_tracking_status is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_tracking_status·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -225,8 +221,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Return `true` if anchor detection is enabled for this interface.
    */
   public open fun _getAnchorDetectionIsEnabled(): Boolean {
-    throw
-        NotImplementedError("_get_anchor_detection_is_enabled is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_anchor_detection_is_enabled·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -239,7 +234,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the camera feed id for the [godot.CameraFeed] registered with the [godot.CameraServer] that should be presented as the background on an AR capable device (if applicable).
    */
   public open fun _getCameraFeedId(): Long {
-    throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")
+    throw NotImplementedError("_get_camera_feed_id·is·not·implemented·for·XRInterfaceExtension")
   }
 
   /**
@@ -258,9 +253,7 @@ public open class XRInterfaceExtension : XRInterface() {
     upscale: Double,
     aspectRatio: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL
-        to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1,
-        DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
+    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT, NIL)
   }
 

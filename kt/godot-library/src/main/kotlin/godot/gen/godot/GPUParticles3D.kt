@@ -469,8 +469,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     custom: Color,
     flags: Long
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR
-        to custom, LONG to flags)
+    TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_EMIT_PARTICLE, NIL)
   }
 

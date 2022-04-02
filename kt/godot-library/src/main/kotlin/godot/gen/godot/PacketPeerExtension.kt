@@ -25,15 +25,14 @@ public open class PacketPeerExtension : PacketPeer() {
    *
    */
   public open fun _getAvailablePacketCount(): Long {
-    throw
-        NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")
+    throw NotImplementedError("_get_available_packet_count·is·not·implemented·for·PacketPeerExtension")
   }
 
   /**
    *
    */
   public open fun _getMaxPacketSize(): Long {
-    throw NotImplementedError("_get_max_packet_size is not implemented for PacketPeerExtension")
+    throw NotImplementedError("_get_max_packet_size·is·not·implemented·for·PacketPeerExtension")
   }
 
   public companion object

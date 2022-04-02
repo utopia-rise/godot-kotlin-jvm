@@ -36,49 +36,49 @@ public open class TextureLayered : Texture() {
    *
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format is not implemented for TextureLayered")
+    throw NotImplementedError("_get_format·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _getLayeredType(): Long {
-    throw NotImplementedError("_get_layered_type is not implemented for TextureLayered")
+    throw NotImplementedError("_get_layered_type·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _getWidth(): Long {
-    throw NotImplementedError("_get_width is not implemented for TextureLayered")
+    throw NotImplementedError("_get_width·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _getHeight(): Long {
-    throw NotImplementedError("_get_height is not implemented for TextureLayered")
+    throw NotImplementedError("_get_height·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _getLayers(): Long {
-    throw NotImplementedError("_get_layers is not implemented for TextureLayered")
+    throw NotImplementedError("_get_layers·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps is not implemented for TextureLayered")
+    throw NotImplementedError("_has_mipmaps·is·not·implemented·for·TextureLayered")
   }
 
   /**
    *
    */
   public open fun _getLayerData(layerIndex: Long): Image? {
-    throw NotImplementedError("_get_layer_data is not implemented for TextureLayered")
+    throw NotImplementedError("_get_layer_data·is·not·implemented·for·TextureLayered")
   }
 
   /**

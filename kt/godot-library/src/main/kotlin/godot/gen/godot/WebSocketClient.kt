@@ -76,8 +76,7 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
     gdMpApi: Boolean = false,
     customHeaders: PackedStringArray = PackedStringArray()
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to protocols, BOOL to gdMpApi,
-        PACKED_STRING_ARRAY to customHeaders)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to protocols, BOOL to gdMpApi, PACKED_STRING_ARRAY to customHeaders)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_CONNECT_TO_URL,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

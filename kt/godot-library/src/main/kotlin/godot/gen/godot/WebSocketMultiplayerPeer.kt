@@ -33,8 +33,7 @@ public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerP
     outputBufferSizeKb: Long,
     outputMaxPackets: Long
   ): GodotError {
-    TransferContext.writeArguments(LONG to inputBufferSizeKb, LONG to inputMaxPackets, LONG to
-        outputBufferSizeKb, LONG to outputMaxPackets)
+    TransferContext.writeArguments(LONG to inputBufferSizeKb, LONG to inputMaxPackets, LONG to outputBufferSizeKb, LONG to outputMaxPackets)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

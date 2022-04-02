@@ -153,8 +153,7 @@ public open class VisualScript : Script() {
     toNode: Long,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to
-        toPort)
+    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_CONNECT, NIL)
   }
 
@@ -164,8 +163,7 @@ public open class VisualScript : Script() {
     toNode: Long,
     toPort: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to
-        toPort)
+    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_DISCONNECT, NIL)
   }
 
@@ -175,8 +173,7 @@ public open class VisualScript : Script() {
     toNode: Long,
     toPort: Long
   ): Boolean {
-    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to
-        toPort)
+    TransferContext.writeArguments(LONG to fromNode, LONG to fromPort, LONG to toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_DATA_CONNECTION,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -263,8 +260,7 @@ public open class VisualScript : Script() {
     argname: String,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, STRING to argname, LONG to
-        index)
+    TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, STRING to argname, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_ADD_ARGUMENT, NIL)
   }

@@ -819,8 +819,7 @@ public open class TextEdit : Control() {
     toLine: Long,
     toColumn: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to
-        toColumn)
+    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_TEXT, NIL)
   }
 
@@ -1038,8 +1037,7 @@ public open class TextEdit : Control() {
     fromLine: Long,
     fromColum: Long
   ): Vector2i {
-    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine, LONG to
-        fromColum)
+    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine, LONG to fromColum)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
@@ -1168,8 +1166,7 @@ public open class TextEdit : Control() {
     canBeHidden: Boolean = true,
     wrapIndex: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG
-        to wrapIndex)
+    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL)
   }
 
@@ -1271,8 +1268,7 @@ public open class TextEdit : Control() {
     toLine: Long,
     toColumn: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to
-        toColumn)
+    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
   }
 

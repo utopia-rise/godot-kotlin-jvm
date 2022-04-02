@@ -50,8 +50,7 @@ public object Geometry2D : Object() {
     circlePosition: Vector2,
     circleRadius: Double
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to
-        circleRadius)
+    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to circleRadius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_CIRCLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -65,8 +64,7 @@ public object Geometry2D : Object() {
     fromB: Vector2,
     toB: Vector2
   ): Any? {
-    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to
-        toB)
+    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to toB)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_SEGMENT_INTERSECTS_SEGMENT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -83,8 +81,7 @@ public object Geometry2D : Object() {
     fromB: Vector2,
     dirB: Vector2
   ): Any? {
-    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to
-        dirB)
+    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to dirB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_LINE_INTERSECTS_LINE,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -206,8 +203,7 @@ public object Geometry2D : Object() {
    */
   public open fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to
-        polygonB)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MERGE_POLYGONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
@@ -219,8 +215,7 @@ public object Geometry2D : Object() {
    */
   public open fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to
-        polygonB)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYGONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
@@ -232,8 +227,7 @@ public object Geometry2D : Object() {
    */
   public open fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to
-        polygonB)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYGONS,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -246,8 +240,7 @@ public object Geometry2D : Object() {
    */
   public open fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to
-        polygonB)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_EXCLUDE_POLYGONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
@@ -257,8 +250,7 @@ public object Geometry2D : Object() {
    */
   public open fun clipPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to
-        polygon)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYLINE_WITH_POLYGON, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -269,8 +261,7 @@ public object Geometry2D : Object() {
    */
   public open fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to
-        polygon)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYLINE_WITH_POLYGON, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -320,8 +311,7 @@ public object Geometry2D : Object() {
     delta: Double,
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to
-        joinType.id)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to joinType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
@@ -341,8 +331,7 @@ public object Geometry2D : Object() {
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
     endType: Geometry2D.PolyEndType = Geometry2D.PolyEndType.END_SQUARE
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to
-        joinType.id, LONG to endType.id)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to joinType.id, LONG to endType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }

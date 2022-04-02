@@ -72,28 +72,28 @@ public open class Material : Resource() {
    *
    */
   public open fun _getShaderRid(): RID {
-    throw NotImplementedError("_get_shader_rid is not implemented for Material")
+    throw NotImplementedError("_get_shader_rid·is·not·implemented·for·Material")
   }
 
   /**
    *
    */
   public open fun _getShaderMode(): Shader.Mode {
-    throw NotImplementedError("_get_shader_mode is not implemented for Material")
+    throw NotImplementedError("_get_shader_mode·is·not·implemented·for·Material")
   }
 
   /**
    *
    */
   public open fun _canDoNextPass(): Boolean {
-    throw NotImplementedError("_can_do_next_pass is not implemented for Material")
+    throw NotImplementedError("_can_do_next_pass·is·not·implemented·for·Material")
   }
 
   /**
    *
    */
   public open fun _canUseRenderPriority(): Boolean {
-    throw NotImplementedError("_can_use_render_priority is not implemented for Material")
+    throw NotImplementedError("_can_use_render_priority·is·not·implemented·for·Material")
   }
 
   /**

@@ -140,8 +140,7 @@ public open class HTTPClient : RefCounted() {
     headers: PackedStringArray,
     body: PackedByteArray
   ): GodotError {
-    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers,
-        PACKED_BYTE_ARRAY to body)
+    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -191,8 +190,7 @@ public open class HTTPClient : RefCounted() {
     headers: PackedStringArray,
     body: String = ""
   ): GodotError {
-    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers,
-        STRING to body)
+    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

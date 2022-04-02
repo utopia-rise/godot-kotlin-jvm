@@ -183,8 +183,7 @@ public open class UndoRedo : Object() {
     method: StringName,
     vararg __var_args: Any?
   ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
-        to it }.toTypedArray())
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, NIL)
   }
 
@@ -196,8 +195,7 @@ public open class UndoRedo : Object() {
     method: StringName,
     vararg __var_args: Any?
   ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
-        to it }.toTypedArray())
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, NIL)
   }
 

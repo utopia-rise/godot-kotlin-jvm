@@ -408,7 +408,7 @@ public open class CodeEdit : TextEdit() {
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Any?>):
       VariantArray<Any?> {
-    throw NotImplementedError("_filter_code_completion_candidates is not implemented for CodeEdit")
+    throw NotImplementedError("_filter_code_completion_candidates·is·not·implemented·for·CodeEdit")
   }
 
   /**
@@ -853,8 +853,7 @@ public open class CodeEdit : TextEdit() {
     icon: Resource? = null,
     `value`: Any = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText,
-        COLOR to textColor, OBJECT to icon, ANY to value)
+    TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_CODE_COMPLETION_OPTION,
         NIL)
   }

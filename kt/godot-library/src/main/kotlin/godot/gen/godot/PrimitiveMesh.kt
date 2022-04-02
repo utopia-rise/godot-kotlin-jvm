@@ -83,7 +83,7 @@ public open class PrimitiveMesh : Mesh() {
    *
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
-    throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
+    throw NotImplementedError("_create_mesh_array·is·not·implemented·for·PrimitiveMesh")
   }
 
   /**

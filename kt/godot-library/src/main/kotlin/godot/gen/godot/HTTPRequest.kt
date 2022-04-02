@@ -474,8 +474,7 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = ""
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to
-        sslValidateDomain, LONG to method.id, STRING to requestData)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, STRING to requestData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -492,8 +491,7 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray()
   ): GodotError {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to
-        sslValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

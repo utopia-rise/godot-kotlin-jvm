@@ -357,8 +357,7 @@ public open class Camera3D : Node3D() {
     zNear: Double,
     zFar: Double
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to
-        zFar)
+    TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM, NIL)
   }
 

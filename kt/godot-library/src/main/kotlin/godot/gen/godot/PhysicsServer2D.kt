@@ -249,8 +249,7 @@ public object PhysicsServer2D : Object() {
     transform: Transform2D = Transform2D(),
     disabled: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM2D to transform, BOOL to
-        disabled)
+    TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ADD_SHAPE, NIL)
   }
 
@@ -526,8 +525,7 @@ public object PhysicsServer2D : Object() {
     transform: Transform2D = Transform2D(),
     disabled: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM2D to transform, BOOL to
-        disabled)
+    TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_SHAPE, NIL)
   }
 
@@ -1111,8 +1109,7 @@ public object PhysicsServer2D : Object() {
     bodyA: RID = RID(),
     bodyB: RID = RID()
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, VECTOR2 to groove1A, VECTOR2 to groove2A, VECTOR2
-        to anchorB, _RID to bodyA, _RID to bodyB)
+    TransferContext.writeArguments(_RID to joint, VECTOR2 to groove1A, VECTOR2 to groove2A, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_GROOVE,
         NIL)
   }
@@ -1127,8 +1124,7 @@ public object PhysicsServer2D : Object() {
     bodyA: RID,
     bodyB: RID = RID()
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to
-        bodyA, _RID to bodyB)
+    TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_DAMPED_SPRING, NIL)
   }

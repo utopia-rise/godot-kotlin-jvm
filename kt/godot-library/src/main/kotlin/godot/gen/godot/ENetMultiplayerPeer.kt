@@ -56,8 +56,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     inBandwidth: Long = 0,
     outBandwidth: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(LONG to port, LONG to maxClients, LONG to maxChannels, LONG to
-        inBandwidth, LONG to outBandwidth)
+    TransferContext.writeArguments(LONG to port, LONG to maxClients, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_SERVER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -71,8 +70,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     outBandwidth: Long = 0,
     localPort: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING to address, LONG to port, LONG to channelCount, LONG to
-        inBandwidth, LONG to outBandwidth, LONG to localPort)
+    TransferContext.writeArguments(STRING to address, LONG to port, LONG to channelCount, LONG to inBandwidth, LONG to outBandwidth, LONG to localPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_CLIENT,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

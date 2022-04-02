@@ -246,71 +246,70 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
    * Gets the unique name of the importer.
    */
   public open fun _getImporterName(): String {
-    throw NotImplementedError("_get_importer_name is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_importer_name·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the name to display in the import window. You should choose this name as a continuation to "Import as", e.g. "Import as Special Mesh".
    */
   public open fun _getVisibleName(): String {
-    throw NotImplementedError("_get_visible_name is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_visible_name·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the number of initial presets defined by the plugin. Use [_getImportOptions] to get the default options for the preset and [_getPresetName] to get the name of the preset.
    */
   public open fun _getPresetCount(): Long {
-    throw NotImplementedError("_get_preset_count is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_preset_count·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the name of the options preset at this index.
    */
   public open fun _getPresetName(presetIndex: Long): String {
-    throw NotImplementedError("_get_preset_name is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_preset_name·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the list of file extensions to associate with this loader (case-insensitive). e.g. `["obj"]`.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw
-        NotImplementedError("_get_recognized_extensions is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_recognized_extensions·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional).
    */
   public open fun _getImportOptions(path: String, presetIndex: Long): VariantArray<Any?> {
-    throw NotImplementedError("_get_import_options is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_import_options·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the extension used to save this resource in the `.godot/imported` directory (see [godot.ProjectSettings.application/config/useHiddenProjectDataDirectory]).
    */
   public open fun _getSaveExtension(): String {
-    throw NotImplementedError("_get_save_extension is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_save_extension·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the Godot resource type associated with this loader. e.g. `"Mesh"` or `"Animation"`.
    */
   public open fun _getResourceType(): String {
-    throw NotImplementedError("_get_resource_type is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_resource_type·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the priority of this plugin for the recognized extension. Higher priority plugins will be preferred. The default priority is `1.0`.
    */
   public open fun _getPriority(): Double {
-    throw NotImplementedError("_get_priority is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_priority·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
    * Gets the order of this importer to be run when importing resources. Importers with *lower* import orders will be called first, and higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported. The default import order is `0` unless overridden by a specific importer. See [enum ResourceImporter.ImportOrder] for some predefined values.
    */
   public open fun _getImportOrder(): Long {
-    throw NotImplementedError("_get_import_order is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_import_order·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
@@ -367,7 +366,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     optionName: StringName,
     options: Dictionary<Any?, Any?>
   ): Boolean {
-    throw NotImplementedError("_get_option_visibility is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_get_option_visibility·is·not·implemented·for·EditorImportPlugin")
   }
 
   /**
@@ -382,7 +381,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     platformVariants: VariantArray<Any?>,
     genFiles: VariantArray<Any?>
   ): Long {
-    throw NotImplementedError("_import is not implemented for EditorImportPlugin")
+    throw NotImplementedError("_import·is·not·implemented·for·EditorImportPlugin")
   }
 
   public companion object

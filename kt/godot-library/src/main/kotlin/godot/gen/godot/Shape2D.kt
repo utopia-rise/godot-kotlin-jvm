@@ -70,8 +70,7 @@ public open class Shape2D internal constructor() : Resource() {
     withShape: Shape2D,
     shapeXform: Transform2D
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to
-        shapeXform)
+    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -88,8 +87,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
     shapeMotion: Vector2
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to
-        withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
+    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -104,8 +102,7 @@ public open class Shape2D internal constructor() : Resource() {
     withShape: Shape2D,
     shapeXform: Transform2D
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to
-        shapeXform)
+    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_AND_GET_CONTACTS,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -123,8 +120,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
     shapeMotion: Vector2
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to
-        withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
+    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION_AND_GET_CONTACTS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

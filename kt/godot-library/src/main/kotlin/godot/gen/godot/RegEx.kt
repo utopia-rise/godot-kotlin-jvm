@@ -69,8 +69,7 @@ public open class RegEx : RefCounted() {
     offset: Long = 0,
     end: Long = -1
   ): String {
-    TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to
-        offset, LONG to end)
+    TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset, LONG to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }

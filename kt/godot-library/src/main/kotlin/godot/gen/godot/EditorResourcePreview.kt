@@ -50,8 +50,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     receiverFunc: StringName,
     userdata: Any
   ): Unit {
-    TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING_NAME to receiverFunc,
-        ANY to userdata)
+    TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_RESOURCE_PREVIEW, NIL)
   }
@@ -67,8 +66,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     receiverFunc: StringName,
     userdata: Any
   ): Unit {
-    TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING_NAME to
-        receiverFunc, ANY to userdata)
+    TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_EDITED_RESOURCE_PREVIEW, NIL)
   }

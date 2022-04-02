@@ -176,8 +176,7 @@ public open class StyleBoxTexture : StyleBox() {
     sizeRight: Double,
     sizeBottom: Double
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight,
-        DOUBLE to sizeBottom)
+    TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight, DOUBLE to sizeBottom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_INDIVIDUAL, NIL)
   }

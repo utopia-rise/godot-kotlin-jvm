@@ -232,8 +232,7 @@ public open class ArrayMesh : Mesh() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFlags: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes,
-        DICTIONARY to lods, LONG to compressFlags)
+    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
         NIL)
   }

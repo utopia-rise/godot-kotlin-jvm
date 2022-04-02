@@ -72,8 +72,7 @@ public open class StreamPeerSSL : StreamPeer() {
     certificate: X509Certificate,
     chain: X509Certificate? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate,
-        OBJECT to chain)
+    TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate, OBJECT to chain)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_ACCEPT_STREAM, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -89,8 +88,7 @@ public open class StreamPeerSSL : StreamPeer() {
     forHostname: String = "",
     validCertificate: X509Certificate? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname,
-        OBJECT to validCertificate)
+    TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_CONNECT_TO_STREAM,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

@@ -139,7 +139,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _forwardCanvasGuiInput(event: InputEvent): Boolean {
-    throw NotImplementedError("_forward_canvas_gui_input is not implemented for EditorPlugin")
+    throw NotImplementedError("_forward_canvas_gui_input·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -280,7 +280,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _forward3dGuiInput(viewportCamera: Camera3D, event: InputEvent): Long {
-    throw NotImplementedError("_forward_3d_gui_input is not implemented for EditorPlugin")
+    throw NotImplementedError("_forward_3d_gui_input·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -365,7 +365,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", and "AssetLib" buttons.
    */
   public open fun _getPluginName(): String {
-    throw NotImplementedError("_get_plugin_name is not implemented for EditorPlugin")
+    throw NotImplementedError("_get_plugin_name·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -412,14 +412,14 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _getPluginIcon(): Texture2D? {
-    throw NotImplementedError("_get_plugin_icon is not implemented for EditorPlugin")
+    throw NotImplementedError("_get_plugin_icon·is·not·implemented·for·EditorPlugin")
   }
 
   /**
    * Returns `true` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script** and **AssetLib**).
    */
   public open fun _hasMainScreen(): Boolean {
-    throw NotImplementedError("_has_main_screen is not implemented for EditorPlugin")
+    throw NotImplementedError("_has_main_screen·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -440,14 +440,14 @@ public open class EditorPlugin internal constructor() : Node() {
    * Implement this function if your plugin edits a specific type of object (Resource or Node). If you return `true`, then you will get the functions [_edit] and [_makeVisible] called when the editor requests them. If you have declared the methods [_forwardCanvasGuiInput] and [_forward3dGuiInput] these will be called too.
    */
   public open fun _handles(_object: Any): Boolean {
-    throw NotImplementedError("_handles is not implemented for EditorPlugin")
+    throw NotImplementedError("_handles·is·not·implemented·for·EditorPlugin")
   }
 
   /**
    * Gets the state of your plugin editor. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns).
    */
   public open fun _getState(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_state is not implemented for EditorPlugin")
+    throw NotImplementedError("_get_state·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -480,7 +480,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * This is for editors that edit script-based objects. You can return a list of breakpoints in the format (`script:line`), for example: `res://path_to_script.gd:25`.
    */
   public open fun _getBreakpoints(): PackedStringArray {
-    throw NotImplementedError("_get_breakpoints is not implemented for EditorPlugin")
+    throw NotImplementedError("_get_breakpoints·is·not·implemented·for·EditorPlugin")
   }
 
   /**
@@ -501,7 +501,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * This method must return a boolean. If this method returns `false`, the project will not run. The run is aborted immediately, so this also prevents all other plugins' [_build] methods from running.
    */
   public open fun _build(): Boolean {
-    throw NotImplementedError("_build is not implemented for EditorPlugin")
+    throw NotImplementedError("_build·is·not·implemented·for·EditorPlugin")
   }
 
   /**

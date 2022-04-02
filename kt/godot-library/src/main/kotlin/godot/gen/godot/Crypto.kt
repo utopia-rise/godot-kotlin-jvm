@@ -221,8 +221,7 @@ public open class Crypto : RefCounted() {
     notBefore: String = "20140101000000",
     notAfter: String = "20340101000000"
   ): X509Certificate? {
-    TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING
-        to notAfter)
+    TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_SELF_SIGNED_CERTIFICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
@@ -250,8 +249,7 @@ public open class Crypto : RefCounted() {
     signature: PackedByteArray,
     key: CryptoKey
   ): Boolean {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY
-        to signature, OBJECT to key)
+    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_VERIFY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -288,8 +286,7 @@ public open class Crypto : RefCounted() {
     key: PackedByteArray,
     msg: PackedByteArray
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY
-        to msg)
+    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_HMAC_DIGEST,
         PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray

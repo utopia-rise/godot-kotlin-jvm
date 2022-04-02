@@ -202,8 +202,7 @@ public open class XRPositionalTracker : RefCounted() {
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to
-        linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
+    TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_POSE, NIL)
   }
 

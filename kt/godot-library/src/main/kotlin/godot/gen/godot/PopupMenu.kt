@@ -260,8 +260,7 @@ public open class PopupMenu : Popup() {
     id: Long = -1,
     accel: Key = Key.KEY_NONE
   ): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to maxStates, LONG to defaultState, LONG to
-        id, LONG to accel.id)
+    TransferContext.writeArguments(STRING to label, LONG to maxStates, LONG to defaultState, LONG to id, LONG to accel.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_MULTISTATE_ITEM, NIL)
   }
 
@@ -290,8 +289,7 @@ public open class PopupMenu : Popup() {
     id: Long = -1,
     global: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
-        global)
+    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_SHORTCUT, NIL)
   }
 
@@ -324,8 +322,7 @@ public open class PopupMenu : Popup() {
     id: Long = -1,
     global: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
-        global)
+    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_SHORTCUT,
         NIL)
   }
@@ -356,8 +353,7 @@ public open class PopupMenu : Popup() {
     id: Long = -1,
     global: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
-        global)
+    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_SHORTCUT, NIL)
   }

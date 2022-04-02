@@ -149,8 +149,7 @@ public open class EditorInterface internal constructor() : Node() {
     column: Long = 0,
     grabFocus: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to
-        grabFocus)
+    TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to grabFocus)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
   }
 

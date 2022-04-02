@@ -270,8 +270,7 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to
-        disabled)
+    TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ADD_SHAPE, NIL)
   }
 
@@ -575,8 +574,7 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to
-        disabled)
+    TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_SHAPE, NIL)
   }
 
@@ -1095,8 +1093,7 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localB: Vector3
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB,
-        VECTOR3 to localB)
+    TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_PIN, NIL)
   }
 
@@ -1171,8 +1168,7 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     hingeB: Transform3D
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to
-        bodyB, TRANSFORM3D to hingeB)
+    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_HINGE,
         NIL)
   }
@@ -1233,8 +1229,7 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to
-        bodyB, TRANSFORM3D to localRefB)
+    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_SLIDER,
         NIL)
   }
@@ -1273,8 +1268,7 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to
-        bodyB, TRANSFORM3D to localRefB)
+    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_CONE_TWIST, NIL)
   }
@@ -1342,8 +1336,7 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to
-        bodyB, TRANSFORM3D to localRefB)
+    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_GENERIC_6DOF, NIL)
   }
@@ -1357,8 +1350,7 @@ public object PhysicsServer3D : Object() {
     `param`: PhysicsServer3D.G6DOFJointAxisParam,
     `value`: Double
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to
-        value)
+    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_SET_PARAM, NIL)
   }

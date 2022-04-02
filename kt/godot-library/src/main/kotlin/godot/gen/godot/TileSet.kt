@@ -646,8 +646,7 @@ public open class TileSet : Resource() {
     sourceTo: Long,
     coordsTo: Vector2i
   ): Unit {
-    TransferContext.writeArguments(LONG to pSourceFrom, VECTOR2I to coordsFrom, LONG to sourceTo,
-        VECTOR2I to coordsTo)
+    TransferContext.writeArguments(LONG to pSourceFrom, VECTOR2I to coordsFrom, LONG to sourceTo, VECTOR2I to coordsTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_COORDS_LEVEL_TILE_PROXY,
         NIL)
   }
@@ -699,8 +698,7 @@ public open class TileSet : Resource() {
     coordsTo: Vector2i,
     alternativeTo: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to
-        alternativeFrom, LONG to sourceTo, VECTOR2I to coordsTo, LONG to alternativeTo)
+    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom, LONG to sourceTo, VECTOR2I to coordsTo, LONG to alternativeTo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_SET_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
   }
@@ -715,8 +713,7 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Long
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to
-        alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_GET_ALTERNATIVE_LEVEL_TILE_PROXY, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -730,8 +727,7 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Long
   ): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to
-        alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_HAS_ALTERNATIVE_LEVEL_TILE_PROXY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -745,8 +741,7 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Long
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to
-        alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
   }
@@ -763,8 +758,7 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Long
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to
-        alternativeFrom)
+    TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MAP_TILE_PROXY, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }

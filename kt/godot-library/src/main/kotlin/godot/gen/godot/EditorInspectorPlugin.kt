@@ -51,7 +51,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    * Returns `true` if this object can be handled by this plugin.
    */
   public open fun _canHandle(_object: Any): Boolean {
-    throw NotImplementedError("_can_handle is not implemented for EditorInspectorPlugin")
+    throw NotImplementedError("_can_handle·is·not·implemented·for·EditorInspectorPlugin")
   }
 
   /**
@@ -84,7 +84,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     usageFlags: Long,
     wide: Boolean
   ): Boolean {
-    throw NotImplementedError("_parse_property is not implemented for EditorInspectorPlugin")
+    throw NotImplementedError("_parse_property·is·not·implemented·for·EditorInspectorPlugin")
   }
 
   /**
@@ -119,8 +119,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     properties: PackedStringArray,
     editor: Control
   ): Unit {
-    TransferContext.writeArguments(STRING to label, PACKED_STRING_ARRAY to properties, OBJECT to
-        editor)
+    TransferContext.writeArguments(STRING to label, PACKED_STRING_ARRAY to properties, OBJECT to editor)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR_FOR_MULTIPLE_PROPERTIES,
         NIL)

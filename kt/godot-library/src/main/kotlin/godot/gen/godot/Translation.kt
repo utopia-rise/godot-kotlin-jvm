@@ -58,14 +58,14 @@ public open class Translation : Resource() {
     n: Long,
     context: StringName
   ): StringName {
-    throw NotImplementedError("_get_plural_message is not implemented for Translation")
+    throw NotImplementedError("_get_plural_message·is·not·implemented·for·Translation")
   }
 
   /**
    * Virtual method to override [getMessage].
    */
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
-    throw NotImplementedError("_get_message is not implemented for Translation")
+    throw NotImplementedError("_get_message·is·not·implemented·for·Translation")
   }
 
   /**
@@ -78,8 +78,7 @@ public open class Translation : Resource() {
     xlatedMessage: StringName,
     context: StringName = StringName("")
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage,
-        STRING_NAME to context)
+    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_MESSAGE, NIL)
   }
 
@@ -93,8 +92,7 @@ public open class Translation : Resource() {
     xlatedMessages: PackedStringArray,
     context: StringName = StringName("")
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages,
-        STRING_NAME to context)
+    TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_PLURAL_MESSAGE, NIL)
   }
 
@@ -120,8 +118,7 @@ public open class Translation : Resource() {
     n: Long,
     context: StringName = StringName("")
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG
-        to n, STRING_NAME to context)
+    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_PLURAL_MESSAGE,
         STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName

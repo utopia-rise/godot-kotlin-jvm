@@ -23,85 +23,71 @@ public open class VisualScriptCustomNode : VisualScriptNode() {
   }
 
   public open fun _getOutputSequencePortCount(): Long {
-    throw
-        NotImplementedError("_get_output_sequence_port_count is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_sequence_port_count·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _hasInputSequencePort(): Boolean {
-    throw
-        NotImplementedError("_has_input_sequence_port is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_has_input_sequence_port·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputSequencePortText(seqIdx: Long): String {
-    throw
-        NotImplementedError("_get_output_sequence_port_text is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_sequence_port_text·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getInputValuePortCount(): Long {
-    throw
-        NotImplementedError("_get_input_value_port_count is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_input_value_port_count·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getInputValuePortType(inputIdx: Long): Long {
-    throw
-        NotImplementedError("_get_input_value_port_type is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_input_value_port_type·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getInputValuePortName(inputIdx: Long): String {
-    throw
-        NotImplementedError("_get_input_value_port_name is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_input_value_port_name·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getInputValuePortHint(inputIdx: Long): Long {
-    throw
-        NotImplementedError("_get_input_value_port_hint is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_input_value_port_hint·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getInputValuePortHintString(inputIdx: Long): String {
-    throw
-        NotImplementedError("_get_input_value_port_hint_string is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_input_value_port_hint_string·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortCount(): Long {
-    throw
-        NotImplementedError("_get_output_value_port_count is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_value_port_count·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortType(outputIdx: Long): Long {
-    throw
-        NotImplementedError("_get_output_value_port_type is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_value_port_type·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortName(outputIdx: Long): String {
-    throw
-        NotImplementedError("_get_output_value_port_name is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_value_port_name·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortHint(outputIdx: Long): Long {
-    throw
-        NotImplementedError("_get_output_value_port_hint is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_value_port_hint·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortHintString(outputIdx: Long): String {
-    throw
-        NotImplementedError("_get_output_value_port_hint_string is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_output_value_port_hint_string·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getCaption(): String {
-    throw NotImplementedError("_get_caption is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_caption·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getText(): String {
-    throw NotImplementedError("_get_text is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_text·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getCategory(): String {
-    throw NotImplementedError("_get_category is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_category·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _getWorkingMemorySize(): Long {
-    throw
-        NotImplementedError("_get_working_memory_size is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_get_working_memory_size·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public open fun _step(
@@ -110,7 +96,7 @@ public open class VisualScriptCustomNode : VisualScriptNode() {
     startMode: Long,
     workingMem: VariantArray<Any?>
   ): Any? {
-    throw NotImplementedError("_step is not implemented for VisualScriptCustomNode")
+    throw NotImplementedError("_step·is·not·implemented·for·VisualScriptCustomNode")
   }
 
   public enum class StartMode(

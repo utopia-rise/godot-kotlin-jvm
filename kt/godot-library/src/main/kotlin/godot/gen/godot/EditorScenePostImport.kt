@@ -122,7 +122,7 @@ public open class EditorScenePostImport internal constructor() : RefCounted() {
    * Called after the scene was imported. This method must return the modified version of the scene.
    */
   public open fun _postImport(scene: Node): Object? {
-    throw NotImplementedError("_post_import is not implemented for EditorScenePostImport")
+    throw NotImplementedError("_post_import·is·not·implemented·for·EditorScenePostImport")
   }
 
   /**

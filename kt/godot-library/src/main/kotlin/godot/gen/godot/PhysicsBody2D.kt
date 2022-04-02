@@ -73,8 +73,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     collision: KinematicCollision2D? = null,
     safeMargin: Double = 0.08
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision,
-        DOUBLE to safeMargin)
+    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision, DOUBLE to safeMargin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

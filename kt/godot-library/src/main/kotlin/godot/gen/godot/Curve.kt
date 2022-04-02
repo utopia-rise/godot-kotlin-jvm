@@ -100,8 +100,7 @@ public open class Curve : Resource() {
     leftMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE,
     rightMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE
   ): Long {
-    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to
-        rightTangent, LONG to leftMode.id, LONG to rightMode.id)
+    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

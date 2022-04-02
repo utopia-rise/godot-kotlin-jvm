@@ -179,8 +179,7 @@ public object ClassDB : Object() {
     method: StringName,
     noInheritance: Boolean = false
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to
-        noInheritance)
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_METHOD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -237,8 +236,7 @@ public object ClassDB : Object() {
     name: StringName,
     noInheritance: Boolean = false
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to
-        noInheritance)
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_ENUM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -262,8 +260,7 @@ public object ClassDB : Object() {
     _enum: StringName,
     noInheritance: Boolean = false
   ): PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to
-        noInheritance)
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_CONSTANTS,
         PACKED_STRING_ARRAY)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
@@ -277,8 +274,7 @@ public object ClassDB : Object() {
     name: StringName,
     noInheritance: Boolean = false
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to
-        noInheritance)
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_ENUM, STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName

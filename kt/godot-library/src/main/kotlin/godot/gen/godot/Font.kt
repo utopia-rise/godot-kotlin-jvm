@@ -313,8 +313,7 @@ public open class Font : Resource() {
     width: Double = -1.0,
     flags: Long = 3
   ): Vector2 {
-    TransferContext.writeArguments(STRING to text, LONG to size, LONG to alignment.id, DOUBLE to
-        width, LONG to flags)
+    TransferContext.writeArguments(STRING to text, LONG to size, LONG to alignment.id, DOUBLE to width, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -353,9 +352,7 @@ public open class Font : Resource() {
     outlineModulate: Color = Color(Color(1, 1, 1, 0)),
     flags: Long = 3
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to
-        alignment.id, DOUBLE to width, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR
-        to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
   }
 
@@ -377,9 +374,7 @@ public open class Font : Resource() {
     outlineModulate: Color = Color(Color(1, 1, 1, 0)),
     flags: Long = 99
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to
-        alignment.id, DOUBLE to width, LONG to maxLines, LONG to size, COLOR to modulate, LONG to
-        outlineSize, COLOR to outlineModulate, LONG to flags)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to maxLines, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
   }
 
@@ -413,8 +408,7 @@ public open class Font : Resource() {
     outlineSize: Long = 0,
     outlineModulate: Color = Color(Color(1, 1, 1, 0))
   ): Double {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to next,
-        LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to next, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }

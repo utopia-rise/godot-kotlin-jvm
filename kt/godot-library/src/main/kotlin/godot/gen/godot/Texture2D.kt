@@ -47,28 +47,28 @@ public open class Texture2D : Texture() {
    *
    */
   public open fun _getWidth(): Long {
-    throw NotImplementedError("_get_width is not implemented for Texture2D")
+    throw NotImplementedError("_get_width·is·not·implemented·for·Texture2D")
   }
 
   /**
    *
    */
   public open fun _getHeight(): Long {
-    throw NotImplementedError("_get_height is not implemented for Texture2D")
+    throw NotImplementedError("_get_height·is·not·implemented·for·Texture2D")
   }
 
   /**
    *
    */
   public open fun _isPixelOpaque(x: Long, y: Long): Boolean {
-    throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
+    throw NotImplementedError("_is_pixel_opaque·is·not·implemented·for·Texture2D")
   }
 
   /**
    *
    */
   public open fun _hasAlpha(): Boolean {
-    throw NotImplementedError("_has_alpha is not implemented for Texture2D")
+    throw NotImplementedError("_has_alpha·is·not·implemented·for·Texture2D")
   }
 
   /**
@@ -152,8 +152,7 @@ public open class Texture2D : Texture() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL
-        to transpose)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW, NIL)
   }
 
@@ -167,8 +166,7 @@ public open class Texture2D : Texture() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to
-        modulate, BOOL to transpose)
+    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT, NIL)
   }
 
@@ -183,8 +181,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false,
     clipUv: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to
-        modulate, BOOL to transpose, BOOL to clipUv)
+    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT_REGION, NIL)
   }
 

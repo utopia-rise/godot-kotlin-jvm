@@ -49,7 +49,7 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
+    throw NotImplementedError("_get_allowed_size_flags_horizontal·is·not·implemented·for·Container")
   }
 
   /**
@@ -58,7 +58,7 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
+    throw NotImplementedError("_get_allowed_size_flags_vertical·is·not·implemented·for·Container")
   }
 
   /**

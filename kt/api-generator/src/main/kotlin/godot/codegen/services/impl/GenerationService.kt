@@ -388,7 +388,7 @@ class GenerationService(
                     .addParameter("value", propertyType)
                     .generateJvmMethodCall(
                         property.toSetterCallable(),
-                        "%T to value"
+                        "%T·to·value"
                     )
                     .build()
             )
@@ -757,11 +757,11 @@ class GenerationService(
 
                 val shouldAddComa = index != 0
 
-                if (shouldAddComa) append(", ")
+                if (shouldAddComa) append(",·")
 
                 val sanitisedArgumentName = classGraphService.getSanitisedArgumentName(cl, method, index)
 
-                append("%T to $sanitisedArgumentName")
+                append("%T·to·$sanitisedArgumentName")
                 if (argument.isEnum()) append(".id")
 
                 val argumentTypeClassName = argument.getTypeClassName()
@@ -783,7 +783,7 @@ class GenerationService(
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }
-            if (method.internal.isVararg && length != 0) append(", ")
+            if (method.internal.isVararg && length != 0) append(",·")
         }
     }
 
@@ -799,10 +799,10 @@ class GenerationService(
             )
         } else if (enrichedMethod.getTypeClassName().typeName != UNIT) {
             addStatement(
-                "%L %T(%S)",
+                "%L·%T(%S)",
                 "throw",
                 NotImplementedError::class,
-                "${enrichedMethod.internal.name} is not implemented for ${clazz.internal.name}"
+                "${enrichedMethod.internal.name}·is·not·implemented·for·${clazz.internal.name}"
             )
         }
     }
@@ -819,7 +819,7 @@ class GenerationService(
 
         if (callable.isVararg) {
             addStatement(
-                "%T.writeArguments($callArgumentsAsString *__var_args.map { %T to it }.toTypedArray())",
+                "%T.writeArguments($callArgumentsAsString·*__var_args.map·{·%T·to·it·}.toTypedArray())",
                 TRANSFER_CONTEXT,
                 *ktVariantClassNames,
                 VARIANT_TYPE_ANY

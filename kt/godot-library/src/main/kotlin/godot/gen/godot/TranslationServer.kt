@@ -187,8 +187,7 @@ public object TranslationServer : Object() {
     n: Long,
     context: StringName = StringName("")
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n,
-        STRING_NAME to context)
+    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE_PLURAL,
         STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName

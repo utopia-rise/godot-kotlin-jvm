@@ -107,8 +107,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
-        tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ITEM,
         NIL)
   }
@@ -133,8 +132,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
-        tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_CHECK_ITEM, NIL)
   }
@@ -160,8 +158,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
-        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_ITEM, NIL)
   }
@@ -187,8 +184,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
-        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_CHECK_ITEM, NIL)
   }
@@ -215,8 +211,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
-        tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_RADIO_CHECK_ITEM, NIL)
   }
@@ -244,8 +239,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
-        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_RADIO_CHECK_ITEM, NIL)
   }
@@ -274,8 +268,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to
-        defaultState, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to defaultState, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_MULTISTATE_ITEM, NIL)
   }
@@ -298,8 +291,7 @@ public object DisplayServer : Object() {
     submenu: String,
     index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to
-        index)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SUBMENU_ITEM, NIL)
   }
@@ -1020,8 +1012,7 @@ public object DisplayServer : Object() {
     flags: Long,
     rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)
   ): Long {
-    TransferContext.writeArguments(LONG to mode.id, LONG to vsyncMode.id, LONG to flags, RECT2I to
-        rect)
+    TransferContext.writeArguments(LONG to mode.id, LONG to vsyncMode.id, LONG to flags, RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CREATE_SUB_WINDOW,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1489,8 +1480,7 @@ public object DisplayServer : Object() {
     cursorStart: Long = -1,
     cursorEnd: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to existingText, RECT2 to position, BOOL to multiline,
-        LONG to maxLength, LONG to cursorStart, LONG to cursorEnd)
+    TransferContext.writeArguments(STRING to existingText, RECT2 to position, BOOL to multiline, LONG to maxLength, LONG to cursorStart, LONG to cursorEnd)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_VIRTUAL_KEYBOARD_SHOW,
         NIL)
   }
@@ -1573,8 +1563,7 @@ public object DisplayServer : Object() {
     buttons: PackedStringArray,
     callback: Callable
   ): GodotError {
-    TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to
-        buttons, CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_SHOW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -1588,8 +1577,7 @@ public object DisplayServer : Object() {
     existingText: String,
     callback: Callable
   ): GodotError {
-    TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText,
-        CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

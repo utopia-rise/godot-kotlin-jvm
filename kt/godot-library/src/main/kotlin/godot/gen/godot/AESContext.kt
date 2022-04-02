@@ -178,8 +178,7 @@ public open class AESContext : RefCounted() {
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray()
   ): GodotError {
-    TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to
-        iv)
+    TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

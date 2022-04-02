@@ -208,8 +208,7 @@ public open class Image : Resource() {
     useMipmaps: Boolean,
     format: Image.Format
   ): Unit {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to
-        format.id)
+    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, NIL)
   }
 
@@ -223,8 +222,7 @@ public open class Image : Resource() {
     format: Image.Format,
     `data`: PackedByteArray
   ): Unit {
-    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to
-        format.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, NIL)
   }
 

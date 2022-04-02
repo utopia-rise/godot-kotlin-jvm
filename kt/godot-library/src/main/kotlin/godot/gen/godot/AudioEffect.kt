@@ -29,7 +29,7 @@ public open class AudioEffect : Resource() {
    *
    */
   public open fun _instantiate(): AudioEffectInstance? {
-    throw NotImplementedError("_instantiate is not implemented for AudioEffect")
+    throw NotImplementedError("_instantiate·is·not·implemented·for·AudioEffect")
   }
 
   public companion object

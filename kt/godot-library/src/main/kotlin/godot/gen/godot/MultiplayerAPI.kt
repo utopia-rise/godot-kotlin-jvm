@@ -155,8 +155,7 @@ public open class MultiplayerAPI : RefCounted() {
     mode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
     channel: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to
-        channel)
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to channel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SEND_BYTES, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

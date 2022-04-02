@@ -113,7 +113,7 @@ public open class MultiplayerSpawner : Node() {
    *
    */
   public open fun _spawnCustom(`data`: Any): Object? {
-    throw NotImplementedError("_spawn_custom is not implemented for MultiplayerSpawner")
+    throw NotImplementedError("_spawn_custom·is·not·implemented·for·MultiplayerSpawner")
   }
 
   /**

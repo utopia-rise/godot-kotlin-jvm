@@ -70,8 +70,7 @@ public open class PCKPacker : RefCounted() {
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
     encryptDirectory: Boolean = false
   ): GodotError {
-    TransferContext.writeArguments(STRING to pckName, LONG to alignment, STRING to key, BOOL to
-        encryptDirectory)
+    TransferContext.writeArguments(STRING to pckName, LONG to alignment, STRING to key, BOOL to encryptDirectory)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_PCK_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

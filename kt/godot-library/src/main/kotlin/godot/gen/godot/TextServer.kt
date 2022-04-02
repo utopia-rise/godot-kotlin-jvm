@@ -679,8 +679,7 @@ public open class TextServer internal constructor() : RefCounted() {
     textureIndex: Long,
     image: Image
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, OBJECT
-        to image)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_TEXTURE_IMAGE,
         NIL)
   }
@@ -708,8 +707,7 @@ public open class TextServer internal constructor() : RefCounted() {
     textureIndex: Long,
     offset: PackedInt32Array
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex,
-        PACKED_INT_32_ARRAY to offset)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, PACKED_INT_32_ARRAY to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_TEXTURE_OFFSETS,
         NIL)
   }
@@ -817,8 +815,7 @@ public open class TextServer internal constructor() : RefCounted() {
     glyph: Long,
     offset: Vector2
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to
-        offset)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_OFFSET,
         NIL)
   }
@@ -846,8 +843,7 @@ public open class TextServer internal constructor() : RefCounted() {
     glyph: Long,
     glSize: Vector2
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to
-        glSize)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, VECTOR2 to glSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_SIZE, NIL)
   }
 
@@ -874,8 +870,7 @@ public open class TextServer internal constructor() : RefCounted() {
     glyph: Long,
     uvRect: Rect2
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, RECT2 to
-        uvRect)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, RECT2 to uvRect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_UV_RECT,
         NIL)
   }
@@ -903,8 +898,7 @@ public open class TextServer internal constructor() : RefCounted() {
     glyph: Long,
     textureIdx: Long
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, LONG to
-        textureIdx)
+    TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph, LONG to textureIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_GLYPH_TEXTURE_IDX, NIL)
   }
@@ -969,8 +963,7 @@ public open class TextServer internal constructor() : RefCounted() {
     glyphPair: Vector2i,
     kerning: Vector2
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair, VECTOR2 to
-        kerning)
+    TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair, VECTOR2 to kerning)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_KERNING, NIL)
   }
 
@@ -997,8 +990,7 @@ public open class TextServer internal constructor() : RefCounted() {
     char: Long,
     variationSelector: Long
   ): Long {
-    TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to char, LONG to
-        variationSelector)
+    TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_GLYPH_INDEX,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1061,8 +1053,7 @@ public open class TextServer internal constructor() : RefCounted() {
     index: Long,
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, VECTOR2 to pos,
-        LONG to index, COLOR to color)
+    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_DRAW_GLYPH, NIL)
   }
 
@@ -1080,8 +1071,7 @@ public open class TextServer internal constructor() : RefCounted() {
     index: Long,
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, LONG to
-        outlineSize, VECTOR2 to pos, LONG to index, COLOR to color)
+    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, LONG to outlineSize, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_DRAW_GLYPH_OUTLINE,
         NIL)
   }
@@ -1272,8 +1262,7 @@ public open class TextServer internal constructor() : RefCounted() {
     index: Long,
     color: Color
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, LONG to size, VECTOR2 to pos, LONG to index,
-        COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_DRAW_HEX_CODE_BOX, NIL)
   }
 
@@ -1436,8 +1425,7 @@ public open class TextServer internal constructor() : RefCounted() {
     language: String = "",
     meta: Any? = null
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, STRING to text, ARRAY to fonts, LONG to size,
-        DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
+    TransferContext.writeArguments(_RID to shaped, STRING to text, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_STRING,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1453,8 +1441,7 @@ public open class TextServer internal constructor() : RefCounted() {
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Long = 1
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to
-        inlineAlign.id, LONG to length)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_ADD_OBJECT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1469,8 +1456,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to
-        inlineAlign.id)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_RESIZE_OBJECT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1506,8 +1492,7 @@ public open class TextServer internal constructor() : RefCounted() {
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?> = Dictionary()
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, LONG to index, ARRAY to fonts, LONG to size,
-        DICTIONARY to opentypeFeatures)
+    TransferContext.writeArguments(_RID to shaped, LONG to index, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_SET_SPAN_UPDATE_FONT, NIL)
   }
@@ -1630,8 +1615,7 @@ public open class TextServer internal constructor() : RefCounted() {
     once: Boolean = true,
     breakFlags: Long = 96
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start,
-        BOOL to once, LONG to breakFlags)
+    TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS_ADV, PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
@@ -1646,8 +1630,7 @@ public open class TextServer internal constructor() : RefCounted() {
     start: Long = 0,
     breakFlags: Long = 96
   ): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to
-        breakFlags)
+    TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_LINE_BREAKS, PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
@@ -1885,8 +1868,7 @@ public open class TextServer internal constructor() : RefCounted() {
     clipR: Double = -1.0,
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL,
-        DOUBLE to clipR, COLOR to color)
+    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_DRAW, NIL)
   }
 
@@ -1902,8 +1884,7 @@ public open class TextServer internal constructor() : RefCounted() {
     outlineSize: Long = 1,
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL,
-        DOUBLE to clipR, LONG to outlineSize, COLOR to color)
+    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, LONG to outlineSize, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_DRAW_OUTLINE,
         NIL)
   }

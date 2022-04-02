@@ -228,8 +228,7 @@ public open class EditorTranslationParserPlugin internal constructor() : RefCoun
    * Gets the list of file extensions to associate with this parser, e.g. `["csv"]`.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw
-        NotImplementedError("_get_recognized_extensions is not implemented for EditorTranslationParserPlugin")
+    throw NotImplementedError("_get_recognized_extensions·is·not·implemented·for·EditorTranslationParserPlugin")
   }
 
   public companion object

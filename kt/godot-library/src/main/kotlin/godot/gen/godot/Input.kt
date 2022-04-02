@@ -196,8 +196,7 @@ public object Input : Object() {
     positiveY: StringName,
     deadzone: Double = -1.0
   ): Vector2 {
-    TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME
-        to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone)
+    TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
@@ -294,8 +293,7 @@ public object Input : Object() {
     strongMagnitude: Double,
     duration: Double = 0.0
   ): Unit {
-    TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to
-        strongMagnitude, DOUBLE to duration)
+    TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to strongMagnitude, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
   }
 

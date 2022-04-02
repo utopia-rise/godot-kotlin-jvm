@@ -158,8 +158,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     newAtlasCoords: Vector2i = Vector2i(-1.0, -1.0),
     newSize: Vector2i = Vector2i(-1.0, -1.0)
   ): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to newAtlasCoords, VECTOR2I to
-        newSize)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to newAtlasCoords, VECTOR2I to newSize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_MOVE_TILE_IN_ATLAS, NIL)
   }
@@ -185,9 +184,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     framesCount: Long,
     ignoredTile: Vector2i = Vector2i(-1.0, -1.0)
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to
-        animationColumns, VECTOR2I to animationSeparation, LONG to framesCount, VECTOR2I to
-        ignoredTile)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to animationColumns, VECTOR2I to animationSeparation, LONG to framesCount, VECTOR2I to ignoredTile)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_HAS_ROOM_FOR_TILE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -202,8 +199,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     separation: Vector2i,
     textureRegionSize: Vector2i
   ): PackedVector2Array {
-    TransferContext.writeArguments(OBJECT to texture, VECTOR2I to margins, VECTOR2I to separation,
-        VECTOR2I to textureRegionSize)
+    TransferContext.writeArguments(OBJECT to texture, VECTOR2I to margins, VECTOR2I to separation, VECTOR2I to textureRegionSize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILES_TO_BE_REMOVED_ON_CHANGE,
         PACKED_VECTOR2_ARRAY)
