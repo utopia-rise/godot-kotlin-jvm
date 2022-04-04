@@ -11,7 +11,6 @@ import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.IDocRepository
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
-import godot.codegen.rpc.RpcPropertyMode
 import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
@@ -639,6 +638,7 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
         val camelToSnakeCaseUtilFunction = MemberName("godot.util", "camelToSnakeCase")
+        val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
             if (i != 0) {
@@ -667,7 +667,7 @@ class GenerationService(
                     templateString += "id, "
                 }
 
-                templateString += "function.name.%M()"
+                templateString += "function.name.%M().%M()"
 
                 kFunctionTypeParameters.forEachIndexed { index, typeVariableName ->
                     rpcFunSpec.addTypeVariable(typeVariableName)
@@ -676,47 +676,11 @@ class GenerationService(
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, camelToSnakeCaseUtilFunction)
+                rpcFunSpec.addStatement(templateString, camelToSnakeCaseUtilFunction, asStringNameUtilFunction)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())
             }
-        }
-
-        RpcPropertyMode.values().forEach { rpcPropertyMode ->
-            val kMutablePropertyClassName = ClassName("kotlin.reflect", "KMutableProperty")
-                .parameterizedBy(TypeVariableName.Companion.invoke("TYPE"))
-
-            val rpcFunSpec = FunSpec
-                .builder(rpcPropertyMode.functionName)
-                .addModifiers(KModifier.INLINE)
-                .addTypeVariables(
-                    listOf(
-                        TypeVariableName.invoke("TYPE"),
-                        TypeVariableName.invoke("PROPERTY", kMutablePropertyClassName).copy(reified = true)
-                    )
-                )
-
-            if (rpcPropertyMode.hasId) {
-                rpcFunSpec.addParameter("id", LONG)
-            }
-
-            with(rpcFunSpec) {
-                addParameter("property", TypeVariableName.invoke("PROPERTY"))
-                addParameter("value", TypeVariableName.invoke("TYPE"))
-
-                val templateString = buildString {
-                    append("return ${rpcPropertyMode.functionName}(")
-                    if (rpcPropertyMode.hasId) {
-                        append("id, ")
-                    }
-                    append("property.name.%M(), value)")
-                }
-
-                addStatement(templateString, camelToSnakeCaseUtilFunction)
-            }
-
-            addFunction(rpcFunSpec.build())
         }
     }
 

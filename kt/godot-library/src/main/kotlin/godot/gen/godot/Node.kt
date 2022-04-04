@@ -22,6 +22,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.asStringName
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
@@ -45,7 +46,6 @@ import kotlin.reflect.KFunction6
 import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
-import kotlin.reflect.KMutableProperty
 
 /**
  * Base class for all *scene* objects.
@@ -233,67 +233,39 @@ public open class Node : Object() {
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
-      rpc(function.name.camelToSnakeCase())
+      rpc(function.name.camelToSnakeCase().asStringName())
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpcId(id: Long, function: FUNCTION) =
-      rpcId(id, function.name.camelToSnakeCase())
-
-  public inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliable(function: FUNCTION) =
-      rpcUnreliable(function.name.camelToSnakeCase())
-
-  public inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliableId(id: Long, function: FUNCTION)
-      = rpcUnreliableId(id, function.name.camelToSnakeCase())
+      rpcId(id, function.name.camelToSnakeCase().asStringName())
 
   public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpc(function: FUNCTION,
-      arg0: ARG0) = rpc(function.name.camelToSnakeCase(), arg0)
+      arg0: ARG0) = rpc(function.name.camelToSnakeCase().asStringName(), arg0)
 
   public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0)
-
-  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliable(function: FUNCTION,
-      arg0: ARG0) = rpcUnreliable(function.name.camelToSnakeCase(), arg0)
-
-  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1)
-
-  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1)
-
-  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcId(
     id: Long,
@@ -301,24 +273,7 @@ public open class Node : Object() {
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2)
-
-  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>>
-      rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2)
-
-  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>>
-      rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
       KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpc(
@@ -327,7 +282,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
       KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcId(
@@ -337,26 +292,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
-      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
-      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
       KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpc(
@@ -366,7 +302,7 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
       KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcId(
@@ -377,28 +313,7 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
-      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
-      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
       KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpc(
@@ -409,7 +324,7 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
       KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcId(
@@ -421,30 +336,7 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
-      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
-      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
       KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
@@ -456,7 +348,7 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
       KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
@@ -469,32 +361,7 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
-      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
-      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
@@ -508,7 +375,8 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
+      arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
       KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcId(
@@ -522,35 +390,7 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
-      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
-      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
@@ -565,7 +405,8 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
+      arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcId(
@@ -580,38 +421,7 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
-      KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7,
-    arg8: ARG8
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
-      KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7,
-    arg8: ARG8
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
@@ -627,8 +437,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9
-  ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
-      arg9)
+  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
+      arg7, arg8, arg9)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcId(
@@ -644,60 +454,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9
-  ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8, arg9)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
-      KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcUnreliable(
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7,
-    arg8: ARG8,
-    arg9: ARG9
-  ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8, arg9)
-
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
-      KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcUnreliableId(
-    id: Long,
-    function: FUNCTION,
-    arg0: ARG0,
-    arg1: ARG1,
-    arg2: ARG2,
-    arg3: ARG3,
-    arg4: ARG4,
-    arg5: ARG5,
-    arg6: ARG6,
-    arg7: ARG7,
-    arg8: ARG8,
-    arg9: ARG9
-  ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
+  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8, arg9)
-
-  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rset(`property`: PROPERTY,
-      `value`: TYPE) = rset(property.name.camelToSnakeCase(), value)
-
-  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetId(
-    id: Long,
-    `property`: PROPERTY,
-    `value`: TYPE
-  ) = rsetId(id, property.name.camelToSnakeCase(), value)
-
-  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>>
-      rsetUnreliable(`property`: PROPERTY, `value`: TYPE) =
-      rsetUnreliable(property.name.camelToSnakeCase(), value)
-
-  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetUnreliableId(
-    id: Long,
-    `property`: PROPERTY,
-    `value`: TYPE
-  ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant. `delta` is in seconds.
