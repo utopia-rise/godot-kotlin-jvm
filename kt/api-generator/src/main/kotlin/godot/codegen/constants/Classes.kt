@@ -6,6 +6,7 @@ object KotlinTypes{
     const val color = "Color"
     const val stringName = "StringName"
     const val array = "VariantArray"
+    const val callable = "Callable"
     const val dictionary = "Dictionary"
     const val error = "GodotError"
     const val nodePath = "NodePath"
@@ -123,6 +124,7 @@ object GodotTypes {
 
 val GODOT_ERROR = ClassName(godotCorePackage, KotlinTypes.error)
 val GODOT_ARRAY = ClassName(godotCorePackage, KotlinTypes.array)
+val GODOT_CALLABLE = ClassName(godotCorePackage, KotlinTypes.callable)
 val GODOT_DICTIONARY = ClassName(godotCorePackage, KotlinTypes.dictionary)
 val GODOT_OBJECT = ClassName(godotApiPackage, KotlinTypes.obj)
 val KT_OBJECT = ClassName(godotCorePackage, KotlinTypes.ktObject)

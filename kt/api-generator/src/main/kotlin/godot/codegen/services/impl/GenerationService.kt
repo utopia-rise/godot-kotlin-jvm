@@ -626,18 +626,20 @@ class GenerationService(
                 )
             connectFun.addCode(
                 """
-                            |val methodName = (method as %T<*>).name.%M()
-                            |return connect(target, methodName, binds, flags)
+                            |val methodName = (method as %T<*>).name.%M().%M()
+                            |return connect(%T(target, methodName), binds, flags)
                             |""".trimMargin(),
                 ClassName("kotlin.reflect", "KCallable"),
-                MemberName("godot.util", "camelToSnakeCase")
+                MemberName(godotUtilPackage, "camelToSnakeCase"),
+                MemberName(godotCorePackage, "asStringName"),
+                GODOT_CALLABLE
             )
             addFunction(connectFun.build())
         }
     }
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
-        val camelToSnakeCaseUtilFunction = MemberName("godot.util", "camelToSnakeCase")
+        val camelToSnakeCaseUtilFunction = MemberName(godotUtilPackage, "camelToSnakeCase")
         val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()

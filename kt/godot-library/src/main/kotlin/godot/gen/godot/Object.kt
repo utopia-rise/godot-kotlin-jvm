@@ -26,6 +26,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.asStringName
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal10
@@ -136,8 +137,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0> Signal1<A0>.emit(a0: A0): Unit {
@@ -150,8 +151,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1): Unit {
@@ -164,8 +165,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
@@ -186,8 +187,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
@@ -210,8 +211,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
@@ -236,8 +237,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
@@ -264,8 +265,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
@@ -294,8 +295,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
@@ -326,8 +327,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
@@ -360,8 +361,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>
@@ -397,8 +398,8 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?>? = null,
     flags: Long = 0
   ): GodotError {
-    val methodName = (method as KCallable<*>).name.camelToSnakeCase()
-    return connect(target, methodName, binds, flags)
+    val methodName = (method as KCallable<*>).name.camelToSnakeCase().asStringName()
+    return connect(Callable(target, methodName), binds, flags)
   }
 
   /**
