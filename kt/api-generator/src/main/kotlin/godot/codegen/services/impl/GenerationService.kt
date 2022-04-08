@@ -385,12 +385,17 @@ class GenerationService(
 
         if (property.hasValidSetterInClass) {
             propertySpecBuilder.mutable()
+            val argumentStringTemplate = if (property.isIndexed) {
+                "%T to ${property.internal.index}, %T·to·value"
+            } else {
+                "%T·to·value"
+            }
             propertySpecBuilder.setter(
                 FunSpec.setterBuilder()
                     .addParameter("value", propertyType)
                     .generateJvmMethodCall(
                         property.toSetterCallable(),
-                        "%T·to·value"
+                        argumentStringTemplate
                     )
                     .build()
             )
@@ -401,11 +406,16 @@ class GenerationService(
         }
 
         if (property.hasValidGetterInClass) {
+            val argumentStringTemplate = if (property.isIndexed) {
+                "%T to ${property.internal.index}"
+            } else {
+                ""
+            }
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
                     .generateJvmMethodCall(
                         property.toGetterCallable(),
-                        ""
+                        argumentStringTemplate
                     )
                     .build()
             )

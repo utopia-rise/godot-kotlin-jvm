@@ -557,7 +557,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public val shadowAtlasQuad0: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
@@ -568,7 +568,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public val shadowAtlasQuad1: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
@@ -579,7 +579,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public val shadowAtlasQuad2: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
@@ -590,7 +590,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public val shadowAtlasQuad3: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long

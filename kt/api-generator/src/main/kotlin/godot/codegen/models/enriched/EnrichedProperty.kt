@@ -1,6 +1,7 @@
 package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ANY
+import godot.codegen.constants.GodotTypes
 import godot.codegen.extensions.convertToCamelCase
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isObjectSubClass
@@ -14,6 +15,7 @@ class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
     val name = internal.name.convertToCamelCase().replace("/", "_")
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter.convertToCamelCase()
+    val isIndexed = internal.index != -1
 
     var getterMethod: EnrichedMethod? = null
     var setterMethod: EnrichedMethod? = null
@@ -37,7 +39,7 @@ class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
     override val nullable = isObjectSubClass() || getTypeClassName().className == ANY
 }
 
-fun List<Property>.toEnriched(engineClassIndexName: String) = map {
+fun List<Property>.toEnriched() = map {
     EnrichedProperty(it)
 }
 
@@ -46,11 +48,16 @@ fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
         requireNotNull(setterMethod)
     }
 
-    override val arguments = listOf(
-        EnrichedArgument(
-            Argument("value", internal.type, null, null)
+    override val arguments = if (isIndexed) {
+        listOf(
+            Argument("index", GodotTypes.int, null, null).toEnriched(),
+            Argument("value", internal.type, null, null).toEnriched()
         )
-    )
+    } else {
+        listOf(
+            Argument("value", internal.type, null, null).toEnriched()
+        )
+    }
     override val isVararg = false
     override val engineIndexName = setterMethod!!.engineIndexName
     override val type = ""
@@ -62,7 +69,11 @@ fun EnrichedProperty.toGetterCallable() = object : CallableTrait {
         requireNotNull(getterMethod)
     }
 
-    override val arguments = listOf<EnrichedArgument>()
+    override val arguments = if (isIndexed) {
+        listOf(Argument("index", GodotTypes.int, null, null).toEnriched())
+    } else {
+        listOf()
+    }
     override val isVararg = false
     override val engineIndexName = getterMethod!!.engineIndexName
     override val type = this@toGetterCallable.type

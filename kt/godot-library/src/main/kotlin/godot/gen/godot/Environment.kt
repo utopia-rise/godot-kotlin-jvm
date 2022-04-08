@@ -873,7 +873,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_1: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -884,7 +884,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_2: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -895,7 +895,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_3: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -906,7 +906,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_4: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -917,7 +917,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_5: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -928,7 +928,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_6: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -939,7 +939,7 @@ public open class Environment : Resource() {
    */
   public val glowLevels_7: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double

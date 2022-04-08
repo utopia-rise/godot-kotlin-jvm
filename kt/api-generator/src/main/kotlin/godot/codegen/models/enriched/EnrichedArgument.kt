@@ -22,3 +22,4 @@ class EnrichedArgument(val internal: Argument) : TypedTrait, NullableTrait, With
 }
 
 fun List<Argument>.toEnriched() = map { EnrichedArgument(it) }
+fun Argument.toEnriched() = EnrichedArgument(this)

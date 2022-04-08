@@ -12,7 +12,7 @@ class EnrichedClass(val internal: Class) : TypedTrait {
     val name = internal.name.escapeUnderscore()
     val inherits = internal.inherits?.escapeUnderscore()
     val engineClassDBIndexName = "ENGINECLASS_${internal.name.toUpperCase()}"
-    val properties= internal.properties?.toEnriched(engineClassDBIndexName) ?: listOf()
+    val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
 
     override val type = name

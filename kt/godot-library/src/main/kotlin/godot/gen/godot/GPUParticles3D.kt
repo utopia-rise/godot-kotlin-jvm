@@ -375,7 +375,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public val drawPass1: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -386,7 +386,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public val drawPass2: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -397,7 +397,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public val drawPass3: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -408,7 +408,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public val drawPass4: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
