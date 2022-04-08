@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class Translation : Resource() {
   /**
    * The locale of the translation.
    */
-  public open var locale: String
+  public var locale: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_LOCALE, STRING)
@@ -58,14 +58,14 @@ public open class Translation : Resource() {
     n: Long,
     context: StringName
   ): StringName {
-    throw NotImplementedError("_get_plural_message·is·not·implemented·for·Translation")
+    throw NotImplementedError("_get_plural_message is not implemented for Translation")
   }
 
   /**
    * Virtual method to override [getMessage].
    */
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
-    throw NotImplementedError("_get_message·is·not·implemented·for·Translation")
+    throw NotImplementedError("_get_message is not implemented for Translation")
   }
 
   /**
@@ -73,7 +73,7 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
-  public open fun addMessage(
+  public fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
     context: StringName = StringName("")
@@ -87,7 +87,7 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate polysemic words.
    */
-  public open fun addPluralMessage(
+  public fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
     context: StringName = StringName("")
@@ -99,8 +99,7 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation.
    */
-  public open fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
-      StringName {
+  public fun getMessage(srcMessage: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE,
         STRING_NAME)
@@ -112,7 +111,7 @@ public open class Translation : Resource() {
    *
    * The number `n` is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    */
-  public open fun getPluralMessage(
+  public fun getPluralMessage(
     srcMessage: StringName,
     srcPluralMessage: StringName,
     n: Long,
@@ -127,7 +126,7 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
-  public open fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
+  public fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL)
   }
@@ -135,7 +134,7 @@ public open class Translation : Resource() {
   /**
    * Returns all the messages (keys).
    */
-  public open fun getMessageList(): PackedStringArray {
+  public fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_LIST,
         PACKED_STRING_ARRAY)
@@ -145,7 +144,7 @@ public open class Translation : Resource() {
   /**
    * Returns the number of existing messages.
    */
-  public open fun getMessageCount(): Long {
+  public fun getMessageCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

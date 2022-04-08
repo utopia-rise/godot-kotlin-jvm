@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var enableBlend: Boolean
+  public var enableBlend: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,7 +40,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var srcColorBlendFactor: Long
+  public var srcColorBlendFactor: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var dstColorBlendFactor: Long
+  public var dstColorBlendFactor: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,7 +76,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var colorBlendOp: Long
+  public var colorBlendOp: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -92,7 +92,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var srcAlphaBlendFactor: Long
+  public var srcAlphaBlendFactor: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -110,7 +110,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var dstAlphaBlendFactor: Long
+  public var dstAlphaBlendFactor: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -128,7 +128,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var alphaBlendOp: Long
+  public var alphaBlendOp: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -144,7 +144,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var writeR: Boolean
+  public var writeR: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -160,7 +160,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var writeG: Boolean
+  public var writeG: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -176,7 +176,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var writeB: Boolean
+  public var writeB: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -192,7 +192,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open var writeA: Boolean
+  public var writeA: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -212,7 +212,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    *
    */
-  public open fun setAsMix(): Unit {
+  public fun setAsMix(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_SET_AS_MIX, NIL)

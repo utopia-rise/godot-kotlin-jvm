@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class Line2D : Node2D() {
   /**
    * The points that form the lines. The line is drawn between every point set in this array. Points are interpreted as local vectors.
    */
-  public open var points: PackedVector2Array
+  public var points: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINTS,
@@ -53,7 +53,7 @@ public open class Line2D : Node2D() {
   /**
    * The line's width.
    */
-  public open var width: Double
+  public var width: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_WIDTH, DOUBLE)
@@ -67,7 +67,7 @@ public open class Line2D : Node2D() {
   /**
    * The line's width varies with the curve. The original width is simply multiply by the value of the Curve.
    */
-  public open var widthCurve: Curve?
+  public var widthCurve: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_CURVE, OBJECT)
@@ -81,7 +81,7 @@ public open class Line2D : Node2D() {
   /**
    * The line's color. Will not be used if a gradient is set.
    */
-  public open var defaultColor: Color
+  public var defaultColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_DEFAULT_COLOR, COLOR)
@@ -95,7 +95,7 @@ public open class Line2D : Node2D() {
   /**
    * The gradient is drawn through the whole line from start to finish. The default color will not be used if a gradient is set.
    */
-  public open var gradient: Gradient?
+  public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_GRADIENT, OBJECT)
@@ -109,7 +109,7 @@ public open class Line2D : Node2D() {
   /**
    * The texture used for the line's texture. Uses `texture_mode` for drawing style.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE, OBJECT)
@@ -123,7 +123,7 @@ public open class Line2D : Node2D() {
   /**
    * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
    */
-  public open var textureMode: Long
+  public var textureMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
@@ -137,7 +137,7 @@ public open class Line2D : Node2D() {
   /**
    * The style for the points between the start and the end.
    */
-  public open var jointMode: Long
+  public var jointMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
@@ -151,7 +151,7 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's first point. Use [enum LineCapMode] constants.
    */
-  public open var beginCapMode: Long
+  public var beginCapMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
@@ -165,7 +165,7 @@ public open class Line2D : Node2D() {
   /**
    * Controls the style of the line's last point. Use [enum LineCapMode] constants.
    */
-  public open var endCapMode: Long
+  public var endCapMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
@@ -179,7 +179,7 @@ public open class Line2D : Node2D() {
   /**
    * The direction difference in radians between vector points. This value is only used if [jointMode] is set to [LINE_JOINT_SHARP].
    */
-  public open var sharpLimit: Double
+  public var sharpLimit: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_SHARP_LIMIT, DOUBLE)
@@ -195,7 +195,7 @@ public open class Line2D : Node2D() {
    *
    * **Note:** The default value is tuned for lines with the default [width]. For thin lines, this value should be reduced to a number between `2` and `4` to improve performance.
    */
-  public open var roundPrecision: Long
+  public var roundPrecision: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ROUND_PRECISION, LONG)
@@ -211,7 +211,7 @@ public open class Line2D : Node2D() {
    *
    * **Note:** Line2D is not accelerated by batching when being anti-aliased.
    */
-  public open var antialiased: Boolean
+  public var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ANTIALIASED, BOOL)
@@ -229,7 +229,7 @@ public open class Line2D : Node2D() {
   /**
    * Overwrites the position in point `i` with the supplied `position`.
    */
-  public open fun setPointPosition(i: Long, position: Vector2): Unit {
+  public fun setPointPosition(i: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to i, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
   }
@@ -237,7 +237,7 @@ public open class Line2D : Node2D() {
   /**
    * Returns point `i`'s position.
    */
-  public open fun getPointPosition(i: Long): Vector2 {
+  public fun getPointPosition(i: Long): Vector2 {
     TransferContext.writeArguments(LONG to i)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -246,7 +246,7 @@ public open class Line2D : Node2D() {
   /**
    * Returns the Line2D's amount of points.
    */
-  public open fun getPointCount(): Long {
+  public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -257,7 +257,7 @@ public open class Line2D : Node2D() {
    *
    * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position < 0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
    */
-  public open fun addPoint(position: Vector2, atPosition: Long = -1): Unit {
+  public fun addPoint(position: Vector2, atPosition: Long = -1): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_ADD_POINT, NIL)
   }
@@ -265,7 +265,7 @@ public open class Line2D : Node2D() {
   /**
    * Removes the point at index `i` from the line.
    */
-  public open fun removePoint(i: Long): Unit {
+  public fun removePoint(i: Long): Unit {
     TransferContext.writeArguments(LONG to i)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_REMOVE_POINT, NIL)
   }
@@ -273,7 +273,7 @@ public open class Line2D : Node2D() {
   /**
    * Removes all points from the line.
    */
-  public open fun clearPoints(): Unit {
+  public fun clearPoints(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_CLEAR_POINTS, NIL)
   }

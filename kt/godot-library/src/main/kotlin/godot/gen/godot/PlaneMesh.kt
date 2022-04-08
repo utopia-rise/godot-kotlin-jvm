@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Size of the generated plane.
    */
-  public open var size: Vector2
+  public var size: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SIZE, VECTOR2)
@@ -44,7 +44,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Number of subdivision along the X axis.
    */
-  public open var subdivideWidth: Long
+  public var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_WIDTH,
@@ -60,7 +60,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Number of subdivision along the Z axis.
    */
-  public open var subdivideDepth: Long
+  public var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_DEPTH,
@@ -76,7 +76,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Offset of the generated plane. Useful for particles.
    */
-  public open var centerOffset: Vector3
+  public var centerOffset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_CENTER_OFFSET,

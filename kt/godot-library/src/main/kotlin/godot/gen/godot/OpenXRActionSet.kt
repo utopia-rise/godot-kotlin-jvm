@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +19,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class OpenXRActionSet : Resource() {
-  public open var localizedName: String
+  public var localizedName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -32,7 +32,7 @@ public open class OpenXRActionSet : Resource() {
           ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_LOCALIZED_NAME, NIL)
     }
 
-  public open var priority: Long
+  public var priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_PRIORITY,
@@ -44,7 +44,7 @@ public open class OpenXRActionSet : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_PRIORITY, NIL)
     }
 
-  public open var actions: OpenXRAction?
+  public var actions: OpenXRAction?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTIONS,
@@ -60,12 +60,12 @@ public open class OpenXRActionSet : Resource() {
     callConstructor(ENGINECLASS_OPENXRACTIONSET)
   }
 
-  public open fun addAction(action: OpenXRAction): Unit {
+  public fun addAction(action: OpenXRAction): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_ADD_ACTION, NIL)
   }
 
-  public open fun removeAction(action: OpenXRAction): Unit {
+  public fun removeAction(action: OpenXRAction): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_REMOVE_ACTION, NIL)
   }

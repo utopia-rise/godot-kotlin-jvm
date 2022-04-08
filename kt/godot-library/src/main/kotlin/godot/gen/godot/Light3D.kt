@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
    */
-  public open var lightColor: Color
+  public var lightColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_COLOR, COLOR)
@@ -48,7 +48,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * [godot.Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
    */
-  public open var lightProjector: Texture2D?
+  public var lightProjector: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PROJECTOR, OBJECT)
@@ -62,7 +62,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, the light's effect is reversed, darkening areas and casting bright shadows.
    */
-  public open var lightNegative: Boolean
+  public var lightNegative: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_NEGATIVE, BOOL)
@@ -78,7 +78,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering. See [godot.GeometryInstance3D.giMode].
    */
-  public open var lightBakeMode: Long
+  public var lightBakeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
@@ -92,7 +92,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * The light will affect objects in the selected layers.
    */
-  public open var lightCullMask: Long
+  public var lightCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_CULL_MASK, LONG)
@@ -106,7 +106,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance, and consider using [distanceFadeEnabled] to hide the light when far away from the [godot.Camera3D].
    */
-  public open var shadowEnabled: Boolean
+  public var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_HAS_SHADOW, BOOL)
@@ -120,7 +120,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [godot.GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
    */
-  public open var shadowReverseCullFace: Boolean
+  public var shadowReverseCullFace: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -138,7 +138,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
    */
-  public open var distanceFadeEnabled: Boolean
+  public var distanceFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_DISTANCE_FADE_ENABLED,
@@ -156,7 +156,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
    */
-  public open var distanceFadeBegin: Double
+  public var distanceFadeBegin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_BEGIN,
@@ -176,7 +176,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Due to a rendering engine limitation, shadows will be disabled instantly instead of fading smoothly according to [distanceFadeLength]. This may result in visible pop-in depending on the scene topography.
    */
-  public open var distanceFadeShadow: Double
+  public var distanceFadeShadow: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_SHADOW,
@@ -194,7 +194,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    *
    * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
    */
-  public open var distanceFadeLength: Double
+  public var distanceFadeLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_LENGTH,
@@ -210,7 +210,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, the light only appears in the editor and will not be visible at runtime.
    */
-  public open var editorOnly: Boolean
+  public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_EDITOR_ONLY, BOOL)
@@ -228,7 +228,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Sets the value of the specified [enum Light3D.Param] parameter.
    */
-  public open fun setParam(`param`: Light3D.Param, `value`: Double): Unit {
+  public fun setParam(`param`: Light3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
   }
@@ -236,7 +236,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Returns the value of the specified [enum Light3D.Param] parameter.
    */
-  public open fun getParam(`param`: Light3D.Param): Double {
+  public fun getParam(`param`: Light3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

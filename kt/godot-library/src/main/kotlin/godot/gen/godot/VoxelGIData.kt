@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class VoxelGIData : Resource() {
   /**
    * The dynamic range to use (`1.0` represents a low dynamic range scene brightness). Higher values can be used to provide brighter indirect lighting, at the cost of more visible color banding in dark areas (both in indirect lighting and reflections). To avoid color banding, it's recommended to use the lowest value that does not result in visible light clipping.
    */
-  public open var dynamicRange: Double
+  public var dynamicRange: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DYNAMIC_RANGE,
@@ -56,7 +56,7 @@ public open class VoxelGIData : Resource() {
   /**
    * The energy of the indirect lighting and reflections produced by the [godot.VoxelGI] node. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [propagation] while increasing [energy] at the same time. See also [useTwoBounces] which influences the indirect lighting's effective brightness.
    */
-  public open var energy: Double
+  public var energy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_ENERGY, DOUBLE)
@@ -70,7 +70,7 @@ public open class VoxelGIData : Resource() {
   /**
    * The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. To prioritize hiding self-reflections over lighting quality, set [bias] to `0.0` and [normalBias] to a value between `1.0` and `2.0`.
    */
-  public open var bias: Double
+  public var bias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BIAS, DOUBLE)
@@ -84,7 +84,7 @@ public open class VoxelGIData : Resource() {
   /**
    * The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. See also [bias]. To prioritize hiding self-reflections over lighting quality, set [bias] to `0.0` and [normalBias] to a value between `1.0` and `2.0`.
    */
-  public open var normalBias: Double
+  public var normalBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_NORMAL_BIAS,
@@ -99,7 +99,7 @@ public open class VoxelGIData : Resource() {
   /**
    * If indirect lighting looks too flat, try decreasing [propagation] while increasing [energy] at the same time. See also [useTwoBounces] which influences the indirect lighting's effective brightness.
    */
-  public open var propagation: Double
+  public var propagation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_PROPAGATION,
@@ -114,7 +114,7 @@ public open class VoxelGIData : Resource() {
   /**
    * If `true`, performs two bounces of indirect lighting instead of one. This makes indirect lighting look more natural and brighter at a small performance cost. The second bounce is also visible in reflections. If the scene appears too bright after enabling [useTwoBounces], adjust [propagation] and [energy].
    */
-  public open var useTwoBounces: Boolean
+  public var useTwoBounces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_USING_TWO_BOUNCES,
@@ -130,7 +130,7 @@ public open class VoxelGIData : Resource() {
   /**
    * If `true`, [godot.Environment] lighting is ignored by the [godot.VoxelGI] node. If `false`, [godot.Environment] lighting is taken into account by the [godot.VoxelGI] node. [godot.Environment] lighting updates in real-time, which means it can be changed without having to bake the [godot.VoxelGI] node again.
    */
-  public open var interior: Boolean
+  public var interior: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_INTERIOR, BOOL)
@@ -148,7 +148,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun allocate(
+  public fun allocate(
     toCellXform: Transform3D,
     aabb: AABB,
     octreeSize: Vector3,
@@ -166,7 +166,7 @@ public open class VoxelGIData : Resource() {
    *
    * **Note:** If the extents were modified without baking the VoxelGI data, then the value of [getBounds] and [godot.VoxelGI.extents] will not match.
    */
-  public open fun getBounds(): AABB {
+  public fun getBounds(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BOUNDS,
         godot.core.VariantType.AABB)
@@ -176,7 +176,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun getOctreeSize(): Vector3 {
+  public fun getOctreeSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_SIZE,
         VECTOR3)
@@ -186,7 +186,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun getToCellXform(): Transform3D {
+  public fun getToCellXform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_TO_CELL_XFORM,
         TRANSFORM3D)
@@ -196,7 +196,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun getOctreeCells(): PackedByteArray {
+  public fun getOctreeCells(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_CELLS,
         PACKED_BYTE_ARRAY)
@@ -206,7 +206,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun getDataCells(): PackedByteArray {
+  public fun getDataCells(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DATA_CELLS,
         PACKED_BYTE_ARRAY)
@@ -216,7 +216,7 @@ public open class VoxelGIData : Resource() {
   /**
    *
    */
-  public open fun getLevelCounts(): PackedInt32Array {
+  public fun getLevelCounts(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_LEVEL_COUNTS,
         PACKED_INT_32_ARRAY)

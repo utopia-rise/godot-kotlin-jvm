@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   /**
    * The VisibleOnScreenNotifier3D's bounding box.
    */
-  public open var aabb: AABB
+  public var aabb: AABB
     @JvmName("getAabb_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getAabb()
@@ -61,7 +61,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    *
    * **Note:** It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return `false` right after it is instantiated, even if it will be on screen in the draw pass.
    */
-  public open fun isOnScreen(): Boolean {
+  public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_IS_ON_SCREEN, BOOL)

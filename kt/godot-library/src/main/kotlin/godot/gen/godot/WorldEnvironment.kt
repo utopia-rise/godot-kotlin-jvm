@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class WorldEnvironment : Node() {
   /**
    * The [godot.Environment] resource used by this [godot.WorldEnvironment], defining the default properties.
    */
-  public open var environment: Environment?
+  public var environment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_ENVIRONMENT,
@@ -46,7 +46,7 @@ public open class WorldEnvironment : Node() {
   /**
    *
    */
-  public open var cameraEffects: CameraEffects?
+  public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

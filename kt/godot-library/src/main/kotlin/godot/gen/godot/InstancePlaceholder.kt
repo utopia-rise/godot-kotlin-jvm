@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   /**
    *
    */
-  public open fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
@@ -45,8 +45,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   /**
    * Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
-  public open fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
-      Node? {
+  public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,
         OBJECT)
@@ -56,7 +55,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   /**
    * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [createInstance]. Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
-  public open fun getInstancePath(): String {
+  public fun getInstancePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_INSTANCE_PATH, STRING)

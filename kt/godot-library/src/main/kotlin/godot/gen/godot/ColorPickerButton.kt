@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -52,7 +52,7 @@ public open class ColorPickerButton : Button() {
   /**
    * The currently selected color.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
@@ -68,7 +68,7 @@ public open class ColorPickerButton : Button() {
   /**
    * If `true`, the alpha channel in the displayed [godot.ColorPicker] will be visible.
    */
-  public open var editAlpha: Boolean
+  public var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class ColorPickerButton : Button() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getPicker(): ColorPicker? {
+  public fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
         OBJECT)
@@ -102,7 +102,7 @@ public open class ColorPickerButton : Button() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
-  public open fun getPopup(): PopupPanel? {
+  public fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?

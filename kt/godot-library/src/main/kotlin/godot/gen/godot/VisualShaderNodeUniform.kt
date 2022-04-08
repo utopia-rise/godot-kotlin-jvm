@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
   /**
    * Name of the uniform, by which it can be accessed through the [godot.ShaderMaterial] properties.
    */
-  public open var uniformName: StringName
+  public var uniformName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
   /**
    *
    */
-  public open var qualifier: Long
+  public var qualifier: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * The index of the [godot.Bone2D] node that the modification will oeprate on.
    */
-  public open var boneIndex: Long
+  public var boneIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,7 +46,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * The [godot.Bone2D] node that the modification will operate on.
    */
-  public open var bone2dNode: NodePath
+  public var bone2dNode: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [godot.Bone2D] to.
    */
-  public open var targetNodepath: NodePath
+  public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -82,7 +82,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount.
    */
-  public open fun setAdditionalRotation(rotation: Double): Unit {
+  public fun setAdditionalRotation(rotation: Double): Unit {
     TransferContext.writeArguments(DOUBLE to rotation)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_ADDITIONAL_ROTATION, NIL)
@@ -91,7 +91,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the amount of additional rotation that is applied after the LookAt modification executes.
    */
-  public open fun getAdditionalRotation(): Double {
+  public fun getAdditionalRotation(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ADDITIONAL_ROTATION, DOUBLE)
@@ -101,7 +101,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets whether this modification will use constraints or not. When `true`, constraints will be applied when solving the LookAt modification.
    */
-  public open fun setEnableConstraint(enableConstraint: Boolean): Unit {
+  public fun setEnableConstraint(enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enableConstraint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_ENABLE_CONSTRAINT, NIL)
@@ -110,7 +110,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns `true` if the LookAt modification is using constraints.
    */
-  public open fun getEnableConstraint(): Boolean {
+  public fun getEnableConstraint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ENABLE_CONSTRAINT, BOOL)
@@ -120,7 +120,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the constraint's minimum allowed angle.
    */
-  public open fun setConstraintAngleMin(angleMin: Double): Unit {
+  public fun setConstraintAngleMin(angleMin: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angleMin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MIN, NIL)
@@ -129,7 +129,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the constraint's minimum allowed angle.
    */
-  public open fun getConstraintAngleMin(): Double {
+  public fun getConstraintAngleMin(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MIN, DOUBLE)
@@ -139,7 +139,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Sets the constraint's maximum allowed angle.
    */
-  public open fun setConstraintAngleMax(angleMax: Double): Unit {
+  public fun setConstraintAngleMax(angleMax: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angleMax)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MAX, NIL)
@@ -148,7 +148,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns the constraint's maximum allowed angle.
    */
-  public open fun getConstraintAngleMax(): Double {
+  public fun getConstraintAngleMax(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MAX, DOUBLE)
@@ -160,7 +160,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    *
    * An inverted joint constraint only constraints the [godot.Bone2D] to the angles *outside of* the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.
    */
-  public open fun setConstraintAngleInvert(invert: Boolean): Unit {
+  public fun setConstraintAngleInvert(invert: Boolean): Unit {
     TransferContext.writeArguments(BOOL to invert)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_INVERT, NIL)
@@ -169,7 +169,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
    * Returns whether the constraints to this modification are inverted or not.
    */
-  public open fun getConstraintAngleInvert(): Boolean {
+  public fun getConstraintAngleInvert(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_INVERT, BOOL)

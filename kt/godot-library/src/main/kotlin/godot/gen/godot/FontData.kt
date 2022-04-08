@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -61,7 +61,7 @@ public open class FontData : Resource() {
   /**
    * Contents of the dynamic font source file.
    */
-  public open var `data`: PackedByteArray
+  public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_DATA,
@@ -76,7 +76,7 @@ public open class FontData : Resource() {
   /**
    * If set to `true`, font 8-bit anitialiased glyph rendering is supported and enabled.
    */
-  public open var antialiased: Boolean
+  public var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_ANTIALIASED, BOOL)
@@ -90,7 +90,7 @@ public open class FontData : Resource() {
   /**
    * Font family name.
    */
-  public open var fontName: String
+  public var fontName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FONT_NAME, STRING)
@@ -104,7 +104,7 @@ public open class FontData : Resource() {
   /**
    * Font style name.
    */
-  public open var styleName: String
+  public var styleName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FONT_STYLE_NAME,
@@ -119,7 +119,7 @@ public open class FontData : Resource() {
   /**
    * Font style flags, see [enum TextServer.FontStyle].
    */
-  public open var fontStyle: Long
+  public var fontStyle: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FONT_STYLE, LONG)
@@ -133,7 +133,7 @@ public open class FontData : Resource() {
   /**
    * Font glyph sub-pixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
-  public open var subpixelPositioning: Long
+  public var subpixelPositioning: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SUBPIXEL_POSITIONING,
@@ -149,7 +149,7 @@ public open class FontData : Resource() {
   /**
    * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
-  public open var embolden: Double
+  public var embolden: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_EMBOLDEN, DOUBLE)
@@ -165,7 +165,7 @@ public open class FontData : Resource() {
    *
    * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
-  public open var transform: Transform2D
+  public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_TRANSFORM,
@@ -180,7 +180,7 @@ public open class FontData : Resource() {
   /**
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
    */
-  public open var multichannelSignedDistanceField: Boolean
+  public var multichannelSignedDistanceField: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -196,7 +196,7 @@ public open class FontData : Resource() {
   /**
    * The width of the range around the shape between the minimum and maximum representable signed distance.
    */
-  public open var msdfPixelRange: Long
+  public var msdfPixelRange: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_MSDF_PIXEL_RANGE,
@@ -212,7 +212,7 @@ public open class FontData : Resource() {
   /**
    * Source font size used to generate MSDF textures.
    */
-  public open var msdfSize: Long
+  public var msdfSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_MSDF_SIZE, LONG)
@@ -226,7 +226,7 @@ public open class FontData : Resource() {
   /**
    * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only.
    */
-  public open var forceAutohinter: Boolean
+  public var forceAutohinter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_FORCE_AUTOHINTER,
@@ -242,7 +242,7 @@ public open class FontData : Resource() {
   /**
    * Font hinting mode. Used by dynamic fonts only.
    */
-  public open var hinting: Long
+  public var hinting: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_HINTING, LONG)
@@ -256,7 +256,7 @@ public open class FontData : Resource() {
   /**
    * Font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
    */
-  public open var oversampling: Double
+  public var oversampling: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_OVERSAMPLING, DOUBLE)
@@ -270,7 +270,7 @@ public open class FontData : Resource() {
   /**
    * Font size, used only for the bitmap fonts.
    */
-  public open var fixedSize: Long
+  public var fixedSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FIXED_SIZE, LONG)
@@ -284,7 +284,7 @@ public open class FontData : Resource() {
   /**
    * Font OpenType feature set override.
    */
-  public open var opentypeFeatureOverrides: Dictionary<Any?, Any?>
+  public var opentypeFeatureOverrides: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -306,7 +306,7 @@ public open class FontData : Resource() {
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
    */
-  public open fun loadBitmapFont(path: String): GodotError {
+  public fun loadBitmapFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_LOAD_BITMAP_FONT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -317,7 +317,7 @@ public open class FontData : Resource() {
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
    */
-  public open fun loadDynamicFont(path: String): GodotError {
+  public fun loadDynamicFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_LOAD_DYNAMIC_FONT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -326,7 +326,7 @@ public open class FontData : Resource() {
   /**
    * Returns existing or creates a new font cache entry for the specified variation coordinates.
    */
-  public open fun findCache(variationCoordinates: Dictionary<Any?, Any?>): RID {
+  public fun findCache(variationCoordinates: Dictionary<Any?, Any?>): RID {
     TransferContext.writeArguments(DICTIONARY to variationCoordinates)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_FIND_CACHE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -335,7 +335,7 @@ public open class FontData : Resource() {
   /**
    * Returns number of the font cache entries.
    */
-  public open fun getCacheCount(): Long {
+  public fun getCacheCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_CACHE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -344,7 +344,7 @@ public open class FontData : Resource() {
   /**
    * Removes all font cache entries.
    */
-  public open fun clearCache(): Unit {
+  public fun clearCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_CLEAR_CACHE, NIL)
   }
@@ -352,7 +352,7 @@ public open class FontData : Resource() {
   /**
    * Removes specified font cache entry.
    */
-  public open fun removeCache(cacheIndex: Long): Unit {
+  public fun removeCache(cacheIndex: Long): Unit {
     TransferContext.writeArguments(LONG to cacheIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_REMOVE_CACHE, NIL)
   }
@@ -360,7 +360,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
    */
-  public open fun getSizeCacheList(cacheIndex: Long): VariantArray<Any?> {
+  public fun getSizeCacheList(cacheIndex: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to cacheIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SIZE_CACHE_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -369,7 +369,7 @@ public open class FontData : Resource() {
   /**
    * Removes all font sizes from the cache entry
    */
-  public open fun clearSizeCache(cacheIndex: Long): Unit {
+  public fun clearSizeCache(cacheIndex: Long): Unit {
     TransferContext.writeArguments(LONG to cacheIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_CLEAR_SIZE_CACHE, NIL)
   }
@@ -377,7 +377,7 @@ public open class FontData : Resource() {
   /**
    * Removes specified font size from the cache entry.
    */
-  public open fun removeSizeCache(cacheIndex: Long, size: Vector2i): Unit {
+  public fun removeSizeCache(cacheIndex: Long, size: Vector2i): Unit {
     TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_REMOVE_SIZE_CACHE, NIL)
   }
@@ -385,7 +385,7 @@ public open class FontData : Resource() {
   /**
    * Sets variation coordinates for the specified font cache entry. See [getSupportedVariationList] for more info.
    */
-  public open fun setVariationCoordinates(cacheIndex: Long,
+  public fun setVariationCoordinates(cacheIndex: Long,
       variationCoordinates: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(LONG to cacheIndex, DICTIONARY to variationCoordinates)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_VARIATION_COORDINATES,
@@ -395,7 +395,7 @@ public open class FontData : Resource() {
   /**
    * Returns variation coordinates for the specified font cache entry. See [getSupportedVariationList] for more info.
    */
-  public open fun getVariationCoordinates(cacheIndex: Long): Dictionary<Any?, Any?> {
+  public fun getVariationCoordinates(cacheIndex: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to cacheIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_VARIATION_COORDINATES,
         DICTIONARY)
@@ -405,7 +405,7 @@ public open class FontData : Resource() {
   /**
    * Sets the font ascent (number of pixels above the baseline).
    */
-  public open fun setAscent(
+  public fun setAscent(
     cacheIndex: Long,
     size: Long,
     ascent: Double
@@ -417,7 +417,7 @@ public open class FontData : Resource() {
   /**
    * Returns the font ascent (number of pixels above the baseline).
    */
-  public open fun getAscent(cacheIndex: Long, size: Long): Double {
+  public fun getAscent(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_ASCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -426,7 +426,7 @@ public open class FontData : Resource() {
   /**
    * Sets the font descent (number of pixels below the baseline).
    */
-  public open fun setDescent(
+  public fun setDescent(
     cacheIndex: Long,
     size: Long,
     descent: Double
@@ -438,7 +438,7 @@ public open class FontData : Resource() {
   /**
    * Returns font descent (number of pixels below the baseline).
    */
-  public open fun getDescent(cacheIndex: Long, size: Long): Double {
+  public fun getDescent(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_DESCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -447,7 +447,7 @@ public open class FontData : Resource() {
   /**
    * Sets pixel offset of the underline below the baseline.
    */
-  public open fun setUnderlinePosition(
+  public fun setUnderlinePosition(
     cacheIndex: Long,
     size: Long,
     underlinePosition: Double
@@ -460,7 +460,7 @@ public open class FontData : Resource() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public open fun getUnderlinePosition(cacheIndex: Long, size: Long): Double {
+  public fun getUnderlinePosition(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_UNDERLINE_POSITION,
         DOUBLE)
@@ -470,7 +470,7 @@ public open class FontData : Resource() {
   /**
    * Sets thickness of the underline in pixels.
    */
-  public open fun setUnderlineThickness(
+  public fun setUnderlineThickness(
     cacheIndex: Long,
     size: Long,
     underlineThickness: Double
@@ -483,7 +483,7 @@ public open class FontData : Resource() {
   /**
    * Returns thickness of the underline in pixels.
    */
-  public open fun getUnderlineThickness(cacheIndex: Long, size: Long): Double {
+  public fun getUnderlineThickness(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_UNDERLINE_THICKNESS,
         DOUBLE)
@@ -493,7 +493,7 @@ public open class FontData : Resource() {
   /**
    * Sets scaling factor of the color bitmap font.
    */
-  public open fun setScale(
+  public fun setScale(
     cacheIndex: Long,
     size: Long,
     scale: Double
@@ -505,7 +505,7 @@ public open class FontData : Resource() {
   /**
    * Returns scaling factor of the color bitmap font.
    */
-  public open fun getScale(cacheIndex: Long, size: Long): Double {
+  public fun getScale(cacheIndex: Long, size: Long): Double {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SCALE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -514,7 +514,7 @@ public open class FontData : Resource() {
   /**
    * Sets extra spacing added between glyphs in pixels.
    */
-  public open fun setSpacing(
+  public fun setSpacing(
     cacheIndex: Long,
     size: Long,
     spacingType: TextServer.SpacingType,
@@ -527,7 +527,7 @@ public open class FontData : Resource() {
   /**
    * Returns extra spacing added between glyphs in pixels.
    */
-  public open fun getSpacing(
+  public fun getSpacing(
     cacheIndex: Long,
     size: Long,
     spacingType: TextServer.SpacingType
@@ -540,7 +540,7 @@ public open class FontData : Resource() {
   /**
    * Returns number of textures used by font cache entry.
    */
-  public open fun getTextureCount(cacheIndex: Long, size: Vector2i): Long {
+  public fun getTextureCount(cacheIndex: Long, size: Vector2i): Long {
     TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_TEXTURE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -551,7 +551,7 @@ public open class FontData : Resource() {
    *
    * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph] to remove them manually.
    */
-  public open fun clearTextures(cacheIndex: Long, size: Vector2i): Unit {
+  public fun clearTextures(cacheIndex: Long, size: Vector2i): Unit {
     TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_CLEAR_TEXTURES, NIL)
   }
@@ -561,7 +561,7 @@ public open class FontData : Resource() {
    *
    * **Note:** This function will not remove glyphs associated with the texture, remove them manually, using [removeGlyph].
    */
-  public open fun removeTexture(
+  public fun removeTexture(
     cacheIndex: Long,
     size: Vector2i,
     textureIndex: Long
@@ -573,7 +573,7 @@ public open class FontData : Resource() {
   /**
    * Sets font cache texture image.
    */
-  public open fun setTextureImage(
+  public fun setTextureImage(
     cacheIndex: Long,
     size: Vector2i,
     textureIndex: Long,
@@ -586,7 +586,7 @@ public open class FontData : Resource() {
   /**
    * Returns a copy of the font cache texture image.
    */
-  public open fun getTextureImage(
+  public fun getTextureImage(
     cacheIndex: Long,
     size: Vector2i,
     textureIndex: Long
@@ -599,7 +599,7 @@ public open class FontData : Resource() {
   /**
    * Sets array containing the first free pixel in the each column of texture. Should be the same size as texture width or empty (for the fonts without dynamic glyph generation support).
    */
-  public open fun setTextureOffsets(
+  public fun setTextureOffsets(
     cacheIndex: Long,
     size: Vector2i,
     textureIndex: Long,
@@ -612,7 +612,7 @@ public open class FontData : Resource() {
   /**
    * Returns a copy of the array containing the first free pixel in the each column of texture. Should be the same size as texture width or empty.
    */
-  public open fun getTextureOffsets(
+  public fun getTextureOffsets(
     cacheIndex: Long,
     size: Vector2i,
     textureIndex: Long
@@ -626,7 +626,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of rendered glyphs in the cache entry.
    */
-  public open fun getGlyphList(cacheIndex: Long, size: Vector2i): VariantArray<Any?> {
+  public fun getGlyphList(cacheIndex: Long, size: Vector2i): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_GLYPH_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -637,7 +637,7 @@ public open class FontData : Resource() {
    *
    * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
-  public open fun clearGlyphs(cacheIndex: Long, size: Vector2i): Unit {
+  public fun clearGlyphs(cacheIndex: Long, size: Vector2i): Unit {
     TransferContext.writeArguments(LONG to cacheIndex, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_CLEAR_GLYPHS, NIL)
   }
@@ -647,7 +647,7 @@ public open class FontData : Resource() {
    *
    * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
-  public open fun removeGlyph(
+  public fun removeGlyph(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long
@@ -661,7 +661,7 @@ public open class FontData : Resource() {
    *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
-  public open fun setGlyphAdvance(
+  public fun setGlyphAdvance(
     cacheIndex: Long,
     size: Long,
     glyph: Long,
@@ -676,7 +676,7 @@ public open class FontData : Resource() {
    *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
-  public open fun getGlyphAdvance(
+  public fun getGlyphAdvance(
     cacheIndex: Long,
     size: Long,
     glyph: Long
@@ -689,7 +689,7 @@ public open class FontData : Resource() {
   /**
    * Sets glyph offset from the baseline.
    */
-  public open fun setGlyphOffset(
+  public fun setGlyphOffset(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long,
@@ -702,7 +702,7 @@ public open class FontData : Resource() {
   /**
    * Returns glyph offset from the baseline.
    */
-  public open fun getGlyphOffset(
+  public fun getGlyphOffset(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long
@@ -715,7 +715,7 @@ public open class FontData : Resource() {
   /**
    * Sets glyph size.
    */
-  public open fun setGlyphSize(
+  public fun setGlyphSize(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long,
@@ -728,7 +728,7 @@ public open class FontData : Resource() {
   /**
    * Returns glyph size.
    */
-  public open fun getGlyphSize(
+  public fun getGlyphSize(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long
@@ -741,7 +741,7 @@ public open class FontData : Resource() {
   /**
    * Sets rectangle in the cache texture containing the glyph.
    */
-  public open fun setGlyphUvRect(
+  public fun setGlyphUvRect(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long,
@@ -754,7 +754,7 @@ public open class FontData : Resource() {
   /**
    * Returns rectangle in the cache texture containing the glyph.
    */
-  public open fun getGlyphUvRect(
+  public fun getGlyphUvRect(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long
@@ -767,7 +767,7 @@ public open class FontData : Resource() {
   /**
    * Sets index of the cache texture containing the glyph.
    */
-  public open fun setGlyphTextureIdx(
+  public fun setGlyphTextureIdx(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long,
@@ -780,7 +780,7 @@ public open class FontData : Resource() {
   /**
    * Returns index of the cache texture containing the glyph.
    */
-  public open fun getGlyphTextureIdx(
+  public fun getGlyphTextureIdx(
     cacheIndex: Long,
     size: Vector2i,
     glyph: Long
@@ -794,7 +794,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of the kerning overrides.
    */
-  public open fun getKerningList(cacheIndex: Long, size: Long): VariantArray<Any?> {
+  public fun getKerningList(cacheIndex: Long, size: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_KERNING_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -803,7 +803,7 @@ public open class FontData : Resource() {
   /**
    * Removes all kerning overrides.
    */
-  public open fun clearKerningMap(cacheIndex: Long, size: Long): Unit {
+  public fun clearKerningMap(cacheIndex: Long, size: Long): Unit {
     TransferContext.writeArguments(LONG to cacheIndex, LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_CLEAR_KERNING_MAP, NIL)
   }
@@ -811,7 +811,7 @@ public open class FontData : Resource() {
   /**
    * Removes kerning override for the pair of glyphs.
    */
-  public open fun removeKerning(
+  public fun removeKerning(
     cacheIndex: Long,
     size: Long,
     glyphPair: Vector2i
@@ -823,7 +823,7 @@ public open class FontData : Resource() {
   /**
    * Sets kerning for the pair of glyphs.
    */
-  public open fun setKerning(
+  public fun setKerning(
     cacheIndex: Long,
     size: Long,
     glyphPair: Vector2i,
@@ -836,7 +836,7 @@ public open class FontData : Resource() {
   /**
    * Returns kerning for the pair of glyphs.
    */
-  public open fun getKerning(
+  public fun getKerning(
     cacheIndex: Long,
     size: Long,
     glyphPair: Vector2i
@@ -849,7 +849,7 @@ public open class FontData : Resource() {
   /**
    * Renders the range of characters to the font cache texture.
    */
-  public open fun renderRange(
+  public fun renderRange(
     cacheIndex: Long,
     size: Vector2i,
     start: Long,
@@ -862,7 +862,7 @@ public open class FontData : Resource() {
   /**
    * Renders specified glyph the the font cache texture.
    */
-  public open fun renderGlyph(
+  public fun renderGlyph(
     cacheIndex: Long,
     size: Vector2i,
     index: Long
@@ -874,7 +874,7 @@ public open class FontData : Resource() {
   /**
    * Returns text server font cache entry resource id.
    */
-  public open fun getCacheRid(cacheIndex: Long): RID {
+  public fun getCacheRid(cacheIndex: Long): RID {
     TransferContext.writeArguments(LONG to cacheIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_CACHE_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -883,7 +883,7 @@ public open class FontData : Resource() {
   /**
    * Returns `true`, if font supports given language ([godot.ISO 639](https://en.wikipedia.org/wiki/ISO_639-1) code).
    */
-  public open fun isLanguageSupported(language: String): Boolean {
+  public fun isLanguageSupported(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_LANGUAGE_SUPPORTED,
         BOOL)
@@ -893,7 +893,7 @@ public open class FontData : Resource() {
   /**
    * Adds override for [isLanguageSupported].
    */
-  public open fun setLanguageSupportOverride(language: String, supported: Boolean): Unit {
+  public fun setLanguageSupportOverride(language: String, supported: Boolean): Unit {
     TransferContext.writeArguments(STRING to language, BOOL to supported)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_LANGUAGE_SUPPORT_OVERRIDE, NIL)
@@ -902,7 +902,7 @@ public open class FontData : Resource() {
   /**
    * Returns `true` if support override is enabled for the `language`.
    */
-  public open fun getLanguageSupportOverride(language: String): Boolean {
+  public fun getLanguageSupportOverride(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_LANGUAGE_SUPPORT_OVERRIDE, BOOL)
@@ -912,7 +912,7 @@ public open class FontData : Resource() {
   /**
    * Remove language support override.
    */
-  public open fun removeLanguageSupportOverride(language: String): Unit {
+  public fun removeLanguageSupportOverride(language: String): Unit {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_REMOVE_LANGUAGE_SUPPORT_OVERRIDE, NIL)
@@ -921,7 +921,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of language support overrides.
    */
-  public open fun getLanguageSupportOverrides(): PackedStringArray {
+  public fun getLanguageSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_LANGUAGE_SUPPORT_OVERRIDES, PACKED_STRING_ARRAY)
@@ -931,7 +931,7 @@ public open class FontData : Resource() {
   /**
    * Returns `true`, if font supports given script ([godot.ISO 15924](https://en.wikipedia.org/wiki/ISO_15924) code).
    */
-  public open fun isScriptSupported(script: String): Boolean {
+  public fun isScriptSupported(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_SCRIPT_SUPPORTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -940,7 +940,7 @@ public open class FontData : Resource() {
   /**
    * Adds override for [isScriptSupported].
    */
-  public open fun setScriptSupportOverride(script: String, supported: Boolean): Unit {
+  public fun setScriptSupportOverride(script: String, supported: Boolean): Unit {
     TransferContext.writeArguments(STRING to script, BOOL to supported)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_SCRIPT_SUPPORT_OVERRIDE, NIL)
@@ -949,7 +949,7 @@ public open class FontData : Resource() {
   /**
    * Returns `true` if support override is enabled for the `script`.
    */
-  public open fun getScriptSupportOverride(script: String): Boolean {
+  public fun getScriptSupportOverride(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SCRIPT_SUPPORT_OVERRIDE, BOOL)
@@ -959,7 +959,7 @@ public open class FontData : Resource() {
   /**
    * Removes script support override.
    */
-  public open fun removeScriptSupportOverride(script: String): Unit {
+  public fun removeScriptSupportOverride(script: String): Unit {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_REMOVE_SCRIPT_SUPPORT_OVERRIDE, NIL)
@@ -968,7 +968,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of script support overrides.
    */
-  public open fun getScriptSupportOverrides(): PackedStringArray {
+  public fun getScriptSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SCRIPT_SUPPORT_OVERRIDES, PACKED_STRING_ARRAY)
@@ -978,7 +978,7 @@ public open class FontData : Resource() {
   /**
    * Returns `true` if a Unicode `char` is available in the font.
    */
-  public open fun hasChar(char: Long): Boolean {
+  public fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_HAS_CHAR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -987,7 +987,7 @@ public open class FontData : Resource() {
   /**
    * Returns a string containing all the characters available in the font.
    */
-  public open fun getSupportedChars(): String {
+  public fun getSupportedChars(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SUPPORTED_CHARS,
         STRING)
@@ -997,7 +997,7 @@ public open class FontData : Resource() {
   /**
    * Returns the glyph index of a `char`, optionally modified by the `variation_selector`.
    */
-  public open fun getGlyphIndex(
+  public fun getGlyphIndex(
     size: Long,
     char: Long,
     variationSelector: Long
@@ -1010,7 +1010,7 @@ public open class FontData : Resource() {
   /**
    * Returns list of OpenType features supported by font.
    */
-  public open fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
+  public fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SUPPORTED_FEATURE_LIST,
         DICTIONARY)
@@ -1022,7 +1022,7 @@ public open class FontData : Resource() {
    *
    * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
    */
-  public open fun getSupportedVariationList(): Dictionary<Any?, Any?> {
+  public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SUPPORTED_VARIATION_LIST, DICTIONARY)

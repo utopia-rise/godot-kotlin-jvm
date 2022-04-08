@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   /**
    * A title of the node.
    */
-  public open var title: String
+  public var title: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_GET_TITLE,
@@ -40,7 +40,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   /**
    * An additional description which placed below the title.
    */
-  public open var description: String
+  public var description: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

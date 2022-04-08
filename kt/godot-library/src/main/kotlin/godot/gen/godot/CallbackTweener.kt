@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class CallbackTweener : Tweener() {
    * 				tween.tween_callback(queue_free).set_delay(2) #this will call queue_free() after 2 seconds
    * 				```
    */
-  public open fun setDelay(delay: Double): CallbackTweener? {
+  public fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CALLBACKTWEENER_SET_DELAY, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?

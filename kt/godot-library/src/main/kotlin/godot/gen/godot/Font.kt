@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -150,7 +150,7 @@ public open class Font : Resource() {
   /**
    * Default font [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
    */
-  public open var variationCoordinates: Dictionary<Any?, Any?>
+  public var variationCoordinates: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_VARIATION_COORDINATES,
@@ -170,7 +170,7 @@ public open class Font : Resource() {
   /**
    * Add font data source to the set.
    */
-  public open fun addData(`data`: FontData): Unit {
+  public fun addData(`data`: FontData): Unit {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_ADD_DATA, NIL)
   }
@@ -178,7 +178,7 @@ public open class Font : Resource() {
   /**
    * Sets the font data source at index `idx`. If the index does not exist, nothing happens.
    */
-  public open fun setData(idx: Long, `data`: FontData): Unit {
+  public fun setData(idx: Long, `data`: FontData): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_DATA, NIL)
   }
@@ -186,7 +186,7 @@ public open class Font : Resource() {
   /**
    * Returns the number of font data sources.
    */
-  public open fun getDataCount(): Long {
+  public fun getDataCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -195,7 +195,7 @@ public open class Font : Resource() {
   /**
    * Returns the font data source at index `idx`. If the index does not exist, returns `null`.
    */
-  public open fun getData(idx: Long): FontData? {
+  public fun getData(idx: Long): FontData? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as FontData?
@@ -204,7 +204,7 @@ public open class Font : Resource() {
   /**
    * Returns TextServer RID of the font data resources.
    */
-  public open fun getDataRid(idx: Long): RID {
+  public fun getDataRid(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -213,7 +213,7 @@ public open class Font : Resource() {
   /**
    * Removes all font data sourcers for the set.
    */
-  public open fun clearData(): Unit {
+  public fun clearData(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_CLEAR_DATA, NIL)
   }
@@ -221,7 +221,7 @@ public open class Font : Resource() {
   /**
    * Removes the font data source at index `idx`. If the index does not exist, nothing happens.
    */
-  public open fun removeData(idx: Long): Unit {
+  public fun removeData(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_REMOVE_DATA, NIL)
   }
@@ -229,7 +229,7 @@ public open class Font : Resource() {
   /**
    * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to `value` in pixels (not relative to the font size).
    */
-  public open fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
+  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_SPACING, NIL)
   }
@@ -237,7 +237,7 @@ public open class Font : Resource() {
   /**
    * Returns the spacing for the given `type` (see [enum TextServer.SpacingType]).
    */
-  public open fun getSpacing(spacing: TextServer.SpacingType): Long {
+  public fun getSpacing(spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to spacing.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SPACING, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -248,7 +248,7 @@ public open class Font : Resource() {
    *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
    */
-  public open fun getHeight(size: Long = 16): Double {
+  public fun getHeight(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -259,7 +259,7 @@ public open class Font : Resource() {
    *
    * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
    */
-  public open fun getAscent(size: Long = 16): Double {
+  public fun getAscent(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -270,7 +270,7 @@ public open class Font : Resource() {
    *
    * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
    */
-  public open fun getDescent(size: Long = 16): Double {
+  public fun getDescent(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -281,7 +281,7 @@ public open class Font : Resource() {
    *
    * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
-  public open fun getUnderlinePosition(size: Long = 16): Double {
+  public fun getUnderlinePosition(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -292,7 +292,7 @@ public open class Font : Resource() {
    *
    * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
-  public open fun getUnderlineThickness(size: Long = 16): Double {
+  public fun getUnderlineThickness(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
         DOUBLE)
@@ -306,7 +306,7 @@ public open class Font : Resource() {
    *
    * See also [drawString].
    */
-  public open fun getStringSize(
+  public fun getStringSize(
     text: String,
     size: Long = 16,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -323,7 +323,7 @@ public open class Font : Resource() {
    *
    * See also [drawMultilineString].
    */
-  public open fun getMultilineStringSize(
+  public fun getMultilineStringSize(
     text: String,
     width: Double = -1.0,
     size: Long = 16,
@@ -340,7 +340,7 @@ public open class Font : Resource() {
    *
    * See also [godot.CanvasItem.drawString].
    */
-  public open fun drawString(
+  public fun drawString(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -361,7 +361,7 @@ public open class Font : Resource() {
    *
    * See also [godot.CanvasItem.drawMultilineString].
    */
-  public open fun drawMultilineString(
+  public fun drawMultilineString(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -383,7 +383,7 @@ public open class Font : Resource() {
    *
    * **Note:** Do not use this function to calculate width of the string character by character, use [getStringSize] or [godot.TextLine] instead. The height returned is the font height (see also [getHeight]) and has no relation to the glyph height.
    */
-  public open fun getCharSize(
+  public fun getCharSize(
     char: Long,
     next: Long = 0,
     size: Long = 16
@@ -398,7 +398,7 @@ public open class Font : Resource() {
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
    */
-  public open fun drawChar(
+  public fun drawChar(
     canvasItem: RID,
     pos: Vector2,
     char: Long,
@@ -416,7 +416,7 @@ public open class Font : Resource() {
   /**
    * Returns `true` if a Unicode `char` is available in the font.
    */
-  public open fun hasChar(char: Long): Boolean {
+  public fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_HAS_CHAR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -427,7 +427,7 @@ public open class Font : Resource() {
    *
    * If a given character is included in more than one font data source, it appears only once in the returned string.
    */
-  public open fun getSupportedChars(): String {
+  public fun getSupportedChars(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SUPPORTED_CHARS, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -436,7 +436,7 @@ public open class Font : Resource() {
   /**
    * After editing a font (changing data sources, etc.). Call this function to propagate changes to controls that might use it.
    */
-  public open fun updateChanges(): Unit {
+  public fun updateChanges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
   }
@@ -444,7 +444,7 @@ public open class Font : Resource() {
   /**
    * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passed to the [godot.TextServer] methods.
    */
-  public open fun getRids(): VariantArray<Any?> {
+  public fun getRids(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

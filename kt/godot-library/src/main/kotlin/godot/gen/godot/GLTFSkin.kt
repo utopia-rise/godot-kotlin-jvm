@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSkin : Resource() {
-  public open var skinRoot: Long
+  public var skinRoot: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_SKIN_ROOT, LONG)
@@ -35,7 +35,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_SKIN_ROOT, NIL)
     }
 
-  public open var jointsOriginal: PackedInt32Array
+  public var jointsOriginal: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_JOINTS_ORIGINAL,
@@ -47,7 +47,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_JOINTS_ORIGINAL, NIL)
     }
 
-  public open var inverseBinds: VariantArray<Any?>
+  public var inverseBinds: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_INVERSE_BINDS, ARRAY)
@@ -58,7 +58,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_INVERSE_BINDS, NIL)
     }
 
-  public open var joints: PackedInt32Array
+  public var joints: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_JOINTS,
@@ -70,7 +70,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_JOINTS, NIL)
     }
 
-  public open var nonJoints: PackedInt32Array
+  public var nonJoints: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_NON_JOINTS,
@@ -82,7 +82,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_NON_JOINTS, NIL)
     }
 
-  public open var roots: PackedInt32Array
+  public var roots: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_ROOTS,
@@ -94,7 +94,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_ROOTS, NIL)
     }
 
-  public open var skeleton: Long
+  public var skeleton: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_SKELETON, LONG)
@@ -105,7 +105,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_SKELETON, NIL)
     }
 
-  public open var jointIToBoneI: Dictionary<Any?, Any?>
+  public var jointIToBoneI: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_JOINT_I_TO_BONE_I,
@@ -118,7 +118,7 @@ public open class GLTFSkin : Resource() {
           NIL)
     }
 
-  public open var jointIToName: Dictionary<Any?, Any?>
+  public var jointIToName: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_JOINT_I_TO_NAME,
@@ -130,7 +130,7 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_SET_JOINT_I_TO_NAME, NIL)
     }
 
-  public open var godotSkin: Object?
+  public var godotSkin: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKIN_GET_GODOT_SKIN, OBJECT)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -90,7 +90,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns `true` if the setting specified by `name` exists, `false` otherwise.
    */
-  public open fun hasSetting(name: String): Boolean {
+  public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_HAS_SETTING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -99,7 +99,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets the `value` of the setting specified by `name`. This is equivalent to using [godot.Object.set] on the EditorSettings instance.
    */
-  public open fun setSetting(name: String, `value`: Any): Unit {
+  public fun setSetting(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
   }
@@ -107,7 +107,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns the value of the setting specified by `name`. This is equivalent to using [godot.Object.get] on the EditorSettings instance.
    */
-  public open fun getSetting(name: String): Any? {
+  public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -116,7 +116,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Erases the setting whose name is specified by `property`.
    */
-  public open fun erase(`property`: String): Unit {
+  public fun erase(`property`: String): Unit {
     TransferContext.writeArguments(STRING to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ERASE, NIL)
   }
@@ -124,7 +124,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets the initial value of the setting specified by `name` to `value`. This is used to provide a value for the Revert button in the Editor Settings. If `update_current` is true, the current value of the setting will be set to `value` as well.
    */
-  public open fun setInitialValue(
+  public fun setInitialValue(
     name: StringName,
     `value`: Any,
     updateCurrent: Boolean
@@ -137,7 +137,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns `true` if the setting specified by `name` can have its value reverted to the default value, `false` otherwise. When this method returns `true`, a Revert button will display next to the setting in the Editor Settings.
    */
-  public open fun propertyCanRevert(name: String): Boolean {
+  public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
         BOOL)
@@ -147,7 +147,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns the default value of the setting specified by `name`. This is the value that would be applied when clicking the Revert button in the Editor Settings.
    */
-  public open fun propertyGetRevert(name: String): Any? {
+  public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
         ANY)
@@ -223,7 +223,7 @@ public open class EditorSettings internal constructor() : Resource() {
    *
    * [/codeblocks]
    */
-  public open fun addPropertyInfo(info: Dictionary<Any?, Any?>): Unit {
+  public fun addPropertyInfo(info: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to info)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ADD_PROPERTY_INFO,
         NIL)
@@ -232,7 +232,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns the project-specific settings path. Projects all have a unique subdirectory inside the settings path where project-specific settings are saved.
    */
-  public open fun getProjectSettingsDir(): String {
+  public fun getProjectSettingsDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_SETTINGS_DIR, STRING)
@@ -242,7 +242,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets project-specific metadata with the `section`, `key` and `data` specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [getProjectMetadata].
    */
-  public open fun setProjectMetadata(
+  public fun setProjectMetadata(
     section: String,
     key: String,
     `data`: Any
@@ -255,7 +255,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns project-specific metadata for the `section` and `key` specified. If the metadata doesn't exist, `default` will be returned instead. See also [setProjectMetadata].
    */
-  public open fun getProjectMetadata(
+  public fun getProjectMetadata(
     section: String,
     key: String,
     default: Any? = null
@@ -269,7 +269,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets the list of favorite files and directories for this project.
    */
-  public open fun setFavorites(dirs: PackedStringArray): Unit {
+  public fun setFavorites(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_FAVORITES, NIL)
   }
@@ -277,7 +277,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns the list of favorite files and directories for this project.
    */
-  public open fun getFavorites(): PackedStringArray {
+  public fun getFavorites(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_FAVORITES,
         PACKED_STRING_ARRAY)
@@ -287,7 +287,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Sets the list of recently visited folders in the file dialog for this project.
    */
-  public open fun setRecentDirs(dirs: PackedStringArray): Unit {
+  public fun setRecentDirs(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS, NIL)
   }
@@ -295,7 +295,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Returns the list of recently visited folders in the file dialog for this project.
    */
-  public open fun getRecentDirs(): PackedStringArray {
+  public fun getRecentDirs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_RECENT_DIRS,
         PACKED_STRING_ARRAY)
@@ -305,7 +305,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    *
    */
-  public open fun setBuiltinActionOverride(name: String, actionsList: VariantArray<Any?>): Unit {
+  public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to name, ARRAY to actionsList)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL)
@@ -314,7 +314,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Checks if any settings with the prefix `setting_prefix` exist in the set of changed settings. See also [getChangedSettings].
    */
-  public open fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
+  public fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
     TransferContext.writeArguments(STRING to settingPrefix)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_CHECK_CHANGED_SETTINGS_IN_GROUP, BOOL)
@@ -324,7 +324,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Gets an array of the settings which have been changed since the last save. Note that internally `changed_settings` is cleared after a successful save, so generally the most appropriate place to use this method is when processing [NOTIFICATION_EDITOR_SETTINGS_CHANGED]
    */
-  public open fun getChangedSettings(): VariantArray<Any?> {
+  public fun getChangedSettings(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
         ARRAY)
@@ -334,7 +334,7 @@ public open class EditorSettings internal constructor() : Resource() {
   /**
    * Marks the passed editor setting as being changed, see [getChangedSettings]. Only settings which exist (see [hasSetting]) will be accepted.
    */
-  public open fun markSettingChanged(setting: String): Unit {
+  public fun markSettingChanged(setting: String): Unit {
     TransferContext.writeArguments(STRING to setting)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_MARK_SETTING_CHANGED,
         NIL)

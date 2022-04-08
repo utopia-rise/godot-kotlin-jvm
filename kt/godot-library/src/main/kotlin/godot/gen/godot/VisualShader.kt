@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class VisualShader : Shader() {
   /**
    * The offset vector of the whole graph.
    */
-  public open var graphOffset: Vector2
+  public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_GRAPH_OFFSET,
@@ -63,7 +63,7 @@ public open class VisualShader : Shader() {
    *
    * This is used by the editor to convert visual shaders from older Godot versions.
    */
-  public open var engineVersion: Dictionary<Any?, Any?>
+  public var engineVersion: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_ENGINE_VERSION,
@@ -83,7 +83,7 @@ public open class VisualShader : Shader() {
   /**
    * Sets the mode of this shader.
    */
-  public open fun setMode(mode: Shader.Mode): Unit {
+  public fun setMode(mode: Shader.Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_MODE, NIL)
   }
@@ -91,7 +91,7 @@ public open class VisualShader : Shader() {
   /**
    * Adds the specified node to the shader.
    */
-  public open fun addNode(
+  public fun addNode(
     type: VisualShader.Type,
     node: VisualShaderNode,
     position: Vector2,
@@ -104,7 +104,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the shader node instance with specified `type` and `id`.
    */
-  public open fun getNode(type: VisualShader.Type, id: Long): VisualShaderNode? {
+  public fun getNode(type: VisualShader.Type, id: Long): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
@@ -113,7 +113,7 @@ public open class VisualShader : Shader() {
   /**
    * Sets the position of the specified node.
    */
-  public open fun setNodePosition(
+  public fun setNodePosition(
     type: VisualShader.Type,
     id: Long,
     position: Vector2
@@ -125,7 +125,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the position of the specified node within the shader graph.
    */
-  public open fun getNodePosition(type: VisualShader.Type, id: Long): Vector2 {
+  public fun getNodePosition(type: VisualShader.Type, id: Long): Vector2 {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
         VECTOR2)
@@ -135,7 +135,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of all nodes in the shader with the specified type.
    */
-  public open fun getNodeList(type: VisualShader.Type): PackedInt32Array {
+  public fun getNodeList(type: VisualShader.Type): PackedInt32Array {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
         PACKED_INT_32_ARRAY)
@@ -145,7 +145,7 @@ public open class VisualShader : Shader() {
   /**
    *
    */
-  public open fun getValidNodeId(type: VisualShader.Type): Long {
+  public fun getValidNodeId(type: VisualShader.Type): Long {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
         LONG)
@@ -155,7 +155,7 @@ public open class VisualShader : Shader() {
   /**
    * Removes the specified node from the shader.
    */
-  public open fun removeNode(type: VisualShader.Type, id: Long): Unit {
+  public fun removeNode(type: VisualShader.Type, id: Long): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
   }
@@ -163,7 +163,7 @@ public open class VisualShader : Shader() {
   /**
    * Replaces the specified node with a node of new class type.
    */
-  public open fun replaceNode(
+  public fun replaceNode(
     type: VisualShader.Type,
     id: Long,
     newClass: StringName
@@ -175,7 +175,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified node and port connection exist.
    */
-  public open fun isNodeConnection(
+  public fun isNodeConnection(
     type: VisualShader.Type,
     fromNode: Long,
     fromPort: Long,
@@ -191,7 +191,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified nodes and ports can be connected together.
    */
-  public open fun canConnectNodes(
+  public fun canConnectNodes(
     type: VisualShader.Type,
     fromNode: Long,
     fromPort: Long,
@@ -207,7 +207,7 @@ public open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  public open fun connectNodes(
+  public fun connectNodes(
     type: VisualShader.Type,
     fromNode: Long,
     fromPort: Long,
@@ -222,7 +222,7 @@ public open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  public open fun disconnectNodes(
+  public fun disconnectNodes(
     type: VisualShader.Type,
     fromNode: Long,
     fromPort: Long,
@@ -236,7 +236,7 @@ public open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
    */
-  public open fun connectNodesForced(
+  public fun connectNodesForced(
     type: VisualShader.Type,
     fromNode: Long,
     fromPort: Long,
@@ -251,7 +251,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of connected nodes with the specified type.
    */
-  public open fun getNodeConnections(type: VisualShader.Type): VariantArray<Any?> {
+  public fun getNodeConnections(type: VisualShader.Type): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
@@ -261,7 +261,7 @@ public open class VisualShader : Shader() {
   /**
    *
    */
-  public open fun addVarying(
+  public fun addVarying(
     name: String,
     mode: VisualShader.VaryingMode,
     type: VisualShader.VaryingType
@@ -273,7 +273,7 @@ public open class VisualShader : Shader() {
   /**
    *
    */
-  public open fun removeVarying(name: String): Unit {
+  public fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_VARYING, NIL)
   }
@@ -281,7 +281,7 @@ public open class VisualShader : Shader() {
   /**
    *
    */
-  public open fun hasVarying(name: String): Boolean {
+  public fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

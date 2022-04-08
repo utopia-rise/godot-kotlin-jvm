@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -66,7 +66,7 @@ public object Performance : Object() {
    *
    * [/codeblocks]
    */
-  public open fun getMonitor(monitor: Performance.Monitor): Double {
+  public fun getMonitor(monitor: Performance.Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -175,7 +175,7 @@ public object Performance : Object() {
    *
    * **Note:** It throws an error if given id is already present.
    */
-  public open fun addCustomMonitor(
+  public fun addCustomMonitor(
     id: StringName,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf()
@@ -189,7 +189,7 @@ public object Performance : Object() {
    *
    * **Note:** It throws an error if the given id is already absent.
    */
-  public open fun removeCustomMonitor(id: StringName): Unit {
+  public fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_REMOVE_CUSTOM_MONITOR,
         NIL)
@@ -198,7 +198,7 @@ public object Performance : Object() {
   /**
    * Returns true if custom monitor with the given id is present otherwise returns false.
    */
-  public open fun hasCustomMonitor(id: StringName): Boolean {
+  public fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_HAS_CUSTOM_MONITOR,
         BOOL)
@@ -210,7 +210,7 @@ public object Performance : Object() {
    *
    * **Note:** It throws an error if the given id is absent.
    */
-  public open fun getCustomMonitor(id: StringName): Any? {
+  public fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -219,7 +219,7 @@ public object Performance : Object() {
   /**
    * Returns the last tick in which custom monitor was added/removed.
    */
-  public open fun getMonitorModificationTime(): Long {
+  public fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR_MODIFICATION_TIME, LONG)
@@ -229,7 +229,7 @@ public object Performance : Object() {
   /**
    * Returns the names of active custom monitors in an array.
    */
-  public open fun getCustomMonitorNames(): VariantArray<Any?> {
+  public fun getCustomMonitorNames(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR_NAMES, ARRAY)

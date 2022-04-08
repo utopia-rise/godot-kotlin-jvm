@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -133,7 +133,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The MIDI channel of this input event. There are 16 channels, so this value ranges from 0 to 15. MIDI channel 9 is reserved for the use with percussion instruments, the rest of the channels are for non-percussion instruments.
    */
-  public open var channel: Long
+  public var channel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_CHANNEL, LONG)
@@ -153,7 +153,7 @@ public open class InputEventMIDI : InputEvent() {
    *
    * For more information, see the MIDI message status byte list chart linked above.
    */
-  public open var message: Long
+  public var message: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_MESSAGE, LONG)
@@ -167,7 +167,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The pitch index number of this MIDI signal. This value ranges from 0 to 127. On a piano, middle C is 60, and A440 is 69, see the "MIDI note" column of the piano key frequency chart on Wikipedia for more information.
    */
-  public open var pitch: Long
+  public var pitch: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_PITCH, LONG)
@@ -181,7 +181,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice.
    */
-  public open var velocity: Long
+  public var velocity: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_VELOCITY, LONG)
@@ -195,7 +195,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The instrument of this input event. This value ranges from 0 to 127. Refer to the instrument list on the General MIDI wikipedia article to see a list of instruments, except that this value is 0-index, so subtract one from every number on that chart. A standard piano will have an instrument number of 0.
    */
-  public open var instrument: Long
+  public var instrument: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_INSTRUMENT,
@@ -211,7 +211,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The pressure of the MIDI signal. This value ranges from 0 to 127. For many devices, this value is always zero.
    */
-  public open var pressure: Long
+  public var pressure: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_GET_PRESSURE, LONG)
@@ -225,7 +225,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * If the message is `MIDI_MESSAGE_CONTROL_CHANGE`, this indicates the controller number, otherwise this is zero. Controllers include devices such as pedals and levers.
    */
-  public open var controllerNumber: Long
+  public var controllerNumber: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -241,7 +241,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * If the message is `MIDI_MESSAGE_CONTROL_CHANGE`, this indicates the controller value, otherwise this is zero. Controllers include devices such as pedals and levers.
    */
-  public open var controllerValue: Long
+  public var controllerValue: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

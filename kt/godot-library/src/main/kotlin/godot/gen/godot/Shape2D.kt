@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class Shape2D internal constructor() : Resource() {
    *
    * When set to `0`, the default value from [godot.ProjectSettings.physics/2d/solver/defaultContactBias] is used.
    */
-  public open var customSolverBias: Double
+  public var customSolverBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_GET_CUSTOM_SOLVER_BIAS,
@@ -65,7 +65,7 @@ public open class Shape2D internal constructor() : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
    */
-  public open fun collide(
+  public fun collide(
     localXform: Transform2D,
     withShape: Shape2D,
     shapeXform: Transform2D
@@ -80,7 +80,7 @@ public open class Shape2D internal constructor() : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
    */
-  public open fun collideWithMotion(
+  public fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D,
@@ -97,7 +97,7 @@ public open class Shape2D internal constructor() : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
    */
-  public open fun collideAndGetContacts(
+  public fun collideAndGetContacts(
     localXform: Transform2D,
     withShape: Shape2D,
     shapeXform: Transform2D
@@ -113,7 +113,7 @@ public open class Shape2D internal constructor() : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
    */
-  public open fun collideWithMotionAndGetContacts(
+  public fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D,
@@ -129,7 +129,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Draws a solid shape onto a [godot.CanvasItem] with the [godot.RenderingServer] API filled with the specified `color`. The exact drawing method is specific for each shape and cannot be configured.
    */
-  public open fun draw(canvasItem: RID, color: Color): Unit {
+  public fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_DRAW, NIL)
   }

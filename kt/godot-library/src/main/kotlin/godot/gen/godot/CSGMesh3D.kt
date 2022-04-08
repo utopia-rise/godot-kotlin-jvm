@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -15,7 +15,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGMesh3D : CSGPrimitive3D() {
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_GET_MESH, OBJECT)
@@ -26,7 +26,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_SET_MESH, NIL)
     }
 
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_GET_MATERIAL, OBJECT)

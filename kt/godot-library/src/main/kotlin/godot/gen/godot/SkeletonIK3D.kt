@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var rootBone: StringName
+  public var rootBone: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_ROOT_BONE,
@@ -53,7 +53,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var tipBone: StringName
+  public var tipBone: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TIP_BONE,
@@ -68,7 +68,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var interpolation: Double
+  public var interpolation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_INTERPOLATION,
@@ -84,7 +84,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var target: Transform3D
+  public var target: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET_TRANSFORM,
@@ -100,7 +100,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var overrideTipBasis: Boolean
+  public var overrideTipBasis: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -116,7 +116,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var useMagnet: Boolean
+  public var useMagnet: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_USING_MAGNET,
@@ -131,7 +131,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var magnet: Vector3
+  public var magnet: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAGNET_POSITION,
@@ -147,7 +147,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var targetNode: NodePath
+  public var targetNode: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET_NODE,
@@ -162,7 +162,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var minDistance: Double
+  public var minDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MIN_DISTANCE,
@@ -178,7 +178,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open var maxIterations: Long
+  public var maxIterations: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAX_ITERATIONS,
@@ -198,7 +198,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open fun getParentSkeleton(): Skeleton3D? {
+  public fun getParentSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_PARENT_SKELETON,
         OBJECT)
@@ -208,7 +208,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open fun isRunning(): Boolean {
+  public fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_RUNNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -217,7 +217,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open fun start(oneTime: Boolean = false): Unit {
+  public fun start(oneTime: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to oneTime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_START, NIL)
   }
@@ -225,7 +225,7 @@ public open class SkeletonIK3D : Node() {
   /**
    *
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_STOP, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
    */
-  public open var materialOverride: Material?
+  public var materialOverride: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -54,7 +54,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.
    */
-  public open var materialOverlay: Material?
+  public var materialOverlay: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
    */
-  public open var transparency: Double
+  public var transparency: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
    */
-  public open var castShadow: Long
+  public var castShadow: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box.
    */
-  public open var extraCullMargin: Double
+  public var extraCullMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -122,7 +122,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    *
    */
-  public open var lodBias: Double
+  public var lodBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LOD_BIAS,
@@ -138,7 +138,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    *
    */
-  public open var ignoreOcclusionCulling: Boolean
+  public var ignoreOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -156,7 +156,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See [godot.Light3D.lightBakeMode].
    */
-  public open var giMode: Long
+  public var giMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
@@ -172,7 +172,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The texel density to use for lightmapping in [godot.LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes.
    */
-  public open var giLightmapScale: Long
+  public var giLightmapScale: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -188,7 +188,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Starting distance from which the GeometryInstance3D will be visible, taking [visibilityRangeBeginMargin] into account as well. The default value of 0 is used to disable the range check.
    */
-  public open var visibilityRangeBegin: Double
+  public var visibilityRangeBegin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -206,7 +206,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as an hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
    */
-  public open var visibilityRangeBeginMargin: Double
+  public var visibilityRangeBeginMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -222,7 +222,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Distance from which the GeometryInstance3D will be hidden, taking [visibilityRangeEndMargin] into account as well. The default value of 0 is used to disable the range check.
    */
-  public open var visibilityRangeEnd: Double
+  public var visibilityRangeEnd: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -240,7 +240,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    *
    * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as an hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
    */
-  public open var visibilityRangeEndMargin: Double
+  public var visibilityRangeEndMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -256,7 +256,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values.
    */
-  public open var visibilityRangeFadeMode: Long
+  public var visibilityRangeFadeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -276,7 +276,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    *
    */
-  public open fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {
+  public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to uniform, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_SHADER_INSTANCE_UNIFORM, NIL)
@@ -285,7 +285,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    *
    */
-  public open fun getShaderInstanceUniform(uniform: StringName): Any? {
+  public fun getShaderInstanceUniform(uniform: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to uniform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_SHADER_INSTANCE_UNIFORM, ANY)
@@ -295,7 +295,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Overrides the bounding box of this node with a custom one. To remove it, set an [AABB] with all fields set to zero.
    */
-  public open fun setCustomAabb(aabb: AABB): Unit {
+  public fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB,
         NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var diffuseTexture: Texture2D?
+  public var diffuseTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_DIFFUSE_TEXTURE,
@@ -43,7 +43,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var normalTexture: Texture2D?
+  public var normalTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_NORMAL_TEXTURE,
@@ -59,7 +59,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var specularTexture: Texture2D?
+  public var specularTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -75,7 +75,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var specularColor: Color
+  public var specularColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_COLOR,
@@ -91,7 +91,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var specularShininess: Double
+  public var specularShininess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -107,7 +107,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var textureFilter: Long
+  public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
@@ -123,7 +123,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    *
    */
-  public open var textureRepeat: Long
+  public var textureRepeat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,

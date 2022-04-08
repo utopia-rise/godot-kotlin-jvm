@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Radius of the capsule mesh.
    */
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIUS, DOUBLE)
@@ -40,7 +40,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Total height of the capsule mesh (including the hemispherical ends).
    */
-  public open var height: Double
+  public var height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_HEIGHT, DOUBLE)
@@ -54,7 +54,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Number of radial segments on the capsule mesh.
    */
-  public open var radialSegments: Long
+  public var radialSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIAL_SEGMENTS,
@@ -70,7 +70,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Number of rings along the height of the capsule.
    */
-  public open var rings: Long
+  public var rings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RINGS, LONG)

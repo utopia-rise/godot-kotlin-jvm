@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The texture that contains the atlas. Can be any [godot.Texture2D] subtype.
    */
-  public open var atlas: Texture2D?
+  public var atlas: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_ATLAS, OBJECT)
@@ -43,7 +43,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The AtlasTexture's used region.
    */
-  public open var region: Rect2
+  public var region: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_REGION, RECT2)
@@ -57,7 +57,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * The margin around the region. The [godot.core.Rect2]'s [godot.Rect2.size] parameter ("w" and "h" in the editor) resizes the texture so it fits within the margin.
    */
-  public open var margin: Rect2
+  public var margin: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_MARGIN, RECT2)
@@ -71,7 +71,7 @@ public open class AtlasTexture : Texture2D() {
   /**
    * If `true`, clips the area outside of the region to avoid bleeding of the surrounding texture pixels.
    */
-  public open var filterClip: Boolean
+  public var filterClip: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_HAS_FILTER_CLIP,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A synchronization semaphore.
@@ -33,7 +34,8 @@ public open class Semaphore : RefCounted() {
   /**
    * Waits for the [godot.Semaphore], if its value is zero, blocks until non-zero.
    */
-  public open fun wait(): Unit {
+  @JvmName("semaphoreWait")
+  public fun wait(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_WAIT, NIL)
   }
@@ -41,7 +43,7 @@ public open class Semaphore : RefCounted() {
   /**
    * Like [wait], but won't block, so if the value is zero, fails immediately and returns [ERR_BUSY]. If non-zero, it returns [OK] to report success.
    */
-  public open fun tryWait(): GodotError {
+  public fun tryWait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -50,7 +52,7 @@ public open class Semaphore : RefCounted() {
   /**
    * Lowers the [godot.Semaphore], allowing one more thread in.
    */
-  public open fun post(): Unit {
+  public fun post(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_POST, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -59,7 +59,7 @@ public open class Node3D : Node() {
   /**
    * Local space [godot.Transform3D] of this node, with respect to the parent node.
    */
-  public open var transform: Transform3D
+  public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_TRANSFORM, TRANSFORM3D)
@@ -73,7 +73,7 @@ public open class Node3D : Node() {
   /**
    * World3D space (global) [godot.Transform3D] of this node.
    */
-  public open var globalTransform: Transform3D
+  public var globalTransform: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_TRANSFORM,
@@ -88,7 +88,7 @@ public open class Node3D : Node() {
   /**
    * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
    */
-  public open var position: Vector3
+  public var position: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_POSITION, VECTOR3)
@@ -104,7 +104,7 @@ public open class Node3D : Node() {
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    */
-  public open var rotation: Vector3
+  public var rotation: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION, VECTOR3)
@@ -118,7 +118,7 @@ public open class Node3D : Node() {
   /**
    * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
    */
-  public open var quaternion: Quaternion
+  public var quaternion: Quaternion
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_QUATERNION, QUATERNION)
@@ -132,7 +132,7 @@ public open class Node3D : Node() {
   /**
    * Direct access to the 3x3 basis of the [godot.Transform3D] property.
    */
-  public open var basis: Basis
+  public var basis: Basis
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_BASIS, BASIS)
@@ -146,7 +146,7 @@ public open class Node3D : Node() {
   /**
    * Scale part of the local transformation.
    */
-  public open var scale: Vector3
+  public var scale: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_SCALE, VECTOR3)
@@ -160,7 +160,7 @@ public open class Node3D : Node() {
   /**
    * Specify how rotation (and scale) will be presented in the editor.
    */
-  public open var rotationEditMode: Long
+  public var rotationEditMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,
@@ -176,7 +176,7 @@ public open class Node3D : Node() {
   /**
    * Specify the axis rotation order of the [rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property.
    */
-  public open var rotationOrder: Long
+  public var rotationOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_ORDER, LONG)
@@ -190,7 +190,7 @@ public open class Node3D : Node() {
   /**
    * If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space.
    */
-  public open var topLevel: Boolean
+  public var topLevel: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SET_AS_TOP_LEVEL, BOOL)
@@ -204,7 +204,7 @@ public open class Node3D : Node() {
   /**
    * If `true`, this node is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
    */
-  public open var visible: Boolean
+  public var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE, BOOL)
@@ -218,7 +218,7 @@ public open class Node3D : Node() {
   /**
    * Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [godot.GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [godot.Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account.
    */
-  public open var visibilityParent: NodePath
+  public var visibilityParent: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_VISIBILITY_PARENT,
@@ -237,7 +237,7 @@ public open class Node3D : Node() {
   /**
    * Returns the parent [godot.Node3D], or an empty [godot.Object] if no parent exists or parent is not of type [godot.Node3D].
    */
-  public open fun getParentNode3d(): Node3D? {
+  public fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_PARENT_NODE_3D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node3D?
@@ -246,7 +246,7 @@ public open class Node3D : Node() {
   /**
    * Sets whether the node ignores notification that its transformation (global or local) changed.
    */
-  public open fun setIgnoreTransformNotification(enabled: Boolean): Unit {
+  public fun setIgnoreTransformNotification(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IGNORE_TRANSFORM_NOTIFICATION, NIL)
@@ -255,7 +255,7 @@ public open class Node3D : Node() {
   /**
    * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved.
    */
-  public open fun setDisableScale(disable: Boolean): Unit {
+  public fun setDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_DISABLE_SCALE, NIL)
   }
@@ -263,7 +263,7 @@ public open class Node3D : Node() {
   /**
    * Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale.
    */
-  public open fun isScaleDisabled(): Boolean {
+  public fun isScaleDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SCALE_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -272,7 +272,7 @@ public open class Node3D : Node() {
   /**
    * Returns the current [godot.World3D] resource this [godot.Node3D] node is registered to.
    */
-  public open fun getWorld3d(): World3D? {
+  public fun getWorld3d(): World3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_WORLD_3D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World3D?
@@ -281,7 +281,7 @@ public open class Node3D : Node() {
   /**
    * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
    */
-  public open fun forceUpdateTransform(): Unit {
+  public fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_FORCE_UPDATE_TRANSFORM, NIL)
   }
@@ -289,7 +289,7 @@ public open class Node3D : Node() {
   /**
    * Updates all the [godot.Node3DGizmo]s attached to this node.
    */
-  public open fun updateGizmos(): Unit {
+  public fun updateGizmos(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_UPDATE_GIZMOS, NIL)
   }
@@ -297,7 +297,7 @@ public open class Node3D : Node() {
   /**
    * Attach a gizmo to this `Node3D`.
    */
-  public open fun addGizmo(gizmo: Node3DGizmo): Unit {
+  public fun addGizmo(gizmo: Node3DGizmo): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ADD_GIZMO, NIL)
   }
@@ -305,7 +305,7 @@ public open class Node3D : Node() {
   /**
    * Returns all the gizmos attached to this `Node3D`.
    */
-  public open fun getGizmos(): VariantArray<Any?> {
+  public fun getGizmos(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GIZMOS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -314,7 +314,7 @@ public open class Node3D : Node() {
   /**
    * Clear all gizmos attached to this `Node3D`.
    */
-  public open fun clearGizmos(): Unit {
+  public fun clearGizmos(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_GIZMOS, NIL)
   }
@@ -322,7 +322,7 @@ public open class Node3D : Node() {
   /**
    * Set subgizmo selection for this node in the editor.
    */
-  public open fun setSubgizmoSelection(
+  public fun setSubgizmoSelection(
     gizmo: Node3DGizmo,
     id: Long,
     transform: Transform3D
@@ -334,7 +334,7 @@ public open class Node3D : Node() {
   /**
    * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change.
    */
-  public open fun clearSubgizmoSelection(): Unit {
+  public fun clearSubgizmoSelection(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_SUBGIZMO_SELECTION,
         NIL)
@@ -343,7 +343,7 @@ public open class Node3D : Node() {
   /**
    * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
    */
-  public open fun isVisibleInTree(): Boolean {
+  public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE_IN_TREE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -352,7 +352,7 @@ public open class Node3D : Node() {
   /**
    * Enables rendering of this node. Changes [visible] to `true`.
    */
-  public open fun show(): Unit {
+  public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SHOW, NIL)
   }
@@ -360,7 +360,7 @@ public open class Node3D : Node() {
   /**
    * Disables rendering of this node. Changes [visible] to `false`.
    */
-  public open fun hide(): Unit {
+  public fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_HIDE, NIL)
   }
@@ -368,7 +368,7 @@ public open class Node3D : Node() {
   /**
    * Sets whether the node notifies about its local transformation changes. [godot.Node3D] will not propagate this by default.
    */
-  public open fun setNotifyLocalTransform(enable: Boolean): Unit {
+  public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_LOCAL_TRANSFORM,
         NIL)
@@ -377,7 +377,7 @@ public open class Node3D : Node() {
   /**
    * Returns whether node notifies about its local transformation changes. [godot.Node3D] will not propagate this by default.
    */
-  public open fun isLocalTransformNotificationEnabled(): Boolean {
+  public fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE3D_IS_LOCAL_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -387,7 +387,7 @@ public open class Node3D : Node() {
   /**
    * Sets whether the node notifies about its global and local transformation changes. [godot.Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
    */
-  public open fun setNotifyTransform(enable: Boolean): Unit {
+  public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_TRANSFORM, NIL)
   }
@@ -395,7 +395,7 @@ public open class Node3D : Node() {
   /**
    * Returns whether the node notifies about its global and local transformation changes. [godot.Node3D] will not propagate this by default.
    */
-  public open fun isTransformNotificationEnabled(): Boolean {
+  public fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE3D_IS_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -405,7 +405,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians.
    */
-  public open fun rotate(axis: Vector3, angle: Double): Unit {
+  public fun rotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE, NIL)
   }
@@ -413,7 +413,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the global (world) transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
    */
-  public open fun globalRotate(axis: Vector3, angle: Double): Unit {
+  public fun globalRotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_ROTATE, NIL)
   }
@@ -421,7 +421,7 @@ public open class Node3D : Node() {
   /**
    * Scales the global (world) transformation by the given [godot.core.Vector3] scale factors.
    */
-  public open fun globalScale(scale: Vector3): Unit {
+  public fun globalScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_SCALE, NIL)
   }
@@ -429,7 +429,7 @@ public open class Node3D : Node() {
   /**
    * Moves the global (world) transformation by [godot.core.Vector3] offset. The offset is in global coordinate system.
    */
-  public open fun globalTranslate(offset: Vector3): Unit {
+  public fun globalTranslate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_TRANSLATE, NIL)
   }
@@ -437,7 +437,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
    */
-  public open fun rotateObjectLocal(axis: Vector3, angle: Double): Unit {
+  public fun rotateObjectLocal(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_OBJECT_LOCAL, NIL)
   }
@@ -445,7 +445,7 @@ public open class Node3D : Node() {
   /**
    * Scales the local transformation by given 3D scale factors in object-local coordinate system.
    */
-  public open fun scaleObjectLocal(scale: Vector3): Unit {
+  public fun scaleObjectLocal(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SCALE_OBJECT_LOCAL, NIL)
   }
@@ -453,7 +453,7 @@ public open class Node3D : Node() {
   /**
    * Changes the node's position by the given offset [godot.core.Vector3] in local space.
    */
-  public open fun translateObjectLocal(offset: Vector3): Unit {
+  public fun translateObjectLocal(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE_OBJECT_LOCAL, NIL)
   }
@@ -461,7 +461,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the X axis by angle in radians.
    */
-  public open fun rotateX(angle: Double): Unit {
+  public fun rotateX(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_X, NIL)
   }
@@ -469,7 +469,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the Y axis by angle in radians.
    */
-  public open fun rotateY(angle: Double): Unit {
+  public fun rotateY(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Y, NIL)
   }
@@ -477,7 +477,7 @@ public open class Node3D : Node() {
   /**
    * Rotates the local transformation around the Z axis by angle in radians.
    */
-  public open fun rotateZ(angle: Double): Unit {
+  public fun rotateZ(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Z, NIL)
   }
@@ -487,7 +487,7 @@ public open class Node3D : Node() {
    *
    * Note that the translation `offset` is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
    */
-  public open fun translate(offset: Vector3): Unit {
+  public fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE, NIL)
   }
@@ -495,7 +495,7 @@ public open class Node3D : Node() {
   /**
    * Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [godot.Transform3D].
    */
-  public open fun orthonormalize(): Unit {
+  public fun orthonormalize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ORTHONORMALIZE, NIL)
   }
@@ -503,7 +503,7 @@ public open class Node3D : Node() {
   /**
    * Reset all transformations for this node (sets its [godot.Transform3D] to the identity matrix).
    */
-  public open fun setIdentity(): Unit {
+  public fun setIdentity(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IDENTITY, NIL)
   }
@@ -517,7 +517,7 @@ public open class Node3D : Node() {
    *
    * Operations take place in global space.
    */
-  public open fun lookAt(target: Vector3, up: Vector3 = Vector3(0.0, 1.0, 0.0)): Unit {
+  public fun lookAt(target: Vector3, up: Vector3 = Vector3(0.0, 1.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT, NIL)
   }
@@ -525,7 +525,7 @@ public open class Node3D : Node() {
   /**
    * Moves the node to the specified `position`, and then rotates the node to point toward the `target` as per [lookAt]. Operations take place in global space.
    */
-  public open fun lookAtFromPosition(
+  public fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,
     up: Vector3 = Vector3(0.0, 1.0, 0.0)
@@ -537,7 +537,7 @@ public open class Node3D : Node() {
   /**
    * Transforms `global_point` from world space to this node's local space.
    */
-  public open fun toLocal(globalPoint: Vector3): Vector3 {
+  public fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_LOCAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -546,7 +546,7 @@ public open class Node3D : Node() {
   /**
    * Transforms `local_point` from this node's local space to world space.
    */
-  public open fun toGlobal(localPoint: Vector3): Vector3 {
+  public fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_GLOBAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -555,7 +555,7 @@ public open class Node3D : Node() {
   /**
    * Returns `true` if the property identified by `name` can be reverted to a default value.
    */
-  public open fun propertyCanRevert(name: String): Boolean {
+  public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_CAN_REVERT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -564,7 +564,7 @@ public open class Node3D : Node() {
   /**
    * Returns the default value of the Node3D property with given `name`.
    */
-  public open fun propertyGetRevert(name: String): Any? {
+  public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_GET_REVERT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,7 +22,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
    * A function to be applied to the texture coordinates. See [enum Function] for options.
    */
-  public open var function: Long
+  public var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

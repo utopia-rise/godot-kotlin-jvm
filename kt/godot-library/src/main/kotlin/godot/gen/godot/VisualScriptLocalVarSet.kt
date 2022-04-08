@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -18,7 +18,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptLocalVarSet : VisualScriptNode() {
-  public open var varName: String
+  public var varName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -31,7 +31,7 @@ public open class VisualScriptLocalVarSet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVARSET_SET_VAR_NAME, NIL)
     }
 
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

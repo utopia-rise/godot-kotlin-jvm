@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -138,7 +138,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Starts a new hash computation of the given `type` (e.g. [godot.HASH_SHA256] to start computation of a SHA-256).
    */
-  public open fun start(type: HashingContext.HashType): GodotError {
+  public fun start(type: HashingContext.HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -147,7 +147,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Updates the computation with the given `chunk` of data.
    */
-  public open fun update(chunk: PackedByteArray): GodotError {
+  public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -156,7 +156,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Closes the current context, and return the computed hash.
    */
-  public open fun finish(): PackedByteArray {
+  public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_FINISH,
         PACKED_BYTE_ARRAY)

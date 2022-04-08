@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class Timer : Node() {
   /**
    * Processing callback. See [enum TimerProcessCallback].
    */
-  public open var processCallback: Long
+  public var processCallback: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIMER_PROCESS_CALLBACK,
@@ -58,7 +58,7 @@ public open class Timer : Node() {
    *
    * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [processCallback] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
    */
-  public open var waitTime: Double
+  public var waitTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_WAIT_TIME, DOUBLE)
@@ -72,7 +72,7 @@ public open class Timer : Node() {
   /**
    * If `true`, the timer will stop when reaching 0. If `false`, it will restart.
    */
-  public open var oneShot: Boolean
+  public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_ONE_SHOT, BOOL)
@@ -88,7 +88,7 @@ public open class Timer : Node() {
    *
    * **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.
    */
-  public open var autostart: Boolean
+  public var autostart: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_HAS_AUTOSTART, BOOL)
@@ -102,7 +102,7 @@ public open class Timer : Node() {
   /**
    * If `true`, the timer is paused and will not process until it is unpaused again, even if [start] is called.
    */
-  public open var paused: Boolean
+  public var paused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_PAUSED, BOOL)
@@ -118,7 +118,7 @@ public open class Timer : Node() {
    *
    * **Note:** You cannot set this value. To change the timer's remaining time, use [start].
    */
-  public open val timeLeft: Double
+  public val timeLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIME_LEFT, DOUBLE)
@@ -134,7 +134,7 @@ public open class Timer : Node() {
    *
    * **Note:** This method will not resume a paused timer. See [paused].
    */
-  public open fun start(timeSec: Double = -1.0): Unit {
+  public fun start(timeSec: Double = -1.0): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_START, NIL)
   }
@@ -142,7 +142,7 @@ public open class Timer : Node() {
   /**
    * Stops the timer.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_STOP, NIL)
   }
@@ -150,7 +150,7 @@ public open class Timer : Node() {
   /**
    * Returns `true` if the timer is stopped.
    */
-  public open fun isStopped(): Boolean {
+  public fun isStopped(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_STOPPED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

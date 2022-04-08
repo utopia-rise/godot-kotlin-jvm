@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class Gradient : Resource() {
   /**
    * Defines how the colors between points of the gradient are interpolated. See [enum InterpolationMode] for available modes.
    */
-  public open var interpolationMode: Long
+  public var interpolationMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
@@ -48,7 +48,7 @@ public open class Gradient : Resource() {
   /**
    * Gradient's offsets returned as a [godot.PackedFloat32Array].
    */
-  public open var offsets: PackedFloat32Array
+  public var offsets: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSETS,
@@ -63,7 +63,7 @@ public open class Gradient : Resource() {
   /**
    * Gradient's colors returned as a [godot.PackedColorArray].
    */
-  public open var colors: PackedColorArray
+  public var colors: PackedColorArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLORS,
@@ -82,7 +82,7 @@ public open class Gradient : Resource() {
   /**
    * Adds the specified color to the end of the gradient, with the specified offset.
    */
-  public open fun addPoint(offset: Double, color: Color): Unit {
+  public fun addPoint(offset: Double, color: Color): Unit {
     TransferContext.writeArguments(DOUBLE to offset, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_ADD_POINT, NIL)
   }
@@ -90,7 +90,7 @@ public open class Gradient : Resource() {
   /**
    * Removes the color at the index `point`.
    */
-  public open fun removePoint(point: Long): Unit {
+  public fun removePoint(point: Long): Unit {
     TransferContext.writeArguments(LONG to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REMOVE_POINT, NIL)
   }
@@ -98,7 +98,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the offset for the gradient color at index `point`.
    */
-  public open fun setOffset(point: Long, offset: Double): Unit {
+  public fun setOffset(point: Long, offset: Double): Unit {
     TransferContext.writeArguments(LONG to point, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL)
   }
@@ -106,7 +106,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the offset of the gradient color at index `point`.
    */
-  public open fun getOffset(point: Long): Double {
+  public fun getOffset(point: Long): Double {
     TransferContext.writeArguments(LONG to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSET, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -115,7 +115,7 @@ public open class Gradient : Resource() {
   /**
    * Reverses/mirrors the gradient.
    */
-  public open fun reverse(): Unit {
+  public fun reverse(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REVERSE, NIL)
   }
@@ -123,7 +123,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the color of the gradient color at index `point`.
    */
-  public open fun setColor(point: Long, color: Color): Unit {
+  public fun setColor(point: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to point, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLOR, NIL)
   }
@@ -131,7 +131,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the color of the gradient color at index `point`.
    */
-  public open fun getColor(point: Long): Color {
+  public fun getColor(point: Long): Color {
     TransferContext.writeArguments(LONG to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -140,7 +140,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the interpolated color specified by `offset`.
    */
-  public open fun interpolate(offset: Double): Color {
+  public fun interpolate(offset: Double): Color {
     TransferContext.writeArguments(DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_INTERPOLATE, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -149,7 +149,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the number of colors in the gradient.
    */
-  public open fun getPointCount(): Long {
+  public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_POINT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

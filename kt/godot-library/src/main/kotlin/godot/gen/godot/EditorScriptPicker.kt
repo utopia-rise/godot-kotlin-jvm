@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
   /**
    * The owner [godot.Node] of the script property that holds the edited resource.
    */
-  public open var scriptOwner: Node?
+  public var scriptOwner: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +23,7 @@ public open class DirectionalLight2D : Light2D() {
   /**
    * The height of the light. Used with 2D normal mapping. Ranges from 0 (parallel to the plane) to 1 (perpendicular to the plane).
    */
-  public open var height: Double
+  public var height: Double
     @JvmName("getHeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
@@ -36,7 +36,7 @@ public open class DirectionalLight2D : Light2D() {
   /**
    *
    */
-  public open var maxDistance: Double
+  public var maxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

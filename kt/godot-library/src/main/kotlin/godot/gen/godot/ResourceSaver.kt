@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public object ResourceSaver : Object() {
    *
    * Returns [OK] on success.
    */
-  public open fun save(
+  public fun save(
     path: String,
     resource: Resource,
     flags: Long = 0
@@ -56,7 +56,7 @@ public object ResourceSaver : Object() {
   /**
    * Returns the list of extensions available for saving a resource of a given type.
    */
-  public open fun getRecognizedExtensions(type: Resource): PackedStringArray {
+  public fun getRecognizedExtensions(type: Resource): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS, PACKED_STRING_ARRAY)

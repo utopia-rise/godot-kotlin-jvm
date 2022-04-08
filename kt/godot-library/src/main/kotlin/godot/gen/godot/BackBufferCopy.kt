@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  public open var copyMode: Long
+  public var copyMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
@@ -43,7 +43,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the BackBufferCopy. Only used if [copyMode] is [COPY_MODE_RECT].
    */
-  public open var rect: Rect2
+  public var rect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_RECT, RECT2)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -52,7 +52,7 @@ public open class RandomNumberGenerator : RefCounted() {
    * 			rng.state = 100 # Restore to some previously saved state.
    * 			```
    */
-  public open var seed: Long
+  public var seed: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_SEED,
@@ -79,7 +79,7 @@ public open class RandomNumberGenerator : RefCounted() {
    *
    * **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [seed] instead.
    */
-  public open var state: Long
+  public var state: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
@@ -99,7 +99,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
    */
-  public open fun randi(): Long {
+  public fun randi(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -108,7 +108,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a pseudo-random float between `0.0` and `1.0` (inclusive).
    */
-  public open fun randf(): Double {
+  public fun randf(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -117,7 +117,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified `mean` and a standard `deviation`. This is also called Gaussian distribution.
    */
-  public open fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
+  public fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
     TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDFN,
         DOUBLE)
@@ -127,7 +127,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a pseudo-random float between `from` and `to` (inclusive).
    */
-  public open fun randfRange(from: Double, to: Double): Double {
+  public fun randfRange(from: Double, to: Double): Double {
     TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
         DOUBLE)
@@ -137,7 +137,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a pseudo-random 32-bit signed integer between `from` and `to` (inclusive).
    */
-  public open fun randiRange(from: Long, to: Long): Long {
+  public fun randiRange(from: Long, to: Long): Long {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI_RANGE,
         LONG)
@@ -147,7 +147,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Setups a time-based seed to for this [godot.RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [godot.RandomNumberGenerator] instances can use different seeds.
    */
-  public open fun randomize(): Unit {
+  public fun randomize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDOMIZE,
         NIL)

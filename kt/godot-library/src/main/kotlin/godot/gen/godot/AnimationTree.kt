@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class AnimationTree : Node() {
   /**
    * The root animation node of this [godot.AnimationTree]. See [godot.AnimationNode].
    */
-  public open var treeRoot: AnimationRootNode?
+  public var treeRoot: AnimationRootNode?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_TREE_ROOT,
@@ -55,7 +55,7 @@ public open class AnimationTree : Node() {
   /**
    * The path to the [godot.AnimationPlayer] used for animating.
    */
-  public open var animPlayer: NodePath
+  public var animPlayer: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -71,7 +71,7 @@ public open class AnimationTree : Node() {
   /**
    * If `true`, the [godot.AnimationTree] will be processing.
    */
-  public open var active: Boolean
+  public var active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_IS_ACTIVE, BOOL)
@@ -85,7 +85,7 @@ public open class AnimationTree : Node() {
   /**
    * The process mode of this [godot.AnimationTree]. See [enum AnimationProcessCallback] for available modes.
    */
-  public open var processCallback: Long
+  public var processCallback: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -103,7 +103,7 @@ public open class AnimationTree : Node() {
    *
    * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be cancelled visually, and the animation will appear to stay in place. See also [getRootMotionTransform] and [godot.RootMotionView].
    */
-  public open var rootMotionTrack: NodePath
+  public var rootMotionTrack: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -123,7 +123,7 @@ public open class AnimationTree : Node() {
   /**
    * Retrieve the motion of the [rootMotionTrack] as a [godot.Transform3D] that can be used elsewhere. If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_SCALE_3D] or [godot.Animation.TYPE_ROTATION_3D], returns an identity transformation. See also [rootMotionTrack] and [godot.RootMotionView].
    */
-  public open fun getRootMotionTransform(): Transform3D {
+  public fun getRootMotionTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ROOT_MOTION_TRANSFORM, TRANSFORM3D)
@@ -133,7 +133,7 @@ public open class AnimationTree : Node() {
   /**
    *
    */
-  public open fun renameParameter(oldName: String, newName: String): Unit {
+  public fun renameParameter(oldName: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to oldName, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_RENAME_PARAMETER, NIL)
   }
@@ -141,7 +141,7 @@ public open class AnimationTree : Node() {
   /**
    * Manually advance the animations by the specified time (in seconds).
    */
-  public open fun advance(delta: Double): Unit {
+  public fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_ADVANCE, NIL)
   }

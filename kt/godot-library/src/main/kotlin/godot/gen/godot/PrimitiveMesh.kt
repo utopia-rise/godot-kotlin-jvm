@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * The current [godot.Material] of the primitive mesh.
    */
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MATERIAL,
@@ -45,7 +45,7 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
-  public open var customAabb: AABB
+  public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_CUSTOM_AABB,
@@ -63,7 +63,7 @@ public open class PrimitiveMesh : Mesh() {
    *
    * This gives the same result as using [godot.BaseMaterial3D.CULL_FRONT] in [godot.BaseMaterial3D.cullMode].
    */
-  public open var flipFaces: Boolean
+  public var flipFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_FLIP_FACES,
@@ -83,7 +83,7 @@ public open class PrimitiveMesh : Mesh() {
    *
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
-    throw NotImplementedError("_create_mesh_array·is·not·implemented·for·PrimitiveMesh")
+    throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
   }
 
   /**
@@ -113,7 +113,7 @@ public open class PrimitiveMesh : Mesh() {
    *
    * [/codeblocks]
    */
-  public open fun getMeshArrays(): VariantArray<Any?> {
+  public fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MESH_ARRAYS,
         ARRAY)

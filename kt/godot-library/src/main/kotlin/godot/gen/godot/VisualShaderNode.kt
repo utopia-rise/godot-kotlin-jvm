@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview.
    */
-  public open var outputPortForPreview: Long
+  public var outputPortForPreview: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -51,7 +51,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
     }
 
-  public open var defaultInputValues: VariantArray<Any?>
+  public var defaultInputValues: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -71,7 +71,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Sets the default value for the selected input `port`.
    */
-  public open fun setInputPortDefaultValue(
+  public fun setInputPortDefaultValue(
     port: Long,
     `value`: Any,
     prevValue: Any? = null
@@ -84,7 +84,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Returns the default value of the input `port`.
    */
-  public open fun getInputPortDefaultValue(port: Long): Any? {
+  public fun getInputPortDefaultValue(port: Long): Any? {
     TransferContext.writeArguments(LONG to port)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_INPUT_PORT_DEFAULT_VALUE, ANY)
@@ -94,7 +94,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Removes the default value of the input `port`.
    */
-  public open fun removeInputPortDefaultValue(port: Long): Unit {
+  public fun removeInputPortDefaultValue(port: Long): Unit {
     TransferContext.writeArguments(LONG to port)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL)
@@ -103,7 +103,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Clears the default input ports value.
    */
-  public open fun clearDefaultInputValues(): Unit {
+  public fun clearDefaultInputValues(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_CLEAR_DEFAULT_INPUT_VALUES, NIL)

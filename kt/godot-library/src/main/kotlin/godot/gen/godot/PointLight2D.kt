@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class PointLight2D : Light2D() {
   /**
    * [godot.Texture2D] used for the light's appearance.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE, OBJECT)
@@ -40,7 +40,7 @@ public open class PointLight2D : Light2D() {
   /**
    * The offset of the light's [texture].
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE_OFFSET,
@@ -56,7 +56,7 @@ public open class PointLight2D : Light2D() {
   /**
    * The [texture]'s scale factor.
    */
-  public open var textureScale: Double
+  public var textureScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE_SCALE,
@@ -72,7 +72,7 @@ public open class PointLight2D : Light2D() {
   /**
    * The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane.
    */
-  public open var height: Double
+  public var height: Double
     @JvmName("getHeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()

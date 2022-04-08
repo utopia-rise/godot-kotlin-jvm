@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +19,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class OGGPacketSequence : Resource() {
-  public open var packetData: VariantArray<Any?>
+  public var packetData: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_DATA,
@@ -32,7 +32,7 @@ public open class OGGPacketSequence : Resource() {
           NIL)
     }
 
-  public open var granulePositions: VariantArray<Any?>
+  public var granulePositions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,7 +45,7 @@ public open class OGGPacketSequence : Resource() {
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_PACKET_GRANULE_POSITIONS, NIL)
     }
 
-  public open var samplingRate: Double
+  public var samplingRate: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class OGGPacketSequence : Resource() {
     callConstructor(ENGINECLASS_OGGPACKETSEQUENCE)
   }
 
-  public open fun getLength(): Double {
+  public fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_LENGTH,
         DOUBLE)

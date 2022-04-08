@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag event index in the case of a multi-drag event.
    */
-  public open var index: Long
+  public var index: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_INDEX,
@@ -45,7 +45,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position.
    */
-  public open var position: Vector2
+  public var position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_POSITION,
@@ -61,7 +61,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position relative to the previous position (position at the last frame).
    */
-  public open var relative: Vector2
+  public var relative: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_RELATIVE,
@@ -77,7 +77,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag velocity.
    */
-  public open var velocity: Vector2
+  public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_VELOCITY,

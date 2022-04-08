@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
    */
-  public open var range: Vector2i
+  public var range: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RANGE,
@@ -59,7 +59,7 @@ public open class CharFXTransform : RefCounted() {
    *
    * **Note:** Time still passes while the [godot.RichTextLabel] is hidden.
    */
-  public open var elapsedTime: Double
+  public var elapsedTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ELAPSED_TIME,
@@ -75,7 +75,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [color] to `Color(1, 1, 1, 0)` instead.
    */
-  public open var visible: Boolean
+  public var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_VISIBLE, BOOL)
@@ -90,7 +90,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * If `true`, FX transform is called for outline drawing. Setting this property won't affect drawing.
    */
-  public open var outline: Boolean
+  public var outline: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_OUTLINE, BOOL)
@@ -104,7 +104,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The position offset the character will be drawn with (in pixels).
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_OFFSET,
@@ -119,7 +119,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The color the character will be drawn with.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_COLOR, COLOR)
@@ -139,7 +139,7 @@ public open class CharFXTransform : RefCounted() {
    * 			{"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
    * 			```
    */
-  public open var env: Dictionary<Any?, Any?>
+  public var env: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ENVIRONMENT,
@@ -155,7 +155,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Font specific glyph index.
    */
-  public open var glyphIndex: Long
+  public var glyphIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_INDEX,
@@ -171,7 +171,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing.
    */
-  public open var glyphCount: Long
+  public var glyphCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_COUNT,
@@ -187,7 +187,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing.
    */
-  public open var glyphFlags: Long
+  public var glyphFlags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_FLAGS,
@@ -203,7 +203,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * Font resource used to render glyph.
    */
-  public open var font: RID
+  public var font: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_FONT, _RID)

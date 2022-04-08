@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -49,7 +49,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun getConnectedMidiInputs(): PackedStringArray {
+  public fun getConnectedMidiInputs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONNECTED_MIDI_INPUTS,
         PACKED_STRING_ARRAY)
@@ -61,7 +61,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun openMidiInputs(): Unit {
+  public fun openMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_OPEN_MIDI_INPUTS, NIL)
   }
@@ -71,7 +71,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun closeMidiInputs(): Unit {
+  public fun closeMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CLOSE_MIDI_INPUTS, NIL)
   }
@@ -79,7 +79,7 @@ public object OS : Object() {
   /**
    * Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed.
    */
-  public open fun alert(text: String, title: String = "Alert!"): Unit {
+  public fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_ALERT, NIL)
   }
@@ -87,31 +87,31 @@ public object OS : Object() {
   /**
    * Crashes the engine (or the editor if called within a `@tool` script). This should *only* be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [@GDScript.assert], [@GlobalScope.pushError] or [alert]. See also [kill].
    */
-  public open fun crash(message: String): Unit {
+  public fun crash(message: String): Unit {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CRASH, NIL)
   }
 
-  public open fun setLowProcessorUsageMode(enable: Boolean): Unit {
+  public fun setLowProcessorUsageMode(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE,
         NIL)
   }
 
-  public open fun isInLowProcessorUsageMode(): Boolean {
+  public fun isInLowProcessorUsageMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_IN_LOW_PROCESSOR_USAGE_MODE,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun setLowProcessorUsageModeSleepUsec(usec: Long): Unit {
+  public fun setLowProcessorUsageModeSleepUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL)
   }
 
-  public open fun getLowProcessorUsageModeSleepUsec(): Long {
+  public fun getLowProcessorUsageModeSleepUsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG)
@@ -121,7 +121,7 @@ public object OS : Object() {
   /**
    * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
-  public open fun getProcessorCount(): Long {
+  public fun getProcessorCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -132,7 +132,7 @@ public object OS : Object() {
    *
    * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [getProcessorName] returns an empty string.
    */
-  public open fun getProcessorName(): String {
+  public fun getProcessorName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -143,7 +143,7 @@ public object OS : Object() {
    *
    * **Note:** On macOS, always use [createInstance] instead of relying on executable path.
    */
-  public open fun getExecutablePath(): String {
+  public fun getExecutablePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -212,7 +212,7 @@ public object OS : Object() {
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export.
    */
-  public open fun execute(
+  public fun execute(
     path: String,
     arguments: PackedStringArray,
     output: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -255,7 +255,7 @@ public object OS : Object() {
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.
    */
-  public open fun createProcess(
+  public fun createProcess(
     path: String,
     arguments: PackedStringArray,
     openConsole: Boolean = false
@@ -272,7 +272,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public open fun createInstance(arguments: PackedStringArray): Long {
+  public fun createInstance(arguments: PackedStringArray): Long {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_INSTANCE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -285,7 +285,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public open fun kill(pid: Long): GodotError {
+  public fun kill(pid: Long): GodotError {
     TransferContext.writeArguments(LONG to pid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -304,7 +304,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, HTML5, Linux, macOS and Windows.
    */
-  public open fun shellOpen(uri: String): GodotError {
+  public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -315,7 +315,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public open fun getProcessId(): Long {
+  public fun getProcessId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESS_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -326,7 +326,7 @@ public object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  public open fun getEnvironment(variable: String): String {
+  public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_ENVIRONMENT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -337,7 +337,7 @@ public object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  public open fun setEnvironment(variable: String, `value`: String): Boolean {
+  public fun setEnvironment(variable: String, `value`: String): Boolean {
     TransferContext.writeArguments(STRING to variable, STRING to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -348,7 +348,7 @@ public object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  public open fun hasEnvironment(variable: String): Boolean {
+  public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -463,7 +463,7 @@ public object OS : Object() {
    *
    * [/codeblocks]
    */
-  public open fun getName(): String {
+  public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -520,7 +520,7 @@ public object OS : Object() {
    *
    * [/codeblocks]
    */
-  public open fun getCmdlineArgs(): PackedStringArray {
+  public fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
         PACKED_STRING_ARRAY)
@@ -534,7 +534,7 @@ public object OS : Object() {
    *
    * **Note:** When [delayUsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayUsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
-  public open fun delayUsec(usec: Long): Unit {
+  public fun delayUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_USEC, NIL)
   }
@@ -546,7 +546,7 @@ public object OS : Object() {
    *
    * **Note:** When [delayMsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayMsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
-  public open fun delayMsec(msec: Long): Unit {
+  public fun delayMsec(msec: Long): Unit {
     TransferContext.writeArguments(LONG to msec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_MSEC, NIL)
   }
@@ -564,7 +564,7 @@ public object OS : Object() {
    *
    * `extra` - optional, semicolon separated list of additional key words. Currency, calendar, sort order and numbering system information.
    */
-  public open fun getLocale(): String {
+  public fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -575,7 +575,7 @@ public object OS : Object() {
    *
    * This can be used to narrow down fully specified locale strings to only the "common" language code, when you don't need the additional information about country code or variants. For example, for a French Canadian user with `fr_CA` locale, this would return `fr`.
    */
-  public open fun getLocaleLanguage(): String {
+  public fun getLocaleLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE_LANGUAGE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -586,7 +586,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS. Returns `"GenericDevice"` on unsupported platforms.
    */
-  public open fun getModelName(): String {
+  public fun getModelName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MODEL_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -595,7 +595,7 @@ public object OS : Object() {
   /**
    * If `true`, the `user://` file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the HTML5 platform, where this persistence may be unavailable.
    */
-  public open fun isUserfsPersistent(): Boolean {
+  public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_USERFS_PERSISTENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -604,7 +604,7 @@ public object OS : Object() {
   /**
    * Returns `true` if the engine was executed with the `--verbose` or `-v` command line argument, or if [godot.ProjectSettings.debug/settings/stdout/verboseStdout] is `true`. See also [@GlobalScope.printVerbose].
    */
-  public open fun isStdoutVerbose(): Boolean {
+  public fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_STDOUT_VERBOSE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -613,7 +613,7 @@ public object OS : Object() {
   /**
    * Returns `true` if the current host platform is using multiple threads.
    */
-  public open fun canUseThreads(): Boolean {
+  public fun canUseThreads(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CAN_USE_THREADS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -626,7 +626,7 @@ public object OS : Object() {
    *
    * To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("standalone")` instead.
    */
-  public open fun isDebugBuild(): Boolean {
+  public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -637,7 +637,7 @@ public object OS : Object() {
    *
    * Entry format per line: "Address - Size - Description".
    */
-  public open fun dumpMemoryToFile(`file`: String): Unit {
+  public fun dumpMemoryToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_MEMORY_TO_FILE, NIL)
   }
@@ -649,7 +649,7 @@ public object OS : Object() {
    *
    * At the end of the file is a statistic of all used Resource Types.
    */
-  public open fun dumpResourcesToFile(`file`: String): Unit {
+  public fun dumpResourcesToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_RESOURCES_TO_FILE, NIL)
   }
@@ -657,7 +657,7 @@ public object OS : Object() {
   /**
    * Shows all resources currently used by the game.
    */
-  public open fun printResourcesInUse(short: Boolean = false): Unit {
+  public fun printResourcesInUse(short: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to short)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_IN_USE, NIL)
   }
@@ -665,7 +665,7 @@ public object OS : Object() {
   /**
    * Shows all resources in the game. Optionally, the list can be written to a file by specifying a file path in `tofile`.
    */
-  public open fun printAllResources(tofile: String = ""): Unit {
+  public fun printAllResources(tofile: String = ""): Unit {
     TransferContext.writeArguments(STRING to tofile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_RESOURCES, NIL)
   }
@@ -673,7 +673,7 @@ public object OS : Object() {
   /**
    * Returns the amount of static memory being used by the program in bytes (only works in debug).
    */
-  public open fun getStaticMemoryUsage(): Long {
+  public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_USAGE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -682,7 +682,7 @@ public object OS : Object() {
   /**
    * Returns the maximum amount of static memory used (only works in debug).
    */
-  public open fun getStaticMemoryPeakUsage(): Long {
+  public fun getStaticMemoryPeakUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
         LONG)
@@ -706,7 +706,7 @@ public object OS : Object() {
    *
    * Not to be confused with [getDataDir], which returns the *global* (non-project-specific) user home directory.
    */
-  public open fun getUserDataDir(): String {
+  public fun getUserDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_USER_DATA_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -719,7 +719,7 @@ public object OS : Object() {
    *
    * **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
    */
-  public open fun getSystemDir(dir: OS.SystemDir, sharedStorage: Boolean = true): String {
+  public fun getSystemDir(dir: OS.SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -730,7 +730,7 @@ public object OS : Object() {
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
-  public open fun getConfigDir(): String {
+  public fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONFIG_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -741,7 +741,7 @@ public object OS : Object() {
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
-  public open fun getDataDir(): String {
+  public fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DATA_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -752,7 +752,7 @@ public object OS : Object() {
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
-  public open fun getCacheDir(): String {
+  public fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CACHE_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -765,7 +765,7 @@ public object OS : Object() {
    *
    * **Note:** Returns an empty string on HTML5 and UWP, as this method isn't implemented on those platforms yet.
    */
-  public open fun getUniqueId(): String {
+  public fun getUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -774,7 +774,7 @@ public object OS : Object() {
   /**
    * Shows the list of loaded textures sorted by size in memory.
    */
-  public open fun printAllTexturesBySize(): Unit {
+  public fun printAllTexturesBySize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_TEXTURES_BY_SIZE, NIL)
   }
@@ -782,7 +782,7 @@ public object OS : Object() {
   /**
    * Shows the number of resources loaded by the game of the given types.
    */
-  public open fun printResourcesByType(types: PackedStringArray): Unit {
+  public fun printResourcesByType(types: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to types)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_BY_TYPE, NIL)
   }
@@ -792,7 +792,7 @@ public object OS : Object() {
    *
    * See also [godot.InputEventKey.keycode] and [godot.InputEventKey.getKeycodeWithModifiers].
    */
-  public open fun getKeycodeString(code: Key): String {
+  public fun getKeycodeString(code: Key): String {
     TransferContext.writeArguments(LONG to code.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_KEYCODE_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -801,7 +801,7 @@ public object OS : Object() {
   /**
    * Returns `true` if the input keycode corresponds to a Unicode character.
    */
-  public open fun isKeycodeUnicode(code: Long): Boolean {
+  public fun isKeycodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_KEYCODE_UNICODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -810,7 +810,7 @@ public object OS : Object() {
   /**
    * Returns the keycode of the given string (e.g. "Escape").
    */
-  public open fun findKeycodeFromString(string: String): Key {
+  public fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING, LONG)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -819,7 +819,7 @@ public object OS : Object() {
   /**
    * Enables backup saves if `enabled` is `true`.
    */
-  public open fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
+  public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OS_SET_USE_FILE_ACCESS_SAVE_AND_SWAP, NIL)
@@ -828,7 +828,7 @@ public object OS : Object() {
   /**
    * Sets the name of the current thread.
    */
-  public open fun setThreadName(name: String): GodotError {
+  public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -839,7 +839,7 @@ public object OS : Object() {
    *
    * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
    */
-  public open fun getThreadCallerId(): Long {
+  public fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_THREAD_CALLER_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -850,7 +850,7 @@ public object OS : Object() {
    *
    * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
    */
-  public open fun getMainThreadId(): Long {
+  public fun getMainThreadId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MAIN_THREAD_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -861,7 +861,7 @@ public object OS : Object() {
    *
    * **Note:** Tag names are case-sensitive.
    */
-  public open fun hasFeature(tagName: String): Boolean {
+  public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -870,7 +870,7 @@ public object OS : Object() {
   /**
    * At the moment this function is only used by `AudioDriverOpenSL` to request permission for `RECORD_AUDIO` on Android.
    */
-  public open fun requestPermission(name: String): Boolean {
+  public fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -881,7 +881,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android.
    */
-  public open fun requestPermissions(): Boolean {
+  public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSIONS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -892,7 +892,7 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android.
    */
-  public open fun getGrantedPermissions(): PackedStringArray {
+  public fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_GRANTED_PERMISSIONS,
         PACKED_STRING_ARRAY)

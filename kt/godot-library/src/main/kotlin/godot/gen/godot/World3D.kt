@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's [godot.Environment].
    */
-  public open var environment: Environment?
+  public var environment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_ENVIRONMENT, OBJECT)
@@ -42,7 +42,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's fallback_environment will be used if the World3D's [godot.Environment] fails or is missing.
    */
-  public open var fallbackEnvironment: Environment?
+  public var fallbackEnvironment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_FALLBACK_ENVIRONMENT,
@@ -58,7 +58,7 @@ public open class World3D : Resource() {
   /**
    *
    */
-  public open var cameraEffects: CameraEffects?
+  public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_EFFECTS,
@@ -73,7 +73,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's physics space.
    */
-  public open val space: RID
+  public val space: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SPACE, _RID)
@@ -83,7 +83,7 @@ public open class World3D : Resource() {
   /**
    * The [RID] of this world's navigation map. Used by the [godot.NavigationServer3D].
    */
-  public open val navigationMap: RID
+  public val navigationMap: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_NAVIGATION_MAP, _RID)
@@ -93,7 +93,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's visual scenario.
    */
-  public open val scenario: RID
+  public val scenario: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SCENARIO, _RID)
@@ -103,7 +103,7 @@ public open class World3D : Resource() {
   /**
    * Direct access to the world's physics 3D space state. Used for querying current and potential collisions.
    */
-  public open val directSpaceState: PhysicsDirectSpaceState3D?
+  public val directSpaceState: PhysicsDirectSpaceState3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_DIRECT_SPACE_STATE,

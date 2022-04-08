@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class ScrollContainer : Container() {
   /**
    * If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible.
    */
-  public open var followFocus: Boolean
+  public var followFocus: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class ScrollContainer : Container() {
   /**
    * The current horizontal scroll value.
    */
-  public open var scrollHorizontal: Long
+  public var scrollHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL,
@@ -74,7 +74,7 @@ public open class ScrollContainer : Container() {
   /**
    * The current vertical scroll value.
    */
-  public open var scrollVertical: Long
+  public var scrollVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL,
@@ -89,7 +89,7 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public open var horizontalScrollMode: Long
+  public var horizontalScrollMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -105,7 +105,7 @@ public open class ScrollContainer : Container() {
   /**
    * Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public open var verticalScrollMode: Long
+  public var verticalScrollMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -121,7 +121,7 @@ public open class ScrollContainer : Container() {
   /**
    *
    */
-  public open var scrollDeadzone: Long
+  public var scrollDeadzone: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_DEADZONE,
@@ -142,7 +142,7 @@ public open class ScrollContainer : Container() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [horizontalScrollMode].
    */
-  public open fun getHScrollBar(): HScrollBar? {
+  public fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
         OBJECT)
@@ -154,7 +154,7 @@ public open class ScrollContainer : Container() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [verticalScrollMode].
    */
-  public open fun getVScrollBar(): VScrollBar? {
+  public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
         OBJECT)
@@ -172,7 +172,7 @@ public open class ScrollContainer : Container() {
    * 				ensure_control_visible(child_node)
    * 				```
    */
-  public open fun ensureControlVisible(control: Control): Unit {
+  public fun ensureControlVisible(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE, NIL)

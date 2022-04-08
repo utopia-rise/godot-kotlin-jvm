@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint type. See [enum JointType] for possible values.
    */
-  public open var jointType: Long
+  public var jointType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
@@ -46,7 +46,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's transform.
    */
-  public open var jointOffset: Transform3D
+  public var jointOffset: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_OFFSET,
@@ -62,7 +62,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's rotation in radians.
    */
-  public open var jointRotation: Vector3
+  public var jointRotation: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_ROTATION,
@@ -78,7 +78,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the body's transform.
    */
-  public open var bodyOffset: Transform3D
+  public var bodyOffset: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BODY_OFFSET,
@@ -94,7 +94,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's mass.
    */
-  public open var mass: Double
+  public var mass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_MASS, DOUBLE)
@@ -108,7 +108,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's friction, from `0` (frictionless) to `1` (max friction).
    */
-  public open var friction: Double
+  public var friction: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_FRICTION,
@@ -123,7 +123,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
    */
-  public open var bounce: Double
+  public var bounce: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BOUNCE, DOUBLE)
@@ -137,7 +137,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
    */
-  public open var gravityScale: Double
+  public var gravityScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_GRAVITY_SCALE,
@@ -153,7 +153,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
    */
-  public open var customIntegrator: Boolean
+  public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -169,7 +169,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var linearDampMode: Long
+  public var linearDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
-  public open var linearDamp: Double
+  public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP,
@@ -203,7 +203,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var angularDampMode: Long
+  public var angularDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -221,7 +221,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
-  public open var angularDamp: Double
+  public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP,
@@ -237,7 +237,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
-  public open var linearVelocity: Vector3
+  public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -253,7 +253,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    */
-  public open var angularVelocity: Vector3
+  public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -269,7 +269,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force.
    */
-  public open var canSleep: Boolean
+  public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_ABLE_TO_SLEEP,
@@ -294,7 +294,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
-  public open fun applyCentralImpulse(impulse: Vector3): Unit {
+  public fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -303,7 +303,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
-  public open fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_IMPULSE, NIL)
   }
@@ -311,7 +311,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
-  public open fun getSimulatePhysics(): Boolean {
+  public fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_SIMULATE_PHYSICS,
         BOOL)
@@ -321,7 +321,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
-  public open fun isSimulatingPhysics(): Boolean {
+  public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_SIMULATING_PHYSICS, BOOL)
@@ -331,7 +331,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    *
    */
-  public open fun getBoneId(): Long {
+  public fun getBoneId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BONE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

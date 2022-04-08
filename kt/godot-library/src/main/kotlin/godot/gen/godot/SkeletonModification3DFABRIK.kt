@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * The NodePath to the node that is the target for the FABRIK modification. This node is what the FABRIK chain will attempt to rotate the bone chain to.
    */
-  public open var targetNodepath: NodePath
+  public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * The amount of FABRIK joints in the FABRIK modification.
    */
-  public open var fabrikDataChainLength: Long
+  public var fabrikDataChainLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * The minimum distance the target has to be from the tip of the final bone in the bone chain. Setting this value to a higher number allows for greater performance, but less accurate solves.
    */
-  public open var chainTolerance: Double
+  public var chainTolerance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * The number of times FABRIK will try to solve each time the `execute` function is called. Setting this value to a lower number will be result in better performance, but this can also result in harsher movements and slower solves.
    */
-  public open var chainMaxIterations: Long
+  public var chainMaxIterations: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -110,7 +110,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns the name of the bone that is assigned to the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointBoneName(jointIdx: Long): String {
+  public fun getFabrikJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_NAME, STRING)
@@ -120,7 +120,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets the bone name, `bone_name`, of the FABRIK joint at `joint_idx`. When possible, this will also update the `bone_index` of the FABRIK joint based on data provided by the [godot.Skeleton3D].
    */
-  public open fun setFabrikJointBoneName(jointIdx: Long, boneName: String): Unit {
+  public fun setFabrikJointBoneName(jointIdx: Long, boneName: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to boneName)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_NAME, NIL)
@@ -129,7 +129,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns the bone index of the bone assigned to the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointBoneIndex(jointIdx: Long): Long {
+  public fun getFabrikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_INDEX, LONG)
@@ -139,7 +139,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets the bone index, `bone_index`, of the FABRIK joint at `joint_idx`. When possible, this will also update the `bone_name` of the FABRIK joint based on data provided by the [godot.Skeleton3D].
    */
-  public open fun setFabrikJointBoneIndex(jointIdx: Long, boneIndex: Long): Unit {
+  public fun setFabrikJointBoneIndex(jointIdx: Long, boneIndex: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_INDEX, NIL)
@@ -148,7 +148,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns the length of the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointLength(jointIdx: Long): Double {
+  public fun getFabrikJointLength(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_LENGTH, DOUBLE)
@@ -158,7 +158,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets the joint length, `length`, of the FABRIK joint at `joint_idx`.
    */
-  public open fun setFabrikJointLength(jointIdx: Long, length: Double): Unit {
+  public fun setFabrikJointLength(jointIdx: Long, length: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to length)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_LENGTH, NIL)
@@ -167,7 +167,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns the magnet vector of the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointMagnet(jointIdx: Long): Vector3 {
+  public fun getFabrikJointMagnet(jointIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_MAGNET, VECTOR3)
@@ -177,7 +177,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets the magenet position to `magnet_position` for the joint at `joint_idx`. The magnet position is used to nudge the joint in that direction when solving, which gives some control over how that joint will bend when being solved.
    */
-  public open fun setFabrikJointMagnet(jointIdx: Long, magnetPosition: Vector3): Unit {
+  public fun setFabrikJointMagnet(jointIdx: Long, magnetPosition: Vector3): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR3 to magnetPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_MAGNET, NIL)
@@ -186,7 +186,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns a boolean that indicates whether this modification will attempt to autocalculate the length of the bone assigned to the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointAutoCalculateLength(jointIdx: Long): Boolean {
+  public fun getFabrikJointAutoCalculateLength(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
@@ -197,8 +197,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * When `true`, this modification will attempt to automatically calculate the length of the bone for the FABRIK joint at `joint_idx`. It does this by either using the tip node assigned, if there is one assigned, or the distance the of the bone's children, if the bone has any. If the bone has no children and no tip node is assigned, then the modification **cannot** autocalculate the joint's length. In this case, the joint length should be entered manually or a tip node assigned.
    */
-  public open fun setFabrikJointAutoCalculateLength(jointIdx: Long, autoCalculateLength: Boolean):
-      Unit {
+  public fun setFabrikJointAutoCalculateLength(jointIdx: Long, autoCalculateLength: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to autoCalculateLength)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
@@ -208,7 +207,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Will attempt to automatically calculate the length of the bone assigned to the FABRIK joint at `joint_idx`.
    */
-  public open fun fabrikJointAutoCalculateLength(jointIdx: Long): Unit {
+  public fun fabrikJointAutoCalculateLength(jointIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
@@ -218,7 +217,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets the [godot.Node3D]-based node that will be used as the tip of the FABRIK joint at `joint_idx`.
    */
-  public open fun getFabrikJointUseTipNode(jointIdx: Long): Boolean {
+  public fun getFabrikJointUseTipNode(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_USE_TIP_NODE, BOOL)
@@ -228,7 +227,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Sets whether the tip node should be used when autocalculating the joint length for the FABRIK joint at `joint_idx`. This will only work if there is a node assigned to the tip nodepath for this joint.
    */
-  public open fun setFabrikJointUseTipNode(jointIdx: Long, useTipNode: Boolean): Unit {
+  public fun setFabrikJointUseTipNode(jointIdx: Long, useTipNode: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useTipNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_USE_TIP_NODE, NIL)
@@ -237,7 +236,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   /**
    * Returns the [godot.Node3D]-based node placed at the tip of the FABRIK joint at `joint_idx`, if one has been set.
    */
-  public open fun getFabrikJointTipNode(jointIdx: Long): NodePath {
+  public fun getFabrikJointTipNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_TIP_NODE, NODE_PATH)
@@ -249,7 +248,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    *
    * **Note:** The tip node should generally be a child node of a [godot.BoneAttachment3D] node attached to the bone that this FABRIK joint operates on, with the child node being offset so it is at the end of the bone.
    */
-  public open fun setFabrikJointTipNode(jointIdx: Long, tipNode: NodePath): Unit {
+  public fun setFabrikJointTipNode(jointIdx: Long, tipNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to tipNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_TIP_NODE, NIL)
@@ -260,7 +259,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    *
    * **Note:** This option is only available for the final bone in the FABRIK chain, with this setting being ignored for all other bones.
    */
-  public open fun getFabrikJointUseTargetBasis(jointIdx: Long): Boolean {
+  public fun getFabrikJointUseTargetBasis(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_USE_TARGET_BASIS,
@@ -273,7 +272,7 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    *
    * **Note:** This option is only available for the final bone in the FABRIK chain, with this setting being ignored for all other bones.
    */
-  public open fun setFabrikJointUseTargetBasis(jointIdx: Long, useTargetBasis: Boolean): Unit {
+  public fun setFabrikJointUseTargetBasis(jointIdx: Long, useTargetBasis: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useTargetBasis)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_USE_TARGET_BASIS,

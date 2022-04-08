@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and [limitRight].
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET, VECTOR2)
@@ -54,7 +54,7 @@ public open class Camera2D : Node2D() {
   /**
    * The Camera2D's anchor point. See [enum AnchorMode] constants.
    */
-  public open var anchorMode: Long
+  public var anchorMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
@@ -68,7 +68,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera view rotates with the target.
    */
-  public open var rotating: Boolean
+  public var rotating: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ROTATING, BOOL)
@@ -82,7 +82,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera acts as the active camera for its [godot.Viewport] ancestor. Only one camera can be current in a given viewport, so setting a different camera in the same viewport `current` will disable whatever camera was already active in that viewport.
    */
-  public open var current: Boolean
+  public var current: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL)
@@ -96,7 +96,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.
    */
-  public open var zoom: Vector2
+  public var zoom: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ZOOM, VECTOR2)
@@ -110,7 +110,7 @@ public open class Camera2D : Node2D() {
   /**
    * The custom [godot.Viewport] node attached to the [godot.Camera2D]. If `null` or not a [godot.Viewport], uses the default viewport instead.
    */
-  public open var customViewport: Viewport?
+  public var customViewport: Viewport?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CUSTOM_VIEWPORT,
@@ -125,7 +125,7 @@ public open class Camera2D : Node2D() {
   /**
    * The camera's process callback. See [enum Camera2DProcessCallback].
    */
-  public open var processCallback: Long
+  public var processCallback: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,
@@ -145,7 +145,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke [resetSmoothing].
    */
-  public open var limitSmoothed: Boolean
+  public var limitSmoothed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -161,7 +161,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera smoothly moves towards the target at [smoothingSpeed].
    */
-  public open var smoothingEnabled: Boolean
+  public var smoothingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -177,7 +177,7 @@ public open class Camera2D : Node2D() {
   /**
    * Speed in pixels per second of the camera's smoothing effect when [smoothingEnabled] is `true`.
    */
-  public open var smoothingSpeed: Double
+  public var smoothingSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_FOLLOW_SMOOTHING,
@@ -193,7 +193,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera only moves when reaching the horizontal (left and right) drag margins. If `false`, the camera moves horizontally regardless of margins.
    */
-  public open var dragHorizontalEnabled: Boolean
+  public var dragHorizontalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -209,7 +209,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera only moves when reaching the vertical (top and bottom) drag margins. If `false`, the camera moves vertically regardless of the drag margins.
    */
-  public open var dragVerticalEnabled: Boolean
+  public var dragVerticalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_DRAG_VERTICAL_ENABLED,
@@ -227,7 +227,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** Used to set the initial horizontal drag offset; determine the current offset; or force the current offset. It's not automatically updated when [dragHorizontalEnabled] is `true` or the drag margins are changed.
    */
-  public open var dragHorizontalOffset: Double
+  public var dragHorizontalOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -245,7 +245,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** Used to set the initial vertical drag offset; determine the current offset; or force the current offset. It's not automatically updated when [dragVerticalEnabled] is `true` or the drag margins are changed.
    */
-  public open var dragVerticalOffset: Double
+  public var dragVerticalOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_VERTICAL_OFFSET,
@@ -261,7 +261,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's screen rectangle in the editor.
    */
-  public open var editorDrawScreen: Boolean
+  public var editorDrawScreen: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -277,7 +277,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's limits rectangle in the editor.
    */
-  public open var editorDrawLimits: Boolean
+  public var editorDrawLimits: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_LIMIT_DRAWING_ENABLED,
@@ -293,7 +293,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's drag margin rectangle in the editor.
    */
-  public open var editorDrawDragMargin: Boolean
+  public var editorDrawDragMargin: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -313,7 +313,7 @@ public open class Camera2D : Node2D() {
   /**
    * Sets the camera limit for the specified [enum Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
    */
-  public open fun setLimit(margin: Side, limit: Long): Unit {
+  public fun setLimit(margin: Side, limit: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to limit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
   }
@@ -321,7 +321,7 @@ public open class Camera2D : Node2D() {
   /**
    * Returns the camera limit for the specified [enum Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
    */
-  public open fun getLimit(margin: Side): Long {
+  public fun getLimit(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -330,7 +330,7 @@ public open class Camera2D : Node2D() {
   /**
    * Sets the specified [enum Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
    */
-  public open fun setDragMargin(margin: Side, dragMargin: Double): Unit {
+  public fun setDragMargin(margin: Side, dragMargin: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
   }
@@ -338,7 +338,7 @@ public open class Camera2D : Node2D() {
   /**
    * Returns the specified [enum Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
    */
-  public open fun getDragMargin(margin: Side): Double {
+  public fun getDragMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -349,7 +349,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** The returned value is not the same as [godot.Node2D.position] or [godot.Node2D.globalPosition], as it is affected by the `drag` properties.
    */
-  public open fun getCameraPosition(): Vector2 {
+  public fun getCameraPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
         VECTOR2)
@@ -361,7 +361,7 @@ public open class Camera2D : Node2D() {
    *
    * **Note:** The real `position` of the camera may be different, see [getCameraPosition].
    */
-  public open fun getCameraScreenCenter(): Vector2 {
+  public fun getCameraScreenCenter(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
         VECTOR2)
@@ -371,7 +371,7 @@ public open class Camera2D : Node2D() {
   /**
    * Forces the camera to update scroll immediately.
    */
-  public open fun forceUpdateScroll(): Unit {
+  public fun forceUpdateScroll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_FORCE_UPDATE_SCROLL, NIL)
   }
@@ -381,7 +381,7 @@ public open class Camera2D : Node2D() {
    *
    * This method has no effect if [smoothingEnabled] is `false`.
    */
-  public open fun resetSmoothing(): Unit {
+  public fun resetSmoothing(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_RESET_SMOOTHING, NIL)
   }
@@ -389,7 +389,7 @@ public open class Camera2D : Node2D() {
   /**
    * Aligns the camera to the tracked node.
    */
-  public open fun align(): Unit {
+  public fun align(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_ALIGN, NIL)
   }

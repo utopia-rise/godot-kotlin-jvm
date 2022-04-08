@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -147,7 +147,7 @@ public open class MainLoop : Object() {
    * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    */
   public open fun _physicsProcess(delta: Double): Boolean {
-    throw NotImplementedError("_physics_process·is·not·implemented·for·MainLoop")
+    throw NotImplementedError("_physics_process is not implemented for MainLoop")
   }
 
   /**
@@ -156,7 +156,7 @@ public open class MainLoop : Object() {
    * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    */
   public open fun _process(delta: Double): Boolean {
-    throw NotImplementedError("_process·is·not·implemented·for·MainLoop")
+    throw NotImplementedError("_process is not implemented for MainLoop")
   }
 
   /**

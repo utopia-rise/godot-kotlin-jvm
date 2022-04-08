@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the debugger is active otherwise `false`.
    */
-  public open fun isActive(): Boolean {
+  public fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -49,7 +49,7 @@ public object EngineDebugger : Object() {
   /**
    * Registers a profiler with the given `name`. See [godot.EngineProfiler] for more information.
    */
-  public open fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
+  public fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_PROFILER,
         NIL)
@@ -58,7 +58,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters a profiler with given `name`.
    */
-  public open fun unregisterProfiler(name: StringName): Unit {
+  public fun unregisterProfiler(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_PROFILER,
         NIL)
@@ -67,7 +67,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present and active otherwise `false`.
    */
-  public open fun isProfiling(name: StringName): Boolean {
+  public fun isProfiling(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_PROFILING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -76,7 +76,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present otherwise `false`.
    */
-  public open fun hasProfiler(name: StringName): Boolean {
+  public fun hasProfiler(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_PROFILER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -85,7 +85,7 @@ public object EngineDebugger : Object() {
   /**
    * Calls the `add` callable of the profiler with given `name` and `data`.
    */
-  public open fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
+  public fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ADD_FRAME_DATA, NIL)
@@ -94,7 +94,7 @@ public object EngineDebugger : Object() {
   /**
    * Calls the `toggle` callable of the profiler with given `name` and `arguments`. Enables/Disables the same profiler depending on `enable` argument.
    */
-  public open fun profilerEnable(
+  public fun profilerEnable(
     name: StringName,
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf()
@@ -108,7 +108,7 @@ public object EngineDebugger : Object() {
    *
    * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
    */
-  public open fun registerMessageCapture(name: StringName, callable: Callable): Unit {
+  public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_MESSAGE_CAPTURE, NIL)
@@ -117,7 +117,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters the message capture with given `name`.
    */
-  public open fun unregisterMessageCapture(name: StringName): Unit {
+  public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_MESSAGE_CAPTURE, NIL)
@@ -126,7 +126,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a capture with the given name is present otherwise `false`.
    */
-  public open fun hasCapture(name: StringName): Boolean {
+  public fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_CAPTURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -135,7 +135,7 @@ public object EngineDebugger : Object() {
   /**
    * Sends a message with given `message` and `data` array.
    */
-  public open fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
+  public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_SEND_MESSAGE, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   /**
    * A floating-point constant which represents a state of this node.
    */
-  public open var constant: Double
+  public var constant: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

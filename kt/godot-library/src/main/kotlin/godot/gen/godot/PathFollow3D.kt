@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The distance from the first vertex, measured in 3D units along the path. This sets this node's position to a point within the path.
    */
-  public open var offset: Double
+  public var offset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_OFFSET, DOUBLE)
@@ -44,7 +44,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the offset within the path, as the offset supplied is multiplied internally by the path's length.
    */
-  public open var unitOffset: Double
+  public var unitOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_UNIT_OFFSET,
@@ -59,7 +59,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The node's offset along the curve.
    */
-  public open var hOffset: Double
+  public var hOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_H_OFFSET, DOUBLE)
@@ -73,7 +73,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The node's offset perpendicular to the curve.
    */
-  public open var vOffset: Double
+  public var vOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_V_OFFSET, DOUBLE)
@@ -87,7 +87,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used.
    */
-  public open var rotationMode: Long
+  public var rotationMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_ROTATION_MODE,
@@ -107,7 +107,7 @@ public open class PathFollow3D : Node3D() {
    *
    * There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
    */
-  public open var cubicInterp: Boolean
+  public var cubicInterp: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -123,7 +123,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths.
    */
-  public open var loop: Boolean
+  public var loop: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_HAS_LOOP, BOOL)

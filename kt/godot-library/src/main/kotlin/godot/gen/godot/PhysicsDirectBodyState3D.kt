@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The timestep (delta) used for the simulation.
    */
-  public open val step: Double
+  public val step: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_STEP,
@@ -51,7 +51,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the mass of the body.
    */
-  public open val inverseMass: Double
+  public val inverseMass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The rate at which the body stops rotating, if there are not any other forces moving it.
    */
-  public open val totalAngularDamp: Double
+  public val totalAngularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -73,7 +73,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The rate at which the body stops moving, if there are not any other forces moving it.
    */
-  public open val totalLinearDamp: Double
+  public val totalLinearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The inverse of the inertia of the body.
    */
-  public open val inverseInertia: Vector3
+  public val inverseInertia: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The total gravity vector being currently applied to this body.
    */
-  public open val totalGravity: Vector3
+  public val totalGravity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position relative to the body's center in the global coordinate system.
    */
-  public open val centerOfMass: Vector3
+  public val centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -117,7 +117,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's center of mass position in the body's local coordinate system.
    */
-  public open val centerOfMassLocal: Vector3
+  public val centerOfMassLocal: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -128,7 +128,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    *
    */
-  public open val principalInertiaAxes: Basis
+  public val principalInertiaAxes: Basis
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -139,7 +139,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's rotational velocity in *radians* per second.
    */
-  public open var angularVelocity: Vector3
+  public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's linear velocity in units per second.
    */
-  public open var linearVelocity: Vector3
+  public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * If `true`, this body is currently sleeping (not active).
    */
-  public open var sleeping: Boolean
+  public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    */
-  public open var transform: Transform3D
+  public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -207,7 +207,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the body's velocity at the given relative position, including both translation and rotation.
    */
-  public open fun getVelocityAtLocalPosition(localPosition: Vector3): Vector3 {
+  public fun getVelocityAtLocalPosition(localPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_VELOCITY_AT_LOCAL_POSITION, VECTOR3)
@@ -221,7 +221,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public open fun applyCentralImpulse(impulse: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyCentralImpulse(impulse: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -234,7 +234,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_IMPULSE, NIL)
@@ -245,7 +245,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    */
-  public open fun applyTorqueImpulse(impulse: Vector3): Unit {
+  public fun applyTorqueImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_TORQUE_IMPULSE, NIL)
@@ -256,7 +256,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public open fun applyCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_CENTRAL_FORCE, NIL)
@@ -267,7 +267,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_FORCE, NIL)
@@ -276,7 +276,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    */
-  public open fun applyTorque(torque: Vector3): Unit {
+  public fun applyTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_TORQUE, NIL)
@@ -287,7 +287,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public open fun addConstantCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun addConstantCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -298,8 +298,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)):
-      Unit {
+  public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_ADD_CONSTANT_FORCE, NIL)
@@ -308,7 +307,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`.
    */
-  public open fun addConstantTorque(torque: Vector3): Unit {
+  public fun addConstantTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_ADD_CONSTANT_TORQUE, NIL)
@@ -319,7 +318,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
-  public open fun setConstantForce(force: Vector3): Unit {
+  public fun setConstantForce(force: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_SET_CONSTANT_FORCE, NIL)
@@ -330,7 +329,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
-  public open fun getConstantForce(): Vector3 {
+  public fun getConstantForce(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONSTANT_FORCE, VECTOR3)
@@ -342,7 +341,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * See [addConstantTorque].
    */
-  public open fun setConstantTorque(torque: Vector3): Unit {
+  public fun setConstantTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_SET_CONSTANT_TORQUE, NIL)
@@ -353,7 +352,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * See [addConstantTorque].
    */
-  public open fun getConstantTorque(): Vector3 {
+  public fun getConstantTorque(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONSTANT_TORQUE, VECTOR3)
@@ -365,7 +364,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [godot.RigidDynamicBody3D.contactMonitor].
    */
-  public open fun getContactCount(): Long {
+  public fun getContactCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COUNT, LONG)
@@ -375,7 +374,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the local position of the contact point.
    */
-  public open fun getContactLocalPosition(contactIdx: Long): Vector3 {
+  public fun getContactLocalPosition(contactIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_POSITION, VECTOR3)
@@ -385,7 +384,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the local normal at the contact point.
    */
-  public open fun getContactLocalNormal(contactIdx: Long): Vector3 {
+  public fun getContactLocalNormal(contactIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_NORMAL, VECTOR3)
@@ -395,7 +394,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Impulse created by the contact. Only implemented for Bullet physics.
    */
-  public open fun getContactImpulse(contactIdx: Long): Double {
+  public fun getContactImpulse(contactIdx: Long): Double {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_IMPULSE, DOUBLE)
@@ -405,7 +404,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the local shape index of the collision.
    */
-  public open fun getContactLocalShape(contactIdx: Long): Long {
+  public fun getContactLocalShape(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_LOCAL_SHAPE, LONG)
@@ -415,7 +414,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the collider's [RID].
    */
-  public open fun getContactCollider(contactIdx: Long): RID {
+  public fun getContactCollider(contactIdx: Long): RID {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER, _RID)
@@ -425,7 +424,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the contact position in the collider.
    */
-  public open fun getContactColliderPosition(contactIdx: Long): Vector3 {
+  public fun getContactColliderPosition(contactIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_POSITION, VECTOR3)
@@ -435,7 +434,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the collider's object id.
    */
-  public open fun getContactColliderId(contactIdx: Long): Long {
+  public fun getContactColliderId(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_ID, LONG)
@@ -445,7 +444,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the collider object.
    */
-  public open fun getContactColliderObject(contactIdx: Long): Object? {
+  public fun getContactColliderObject(contactIdx: Long): Object? {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_OBJECT, OBJECT)
@@ -455,7 +454,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the collider's shape index.
    */
-  public open fun getContactColliderShape(contactIdx: Long): Long {
+  public fun getContactColliderShape(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_SHAPE, LONG)
@@ -465,7 +464,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the linear velocity vector at the collider's contact point.
    */
-  public open fun getContactColliderVelocityAtPosition(contactIdx: Long): Vector3 {
+  public fun getContactColliderVelocityAtPosition(contactIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_CONTACT_COLLIDER_VELOCITY_AT_POSITION,
@@ -476,7 +475,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Calls the built-in force integration code.
    */
-  public open fun integrateForces(): Unit {
+  public fun integrateForces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_INTEGRATE_FORCES, NIL)
@@ -485,7 +484,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the current state of the space, useful for queries.
    */
-  public open fun getSpaceState(): PhysicsDirectSpaceState3D? {
+  public fun getSpaceState(): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_GET_SPACE_STATE, OBJECT)

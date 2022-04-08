@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,68 +29,68 @@ public open class GLTFDocumentExtension : Resource() {
     callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION)
   }
 
-  public open fun getImportSettingKeys(): VariantArray<Any?> {
+  public fun getImportSettingKeys(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING_KEYS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  public open fun importPreflight(document: GLTFDocument): GodotError {
+  public fun importPreflight(document: GLTFDocument): GodotError {
     TransferContext.writeArguments(OBJECT to document)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_PREFLIGHT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun getImportSetting(key: StringName): Any? {
+  public fun getImportSetting(key: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to key)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun setImportSetting(key: StringName, `value`: Any): Unit {
+  public fun setImportSetting(key: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to key, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_IMPORT_SETTING, NIL)
   }
 
-  public open fun importPost(document: GLTFDocument, node: Node): GodotError {
+  public fun importPost(document: GLTFDocument, node: Node): GodotError {
     TransferContext.writeArguments(OBJECT to document, OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_POST,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun getExportSettingKeys(): VariantArray<Any?> {
+  public fun getExportSettingKeys(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING_KEYS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  public open fun getExportSetting(key: StringName): Any? {
+  public fun getExportSetting(key: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to key)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun setExportSetting(key: StringName, `value`: Any): Unit {
+  public fun setExportSetting(key: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to key, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_EXPORT_SETTING, NIL)
   }
 
-  public open fun exportPreflight(document: GLTFDocument, node: Node): GodotError {
+  public fun exportPreflight(document: GLTFDocument, node: Node): GodotError {
     TransferContext.writeArguments(OBJECT to document, OBJECT to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_PREFLIGHT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun exportPost(document: GLTFDocument): GodotError {
+  public fun exportPost(document: GLTFDocument): GodotError {
     TransferContext.writeArguments(OBJECT to document)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_POST,
         LONG)

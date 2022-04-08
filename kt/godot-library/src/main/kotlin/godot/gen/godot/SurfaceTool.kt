@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -107,7 +107,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
+  public fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
         NIL)
@@ -116,7 +116,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
+  public fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
         LONG)
@@ -126,7 +126,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun setCustomFormat(index: Long, format: SurfaceTool.CustomFormat): Unit {
+  public fun setCustomFormat(index: Long, format: SurfaceTool.CustomFormat): Unit {
     TransferContext.writeArguments(LONG to index, LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
   }
@@ -134,7 +134,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun getCustomFormat(index: Long): SurfaceTool.CustomFormat {
+  public fun getCustomFormat(index: Long): SurfaceTool.CustomFormat {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
     return SurfaceTool.CustomFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -143,7 +143,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Called before adding any vertices. Takes the primitive type as an argument (e.g. [godot.Mesh.PRIMITIVE_TRIANGLES]).
    */
-  public open fun begin(primitive: Mesh.PrimitiveType): Unit {
+  public fun begin(primitive: Mesh.PrimitiveType): Unit {
     TransferContext.writeArguments(LONG to primitive.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_BEGIN, NIL)
   }
@@ -151,7 +151,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
    */
-  public open fun addVertex(vertex: Vector3): Unit {
+  public fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_VERTEX, NIL)
   }
@@ -161,7 +161,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** The material must have [godot.BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex color to be visible.
    */
-  public open fun setColor(color: Color): Unit {
+  public fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_COLOR, NIL)
   }
@@ -169,7 +169,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public open fun setNormal(normal: Vector3): Unit {
+  public fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_NORMAL, NIL)
   }
@@ -177,7 +177,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public open fun setTangent(tangent: Plane): Unit {
+  public fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_TANGENT, NIL)
   }
@@ -185,7 +185,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public open fun setUv(uv: Vector2): Unit {
+  public fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV, NIL)
   }
@@ -193,7 +193,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public open fun setUv2(uv2: Vector2): Unit {
+  public fun setUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV2, NIL)
   }
@@ -201,7 +201,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies an array of bones to use for the *next* vertex. `bones` must contain 4 integers.
    */
-  public open fun setBones(bones: PackedInt32Array): Unit {
+  public fun setBones(bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_BONES, NIL)
   }
@@ -209,7 +209,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies weight values to use for the *next* vertex. `weights` must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public open fun setWeights(weights: PackedFloat32Array): Unit {
+  public fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_WEIGHTS, NIL)
   }
@@ -217,7 +217,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun setCustom(index: Long, custom: Color): Unit {
+  public fun setCustom(index: Long, custom: Color): Unit {
     TransferContext.writeArguments(LONG to index, COLOR to custom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL)
   }
@@ -225,7 +225,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies whether the current vertex (if using only vertex arrays) or current index (if also using index arrays) should use smooth normals for normal calculation.
    */
-  public open fun setSmoothGroup(index: Long): Unit {
+  public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP, NIL)
   }
@@ -235,7 +235,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * Requires the primitive type be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
-  public open fun addTriangleFan(
+  public fun addTriangleFan(
     vertices: PackedVector3Array,
     uvs: PackedVector2Array = PackedVector2Array(),
     colors: PackedColorArray = PackedColorArray(),
@@ -250,7 +250,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Adds an index to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
-  public open fun addIndex(index: Long): Unit {
+  public fun addIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL)
   }
@@ -258,7 +258,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse.
    */
-  public open fun index(): Unit {
+  public fun index(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_INDEX, NIL)
   }
@@ -266,7 +266,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Removes the index array by expanding the vertex array.
    */
-  public open fun deindex(): Unit {
+  public fun deindex(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_DEINDEX, NIL)
   }
@@ -276,7 +276,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
-  public open fun generateNormals(flip: Boolean = false): Unit {
+  public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
   }
@@ -284,7 +284,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set already (see [generateNormals]).
    */
-  public open fun generateTangents(): Unit {
+  public fun generateTangents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_TANGENTS, NIL)
   }
@@ -292,7 +292,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun optimizeIndicesForCache(): Unit {
+  public fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE, NIL)
@@ -301,7 +301,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun getMaxAxisLength(): Double {
+  public fun getMaxAxisLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_MAX_AXIS_LENGTH,
         DOUBLE)
@@ -311,7 +311,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
+  public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
         PACKED_INT_32_ARRAY)
@@ -321,7 +321,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Sets [godot.Material] to be used by the [godot.Mesh] you are constructing.
    */
-  public open fun setMaterial(material: Material): Unit {
+  public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
   }
@@ -329,7 +329,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    *
    */
-  public open fun getPrimitive(): Mesh.PrimitiveType {
+  public fun getPrimitive(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE, LONG)
     return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -338,7 +338,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Clear all information passed into the surface tool so far.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CLEAR, NIL)
   }
@@ -346,7 +346,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from an existing [godot.Mesh].
    */
-  public open fun createFrom(existing: Mesh, surface: Long): Unit {
+  public fun createFrom(existing: Mesh, surface: Long): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL)
   }
@@ -354,7 +354,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from the specified blend shape of an existing [godot.Mesh]. This can be used to extract a specific pose from a blend shape.
    */
-  public open fun createFromBlendShape(
+  public fun createFromBlendShape(
     existing: Mesh,
     surface: Long,
     blendShape: String
@@ -367,7 +367,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Append vertices from a given [godot.Mesh] surface onto the current vertex array with specified [godot.Transform3D].
    */
-  public open fun appendFrom(
+  public fun appendFrom(
     existing: Mesh,
     surface: Long,
     transform: Transform3D
@@ -381,7 +381,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **FIXME:** Document possible values for `flags`, it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
-  public open fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
+  public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
@@ -390,7 +390,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Commits the data to the same format used by [godot.ArrayMesh.addSurfaceFromArrays]. This way you can further process the mesh data using the [godot.ArrayMesh] API.
    */
-  public open fun commitToArrays(): VariantArray<Any?> {
+  public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * Animation to use as an output. It is one of the animations provided by [godot.AnimationTree.animPlayer].
    */
-  public open var animation: StringName
+  public var animation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,7 +45,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * Determines the playback direction of the animation.
    */
-  public open var playMode: Long
+  public var playMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

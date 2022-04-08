@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class Occluder3D internal constructor() : Resource() {
   /**
    * Returns the occluder shape's vertex positions.
    */
-  public open fun getVertices(): PackedVector3Array {
+  public fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_VERTICES,
         PACKED_VECTOR3_ARRAY)
@@ -41,7 +41,7 @@ public open class Occluder3D internal constructor() : Resource() {
   /**
    * Returns the occluder shape's vertex indices.
    */
-  public open fun getIndices(): PackedInt32Array {
+  public fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_INDICES,
         PACKED_INT_32_ARRAY)

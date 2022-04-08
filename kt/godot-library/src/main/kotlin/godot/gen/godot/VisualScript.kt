@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,39 +40,39 @@ public open class VisualScript : Script() {
     callConstructor(ENGINECLASS_VISUALSCRIPT)
   }
 
-  public open fun addFunction(name: StringName, funcNodeId: Long): Unit {
+  public fun addFunction(name: StringName, funcNodeId: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to funcNodeId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_FUNCTION, NIL)
   }
 
-  public open fun hasFunction(name: StringName): Boolean {
+  public fun hasFunction(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_FUNCTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun removeFunction(name: StringName): Unit {
+  public fun removeFunction(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_FUNCTION, NIL)
   }
 
-  public open fun renameFunction(name: StringName, newName: StringName): Unit {
+  public fun renameFunction(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_FUNCTION, NIL)
   }
 
-  public open fun setScroll(ofs: Vector2): Unit {
+  public fun setScroll(ofs: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to ofs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_SCROLL, NIL)
   }
 
-  public open fun getScroll(): Vector2 {
+  public fun getScroll(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_SCROLL, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public open fun addNode(
+  public fun addNode(
     id: Long,
     node: VisualScriptNode,
     position: Vector2 = Vector2(0.0, 0.0)
@@ -81,43 +81,43 @@ public open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_NODE, NIL)
   }
 
-  public open fun removeNode(id: Long): Unit {
+  public fun removeNode(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_NODE, NIL)
   }
 
-  public open fun getFunctionNodeId(name: StringName): Long {
+  public fun getFunctionNodeId(name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_FUNCTION_NODE_ID,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getNode(id: Long): VisualScriptNode? {
+  public fun getNode(id: Long): VisualScriptNode? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualScriptNode?
   }
 
-  public open fun hasNode(id: Long): Boolean {
+  public fun hasNode(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_NODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun setNodePosition(id: Long, position: Vector2): Unit {
+  public fun setNodePosition(id: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_NODE_POSITION, NIL)
   }
 
-  public open fun getNodePosition(id: Long): Vector2 {
+  public fun getNodePosition(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_NODE_POSITION,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public open fun sequenceConnect(
+  public fun sequenceConnect(
     fromNode: Long,
     fromOutput: Long,
     toNode: Long
@@ -126,7 +126,7 @@ public open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SEQUENCE_CONNECT, NIL)
   }
 
-  public open fun sequenceDisconnect(
+  public fun sequenceDisconnect(
     fromNode: Long,
     fromOutput: Long,
     toNode: Long
@@ -136,7 +136,7 @@ public open class VisualScript : Script() {
         NIL)
   }
 
-  public open fun hasSequenceConnection(
+  public fun hasSequenceConnection(
     fromNode: Long,
     fromOutput: Long,
     toNode: Long
@@ -147,7 +147,7 @@ public open class VisualScript : Script() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun dataConnect(
+  public fun dataConnect(
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -157,7 +157,7 @@ public open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_CONNECT, NIL)
   }
 
-  public open fun dataDisconnect(
+  public fun dataDisconnect(
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -167,7 +167,7 @@ public open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_DISCONNECT, NIL)
   }
 
-  public open fun hasDataConnection(
+  public fun hasDataConnection(
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
@@ -179,7 +179,7 @@ public open class VisualScript : Script() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun addVariable(
+  public fun addVariable(
     name: StringName,
     defaultValue: Any? = null,
     export: Boolean = false
@@ -188,73 +188,73 @@ public open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_VARIABLE, NIL)
   }
 
-  public open fun hasVariable(name: StringName): Boolean {
+  public fun hasVariable(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_VARIABLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun removeVariable(name: StringName): Unit {
+  public fun removeVariable(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_VARIABLE, NIL)
   }
 
-  public open fun setVariableDefaultValue(name: StringName, `value`: Any): Unit {
+  public fun setVariableDefaultValue(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_DEFAULT_VALUE, NIL)
   }
 
-  public open fun getVariableDefaultValue(name: StringName): Any? {
+  public fun getVariableDefaultValue(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_DEFAULT_VALUE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun setVariableInfo(name: StringName, `value`: Dictionary<Any?, Any?>): Unit {
+  public fun setVariableInfo(name: StringName, `value`: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DICTIONARY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_INFO, NIL)
   }
 
-  public open fun getVariableInfo(name: StringName): Dictionary<Any?, Any?> {
+  public fun getVariableInfo(name: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_INFO,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  public open fun setVariableExport(name: StringName, enable: Boolean): Unit {
+  public fun setVariableExport(name: StringName, enable: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to name, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_EXPORT,
         NIL)
   }
 
-  public open fun getVariableExport(name: StringName): Boolean {
+  public fun getVariableExport(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_EXPORT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun renameVariable(name: StringName, newName: StringName): Unit {
+  public fun renameVariable(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_VARIABLE, NIL)
   }
 
-  public open fun addCustomSignal(name: StringName): Unit {
+  public fun addCustomSignal(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_CUSTOM_SIGNAL, NIL)
   }
 
-  public open fun hasCustomSignal(name: StringName): Boolean {
+  public fun hasCustomSignal(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_CUSTOM_SIGNAL,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun customSignalAddArgument(
+  public fun customSignalAddArgument(
     name: StringName,
     type: VariantType,
     argname: String,
@@ -265,7 +265,7 @@ public open class VisualScript : Script() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_ADD_ARGUMENT, NIL)
   }
 
-  public open fun customSignalSetArgumentType(
+  public fun customSignalSetArgumentType(
     name: StringName,
     argidx: Long,
     type: VariantType
@@ -275,14 +275,14 @@ public open class VisualScript : Script() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SET_ARGUMENT_TYPE, NIL)
   }
 
-  public open fun customSignalGetArgumentType(name: StringName, argidx: Long): VariantType {
+  public fun customSignalGetArgumentType(name: StringName, argidx: Long): VariantType {
     TransferContext.writeArguments(STRING_NAME to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_TYPE, LONG)
     return VariantType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun customSignalSetArgumentName(
+  public fun customSignalSetArgumentName(
     name: StringName,
     argidx: Long,
     argname: String
@@ -292,27 +292,27 @@ public open class VisualScript : Script() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SET_ARGUMENT_NAME, NIL)
   }
 
-  public open fun customSignalGetArgumentName(name: StringName, argidx: Long): String {
+  public fun customSignalGetArgumentName(name: StringName, argidx: Long): String {
     TransferContext.writeArguments(STRING_NAME to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun customSignalRemoveArgument(name: StringName, argidx: Long): Unit {
+  public fun customSignalRemoveArgument(name: StringName, argidx: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_REMOVE_ARGUMENT, NIL)
   }
 
-  public open fun customSignalGetArgumentCount(name: StringName): Long {
+  public fun customSignalGetArgumentCount(name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun customSignalSwapArgument(
+  public fun customSignalSwapArgument(
     name: StringName,
     argidx: Long,
     withidx: Long
@@ -322,19 +322,19 @@ public open class VisualScript : Script() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SWAP_ARGUMENT, NIL)
   }
 
-  public open fun removeCustomSignal(name: StringName): Unit {
+  public fun removeCustomSignal(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_CUSTOM_SIGNAL,
         NIL)
   }
 
-  public open fun renameCustomSignal(name: StringName, newName: StringName): Unit {
+  public fun renameCustomSignal(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_CUSTOM_SIGNAL,
         NIL)
   }
 
-  public open fun setInstanceBaseType(type: StringName): Unit {
+  public fun setInstanceBaseType(type: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_INSTANCE_BASE_TYPE,
         NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class DampedSpringJoint2D : Joint2D() {
   /**
    * The spring joint's maximum length. The two attached bodies cannot stretch it past this value.
    */
-  public open var length: Double
+  public var length: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DAMPEDSPRINGJOINT2D_GET_LENGTH,
@@ -40,7 +40,7 @@ public open class DampedSpringJoint2D : Joint2D() {
   /**
    * When the bodies attached to the spring joint move they stretch or squash it. The joint always tries to resize towards this length.
    */
-  public open var restLength: Double
+  public var restLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -56,7 +56,7 @@ public open class DampedSpringJoint2D : Joint2D() {
   /**
    * The higher the value, the less the bodies attached to the joint will deform it. The joint applies an opposing force to the bodies, the product of the stiffness multiplied by the size difference from its resting length.
    */
-  public open var stiffness: Double
+  public var stiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DAMPEDSPRINGJOINT2D_GET_STIFFNESS,
@@ -72,7 +72,7 @@ public open class DampedSpringJoint2D : Joint2D() {
   /**
    * The spring joint's damping ratio. A value between `0` and `1`. When the two bodies move into different directions the system tries to align them to the spring axis again. A high `damping` value forces the attached bodies to align faster.
    */
-  public open var damping: Double
+  public var damping: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DAMPEDSPRINGJOINT2D_GET_DAMPING,

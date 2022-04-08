@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    *
    */
-  public open var extents: Vector3
+  public var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -43,7 +43,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    *
    */
-  public open var resolution: Long
+  public var resolution: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    *
    */
-  public open var thickness: Double
+  public var thickness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -75,7 +75,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
    *
    */
-  public open var texture: Texture3D?
+  public var texture: Texture3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

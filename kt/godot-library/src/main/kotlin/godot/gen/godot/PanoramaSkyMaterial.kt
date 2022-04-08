@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * [godot.Texture2D] to be applied to the [godot.PanoramaSkyMaterial].
    */
-  public open var panorama: Texture2D?
+  public var panorama: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_GET_PANORAMA,
@@ -45,7 +45,7 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * A boolean value to determine if the background texture should be filtered or not.
    */
-  public open var filter: Boolean
+  public var filter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The pitch scale to use. `1.0` is the default pitch and plays sounds unaltered. [pitchScale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch).
    */
-  public open var pitchScale: Double
+  public var pitchScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -44,7 +44,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The oversampling factor to use. Higher values result in better quality, but are more demanding on the CPU and may cause audio cracking if the CPU can't keep up.
    */
-  public open var oversampling: Double
+  public var oversampling: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,7 +60,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the effect over time, but have greater latency. The effects of this higher latency are especially noticeable on sounds that have sudden amplitude changes.
    */
-  public open var fftSize: Long
+  public var fftSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

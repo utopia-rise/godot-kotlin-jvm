@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -51,7 +51,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    *
    * `max_collisions` allows to retrieve more than one collision result.
    */
-  public open fun moveAndCollide(
+  public fun moveAndCollide(
     distance: Vector3,
     testOnly: Boolean = false,
     safeMargin: Double = 0.001,
@@ -74,7 +74,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    *
    * `max_collisions` allows to retrieve more than one collision result.
    */
-  public open fun testMove(
+  public fun testMove(
     from: Transform3D,
     distance: Vector3,
     collision: KinematicCollision3D? = null,
@@ -89,7 +89,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Locks or unlocks the specified linear or rotational `axis` depending on the value of `lock`.
    */
-  public open fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
+  public fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
     TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
   }
@@ -97,7 +97,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Returns `true` if the specified linear or rotational `axis` is locked.
    */
-  public open fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
+  public fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -106,7 +106,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public open fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
@@ -116,7 +116,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public open fun addCollisionExceptionWith(body: Node): Unit {
+  public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL)
@@ -125,7 +125,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public open fun removeCollisionExceptionWith(body: Node): Unit {
+  public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -15,7 +15,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class OpenXRActionMap : Resource() {
-  public open var actionSets: OpenXRActionSet?
+  public var actionSets: OpenXRActionSet?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SETS,
@@ -28,7 +28,7 @@ public open class OpenXRActionMap : Resource() {
           NIL)
     }
 
-  public open var interactionProfiles: OpenXRInteractionProfile?
+  public var interactionProfiles: OpenXRInteractionProfile?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,30 +45,30 @@ public open class OpenXRActionMap : Resource() {
     callConstructor(ENGINECLASS_OPENXRACTIONMAP)
   }
 
-  public open fun addActionSet(actionSet: OpenXRActionSet): Unit {
+  public fun addActionSet(actionSet: OpenXRActionSet): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_ADD_ACTION_SET, NIL)
   }
 
-  public open fun removeActionSet(actionSet: OpenXRActionSet): Unit {
+  public fun removeActionSet(actionSet: OpenXRActionSet): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_REMOVE_ACTION_SET,
         NIL)
   }
 
-  public open fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
+  public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_ADD_INTERACTION_PROFILE, NIL)
   }
 
-  public open fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
+  public fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_REMOVE_INTERACTION_PROFILE, NIL)
   }
 
-  public open fun createDefaultActionSets(): Unit {
+  public fun createDefaultActionSets(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_CREATE_DEFAULT_ACTION_SETS, NIL)

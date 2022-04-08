@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -16,7 +16,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptDeconstruct : VisualScriptNode() {
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

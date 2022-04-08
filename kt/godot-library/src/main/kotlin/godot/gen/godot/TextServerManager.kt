@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -51,7 +51,7 @@ public object TextServerManager : Object() {
   /**
    * Registers an [godot.TextServer] interface.
    */
-  public open fun addInterface(_interface: TextServer): Unit {
+  public fun addInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_ADD_INTERFACE,
         NIL)
@@ -60,7 +60,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the number of interfaces currently registered.
    */
-  public open fun getInterfaceCount(): Long {
+  public fun getInterfaceCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE_COUNT, LONG)
@@ -70,7 +70,7 @@ public object TextServerManager : Object() {
   /**
    * Removes interface. All fonts and shaped text caches should be freed before removing interface.
    */
-  public open fun removeInterface(_interface: TextServer): Unit {
+  public fun removeInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_REMOVE_INTERFACE,
         NIL)
@@ -79,7 +79,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the interface registered at a given index.
    */
-  public open fun getInterface(idx: Long): TextServer? {
+  public fun getInterface(idx: Long): TextServer? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE,
         OBJECT)
@@ -89,7 +89,7 @@ public object TextServerManager : Object() {
   /**
    * Returns a list of available interfaces the index and name of each interface.
    */
-  public open fun getInterfaces(): VariantArray<Any?> {
+  public fun getInterfaces(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACES,
         ARRAY)
@@ -99,7 +99,7 @@ public object TextServerManager : Object() {
   /**
    * Finds an interface by its name.
    */
-  public open fun findInterface(name: String): TextServer? {
+  public fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_FIND_INTERFACE,
         OBJECT)
@@ -109,7 +109,7 @@ public object TextServerManager : Object() {
   /**
    * Sets the primary [godot.TextServer] interface.
    */
-  public open fun setPrimaryInterface(index: TextServer): Unit {
+  public fun setPrimaryInterface(index: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_SET_PRIMARY_INTERFACE, NIL)
@@ -118,7 +118,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the primary [godot.TextServer] interface currently in use.
    */
-  public open fun getPrimaryInterface(): TextServer? {
+  public fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_PRIMARY_INTERFACE, OBJECT)

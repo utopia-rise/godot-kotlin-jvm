@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,48 +35,48 @@ public open class Texture3D : Texture() {
    *
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_get_format is not implemented for Texture3D")
   }
 
   /**
    *
    */
   public open fun _getWidth(): Long {
-    throw NotImplementedError("_get_width·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_get_width is not implemented for Texture3D")
   }
 
   /**
    *
    */
   public open fun _getHeight(): Long {
-    throw NotImplementedError("_get_height·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_get_height is not implemented for Texture3D")
   }
 
   /**
    *
    */
   public open fun _getDepth(): Long {
-    throw NotImplementedError("_get_depth·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_get_depth is not implemented for Texture3D")
   }
 
   /**
    *
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_has_mipmaps is not implemented for Texture3D")
   }
 
   /**
    *
    */
   public open fun _getData(): VariantArray<Any?> {
-    throw NotImplementedError("_get_data·is·not·implemented·for·Texture3D")
+    throw NotImplementedError("_get_data is not implemented for Texture3D")
   }
 
   /**
    *
    */
-  public open fun getFormat(): Image.Format {
+  public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -85,7 +85,7 @@ public open class Texture3D : Texture() {
   /**
    *
    */
-  public open fun getWidth(): Long {
+  public fun getWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -94,7 +94,7 @@ public open class Texture3D : Texture() {
   /**
    *
    */
-  public open fun getHeight(): Long {
+  public fun getHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -103,7 +103,7 @@ public open class Texture3D : Texture() {
   /**
    *
    */
-  public open fun getDepth(): Long {
+  public fun getDepth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DEPTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -112,7 +112,7 @@ public open class Texture3D : Texture() {
   /**
    *
    */
-  public open fun hasMipmaps(): Boolean {
+  public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_HAS_MIPMAPS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -121,7 +121,7 @@ public open class Texture3D : Texture() {
   /**
    *
    */
-  public open fun getData(): VariantArray<Any?> {
+  public fun getData(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

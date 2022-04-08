@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,7 +21,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGTorus3D : CSGPrimitive3D() {
-  public open var innerRadius: Double
+  public var innerRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_INNER_RADIUS,
@@ -33,7 +33,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_SET_INNER_RADIUS, NIL)
     }
 
-  public open var outerRadius: Double
+  public var outerRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_OUTER_RADIUS,
@@ -45,7 +45,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_SET_OUTER_RADIUS, NIL)
     }
 
-  public open var sides: Long
+  public var sides: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_SIDES, LONG)
@@ -56,7 +56,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_SET_SIDES, NIL)
     }
 
-  public open var ringSides: Long
+  public var ringSides: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_RING_SIDES, LONG)
@@ -67,7 +67,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_SET_RING_SIDES, NIL)
     }
 
-  public open var smoothFaces: Boolean
+  public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_SMOOTH_FACES, BOOL)
@@ -78,7 +78,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_SET_SMOOTH_FACES, NIL)
     }
 
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGTORUS3D_GET_MATERIAL, OBJECT)

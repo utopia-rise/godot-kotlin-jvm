@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class Material : Resource() {
    *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
-  public open var renderPriority: Long
+  public var renderPriority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_GET_RENDER_PRIORITY,
@@ -53,7 +53,7 @@ public open class Material : Resource() {
    *
    * **Note:** This only applies to [godot.StandardMaterial3D]s and [godot.ShaderMaterial]s with type "Spatial".
    */
-  public open var nextPass: Material?
+  public var nextPass: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_GET_NEXT_PASS, OBJECT)
@@ -72,34 +72,34 @@ public open class Material : Resource() {
    *
    */
   public open fun _getShaderRid(): RID {
-    throw NotImplementedError("_get_shader_rid·is·not·implemented·for·Material")
+    throw NotImplementedError("_get_shader_rid is not implemented for Material")
   }
 
   /**
    *
    */
   public open fun _getShaderMode(): Shader.Mode {
-    throw NotImplementedError("_get_shader_mode·is·not·implemented·for·Material")
+    throw NotImplementedError("_get_shader_mode is not implemented for Material")
   }
 
   /**
    *
    */
   public open fun _canDoNextPass(): Boolean {
-    throw NotImplementedError("_can_do_next_pass·is·not·implemented·for·Material")
+    throw NotImplementedError("_can_do_next_pass is not implemented for Material")
   }
 
   /**
    *
    */
   public open fun _canUseRenderPriority(): Boolean {
-    throw NotImplementedError("_can_use_render_priority·is·not·implemented·for·Material")
+    throw NotImplementedError("_can_use_render_priority is not implemented for Material")
   }
 
   /**
    *
    */
-  public open fun inspectNativeShaderCode(): Unit {
+  public fun inspectNativeShaderCode(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_INSPECT_NATIVE_SHADER_CODE,
         NIL)

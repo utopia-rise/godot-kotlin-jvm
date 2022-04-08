@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The embedded audio track to play.
    */
-  public open var audioTrack: Long
+  public var audioTrack: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_AUDIO_TRACK,
@@ -62,7 +62,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The assigned video stream. See description for supported formats.
    */
-  public open var stream: VideoStream?
+  public var stream: VideoStream?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM,
@@ -77,7 +77,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio volume in dB.
    */
-  public open var volumeDb: Double
+  public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME_DB,
@@ -93,7 +93,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio volume as a linear value.
    */
-  public open var volume: Double
+  public var volume: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME,
@@ -108,7 +108,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, playback starts when the scene loads.
    */
-  public open var autoplay: Boolean
+  public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_AUTOPLAY,
@@ -124,7 +124,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, the video is paused.
    */
-  public open var paused: Boolean
+  public var paused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PAUSED, BOOL)
@@ -138,7 +138,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions.
    */
-  public open var expand: Boolean
+  public var expand: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_EXPAND,
@@ -153,7 +153,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
-  public open var bufferingMsec: Long
+  public var bufferingMsec: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class VideoStreamPlayer : Control() {
    *
    * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.
    */
-  public open var streamPosition: Double
+  public var streamPosition: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio bus to use for sound playback.
    */
-  public open var bus: StringName
+  public var bus: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUS,
@@ -206,7 +206,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Starts the video playback from the beginning. If the video is paused, this will not unpause the video.
    */
-  public open fun play(): Unit {
+  public fun play(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_PLAY, NIL)
   }
@@ -216,7 +216,7 @@ public open class VideoStreamPlayer : Control() {
    *
    * **Note:** Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_STOP, NIL)
   }
@@ -226,7 +226,7 @@ public open class VideoStreamPlayer : Control() {
    *
    * **Note:** The video is still considered playing if paused during playback.
    */
-  public open fun isPlaying(): Boolean {
+  public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -235,7 +235,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
-  public open fun getStreamName(): String {
+  public fun getStreamName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_NAME,
         STRING)
@@ -245,7 +245,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Returns the current frame as a [godot.Texture2D].
    */
-  public open fun getVideoTexture(): Texture2D? {
+  public fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VIDEO_TEXTURE,
         OBJECT)

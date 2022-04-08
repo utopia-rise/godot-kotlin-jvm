@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -55,7 +55,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleName(id: Long, secondary: Boolean): String {
-    throw NotImplementedError("_get_handle_name·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -64,7 +64,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _isHandleHighlighted(id: Long, secondary: Boolean): Boolean {
-    throw NotImplementedError("_is_handle_highlighted·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -73,7 +73,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleValue(id: Long, secondary: Boolean): Any? {
-    throw NotImplementedError("_get_handle_value·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -108,7 +108,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * Override this method to allow selecting subgizmos using mouse clicks. Given a `camera` and a `point` in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
   public open fun _subgizmosIntersectRay(camera: Camera3D, point: Vector2): Long {
-    throw NotImplementedError("_subgizmos_intersect_ray·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -116,7 +116,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Any?>):
       PackedInt32Array {
-    throw NotImplementedError("_subgizmos_intersect_frustum·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -129,7 +129,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    * Override this method to return the current transform of a subgizmo. This transform will be requested at the start of an edit and used as the `restore` argument in [_commitSubgizmos].
    */
   public open fun _getSubgizmoTransform(id: Long): Transform3D {
-    throw NotImplementedError("_get_subgizmo_transform·is·not·implemented·for·EditorNode3DGizmo")
+    throw NotImplementedError("_get_subgizmo_transform is not implemented for EditorNode3DGizmo")
   }
 
   /**
@@ -147,7 +147,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [_redraw].
    */
-  public open fun addLines(
+  public fun addLines(
     lines: PackedVector3Array,
     material: Material,
     billboard: Boolean = false,
@@ -160,7 +160,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds a mesh to the gizmo with the specified `material`, local `transform` and `skeleton`. Call this method during [_redraw].
    */
-  public open fun addMesh(
+  public fun addMesh(
     mesh: Mesh,
     material: Material? = null,
     transform: Transform3D = Transform3D(),
@@ -173,7 +173,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds the specified `segments` to the gizmo's collision shape for picking. Call this method during [_redraw].
    */
-  public open fun addCollisionSegments(segments: PackedVector3Array): Unit {
+  public fun addCollisionSegments(segments: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to segments)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_SEGMENTS, NIL)
@@ -182,7 +182,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds collision triangles to the gizmo for picking. A [godot.TriangleMesh] can be generated from a regular [godot.Mesh] too. Call this method during [_redraw].
    */
-  public open fun addCollisionTriangles(triangles: TriangleMesh): Unit {
+  public fun addCollisionTriangles(triangles: TriangleMesh): Unit {
     TransferContext.writeArguments(OBJECT to triangles)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_TRIANGLES, NIL)
@@ -191,7 +191,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds an unscaled billboard for visualization and selection. Call this method during [_redraw].
    */
-  public open fun addUnscaledBillboard(
+  public fun addUnscaledBillboard(
     material: Material,
     defaultScale: Double = 1.0,
     modulate: Color = Color(Color(1, 1, 1, 1))
@@ -208,7 +208,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    *
    * There are virtual methods which will be called upon editing of these handles. Call this method during [_redraw].
    */
-  public open fun addHandles(
+  public fun addHandles(
     handles: PackedVector3Array,
     material: Material,
     ids: PackedInt32Array,
@@ -222,7 +222,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Sets the reference [godot.Node3D] node for the gizmo. `node` must inherit from [godot.Node3D].
    */
-  public open fun setSpatialNode(node: Node): Unit {
+  public fun setSpatialNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_SPATIAL_NODE,
         NIL)
@@ -231,7 +231,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Returns the Node3D node associated with this gizmo.
    */
-  public open fun getSpatialNode(): Node3D? {
+  public fun getSpatialNode(): Node3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SPATIAL_NODE,
         OBJECT)
@@ -241,7 +241,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Returns the [godot.EditorNode3DGizmoPlugin] that owns this gizmo. It's useful to retrieve materials using [godot.EditorNode3DGizmoPlugin.getMaterial].
    */
-  public open fun getPlugin(): EditorNode3DGizmoPlugin? {
+  public fun getPlugin(): EditorNode3DGizmoPlugin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_PLUGIN,
         OBJECT)
@@ -251,7 +251,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Removes everything in the gizmo including meshes, collisions and handles.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_CLEAR, NIL)
   }
@@ -259,7 +259,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Sets the gizmo's hidden state. If `true`, the gizmo will be hidden. If `false`, it will be shown.
    */
-  public open fun setHidden(hidden: Boolean): Unit {
+  public fun setHidden(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_HIDDEN, NIL)
   }
@@ -267,7 +267,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Returns `true` if the given subgizmo is currently selected. Can be used to highlight selected elements during [_redraw].
    */
-  public open fun isSubgizmoSelected(id: Long): Boolean {
+  public fun isSubgizmoSelected(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_IS_SUBGIZMO_SELECTED, BOOL)
@@ -277,7 +277,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Returns a list of the currently selected subgizmos. Can be used to highlight selected elements during [_redraw].
    */
-  public open fun getSubgizmoSelection(): PackedInt32Array {
+  public fun getSubgizmoSelection(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SUBGIZMO_SELECTION, PACKED_INT_32_ARRAY)

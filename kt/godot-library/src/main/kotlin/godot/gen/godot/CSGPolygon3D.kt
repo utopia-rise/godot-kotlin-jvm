@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGPolygon3D : CSGPrimitive3D() {
-  public open var polygon: PackedVector2Array
+  public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_POLYGON,
@@ -37,7 +37,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_POLYGON, NIL)
     }
 
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_MODE, LONG)
@@ -48,7 +48,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_MODE, NIL)
     }
 
-  public open var depth: Double
+  public var depth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_DEPTH, DOUBLE)
@@ -59,7 +59,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_DEPTH, NIL)
     }
 
-  public open var spinDegrees: Double
+  public var spinDegrees: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_SPIN_DEGREES,
@@ -72,7 +72,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var spinSides: Long
+  public var spinSides: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_SPIN_SIDES, LONG)
@@ -83,7 +83,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_SPIN_SIDES, NIL)
     }
 
-  public open var pathNode: NodePath
+  public var pathNode: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_NODE,
@@ -95,7 +95,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_NODE, NIL)
     }
 
-  public open var pathIntervalType: Long
+  public var pathIntervalType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -108,7 +108,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_INTERVAL_TYPE, NIL)
     }
 
-  public open var pathInterval: Double
+  public var pathInterval: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_INTERVAL,
@@ -121,7 +121,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var pathSimplifyAngle: Double
+  public var pathSimplifyAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -134,7 +134,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_SIMPLIFY_ANGLE, NIL)
     }
 
-  public open var pathRotation: Long
+  public var pathRotation: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_ROTATION,
@@ -147,7 +147,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var pathLocal: Boolean
+  public var pathLocal: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_IS_PATH_LOCAL, BOOL)
@@ -158,7 +158,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_LOCAL, NIL)
     }
 
-  public open var pathContinuousU: Boolean
+  public var pathContinuousU: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_IS_PATH_CONTINUOUS_U,
@@ -171,7 +171,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_CONTINUOUS_U, NIL)
     }
 
-  public open var pathUDistance: Double
+  public var pathUDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_PATH_U_DISTANCE,
@@ -184,7 +184,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var pathJoined: Boolean
+  public var pathJoined: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_IS_PATH_JOINED, BOOL)
@@ -195,7 +195,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_PATH_JOINED, NIL)
     }
 
-  public open var smoothFaces: Boolean
+  public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_SMOOTH_FACES,
@@ -208,7 +208,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_GET_MATERIAL, OBJECT)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
+  public fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)
   }
@@ -46,7 +46,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
+  public fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_FIND_PATH,
         PACKED_VECTOR2_ARRAY)
@@ -56,7 +56,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
+  public fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_INTERSECTIONS,
         PACKED_VECTOR2_ARRAY)
@@ -66,7 +66,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun getClosestPoint(point: Vector2): Vector2 {
+  public fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_CLOSEST_POINT,
         VECTOR2)
@@ -76,7 +76,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun isPointInside(point: Vector2): Boolean {
+  public fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_IS_POINT_INSIDE,
         BOOL)
@@ -86,7 +86,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun setPointPenalty(idx: Long, penalty: Double): Unit {
+  public fun setPointPenalty(idx: Long, penalty: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to penalty)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SET_POINT_PENALTY,
         NIL)
@@ -95,7 +95,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun getPointPenalty(idx: Long): Double {
+  public fun getPointPenalty(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_POINT_PENALTY,
         DOUBLE)
@@ -105,7 +105,7 @@ public open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  public open fun getBounds(): Rect2 {
+  public fun getBounds(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_BOUNDS, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2

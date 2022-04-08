@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    */
-  public open var lightmapSizeHint: Vector2i
+  public var lightmapSizeHint: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_LIGHTMAP_SIZE_HINT,
@@ -63,56 +63,56 @@ public open class Mesh : Resource() {
    *
    */
   public open fun _getSurfaceCount(): Long {
-    throw NotImplementedError("_get_surface_count·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_get_surface_count is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetArrayLen(index: Long): Long {
-    throw NotImplementedError("_surface_get_array_len·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_array_len is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetArrayIndexLen(index: Long): Long {
-    throw NotImplementedError("_surface_get_array_index_len·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_array_index_len is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetArrays(index: Long): VariantArray<Any?> {
-    throw NotImplementedError("_surface_get_arrays·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_arrays is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<Any?> {
-    throw NotImplementedError("_surface_get_blend_shape_arrays·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetLods(index: Long): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_surface_get_lods·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_lods is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetFormat(index: Long): Long {
-    throw NotImplementedError("_surface_get_format·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_format is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _surfaceGetPrimitiveType(index: Long): Long {
-    throw NotImplementedError("_surface_get_primitive_type·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
   }
 
   /**
@@ -125,21 +125,21 @@ public open class Mesh : Resource() {
    *
    */
   public open fun _surfaceGetMaterial(index: Long): Material? {
-    throw NotImplementedError("_surface_get_material·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_surface_get_material is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _getBlendShapeCount(): Long {
-    throw NotImplementedError("_get_blend_shape_count·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_get_blend_shape_count is not implemented for Mesh")
   }
 
   /**
    *
    */
   public open fun _getBlendShapeName(index: Long): StringName {
-    throw NotImplementedError("_get_blend_shape_name·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_get_blend_shape_name is not implemented for Mesh")
   }
 
   /**
@@ -152,7 +152,7 @@ public open class Mesh : Resource() {
    *
    */
   public open fun _getAabb(): AABB {
-    throw NotImplementedError("_get_aabb·is·not·implemented·for·Mesh")
+    throw NotImplementedError("_get_aabb is not implemented for Mesh")
   }
 
   /**
@@ -160,7 +160,7 @@ public open class Mesh : Resource() {
    *
    * **Note:** This is only implemented for [godot.ArrayMesh] and [godot.PrimitiveMesh].
    */
-  public open fun getAabb(): AABB {
+  public fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_AABB,
         godot.core.VariantType.AABB)
@@ -170,7 +170,7 @@ public open class Mesh : Resource() {
   /**
    * Returns the amount of surfaces that the [godot.Mesh] holds.
    */
-  public open fun getSurfaceCount(): Long {
+  public fun getSurfaceCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_SURFACE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -179,7 +179,7 @@ public open class Mesh : Resource() {
   /**
    * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface (see [godot.ArrayMesh.addSurfaceFromArrays]).
    */
-  public open fun surfaceGetArrays(surfIdx: Long): VariantArray<Any?> {
+  public fun surfaceGetArrays(surfIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_ARRAYS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -188,7 +188,7 @@ public open class Mesh : Resource() {
   /**
    * Returns the blend shape arrays for the requested surface.
    */
-  public open fun surfaceGetBlendShapeArrays(surfIdx: Long): VariantArray<Any?> {
+  public fun surfaceGetBlendShapeArrays(surfIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_BLEND_SHAPE_ARRAYS,
         ARRAY)
@@ -198,7 +198,7 @@ public open class Mesh : Resource() {
   /**
    * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
    */
-  public open fun surfaceSetMaterial(surfIdx: Long, material: Material): Unit {
+  public fun surfaceSetMaterial(surfIdx: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfIdx, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_SET_MATERIAL, NIL)
   }
@@ -206,7 +206,7 @@ public open class Mesh : Resource() {
   /**
    * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
    */
-  public open fun surfaceGetMaterial(surfIdx: Long): Material? {
+  public fun surfaceGetMaterial(surfIdx: Long): Material? {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_MATERIAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
@@ -215,7 +215,7 @@ public open class Mesh : Resource() {
   /**
    * Calculate a [godot.ConcavePolygonShape3D] from the mesh.
    */
-  public open fun createTrimeshShape(): Shape3D? {
+  public fun createTrimeshShape(): Shape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_TRIMESH_SHAPE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
@@ -228,7 +228,7 @@ public open class Mesh : Resource() {
    *
    * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
    */
-  public open fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): Shape3D? {
+  public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): Shape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_CONVEX_SHAPE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
@@ -239,7 +239,7 @@ public open class Mesh : Resource() {
    *
    * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
    */
-  public open fun createOutline(margin: Double): Mesh? {
+  public fun createOutline(margin: Double): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_OUTLINE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -248,7 +248,7 @@ public open class Mesh : Resource() {
   /**
    * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
    */
-  public open fun getFaces(): PackedVector3Array {
+  public fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_FACES,
         PACKED_VECTOR3_ARRAY)
@@ -258,7 +258,7 @@ public open class Mesh : Resource() {
   /**
    * Generate a [godot.TriangleMesh] from the mesh.
    */
-  public open fun generateTriangleMesh(): TriangleMesh? {
+  public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GENERATE_TRIANGLE_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?

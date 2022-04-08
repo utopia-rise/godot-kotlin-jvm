@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class SplitContainer internal constructor() : Container() {
   /**
    * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
    */
-  public open var splitOffset: Long
+  public var splitOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
@@ -49,7 +49,7 @@ public open class SplitContainer internal constructor() : Container() {
   /**
    * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
    */
-  public open var collapsed: Boolean
+  public var collapsed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_COLLAPSED, BOOL)
@@ -63,7 +63,7 @@ public open class SplitContainer internal constructor() : Container() {
   /**
    * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
    */
-  public open var draggerVisibility: Long
+  public var draggerVisibility: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -83,7 +83,7 @@ public open class SplitContainer internal constructor() : Container() {
   /**
    * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum values.
    */
-  public open fun clampSplitOffset(): Unit {
+  public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
         NIL)

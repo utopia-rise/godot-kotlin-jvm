@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class VisualScriptFunctionState : RefCounted() {
     callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE)
   }
 
-  public open fun connectToSignal(
+  public fun connectToSignal(
     obj: Object,
     signals: String,
     args: VariantArray<Any?>
@@ -37,14 +37,14 @@ public open class VisualScriptFunctionState : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_CONNECT_TO_SIGNAL, NIL)
   }
 
-  public open fun resume(args: VariantArray<Any?> = godot.core.variantArrayOf()): Any? {
+  public fun resume(args: VariantArray<Any?> = godot.core.variantArrayOf()): Any? {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_RESUME,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun isValid(): Boolean {
+  public fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_IS_VALID,
         BOOL)

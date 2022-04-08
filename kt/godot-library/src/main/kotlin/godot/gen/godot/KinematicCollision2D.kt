@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the point of collision in global coordinates.
    */
-  public open fun getPosition(): Vector2 {
+  public fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_POSITION,
         VECTOR2)
@@ -46,7 +46,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's shape's normal at the point of collision.
    */
-  public open fun getNormal(): Vector2 {
+  public fun getNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_NORMAL,
         VECTOR2)
@@ -56,7 +56,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the moving object's travel before collision.
    */
-  public open fun getTravel(): Vector2 {
+  public fun getTravel(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_TRAVEL,
         VECTOR2)
@@ -66,7 +66,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the moving object's remaining movement vector.
    */
-  public open fun getRemainder(): Vector2 {
+  public fun getRemainder(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_REMAINDER,
         VECTOR2)
@@ -76,7 +76,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the collision angle according to `up_direction`, which is `Vector2.UP` by default. This value is always positive.
    */
-  public open fun getAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
+  public fun getAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,
         DOUBLE)
@@ -86,7 +86,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the moving object's colliding shape.
    */
-  public open fun getLocalShape(): Object? {
+  public fun getLocalShape(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_LOCAL_SHAPE, OBJECT)
@@ -96,7 +96,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's attached [godot.Object].
    */
-  public open fun getCollider(): Object? {
+  public fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER,
         OBJECT)
@@ -106,7 +106,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the unique instance ID of the colliding body's attached [godot.Object]. See [godot.Object.getInstanceId].
    */
-  public open fun getColliderId(): Long {
+  public fun getColliderId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_ID, LONG)
@@ -116,7 +116,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's [RID] used by the [godot.PhysicsServer2D].
    */
-  public open fun getColliderRid(): RID {
+  public fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_RID, _RID)
@@ -126,7 +126,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's shape.
    */
-  public open fun getColliderShape(): Object? {
+  public fun getColliderShape(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE, OBJECT)
@@ -136,7 +136,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's shape index. See [godot.CollisionObject2D].
    */
-  public open fun getColliderShapeIndex(): Long {
+  public fun getColliderShapeIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE_INDEX, LONG)
@@ -146,7 +146,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the colliding body's velocity.
    */
-  public open fun getColliderVelocity(): Vector2 {
+  public fun getColliderVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_VELOCITY, VECTOR2)

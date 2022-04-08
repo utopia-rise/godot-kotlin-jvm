@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class Shader : Resource() {
   /**
    * Returns the shader's code as the user has written it, not the full generated code used internally.
    */
-  public open var code: String
+  public var code: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING)
@@ -55,7 +55,7 @@ public open class Shader : Resource() {
   /**
    * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
    */
-  public open fun getMode(): Shader.Mode {
+  public fun getMode(): Shader.Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -68,7 +68,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use `index` to access the specified texture.
    */
-  public open fun setDefaultTextureParam(
+  public fun setDefaultTextureParam(
     `param`: StringName,
     texture: Texture2D,
     index: Long = 0
@@ -85,7 +85,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use `index` to access the specified texture.
    */
-  public open fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
+  public fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to param, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
         OBJECT)
@@ -97,7 +97,7 @@ public open class Shader : Resource() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  public open fun hasParam(name: StringName): Boolean {
+  public fun hasParam(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

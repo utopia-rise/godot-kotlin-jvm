@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    *
    */
-  public open var language: Long
+  public var language: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_LANGUAGE, LONG)
@@ -42,7 +42,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    *
    */
-  public open fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
+  public fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
         NIL)
@@ -51,7 +51,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    *
    */
-  public open fun getStageSource(stage: RenderingDevice.ShaderStage): String {
+  public fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
         STRING)

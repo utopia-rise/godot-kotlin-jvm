@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var enableDepthClamp: Boolean
+  public var enableDepthClamp: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var discardPrimitives: Boolean
+  public var discardPrimitives: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var wireframe: Boolean
+  public var wireframe: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var cullMode: Long
+  public var cullMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var frontFace: Long
+  public var frontFace: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var depthBiasEnable: Boolean
+  public var depthBiasEnable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -122,7 +122,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var depthBiasConstantFactor: Double
+  public var depthBiasConstantFactor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -139,7 +139,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var depthBiasClamp: Double
+  public var depthBiasClamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var depthBiasSlopeFactor: Double
+  public var depthBiasSlopeFactor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var lineWidth: Double
+  public var lineWidth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    *
    */
-  public open var patchControlPoints: Long
+  public var patchControlPoints: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * The distance along the path in pixels.
    */
-  public open var offset: Double
+  public var offset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_OFFSET, DOUBLE)
@@ -42,7 +42,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the last). This is just another way of expressing the offset within the path, as the offset supplied is multiplied internally by the path's length.
    */
-  public open var unitOffset: Double
+  public var unitOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_UNIT_OFFSET,
@@ -57,7 +57,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * The node's offset along the curve.
    */
-  public open var hOffset: Double
+  public var hOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_H_OFFSET, DOUBLE)
@@ -71,7 +71,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * The node's offset perpendicular to the curve.
    */
-  public open var vOffset: Double
+  public var vOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_V_OFFSET, DOUBLE)
@@ -85,7 +85,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * If `true`, this node rotates to follow the path, with the +X direction facing forward on the path.
    */
-  public open var rotates: Boolean
+  public var rotates: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_IS_ROTATING, BOOL)
@@ -103,7 +103,7 @@ public open class PathFollow2D : Node2D() {
    *
    * There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
    */
-  public open var cubicInterp: Boolean
+  public var cubicInterp: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths.
    */
-  public open var loop: Boolean
+  public var loop: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_HAS_LOOP, BOOL)
@@ -133,7 +133,7 @@ public open class PathFollow2D : Node2D() {
   /**
    * How far to look ahead of the curve to calculate the tangent if the node is rotating. E.g. shorter lookaheads will lead to faster rotations.
    */
-  public open var lookahead: Double
+  public var lookahead: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_LOOKAHEAD,

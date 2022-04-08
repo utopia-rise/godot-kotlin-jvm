@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -71,7 +71,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The node from which node path references will travel.
    */
-  public open var rootNode: NodePath
+  public var rootNode: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ROOT,
@@ -88,7 +88,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** while this property appears in the inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
    */
-  public open var currentAnimation: StringName
+  public var currentAnimation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -104,7 +104,7 @@ public open class AnimationPlayer : Node() {
   /**
    * If playing, the current animation; otherwise, the animation last played. When set, would change the animation, but would not play it unless currently playing. See also [currentAnimation].
    */
-  public open var assignedAnimation: StringName
+  public var assignedAnimation: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +120,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The name of the animation to play when the scene loads.
    */
-  public open var autoplay: StringName
+  public var autoplay: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_AUTOPLAY,
@@ -137,7 +137,7 @@ public open class AnimationPlayer : Node() {
    *
    * In other words, the saved scene file will contain the "default pose", as defined by the reset animation, if any, with the editor keeping the values that the nodes had before saving.
    */
-  public open var resetOnSave: Boolean
+  public var resetOnSave: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -153,7 +153,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The length (in seconds) of the currently being played animation.
    */
-  public open val currentAnimationLength: Double
+  public val currentAnimationLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -164,7 +164,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The position (in seconds) of the currently playing animation.
    */
-  public open val currentAnimationPosition: Double
+  public val currentAnimationPosition: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -175,7 +175,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The process notification in which to update animations.
    */
-  public open var playbackProcessMode: Long
+  public var playbackProcessMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision.
    */
-  public open var playbackDefaultBlendTime: Double
+  public var playbackDefaultBlendTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -207,7 +207,7 @@ public open class AnimationPlayer : Node() {
   /**
    * If `true`, updates animations in response to process-related notifications.
    */
-  public open var playbackActive: Boolean
+  public var playbackActive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_ACTIVE, BOOL)
@@ -221,7 +221,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The speed scaling ratio. For instance, if this value is 1, then the animation plays at normal speed. If it's 0.5, then it plays at half speed. If it's 2, then it plays at double speed.
    */
-  public open var playbackSpeed: Double
+  public var playbackSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_SPEED_SCALE,
@@ -237,7 +237,7 @@ public open class AnimationPlayer : Node() {
   /**
    * The call mode to use for Call Method tracks.
    */
-  public open var methodCallMode: Long
+  public var methodCallMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -257,7 +257,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Adds `animation` to the player accessible with the key `name`.
    */
-  public open fun addAnimation(name: StringName, animation: Animation): GodotError {
+  public fun addAnimation(name: StringName, animation: Animation): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -266,7 +266,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Removes the animation with key `name`.
    */
-  public open fun removeAnimation(name: StringName): Unit {
+  public fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_REMOVE_ANIMATION,
         NIL)
@@ -275,7 +275,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Renames an existing animation with key `name` to `newname`.
    */
-  public open fun renameAnimation(name: StringName, newname: StringName): Unit {
+  public fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_RENAME_ANIMATION,
         NIL)
@@ -284,7 +284,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns `true` if the [godot.AnimationPlayer] stores an [godot.Animation] with key `name`.
    */
-  public open fun hasAnimation(name: StringName): Boolean {
+  public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_HAS_ANIMATION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -293,7 +293,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns the [godot.Animation] with key `name` or `null` if not found.
    */
-  public open fun getAnimation(name: StringName): Animation? {
+  public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION,
         OBJECT)
@@ -303,7 +303,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns the list of stored animation names.
    */
-  public open fun getAnimationList(): PackedStringArray {
+  public fun getAnimationList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ANIMATION_LIST,
         PACKED_STRING_ARRAY)
@@ -313,7 +313,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Triggers the `anim_to` animation when the `anim_from` animation completes.
    */
-  public open fun animationSetNext(animFrom: StringName, animTo: StringName): Unit {
+  public fun animationSetNext(animFrom: StringName, animTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ANIMATION_SET_NEXT,
         NIL)
@@ -322,7 +322,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns the name of the next animation in the queue.
    */
-  public open fun animationGetNext(animFrom: StringName): StringName {
+  public fun animationGetNext(animFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animFrom)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ANIMATION_GET_NEXT,
         STRING_NAME)
@@ -332,7 +332,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Specifies a blend time (in seconds) between two animations, referenced by their names.
    */
-  public open fun setBlendTime(
+  public fun setBlendTime(
     animFrom: StringName,
     animTo: StringName,
     sec: Double
@@ -344,7 +344,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Gets the blend time (in seconds) between two animations, referenced by their names.
    */
-  public open fun getBlendTime(animFrom: StringName, animTo: StringName): Double {
+  public fun getBlendTime(animFrom: StringName, animTo: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_BLEND_TIME,
         DOUBLE)
@@ -358,7 +358,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
    */
-  public open fun play(
+  public fun play(
     name: StringName = StringName(""),
     customBlend: Double = -1.0,
     customSpeed: Double = 1.0,
@@ -373,8 +373,7 @@ public open class AnimationPlayer : Node() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
-  public open fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0):
-      Unit {
+  public fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PLAY_BACKWARDS, NIL)
   }
@@ -384,7 +383,7 @@ public open class AnimationPlayer : Node() {
    *
    * If `reset` is `false`, the [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
    */
-  public open fun stop(reset: Boolean = true): Unit {
+  public fun stop(reset: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to reset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_STOP, NIL)
   }
@@ -392,7 +391,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns `true` if playing an animation.
    */
-  public open fun isPlaying(): Boolean {
+  public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -403,7 +402,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** If a looped animation is currently playing, the queued animation will never play unless the looped animation is stopped somehow.
    */
-  public open fun queue(name: StringName): Unit {
+  public fun queue(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_QUEUE, NIL)
   }
@@ -411,7 +410,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns a list of the animation names that are currently queued to play.
    */
-  public open fun getQueue(): PackedStringArray {
+  public fun getQueue(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_QUEUE,
         PACKED_STRING_ARRAY)
@@ -421,7 +420,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Clears all queued, unplayed animations.
    */
-  public open fun clearQueue(): Unit {
+  public fun clearQueue(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_CLEAR_QUEUE, NIL)
   }
@@ -429,7 +428,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Gets the actual playing speed of current animation or 0 if not playing. This speed is the [playbackSpeed] property multiplied by `custom_speed` argument specified when calling the [play] method.
    */
-  public open fun getPlayingSpeed(): Double {
+  public fun getPlayingSpeed(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYING_SPEED,
         DOUBLE)
@@ -439,7 +438,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Returns the name of `animation` or an empty string if not found.
    */
-  public open fun findAnimation(animation: Animation): StringName {
+  public fun findAnimation(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_FIND_ANIMATION,
         STRING_NAME)
@@ -449,7 +448,7 @@ public open class AnimationPlayer : Node() {
   /**
    * [godot.AnimationPlayer] caches animated nodes. It may not notice if a node disappears; [clearCaches] forces it to update the cache again.
    */
-  public open fun clearCaches(): Unit {
+  public fun clearCaches(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_CLEAR_CACHES, NIL)
   }
@@ -457,7 +456,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Seeks the animation to the `seconds` point in time (in seconds). If `update` is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and `seconds` are skipped.
    */
-  public open fun seek(seconds: Double, update: Boolean = false): Unit {
+  public fun seek(seconds: Double, update: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to seconds, BOOL to update)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SEEK, NIL)
   }
@@ -465,7 +464,7 @@ public open class AnimationPlayer : Node() {
   /**
    * Shifts position in the animation timeline and immediately updates the animation. `delta` is the time in seconds to shift. Events between the current frame and `delta` are handled.
    */
-  public open fun advance(delta: Double): Unit {
+  public fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADVANCE, NIL)
   }

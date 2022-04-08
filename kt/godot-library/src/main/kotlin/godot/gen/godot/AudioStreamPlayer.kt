@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The [godot.AudioStream] object to be played.
    */
-  public open var stream: AudioStream?
+  public var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM,
@@ -58,7 +58,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Volume of sound, in dB.
    */
-  public open var volumeDb: Double
+  public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_VOLUME_DB,
@@ -74,7 +74,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
    */
-  public open var pitchScale: Double
+  public var pitchScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PITCH_SCALE,
@@ -90,7 +90,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If `true`, audio is playing.
    */
-  public open val playing: Boolean
+  public val playing: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_IS_PLAYING,
@@ -101,7 +101,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If `true`, audio plays when added to scene tree.
    */
-  public open var autoplay: Boolean
+  public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -117,7 +117,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
    */
-  public open var streamPaused: Boolean
+  public var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants.
    */
-  public open var mixTarget: Long
+  public var mixTarget: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,
@@ -149,7 +149,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
    */
-  public open var maxPolyphony: Long
+  public var maxPolyphony: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -165,7 +165,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Bus on which this audio is playing.
    */
-  public open var bus: StringName
+  public var bus: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_BUS,
@@ -184,7 +184,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Plays the audio from the given `from_position`, in seconds.
    */
-  public open fun play(fromPosition: Double = 0.0): Unit {
+  public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_PLAY, NIL)
   }
@@ -192,7 +192,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Sets the position from which audio will be played, in seconds.
    */
-  public open fun seek(toPosition: Double): Unit {
+  public fun seek(toPosition: Double): Unit {
     TransferContext.writeArguments(DOUBLE to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SEEK, NIL)
   }
@@ -200,7 +200,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Stops the audio.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_STOP, NIL)
   }
@@ -208,7 +208,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Returns the position in the [godot.AudioStream] in seconds.
    */
-  public open fun getPlaybackPosition(): Double {
+  public fun getPlaybackPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PLAYBACK_POSITION, DOUBLE)
@@ -218,7 +218,7 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer].
    */
-  public open fun getStreamPlayback(): AudioStreamPlayback? {
+  public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM_PLAYBACK, OBJECT)

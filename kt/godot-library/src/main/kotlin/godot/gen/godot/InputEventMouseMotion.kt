@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
-  public open var tilt: Vector2
+  public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_TILT,
@@ -47,7 +47,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
    */
-  public open var pressure: Double
+  public var pressure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -65,7 +65,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    *
    * **Note:** Since [godot.InputEventMouseMotion] is only emitted when the mouse moves, the last event won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
    */
-  public open var relative: Vector2
+  public var relative: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -81,7 +81,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * The mouse velocity in pixels per second.
    */
-  public open var velocity: Vector2
+  public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

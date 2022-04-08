@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -127,7 +127,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
    */
-  public open var monitoring: Boolean
+  public var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORING, BOOL)
@@ -141,7 +141,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If `true`, other monitoring areas can detect this area.
    */
-  public open var monitorable: Boolean
+  public var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORABLE, BOOL)
@@ -155,7 +155,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The area's priority. Higher priority areas are processed first.
    */
-  public open var priority: Long
+  public var priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_PRIORITY, LONG)
@@ -169,7 +169,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var gravitySpaceOverride: Long
+  public var gravitySpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -185,7 +185,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If `true`, gravity is calculated from a point (set via [gravityPointCenter]). See also [gravitySpaceOverride].
    */
-  public open var gravityPoint: Boolean
+  public var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_GRAVITY_A_POINT, BOOL)
@@ -199,7 +199,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The falloff factor for point gravity. The greater the value, the faster gravity decreases with distance.
    */
-  public open var gravityPointDistanceScale: Double
+  public var gravityPointDistanceScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -215,7 +215,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
-  public open var gravityPointCenter: Vector2
+  public var gravityPointCenter: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT_CENTER,
@@ -231,7 +231,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity vector (not normalized).
    */
-  public open var gravityDirection: Vector2
+  public var gravityDirection: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_DIRECTION,
@@ -246,7 +246,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity intensity (in pixels per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction.
    */
-  public open var gravity: Double
+  public var gravity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY, DOUBLE)
@@ -260,7 +260,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var linearDampSpaceOverride: Long
+  public var linearDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -278,7 +278,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
-  public open var linearDamp: Double
+  public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP, DOUBLE)
@@ -292,7 +292,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var angularDampSpaceOverride: Long
+  public var angularDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -310,7 +310,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
-  public open var angularDamp: Double
+  public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP, DOUBLE)
@@ -324,7 +324,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If `true`, the area's audio bus overrides the default audio bus.
    */
-  public open var audioBusOverride: Boolean
+  public var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_OVERRIDING_AUDIO_BUS,
@@ -340,7 +340,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The name of the area's audio bus.
    */
-  public open var audioBusName: StringName
+  public var audioBusName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_AUDIO_BUS_NAME,
@@ -361,7 +361,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public open fun getOverlappingBodies(): VariantArray<Any?> {
+  public fun getOverlappingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_BODIES,
         ARRAY)
@@ -373,7 +373,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public open fun getOverlappingAreas(): VariantArray<Any?> {
+  public fun getOverlappingAreas(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_AREAS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -386,7 +386,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance. While TileMaps are not physics bodies themselves, they register their tiles with collision shapes as a virtual physics body.
    */
-  public open fun overlapsBody(body: Node): Boolean {
+  public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_BODY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -397,7 +397,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, the list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public open fun overlapsArea(area: Node): Boolean {
+  public fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_AREA, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

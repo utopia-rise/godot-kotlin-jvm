@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -129,7 +129,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
    */
-  public open var monitoring: Boolean
+  public var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORING, BOOL)
@@ -143,7 +143,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If `true`, other monitoring areas can detect this area.
    */
-  public open var monitorable: Boolean
+  public var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORABLE, BOOL)
@@ -157,7 +157,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The area's priority. Higher priority areas are processed first.
    */
-  public open var priority: Long
+  public var priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, LONG)
@@ -171,7 +171,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var gravitySpaceOverride: Long
+  public var gravitySpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If `true`, gravity is calculated from a point (set via [gravityPointCenter]). See also [gravitySpaceOverride].
    */
-  public open var gravityPoint: Boolean
+  public var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_GRAVITY_A_POINT, BOOL)
@@ -201,7 +201,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The falloff factor for point gravity. The greater the value, the faster gravity decreases with distance.
    */
-  public open var gravityPointDistanceScale: Double
+  public var gravityPointDistanceScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -217,7 +217,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
-  public open var gravityPointCenter: Vector3
+  public var gravityPointCenter: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_CENTER,
@@ -233,7 +233,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The area's gravity vector (not normalized).
    */
-  public open var gravityDirection: Vector3
+  public var gravityDirection: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_DIRECTION,
@@ -248,7 +248,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The area's gravity intensity (in meters per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction.
    */
-  public open var gravity: Double
+  public var gravity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY, DOUBLE)
@@ -262,7 +262,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var linearDampSpaceOverride: Long
+  public var linearDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -280,7 +280,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
-  public open var linearDamp: Double
+  public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP, DOUBLE)
@@ -294,7 +294,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  public open var angularDampSpaceOverride: Long
+  public var angularDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -312,7 +312,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
-  public open var angularDamp: Double
+  public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP, DOUBLE)
@@ -326,7 +326,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The magnitude of area-specific wind force.
    */
-  public open var windForceMagnitude: Double
+  public var windForceMagnitude: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_FORCE_MAGNITUDE,
@@ -342,7 +342,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The exponential rate at which wind force decreases with distance from its origin.
    */
-  public open var windAttenuationFactor: Double
+  public var windAttenuationFactor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -358,7 +358,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The [godot.Node3D] which is used to specify the the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [godot.Node3D]'s local transform, and its origin is the origin of the [godot.Node3D]'s local transform.
    */
-  public open var windSourcePath: NodePath
+  public var windSourcePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_SOURCE_PATH,
@@ -373,7 +373,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If `true`, the area's audio bus overrides the default audio bus.
    */
-  public open var audioBusOverride: Boolean
+  public var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_OVERRIDING_AUDIO_BUS,
@@ -389,7 +389,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The name of the area's audio bus.
    */
-  public open var audioBusName: StringName
+  public var audioBusName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_AUDIO_BUS_NAME,
@@ -404,7 +404,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * If `true`, the area applies reverb to its associated audio.
    */
-  public open var reverbBusEnable: Boolean
+  public var reverbBusEnable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_USING_REVERB_BUS, BOOL)
@@ -418,7 +418,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The reverb bus name to use for this area's associated audio.
    */
-  public open var reverbBusName: StringName
+  public var reverbBusName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS,
@@ -433,7 +433,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The degree to which this area applies reverb to its associated audio. Ranges from `0` to `1` with `0.1` precision.
    */
-  public open var reverbBusAmount: Double
+  public var reverbBusAmount: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_AMOUNT, DOUBLE)
@@ -447,7 +447,7 @@ public open class Area3D : CollisionObject3D() {
   /**
    * The degree to which this area's reverb is a uniform effect. Ranges from `0` to `1` with `0.1` precision.
    */
-  public open var reverbBusUniformity: Double
+  public var reverbBusUniformity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_UNIFORMITY,
@@ -468,7 +468,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public open fun getOverlappingBodies(): VariantArray<Any?> {
+  public fun getOverlappingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_BODIES,
         ARRAY)
@@ -480,7 +480,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  public open fun getOverlappingAreas(): VariantArray<Any?> {
+  public fun getOverlappingAreas(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_AREAS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -493,7 +493,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * The `body` argument can either be a [godot.PhysicsBody3D] or a [godot.GridMap] instance. While GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body.
    */
-  public open fun overlapsBody(body: Node): Boolean {
+  public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_BODY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -504,7 +504,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public open fun overlapsArea(area: Node): Boolean {
+  public fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_AREA, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

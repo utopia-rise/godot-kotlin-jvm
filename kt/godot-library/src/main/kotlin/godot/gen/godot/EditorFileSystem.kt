@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -59,7 +59,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Gets the root directory object.
    */
-  public open fun getFilesystem(): EditorFileSystemDirectory? {
+  public fun getFilesystem(): EditorFileSystemDirectory? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
         OBJECT)
@@ -69,7 +69,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Returns `true` of the filesystem is being scanned.
    */
-  public open fun isScanning(): Boolean {
+  public fun isScanning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -78,7 +78,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Returns the scan progress for 0 to 1 if the FS is being scanned.
    */
-  public open fun getScanningProgress(): Double {
+  public fun getScanningProgress(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
@@ -88,7 +88,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Scan the filesystem for changes.
    */
-  public open fun scan(): Unit {
+  public fun scan(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN, NIL)
   }
@@ -96,7 +96,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Check if the source of any imported resource changed.
    */
-  public open fun scanSources(): Unit {
+  public fun scanSources(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN_SOURCES, NIL)
   }
@@ -104,7 +104,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Update a file information. Call this if an external program (not Godot) modified the file.
    */
-  public open fun updateFile(path: String): Unit {
+  public fun updateFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_FILE, NIL)
   }
@@ -112,7 +112,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Returns a view into the filesystem at `path`.
    */
-  public open fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
+  public fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
@@ -122,7 +122,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
    */
-  public open fun getFileType(path: String): String {
+  public fun getFileType(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
         STRING)
@@ -132,7 +132,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   /**
    * Scans the script files and updates the list of custom class names.
    */
-  public open fun updateScriptClasses(): Unit {
+  public fun updateScriptClasses(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)

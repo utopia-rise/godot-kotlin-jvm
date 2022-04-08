@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class StreamPeerTCP : StreamPeer() {
    *
    * This method is generally not needed, and only used to force the subsequent call to [connectToHost] to use the specified `host` and `port` as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
    */
-  public open fun bind(port: Long, host: String = "*"): GodotError {
+  public fun bind(port: Long, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -49,7 +49,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK] on success.
    */
-  public open fun connectToHost(host: String, port: Long): GodotError {
+  public fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -58,7 +58,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns `true` if this peer is currently connected or is connecting to a host, `false` otherwise.
    */
-  public open fun isConnectedToHost(): Boolean {
+  public fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
         BOOL)
@@ -68,7 +68,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the status of the connection, see [enum Status].
    */
-  public open fun getStatus(): StreamPeerTCP.Status {
+  public fun getStatus(): StreamPeerTCP.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
     return StreamPeerTCP.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -77,7 +77,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the IP of this peer.
    */
-  public open fun getConnectedHost(): String {
+  public fun getConnectedHost(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
         STRING)
@@ -87,7 +87,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the port of this peer.
    */
-  public open fun getConnectedPort(): Long {
+  public fun getConnectedPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
         LONG)
@@ -97,7 +97,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the local port to which this peer is bound.
    */
-  public open fun getLocalPort(): Long {
+  public fun getLocalPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_LOCAL_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -106,7 +106,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public open fun disconnectFromHost(): Unit {
+  public fun disconnectFromHost(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_DISCONNECT_FROM_HOST,
         NIL)
@@ -117,7 +117,7 @@ public open class StreamPeerTCP : StreamPeer() {
    *
    * **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
-  public open fun setNoDelay(enabled: Boolean): Unit {
+  public fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_SET_NO_DELAY, NIL)
   }

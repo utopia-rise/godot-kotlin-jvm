@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -122,7 +122,7 @@ public open class File : RefCounted() {
    *
    * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [bigEndian] *after* opening the file, not before.
    */
-  public open var bigEndian: Boolean
+  public var bigEndian: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_BIG_ENDIAN, BOOL)
@@ -142,7 +142,7 @@ public open class File : RefCounted() {
    *
    * **Note:** The provided key must be 32 bytes long.
    */
-  public open fun openEncrypted(
+  public fun openEncrypted(
     path: String,
     modeFlags: File.ModeFlags,
     key: PackedByteArray
@@ -155,7 +155,7 @@ public open class File : RefCounted() {
   /**
    * Opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.
    */
-  public open fun openEncryptedWithPass(
+  public fun openEncryptedWithPass(
     path: String,
     modeFlags: File.ModeFlags,
     pass: String
@@ -170,7 +170,7 @@ public open class File : RefCounted() {
    *
    * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party compression formats. See [godot.GitHub issue #28999](https://github.com/godotengine/godot/issues/28999) for a workaround.
    */
-  public open fun openCompressed(
+  public fun openCompressed(
     path: String,
     modeFlags: File.ModeFlags,
     compressionMode: File.CompressionMode = File.CompressionMode.COMPRESSION_FASTLZ
@@ -183,7 +183,7 @@ public open class File : RefCounted() {
   /**
    * Opens the file for writing or reading, depending on the flags.
    */
-  public open fun `open`(path: String, flags: File.ModeFlags): GodotError {
+  public fun `open`(path: String, flags: File.ModeFlags): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to flags.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -194,7 +194,7 @@ public open class File : RefCounted() {
    *
    * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
    */
-  public open fun flush(): Unit {
+  public fun flush(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_FLUSH, NIL)
   }
@@ -202,7 +202,7 @@ public open class File : RefCounted() {
   /**
    * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to persist the data to disk without closing the file.
    */
-  public open fun close(): Unit {
+  public fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_CLOSE, NIL)
   }
@@ -210,7 +210,7 @@ public open class File : RefCounted() {
   /**
    * Returns the path as a [godot.String] for the current open file.
    */
-  public open fun getPath(): String {
+  public fun getPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -219,7 +219,7 @@ public open class File : RefCounted() {
   /**
    * Returns the absolute path as a [godot.String] for the current open file.
    */
-  public open fun getPathAbsolute(): String {
+  public fun getPathAbsolute(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH_ABSOLUTE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -228,7 +228,7 @@ public open class File : RefCounted() {
   /**
    * Returns `true` if the file is currently opened.
    */
-  public open fun isOpen(): Boolean {
+  public fun isOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_OPEN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -237,7 +237,7 @@ public open class File : RefCounted() {
   /**
    * Changes the file reading/writing cursor to the specified position (in bytes from the beginning of the file).
    */
-  public open fun seek(position: Long): Unit {
+  public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK, NIL)
   }
@@ -247,7 +247,7 @@ public open class File : RefCounted() {
    *
    * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the end of the file.
    */
-  public open fun seekEnd(position: Long = 0): Unit {
+  public fun seekEnd(position: Long = 0): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK_END, NIL)
   }
@@ -255,7 +255,7 @@ public open class File : RefCounted() {
   /**
    * Returns the file cursor's position.
    */
-  public open fun getPosition(): Long {
+  public fun getPosition(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -264,7 +264,7 @@ public open class File : RefCounted() {
   /**
    * Returns the size of the file in bytes.
    */
-  public open fun getLength(): Long {
+  public fun getLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LENGTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -299,7 +299,7 @@ public open class File : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun eofReached(): Boolean {
+  public fun eofReached(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_EOF_REACHED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -308,7 +308,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 8 bits from the file as an integer. See [store8] for details on what values can be stored and retrieved this way.
    */
-  public open fun get8(): Long {
+  public fun get8(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_8, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -317,7 +317,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
    */
-  public open fun get16(): Long {
+  public fun get16(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_16, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -326,7 +326,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 32 bits from the file as an integer. See [store32] for details on what values can be stored and retrieved this way.
    */
-  public open fun get32(): Long {
+  public fun get32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_32, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -335,7 +335,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 64 bits from the file as an integer. See [store64] for details on what values can be stored and retrieved this way.
    */
-  public open fun get64(): Long {
+  public fun get64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_64, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -344,7 +344,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 32 bits from the file as a floating-point number.
    */
-  public open fun getFloat(): Double {
+  public fun getFloat(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_FLOAT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -353,7 +353,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next 64 bits from the file as a floating-point number.
    */
-  public open fun getDouble(): Double {
+  public fun getDouble(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_DOUBLE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -362,7 +362,7 @@ public open class File : RefCounted() {
   /**
    * Returns the next bits from the file as a floating-point number.
    */
-  public open fun getReal(): Double {
+  public fun getReal(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_REAL, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -371,7 +371,7 @@ public open class File : RefCounted() {
   /**
    * Returns next `length` bytes of the file as a [godot.PackedByteArray].
    */
-  public open fun getBuffer(length: Long): PackedByteArray {
+  public fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_BUFFER, PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
@@ -382,7 +382,7 @@ public open class File : RefCounted() {
    *
    * Text is interpreted as being UTF-8 encoded.
    */
-  public open fun getLine(): String {
+  public fun getLine(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LINE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -403,7 +403,7 @@ public open class File : RefCounted() {
    *
    * Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it *could* very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.
    */
-  public open fun getCsvLine(delim: String = ","): PackedStringArray {
+  public fun getCsvLine(delim: String = ","): PackedStringArray {
     TransferContext.writeArguments(STRING to delim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_CSV_LINE,
         PACKED_STRING_ARRAY)
@@ -415,7 +415,7 @@ public open class File : RefCounted() {
    *
    * Text is interpreted as being UTF-8 encoded.
    */
-  public open fun getAsText(): String {
+  public fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_AS_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -424,7 +424,7 @@ public open class File : RefCounted() {
   /**
    * Returns an MD5 String representing the file at the given path or an empty [godot.String] on failure.
    */
-  public open fun getMd5(path: String): String {
+  public fun getMd5(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MD5, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -433,7 +433,7 @@ public open class File : RefCounted() {
   /**
    * Returns a SHA-256 [godot.String] representing the file at the given path or an empty [godot.String] on failure.
    */
-  public open fun getSha256(path: String): String {
+  public fun getSha256(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_SHA256, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -442,7 +442,7 @@ public open class File : RefCounted() {
   /**
    * Returns the last error that happened when trying to perform operations. Compare with the `ERR_FILE_*` constants from [enum Error].
    */
-  public open fun getError(): GodotError {
+  public fun getError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_ERROR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -453,7 +453,7 @@ public open class File : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
-  public open fun getVar(allowObjects: Boolean = false): Any? {
+  public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_VAR, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -466,7 +466,7 @@ public open class File : RefCounted() {
    *
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
-  public open fun store8(`value`: Long): Unit {
+  public fun store8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_8, NIL)
   }
@@ -546,7 +546,7 @@ public open class File : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun store16(`value`: Long): Unit {
+  public fun store16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_16, NIL)
   }
@@ -558,7 +558,7 @@ public open class File : RefCounted() {
    *
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
-  public open fun store32(`value`: Long): Unit {
+  public fun store32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_32, NIL)
   }
@@ -568,7 +568,7 @@ public open class File : RefCounted() {
    *
    * **Note:** The `value` must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int] value).
    */
-  public open fun store64(`value`: Long): Unit {
+  public fun store64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_64, NIL)
   }
@@ -576,7 +576,7 @@ public open class File : RefCounted() {
   /**
    * Stores a floating-point number as 32 bits in the file.
    */
-  public open fun storeFloat(`value`: Double): Unit {
+  public fun storeFloat(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_FLOAT, NIL)
   }
@@ -584,7 +584,7 @@ public open class File : RefCounted() {
   /**
    * Stores a floating-point number as 64 bits in the file.
    */
-  public open fun storeDouble(`value`: Double): Unit {
+  public fun storeDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_DOUBLE, NIL)
   }
@@ -592,7 +592,7 @@ public open class File : RefCounted() {
   /**
    * Stores a floating-point number in the file.
    */
-  public open fun storeReal(`value`: Double): Unit {
+  public fun storeReal(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_REAL, NIL)
   }
@@ -600,7 +600,7 @@ public open class File : RefCounted() {
   /**
    * Stores the given array of bytes in the file.
    */
-  public open fun storeBuffer(buffer: PackedByteArray): Unit {
+  public fun storeBuffer(buffer: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_BUFFER, NIL)
   }
@@ -608,7 +608,7 @@ public open class File : RefCounted() {
   /**
    * Appends `line` to the file followed by a line return character (`\n`), encoding the text as UTF-8.
    */
-  public open fun storeLine(line: String): Unit {
+  public fun storeLine(line: String): Unit {
     TransferContext.writeArguments(STRING to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_LINE, NIL)
   }
@@ -618,7 +618,7 @@ public open class File : RefCounted() {
    *
    * Text will be encoded as UTF-8.
    */
-  public open fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
+  public fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_CSV_LINE, NIL)
   }
@@ -628,7 +628,7 @@ public open class File : RefCounted() {
    *
    * **Note:** This method is intended to be used to write text files. The string is stored as a UTF-8 encoded buffer without string length or terminating zero, which means that it can't be loaded back easily. If you want to store a retrievable string in a binary file, consider using [storePascalString] instead. For retrieving strings from a text file, you can use `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
    */
-  public open fun storeString(string: String): Unit {
+  public fun storeString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_STRING, NIL)
   }
@@ -638,7 +638,7 @@ public open class File : RefCounted() {
    *
    * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
    */
-  public open fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
+  public fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_VAR, NIL)
   }
@@ -648,7 +648,7 @@ public open class File : RefCounted() {
    *
    * Text will be encoded as UTF-8.
    */
-  public open fun storePascalString(string: String): Unit {
+  public fun storePascalString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_PASCAL_STRING, NIL)
   }
@@ -658,7 +658,7 @@ public open class File : RefCounted() {
    *
    * Text is interpreted as being UTF-8 encoded.
    */
-  public open fun getPascalString(): String {
+  public fun getPascalString(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PASCAL_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -667,7 +667,7 @@ public open class File : RefCounted() {
   /**
    * Returns the last time the `file` was modified in Unix timestamp format or returns a [godot.String] "ERROR IN `file`". This Unix timestamp can be converted to another format using the [godot.Time] singleton.
    */
-  public open fun getModifiedTime(`file`: String): Long {
+  public fun getModifiedTime(`file`: String): Long {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MODIFIED_TIME, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun setBindCount(bindCount: Long): Unit {
+  public fun setBindCount(bindCount: Long): Unit {
     TransferContext.writeArguments(LONG to bindCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_COUNT, NIL)
   }
@@ -40,7 +40,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun getBindCount(): Long {
+  public fun getBindCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -49,7 +49,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun addBind(bone: Long, pose: Transform3D): Unit {
+  public fun addBind(bone: Long, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bone, TRANSFORM3D to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_BIND, NIL)
   }
@@ -57,7 +57,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun addNamedBind(name: String, pose: Transform3D): Unit {
+  public fun addNamedBind(name: String, pose: Transform3D): Unit {
     TransferContext.writeArguments(STRING to name, TRANSFORM3D to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_NAMED_BIND, NIL)
   }
@@ -65,7 +65,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun setBindPose(bindIndex: Long, pose: Transform3D): Unit {
+  public fun setBindPose(bindIndex: Long, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bindIndex, TRANSFORM3D to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL)
   }
@@ -73,7 +73,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun getBindPose(bindIndex: Long): Transform3D {
+  public fun getBindPose(bindIndex: Long): Transform3D {
     TransferContext.writeArguments(LONG to bindIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_POSE, TRANSFORM3D)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
@@ -82,7 +82,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun setBindName(bindIndex: Long, name: StringName): Unit {
+  public fun setBindName(bindIndex: Long, name: StringName): Unit {
     TransferContext.writeArguments(LONG to bindIndex, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_NAME, NIL)
   }
@@ -90,7 +90,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun getBindName(bindIndex: Long): StringName {
+  public fun getBindName(bindIndex: Long): StringName {
     TransferContext.writeArguments(LONG to bindIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_NAME, STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
@@ -99,7 +99,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun setBindBone(bindIndex: Long, bone: Long): Unit {
+  public fun setBindBone(bindIndex: Long, bone: Long): Unit {
     TransferContext.writeArguments(LONG to bindIndex, LONG to bone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_BONE, NIL)
   }
@@ -107,7 +107,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun getBindBone(bindIndex: Long): Long {
+  public fun getBindBone(bindIndex: Long): Long {
     TransferContext.writeArguments(LONG to bindIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_BONE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -116,7 +116,7 @@ public open class Skin : Resource() {
   /**
    *
    */
-  public open fun clearBinds(): Unit {
+  public fun clearBinds(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_CLEAR_BINDS, NIL)
   }

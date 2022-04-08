@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class LinkButton : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  public open var text: String
+  public var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_TEXT, STRING)
@@ -45,7 +45,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Base text writing direction.
    */
-  public open var textDirection: Long
+  public var textDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_TEXT_DIRECTION,
@@ -61,7 +61,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open var language: String
+  public var language: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_LANGUAGE, STRING)
@@ -75,7 +75,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Determines when to show the underline. See [enum UnderlineMode] for options.
    */
-  public open var underline: Long
+  public var underline: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_UNDERLINE_MODE,
@@ -91,7 +91,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public open var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -107,7 +107,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Set additional options for BiDi override.
    */
-  public open var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -127,7 +127,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public open fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_OPENTYPE_FEATURE,
         NIL)
@@ -136,7 +136,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Returns OpenType feature `tag`.
    */
-  public open fun getOpentypeFeature(tag: String): Long {
+  public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_OPENTYPE_FEATURE,
         LONG)
@@ -146,7 +146,7 @@ public open class LinkButton : BaseButton() {
   /**
    * Removes all OpenType features.
    */
-  public open fun clearOpentypeFeatures(): Unit {
+  public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_CLEAR_OPENTYPE_FEATURES,
         NIL)

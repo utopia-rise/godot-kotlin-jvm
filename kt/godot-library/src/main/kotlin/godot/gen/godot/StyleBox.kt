@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,28 +42,28 @@ public open class StyleBox : Resource() {
    *
    */
   public open fun _getStyleMargin(side: Side): Double {
-    throw NotImplementedError("_get_style_margin·is·not·implemented·for·StyleBox")
+    throw NotImplementedError("_get_style_margin is not implemented for StyleBox")
   }
 
   /**
    *
    */
   public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
-    throw NotImplementedError("_test_mask·is·not·implemented·for·StyleBox")
+    throw NotImplementedError("_test_mask is not implemented for StyleBox")
   }
 
   /**
    *
    */
   public open fun _getCenterSize(): Vector2 {
-    throw NotImplementedError("_get_center_size·is·not·implemented·for·StyleBox")
+    throw NotImplementedError("_get_center_size is not implemented for StyleBox")
   }
 
   /**
    *
    */
   public open fun _getDrawRect(rect: Rect2): Rect2 {
-    throw NotImplementedError("_get_draw_rect·is·not·implemented·for·StyleBox")
+    throw NotImplementedError("_get_draw_rect is not implemented for StyleBox")
   }
 
   /**
@@ -75,7 +75,7 @@ public open class StyleBox : Resource() {
   /**
    * Test a position in a rectangle, return whether it passes the mask test.
    */
-  public open fun testMask(point: Vector2, rect: Rect2): Boolean {
+  public fun testMask(point: Vector2, rect: Rect2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -84,7 +84,7 @@ public open class StyleBox : Resource() {
   /**
    * Sets the default value of the specified [enum Side] to `offset` pixels.
    */
-  public open fun setDefaultMargin(margin: Side, offset: Double): Unit {
+  public fun setDefaultMargin(margin: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN, NIL)
   }
@@ -92,7 +92,7 @@ public open class StyleBox : Resource() {
   /**
    * Returns the default margin of the specified [enum Side].
    */
-  public open fun getDefaultMargin(margin: Side): Double {
+  public fun getDefaultMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_DEFAULT_MARGIN, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -103,7 +103,7 @@ public open class StyleBox : Resource() {
    *
    * Positive values reduce size inwards, unlike [godot.Control]'s margin values.
    */
-  public open fun getMargin(margin: Side): Double {
+  public fun getMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MARGIN, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -112,7 +112,7 @@ public open class StyleBox : Resource() {
   /**
    * Returns the minimum size that this stylebox can be shrunk to.
    */
-  public open fun getMinimumSize(): Vector2 {
+  public fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -121,7 +121,7 @@ public open class StyleBox : Resource() {
   /**
    * Returns the size of this [godot.StyleBox] without the margins.
    */
-  public open fun getCenterSize(): Vector2 {
+  public fun getCenterSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CENTER_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -130,7 +130,7 @@ public open class StyleBox : Resource() {
   /**
    * Returns the "offset" of a stylebox. This helper function returns a value equivalent to `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
-  public open fun getOffset(): Vector2 {
+  public fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_OFFSET, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -139,7 +139,7 @@ public open class StyleBox : Resource() {
   /**
    * Returns the [godot.CanvasItem] that handles its [godot.CanvasItem.NOTIFICATION_DRAW] or [godot.CanvasItem.Draw] callback at this moment.
    */
-  public open fun getCurrentItemDrawn(): CanvasItem? {
+  public fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CURRENT_ITEM_DRAWN,
         OBJECT)
@@ -151,7 +151,7 @@ public open class StyleBox : Resource() {
    *
    * You can get a [RID] value using [godot.Object.getInstanceId] on a [godot.CanvasItem]-derived node.
    */
-  public open fun draw(canvasItem: RID, rect: Rect2): Unit {
+  public fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL)
   }

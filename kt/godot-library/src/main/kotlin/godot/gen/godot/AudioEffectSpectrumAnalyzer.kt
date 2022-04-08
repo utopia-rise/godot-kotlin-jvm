@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
    * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but require more memory.
    */
-  public open var bufferLength: Double
+  public var bufferLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
    *
    */
-  public open var tapBackPos: Double
+  public var tapBackPos: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
    * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes.
    */
-  public open var fftSize: Long
+  public var fftSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class Sky : Resource() {
   /**
    * [godot.Material] used to draw the background. Can be [godot.PanoramaSkyMaterial], [godot.ProceduralSkyMaterial], [godot.PhysicalSkyMaterial], or even a [godot.ShaderMaterial] if you want to use your own custom shader.
    */
-  public open var skyMaterial: Material?
+  public var skyMaterial: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_MATERIAL, OBJECT)
@@ -39,7 +39,7 @@ public open class Sky : Resource() {
   /**
    * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options.
    */
-  public open var processMode: Long
+  public var processMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
@@ -57,7 +57,7 @@ public open class Sky : Resource() {
    *
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially [godot.RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
-  public open var radianceSize: Long
+  public var radianceSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)

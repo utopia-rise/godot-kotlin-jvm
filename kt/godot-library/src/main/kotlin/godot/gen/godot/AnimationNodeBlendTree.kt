@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * The global offset of all sub-nodes.
    */
-  public open var graphOffset: Vector2
+  public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -56,7 +56,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Adds an [godot.AnimationNode] at the given `position`. The `name` is used to identify the created sub-node later.
    */
-  public open fun addNode(
+  public fun addNode(
     name: StringName,
     node: AnimationNode,
     position: Vector2 = Vector2(0.0, 0.0)
@@ -69,7 +69,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the sub-node with the specified `name`.
    */
-  public open fun getNode(name: StringName): AnimationNode? {
+  public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE,
         OBJECT)
@@ -79,7 +79,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub-node.
    */
-  public open fun removeNode(name: StringName): Unit {
+  public fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_REMOVE_NODE,
         NIL)
@@ -88,7 +88,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Changes the name of a sub-node.
    */
-  public open fun renameNode(name: StringName, newName: StringName): Unit {
+  public fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_RENAME_NODE,
         NIL)
@@ -97,7 +97,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns `true` if a sub-node with specified `name` exists.
    */
-  public open fun hasNode(name: StringName): Boolean {
+  public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_HAS_NODE,
         BOOL)
@@ -107,7 +107,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Connects the output of an [godot.AnimationNode] as input for another [godot.AnimationNode], at the input port specified by `input_index`.
    */
-  public open fun connectNode(
+  public fun connectNode(
     inputNode: StringName,
     inputIndex: Long,
     outputNode: StringName
@@ -120,7 +120,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Disconnects the node connected to the specified input.
    */
-  public open fun disconnectNode(inputNode: StringName, inputIndex: Long): Unit {
+  public fun disconnectNode(inputNode: StringName, inputIndex: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_DISCONNECT_NODE, NIL)
@@ -129,7 +129,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Modifies the position of a sub-node.
    */
-  public open fun setNodePosition(name: StringName, position: Vector2): Unit {
+  public fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_NODE_POSITION, NIL)
@@ -138,7 +138,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the position of the sub-node with the specified `name`.
    */
-  public open fun getNodePosition(name: StringName): Vector2 {
+  public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE_POSITION, VECTOR2)

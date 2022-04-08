@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,21 +45,21 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if the server supports a feature.
    */
   public open fun _hasFeature(feature: TextServer.Feature): Boolean {
-    throw NotImplementedError("has_feature·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("has_feature is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the name of the server interface.
    */
   public open fun _getName(): String {
-    throw NotImplementedError("get_name·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("get_name is not implemented for TextServerExtension")
   }
 
   /**
    * Returns text server features, see [enum TextServer.Feature].
    */
   public open fun _getFeatures(): Long {
-    throw NotImplementedError("get_features·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("get_features is not implemented for TextServerExtension")
   }
 
   /**
@@ -72,28 +72,28 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if `rid` is valid resource owned by this text server.
    */
   public open fun _has(rid: RID): Boolean {
-    throw NotImplementedError("has·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("has is not implemented for TextServerExtension")
   }
 
   /**
    * Loads optional TextServer database (e.g. ICU break iterators and dictionaries).
    */
   public open fun _loadSupportData(filename: String): Boolean {
-    throw NotImplementedError("load_support_data·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("load_support_data is not implemented for TextServerExtension")
   }
 
   /**
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename.
    */
   public open fun _getSupportDataFilename(): String {
-    throw NotImplementedError("get_support_data_filename·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("get_support_data_filename is not implemented for TextServerExtension")
   }
 
   /**
    * Returns TextServer database (e.g. ICU break iterators and dictionaries) description.
    */
   public open fun _getSupportDataInfo(): String {
-    throw NotImplementedError("get_support_data_info·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("get_support_data_info is not implemented for TextServerExtension")
   }
 
   /**
@@ -102,35 +102,35 @@ public open class TextServerExtension : TextServer() {
    * **Note:** This function is used by during project export, to include TextServer database.
    */
   public open fun _saveSupportData(filename: String): Boolean {
-    throw NotImplementedError("save_support_data·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("save_support_data is not implemented for TextServerExtension")
   }
 
   /**
    * Returns `true` if locale is right-to-left.
    */
   public open fun _isLocaleRightToLeft(locale: String): Boolean {
-    throw NotImplementedError("is_locale_right_to_left·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("is_locale_right_to_left is not implemented for TextServerExtension")
   }
 
   /**
    * Converts readable feature, variation, script or language name to OpenType tag.
    */
   public open fun _nameToTag(name: String): Long {
-    throw NotImplementedError("name_to_tag·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("name_to_tag is not implemented for TextServerExtension")
   }
 
   /**
    * Converts OpenType tag to readable feature, variation, script or language name.
    */
   public open fun _tagToName(tag: Long): String {
-    throw NotImplementedError("tag_to_name·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("tag_to_name is not implemented for TextServerExtension")
   }
 
   /**
    * Creates new, empty font cache entry resource. To free the resulting resourec, use [freeRid] method.
    */
   public open fun _createFont(): RID {
-    throw NotImplementedError("create_font·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("create_font is not implemented for TextServerExtension")
   }
 
   /**
@@ -149,7 +149,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font style flags, see [enum TextServer.FontStyle].
    */
   public open fun _fontGetStyle(fontRid: RID): Long {
-    throw NotImplementedError("font_get_style·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_style is not implemented for TextServerExtension")
   }
 
   /**
@@ -162,7 +162,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font family name.
    */
   public open fun _fontGetName(fontRid: RID): String {
-    throw NotImplementedError("font_get_name·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_name is not implemented for TextServerExtension")
   }
 
   /**
@@ -175,7 +175,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font style name.
    */
   public open fun _fontGetStyleName(fontRid: RID): String {
-    throw NotImplementedError("font_get_style_name·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_style_name is not implemented for TextServerExtension")
   }
 
   /**
@@ -188,7 +188,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if font 8-bit anitialiased glyph rendering is supported and enabled.
    */
   public open fun _fontIsAntialiased(fontRid: RID): Boolean {
-    throw NotImplementedError("font_is_antialiased·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_is_antialiased is not implemented for TextServerExtension")
   }
 
   /**
@@ -203,7 +203,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
    */
   public open fun _fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
-    throw NotImplementedError("font_is_multichannel_signed_distance_field·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_is_multichannel_signed_distance_field is not implemented for TextServerExtension")
   }
 
   /**
@@ -216,7 +216,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the width of the range around the shape between the minimum and maximum representable signed distance.
    */
   public open fun _fontGetMsdfPixelRange(fontRid: RID): Long {
-    throw NotImplementedError("font_get_msdf_pixel_range·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_msdf_pixel_range is not implemented for TextServerExtension")
   }
 
   /**
@@ -229,7 +229,7 @@ public open class TextServerExtension : TextServer() {
    * Returns source font size used to generate MSDF textures.
    */
   public open fun _fontGetMsdfSize(fontRid: RID): Long {
-    throw NotImplementedError("font_get_msdf_size·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_msdf_size is not implemented for TextServerExtension")
   }
 
   /**
@@ -242,7 +242,7 @@ public open class TextServerExtension : TextServer() {
    * Returns bitmap font fixed size.
    */
   public open fun _fontGetFixedSize(fontRid: RID): Long {
-    throw NotImplementedError("font_get_fixed_size·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_fixed_size is not implemented for TextServerExtension")
   }
 
   /**
@@ -255,7 +255,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only.
    */
   public open fun _fontIsForceAutohinter(fontRid: RID): Boolean {
-    throw NotImplementedError("font_is_force_autohinter·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_is_force_autohinter is not implemented for TextServerExtension")
   }
 
   /**
@@ -268,7 +268,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
   public open fun _fontGetHinting(fontRid: RID): TextServer.Hinting {
-    throw NotImplementedError("font_get_hinting·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_hinting is not implemented for TextServerExtension")
   }
 
   /**
@@ -282,7 +282,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font sub-pixel glyph positioning mode.
    */
   public open fun _fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
-    throw NotImplementedError("font_get_subpixel_positioning·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_subpixel_positioning is not implemented for TextServerExtension")
   }
 
   /**
@@ -295,7 +295,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font embolden strength.
    */
   public open fun _fontGetEmbolden(fontRid: RID): Double {
-    throw NotImplementedError("font_get_embolden·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_embolden is not implemented for TextServerExtension")
   }
 
   /**
@@ -310,7 +310,7 @@ public open class TextServerExtension : TextServer() {
    * Returns 2D transform applied to the font outlines.
    */
   public open fun _fontGetTransform(fontRid: RID): Transform2D {
-    throw NotImplementedError("font_get_transform·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_transform is not implemented for TextServerExtension")
   }
 
   /**
@@ -324,7 +324,7 @@ public open class TextServerExtension : TextServer() {
    * Returns variation coordinates for the specified font cache entry. See [fontSupportedVariationList] for more info.
    */
   public open fun _fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
-    throw NotImplementedError("font_get_variation_coordinates·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_variation_coordinates is not implemented for TextServerExtension")
   }
 
   /**
@@ -337,14 +337,14 @@ public open class TextServerExtension : TextServer() {
    * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
    */
   public open fun _fontGetOversampling(fontRid: RID): Double {
-    throw NotImplementedError("font_get_oversampling·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_oversampling is not implemented for TextServerExtension")
   }
 
   /**
    * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
    */
   public open fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Any?> {
-    throw NotImplementedError("font_get_size_cache_list·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_size_cache_list is not implemented for TextServerExtension")
   }
 
   /**
@@ -373,7 +373,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the font ascent (number of pixels above the baseline).
    */
   public open fun _fontGetAscent(fontRid: RID, size: Long): Double {
-    throw NotImplementedError("font_get_ascent·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_ascent is not implemented for TextServerExtension")
   }
 
   /**
@@ -390,7 +390,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the font descent (number of pixels below the baseline).
    */
   public open fun _fontGetDescent(fontRid: RID, size: Long): Double {
-    throw NotImplementedError("font_get_descent·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_descent is not implemented for TextServerExtension")
   }
 
   /**
@@ -407,7 +407,7 @@ public open class TextServerExtension : TextServer() {
    * Returns pixel offset of the underline below the baseline.
    */
   public open fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
-    throw NotImplementedError("font_get_underline_position·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_underline_position is not implemented for TextServerExtension")
   }
 
   /**
@@ -424,7 +424,7 @@ public open class TextServerExtension : TextServer() {
    * Returns thickness of the underline in pixels.
    */
   public open fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
-    throw NotImplementedError("font_get_underline_thickness·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_underline_thickness is not implemented for TextServerExtension")
   }
 
   /**
@@ -441,7 +441,7 @@ public open class TextServerExtension : TextServer() {
    * Returns scaling factor of the color bitmap font.
    */
   public open fun _fontGetScale(fontRid: RID, size: Long): Double {
-    throw NotImplementedError("font_get_scale·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_scale is not implemented for TextServerExtension")
   }
 
   /**
@@ -463,14 +463,14 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     spacing: TextServer.SpacingType
   ): Long {
-    throw NotImplementedError("font_get_spacing·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_spacing is not implemented for TextServerExtension")
   }
 
   /**
    * Returns number of textures used by font cache entry.
    */
   public open fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
-    throw NotImplementedError("font_get_texture_count·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_texture_count is not implemented for TextServerExtension")
   }
 
   /**
@@ -508,7 +508,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     textureIndex: Long
   ): Image? {
-    throw NotImplementedError("font_get_texture_image·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_texture_image is not implemented for TextServerExtension")
   }
 
   /**
@@ -530,14 +530,14 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     textureIndex: Long
   ): PackedInt32Array {
-    throw NotImplementedError("font_get_texture_offsets·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_texture_offsets is not implemented for TextServerExtension")
   }
 
   /**
    * Returns list of rendered glyphs in the cache entry.
    */
   public open fun _fontGetGlyphList(fontRid: RID, size: Vector2i): VariantArray<Any?> {
-    throw NotImplementedError("font_get_glyph_list·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_list is not implemented for TextServerExtension")
   }
 
   /**
@@ -564,7 +564,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     glyph: Long
   ): Vector2 {
-    throw NotImplementedError("font_get_glyph_advance·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_advance is not implemented for TextServerExtension")
   }
 
   /**
@@ -586,7 +586,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long
   ): Vector2 {
-    throw NotImplementedError("font_get_glyph_offset·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_offset is not implemented for TextServerExtension")
   }
 
   /**
@@ -608,7 +608,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long
   ): Vector2 {
-    throw NotImplementedError("font_get_glyph_size·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_size is not implemented for TextServerExtension")
   }
 
   /**
@@ -630,7 +630,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long
   ): Rect2 {
-    throw NotImplementedError("font_get_glyph_uv_rect·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_uv_rect is not implemented for TextServerExtension")
   }
 
   /**
@@ -652,7 +652,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long
   ): Long {
-    throw NotImplementedError("font_get_glyph_texture_idx·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_texture_idx is not implemented for TextServerExtension")
   }
 
   /**
@@ -680,14 +680,14 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     index: Long
   ): Dictionary<Any?, Any?> {
-    throw NotImplementedError("font_get_glyph_contours·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_contours is not implemented for TextServerExtension")
   }
 
   /**
    * Returns list of the kerning overrides.
    */
   public open fun _fontGetKerningList(fontRid: RID, size: Long): VariantArray<Any?> {
-    throw NotImplementedError("font_get_kerning_list·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_kerning_list is not implemented for TextServerExtension")
   }
 
   /**
@@ -725,7 +725,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     glyphPair: Vector2i
   ): Vector2 {
-    throw NotImplementedError("font_get_kerning·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_kerning is not implemented for TextServerExtension")
   }
 
   /**
@@ -737,21 +737,21 @@ public open class TextServerExtension : TextServer() {
     char: Long,
     variationSelector: Long
   ): Long {
-    throw NotImplementedError("font_get_glyph_index·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_glyph_index is not implemented for TextServerExtension")
   }
 
   /**
    * Returns `true` if a Unicode `char` is available in the font.
    */
   public open fun _fontHasChar(fontRid: RID, char: Long): Boolean {
-    throw NotImplementedError("font_has_char·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_has_char is not implemented for TextServerExtension")
   }
 
   /**
    * Returns a string containing all the characters available in the font.
    */
   public open fun _fontGetSupportedChars(fontRid: RID): String {
-    throw NotImplementedError("font_get_supported_chars·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_supported_chars is not implemented for TextServerExtension")
   }
 
   /**
@@ -806,7 +806,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true`, if font supports given language ([godot.ISO 639](https://en.wikipedia.org/wiki/ISO_639-1) code).
    */
   public open fun _fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
-    throw NotImplementedError("font_is_language_supported·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_is_language_supported is not implemented for TextServerExtension")
   }
 
   /**
@@ -823,7 +823,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if support override is enabled for the `language`.
    */
   public open fun _fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
-    throw NotImplementedError("font_get_language_support_override·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_language_support_override is not implemented for TextServerExtension")
   }
 
   /**
@@ -836,14 +836,14 @@ public open class TextServerExtension : TextServer() {
    * Returns list of language support overrides.
    */
   public open fun _fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
-    throw NotImplementedError("font_get_language_support_overrides·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_language_support_overrides is not implemented for TextServerExtension")
   }
 
   /**
    * Returns `true`, if font supports given script (ISO 15924 code).
    */
   public open fun _fontIsScriptSupported(fontRid: RID, script: String): Boolean {
-    throw NotImplementedError("font_is_script_supported·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_is_script_supported is not implemented for TextServerExtension")
   }
 
   /**
@@ -860,7 +860,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if support override is enabled for the `script`.
    */
   public open fun _fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
-    throw NotImplementedError("font_get_script_support_override·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_script_support_override is not implemented for TextServerExtension")
   }
 
   /**
@@ -873,7 +873,7 @@ public open class TextServerExtension : TextServer() {
    * Returns list of script support overrides.
    */
   public open fun _fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
-    throw NotImplementedError("font_get_script_support_overrides·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_script_support_overrides is not implemented for TextServerExtension")
   }
 
   /**
@@ -887,28 +887,28 @@ public open class TextServerExtension : TextServer() {
    * Returns font OpenType feature set override.
    */
   public open fun _fontGetOpentypeFeatureOverrides(fontRid: RID): Dictionary<Any?, Any?> {
-    throw NotImplementedError("font_get_opentype_feature_overrides·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_opentype_feature_overrides is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the dictionary of the supported OpenType features.
    */
   public open fun _fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
-    throw NotImplementedError("font_supported_feature_list·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_supported_feature_list is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the dictionary of the supported OpenType variation coordinates.
    */
   public open fun _fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
-    throw NotImplementedError("font_supported_variation_list·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_supported_variation_list is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the font oversampling factor, shared by all fonts in the TextServer.
    */
   public open fun _fontGetGlobalOversampling(): Double {
-    throw NotImplementedError("font_get_global_oversampling·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("font_get_global_oversampling is not implemented for TextServerExtension")
   }
 
   /**
@@ -925,7 +925,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _getHexCodeBoxSize(size: Long, index: Long): Vector2 {
-    throw NotImplementedError("get_hex_code_box_size·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("get_hex_code_box_size is not implemented for TextServerExtension")
   }
 
   /**
@@ -947,7 +947,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _createShapedText(direction: TextServer.Direction,
       orientation: TextServer.Orientation): RID {
-    throw NotImplementedError("create_shaped_text·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("create_shaped_text is not implemented for TextServerExtension")
   }
 
   /**
@@ -966,14 +966,14 @@ public open class TextServerExtension : TextServer() {
    * Returns direction of the text.
    */
   public open fun _shapedTextGetDirection(shaped: RID): TextServer.Direction {
-    throw NotImplementedError("shaped_text_get_direction·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_direction is not implemented for TextServerExtension")
   }
 
   /**
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
   public open fun _shapedTextGetInferredDirection(shaped: RID): TextServer.Direction {
-    throw NotImplementedError("shaped_text_get_inferred_direction·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_inferred_direction is not implemented for TextServerExtension")
   }
 
   /**
@@ -994,7 +994,7 @@ public open class TextServerExtension : TextServer() {
    * Returns custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
    */
   public open fun _shapedTextGetCustomPunctuation(shaped: RID): String {
-    throw NotImplementedError("shaped_text_get_custom_punctuation·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_custom_punctuation is not implemented for TextServerExtension")
   }
 
   /**
@@ -1008,7 +1008,7 @@ public open class TextServerExtension : TextServer() {
    * eturns text orientation.
    */
   public open fun _shapedTextGetOrientation(shaped: RID): TextServer.Orientation {
-    throw NotImplementedError("shaped_text_get_orientation·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_orientation is not implemented for TextServerExtension")
   }
 
   /**
@@ -1023,7 +1023,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If set to `false`, nothing is displayed in place of invalid characters.
    */
   public open fun _shapedTextGetPreserveInvalid(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_get_preserve_invalid·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_preserve_invalid is not implemented for TextServerExtension")
   }
 
   /**
@@ -1036,7 +1036,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if text buffer is configured to display control characters.
    */
   public open fun _shapedTextGetPreserveControl(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_get_preserve_control·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_preserve_control is not implemented for TextServerExtension")
   }
 
   /**
@@ -1051,7 +1051,7 @@ public open class TextServerExtension : TextServer() {
     language: String,
     meta: Any
   ): Boolean {
-    throw NotImplementedError("shaped_text_add_string·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_add_string is not implemented for TextServerExtension")
   }
 
   /**
@@ -1064,7 +1064,7 @@ public open class TextServerExtension : TextServer() {
     inlineAlign: InlineAlignment,
     length: Long
   ): Boolean {
-    throw NotImplementedError("shaped_text_add_object·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_add_object is not implemented for TextServerExtension")
   }
 
   /**
@@ -1076,21 +1076,21 @@ public open class TextServerExtension : TextServer() {
     size: Vector2,
     inlineAlign: InlineAlignment
   ): Boolean {
-    throw NotImplementedError("shaped_text_resize_object·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_resize_object is not implemented for TextServerExtension")
   }
 
   /**
    * Returns number of text spans added using [shapedTextAddString] or [shapedTextAddObject].
    */
   public open fun _shapedGetSpanCount(shaped: RID): Long {
-    throw NotImplementedError("shaped_get_span_count·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_get_span_count is not implemented for TextServerExtension")
   }
 
   /**
    * Returns text span metadata.
    */
   public open fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
-    throw NotImplementedError("shaped_get_span_meta·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_get_span_meta is not implemented for TextServerExtension")
   }
 
   /**
@@ -1113,14 +1113,14 @@ public open class TextServerExtension : TextServer() {
     start: Long,
     length: Long
   ): RID {
-    throw NotImplementedError("shaped_text_substr·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_substr is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the parent buffer from which the substring originates.
    */
   public open fun _shapedTextGetParent(shaped: RID): RID {
-    throw NotImplementedError("shaped_text_get_parent·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_parent is not implemented for TextServerExtension")
   }
 
   /**
@@ -1131,21 +1131,21 @@ public open class TextServerExtension : TextServer() {
     width: Double,
     jstFlags: Long
   ): Double {
-    throw NotImplementedError("shaped_text_fit_to_width·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_fit_to_width is not implemented for TextServerExtension")
   }
 
   /**
    * Aligns shaped text to the given tab-stops.
    */
   public open fun _shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
-    throw NotImplementedError("shaped_text_tab_align·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_tab_align is not implemented for TextServerExtension")
   }
 
   /**
    * Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.
    */
   public open fun _shapedTextShape(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_shape·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_shape is not implemented for TextServerExtension")
   }
 
   /**
@@ -1154,7 +1154,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** This method is used by default line/word breaking methods, and its implementation might be omitted if custom line breaking in implemented.
    */
   public open fun _shapedTextUpdateBreaks(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_update_breaks·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_update_breaks is not implemented for TextServerExtension")
   }
 
   /**
@@ -1163,28 +1163,28 @@ public open class TextServerExtension : TextServer() {
    * **Note:** This method is used by default line/word breaking methods, and its implementation might be omitted if custom line breaking in implemented.
    */
   public open fun _shapedTextUpdateJustificationOps(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_update_justification_ops·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_update_justification_ops is not implemented for TextServerExtension")
   }
 
   /**
    * Returns `true` if buffer is successfully shaped.
    */
   public open fun _shapedTextIsReady(shaped: RID): Boolean {
-    throw NotImplementedError("shaped_text_is_ready·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_is_ready is not implemented for TextServerExtension")
   }
 
   /**
    * Returns number of glyphs in the buffer.
    */
   public open fun _shapedTextGetGlyphCount(shaped: RID): Long {
-    throw NotImplementedError("shaped_text_get_glyph_count·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_glyph_count is not implemented for TextServerExtension")
   }
 
   /**
    * Returns substring buffer character range in the parent buffer.
    */
   public open fun _shapedTextGetRange(shaped: RID): Vector2i {
-    throw NotImplementedError("shaped_text_get_range·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_range is not implemented for TextServerExtension")
   }
 
   /**
@@ -1199,7 +1199,7 @@ public open class TextServerExtension : TextServer() {
     once: Boolean,
     breakFlags: Long
   ): PackedInt32Array {
-    throw NotImplementedError("shaped_text_get_line_breaks_adv·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_line_breaks_adv is not implemented for TextServerExtension")
   }
 
   /**
@@ -1213,7 +1213,7 @@ public open class TextServerExtension : TextServer() {
     start: Long,
     breakFlags: Long
   ): PackedInt32Array {
-    throw NotImplementedError("shaped_text_get_line_breaks·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_line_breaks is not implemented for TextServerExtension")
   }
 
   /**
@@ -1222,28 +1222,28 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long): PackedInt32Array {
-    throw NotImplementedError("shaped_text_get_word_breaks·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_word_breaks is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the position of the overrun trim.
    */
   public open fun _shapedTextGetTrimPos(shaped: RID): Long {
-    throw NotImplementedError("shaped_text_get_trim_pos·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_trim_pos is not implemented for TextServerExtension")
   }
 
   /**
    * Returns position of the ellipsis.
    */
   public open fun _shapedTextGetEllipsisPos(shaped: RID): Long {
-    throw NotImplementedError("shaped_text_get_ellipsis_pos·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_ellipsis_pos is not implemented for TextServerExtension")
   }
 
   /**
    * Returns number of glyphs in the ellipsis.
    */
   public open fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
-    throw NotImplementedError("shaped_text_get_ellipsis_glyph_count·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_ellipsis_glyph_count is not implemented for TextServerExtension")
   }
 
   /**
@@ -1260,56 +1260,56 @@ public open class TextServerExtension : TextServer() {
    * Returns array of inline objects.
    */
   public open fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
-    throw NotImplementedError("shaped_text_get_objects·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_objects is not implemented for TextServerExtension")
   }
 
   /**
    * Returns bounding rectangle of the inline object.
    */
   public open fun _shapedTextGetObjectRect(shaped: RID, key: Any): Rect2 {
-    throw NotImplementedError("shaped_text_get_object_rect·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_object_rect is not implemented for TextServerExtension")
   }
 
   /**
    * Returns size of the text.
    */
   public open fun _shapedTextGetSize(shaped: RID): Vector2 {
-    throw NotImplementedError("shaped_text_get_size·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_size is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
    */
   public open fun _shapedTextGetAscent(shaped: RID): Double {
-    throw NotImplementedError("shaped_text_get_ascent·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_ascent is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
    */
   public open fun _shapedTextGetDescent(shaped: RID): Double {
-    throw NotImplementedError("shaped_text_get_descent·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_descent is not implemented for TextServerExtension")
   }
 
   /**
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
   public open fun _shapedTextGetWidth(shaped: RID): Double {
-    throw NotImplementedError("shaped_text_get_width·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_width is not implemented for TextServerExtension")
   }
 
   /**
    * Returns pixel offset of the underline below the baseline.
    */
   public open fun _shapedTextGetUnderlinePosition(shaped: RID): Double {
-    throw NotImplementedError("shaped_text_get_underline_position·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_underline_position is not implemented for TextServerExtension")
   }
 
   /**
    * Returns thickness of the underline.
    */
   public open fun _shapedTextGetUnderlineThickness(shaped: RID): Double {
-    throw NotImplementedError("shaped_text_get_underline_thickness·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_underline_thickness is not implemented for TextServerExtension")
   }
 
   /**
@@ -1322,7 +1322,7 @@ public open class TextServerExtension : TextServer() {
     start: Long,
     end: Long
   ): Long {
-    throw NotImplementedError("shaped_text_get_dominant_direction_in_range·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_dominant_direction_in_range is not implemented for TextServerExtension")
   }
 
   /**
@@ -1335,7 +1335,7 @@ public open class TextServerExtension : TextServer() {
     start: Long,
     end: Long
   ): PackedVector2Array {
-    throw NotImplementedError("shaped_text_get_selection·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_selection is not implemented for TextServerExtension")
   }
 
   /**
@@ -1344,7 +1344,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextHitTestGrapheme(shaped: RID, coord: Double): Long {
-    throw NotImplementedError("shaped_text_hit_test_grapheme·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_hit_test_grapheme is not implemented for TextServerExtension")
   }
 
   /**
@@ -1353,7 +1353,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextHitTestPosition(shaped: RID, coord: Double): Long {
-    throw NotImplementedError("shaped_text_hit_test_position·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_hit_test_position is not implemented for TextServerExtension")
   }
 
   /**
@@ -1393,7 +1393,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
-    throw NotImplementedError("shaped_text_get_grapheme_bounds·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_get_grapheme_bounds is not implemented for TextServerExtension")
   }
 
   /**
@@ -1402,7 +1402,7 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
-    throw NotImplementedError("shaped_text_next_grapheme_pos·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_next_grapheme_pos is not implemented for TextServerExtension")
   }
 
   /**
@@ -1411,28 +1411,28 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
-    throw NotImplementedError("shaped_text_prev_grapheme_pos·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("shaped_text_prev_grapheme_pos is not implemented for TextServerExtension")
   }
 
   /**
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in `language`.
    */
   public open fun _formatNumber(string: String, language: String): String {
-    throw NotImplementedError("format_number·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("format_number is not implemented for TextServerExtension")
   }
 
   /**
    * Converts a number from the numeral systems used in `language` to Western Arabic (0..9).
    */
   public open fun _parseNumber(string: String, language: String): String {
-    throw NotImplementedError("parse_number·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("parse_number is not implemented for TextServerExtension")
   }
 
   /**
    * Returns percent sign used in the `language`.
    */
   public open fun _percentSign(language: String): String {
-    throw NotImplementedError("percent_sign·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("percent_sign is not implemented for TextServerExtension")
   }
 
   /**
@@ -1441,21 +1441,21 @@ public open class TextServerExtension : TextServer() {
    * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
    */
   public open fun _stripDiacritics(string: String): String {
-    throw NotImplementedError("strip_diacritics·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("strip_diacritics is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the string converted to uppercase.
    */
   public open fun _stringToUpper(string: String, language: String): String {
-    throw NotImplementedError("string_to_upper·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("string_to_upper is not implemented for TextServerExtension")
   }
 
   /**
    * Returns the string converted to lowercase.
    */
   public open fun _stringToLower(string: String, language: String): String {
-    throw NotImplementedError("string_to_lower·is·not·implemented·for·TextServerExtension")
+    throw NotImplementedError("string_to_lower is not implemented for TextServerExtension")
   }
 
   public companion object

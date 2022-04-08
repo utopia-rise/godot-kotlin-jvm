@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class ImageTexture3D : Texture3D() {
   /**
    *
    */
-  public open fun create(
+  public fun create(
     format: Image.Format,
     width: Long,
     height: Long,
@@ -50,7 +50,7 @@ public open class ImageTexture3D : Texture3D() {
   /**
    *
    */
-  public open fun update(`data`: VariantArray<Any?>): Unit {
+  public fun update(`data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_UPDATE, NIL)
   }

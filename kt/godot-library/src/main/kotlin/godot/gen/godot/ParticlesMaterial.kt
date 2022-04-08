@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Particle lifetime randomness ratio. The lifetime will be multiplied by a value interpolated between `1.0` and a random number less than one. For example a random ratio of `0.4` would scale the original lifetime between `0.4-1.0` of its original value.
    */
-  public open var lifetimeRandomness: Double
+  public var lifetimeRandomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -53,7 +53,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Particles will be emitted inside this region. Use [enum EmissionShape] constants for values.
    */
-  public open var emissionShape: Long
+  public var emissionShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -69,7 +69,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The sphere's radius if `emission_shape` is set to [EMISSION_SHAPE_SPHERE].
    */
-  public open var emissionSphereRadius: Double
+  public var emissionSphereRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -85,7 +85,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
    */
-  public open var emissionBoxExtents: Vector3
+  public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +101,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Particles will be emitted at positions determined by sampling this texture at a random position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
-  public open var emissionPointTexture: Texture2D?
+  public var emissionPointTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -117,7 +117,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Particle velocity and rotation will be set by sampling this texture at the same point as the [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
-  public open var emissionNormalTexture: Texture2D?
+  public var emissionNormalTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Particle color will be modulated by color determined by sampling this texture at the same point as the [emissionPointTexture].
    */
-  public open var emissionColorTexture: Texture2D?
+  public var emissionColorTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -149,7 +149,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The number of emission points if `emission_shape` is set to [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionPointCount: Long
+  public var emissionPointCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -165,7 +165,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingAxis: Vector3
+  public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -181,7 +181,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingHeight: Double
+  public var emissionRingHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -197,7 +197,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingRadius: Double
+  public var emissionRingRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -213,7 +213,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingInnerRadius: Double
+  public var emissionRingInnerRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -229,7 +229,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
-  public open var direction: Vector3
+  public var direction: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DIRECTION,
@@ -245,7 +245,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Each particle's initial direction range from `+spread` to `-spread` degrees.
    */
-  public open var spread: Double
+  public var spread: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SPREAD,
@@ -260,7 +260,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Amount of [spread] along the Y axis.
    */
-  public open var flatness: Double
+  public var flatness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLATNESS,
@@ -276,7 +276,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Gravity applied to every particle.
    */
-  public open var gravity: Vector3
+  public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_GRAVITY,
@@ -292,7 +292,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color. To have particle display color in a [godot.BaseMaterial3D] make sure to set [godot.BaseMaterial3D.vertexColorUseAsAlbedo] to `true`.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR,
@@ -307,7 +307,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
    */
-  public open var colorRamp: GradientTexture1D?
+  public var colorRamp: GradientTexture1D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR_RAMP,
@@ -323,7 +323,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
    */
-  public open var colorInitialRamp: GradientTexture1D?
+  public var colorInitialRamp: GradientTexture1D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -339,7 +339,7 @@ public open class ParticlesMaterial : Material() {
   /**
    *
    */
-  public open var subEmitterMode: Long
+  public var subEmitterMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -355,7 +355,7 @@ public open class ParticlesMaterial : Material() {
   /**
    *
    */
-  public open var subEmitterFrequency: Double
+  public var subEmitterFrequency: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -371,7 +371,7 @@ public open class ParticlesMaterial : Material() {
   /**
    *
    */
-  public open var subEmitterAmountAtEnd: Long
+  public var subEmitterAmountAtEnd: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -387,7 +387,7 @@ public open class ParticlesMaterial : Material() {
   /**
    *
    */
-  public open var subEmitterKeepVelocity: Boolean
+  public var subEmitterKeepVelocity: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -403,7 +403,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * True if the interaction with particle attractors is enabled.
    */
-  public open var attractorInteractionEnabled: Boolean
+  public var attractorInteractionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -419,7 +419,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * True if collisions are enabled for this particle system.
    */
-  public open var collisionEnabled: Boolean
+  public var collisionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -435,7 +435,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Collision friction.
    */
-  public open var collisionFriction: Double
+  public var collisionFriction: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -451,7 +451,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Collision bounciness.
    */
-  public open var collisionBounce: Double
+  public var collisionBounce: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -467,7 +467,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Should collision take scale into account.
    */
-  public open var collisionUseScale: Boolean
+  public var collisionUseScale: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -487,7 +487,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Sets the minimum value range for the given parameter.
    */
-  public open fun setParamMin(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
+  public fun setParamMin(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_MIN,
         NIL)
@@ -496,7 +496,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Returns the minimum value range for the given parameter.
    */
-  public open fun getParamMin(`param`: ParticlesMaterial.Parameter): Double {
+  public fun getParamMin(`param`: ParticlesMaterial.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_MIN,
         DOUBLE)
@@ -506,7 +506,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Sets the maximum value range for the given parameter.
    */
-  public open fun setParamMax(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
+  public fun setParamMax(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_MAX,
         NIL)
@@ -515,7 +515,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Returns the maximum value range for the given parameter.
    */
-  public open fun getParamMax(`param`: ParticlesMaterial.Parameter): Double {
+  public fun getParamMax(`param`: ParticlesMaterial.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_MAX,
         DOUBLE)
@@ -525,7 +525,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Sets the [godot.Texture2D] for the specified [enum Parameter].
    */
-  public open fun setParamTexture(`param`: ParticlesMaterial.Parameter, texture: Texture2D): Unit {
+  public fun setParamTexture(`param`: ParticlesMaterial.Parameter, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_TEXTURE,
         NIL)
@@ -534,7 +534,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Returns the [godot.Texture2D] used by the specified parameter.
    */
-  public open fun getParamTexture(`param`: ParticlesMaterial.Parameter): Texture2D? {
+  public fun getParamTexture(`param`: ParticlesMaterial.Parameter): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_TEXTURE,
         OBJECT)
@@ -544,8 +544,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * If `true`, enables the specified particle flag. See [enum ParticleFlags] for options.
    */
-  public open fun setParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags, enable: Boolean):
-      Unit {
+  public fun setParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARTICLE_FLAG,
         NIL)
@@ -554,7 +553,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options.
    */
-  public open fun getParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags): Boolean {
+  public fun getParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARTICLE_FLAG,
         BOOL)

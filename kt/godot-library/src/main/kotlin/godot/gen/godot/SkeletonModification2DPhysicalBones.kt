@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * The amount of [godot.PhysicalBone2D] nodes linked in this modification.
    */
-  public open var physicalBoneChainLength: Long
+  public var physicalBoneChainLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -53,7 +53,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * **Note:** This is just the index used for this modification, not the bone index used in the [godot.Skeleton2D].
    */
-  public open fun setPhysicalBoneNode(jointIdx: Long, physicalbone2dNode: NodePath): Unit {
+  public fun setPhysicalBoneNode(jointIdx: Long, physicalbone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to physicalbone2dNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_NODE, NIL)
@@ -62,7 +62,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * Returns the [godot.PhysicalBone2D] node at `joint_idx`.
    */
-  public open fun getPhysicalBoneNode(jointIdx: Long): NodePath {
+  public fun getPhysicalBoneNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_NODE,
@@ -73,7 +73,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * Empties the list of [godot.PhysicalBone2D] nodes and populates it will all [godot.PhysicalBone2D] nodes that are children of the [godot.Skeleton2D].
    */
-  public open fun fetchPhysicalBones(): Unit {
+  public fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_FETCH_PHYSICAL_BONES, NIL)
@@ -84,7 +84,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to start simulating.
    */
-  public open fun startSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
+  public fun startSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL)
@@ -95,7 +95,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to stop simulating.
    */
-  public open fun stopSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
+  public fun stopSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL)

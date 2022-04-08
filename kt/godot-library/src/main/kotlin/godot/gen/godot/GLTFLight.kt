@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +20,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFLight : Resource() {
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_COLOR, COLOR)
@@ -31,7 +31,7 @@ public open class GLTFLight : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_SET_COLOR, NIL)
     }
 
-  public open var intensity: Double
+  public var intensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_INTENSITY, DOUBLE)
@@ -42,7 +42,7 @@ public open class GLTFLight : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_SET_INTENSITY, NIL)
     }
 
-  public open var lightType: String
+  public var lightType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_LIGHT_TYPE, STRING)
@@ -53,7 +53,7 @@ public open class GLTFLight : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_SET_LIGHT_TYPE, NIL)
     }
 
-  public open var range: Double
+  public var range: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_RANGE, DOUBLE)
@@ -64,7 +64,7 @@ public open class GLTFLight : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_SET_RANGE, NIL)
     }
 
-  public open var innerConeAngle: Double
+  public var innerConeAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_INNER_CONE_ANGLE,
@@ -77,7 +77,7 @@ public open class GLTFLight : Resource() {
           NIL)
     }
 
-  public open var outerConeAngle: Double
+  public var outerConeAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFLIGHT_GET_OUTER_CONE_ANGLE,

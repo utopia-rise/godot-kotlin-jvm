@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -54,7 +54,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The list of objects or object [RID]s that will be excluded from collisions.
    */
-  public open var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -70,7 +70,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The collision margin for the shape.
    */
-  public open var margin: Double
+  public var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -86,7 +86,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The motion of the shape being queried for.
    */
-  public open var motion: Vector2
+  public var motion: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -102,7 +102,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The [godot.Shape2D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [shapeRid].
    */
-  public open var shape: Shape2D?
+  public var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -174,7 +174,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open var shapeRid: RID
+  public var shapeRid: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -190,7 +190,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * The queried shape's transform matrix.
    */
-  public open var transform: Transform2D
+  public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -206,7 +206,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [godot.PhysicsBody2D]s into account.
    */
-  public open var collideWithBodies: Boolean
+  public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -223,7 +223,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [godot.Area2D]s into account.
    */
-  public open var collideWithAreas: Boolean
+  public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

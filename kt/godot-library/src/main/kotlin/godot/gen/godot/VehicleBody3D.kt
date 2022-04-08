@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
    *
    * A negative value will result in the vehicle reversing.
    */
-  public open var engineForce: Double
+  public var engineForce: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_ENGINE_FORCE,
@@ -51,7 +51,7 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
   /**
    * Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidDynamicBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
    */
-  public open var brake: Double
+  public var brake: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_BRAKE, DOUBLE)
@@ -65,7 +65,7 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
   /**
    * The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
    */
-  public open var steering: Double
+  public var steering: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_STEERING,

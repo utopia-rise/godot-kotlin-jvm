@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Adds a resource to the preloader with the given `name`. If a resource with the given `name` already exists, the new resource will be renamed to "`name` N" where N is an incrementing number starting from 2.
    */
-  public open fun addResource(name: StringName, resource: Resource): Unit {
+  public fun addResource(name: StringName, resource: Resource): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_ADD_RESOURCE, NIL)
   }
@@ -43,7 +43,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Removes the resource associated to `name` from the preloader.
    */
-  public open fun removeResource(name: StringName): Unit {
+  public fun removeResource(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_REMOVE_RESOURCE,
         NIL)
@@ -52,7 +52,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Renames a resource inside the preloader from `name` to `newname`.
    */
-  public open fun renameResource(name: StringName, newname: StringName): Unit {
+  public fun renameResource(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_RENAME_RESOURCE,
         NIL)
@@ -61,7 +61,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns `true` if the preloader contains a resource associated to `name`.
    */
-  public open fun hasResource(name: StringName): Boolean {
+  public fun hasResource(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_HAS_RESOURCE,
         BOOL)
@@ -71,7 +71,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns the resource associated to `name`.
    */
-  public open fun getResource(name: StringName): Resource? {
+  public fun getResource(name: StringName): Resource? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE,
         OBJECT)
@@ -81,7 +81,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns the list of resources inside the preloader.
    */
-  public open fun getResourceList(): PackedStringArray {
+  public fun getResourceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE_LIST,
         PACKED_STRING_ARRAY)

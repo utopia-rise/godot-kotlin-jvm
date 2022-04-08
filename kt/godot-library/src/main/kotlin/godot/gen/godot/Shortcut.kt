@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class Shortcut : Resource() {
    *
    * Generally the [godot.InputEvent] used is an [godot.InputEventKey], though it can be any [godot.InputEvent], including an [godot.InputEventAction].
    */
-  public open var events: VariantArray<Any?>
+  public var events: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_EVENTS, ARRAY)
@@ -52,7 +52,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether [events] contains an [godot.InputEvent] which is valid.
    */
-  public open fun hasValidEvent(): Boolean {
+  public fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_HAS_VALID_EVENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -61,7 +61,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether any [godot.InputEvent] in [events] equals `event`.
    */
-  public open fun matchesEvent(event: InputEvent): Boolean {
+  public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_MATCHES_EVENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -70,7 +70,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns the shortcut's first valid [godot.InputEvent] as a [godot.String].
    */
-  public open fun getAsText(): String {
+  public fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_AS_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

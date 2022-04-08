@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +20,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class UPNPDevice : RefCounted() {
-  public open var descriptionUrl: String
+  public var descriptionUrl: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_DESCRIPTION_URL,
@@ -33,7 +33,7 @@ public open class UPNPDevice : RefCounted() {
           NIL)
     }
 
-  public open var serviceType: String
+  public var serviceType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_SERVICE_TYPE,
@@ -45,7 +45,7 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_SET_SERVICE_TYPE, NIL)
     }
 
-  public open var igdControlUrl: String
+  public var igdControlUrl: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_CONTROL_URL,
@@ -58,7 +58,7 @@ public open class UPNPDevice : RefCounted() {
           NIL)
     }
 
-  public open var igdServiceType: String
+  public var igdServiceType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_SERVICE_TYPE,
@@ -71,7 +71,7 @@ public open class UPNPDevice : RefCounted() {
           NIL)
     }
 
-  public open var igdOurAddr: String
+  public var igdOurAddr: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_OUR_ADDR,
@@ -83,7 +83,7 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_SET_IGD_OUR_ADDR, NIL)
     }
 
-  public open var igdStatus: Long
+  public var igdStatus: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_GET_IGD_STATUS, LONG)
@@ -98,20 +98,20 @@ public open class UPNPDevice : RefCounted() {
     callConstructor(ENGINECLASS_UPNPDEVICE)
   }
 
-  public open fun isValidGateway(): Boolean {
+  public fun isValidGateway(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_IS_VALID_GATEWAY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun queryExternalAddress(): String {
+  public fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_QUERY_EXTERNAL_ADDRESS,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun addPortMapping(
+  public fun addPortMapping(
     port: Long,
     portInternal: Long = 0,
     desc: String = "",
@@ -123,7 +123,7 @@ public open class UPNPDevice : RefCounted() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun deletePortMapping(port: Long, proto: String = "UDP"): Long {
+  public fun deletePortMapping(port: Long, proto: String = "UDP"): Long {
     TransferContext.writeArguments(LONG to port, STRING to proto)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_DELETE_PORT_MAPPING,
         LONG)

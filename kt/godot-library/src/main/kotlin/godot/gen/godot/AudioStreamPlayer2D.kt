@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * The [godot.AudioStream] object to be played.
    */
-  public open var stream: AudioStream?
+  public var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_STREAM,
@@ -61,7 +61,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Base volume without dampening.
    */
-  public open var volumeDb: Double
+  public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_VOLUME_DB,
@@ -77,7 +77,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
    */
-  public open var pitchScale: Double
+  public var pitchScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -93,7 +93,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * If `true`, audio is playing.
    */
-  public open val playing: Boolean
+  public val playing: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_IS_PLAYING,
@@ -104,7 +104,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * If `true`, audio plays when added to scene tree.
    */
-  public open var autoplay: Boolean
+  public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +120,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
    */
-  public open var streamPaused: Boolean
+  public var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -136,7 +136,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Maximum distance from which audio is still hearable.
    */
-  public open var maxDistance: Double
+  public var maxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -152,7 +152,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Dampens audio over distance with this as an exponent.
    */
-  public open var attenuation: Double
+  public var attenuation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -168,7 +168,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
    */
-  public open var maxPolyphony: Long
+  public var maxPolyphony: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Bus on which this audio is playing.
    */
-  public open var bus: StringName
+  public var bus: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_BUS,
@@ -199,7 +199,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Determines which [godot.Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
    */
-  public open var areaMask: Long
+  public var areaMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_AREA_MASK,
@@ -219,7 +219,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Plays the audio from the given position `from_position`, in seconds.
    */
-  public open fun play(fromPosition: Double = 0.0): Unit {
+  public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_PLAY, NIL)
   }
@@ -227,7 +227,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Sets the position from which audio will be played, in seconds.
    */
-  public open fun seek(toPosition: Double): Unit {
+  public fun seek(toPosition: Double): Unit {
     TransferContext.writeArguments(DOUBLE to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SEEK, NIL)
   }
@@ -235,7 +235,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Stops the audio.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_STOP, NIL)
   }
@@ -243,7 +243,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Returns the position in the [godot.AudioStream].
    */
-  public open fun getPlaybackPosition(): Double {
+  public fun getPlaybackPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PLAYBACK_POSITION, DOUBLE)
@@ -253,7 +253,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer2D].
    */
-  public open fun getStreamPlayback(): AudioStreamPlayback? {
+  public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_STREAM_PLAYBACK, OBJECT)

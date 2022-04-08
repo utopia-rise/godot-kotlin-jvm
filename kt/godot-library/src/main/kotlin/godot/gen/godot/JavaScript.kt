@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -57,7 +57,7 @@ public object JavaScript : Object() {
    *
    * If `use_global_execution_context` is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
    */
-  public open fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
+  public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_EVAL, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -66,7 +66,7 @@ public object JavaScript : Object() {
   /**
    * Returns an interface to a JavaScript object that can be used by scripts. The `interface` must be a valid property of the JavaScript `window`. The callback must accept a single [godot.Array] argument, which will contain the JavaScript `arguments`. See [godot.JavaScriptObject] for usage.
    */
-  public open fun getInterface(_interface: String): JavaScriptObject? {
+  public fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_GET_INTERFACE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
@@ -75,7 +75,7 @@ public object JavaScript : Object() {
   /**
    * Creates a reference to a [godot.Callable] that can be used as a callback by JavaScript. The reference must be kept until the callback happens, or it won't be called at all. See [godot.JavaScriptObject] for usage.
    */
-  public open fun createCallback(callable: Callable): JavaScriptObject? {
+  public fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_CALLBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
@@ -84,7 +84,7 @@ public object JavaScript : Object() {
   /**
    * Creates a new JavaScript object using the `new` constructor. The `object` must a valid property of the JavaScript `window`. See [godot.JavaScriptObject] for usage.
    */
-  public open fun createObject(_object: String, vararg __var_args: Any?): Any? {
+  public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_OBJECT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -99,7 +99,7 @@ public object JavaScript : Object() {
    *
    * **Note:** Browsers might ask the user for permission or block the download if multiple download requests are made in a quick succession.
    */
-  public open fun downloadBuffer(
+  public fun downloadBuffer(
     buffer: PackedByteArray,
     name: String,
     mime: String = "application/octet-stream"
@@ -113,7 +113,7 @@ public object JavaScript : Object() {
    *
    * **Note:** Only relevant when exported as a Progressive Web App.
    */
-  public open fun pwaNeedsUpdate(): Boolean {
+  public fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_NEEDS_UPDATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -126,7 +126,7 @@ public object JavaScript : Object() {
    *
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns `true`.
    */
-  public open fun pwaUpdate(): GodotError {
+  public fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

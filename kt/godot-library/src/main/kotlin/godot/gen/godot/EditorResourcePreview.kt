@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
    *
    * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
    */
-  public open fun queueResourcePreview(
+  public fun queueResourcePreview(
     path: String,
     `receiver`: Object,
     receiverFunc: StringName,
@@ -60,7 +60,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
    *
    * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
    */
-  public open fun queueEditedResourcePreview(
+  public fun queueEditedResourcePreview(
     resource: Resource,
     `receiver`: Object,
     receiverFunc: StringName,
@@ -74,7 +74,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
   /**
    * Create an own, custom preview generator.
    */
-  public open fun addPreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
+  public fun addPreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL)
@@ -83,7 +83,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
   /**
    * Removes a custom preview generator.
    */
-  public open fun removePreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
+  public fun removePreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL)
@@ -92,7 +92,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
   /**
    * Check if the resource changed, if so, it will be invalidated and the corresponding signal emitted.
    */
-  public open fun checkForInvalidation(path: String): Unit {
+  public fun checkForInvalidation(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL)

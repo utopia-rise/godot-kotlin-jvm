@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -70,7 +70,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Set when a validated word from [symbolValidate] is clicked, the [symbolLookup] should be emitted.
    */
-  public open var symbolLookupOnClick: Boolean
+  public var symbolLookupOnClick: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -86,7 +86,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets whether line folding is allowed.
    */
-  public open var lineFolding: Boolean
+  public var lineFolding: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDING_ENABLED,
@@ -102,7 +102,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently
    */
-  public open var lineLengthGuidelines: PackedInt32Array
+  public var lineLengthGuidelines: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines.
    */
-  public open var guttersDrawBreakpointsGutter: Boolean
+  public var guttersDrawBreakpointsGutter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -134,7 +134,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and executing lines.
    */
-  public open var guttersDrawBookmarks: Boolean
+  public var guttersDrawBookmarks: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -150,7 +150,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints and bookmarks lines.
    */
-  public open var guttersDrawExecutingLines: Boolean
+  public var guttersDrawExecutingLines: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -166,7 +166,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if line numbers should be drawn in the gutter.
    */
-  public open var guttersDrawLineNumbers: Boolean
+  public var guttersDrawLineNumbers: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -182,7 +182,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if line numbers drawn in the gutter are zero padded.
    */
-  public open var guttersZeroPadLineNumbers: Boolean
+  public var guttersZeroPadLineNumbers: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -198,7 +198,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if foldable lines icons should be drawn in the gutter.
    */
-  public open var guttersDrawFoldGutter: Boolean
+  public var guttersDrawFoldGutter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_FOLD_GUTTER,
@@ -214,7 +214,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the string delimiters. All existing string delimiters will be removed.
    */
-  public open var delimiterStrings: PackedStringArray
+  public var delimiterStrings: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_STRING_DELIMITERS,
@@ -230,7 +230,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the comment delimiters. All existing comment delimiters will be removed.
    */
-  public open var delimiterComments: PackedStringArray
+  public var delimiterComments: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_COMMENT_DELIMITERS,
@@ -246,7 +246,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets whether code completion is allowed.
    */
-  public open var codeCompletionEnabled: Boolean
+  public var codeCompletionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -262,7 +262,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets prefixes that will trigger code completion.
    */
-  public open var codeCompletionPrefixes: PackedStringArray
+  public var codeCompletionPrefixes: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -278,7 +278,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Size of tabs, if `indent_use_spaces` is enabled the amount of spaces to use.
    */
-  public open var indentSize: Long
+  public var indentSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_INDENT_SIZE, LONG)
@@ -292,7 +292,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Use spaces instead of tabs for indentation.
    */
-  public open var indentUseSpaces: Boolean
+  public var indentUseSpaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_INDENT_USING_SPACES,
@@ -308,7 +308,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace is found.
    */
-  public open var indentAutomatic: Boolean
+  public var indentAutomatic: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_AUTO_INDENT_ENABLED,
@@ -324,7 +324,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Prefixes to trigger an automatic indent.
    */
-  public open var indentAutomaticPrefixes: PackedStringArray
+  public var indentAutomaticPrefixes: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_INDENT_PREFIXES,
@@ -340,7 +340,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets whether brace pairs should be autocompleted.
    */
-  public open var autoBraceCompletionEnabled: Boolean
+  public var autoBraceCompletionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -356,7 +356,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Highlight mismatching brace pairs.
    */
-  public open var autoBraceCompletionHighlightMatching: Boolean
+  public var autoBraceCompletionHighlightMatching: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -372,7 +372,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the brace pairs to be autocompleted.
    */
-  public open var autoBraceCompletionPairs: Dictionary<Any?, Any?>
+  public var autoBraceCompletionPairs: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -408,13 +408,13 @@ public open class CodeEdit : TextEdit() {
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Any?>):
       VariantArray<Any?> {
-    throw NotImplementedError("_filter_code_completion_candidates·is·not·implemented·for·CodeEdit")
+    throw NotImplementedError("_filter_code_completion_candidates is not implemented for CodeEdit")
   }
 
   /**
    * Perform an indent as if the user activated the "ui_text_indent" action.
    */
-  public open fun doIndent(): Unit {
+  public fun doIndent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_INDENT, NIL)
   }
@@ -422,7 +422,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Perform an unindent as if the user activated the "ui_text_unindent" action.
    */
-  public open fun doUnindent(): Unit {
+  public fun doUnindent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_UNINDENT, NIL)
   }
@@ -430,7 +430,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Indents selected lines, or in the case of no selection the caret line by one.
    */
-  public open fun indentLines(): Unit {
+  public fun indentLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_INDENT_LINES, NIL)
   }
@@ -438,7 +438,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Unindents selected lines, or in the case of no selection the caret line by one.
    */
-  public open fun unindentLines(): Unit {
+  public fun unindentLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNINDENT_LINES, NIL)
   }
@@ -448,7 +448,7 @@ public open class CodeEdit : TextEdit() {
    *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    */
-  public open fun addAutoBraceCompletionPair(startKey: String, endKey: String): Unit {
+  public fun addAutoBraceCompletionPair(startKey: String, endKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_AUTO_BRACE_COMPLETION_PAIR, NIL)
@@ -457,7 +457,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns `true` if open key `open_key` exists.
    */
-  public open fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
+  public fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_OPEN_KEY, BOOL)
@@ -467,7 +467,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns `true` if close key `close_key` exists.
    */
-  public open fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
+  public fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_CLOSE_KEY, BOOL)
@@ -477,7 +477,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets the matching auto brace close key for `open_key`.
    */
-  public open fun getAutoBraceCompletionCloseKey(openKey: String): String {
+  public fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_BRACE_COMPLETION_CLOSE_KEY, STRING)
@@ -487,7 +487,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the line as breakpointed.
    */
-  public open fun setLineAsBreakpoint(line: Long, breakpointed: Boolean): Unit {
+  public fun setLineAsBreakpoint(line: Long, breakpointed: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to breakpointed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BREAKPOINT,
         NIL)
@@ -496,7 +496,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns whether the line at the specified index is breakpointed or not.
    */
-  public open fun isLineBreakpointed(line: Long): Boolean {
+  public fun isLineBreakpointed(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BREAKPOINTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -505,7 +505,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Clears all breakpointed lines.
    */
-  public open fun clearBreakpointedLines(): Unit {
+  public fun clearBreakpointedLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BREAKPOINTED_LINES,
         NIL)
@@ -514,7 +514,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all breakpointed lines.
    */
-  public open fun getBreakpointedLines(): VariantArray<Any?> {
+  public fun getBreakpointedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BREAKPOINTED_LINES,
         ARRAY)
@@ -524,7 +524,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the line as bookmarked.
    */
-  public open fun setLineAsBookmarked(line: Long, bookmarked: Boolean): Unit {
+  public fun setLineAsBookmarked(line: Long, bookmarked: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to bookmarked)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BOOKMARKED,
         NIL)
@@ -533,7 +533,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns whether the line at the specified index is bookmarked or not.
    */
-  public open fun isLineBookmarked(line: Long): Boolean {
+  public fun isLineBookmarked(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BOOKMARKED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -542,7 +542,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Clears all bookmarked lines.
    */
-  public open fun clearBookmarkedLines(): Unit {
+  public fun clearBookmarkedLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BOOKMARKED_LINES,
         NIL)
@@ -551,7 +551,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all bookmarked lines.
    */
-  public open fun getBookmarkedLines(): VariantArray<Any?> {
+  public fun getBookmarkedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BOOKMARKED_LINES,
         ARRAY)
@@ -561,7 +561,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the line as executing.
    */
-  public open fun setLineAsExecuting(line: Long, executing: Boolean): Unit {
+  public fun setLineAsExecuting(line: Long, executing: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to executing)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_EXECUTING, NIL)
   }
@@ -569,7 +569,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns whether the line at the specified index is marked as executing or not.
    */
-  public open fun isLineExecuting(line: Long): Boolean {
+  public fun isLineExecuting(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_EXECUTING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -578,7 +578,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Clears all executed lines.
    */
-  public open fun clearExecutingLines(): Unit {
+  public fun clearExecutingLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_EXECUTING_LINES, NIL)
   }
@@ -586,7 +586,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all executing lines.
    */
-  public open fun getExecutingLines(): VariantArray<Any?> {
+  public fun getExecutingLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_EXECUTING_LINES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -595,7 +595,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns if the given line is foldable, that is, it has indented lines right below it or a comment / string block.
    */
-  public open fun canFoldLine(line: Long): Boolean {
+  public fun canFoldLine(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CAN_FOLD_LINE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -604,7 +604,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Folds the given line, if possible (see [canFoldLine]).
    */
-  public open fun foldLine(line: Long): Unit {
+  public fun foldLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_LINE, NIL)
   }
@@ -612,7 +612,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Unfolds all lines that were previously folded.
    */
-  public open fun unfoldLine(line: Long): Unit {
+  public fun unfoldLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_LINE, NIL)
   }
@@ -620,7 +620,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Folds all lines that are possible to be folded (see [canFoldLine]).
    */
-  public open fun foldAllLines(): Unit {
+  public fun foldAllLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_ALL_LINES, NIL)
   }
@@ -628,7 +628,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Unfolds all lines, folded or not.
    */
-  public open fun unfoldAllLines(): Unit {
+  public fun unfoldAllLines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_ALL_LINES, NIL)
   }
@@ -636,7 +636,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Toggle the folding of the code block at the given line.
    */
-  public open fun toggleFoldableLine(line: Long): Unit {
+  public fun toggleFoldableLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_TOGGLE_FOLDABLE_LINE, NIL)
   }
@@ -644,7 +644,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns whether the line at the specified index is folded or not.
    */
-  public open fun isLineFolded(line: Long): Boolean {
+  public fun isLineFolded(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -653,7 +653,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns all lines that are current folded.
    */
-  public open fun getFoldedLines(): VariantArray<Any?> {
+  public fun getFoldedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_FOLDED_LINES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -666,7 +666,7 @@ public open class CodeEdit : TextEdit() {
    *
    * Line only denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
-  public open fun addStringDelimiter(
+  public fun addStringDelimiter(
     startKey: String,
     endKey: String,
     lineOnly: Boolean = false
@@ -678,7 +678,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Removes the string delimiter with `start_key`.
    */
-  public open fun removeStringDelimiter(startKey: String): Unit {
+  public fun removeStringDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_STRING_DELIMITER,
         NIL)
@@ -687,7 +687,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns `true` if string `start_key` exists.
    */
-  public open fun hasStringDelimiter(startKey: String): Boolean {
+  public fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_STRING_DELIMITER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -696,7 +696,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Removes all string delimiters.
    */
-  public open fun clearStringDelimiters(): Unit {
+  public fun clearStringDelimiters(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_STRING_DELIMITERS,
         NIL)
@@ -705,7 +705,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns the delimiter index if `line` `column` is in a string. If `column` is not provided, will return the delimiter index if the entire `line` is a string. Otherwise `-1`.
    */
-  public open fun isInString(line: Long, column: Long = -1): Long {
+  public fun isInString(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_STRING, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -718,7 +718,7 @@ public open class CodeEdit : TextEdit() {
    *
    * Line only denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
-  public open fun addCommentDelimiter(
+  public fun addCommentDelimiter(
     startKey: String,
     endKey: String,
     lineOnly: Boolean = false
@@ -730,7 +730,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Removes the comment delimiter with `start_key`.
    */
-  public open fun removeCommentDelimiter(startKey: String): Unit {
+  public fun removeCommentDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_COMMENT_DELIMITER,
         NIL)
@@ -739,7 +739,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns `true` if comment `start_key` exists.
    */
-  public open fun hasCommentDelimiter(startKey: String): Boolean {
+  public fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_COMMENT_DELIMITER,
         BOOL)
@@ -749,7 +749,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Removes all comment delimiters.
    */
-  public open fun clearCommentDelimiters(): Unit {
+  public fun clearCommentDelimiters(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_COMMENT_DELIMITERS,
         NIL)
@@ -758,7 +758,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns delimiter index if `line` `column` is in a comment. If `column` is not provided, will return delimiter index if the entire `line` is a comment. Otherwise `-1`.
    */
-  public open fun isInComment(line: Long, column: Long = -1): Long {
+  public fun isInComment(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_COMMENT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -767,7 +767,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets the start key for a string or comment region index.
    */
-  public open fun getDelimiterStartKey(delimiterIndex: Long): String {
+  public fun getDelimiterStartKey(delimiterIndex: Long): String {
     TransferContext.writeArguments(LONG to delimiterIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_KEY,
         STRING)
@@ -777,7 +777,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets the end key for a string or comment region index.
    */
-  public open fun getDelimiterEndKey(delimiterIndex: Long): String {
+  public fun getDelimiterEndKey(delimiterIndex: Long): String {
     TransferContext.writeArguments(LONG to delimiterIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_KEY,
         STRING)
@@ -787,7 +787,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * If `line` `column` is in a string or comment, returns the start position of the region. If not or no start could be found, both [godot.core.Vector2] values will be `-1`.
    */
-  public open fun getDelimiterStartPosition(line: Long, column: Long): Vector2 {
+  public fun getDelimiterStartPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_POSITION, VECTOR2)
@@ -797,7 +797,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * If `line` `column` is in a string or comment, returns the end position of the region. If not or no end could be found, both [godot.core.Vector2] values will be `-1`.
    */
-  public open fun getDelimiterEndPosition(line: Long, column: Long): Vector2 {
+  public fun getDelimiterEndPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_POSITION,
         VECTOR2)
@@ -807,7 +807,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the code hint text. Pass an empty string to clear.
    */
-  public open fun setCodeHint(codeHint: String): Unit {
+  public fun setCodeHint(codeHint: String): Unit {
     TransferContext.writeArguments(STRING to codeHint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT, NIL)
   }
@@ -815,7 +815,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets if the code hint should draw below the text.
    */
-  public open fun setCodeHintDrawBelow(drawBelow: Boolean): Unit {
+  public fun setCodeHintDrawBelow(drawBelow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawBelow)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT_DRAW_BELOW,
         NIL)
@@ -824,7 +824,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns the full text with char `0xFFFF` at the caret location.
    */
-  public open fun getTextForCodeCompletion(): String {
+  public fun getTextForCodeCompletion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_CODE_COMPLETION, STRING)
@@ -834,7 +834,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Emits [codeCompletionRequested], if `force` is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
    */
-  public open fun requestCodeCompletion(force: Boolean = false): Unit {
+  public fun requestCodeCompletion(force: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to force)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REQUEST_CODE_COMPLETION,
         NIL)
@@ -845,7 +845,7 @@ public open class CodeEdit : TextEdit() {
    *
    * **Note:** This list will replace all current candidates.
    */
-  public open fun addCodeCompletionOption(
+  public fun addCodeCompletionOption(
     type: CodeEdit.CodeCompletionKind,
     displayText: String,
     insertText: String,
@@ -863,7 +863,7 @@ public open class CodeEdit : TextEdit() {
    *
    * **Note:** This will replace all current candidates.
    */
-  public open fun updateCodeCompletionOptions(force: Boolean): Unit {
+  public fun updateCodeCompletionOptions(force: Boolean): Unit {
     TransferContext.writeArguments(BOOL to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_UPDATE_CODE_COMPLETION_OPTIONS, NIL)
@@ -872,7 +872,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets all completion options, see [getCodeCompletionOption] for return content.
    */
-  public open fun getCodeCompletionOptions(): VariantArray<Any?> {
+  public fun getCodeCompletionOptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTIONS, ARRAY)
@@ -894,7 +894,7 @@ public open class CodeEdit : TextEdit() {
    *
    * `default_value`: Value of the symbol.
    */
-  public open fun getCodeCompletionOption(index: Long): Dictionary<Any?, Any?> {
+  public fun getCodeCompletionOption(index: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTION,
         DICTIONARY)
@@ -904,7 +904,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Gets the index of the current selected completion option.
    */
-  public open fun getCodeCompletionSelectedIndex(): Long {
+  public fun getCodeCompletionSelectedIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_SELECTED_INDEX, LONG)
@@ -914,7 +914,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the current selected completion option.
    */
-  public open fun setCodeCompletionSelectedIndex(index: Long): Unit {
+  public fun setCodeCompletionSelectedIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_SELECTED_INDEX, NIL)
@@ -923,7 +923,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Inserts the selected entry into the text. If `replace` is true, any existing text is replaced rather then merged.
    */
-  public open fun confirmCodeCompletion(replace: Boolean = false): Unit {
+  public fun confirmCodeCompletion(replace: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to replace)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONFIRM_CODE_COMPLETION,
         NIL)
@@ -932,7 +932,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Cancels the autocomplete menu.
    */
-  public open fun cancelCodeCompletion(): Unit {
+  public fun cancelCodeCompletion(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CANCEL_CODE_COMPLETION,
         NIL)
@@ -941,7 +941,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns the full text with char `0xFFFF` at the cursor location.
    */
-  public open fun getTextForSymbolLookup(): String {
+  public fun getTextForSymbolLookup(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_SYMBOL_LOOKUP,
         STRING)
@@ -951,7 +951,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Sets the symbol emitted by [symbolValidate] as a valid lookup.
    */
-  public open fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
+  public fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_SYMBOL_LOOKUP_WORD_AS_VALID, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class CanvasLayer : Node() {
   /**
    * Layer index for draw order. Lower values are drawn first.
    */
-  public open var layer: Long
+  public var layer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_LAYER, LONG)
@@ -61,7 +61,7 @@ public open class CanvasLayer : Node() {
    *
    * Unlike [godot.CanvasItem.visible], visibility of a [godot.CanvasLayer] isn't propagated to underlying layers.
    */
-  public open var visible: Boolean
+  public var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_IS_VISIBLE, BOOL)
@@ -75,7 +75,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's base offset.
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_OFFSET, VECTOR2)
@@ -89,7 +89,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's rotation in radians.
    */
-  public open var rotation: Double
+  public var rotation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_ROTATION, DOUBLE)
@@ -103,7 +103,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's scale.
    */
-  public open var scale: Vector2
+  public var scale: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_SCALE, VECTOR2)
@@ -117,7 +117,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's transform.
    */
-  public open var transform: Transform2D
+  public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_TRANSFORM,
@@ -132,7 +132,7 @@ public open class CanvasLayer : Node() {
   /**
    * The custom [godot.Viewport] node assigned to the [godot.CanvasLayer]. If `null`, uses the default viewport instead.
    */
-  public open var customViewport: Viewport?
+  public var customViewport: Viewport?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CUSTOM_VIEWPORT,
@@ -148,7 +148,7 @@ public open class CanvasLayer : Node() {
   /**
    * Sets the layer to follow the viewport in order to simulate a pseudo 3D effect.
    */
-  public open var followViewportEnable: Boolean
+  public var followViewportEnable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_IS_FOLLOWING_VIEWPORT,
@@ -164,7 +164,7 @@ public open class CanvasLayer : Node() {
   /**
    * Scales the layer when using [followViewportEnable]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
    */
-  public open var followViewportScale: Double
+  public var followViewportScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class CanvasLayer : Node() {
   /**
    * Shows any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `true`.
    */
-  public open fun show(): Unit {
+  public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SHOW, NIL)
   }
@@ -192,7 +192,7 @@ public open class CanvasLayer : Node() {
   /**
    * Hides any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `false`.
    */
-  public open fun hide(): Unit {
+  public fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_HIDE, NIL)
   }
@@ -200,7 +200,7 @@ public open class CanvasLayer : Node() {
   /**
    * Returns the RID of the canvas used by this layer.
    */
-  public open fun getCanvas(): RID {
+  public fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CANVAS, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID

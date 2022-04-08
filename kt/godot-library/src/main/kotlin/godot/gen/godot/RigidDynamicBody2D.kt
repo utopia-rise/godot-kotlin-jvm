@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -99,7 +99,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * The body's mass.
    */
-  public open var mass: Double
+  public var mass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MASS,
@@ -116,7 +116,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * If set to `0`, inertia is automatically computed (default value).
    */
-  public open var inertia: Double
+  public var inertia: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_INERTIA,
@@ -132,7 +132,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
    */
-  public open var centerOfMassMode: Long
+  public var centerOfMassMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -150,7 +150,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
-  public open var centerOfMass: Vector2
+  public var centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -168,7 +168,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
-  public open var physicsMaterialOverride: PhysicsMaterial?
+  public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [godot.Area2D]s.
    */
-  public open var gravityScale: Double
+  public var gravityScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -200,7 +200,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [_integrateForces] function.
    */
-  public open var customIntegrator: Boolean
+  public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +218,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
    */
-  public open var continuousCd: Long
+  public var continuousCd: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -236,7 +236,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
    */
-  public open var contactsReported: Long
+  public var contactsReported: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -252,7 +252,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body will emit signals when it collides with another RigidDynamicBody2D. See also [contactsReported].
    */
-  public open var contactMonitor: Boolean
+  public var contactMonitor: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -268,7 +268,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [applyImpulse] or [applyForce] methods.
    */
-  public open var sleeping: Boolean
+  public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_SLEEPING,
@@ -284,7 +284,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body can enter sleep mode when there is no movement. See [sleeping].
    */
-  public open var canSleep: Boolean
+  public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -300,7 +300,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body cannot rotate. Gravity and forces only apply linear movement.
    */
-  public open var lockRotation: Boolean
+  public var lockRotation: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -320,7 +320,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * For a body that is always frozen, use [godot.StaticBody2D] or [godot.AnimatableBody2D] instead.
    */
-  public open var freeze: Boolean
+  public var freeze: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -338,7 +338,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * For a body that is always frozen, use [godot.StaticBody2D] or [godot.AnimatableBody2D] instead.
    */
-  public open var freezeMode: Long
+  public var freezeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -354,7 +354,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
-  public open var linearVelocity: Vector2
+  public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -370,7 +370,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var linearDampMode: Long
+  public var linearDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -388,7 +388,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
-  public open var linearDamp: Double
+  public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -404,7 +404,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * The body's rotational velocity in *radians* per second.
    */
-  public open var angularVelocity: Double
+  public var angularVelocity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -420,7 +420,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var angularDampMode: Long
+  public var angularDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -438,7 +438,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
-  public open var angularDamp: Double
+  public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -456,7 +456,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
-  public open var constantForce: Vector2
+  public var constantForce: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -474,7 +474,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * See [addConstantTorque].
    */
-  public open var constantTorque: Double
+  public var constantTorque: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -500,7 +500,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
    */
-  public open fun setAxisVelocity(axisVelocity: Vector2): Unit {
+  public fun setAxisVelocity(axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to axisVelocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_AXIS_VELOCITY, NIL)
@@ -513,7 +513,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public open fun applyCentralImpulse(impulse: Vector2 = Vector2(0.0, 0.0)): Unit {
+  public fun applyCentralImpulse(impulse: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -526,7 +526,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
+  public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_IMPULSE,
         NIL)
@@ -537,7 +537,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    */
-  public open fun applyTorqueImpulse(torque: Double): Unit {
+  public fun applyTorqueImpulse(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE_IMPULSE, NIL)
@@ -548,7 +548,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public open fun applyCentralForce(force: Vector2): Unit {
+  public fun applyCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_FORCE, NIL)
@@ -559,7 +559,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
+  public fun applyForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_FORCE, NIL)
   }
@@ -567,7 +567,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    */
-  public open fun applyTorque(torque: Double): Unit {
+  public fun applyTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE,
         NIL)
@@ -578,7 +578,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public open fun addConstantCentralForce(force: Vector2): Unit {
+  public fun addConstantCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -589,7 +589,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
+  public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_FORCE, NIL)
@@ -598,7 +598,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   /**
    * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`.
    */
-  public open fun addConstantTorque(torque: Double): Unit {
+  public fun addConstantTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_TORQUE, NIL)
@@ -609,7 +609,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public open fun getCollidingBodies(): VariantArray<Any?> {
+  public fun getCollidingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_COLLIDING_BODIES, ARRAY)

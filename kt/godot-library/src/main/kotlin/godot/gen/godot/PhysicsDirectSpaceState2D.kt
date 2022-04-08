@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -48,7 +48,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
-  public open fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Long = 32):
+  public fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -73,7 +73,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    */
-  public open fun intersectRay(parameters: PhysicsRayQueryParameters2D): Dictionary<Any?, Any?> {
+  public fun intersectRay(parameters: PhysicsRayQueryParameters2D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_INTERSECT_RAY, DICTIONARY)
@@ -93,7 +93,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
    */
-  public open fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
+  public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -108,7 +108,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * **Note:** Any [godot.Shape2D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [collideShape] to determine the [godot.Shape2D]s that the shape is already colliding with.
    */
-  public open fun castMotion(parameters: PhysicsShapeQueryParameters2D): VariantArray<Any?> {
+  public fun castMotion(parameters: PhysicsShapeQueryParameters2D): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_CAST_MOTION, ARRAY)
@@ -120,7 +120,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [godot.PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.
    */
-  public open fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
+  public fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -145,7 +145,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    */
-  public open fun getRestInfo(parameters: PhysicsShapeQueryParameters2D): Dictionary<Any?, Any?> {
+  public fun getRestInfo(parameters: PhysicsShapeQueryParameters2D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2D_GET_REST_INFO, DICTIONARY)

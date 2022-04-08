@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the [godot.InputMap] has a registered action with the given name.
    */
-  public open fun hasAction(action: StringName): Boolean {
+  public fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_HAS_ACTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -50,7 +50,7 @@ public object InputMap : Object() {
   /**
    * Returns an array of all actions in the [godot.InputMap].
    */
-  public open fun getActions(): VariantArray<Any?> {
+  public fun getActions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_GET_ACTIONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -61,7 +61,7 @@ public object InputMap : Object() {
    *
    * An [godot.InputEvent] can then be added to this action with [actionAddEvent].
    */
-  public open fun addAction(action: StringName, deadzone: Double = 0.5): Unit {
+  public fun addAction(action: StringName, deadzone: Double = 0.5): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ADD_ACTION, NIL)
   }
@@ -69,7 +69,7 @@ public object InputMap : Object() {
   /**
    * Removes an action from the [godot.InputMap].
    */
-  public open fun eraseAction(action: StringName): Unit {
+  public fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ERASE_ACTION, NIL)
   }
@@ -77,7 +77,7 @@ public object InputMap : Object() {
   /**
    * Sets a deadzone value for the action.
    */
-  public open fun actionSetDeadzone(action: StringName, deadzone: Double): Unit {
+  public fun actionSetDeadzone(action: StringName, deadzone: Double): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_SET_DEADZONE, NIL)
   }
@@ -85,7 +85,7 @@ public object InputMap : Object() {
   /**
    * Returns a deadzone value for the action.
    */
-  public open fun actionGetDeadzone(action: StringName): Double {
+  public fun actionGetDeadzone(action: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_DEADZONE,
         DOUBLE)
@@ -95,7 +95,7 @@ public object InputMap : Object() {
   /**
    * Adds an [godot.InputEvent] to an action. This [godot.InputEvent] will trigger the action.
    */
-  public open fun actionAddEvent(action: StringName, event: InputEvent): Unit {
+  public fun actionAddEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ADD_EVENT, NIL)
   }
@@ -103,7 +103,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the action has the given [godot.InputEvent] associated with it.
    */
-  public open fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
+  public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_HAS_EVENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -112,7 +112,7 @@ public object InputMap : Object() {
   /**
    * Removes an [godot.InputEvent] from an action.
    */
-  public open fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
+  public fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENT, NIL)
   }
@@ -120,7 +120,7 @@ public object InputMap : Object() {
   /**
    * Removes all events from an action.
    */
-  public open fun actionEraseEvents(action: StringName): Unit {
+  public fun actionEraseEvents(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENTS, NIL)
   }
@@ -128,7 +128,7 @@ public object InputMap : Object() {
   /**
    * Returns an array of [godot.InputEvent]s associated with a given action.
    */
-  public open fun actionGetEvents(action: StringName): VariantArray<Any?> {
+  public fun actionGetEvents(action: StringName): VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_EVENTS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -139,7 +139,7 @@ public object InputMap : Object() {
    *
    * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun eventIsAction(
+  public fun eventIsAction(
     event: InputEvent,
     action: StringName,
     exactMatch: Boolean = false
@@ -152,7 +152,7 @@ public object InputMap : Object() {
   /**
    * Clears all [godot.InputEventAction] in the [godot.InputMap] and load it anew from [godot.ProjectSettings].
    */
-  public open fun loadFromProjectSettings(): Unit {
+  public fun loadFromProjectSettings(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_LOAD_FROM_PROJECT_SETTINGS,
         NIL)

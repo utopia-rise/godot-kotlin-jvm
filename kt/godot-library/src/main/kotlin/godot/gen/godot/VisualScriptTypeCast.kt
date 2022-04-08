@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -16,7 +16,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptTypeCast : VisualScriptNode() {
-  public open var baseType: String
+  public var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -29,7 +29,7 @@ public open class VisualScriptTypeCast : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_SET_BASE_TYPE, NIL)
     }
 
-  public open var baseScript: String
+  public var baseScript: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

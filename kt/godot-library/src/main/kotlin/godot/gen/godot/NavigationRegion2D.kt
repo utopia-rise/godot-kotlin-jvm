@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * The [godot.NavigationPolygon] resource to use.
    */
-  public open var navpoly: NavigationPolygon?
+  public var navpoly: NavigationPolygon?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Determines if the [godot.NavigationRegion2D] is enabled or disabled.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_IS_ENABLED,
@@ -63,7 +63,7 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * A bitfield determining all layers the region belongs to. These layers can be checked upon when requesting a path with [godot.NavigationServer2D.mapGetPath].
    */
-  public open var layers: Long
+  public var layers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_LAYERS,

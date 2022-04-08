@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   /**
    * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton] button masks.
    */
-  public open var buttonMask: Long
+  public var buttonMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_BUTTON_MASK,
@@ -47,7 +47,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
    */
-  public open var position: Vector2
+  public var position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_POSITION,
@@ -64,7 +64,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    *
    * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
    */
-  public open var globalPosition: Vector2
+  public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -51,7 +51,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * `true` if this is the primary interface.
    */
-  public open var interfaceIsPrimary: Boolean
+  public var interfaceIsPrimary: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PRIMARY, BOOL)
@@ -65,7 +65,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * The play area mode for this interface.
    */
-  public open val xrPlayAreaMode: Long
+  public val xrPlayAreaMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
@@ -76,7 +76,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * On an AR interface, `true` if anchor detection is enabled.
    */
-  public open var arIsAnchorDetectionEnabled: Boolean
+  public var arIsAnchorDetectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -96,7 +96,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns the name of this interface (OpenXR, OpenVR, OpenHMD, ARKit, etc).
    */
-  public open fun getName(): StringName {
+  public fun getName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_NAME, STRING_NAME)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
@@ -105,7 +105,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface.
    */
-  public open fun getCapabilities(): Long {
+  public fun getCapabilities(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAPABILITIES, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -114,7 +114,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Is `true` if this interface has been initialised.
    */
-  public open fun isInitialized(): Boolean {
+  public fun isInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_INITIALIZED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -131,7 +131,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.
    */
-  public open fun initialize(): Boolean {
+  public fun initialize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_INITIALIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -140,7 +140,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Turns the interface off.
    */
-  public open fun uninitialize(): Unit {
+  public fun uninitialize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_UNINITIALIZE, NIL)
   }
@@ -148,7 +148,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking.
    */
-  public open fun getTrackingStatus(): XRInterface.TrackingStatus {
+  public fun getTrackingStatus(): XRInterface.TrackingStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
         LONG)
@@ -158,7 +158,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform.
    */
-  public open fun getRenderTargetSize(): Vector2 {
+  public fun getRenderTargetSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_RENDER_TARGET_SIZE,
         VECTOR2)
@@ -168,7 +168,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic.
    */
-  public open fun getViewCount(): Long {
+  public fun getViewCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_VIEW_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -181,7 +181,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * `tracker_name` is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.
    */
-  public open fun triggerHapticPulse(
+  public fun triggerHapticPulse(
     actionName: String,
     trackerName: StringName,
     frequency: Double,
@@ -197,7 +197,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Call this to find out if a given play area mode is supported by this interface.
    */
-  public open fun supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
         BOOL)
@@ -207,7 +207,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this interface.
    */
-  public open fun setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
+  public fun setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
         BOOL)
@@ -217,7 +217,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Returns an array of vectors that denotes the physical play area mapped to the virtual space around the [godot.XROrigin3D] point. The points form a convex polygon that can be used to react to or visualise the play area. This returns an empty array if this feature is not supported or if the information is not yet available.
    */
-  public open fun getPlayArea(): PackedVector3Array {
+  public fun getPlayArea(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA,
         PACKED_VECTOR3_ARRAY)
@@ -227,7 +227,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [godot.CameraServer] for this interface.
    */
-  public open fun getCameraFeedId(): Long {
+  public fun getCameraFeedId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAMERA_FEED_ID,
         LONG)

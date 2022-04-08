@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -49,7 +49,7 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_horizontal·is·not·implemented·for·Container")
+    throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
   }
 
   /**
@@ -58,13 +58,13 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_vertical·is·not·implemented·for·Container")
+    throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
   }
 
   /**
    * Queue resort of the contained children. This is called automatically anyway, but can be called upon request.
    */
-  public open fun queueSort(): Unit {
+  public fun queueSort(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
   }
@@ -72,7 +72,7 @@ public open class Container : Control() {
   /**
    * Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
    */
-  public open fun fitChildInRect(child: Control, rect: Rect2): Unit {
+  public fun fitChildInRect(child: Control, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
   }

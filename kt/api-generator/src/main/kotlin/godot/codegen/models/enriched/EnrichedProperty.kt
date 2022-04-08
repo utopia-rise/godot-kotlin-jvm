@@ -10,7 +10,7 @@ import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 
-class EnrichedProperty(val internal: Property, engineClassIndexName: String) : TypedTrait, NullableTrait {
+class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
     val name = internal.name.convertToCamelCase().replace("/", "_")
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter.convertToCamelCase()
@@ -38,7 +38,7 @@ class EnrichedProperty(val internal: Property, engineClassIndexName: String) : T
 }
 
 fun List<Property>.toEnriched(engineClassIndexName: String) = map {
-    EnrichedProperty(it, engineClassIndexName)
+    EnrichedProperty(it)
 }
 
 fun EnrichedProperty.toSetterCallable() = object : CallableTrait {

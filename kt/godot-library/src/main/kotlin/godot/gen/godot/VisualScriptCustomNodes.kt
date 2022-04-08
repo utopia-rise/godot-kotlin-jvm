@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public object VisualScriptCustomNodes : Object() {
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
-  public open fun addCustomNode(
+  public fun addCustomNode(
     name: String,
     category: String,
     script: Script
@@ -37,7 +37,7 @@ public object VisualScriptCustomNodes : Object() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_ADD_CUSTOM_NODE, NIL)
   }
 
-  public open fun removeCustomNode(name: String, category: String): Unit {
+  public fun removeCustomNode(name: String, category: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to category)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_REMOVE_CUSTOM_NODE, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class ENetConnection : RefCounted() {
     callConstructor(ENGINECLASS_ENETCONNECTION)
   }
 
-  public open fun createHostBound(
+  public fun createHostBound(
     bindAddress: String,
     bindPort: Long,
     maxPeers: Long = 32,
@@ -49,7 +49,7 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun createHost(
+  public fun createHost(
     maxPeers: Long = 32,
     maxChannels: Long = 0,
     inBandwidth: Long = 0,
@@ -60,12 +60,12 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun destroy(): Unit {
+  public fun destroy(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DESTROY, NIL)
   }
 
-  public open fun connectToHost(
+  public fun connectToHost(
     address: String,
     port: Long,
     channels: Long = 0,
@@ -77,28 +77,28 @@ public open class ENetConnection : RefCounted() {
     return TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?
   }
 
-  public open fun service(timeout: Long = 0): VariantArray<Any?> {
+  public fun service(timeout: Long = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SERVICE, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  public open fun flush(): Unit {
+  public fun flush(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_FLUSH, NIL)
   }
 
-  public open fun bandwidthLimit(inBandwidth: Long = 0, outBandwidth: Long = 0): Unit {
+  public fun bandwidthLimit(inBandwidth: Long = 0, outBandwidth: Long = 0): Unit {
     TransferContext.writeArguments(LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BANDWIDTH_LIMIT, NIL)
   }
 
-  public open fun channelLimit(limit: Long): Unit {
+  public fun channelLimit(limit: Long): Unit {
     TransferContext.writeArguments(LONG to limit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CHANNEL_LIMIT, NIL)
   }
 
-  public open fun broadcast(
+  public fun broadcast(
     channel: Long,
     packet: PackedByteArray,
     flags: Long
@@ -107,19 +107,19 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL)
   }
 
-  public open fun compress(mode: ENetConnection.CompressionMode): Unit {
+  public fun compress(mode: ENetConnection.CompressionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL)
   }
 
-  public open fun dtlsServerSetup(key: CryptoKey, certificate: X509Certificate): GodotError {
+  public fun dtlsServerSetup(key: CryptoKey, certificate: X509Certificate): GodotError {
     TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_SERVER_SETUP,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun dtlsClientSetup(
+  public fun dtlsClientSetup(
     certificate: X509Certificate,
     hostname: String,
     verify: Boolean = true
@@ -130,33 +130,33 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun refuseNewConnections(refuse: Boolean): Unit {
+  public fun refuseNewConnections(refuse: Boolean): Unit {
     TransferContext.writeArguments(BOOL to refuse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_REFUSE_NEW_CONNECTIONS, NIL)
   }
 
-  public open fun popStatistic(statistic: ENetConnection.HostStatistic): Double {
+  public fun popStatistic(statistic: ENetConnection.HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_POP_STATISTIC,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getMaxChannels(): Long {
+  public fun getMaxChannels(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_MAX_CHANNELS,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getLocalPort(): Long {
+  public fun getLocalPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_LOCAL_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getPeers(): VariantArray<Any?> {
+  public fun getPeers(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_PEERS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

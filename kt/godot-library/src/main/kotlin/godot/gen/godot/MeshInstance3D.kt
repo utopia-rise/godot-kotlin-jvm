@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * The [godot.Mesh] resource for the instance.
    */
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_MESH, OBJECT)
@@ -50,7 +50,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Sets the skin to be used by this instance.
    */
-  public open var skin: Skin?
+  public var skin: Skin?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKIN, OBJECT)
@@ -64,7 +64,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * [godot.core.NodePath] to the [godot.Skeleton3D] associated with the instance.
    */
-  public open var skeleton: NodePath
+  public var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON_PATH,
@@ -84,7 +84,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the number of surface override materials. This is equivalent to [godot.Mesh.getSurfaceCount].
    */
-  public open fun getSurfaceOverrideMaterialCount(): Long {
+  public fun getSurfaceOverrideMaterialCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL_COUNT, LONG)
@@ -94,7 +94,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Sets the override [godot.Material] for the specified surface of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with the [godot.Mesh] resource.
    */
-  public open fun setSurfaceOverrideMaterial(surface: Long, material: Material): Unit {
+  public fun setSurfaceOverrideMaterial(surface: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface, OBJECT to material)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SURFACE_OVERRIDE_MATERIAL, NIL)
@@ -103,7 +103,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the override [godot.Material] for the specified surface of the [godot.Mesh] resource.
    */
-  public open fun getSurfaceOverrideMaterial(surface: Long): Material? {
+  public fun getSurfaceOverrideMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL, OBJECT)
@@ -113,7 +113,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance3D.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance3D], or the surface [godot.Material] defined in the [godot.Mesh]. For example, if [godot.GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
    */
-  public open fun getActiveMaterial(surface: Long): Material? {
+  public fun getActiveMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_ACTIVE_MATERIAL,
         OBJECT)
@@ -123,7 +123,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [godot.StaticBody3D] child node with a [godot.ConcavePolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
    */
-  public open fun createTrimeshCollision(): Unit {
+  public fun createTrimeshCollision(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_TRIMESH_COLLISION, NIL)
@@ -136,7 +136,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    *
    * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
    */
-  public open fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
+  public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_CONVEX_COLLISION, NIL)
@@ -145,7 +145,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. It's mainly used for testing.
    */
-  public open fun createMultipleConvexCollisions(): Unit {
+  public fun createMultipleConvexCollisions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_MULTIPLE_CONVEX_COLLISIONS, NIL)
@@ -154,7 +154,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_COUNT, LONG)
@@ -164,7 +164,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun findBlendShapeByName(name: StringName): Long {
+  public fun findBlendShapeByName(name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_FIND_BLEND_SHAPE_BY_NAME, LONG)
@@ -174,7 +174,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun getBlendShapeValue(blendShapeIdx: Long): Double {
+  public fun getBlendShapeValue(blendShapeIdx: Long): Double {
     TransferContext.writeArguments(LONG to blendShapeIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_VALUE, DOUBLE)
@@ -184,7 +184,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun setBlendShapeValue(blendShapeIdx: Long, `value`: Double): Unit {
+  public fun setBlendShapeValue(blendShapeIdx: Long, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx, DOUBLE to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_BLEND_SHAPE_VALUE, NIL)
@@ -193,7 +193,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [godot.MeshInstance3D] child node with gizmos at every vertex calculated from the mesh geometry. It's mainly used for testing.
    */
-  public open fun createDebugTangents(): Unit {
+  public fun createDebugTangents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_DEBUG_TANGENTS, NIL)

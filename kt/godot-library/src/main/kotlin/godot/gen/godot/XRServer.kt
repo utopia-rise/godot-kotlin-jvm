@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -74,13 +74,13 @@ public object XRServer : Object() {
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
-  public open fun getWorldScale(): Double {
+  public fun getWorldScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_SCALE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun setWorldScale(scale: Double): Unit {
+  public fun setWorldScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_SCALE, NIL)
   }
@@ -88,7 +88,7 @@ public object XRServer : Object() {
   /**
    * Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces.
    */
-  public open fun getReferenceFrame(): Transform3D {
+  public fun getReferenceFrame(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_REFERENCE_FRAME,
         TRANSFORM3D)
@@ -108,7 +108,7 @@ public object XRServer : Object() {
    *
    * You should call this method after a few seconds have passed. For instance, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
    */
-  public open fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
+  public fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL)
   }
@@ -116,7 +116,7 @@ public object XRServer : Object() {
   /**
    * Returns the primary interface's transformation.
    */
-  public open fun getHmdTransform(): Transform3D {
+  public fun getHmdTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_HMD_TRANSFORM,
         TRANSFORM3D)
@@ -126,7 +126,7 @@ public object XRServer : Object() {
   /**
    * Registers an [godot.XRInterface] object.
    */
-  public open fun addInterface(_interface: XRInterface): Unit {
+  public fun addInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_INTERFACE, NIL)
   }
@@ -134,7 +134,7 @@ public object XRServer : Object() {
   /**
    * Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns `true`.
    */
-  public open fun getInterfaceCount(): Long {
+  public fun getInterfaceCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -143,7 +143,7 @@ public object XRServer : Object() {
   /**
    * Removes this interface.
    */
-  public open fun removeInterface(_interface: XRInterface): Unit {
+  public fun removeInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_INTERFACE, NIL)
   }
@@ -151,7 +151,7 @@ public object XRServer : Object() {
   /**
    * Returns the interface registered at a given index in our list of interfaces.
    */
-  public open fun getInterface(idx: Long): XRInterface? {
+  public fun getInterface(idx: Long): XRInterface? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
@@ -160,7 +160,7 @@ public object XRServer : Object() {
   /**
    * Returns a list of available interfaces the ID and name of each interface.
    */
-  public open fun getInterfaces(): VariantArray<Any?> {
+  public fun getInterfaces(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -169,7 +169,7 @@ public object XRServer : Object() {
   /**
    * Finds an interface by its name. For instance, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it.
    */
-  public open fun findInterface(name: String): XRInterface? {
+  public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_FIND_INTERFACE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
@@ -178,7 +178,7 @@ public object XRServer : Object() {
   /**
    * Registers a new [godot.XRPositionalTracker] that tracks a spatial location in real space.
    */
-  public open fun addTracker(tracker: XRPositionalTracker): Unit {
+  public fun addTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_TRACKER, NIL)
   }
@@ -186,7 +186,7 @@ public object XRServer : Object() {
   /**
    * Removes this positional tracker.
    */
-  public open fun removeTracker(tracker: XRPositionalTracker): Unit {
+  public fun removeTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_TRACKER, NIL)
   }
@@ -194,7 +194,7 @@ public object XRServer : Object() {
   /**
    * Returns a dictionary of trackers for this type.
    */
-  public open fun getTrackers(trackerTypes: Long): Dictionary<Any?, Any?> {
+  public fun getTrackers(trackerTypes: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKERS, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -203,20 +203,20 @@ public object XRServer : Object() {
   /**
    * Returns the positional tracker with this name.
    */
-  public open fun getTracker(trackerName: StringName): XRPositionalTracker? {
+  public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?
   }
 
-  public open fun getPrimaryInterface(): XRInterface? {
+  public fun getPrimaryInterface(): XRInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_PRIMARY_INTERFACE,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
   }
 
-  public open fun setPrimaryInterface(_interface: XRInterface): Unit {
+  public fun setPrimaryInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_PRIMARY_INTERFACE, NIL)
   }

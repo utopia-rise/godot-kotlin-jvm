@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * The type to be used in the comparison. See [enum ComparisonType] for options.
    */
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,7 +40,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * A comparison function. See [enum Function] for options.
    */
-  public open var function: Long
+  public var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -56,7 +56,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * Extra condition which is applied if [type] is set to [godot.CTYPE_VECTOR_3D].
    */
-  public open var condition: Long
+  public var condition: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

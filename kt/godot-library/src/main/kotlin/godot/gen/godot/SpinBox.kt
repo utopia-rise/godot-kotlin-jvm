@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -69,7 +69,7 @@ public open class SpinBox : Range() {
   /**
    *
    */
-  public open var alignment: Long
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_HORIZONTAL_ALIGNMENT,
@@ -85,7 +85,7 @@ public open class SpinBox : Range() {
   /**
    * If `true`, the [godot.SpinBox] will be editable. Otherwise, it will be read only.
    */
-  public open var editable: Boolean
+  public var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_IS_EDITABLE, BOOL)
@@ -99,7 +99,7 @@ public open class SpinBox : Range() {
   /**
    * Sets the value of the [godot.Range] for this [godot.SpinBox] when the [godot.LineEdit] text is *changed* instead of *submitted*. See [godot.LineEdit.textChanged] and [godot.LineEdit.textSubmitted].
    */
-  public open var updateOnTextChanged: Boolean
+  public var updateOnTextChanged: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -115,7 +115,7 @@ public open class SpinBox : Range() {
   /**
    * Adds the specified `prefix` string before the numerical value of the [godot.SpinBox].
    */
-  public open var prefix: String
+  public var prefix: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_PREFIX, STRING)
@@ -129,7 +129,7 @@ public open class SpinBox : Range() {
   /**
    * Adds the specified `suffix` string after the numerical value of the [godot.SpinBox].
    */
-  public open var suffix: String
+  public var suffix: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_SUFFIX, STRING)
@@ -147,7 +147,7 @@ public open class SpinBox : Range() {
   /**
    * Applies the current value of this [godot.SpinBox].
    */
-  public open fun apply(): Unit {
+  public fun apply(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL)
   }
@@ -157,7 +157,7 @@ public open class SpinBox : Range() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getLineEdit(): LineEdit? {
+  public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?

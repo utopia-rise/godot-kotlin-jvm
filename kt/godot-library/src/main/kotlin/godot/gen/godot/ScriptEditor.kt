@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns the [godot.ScriptEditorBase] object that the user is currently editing.
    */
-  public open fun getCurrentEditor(): ScriptEditorBase? {
+  public fun getCurrentEditor(): ScriptEditorBase? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_EDITOR,
         OBJECT)
@@ -56,7 +56,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns an array with all [godot.ScriptEditorBase] objects which are currently open in editor.
    */
-  public open fun getOpenScriptEditors(): VariantArray<Any?> {
+  public fun getOpenScriptEditors(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS, ARRAY)
@@ -68,7 +68,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    *
    * **Note:** Does not apply to scripts that are already opened.
    */
-  public open fun registerSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
+  public fun registerSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_REGISTER_SYNTAX_HIGHLIGHTER, NIL)
@@ -79,7 +79,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    *
    * **Note:** The [godot.EditorSyntaxHighlighter] will still be applied to scripts that are already opened.
    */
-  public open fun unregisterSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
+  public fun unregisterSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_UNREGISTER_SYNTAX_HIGHLIGHTER, NIL)
@@ -88,7 +88,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Goes to the specified line in the current script.
    */
-  public open fun gotoLine(lineNumber: Long): Unit {
+  public fun gotoLine(lineNumber: Long): Unit {
     TransferContext.writeArguments(LONG to lineNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
   }
@@ -96,7 +96,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns a [godot.Script] that is currently active in editor.
    */
-  public open fun getCurrentScript(): Script? {
+  public fun getCurrentScript(): Script? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
         OBJECT)
@@ -106,7 +106,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Returns an array with all [godot.Script] objects which are currently open in editor.
    */
-  public open fun getOpenScripts(): VariantArray<Any?> {
+  public fun getOpenScripts(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
         ARRAY)
@@ -116,7 +116,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Opens the script create dialog. The script will extend `base_name`. The file extension can be omitted from `base_path`. It will be added based on the selected scripting language.
    */
-  public open fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
+  public fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)

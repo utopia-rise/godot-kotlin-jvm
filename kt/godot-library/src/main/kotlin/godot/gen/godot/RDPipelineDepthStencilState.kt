@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var enableDepthTest: Boolean
+  public var enableDepthTest: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var enableDepthWrite: Boolean
+  public var enableDepthWrite: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var depthCompareOperator: Long
+  public var depthCompareOperator: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var enableDepthRange: Boolean
+  public var enableDepthRange: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var depthRangeMin: Double
+  public var depthRangeMin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var depthRangeMax: Double
+  public var depthRangeMax: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -122,7 +122,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var enableStencil: Boolean
+  public var enableStencil: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -138,7 +138,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpFail: Long
+  public var frontOpFail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -154,7 +154,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpPass: Long
+  public var frontOpPass: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -170,7 +170,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpDepthFail: Long
+  public var frontOpDepthFail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -186,7 +186,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpCompare: Long
+  public var frontOpCompare: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -202,7 +202,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpCompareMask: Long
+  public var frontOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +218,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpWriteMask: Long
+  public var frontOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -234,7 +234,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var frontOpReference: Long
+  public var frontOpReference: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -250,7 +250,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpFail: Long
+  public var backOpFail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -266,7 +266,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpPass: Long
+  public var backOpPass: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -282,7 +282,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpDepthFail: Long
+  public var backOpDepthFail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -298,7 +298,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpCompare: Long
+  public var backOpCompare: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -314,7 +314,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpCompareMask: Long
+  public var backOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -330,7 +330,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpWriteMask: Long
+  public var backOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -346,7 +346,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    *
    */
-  public open var backOpReference: Long
+  public var backOpReference: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

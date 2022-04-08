@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * The base type of allowed resource types. Can be a comma-separated list of several options.
    */
-  public open var baseType: String
+  public var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * The edited resource value.
    */
-  public open var editedResource: Resource?
+  public var editedResource: Resource?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -78,7 +78,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * If `true`, the value can be selected and edited.
    */
-  public open var editable: Boolean
+  public var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_EDITABLE,
@@ -94,7 +94,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * If `true`, the main button with the resource preview works in the toggle mode. Use [setTogglePressed] to manually set the state.
    */
-  public open var toggleMode: Boolean
+  public var toggleMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -123,13 +123,13 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
    * This virtual method can be implemented to handle context menu items not handled by default. See [_setCreateOptions].
    */
   public open fun _handleMenuSelected(id: Long): Boolean {
-    throw NotImplementedError("_handle_menu_selected·is·not·implemented·for·EditorResourcePicker")
+    throw NotImplementedError("_handle_menu_selected is not implemented for EditorResourcePicker")
   }
 
   /**
    * Returns a list of all allowed types and subtypes corresponding to the [baseType]. If the [baseType] is empty, an empty list is returned.
    */
-  public open fun getAllowedTypes(): PackedStringArray {
+  public fun getAllowedTypes(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_ALLOWED_TYPES, PACKED_STRING_ARRAY)
@@ -139,7 +139,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   /**
    * Sets the toggle mode state for the main button. Works only if [toggleMode] is set to `true`.
    */
-  public open fun setTogglePressed(pressed: Boolean): Unit {
+  public fun setTogglePressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_PRESSED, NIL)

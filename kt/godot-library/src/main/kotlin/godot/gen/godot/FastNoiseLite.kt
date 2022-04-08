@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +23,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
-  public open var noiseType: Long
+  public var noiseType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_NOISE_TYPE,
@@ -35,7 +35,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_NOISE_TYPE, NIL)
     }
 
-  public open var seed: Long
+  public var seed: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_SEED, LONG)
@@ -46,7 +46,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_SEED, NIL)
     }
 
-  public open var frequency: Double
+  public var frequency: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FREQUENCY,
@@ -58,7 +58,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FREQUENCY, NIL)
     }
 
-  public open var in3dSpace: Boolean
+  public var in3dSpace: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_IS_IN_3D_SPACE,
@@ -71,7 +71,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public open var offset: Vector3
+  public var offset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_OFFSET, VECTOR3)
@@ -82,7 +82,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_OFFSET, NIL)
     }
 
-  public open var colorRamp: Gradient?
+  public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_COLOR_RAMP,
@@ -94,7 +94,7 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_COLOR_RAMP, NIL)
     }
 
-  public open var fractalType: Long
+  public var fractalType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_TYPE,
@@ -107,7 +107,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public open var fractalOctaves: Long
+  public var fractalOctaves: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_OCTAVES,
@@ -120,7 +120,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public open var fractalLacunarity: Double
+  public var fractalLacunarity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_LACUNARITY, NIL)
     }
 
-  public open var fractalGain: Double
+  public var fractalGain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_FRACTAL_GAIN,
@@ -146,7 +146,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public open var fractalWeightedStrength: Double
+  public var fractalWeightedStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_WEIGHTED_STRENGTH, NIL)
     }
 
-  public open var fractalPingPongStrength: Double
+  public var fractalPingPongStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -172,7 +172,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_FRACTAL_PING_PONG_STRENGTH, NIL)
     }
 
-  public open var cellularDistanceFunction: Long
+  public var cellularDistanceFunction: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -185,7 +185,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_CELLULAR_DISTANCE_FUNCTION, NIL)
     }
 
-  public open var cellularJitter: Double
+  public var cellularJitter: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_GET_CELLULAR_JITTER,
@@ -198,7 +198,7 @@ public open class FastNoiseLite : Noise() {
           NIL)
     }
 
-  public open var cellularReturnType: Long
+  public var cellularReturnType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -211,7 +211,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_CELLULAR_RETURN_TYPE, NIL)
     }
 
-  public open var domainWarpEnabled: Boolean
+  public var domainWarpEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -224,7 +224,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_ENABLED, NIL)
     }
 
-  public open var domainWarpType: Long
+  public var domainWarpType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -237,7 +237,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_TYPE, NIL)
     }
 
-  public open var domainWarpAmplitude: Double
+  public var domainWarpAmplitude: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -250,7 +250,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_AMPLITUDE, NIL)
     }
 
-  public open var domainWarpFrequency: Double
+  public var domainWarpFrequency: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -263,7 +263,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FREQUENCY, NIL)
     }
 
-  public open var domainWarpFractalType: Long
+  public var domainWarpFractalType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -276,7 +276,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_TYPE, NIL)
     }
 
-  public open var domainWarpFractalOctaves: Long
+  public var domainWarpFractalOctaves: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -289,7 +289,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_OCTAVES, NIL)
     }
 
-  public open var domainWarpFractalLacunarity: Double
+  public var domainWarpFractalLacunarity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -302,7 +302,7 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_LACUNARITY, NIL)
     }
 
-  public open var domainWarpFractalGain: Double
+  public var domainWarpFractalGain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +23,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   /**
    * A source texture array. Used if [godot.VisualShaderNodeSample3D.source] is set to [godot.VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
-  public open var textureArray: Texture2DArray?
+  public var textureArray: Texture2DArray?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

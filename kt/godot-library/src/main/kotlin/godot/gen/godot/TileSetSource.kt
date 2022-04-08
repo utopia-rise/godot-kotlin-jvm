@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns how many tiles this atlas source defines (not including alternative tiles).
    */
-  public open fun getTilesCount(): Long {
+  public fun getTilesCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILES_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -48,7 +48,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns the tile coordinates ID of the tile with index `index`.
    */
-  public open fun getTileId(index: Long): Vector2i {
+  public fun getTileId(index: Long): Vector2i {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILE_ID, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
@@ -57,7 +57,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns if this atlas has a tile with coordinates ID `atlas_coordinates`.
    */
-  public open fun hasTile(atlasCoords: Vector2i): Boolean {
+  public fun hasTile(atlasCoords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_TILE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -70,7 +70,7 @@ public open class TileSetSource internal constructor() : Resource() {
    *
    * Returns -1 if there is not tile at the given coords.
    */
-  public open fun getAlternativeTilesCount(atlasCoords: Vector2i): Long {
+  public fun getAlternativeTilesCount(atlasCoords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILES_COUNT, LONG)
@@ -80,7 +80,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns the alternative ID for the tile with coordinates ID `atlas_coords` at index `index`.
    */
-  public open fun getAlternativeTileId(atlasCoords: Vector2i, index: Long): Long {
+  public fun getAlternativeTileId(atlasCoords: Vector2i, index: Long): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILE_ID, LONG)
@@ -90,7 +90,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns if the base tile at coordinates `atlas_coords` has an alternative with ID `alternative_tile`.
    */
-  public open fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Boolean {
+  public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_ALTERNATIVE_TILE,
         BOOL)

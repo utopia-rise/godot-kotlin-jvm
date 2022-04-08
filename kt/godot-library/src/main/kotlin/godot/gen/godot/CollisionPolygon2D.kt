@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * Collision build mode. Use one of the [enum BuildMode] constants.
    */
-  public open var buildMode: Long
+  public var buildMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_BUILD_MODE,
@@ -48,7 +48,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.PackedVector2Array], not a reference.
    */
-  public open var polygon: PackedVector2Array
+  public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_POLYGON,
@@ -64,7 +64,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * If `true`, no collisions will be detected.
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_IS_DISABLED,
@@ -80,7 +80,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * If `true`, only edges that face up, relative to [godot.CollisionPolygon2D]'s rotation, will collide with other objects.
    */
-  public open var oneWayCollision: Boolean
+  public var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -96,7 +96,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity.
    */
-  public open var oneWayCollisionMargin: Double
+  public var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

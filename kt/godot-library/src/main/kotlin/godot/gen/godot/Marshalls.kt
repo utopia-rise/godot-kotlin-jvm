@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of the [Variant] `variant`. If `full_objects` is `true`, encoding objects is allowed (and can potentially include code).
    */
-  public open fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
+  public fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_VARIANT_TO_BASE64, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -46,7 +46,7 @@ public object Marshalls : Object() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
-  public open fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
+  public fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_VARIANT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -55,7 +55,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of a given [godot.PackedByteArray].
    */
-  public open fun rawToBase64(array: PackedByteArray): String {
+  public fun rawToBase64(array: PackedByteArray): String {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_RAW_TO_BASE64, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -64,7 +64,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded [godot.PackedByteArray] corresponding to the Base64-encoded string `base64_str`.
    */
-  public open fun base64ToRaw(base64Str: String): PackedByteArray {
+  public fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_RAW,
         PACKED_BYTE_ARRAY)
@@ -74,7 +74,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of the UTF-8 string `utf8_str`.
    */
-  public open fun utf8ToBase64(utf8Str: String): String {
+  public fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_UTF8_TO_BASE64, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -83,7 +83,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded string corresponding to the Base64-encoded string `base64_str`.
    */
-  public open fun base64ToUtf8(base64Str: String): String {
+  public fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_UTF8, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -162,7 +162,7 @@ public open class Crypto : RefCounted() {
   /**
    * Generates a [godot.PackedByteArray] of cryptographically secure random bytes with given `size`.
    */
-  public open fun generateRandomBytes(size: Long): PackedByteArray {
+  public fun generateRandomBytes(size: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RANDOM_BYTES,
         PACKED_BYTE_ARRAY)
@@ -172,7 +172,7 @@ public open class Crypto : RefCounted() {
   /**
    * Generates an RSA [godot.CryptoKey] that can be used for creating self-signed certificates and passed to [godot.StreamPeerSSL.acceptStream].
    */
-  public open fun generateRsa(size: Long): CryptoKey? {
+  public fun generateRsa(size: Long): CryptoKey? {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RSA, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CryptoKey?
@@ -215,7 +215,7 @@ public open class Crypto : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun generateSelfSignedCertificate(
+  public fun generateSelfSignedCertificate(
     key: CryptoKey,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",
     notBefore: String = "20140101000000",
@@ -230,7 +230,7 @@ public open class Crypto : RefCounted() {
   /**
    * Sign a given `hash` of type `hash_type` with the provided private `key`.
    */
-  public open fun sign(
+  public fun sign(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
     key: CryptoKey
@@ -243,7 +243,7 @@ public open class Crypto : RefCounted() {
   /**
    * Verify that a given `signature` for `hash` of type `hash_type` against the provided public `key`.
    */
-  public open fun verify(
+  public fun verify(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
     signature: PackedByteArray,
@@ -259,7 +259,7 @@ public open class Crypto : RefCounted() {
    *
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
-  public open fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
+  public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_ENCRYPT, PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
@@ -270,7 +270,7 @@ public open class Crypto : RefCounted() {
    *
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
-  public open fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
+  public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_DECRYPT, PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
@@ -281,7 +281,7 @@ public open class Crypto : RefCounted() {
    *
    * Currently, only [godot.HashingContext.HASH_SHA256] and [godot.HashingContext.HASH_SHA1] are supported.
    */
-  public open fun hmacDigest(
+  public fun hmacDigest(
     hashType: HashingContext.HashType,
     key: PackedByteArray,
     msg: PackedByteArray
@@ -297,8 +297,7 @@ public open class Crypto : RefCounted() {
    *
    * See [this blog post](https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy) for more information.
    */
-  public open fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray):
-      Boolean {
+  public fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray): Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_CONSTANT_TIME_COMPARE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

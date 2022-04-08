@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +20,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFAccessor : Resource() {
-  public open var bufferView: Long
+  public var bufferView: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_BUFFER_VIEW,
@@ -32,7 +32,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_BUFFER_VIEW, NIL)
     }
 
-  public open var byteOffset: Long
+  public var byteOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_BYTE_OFFSET,
@@ -44,7 +44,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_BYTE_OFFSET, NIL)
     }
 
-  public open var componentType: Long
+  public var componentType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_COMPONENT_TYPE,
@@ -57,7 +57,7 @@ public open class GLTFAccessor : Resource() {
           NIL)
     }
 
-  public open var normalized: Boolean
+  public var normalized: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_NORMALIZED, BOOL)
@@ -68,7 +68,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_NORMALIZED, NIL)
     }
 
-  public open var count: Long
+  public var count: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_COUNT, LONG)
@@ -79,7 +79,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_COUNT, NIL)
     }
 
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_TYPE, LONG)
@@ -90,7 +90,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_TYPE, NIL)
     }
 
-  public open var min: PackedFloat64Array
+  public var min: PackedFloat64Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_MIN,
@@ -102,7 +102,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_MIN, NIL)
     }
 
-  public open var max: PackedFloat64Array
+  public var max: PackedFloat64Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_MAX,
@@ -114,7 +114,7 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_MAX, NIL)
     }
 
-  public open var sparseCount: Long
+  public var sparseCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_GET_SPARSE_COUNT,
@@ -127,7 +127,7 @@ public open class GLTFAccessor : Resource() {
           NIL)
     }
 
-  public open var sparseIndicesBufferView: Long
+  public var sparseIndicesBufferView: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -140,7 +140,7 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_INDICES_BUFFER_VIEW, NIL)
     }
 
-  public open var sparseIndicesByteOffset: Long
+  public var sparseIndicesByteOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -153,7 +153,7 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_INDICES_BYTE_OFFSET, NIL)
     }
 
-  public open var sparseIndicesComponentType: Long
+  public var sparseIndicesComponentType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -166,7 +166,7 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_INDICES_COMPONENT_TYPE, NIL)
     }
 
-  public open var sparseValuesBufferView: Long
+  public var sparseValuesBufferView: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -179,7 +179,7 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_VALUES_BUFFER_VIEW, NIL)
     }
 
-  public open var sparseValuesByteOffset: Long
+  public var sparseValuesByteOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

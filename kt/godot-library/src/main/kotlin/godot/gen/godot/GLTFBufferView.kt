@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -18,7 +18,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFBufferView : Resource() {
-  public open var buffer: Long
+  public var buffer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BUFFER, LONG)
@@ -29,7 +29,7 @@ public open class GLTFBufferView : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BUFFER, NIL)
     }
 
-  public open var byteOffset: Long
+  public var byteOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_OFFSET,
@@ -42,7 +42,7 @@ public open class GLTFBufferView : Resource() {
           NIL)
     }
 
-  public open var byteLength: Long
+  public var byteLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_LENGTH,
@@ -55,7 +55,7 @@ public open class GLTFBufferView : Resource() {
           NIL)
     }
 
-  public open var byteStride: Long
+  public var byteStride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_STRIDE,
@@ -68,7 +68,7 @@ public open class GLTFBufferView : Resource() {
           NIL)
     }
 
-  public open var indices: Boolean
+  public var indices: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_INDICES, BOOL)

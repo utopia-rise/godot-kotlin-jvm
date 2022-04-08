@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
   /**
    * The size of the node in the visual shader graph.
    */
-  public open var size: Vector2
+  public var size: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

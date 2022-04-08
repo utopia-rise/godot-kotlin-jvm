@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * When true, the modification's in the stack will be called. This is handled automatically through the [godot.Skeleton3D] node.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the skeleton bone poses.
    */
-  public open var strength: Double
+  public var strength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * The amount of modifications in the stack.
    */
-  public open var modificationCount: Long
+  public var modificationCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -83,7 +83,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Sets up the modification stack so it can execute. This function should be called by [godot.Skeleton3D] and shouldn't be called unless you know what you are doing.
    */
-  public open fun setup(): Unit {
+  public fun setup(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_SETUP,
         NIL)
@@ -94,7 +94,7 @@ public open class SkeletonModificationStack3D : Resource() {
    *
    * **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.
    */
-  public open fun execute(delta: Double, executionMode: Long): Unit {
+  public fun execute(delta: Double, executionMode: Long): Unit {
     TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_EXECUTE,
         NIL)
@@ -103,7 +103,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Enables all [godot.SkeletonModification3D]s in the stack.
    */
-  public open fun enableAllModifications(enabled: Boolean): Unit {
+  public fun enableAllModifications(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_ENABLE_ALL_MODIFICATIONS, NIL)
@@ -112,7 +112,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Returns the [godot.SkeletonModification3D] at the passed-in index, `mod_idx`.
    */
-  public open fun getModification(modIdx: Long): SkeletonModification3D? {
+  public fun getModification(modIdx: Long): SkeletonModification3D? {
     TransferContext.writeArguments(LONG to modIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_GET_MODIFICATION, OBJECT)
@@ -122,7 +122,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Adds the passed-in [godot.SkeletonModification3D] to the stack.
    */
-  public open fun addModification(modification: SkeletonModification3D): Unit {
+  public fun addModification(modification: SkeletonModification3D): Unit {
     TransferContext.writeArguments(OBJECT to modification)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_ADD_MODIFICATION, NIL)
@@ -131,7 +131,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Deletes the [godot.SkeletonModification3D] at the index position `mod_idx`, if it exists.
    */
-  public open fun deleteModification(modIdx: Long): Unit {
+  public fun deleteModification(modIdx: Long): Unit {
     TransferContext.writeArguments(LONG to modIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_DELETE_MODIFICATION, NIL)
@@ -140,7 +140,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Sets the modification at `mod_idx` to the passed-in modification, `modification`.
    */
-  public open fun setModification(modIdx: Long, modification: SkeletonModification3D): Unit {
+  public fun setModification(modIdx: Long, modification: SkeletonModification3D): Unit {
     TransferContext.writeArguments(LONG to modIdx, OBJECT to modification)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_SET_MODIFICATION, NIL)
@@ -149,7 +149,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Returns a boolean that indicates whether the modification stack is setup and can execute.
    */
-  public open fun getIsSetup(): Boolean {
+  public fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_GET_IS_SETUP, BOOL)
@@ -159,7 +159,7 @@ public open class SkeletonModificationStack3D : Resource() {
   /**
    * Returns the [godot.Skeleton3D] node that the SkeletonModificationStack3D is bound to.
    */
-  public open fun getSkeleton(): Skeleton3D? {
+  public fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK3D_GET_SKELETON, OBJECT)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class SubViewport : Viewport() {
   /**
    * The width and height of the sub-viewport.
    */
-  public open var size: Vector2i
+  public var size: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE, VECTOR2I)
@@ -45,7 +45,7 @@ public open class SubViewport : Viewport() {
   /**
    * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
    */
-  public open var size2dOverride: Vector2i
+  public var size2dOverride: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE_2D_OVERRIDE,
@@ -61,7 +61,7 @@ public open class SubViewport : Viewport() {
   /**
    * If `true`, the 2D size override affects stretch as well.
    */
-  public open var size2dOverrideStretch: Boolean
+  public var size2dOverrideStretch: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class SubViewport : Viewport() {
    *
    * **Note:** This property is intended for 2D usage.
    */
-  public open var renderTargetClearMode: Long
+  public var renderTargetClearMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
@@ -93,7 +93,7 @@ public open class SubViewport : Viewport() {
   /**
    * The update mode when the sub-viewport is used as a render target.
    */
-  public open var renderTargetUpdateMode: Long
+  public var renderTargetUpdateMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)

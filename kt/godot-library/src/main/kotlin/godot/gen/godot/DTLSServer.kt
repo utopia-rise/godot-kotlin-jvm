@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -304,7 +304,7 @@ public open class DTLSServer : RefCounted() {
   /**
    * Setup the DTLS server to use the given `private_key` and provide the given `certificate` to clients. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
    */
-  public open fun setup(
+  public fun setup(
     key: CryptoKey,
     certificate: X509Certificate,
     chain: X509Certificate? = null
@@ -319,7 +319,7 @@ public open class DTLSServer : RefCounted() {
    *
    * **Note:** You must check that the state of the return PacketPeerUDP is [godot.PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50% of the new connections will be invalid due to cookie exchange.
    */
-  public open fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
+  public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?

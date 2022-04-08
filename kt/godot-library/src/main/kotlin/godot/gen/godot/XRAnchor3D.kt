@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class XRAnchor3D : XRNode3D() {
   /**
    * Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table.
    */
-  public open fun getSize(): Vector3 {
+  public fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRANCHOR3D_GET_SIZE, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -42,7 +42,7 @@ public open class XRAnchor3D : XRNode3D() {
   /**
    * Returns a plane aligned with our anchor; handy for intersection testing.
    */
-  public open fun getPlane(): Plane {
+  public fun getPlane(): Plane {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRANCHOR3D_GET_PLANE, PLANE)
     return TransferContext.readReturnValue(PLANE, false) as Plane

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -52,7 +52,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * The currently selected color.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICK_COLOR, COLOR)
@@ -66,7 +66,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * If `true`, shows an alpha channel slider (opacity).
    */
-  public open var editAlpha: Boolean
+  public var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_EDITING_ALPHA,
@@ -83,7 +83,7 @@ public open class ColorPicker : BoxContainer() {
    *
    * **Note:** Cannot be enabled if raw mode is on.
    */
-  public open var hsvMode: Boolean
+  public var hsvMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_HSV_MODE, BOOL)
@@ -99,7 +99,7 @@ public open class ColorPicker : BoxContainer() {
    *
    * **Note:** Cannot be enabled if HSV mode is on.
    */
-  public open var rawMode: Boolean
+  public var rawMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_RAW_MODE, BOOL)
@@ -113,7 +113,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues).
    */
-  public open var deferredMode: Boolean
+  public var deferredMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_DEFERRED_MODE,
@@ -129,7 +129,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * The shape of the color space view. See [enum PickerShapeType].
    */
-  public open var pickerShape: Long
+  public var pickerShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICKER_SHAPE,
@@ -144,7 +144,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * If `true`, the "add preset" button is enabled.
    */
-  public open var presetsEnabled: Boolean
+  public var presetsEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_PRESETS_ENABLED,
@@ -160,7 +160,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * If `true`, saved color presets are visible.
    */
-  public open var presetsVisible: Boolean
+  public var presetsVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_PRESETS_VISIBLE,
@@ -182,7 +182,7 @@ public open class ColorPicker : BoxContainer() {
    *
    * **Note:** The presets list is only for *this* color picker.
    */
-  public open fun addPreset(color: Color): Unit {
+  public fun addPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ADD_PRESET, NIL)
   }
@@ -190,7 +190,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * Removes the given color from the list of color presets of this color picker.
    */
-  public open fun erasePreset(color: Color): Unit {
+  public fun erasePreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ERASE_PRESET, NIL)
   }
@@ -198,7 +198,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * Returns the list of colors in the presets of the color picker.
    */
-  public open fun getPresets(): PackedColorArray {
+  public fun getPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS,
         PACKED_COLOR_ARRAY)

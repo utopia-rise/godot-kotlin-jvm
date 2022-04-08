@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -70,7 +70,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    *
    * In case of a directory code-sign will error if you place non code object in directory.
    */
-  public open fun addSharedObject(
+  public fun addSharedObject(
     path: String,
     tags: PackedStringArray,
     target: String
@@ -83,7 +83,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds a static lib from the given `path` to the iOS project.
    */
-  public open fun addIosProjectStaticLib(path: String): Unit {
+  public fun addIosProjectStaticLib(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PROJECT_STATIC_LIB, NIL)
@@ -92,7 +92,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds a custom file to be exported. `path` is the virtual path that can be used to load the file, `file` is the binary data of the file. If `remap` is `true`, file will not be exported, but instead remapped to the given `path`.
    */
-  public open fun addFile(
+  public fun addFile(
     path: String,
     `file`: PackedByteArray,
     remap: Boolean
@@ -104,7 +104,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds a static library (*.a) or dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project.
    */
-  public open fun addIosFramework(path: String): Unit {
+  public fun addIosFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_FRAMEWORK, NIL)
@@ -117,7 +117,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    *
    * This method should not be used for System libraries as they are already present on the device.
    */
-  public open fun addIosEmbeddedFramework(path: String): Unit {
+  public fun addIosEmbeddedFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_EMBEDDED_FRAMEWORK, NIL)
@@ -126,7 +126,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds content for iOS Property List files.
    */
-  public open fun addIosPlistContent(plistContent: String): Unit {
+  public fun addIosPlistContent(plistContent: String): Unit {
     TransferContext.writeArguments(STRING to plistContent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PLIST_CONTENT, NIL)
@@ -135,7 +135,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds linker flags for the iOS export.
    */
-  public open fun addIosLinkerFlags(flags: String): Unit {
+  public fun addIosLinkerFlags(flags: String): Unit {
     TransferContext.writeArguments(STRING to flags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_LINKER_FLAGS, NIL)
@@ -144,7 +144,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds an iOS bundle file from the given `path` to the exported project.
    */
-  public open fun addIosBundleFile(path: String): Unit {
+  public fun addIosBundleFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_BUNDLE_FILE, NIL)
@@ -153,7 +153,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds a C++ code to the iOS export. The final code is created from the code appended by each active export plugin.
    */
-  public open fun addIosCppCode(code: String): Unit {
+  public fun addIosCppCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_CPP_CODE,
         NIL)
@@ -164,7 +164,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    *
    * **Note:** This is useful only for macOS exports.
    */
-  public open fun addOsxPluginFile(path: String): Unit {
+  public fun addOsxPluginFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_OSX_PLUGIN_FILE, NIL)
@@ -173,7 +173,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * To be called inside [_exportFile]. Skips the current file, so it's not included in the export.
    */
-  public open fun skip(): Unit {
+  public fun skip(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)
   }

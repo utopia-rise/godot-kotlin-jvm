@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles are being emitted.
    */
-  public open var emitting: Boolean
+  public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_IS_EMITTING, BOOL)
@@ -53,7 +53,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Number of particles emitted in one emission cycle.
    */
-  public open var amount: Long
+  public var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_AMOUNT, LONG)
@@ -67,7 +67,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time each particle will exist.
    */
-  public open var lifetime: Double
+  public var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_LIFETIME,
@@ -82,7 +82,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
-  public open var oneShot: Boolean
+  public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_ONE_SHOT, BOOL)
@@ -96,7 +96,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  public open var preprocess: Double
+  public var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -112,7 +112,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  public open var speedScale: Double
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPEED_SCALE,
@@ -128,7 +128,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
-  public open var explosiveness: Double
+  public var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -144,7 +144,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Emission lifetime randomness ratio.
    */
-  public open var randomness: Double
+  public var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -160,7 +160,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle lifetime randomness ratio.
    */
-  public open var lifetimeRandomness: Double
+  public var lifetimeRandomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -176,7 +176,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself.
    */
-  public open var fixedFps: Long
+  public var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_FIXED_FPS,
@@ -191,7 +191,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  public open var fractDelta: Boolean
+  public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -207,7 +207,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  public open var localCoords: Boolean
+  public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -223,7 +223,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public open var drawOrder: Long
+  public var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DRAW_ORDER,
@@ -239,7 +239,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The [godot.Mesh] used for each particle. If `null`, particles will be spheres.
    */
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_MESH, OBJECT)
@@ -253,7 +253,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
    */
-  public open var emissionShape: Long
+  public var emissionShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_SHAPE,
@@ -269,7 +269,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The sphere's radius if [enum EmissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
-  public open var emissionSphereRadius: Double
+  public var emissionSphereRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -285,7 +285,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    */
-  public open var emissionBoxExtents: Vector3
+  public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -301,7 +301,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionPoints: PackedVector3Array
+  public var emissionPoints: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -317,7 +317,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionNormals: PackedVector3Array
+  public var emissionNormals: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -333,7 +333,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionColors: PackedColorArray
+  public var emissionColors: PackedColorArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -349,7 +349,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingAxis: Vector3
+  public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -365,7 +365,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingHeight: Double
+  public var emissionRingHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -381,7 +381,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingRadius: Double
+  public var emissionRingRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -397,7 +397,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public open var emissionRingInnerRadius: Double
+  public var emissionRingInnerRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -413,7 +413,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
-  public open var direction: Vector3
+  public var direction: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DIRECTION,
@@ -428,7 +428,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z plane and Y/Z planes.
    */
-  public open var spread: Double
+  public var spread: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPREAD, DOUBLE)
@@ -442,7 +442,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of [spread] in Y/Z plane. A value of `1` restricts particles to X/Z plane.
    */
-  public open var flatness: Double
+  public var flatness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_FLATNESS,
@@ -457,7 +457,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Gravity applied to every particle.
    */
-  public open var gravity: Vector3
+  public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_GRAVITY,
@@ -472,7 +472,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If set to true, three different scale curves can be specified, one per scale axis.
    */
-  public open var splitScale: Boolean
+  public var splitScale: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPLIT_SCALE,
@@ -488,7 +488,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the x axis.
    */
-  public open var scaleCurveX: Curve?
+  public var scaleCurveX: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_X,
@@ -504,7 +504,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the y axis.
    */
-  public open var scaleCurveY: Curve?
+  public var scaleCurveY: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_Y,
@@ -520,7 +520,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the z axis.
    */
-  public open var scaleCurveZ: Curve?
+  public var scaleCurveZ: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_Z,
@@ -536,7 +536,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's initial color. To have particle display color in a [godot.BaseMaterial3D] make sure to set [godot.BaseMaterial3D.vertexColorUseAsAlbedo] to `true`.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_COLOR, COLOR)
@@ -550,7 +550,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
    */
-  public open var colorRamp: Gradient?
+  public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_COLOR_RAMP,
@@ -566,7 +566,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
    */
-  public open var colorInitialRamp: Gradient?
+  public var colorInitialRamp: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -586,7 +586,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Restarts the particle emitter.
    */
-  public open fun restart(): Unit {
+  public fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_RESTART, NIL)
   }
@@ -594,7 +594,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the minimum value for the given parameter
    */
-  public open fun setParamMin(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
+  public fun setParamMin(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
   }
@@ -602,7 +602,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun getParamMin(`param`: CPUParticles3D.Parameter): Double {
+  public fun getParamMin(`param`: CPUParticles3D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
         DOUBLE)
@@ -612,7 +612,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the maximum value for the given parameter
    */
-  public open fun setParamMax(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
+  public fun setParamMax(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
   }
@@ -620,7 +620,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open fun getParamMax(`param`: CPUParticles3D.Parameter): Double {
+  public fun getParamMax(`param`: CPUParticles3D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
         DOUBLE)
@@ -630,7 +630,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public open fun setParamCurve(`param`: CPUParticles3D.Parameter, curve: Curve): Unit {
+  public fun setParamCurve(`param`: CPUParticles3D.Parameter, curve: Curve): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE, NIL)
   }
@@ -638,7 +638,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public open fun getParamCurve(`param`: CPUParticles3D.Parameter): Curve? {
+  public fun getParamCurve(`param`: CPUParticles3D.Parameter): Curve? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
         OBJECT)
@@ -648,8 +648,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Enables or disables the given particle flag (see [enum ParticleFlags] for options).
    */
-  public open fun setParticleFlag(particleFlag: CPUParticles3D.ParticleFlags, enable: Boolean):
-      Unit {
+  public fun setParticleFlag(particleFlag: CPUParticles3D.ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARTICLE_FLAG,
         NIL)
@@ -658,7 +657,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the enabled state of the given particle flag (see [enum ParticleFlags] for options).
    */
-  public open fun getParticleFlag(particleFlag: CPUParticles3D.ParticleFlags): Boolean {
+  public fun getParticleFlag(particleFlag: CPUParticles3D.ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARTICLE_FLAG,
         BOOL)
@@ -668,7 +667,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets this node's properties to match a given [godot.GPUParticles3D] node with an assigned [godot.ParticlesMaterial].
    */
-  public open fun convertFromParticles(particles: Node): Unit {
+  public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_CONVERT_FROM_PARTICLES, NIL)

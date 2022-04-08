@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class PhysicsMaterial : Resource() {
   /**
    * The body's friction. Values range from `0` (frictionless) to `1` (maximum friction).
    */
-  public open var friction: Double
+  public var friction: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_GET_FRICTION,
@@ -41,7 +41,7 @@ public open class PhysicsMaterial : Resource() {
   /**
    * If `true`, the physics engine will use the friction of the object marked as "rough" when two objects collide. If `false`, the physics engine will use the lowest friction of all colliding objects instead. If `true` for both colliding objects, the physics engine will use the highest friction.
    */
-  public open var rough: Boolean
+  public var rough: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_IS_ROUGH, BOOL)
@@ -55,7 +55,7 @@ public open class PhysicsMaterial : Resource() {
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
    */
-  public open var bounce: Double
+  public var bounce: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_GET_BOUNCE,
@@ -70,7 +70,7 @@ public open class PhysicsMaterial : Resource() {
   /**
    * If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding it.
    */
-  public open var absorbent: Boolean
+  public var absorbent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_IS_ABSORBENT,

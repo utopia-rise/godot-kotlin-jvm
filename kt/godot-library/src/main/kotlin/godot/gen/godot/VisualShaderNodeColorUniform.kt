@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public open var defaultValueEnabled: Boolean
+  public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
   /**
    * A default value to be assigned within the shader.
    */
-  public open var defaultValue: Color
+  public var defaultValue: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

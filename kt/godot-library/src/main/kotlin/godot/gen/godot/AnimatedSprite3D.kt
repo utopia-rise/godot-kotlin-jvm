@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The [godot.SpriteFrames] resource containing the animation(s).
    */
-  public open var frames: SpriteFrames?
+  public var frames: SpriteFrames?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
    */
-  public open var animation: String
+  public var animation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_ANIMATION,
@@ -78,7 +78,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The displayed animation frame's index.
    */
-  public open var frame: Long
+  public var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_FRAME, LONG)
@@ -96,7 +96,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Plays the animation named `anim`. If no `anim` is provided, the current animation is played.
    */
-  public open fun play(anim: StringName = StringName("")): Unit {
+  public fun play(anim: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)
   }
@@ -104,7 +104,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Stops the current animation (does not reset the frame counter).
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_STOP, NIL)
   }
@@ -112,7 +112,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Returns `true` if an animation is currently being played.
    */
-  public open fun isPlaying(): Boolean {
+  public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

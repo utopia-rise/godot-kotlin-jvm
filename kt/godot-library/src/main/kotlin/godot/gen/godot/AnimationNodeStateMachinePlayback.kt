@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -59,7 +59,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Transitions from the current state to another one, following the shortest path.
    */
-  public open fun travel(toNode: StringName): Unit {
+  public fun travel(toNode: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
@@ -68,7 +68,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Starts playing the given animation.
    */
-  public open fun start(node: StringName): Unit {
+  public fun start(node: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
@@ -77,7 +77,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Stops the currently playing animation.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP, NIL)
@@ -86,7 +86,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns `true` if an animation is playing.
    */
-  public open fun isPlaying(): Boolean {
+  public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
@@ -96,7 +96,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the currently playing animation state.
    */
-  public open fun getCurrentNode(): StringName {
+  public fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING_NAME)
@@ -106,7 +106,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the playback position within the current animation state.
    */
-  public open fun getCurrentPlayPosition(): Double {
+  public fun getCurrentPlayPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
@@ -117,7 +117,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    *
    */
-  public open fun getCurrentLength(): Double {
+  public fun getCurrentLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
@@ -127,7 +127,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the current travel path as computed internally by the A* algorithm.
    */
-  public open fun getTravelPath(): PackedStringArray {
+  public fun getTravelPath(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,

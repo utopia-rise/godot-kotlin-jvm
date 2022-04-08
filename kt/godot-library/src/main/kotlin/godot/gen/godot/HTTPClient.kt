@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -59,7 +59,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, execution will block until all data is read from the response.
    */
-  public open var blockingModeEnabled: Boolean
+  public var blockingModeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * The connection to use for this client.
    */
-  public open var connection: StreamPeer?
+  public var connection: StreamPeer?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_CONNECTION, OBJECT)
@@ -88,7 +88,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * The size of the buffer used and maximum bytes to read per iteration. See [readResponseBodyChunk].
    */
-  public open var readChunkSize: Long
+  public var readChunkSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_READ_CHUNK_SIZE,
@@ -114,7 +114,7 @@ public open class HTTPClient : RefCounted() {
    *
    * `verify_host` will check the SSL identity of the host if set to `true`.
    */
-  public open fun connectToHost(
+  public fun connectToHost(
     host: String,
     port: Long = -1,
     useSsl: Boolean = false,
@@ -134,7 +134,7 @@ public open class HTTPClient : RefCounted() {
    *
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
-  public open fun requestRaw(
+  public fun requestRaw(
     method: HTTPClient.Method,
     url: String,
     headers: PackedStringArray,
@@ -184,7 +184,7 @@ public open class HTTPClient : RefCounted() {
    *
    * **Note:** The `request_data` parameter is ignored if `method` is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.uriEncode] for an example.
    */
-  public open fun request(
+  public fun request(
     method: HTTPClient.Method,
     url: String,
     headers: PackedStringArray,
@@ -198,7 +198,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Closes the current connection, allowing reuse of this [godot.HTTPClient].
    */
-  public open fun close(): Unit {
+  public fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CLOSE, NIL)
   }
@@ -206,7 +206,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, this [godot.HTTPClient] has a response available.
    */
-  public open fun hasResponse(): Boolean {
+  public fun hasResponse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_HAS_RESPONSE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -215,7 +215,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, this [godot.HTTPClient] has a response that is chunked.
    */
-  public open fun isResponseChunked(): Boolean {
+  public fun isResponseChunked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_RESPONSE_CHUNKED,
         BOOL)
@@ -225,7 +225,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns the response's HTTP status code.
    */
-  public open fun getResponseCode(): Long {
+  public fun getResponseCode(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_CODE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -234,7 +234,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns the response headers.
    */
-  public open fun getResponseHeaders(): PackedStringArray {
+  public fun getResponseHeaders(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS,
         PACKED_STRING_ARRAY)
@@ -253,7 +253,7 @@ public open class HTTPClient : RefCounted() {
    * 				}
    * 				```
    */
-  public open fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
+  public fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS_AS_DICTIONARY, DICTIONARY)
@@ -265,7 +265,7 @@ public open class HTTPClient : RefCounted() {
    *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
-  public open fun getResponseBodyLength(): Long {
+  public fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_BODY_LENGTH,
         LONG)
@@ -275,7 +275,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Reads one chunk from the response.
    */
-  public open fun readResponseBodyChunk(): PackedByteArray {
+  public fun readResponseBodyChunk(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_READ_RESPONSE_BODY_CHUNK,
         PACKED_BYTE_ARRAY)
@@ -285,7 +285,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns a [enum Status] constant. Need to call [poll] in order to get status updates.
    */
-  public open fun getStatus(): HTTPClient.Status {
+  public fun getStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
     return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -294,7 +294,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * This needs to be called in order to have any request processed. Check results with [getStatus].
    */
-  public open fun poll(): GodotError {
+  public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -305,7 +305,7 @@ public open class HTTPClient : RefCounted() {
    *
    * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun setHttpProxy(host: String, port: Long): Unit {
+  public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL)
   }
@@ -315,7 +315,7 @@ public open class HTTPClient : RefCounted() {
    *
    * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun setHttpsProxy(host: String, port: Long): Unit {
+  public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL)
   }
@@ -373,7 +373,7 @@ public open class HTTPClient : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
+  public fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
     TransferContext.writeArguments(DICTIONARY to fields)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_QUERY_STRING_FROM_DICT,
         STRING)

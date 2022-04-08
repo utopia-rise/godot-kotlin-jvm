@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class JSONRPC : Object() {
   /**
    *
    */
-  public open fun setScope(scope: String, target: Object): Unit {
+  public fun setScope(scope: String, target: Object): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
   }
@@ -49,7 +49,7 @@ public open class JSONRPC : Object() {
    *
    * `action`: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
-  public open fun processAction(action: Any, recurse: Boolean = false): Any? {
+  public fun processAction(action: Any, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -58,7 +58,7 @@ public open class JSONRPC : Object() {
   /**
    *
    */
-  public open fun processString(action: String): String {
+  public fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -73,7 +73,7 @@ public open class JSONRPC : Object() {
    *
    * - `id`: Uniquely identifies this request. The server is expected to send a response with the same ID.
    */
-  public open fun makeRequest(
+  public fun makeRequest(
     method: String,
     params: Any,
     id: Any
@@ -90,7 +90,7 @@ public open class JSONRPC : Object() {
    *
    * - `id`: The ID of the request this response is targeted to.
    */
-  public open fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
+  public fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -103,7 +103,7 @@ public open class JSONRPC : Object() {
    *
    * - `params`: An array or dictionary of parameters being passed to the method.
    */
-  public open fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
+  public fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
         DICTIONARY)
@@ -119,7 +119,7 @@ public open class JSONRPC : Object() {
    *
    * - `id`: The request this error is a response to.
    */
-  public open fun makeResponseError(
+  public fun makeResponseError(
     code: Long,
     message: String,
     id: Any? = null

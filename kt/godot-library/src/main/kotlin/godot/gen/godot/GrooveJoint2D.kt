@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class GrooveJoint2D : Joint2D() {
   /**
    * The groove's length. The groove is from the joint's origin towards [length] along the joint's local Y axis.
    */
-  public open var length: Double
+  public var length: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_LENGTH, DOUBLE)
@@ -38,7 +38,7 @@ public open class GrooveJoint2D : Joint2D() {
   /**
    * The body B's initial anchor position defined by the joint's origin and a local offset [initialOffset] along the joint's Y axis (along the groove).
    */
-  public open var initialOffset: Double
+  public var initialOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_INITIAL_OFFSET,

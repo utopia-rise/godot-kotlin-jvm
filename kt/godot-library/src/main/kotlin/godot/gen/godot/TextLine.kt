@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -47,7 +47,7 @@ public open class TextLine : RefCounted() {
   /**
    * Text writing direction.
    */
-  public open var direction: Long
+  public var direction: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_DIRECTION, LONG)
@@ -61,7 +61,7 @@ public open class TextLine : RefCounted() {
   /**
    * Text orientation.
    */
-  public open var orientation: Long
+  public var orientation: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_ORIENTATION, LONG)
@@ -75,7 +75,7 @@ public open class TextLine : RefCounted() {
   /**
    * If set to `true` text will display invalid characters.
    */
-  public open var preserveInvalid: Boolean
+  public var preserveInvalid: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_PRESERVE_INVALID,
@@ -91,7 +91,7 @@ public open class TextLine : RefCounted() {
   /**
    * If set to `true` text will display control characters.
    */
-  public open var preserveControl: Boolean
+  public var preserveControl: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_PRESERVE_CONTROL,
@@ -107,7 +107,7 @@ public open class TextLine : RefCounted() {
   /**
    * Text line width.
    */
-  public open var width: Double
+  public var width: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_WIDTH, DOUBLE)
@@ -121,7 +121,7 @@ public open class TextLine : RefCounted() {
   /**
    *
    */
-  public open var alignment: Long
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_HORIZONTAL_ALIGNMENT,
@@ -137,7 +137,7 @@ public open class TextLine : RefCounted() {
   /**
    * Line Alignment rules. For more info see [godot.TextServer].
    */
-  public open var flags: Long
+  public var flags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_FLAGS, LONG)
@@ -151,7 +151,7 @@ public open class TextLine : RefCounted() {
   /**
    * Sets the clipping behavior when the text exceeds the text line's set width. See [enum OverrunBehavior] for a description of all modes.
    */
-  public open var textOverrunBehavior: Long
+  public var textOverrunBehavior: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class TextLine : RefCounted() {
   /**
    * Clears text line (removes text and inline objects).
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_CLEAR, NIL)
   }
@@ -181,7 +181,7 @@ public open class TextLine : RefCounted() {
    *
    * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
    */
-  public open fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
+  public fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_BIDI_OVERRIDE, NIL)
   }
@@ -189,7 +189,7 @@ public open class TextLine : RefCounted() {
   /**
    * Adds text span and font to draw it.
    */
-  public open fun addString(
+  public fun addString(
     text: String,
     fonts: Font,
     size: Long,
@@ -205,7 +205,7 @@ public open class TextLine : RefCounted() {
   /**
    * Adds inline object to the text buffer, `key` must be unique. In the text, object is represented as `length` object replacement characters.
    */
-  public open fun addObject(
+  public fun addObject(
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
@@ -219,7 +219,7 @@ public open class TextLine : RefCounted() {
   /**
    * Sets new size and alignment of embedded object.
    */
-  public open fun resizeObject(
+  public fun resizeObject(
     key: Any,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
@@ -232,7 +232,7 @@ public open class TextLine : RefCounted() {
   /**
    * Aligns text to the given tab-stops.
    */
-  public open fun tabAlign(tabStops: PackedFloat32Array): Unit {
+  public fun tabAlign(tabStops: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_TAB_ALIGN, NIL)
   }
@@ -240,7 +240,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns array of inline objects.
    */
-  public open fun getObjects(): VariantArray<Any?> {
+  public fun getObjects(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_OBJECTS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -249,7 +249,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public open fun getObjectRect(key: Any): Rect2 {
+  public fun getObjectRect(key: Any): Rect2 {
     TransferContext.writeArguments(ANY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_OBJECT_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -258,7 +258,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns size of the bounding box of the text.
    */
-  public open fun getSize(): Vector2 {
+  public fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -267,7 +267,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns TextServer buffer RID.
    */
-  public open fun getRid(): RID {
+  public fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -276,7 +276,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
    */
-  public open fun getLineAscent(): Double {
+  public fun getLineAscent(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_LINE_ASCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -285,7 +285,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
    */
-  public open fun getLineDescent(): Double {
+  public fun getLineDescent(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_LINE_DESCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -294,7 +294,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
-  public open fun getLineWidth(): Double {
+  public fun getLineWidth(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_LINE_WIDTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -303,7 +303,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public open fun getLineUnderlinePosition(): Double {
+  public fun getLineUnderlinePosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_LINE_UNDERLINE_POSITION, DOUBLE)
@@ -313,7 +313,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns thickness of the underline.
    */
-  public open fun getLineUnderlineThickness(): Double {
+  public fun getLineUnderlineThickness(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTLINE_GET_LINE_UNDERLINE_THICKNESS, DOUBLE)
@@ -323,7 +323,7 @@ public open class TextLine : RefCounted() {
   /**
    * Draw text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
    */
-  public open fun draw(
+  public fun draw(
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1))
@@ -335,7 +335,7 @@ public open class TextLine : RefCounted() {
   /**
    * Draw text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
    */
-  public open fun drawOutline(
+  public fun drawOutline(
     canvas: RID,
     pos: Vector2,
     outlineSize: Long = 1,
@@ -348,7 +348,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position.
    */
-  public open fun hitTest(coords: Double): Long {
+  public fun hitTest(coords: Double): Long {
     TransferContext.writeArguments(DOUBLE to coords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTLINE_HIT_TEST, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * If `true`, Light2D will emit light.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_ENABLED, BOOL)
@@ -49,7 +49,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * If `true`, Light2D will only appear when editing the scene.
    */
-  public open var editorOnly: Boolean
+  public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_EDITOR_ONLY, BOOL)
@@ -63,7 +63,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's [godot.core.Color].
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_COLOR, COLOR)
@@ -77,7 +77,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's energy value. The larger the value, the stronger the light.
    */
-  public open var energy: Double
+  public var energy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENERGY, DOUBLE)
@@ -91,7 +91,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's blend mode. See [enum BlendMode] constants for values.
    */
-  public open var blendMode: Long
+  public var blendMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
@@ -105,7 +105,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Minimum `z` value of objects that are affected by the Light2D.
    */
-  public open var rangeZMin: Long
+  public var rangeZMin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MIN, LONG)
@@ -119,7 +119,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Maximum `z` value of objects that are affected by the Light2D.
    */
-  public open var rangeZMax: Long
+  public var rangeZMax: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MAX, LONG)
@@ -133,7 +133,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Minimum layer value of objects that are affected by the Light2D.
    */
-  public open var rangeLayerMin: Long
+  public var rangeLayerMin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MIN, LONG)
@@ -147,7 +147,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Maximum layer value of objects that are affected by the Light2D.
    */
-  public open var rangeLayerMax: Long
+  public var rangeLayerMax: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MAX, LONG)
@@ -161,7 +161,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The layer mask. Only objects with a matching mask will be affected by the Light2D.
    */
-  public open var rangeItemCullMask: Long
+  public var rangeItemCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_CULL_MASK, LONG)
@@ -175,7 +175,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * If `true`, the Light2D will cast shadows.
    */
-  public open var shadowEnabled: Boolean
+  public var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_SHADOW_ENABLED, BOOL)
@@ -189,7 +189,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * [godot.core.Color] of shadows cast by the Light2D.
    */
-  public open var shadowColor: Color
+  public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_COLOR, COLOR)
@@ -203,7 +203,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Shadow filter type. See [enum ShadowFilter] for possible values.
    */
-  public open var shadowFilter: Long
+  public var shadowFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
@@ -217,7 +217,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Smoothing value for shadows.
    */
-  public open var shadowFilterSmooth: Double
+  public var shadowFilterSmooth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_SMOOTH, DOUBLE)
@@ -231,7 +231,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The shadow mask. Used with [godot.LightOccluder2D] to cast shadows. Only occluders with a matching light mask will cast shadows.
    */
-  public open var shadowItemCullMask: Long
+  public var shadowItemCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_SHADOW_CULL_MASK,
@@ -251,7 +251,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    *
    */
-  public open fun setHeight(height: Double): Unit {
+  public fun setHeight(height: Double): Unit {
     TransferContext.writeArguments(DOUBLE to height)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_HEIGHT, NIL)
   }
@@ -259,7 +259,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    *
    */
-  public open fun getHeight(): Double {
+  public fun getHeight(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_HEIGHT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -228,7 +228,7 @@ public open class EditorTranslationParserPlugin internal constructor() : RefCoun
    * Gets the list of file extensions to associate with this parser, e.g. `["csv"]`.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions·is·not·implemented·for·EditorTranslationParserPlugin")
+    throw NotImplementedError("_get_recognized_extensions is not implemented for EditorTranslationParserPlugin")
   }
 
   public companion object

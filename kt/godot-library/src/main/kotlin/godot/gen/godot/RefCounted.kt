@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class RefCounted : Object() {
    *
    * Returns whether the initialization was successful.
    */
-  public open fun initRef(): Boolean {
+  public fun initRef(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_INIT_REF, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -51,7 +51,7 @@ public open class RefCounted : Object() {
    *
    * Returns `true` if the increment was successful, `false` otherwise.
    */
-  public open fun reference(): Boolean {
+  public fun reference(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_REFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -62,7 +62,7 @@ public open class RefCounted : Object() {
    *
    * Returns `true` if the decrement was successful, `false` otherwise.
    */
-  public open fun unreference(): Boolean {
+  public fun unreference(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_UNREFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -59,7 +59,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's width.
    */
-  public open fun getWidth(): Long {
+  public fun getWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -68,7 +68,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's height.
    */
-  public open fun getHeight(): Long {
+  public fun getHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -77,7 +77,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's size (width and height).
    */
-  public open fun getSize(): Vector2 {
+  public fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -86,7 +86,7 @@ public open class Image : Resource() {
   /**
    * Returns `true` if the image has generated mipmaps.
    */
-  public open fun hasMipmaps(): Boolean {
+  public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_HAS_MIPMAPS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -95,7 +95,7 @@ public open class Image : Resource() {
   /**
    * Returns the image's format. See [enum Format] constants.
    */
-  public open fun getFormat(): Image.Format {
+  public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -104,7 +104,7 @@ public open class Image : Resource() {
   /**
    * Returns a copy of the image's raw data.
    */
-  public open fun getData(): PackedByteArray {
+  public fun getData(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_DATA, PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
@@ -113,7 +113,7 @@ public open class Image : Resource() {
   /**
    * Converts the image's format. See [enum Format] constants.
    */
-  public open fun convert(format: Image.Format): Unit {
+  public fun convert(format: Image.Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CONVERT, NIL)
   }
@@ -121,7 +121,7 @@ public open class Image : Resource() {
   /**
    * Returns the offset where the image's mipmap with index `mipmap` is stored in the `data` dictionary.
    */
-  public open fun getMipmapOffset(mipmap: Long): Long {
+  public fun getMipmapOffset(mipmap: Long): Long {
     TransferContext.writeArguments(LONG to mipmap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_MIPMAP_OFFSET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -130,7 +130,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
    */
-  public open fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
+  public fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
@@ -139,7 +139,7 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the given `width` and `height`. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
    */
-  public open fun resize(
+  public fun resize(
     width: Long,
     height: Long,
     interpolation: Image.Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
@@ -151,7 +151,7 @@ public open class Image : Resource() {
   /**
    * Shrinks the image by a factor of 2.
    */
-  public open fun shrinkX2(): Unit {
+  public fun shrinkX2(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SHRINK_X2, NIL)
   }
@@ -159,7 +159,7 @@ public open class Image : Resource() {
   /**
    * Crops the image to the given `width` and `height`. If the specified size is larger than the current size, the extra area is filled with black pixels.
    */
-  public open fun crop(width: Long, height: Long): Unit {
+  public fun crop(width: Long, height: Long): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CROP, NIL)
   }
@@ -167,7 +167,7 @@ public open class Image : Resource() {
   /**
    * Flips the image horizontally.
    */
-  public open fun flipX(): Unit {
+  public fun flipX(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_X, NIL)
   }
@@ -175,7 +175,7 @@ public open class Image : Resource() {
   /**
    * Flips the image vertically.
    */
-  public open fun flipY(): Unit {
+  public fun flipY(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_Y, NIL)
   }
@@ -185,7 +185,7 @@ public open class Image : Resource() {
    *
    * **Note:** Mipmap generation is done on the CPU, is single-threaded and is *always* done on the main thread. This means generating mipmaps will result in noticeable stuttering during gameplay, even if [generateMipmaps] is called from a [godot.Thread].
    */
-  public open fun generateMipmaps(renormalize: Boolean = false): GodotError {
+  public fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GENERATE_MIPMAPS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -194,7 +194,7 @@ public open class Image : Resource() {
   /**
    * Removes the image's mipmaps.
    */
-  public open fun clearMipmaps(): Unit {
+  public fun clearMipmaps(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CLEAR_MIPMAPS, NIL)
   }
@@ -202,7 +202,7 @@ public open class Image : Resource() {
   /**
    * Creates an empty image of given size and format. See [enum Format] constants. If `use_mipmaps` is `true` then generate mipmaps for this image. See the [generateMipmaps].
    */
-  public open fun create(
+  public fun create(
     width: Long,
     height: Long,
     useMipmaps: Boolean,
@@ -215,7 +215,7 @@ public open class Image : Resource() {
   /**
    * Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If `use_mipmaps` is `true` then loads mipmaps for this image from `data`. See [generateMipmaps].
    */
-  public open fun createFromData(
+  public fun createFromData(
     width: Long,
     height: Long,
     useMipmaps: Boolean,
@@ -229,7 +229,7 @@ public open class Image : Resource() {
   /**
    * Returns `true` if the image has no data.
    */
-  public open fun isEmpty(): Boolean {
+  public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_EMPTY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -242,7 +242,7 @@ public open class Image : Resource() {
    *
    * See also [godot.ImageTexture] description for usage examples.
    */
-  public open fun load(path: String): GodotError {
+  public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -251,7 +251,7 @@ public open class Image : Resource() {
   /**
    * Saves the image as a PNG file to `path`.
    */
-  public open fun savePng(path: String): GodotError {
+  public fun savePng(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -260,7 +260,7 @@ public open class Image : Resource() {
   /**
    *
    */
-  public open fun savePngToBuffer(): PackedByteArray {
+  public fun savePngToBuffer(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG_TO_BUFFER,
         PACKED_BYTE_ARRAY)
@@ -272,7 +272,7 @@ public open class Image : Resource() {
    *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
-  public open fun saveExr(path: String, grayscale: Boolean = false): GodotError {
+  public fun saveExr(path: String, grayscale: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to grayscale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -281,7 +281,7 @@ public open class Image : Resource() {
   /**
    * Returns [ALPHA_BLEND] if the image has data for alpha values. Returns [ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [ALPHA_NONE] if no data for alpha values is found.
    */
-  public open fun detectAlpha(): Image.AlphaMode {
+  public fun detectAlpha(): Image.AlphaMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_ALPHA, LONG)
     return Image.AlphaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -290,7 +290,7 @@ public open class Image : Resource() {
   /**
    * Returns `true` if all the image's pixels have an alpha value of 0. Returns `false` if any pixel has an alpha value higher than 0.
    */
-  public open fun isInvisible(): Boolean {
+  public fun isInvisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_INVISIBLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -299,7 +299,7 @@ public open class Image : Resource() {
   /**
    *
    */
-  public open fun detectUsedChannels(source: Image.CompressSource =
+  public fun detectUsedChannels(source: Image.CompressSource =
       Image.CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG)
@@ -309,7 +309,7 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [enum CompressMode] and [enum CompressSource] constants.
    */
-  public open fun compress(
+  public fun compress(
     mode: Image.CompressMode,
     source: Image.CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
     lossyQuality: Double = 0.7
@@ -322,7 +322,7 @@ public open class Image : Resource() {
   /**
    *
    */
-  public open fun compressFromChannels(
+  public fun compressFromChannels(
     mode: Image.CompressMode,
     channels: Image.UsedChannels,
     lossyQuality: Double = 0.7
@@ -337,7 +337,7 @@ public open class Image : Resource() {
    *
    * **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2 are not supported.
    */
-  public open fun decompress(): GodotError {
+  public fun decompress(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DECOMPRESS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -346,7 +346,7 @@ public open class Image : Resource() {
   /**
    * Returns `true` if the image is compressed.
    */
-  public open fun isCompressed(): Boolean {
+  public fun isCompressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_COMPRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -355,7 +355,7 @@ public open class Image : Resource() {
   /**
    * Blends low-alpha pixels with nearby pixels.
    */
-  public open fun fixAlphaEdges(): Unit {
+  public fun fixAlphaEdges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FIX_ALPHA_EDGES, NIL)
   }
@@ -363,7 +363,7 @@ public open class Image : Resource() {
   /**
    * Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`.
    */
-  public open fun premultiplyAlpha(): Unit {
+  public fun premultiplyAlpha(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_PREMULTIPLY_ALPHA, NIL)
   }
@@ -371,7 +371,7 @@ public open class Image : Resource() {
   /**
    * Converts the raw data from the sRGB colorspace to a linear scale.
    */
-  public open fun srgbToLinear(): Unit {
+  public fun srgbToLinear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SRGB_TO_LINEAR, NIL)
   }
@@ -379,7 +379,7 @@ public open class Image : Resource() {
   /**
    * Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normal map. A normal map can add lots of detail to a 3D surface without increasing the polygon count.
    */
-  public open fun normalMapToXy(): Unit {
+  public fun normalMapToXy(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_NORMAL_MAP_TO_XY, NIL)
   }
@@ -387,7 +387,7 @@ public open class Image : Resource() {
   /**
    * Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image.
    */
-  public open fun rgbeToSrgb(): Image? {
+  public fun rgbeToSrgb(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RGBE_TO_SRGB, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
@@ -396,7 +396,7 @@ public open class Image : Resource() {
   /**
    * Converts a bump map to a normal map. A bump map provides a height offset per-pixel, while a normal map provides a normal direction per pixel.
    */
-  public open fun bumpMapToNormalMap(bumpScale: Double = 1.0): Unit {
+  public fun bumpMapToNormalMap(bumpScale: Double = 1.0): Unit {
     TransferContext.writeArguments(DOUBLE to bumpScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BUMP_MAP_TO_NORMAL_MAP, NIL)
   }
@@ -406,8 +406,7 @@ public open class Image : Resource() {
    *
    * The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.
    */
-  public open fun computeImageMetrics(comparedImage: Image, useLuma: Boolean):
-      Dictionary<Any?, Any?> {
+  public fun computeImageMetrics(comparedImage: Image, useLuma: Boolean): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPUTE_IMAGE_METRICS,
         DICTIONARY)
@@ -417,7 +416,7 @@ public open class Image : Resource() {
   /**
    * Copies `src_rect` from `src` image to this image at coordinates `dst`.
    */
-  public open fun blitRect(
+  public fun blitRect(
     src: Image,
     srcRect: Rect2,
     dst: Vector2
@@ -429,7 +428,7 @@ public open class Image : Resource() {
   /**
    * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
    */
-  public open fun blitRectMask(
+  public fun blitRectMask(
     src: Image,
     mask: Image,
     srcRect: Rect2,
@@ -442,7 +441,7 @@ public open class Image : Resource() {
   /**
    * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`.
    */
-  public open fun blendRect(
+  public fun blendRect(
     src: Image,
     srcRect: Rect2,
     dst: Vector2
@@ -454,7 +453,7 @@ public open class Image : Resource() {
   /**
    * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
    */
-  public open fun blendRectMask(
+  public fun blendRectMask(
     src: Image,
     mask: Image,
     srcRect: Rect2,
@@ -467,7 +466,7 @@ public open class Image : Resource() {
   /**
    * Fills the image with `color`.
    */
-  public open fun fill(color: Color): Unit {
+  public fun fill(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL, NIL)
   }
@@ -475,7 +474,7 @@ public open class Image : Resource() {
   /**
    * Fills `rect` with `color`.
    */
-  public open fun fillRect(rect: Rect2, color: Color): Unit {
+  public fun fillRect(rect: Rect2, color: Color): Unit {
     TransferContext.writeArguments(RECT2 to rect, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL_RECT, NIL)
   }
@@ -483,7 +482,7 @@ public open class Image : Resource() {
   /**
    * Returns a [godot.core.Rect2] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible.
    */
-  public open fun getUsedRect(): Rect2 {
+  public fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_USED_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -492,7 +491,7 @@ public open class Image : Resource() {
   /**
    * Returns a new image that is a copy of the image's area specified with `rect`.
    */
-  public open fun getRect(rect: Rect2): Image? {
+  public fun getRect(rect: Rect2): Image? {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_RECT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
@@ -501,7 +500,7 @@ public open class Image : Resource() {
   /**
    * Copies `src` image to this image.
    */
-  public open fun copyFrom(src: Image): Unit {
+  public fun copyFrom(src: Image): Unit {
     TransferContext.writeArguments(OBJECT to src)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COPY_FROM, NIL)
   }
@@ -511,7 +510,7 @@ public open class Image : Resource() {
    *
    * This is the same as [getPixel], but with a [godot.Vector2i] argument instead of two integer arguments.
    */
-  public open fun getPixelv(point: Vector2i): Color {
+  public fun getPixelv(point: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXELV, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -522,7 +521,7 @@ public open class Image : Resource() {
    *
    * This is the same as [getPixelv], but with two integer arguments instead of a [godot.Vector2i] argument.
    */
-  public open fun getPixel(x: Long, y: Long): Color {
+  public fun getPixel(x: Long, y: Long): Color {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXEL, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -569,7 +568,7 @@ public open class Image : Resource() {
    *
    * This is the same as [setPixel], but with a [godot.Vector2i] argument instead of two integer arguments.
    */
-  public open fun setPixelv(point: Vector2i, color: Color): Unit {
+  public fun setPixelv(point: Vector2i, color: Color): Unit {
     TransferContext.writeArguments(VECTOR2I to point, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXELV, NIL)
   }
@@ -615,7 +614,7 @@ public open class Image : Resource() {
    *
    * This is the same as [setPixelv], but with a two integer arguments instead of a [godot.Vector2i] argument.
    */
-  public open fun setPixel(
+  public fun setPixel(
     x: Long,
     y: Long,
     color: Color
@@ -627,7 +626,7 @@ public open class Image : Resource() {
   /**
    *
    */
-  public open fun adjustBcs(
+  public fun adjustBcs(
     brightness: Double,
     contrast: Double,
     saturation: Double
@@ -639,7 +638,7 @@ public open class Image : Resource() {
   /**
    * Loads an image from the binary contents of a PNG file.
    */
-  public open fun loadPngFromBuffer(buffer: PackedByteArray): GodotError {
+  public fun loadPngFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_PNG_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -648,7 +647,7 @@ public open class Image : Resource() {
   /**
    * Loads an image from the binary contents of a JPEG file.
    */
-  public open fun loadJpgFromBuffer(buffer: PackedByteArray): GodotError {
+  public fun loadJpgFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_JPG_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -657,7 +656,7 @@ public open class Image : Resource() {
   /**
    * Loads an image from the binary contents of a WebP file.
    */
-  public open fun loadWebpFromBuffer(buffer: PackedByteArray): GodotError {
+  public fun loadWebpFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_WEBP_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -666,7 +665,7 @@ public open class Image : Resource() {
   /**
    * Loads an image from the binary contents of a TGA file.
    */
-  public open fun loadTgaFromBuffer(buffer: PackedByteArray): GodotError {
+  public fun loadTgaFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_TGA_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -677,7 +676,7 @@ public open class Image : Resource() {
    *
    * **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
    */
-  public open fun loadBmpFromBuffer(buffer: PackedByteArray): GodotError {
+  public fun loadBmpFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

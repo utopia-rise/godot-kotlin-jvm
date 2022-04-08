@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -79,7 +79,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * The type of tracker.
    */
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -99,7 +99,7 @@ public open class XRPositionalTracker : RefCounted() {
    *
    * - `right_hand` identifies the controller held in the players right hand
    */
-  public open var name: String
+  public var name: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -115,7 +115,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * The description of this tracker.
    */
-  public open var description: String
+  public var description: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -131,7 +131,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked.
    */
-  public open var profile: String
+  public var profile: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -147,7 +147,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Defines which hand this tracker relates to.
    */
-  public open var hand: Long
+  public var hand: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -167,7 +167,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Returns `true` if the bound `tracker` is available and is currently tracking the bound `pose`.
    */
-  public open fun hasPose(name: StringName): Boolean {
+  public fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_HAS_POSE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -176,7 +176,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Returns the current [godot.XRPose] state object for the bound `pose`.
    */
-  public open fun getPose(name: StringName): XRPose? {
+  public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_POSE,
         OBJECT)
@@ -186,7 +186,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we loose tracking or just remain at their last known position.
    */
-  public open fun invalidatePose(name: StringName): Unit {
+  public fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_INVALIDATE_POSE,
         NIL)
@@ -195,7 +195,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [godot.XRInterface] implementation and should not be used directly.
    */
-  public open fun setPose(
+  public fun setPose(
     name: StringName,
     transform: Transform3D,
     linearVelocity: Vector3,
@@ -209,7 +209,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Returns an input for this tracker. It can return a boolean, float or [godot.core.Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad.
    */
-  public open fun getInput(name: StringName): Any? {
+  public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_INPUT, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -218,7 +218,7 @@ public open class XRPositionalTracker : RefCounted() {
   /**
    * Changes the value for the given input. This method is called by a [godot.XRInterface] implementation and should not be used directly.
    */
-  public open fun setInput(name: StringName, `value`: Any): Unit {
+  public fun setInput(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_INPUT, NIL)
   }

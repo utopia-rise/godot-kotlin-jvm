@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically.
    */
-  public open var sourceCode: String
+  public var sourceCode: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SOURCE_CODE, STRING)
@@ -64,7 +64,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script can be instantiated.
    */
-  public open fun canInstantiate(): Boolean {
+  public fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_CAN_INSTANTIATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -73,7 +73,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if `base_object` is an instance of this script.
    */
-  public open fun instanceHas(baseObject: Object): Boolean {
+  public fun instanceHas(baseObject: Object): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_INSTANCE_HAS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -82,7 +82,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script contains non-empty source code.
    */
-  public open fun hasSourceCode(): Boolean {
+  public fun hasSourceCode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SOURCE_CODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -91,7 +91,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Reloads the script's class implementation. Returns an error code.
    */
-  public open fun reload(keepState: Boolean = false): GodotError {
+  public fun reload(keepState: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -100,7 +100,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the script directly inherited by this script.
    */
-  public open fun getBaseScript(): Script? {
+  public fun getBaseScript(): Script? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_BASE_SCRIPT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Script?
@@ -109,7 +109,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the script's base type.
    */
-  public open fun getInstanceBaseType(): StringName {
+  public fun getInstanceBaseType(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_INSTANCE_BASE_TYPE,
         STRING_NAME)
@@ -119,7 +119,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script, or a base class, defines a signal with the given name.
    */
-  public open fun hasScriptSignal(signalName: StringName): Boolean {
+  public fun hasScriptSignal(signalName: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signalName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SCRIPT_SIGNAL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -128,7 +128,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the list of properties in this [godot.Script].
    */
-  public open fun getScriptPropertyList(): VariantArray<Any?> {
+  public fun getScriptPropertyList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_PROPERTY_LIST,
         ARRAY)
@@ -138,7 +138,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the list of methods in this [godot.Script].
    */
-  public open fun getScriptMethodList(): VariantArray<Any?> {
+  public fun getScriptMethodList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_METHOD_LIST,
         ARRAY)
@@ -148,7 +148,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the list of user signals defined in this [godot.Script].
    */
-  public open fun getScriptSignalList(): VariantArray<Any?> {
+  public fun getScriptSignalList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_SIGNAL_LIST,
         ARRAY)
@@ -158,7 +158,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns a dictionary containing constant names and their values.
    */
-  public open fun getScriptConstantMap(): Dictionary<Any?, Any?> {
+  public fun getScriptConstantMap(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_CONSTANT_MAP,
         DICTIONARY)
@@ -168,7 +168,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns the default value of the specified property.
    */
-  public open fun getPropertyDefaultValue(`property`: StringName): Any? {
+  public fun getPropertyDefaultValue(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_PROPERTY_DEFAULT_VALUE,
         ANY)
@@ -178,7 +178,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script is a tool script. A tool script can run in the editor.
    */
-  public open fun isTool(): Boolean {
+  public fun isTool(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_IS_TOOL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

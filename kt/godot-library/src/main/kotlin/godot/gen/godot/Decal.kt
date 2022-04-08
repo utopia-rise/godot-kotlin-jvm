@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Sets the size of the [AABB] used by the decal. The AABB goes from `-extents` to `extents`.
    */
-  public open var extents: Vector3
+  public var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EXTENTS, VECTOR3)
@@ -51,7 +51,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Energy multiplier for the emission texture. This will make the decal emit light at a higher intensity.
    */
-  public open var emissionEnergy: Double
+  public var emissionEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EMISSION_ENERGY, DOUBLE)
@@ -65,7 +65,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Changes the [godot.core.Color] of the Decal by multiplying it with this value.
    */
-  public open var modulate: Color
+  public var modulate: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_MODULATE, COLOR)
@@ -79,7 +79,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Blends the albedo [godot.core.Color] of the decal with albedo [godot.core.Color] of the underlying mesh.
    */
-  public open var albedoMix: Double
+  public var albedoMix: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_ALBEDO_MIX, DOUBLE)
@@ -93,7 +93,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Fades the Decal if the angle between the Decal's [AABB] and the target surface becomes too large. A value of `0` projects the Decal regardless of angle, a value of `1` limits the Decal to surfaces that are nearly perpendicular.
    */
-  public open var normalFade: Double
+  public var normalFade: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_NORMAL_FADE, DOUBLE)
@@ -107,7 +107,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
    */
-  public open var upperFade: Double
+  public var upperFade: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_UPPER_FADE, DOUBLE)
@@ -121,7 +121,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
    */
-  public open var lowerFade: Double
+  public var lowerFade: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_LOWER_FADE, DOUBLE)
@@ -135,7 +135,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * If `true`, decals will smoothly fade away when far from the active [godot.Camera3D] starting at [distanceFadeBegin]. The Decal will fade out over [distanceFadeLength], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active Decals in a scene and thus improve performance.
    */
-  public open var distanceFadeEnabled: Boolean
+  public var distanceFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_IS_DISTANCE_FADE_ENABLED,
@@ -151,7 +151,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Distance from the camera at which the Decal begins to fade away.
    */
-  public open var distanceFadeBegin: Double
+  public var distanceFadeBegin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_BEGIN,
@@ -167,7 +167,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Distance over which the Decal fades. The Decal becomes slowly more transparent over this distance and is completely invisible at the end.
    */
-  public open var distanceFadeLength: Double
+  public var distanceFadeLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_LENGTH,
@@ -183,7 +183,7 @@ public open class Decal : VisualInstance3D() {
   /**
    * Specifies which [godot.VisualInstance3D.layers] this decal will project on. By default, Decals affect all layers. This is used so you can specify which types of objects receive the Decal and which do not. This is especially useful so you can ensure that dynamic objects don't accidentally receive a Decal intended for the terrain under them.
    */
-  public open var cullMask: Long
+  public var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_CULL_MASK, LONG)
@@ -229,7 +229,7 @@ public open class Decal : VisualInstance3D() {
    *
    * [/codeblocks]
    */
-  public open fun setTexture(type: Decal.DecalTexture, texture: Texture2D): Unit {
+  public fun setTexture(type: Decal.DecalTexture, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
   }
@@ -265,7 +265,7 @@ public open class Decal : VisualInstance3D() {
    *
    * [/codeblocks]
    */
-  public open fun getTexture(type: Decal.DecalTexture): Texture2D? {
+  public fun getTexture(type: Decal.DecalTexture): Texture2D? {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?

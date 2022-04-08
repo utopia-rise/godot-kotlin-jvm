@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Begin a new surface.
    */
-  public open fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
+  public fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_BEGIN, NIL)
   }
@@ -44,7 +44,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the color attribute that will be pushed with the next vertex.
    */
-  public open fun surfaceSetColor(color: Color): Unit {
+  public fun surfaceSetColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_COLOR,
         NIL)
@@ -53,7 +53,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the normal attribute that will be pushed with the next vertex.
    */
-  public open fun surfaceSetNormal(normal: Vector3): Unit {
+  public fun surfaceSetNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_NORMAL,
         NIL)
@@ -62,7 +62,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the tangent attribute that will be pushed with the next vertex.
    */
-  public open fun surfaceSetTangent(tangent: Plane): Unit {
+  public fun surfaceSetTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_TANGENT,
         NIL)
@@ -71,7 +71,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV attribute that will be pushed with the next vertex.
    */
-  public open fun surfaceSetUv(uv: Vector2): Unit {
+  public fun surfaceSetUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV, NIL)
   }
@@ -79,7 +79,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV2 attribute that will be pushed with the next vertex.
    */
-  public open fun surfaceSetUv2(uv2: Vector2): Unit {
+  public fun surfaceSetUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV2, NIL)
   }
@@ -87,7 +87,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 3D vertex using the current attributes previously set.
    */
-  public open fun surfaceAddVertex(vertex: Vector3): Unit {
+  public fun surfaceAddVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX,
         NIL)
@@ -96,7 +96,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 2D vertex using the current attributes previously set.
    */
-  public open fun surfaceAddVertex2d(vertex: Vector2): Unit {
+  public fun surfaceAddVertex2d(vertex: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to vertex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX_2D,
         NIL)
@@ -105,7 +105,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * End and commit current surface. Note that surface being created will not be visible until this function is called.
    */
-  public open fun surfaceEnd(): Unit {
+  public fun surfaceEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_END, NIL)
   }
@@ -113,7 +113,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Clear all surfaces.
    */
-  public open fun clearSurfaces(): Unit {
+  public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_CLEAR_SURFACES, NIL)
   }

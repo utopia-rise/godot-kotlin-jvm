@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -66,7 +66,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Initializes the texture by allocating and setting the data from an [godot.Image].
    */
-  public open fun createFromImage(image: Image): Unit {
+  public fun createFromImage(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, NIL)
   }
@@ -74,7 +74,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Returns the format of the texture, one of [enum Image.Format].
    */
-  public open fun getFormat(): Image.Format {
+  public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -87,7 +87,7 @@ public open class ImageTexture : Texture2D() {
    *
    * Use this method over [createFromImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
    */
-  public open fun update(image: Image): Unit {
+  public fun update(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_UPDATE, NIL)
   }
@@ -95,7 +95,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Resizes the texture to the specified dimensions.
    */
-  public open fun setSizeOverride(size: Vector2): Unit {
+  public fun setSizeOverride(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
   }

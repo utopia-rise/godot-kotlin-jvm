@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    *
    * This aids with cross-platform compatibility when developing e.g. on Windows for macOS, or vice-versa.
    */
-  public open var storeCommand: Boolean
+  public var storeCommand: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,7 +45,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Alt[/kbd] modifier.
    */
-  public open var altPressed: Boolean
+  public var altPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Shift[/kbd] modifier.
    */
-  public open var shiftPressed: Boolean
+  public var shiftPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,7 +77,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Ctrl[/kbd] modifier.
    */
-  public open var ctrlPressed: Boolean
+  public var ctrlPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -93,7 +93,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Meta[/kbd] modifier.
    */
-  public open var metaPressed: Boolean
+  public var metaPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -109,7 +109,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Cmd[/kbd] modifier.
    */
-  public open var commandPressed: Boolean
+  public var commandPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

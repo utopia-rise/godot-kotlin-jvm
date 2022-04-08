@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,14 +31,14 @@ public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlig
    * Virtual method which can be overridden to return the syntax highlighter name.
    */
   public open fun _getName(): String {
-    throw NotImplementedError("_get_name·is·not·implemented·for·EditorSyntaxHighlighter")
+    throw NotImplementedError("_get_name is not implemented for EditorSyntaxHighlighter")
   }
 
   /**
    * Virtual method which can be overridden to return the supported language names.
    */
   public open fun _getSupportedLanguages(): VariantArray<Any?> {
-    throw NotImplementedError("_get_supported_languages·is·not·implemented·for·EditorSyntaxHighlighter")
+    throw NotImplementedError("_get_supported_languages is not implemented for EditorSyntaxHighlighter")
   }
 
   public companion object

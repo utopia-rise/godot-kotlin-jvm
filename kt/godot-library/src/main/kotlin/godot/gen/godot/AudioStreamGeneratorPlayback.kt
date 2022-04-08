@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDExtension, but [pushFrame] may be *more* efficient in GDScript.
    */
-  public open fun pushFrame(frame: Vector2): Boolean {
+  public fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)
@@ -48,7 +48,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Returns `true` if a buffer of the size `amount` can be pushed to the audio sample data buffer without overflowing it, `false` otherwise.
    */
-  public open fun canPushBuffer(amount: Long): Boolean {
+  public fun canPushBuffer(amount: Long): Boolean {
     TransferContext.writeArguments(LONG to amount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CAN_PUSH_BUFFER, BOOL)
@@ -58,7 +58,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDExtension, but [pushBuffer] may be *less* efficient in GDScript.
    */
-  public open fun pushBuffer(frames: PackedVector2Array): Boolean {
+  public fun pushBuffer(frames: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_BUFFER, BOOL)
@@ -68,7 +68,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Returns the number of audio data frames left to play. If this returned number reaches `0`, the audio will stop playing until frames are added again. Therefore, make sure your script can always generate and push new audio frames fast enough to avoid audio cracking.
    */
-  public open fun getFramesAvailable(): Long {
+  public fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_FRAMES_AVAILABLE, LONG)
@@ -78,7 +78,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    *
    */
-  public open fun getSkips(): Long {
+  public fun getSkips(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_SKIPS, LONG)
@@ -88,7 +88,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Clears the audio sample data buffer.
    */
-  public open fun clearBuffer(): Unit {
+  public fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)

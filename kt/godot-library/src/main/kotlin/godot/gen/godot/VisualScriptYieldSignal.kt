@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +20,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptYieldSignal : VisualScriptNode() {
-  public open var callMode: Long
+  public var callMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -33,7 +33,7 @@ public open class VisualScriptYieldSignal : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELDSIGNAL_SET_CALL_MODE, NIL)
     }
 
-  public open var baseType: String
+  public var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,7 +46,7 @@ public open class VisualScriptYieldSignal : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELDSIGNAL_SET_BASE_TYPE, NIL)
     }
 
-  public open var nodePath: NodePath
+  public var nodePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class VisualScriptYieldSignal : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELDSIGNAL_SET_BASE_PATH, NIL)
     }
 
-  public open var signal: String
+  public var signal: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

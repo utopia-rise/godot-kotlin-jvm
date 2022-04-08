@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class MultiplayerSynchronizer : Node() {
   /**
    *
    */
-  public open var rootPath: NodePath
+  public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -41,7 +41,7 @@ public open class MultiplayerSynchronizer : Node() {
   /**
    *
    */
-  public open var replicationInterval: Double
+  public var replicationInterval: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +57,7 @@ public open class MultiplayerSynchronizer : Node() {
   /**
    *
    */
-  public open var resource: SceneReplicationConfig?
+  public var resource: SceneReplicationConfig?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

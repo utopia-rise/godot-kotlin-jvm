@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * Button identifier. One of the [enum JoyButton] button constants.
    */
-  public open var buttonIndex: Long
+  public var buttonIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -48,7 +48,7 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * Represents the pressure the user puts on the button with their finger, if the controller supports it. Ranges from `0` to `1`.
    */
-  public open var pressure: Double
+  public var pressure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -64,7 +64,7 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * If `true`, the button's state is pressed. If `false`, the button's state is released.
    */
-  public open var pressed: Boolean
+  public var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()

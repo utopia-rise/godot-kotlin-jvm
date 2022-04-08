@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -99,7 +99,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * The body's mass.
    */
-  public open var mass: Double
+  public var mass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_GET_MASS,
@@ -116,7 +116,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * If set to `Vector3.ZERO`, inertia is automatically computed (default value).
    */
-  public open var inertia: Vector3
+  public var inertia: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_GET_INERTIA,
@@ -132,7 +132,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
    */
-  public open var centerOfMassMode: Long
+  public var centerOfMassMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -150,7 +150,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
-  public open var centerOfMass: Vector3
+  public var centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -168,7 +168,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
-  public open var physicsMaterialOverride: PhysicsMaterial?
+  public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidDynamicBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
    */
-  public open var gravityScale: Double
+  public var gravityScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -200,7 +200,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
    */
-  public open var customIntegrator: Boolean
+  public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +218,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.
    */
-  public open var continuousCd: Boolean
+  public var continuousCd: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -236,7 +236,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
    */
-  public open var contactsReported: Long
+  public var contactsReported: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -252,7 +252,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * If `true`, the RigidDynamicBody3D will emit signals when it collides with another RigidDynamicBody3D. See also [contactsReported].
    */
-  public open var contactMonitor: Boolean
+  public var contactMonitor: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -268,7 +268,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [applyImpulse] or [applyForce] methods.
    */
-  public open var sleeping: Boolean
+  public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_IS_SLEEPING,
@@ -284,7 +284,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * If `true`, the body can enter sleep mode when there is no movement. See [sleeping].
    */
-  public open var canSleep: Boolean
+  public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -300,7 +300,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * If `true`, the body cannot rotate. Gravity and forces only apply linear movement.
    */
-  public open var lockRotation: Boolean
+  public var lockRotation: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -320,7 +320,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * For a body that is always frozen, use [godot.StaticBody3D] or [godot.AnimatableBody3D] instead.
    */
-  public open var freeze: Boolean
+  public var freeze: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -338,7 +338,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * For a body that is always frozen, use [godot.StaticBody3D] or [godot.AnimatableBody3D] instead.
    */
-  public open var freezeMode: Long
+  public var freezeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -354,7 +354,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
-  public open var linearVelocity: Vector3
+  public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -370,7 +370,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var linearDampMode: Long
+  public var linearDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -388,7 +388,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
-  public open var linearDamp: Double
+  public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -404,7 +404,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * The RigidDynamicBody3D's rotational velocity in *radians* per second.
    */
-  public open var angularVelocity: Vector3
+  public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -420,7 +420,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
    */
-  public open var angularDampMode: Long
+  public var angularDampMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -438,7 +438,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
-  public open var angularDamp: Double
+  public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -456,7 +456,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
-  public open var constantForce: Vector3
+  public var constantForce: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -474,7 +474,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * See [addConstantTorque].
    */
-  public open var constantTorque: Vector3
+  public var constantTorque: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -500,7 +500,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the [godot.RigidDynamicBody3D].
    */
-  public open fun getInverseInertiaTensor(): Basis {
+  public fun getInverseInertiaTensor(): Basis {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_GET_INVERSE_INERTIA_TENSOR, BASIS)
@@ -510,7 +510,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
    */
-  public open fun setAxisVelocity(axisVelocity: Vector3): Unit {
+  public fun setAxisVelocity(axisVelocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to axisVelocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_SET_AXIS_VELOCITY, NIL)
@@ -523,7 +523,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public open fun applyCentralImpulse(impulse: Vector3): Unit {
+  public fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -536,7 +536,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_IMPULSE,
         NIL)
@@ -547,7 +547,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    */
-  public open fun applyTorqueImpulse(impulse: Vector3): Unit {
+  public fun applyTorqueImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_TORQUE_IMPULSE, NIL)
@@ -558,7 +558,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public open fun applyCentralForce(force: Vector3): Unit {
+  public fun applyCentralForce(force: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_CENTRAL_FORCE, NIL)
@@ -569,7 +569,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_FORCE, NIL)
   }
@@ -577,7 +577,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    */
-  public open fun applyTorque(torque: Vector3): Unit {
+  public fun applyTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_TORQUE,
         NIL)
@@ -588,7 +588,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public open fun addConstantCentralForce(force: Vector3): Unit {
+  public fun addConstantCentralForce(force: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -599,8 +599,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)):
-      Unit {
+  public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_ADD_CONSTANT_FORCE, NIL)
@@ -609,7 +608,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
   /**
    * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`.
    */
-  public open fun addConstantTorque(torque: Vector3): Unit {
+  public fun addConstantTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_ADD_CONSTANT_TORQUE, NIL)
@@ -620,7 +619,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public open fun getCollidingBodies(): VariantArray<Any?> {
+  public fun getCollidingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_GET_COLLIDING_BODIES, ARRAY)

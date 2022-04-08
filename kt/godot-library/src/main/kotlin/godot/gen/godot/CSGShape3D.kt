@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +23,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
-  public open var operation: Long
+  public var operation: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_OPERATION, LONG)
@@ -34,7 +34,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_OPERATION, NIL)
     }
 
-  public open var snap: Double
+  public var snap: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_SNAP, DOUBLE)
@@ -45,7 +45,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_SNAP, NIL)
     }
 
-  public open var calculateTangents: Boolean
+  public var calculateTangents: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
           NIL)
     }
 
-  public open var useCollision: Boolean
+  public var useCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_IS_USING_COLLISION,
@@ -70,7 +70,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_USE_COLLISION, NIL)
     }
 
-  public open var collisionLayer: Long
+  public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_COLLISION_LAYER,
@@ -83,7 +83,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
           NIL)
     }
 
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_COLLISION_MASK,
@@ -100,39 +100,39 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     callConstructor(ENGINECLASS_CSGSHAPE3D)
   }
 
-  public open fun isRootShape(): Boolean {
+  public fun isRootShape(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_IS_ROOT_SHAPE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_COLLISION_MASK_VALUE,
         NIL)
   }
 
-  public open fun getCollisionMaskValue(layerNumber: Long): Boolean {
+  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_COLLISION_MASK_VALUE,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_SET_COLLISION_LAYER_VALUE, NIL)
   }
 
-  public open fun getCollisionLayerValue(layerNumber: Long): Boolean {
+  public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_COLLISION_LAYER_VALUE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun getMeshes(): VariantArray<Any?> {
+  public fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_MESHES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>

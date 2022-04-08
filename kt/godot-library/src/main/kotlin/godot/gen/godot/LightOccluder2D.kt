@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class LightOccluder2D : Node2D() {
   /**
    * The [godot.OccluderPolygon2D] used to compute the shadow.
    */
-  public open var occluder: OccluderPolygon2D?
+  public var occluder: OccluderPolygon2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,7 +46,7 @@ public open class LightOccluder2D : Node2D() {
   /**
    *
    */
-  public open var sdfCollision: Boolean
+  public var sdfCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class LightOccluder2D : Node2D() {
   /**
    * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
    */
-  public open var occluderLightMask: Long
+  public var occluderLightMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,34 +36,34 @@ public open class AudioStream : Resource() {
    *
    */
   public open fun _instancePlayback(): AudioStreamPlayback? {
-    throw NotImplementedError("_instance_playback·is·not·implemented·for·AudioStream")
+    throw NotImplementedError("_instance_playback is not implemented for AudioStream")
   }
 
   /**
    *
    */
   public open fun _getStreamName(): String {
-    throw NotImplementedError("_get_stream_name·is·not·implemented·for·AudioStream")
+    throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
   }
 
   /**
    *
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_get_length·is·not·implemented·for·AudioStream")
+    throw NotImplementedError("_get_length is not implemented for AudioStream")
   }
 
   /**
    *
    */
   public open fun _isMonophonic(): Boolean {
-    throw NotImplementedError("_is_monophonic·is·not·implemented·for·AudioStream")
+    throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
   }
 
   /**
    * Returns the length of the audio stream in seconds.
    */
-  public open fun getLength(): Double {
+  public fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -72,7 +72,7 @@ public open class AudioStream : Resource() {
   /**
    * Returns true if this audio stream only supports monophonic playback, or false if the audio stream supports polyphony.
    */
-  public open fun isMonophonic(): Boolean {
+  public fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -81,7 +81,7 @@ public open class AudioStream : Resource() {
   /**
    * Returns an AudioStreamPlayback. Useful for when you want to extend `_instance_playback` but call `instance_playback` from an internally held AudioStream subresource. An example of this can be found in the source files for `AudioStreamRandomPitch::instance_playback`.
    */
-  public open fun instancePlayback(): AudioStreamPlayback? {
+  public fun instancePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,
         OBJECT)

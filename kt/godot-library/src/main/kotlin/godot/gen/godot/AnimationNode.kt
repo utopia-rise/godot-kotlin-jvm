@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -57,7 +57,7 @@ public open class AnimationNode : Resource() {
   /**
    * If `true`, filtering is enabled.
    */
-  public open var filterEnabled: Boolean
+  public var filterEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_FILTER_ENABLED,
@@ -78,28 +78,28 @@ public open class AnimationNode : Resource() {
    * Gets all children nodes in order as a `name: node` dictionary. Only useful when inheriting [godot.AnimationRootNode].
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_child_nodes·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
   }
 
   /**
    * Gets the property information for parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
-    throw NotImplementedError("_get_parameter_list·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
   }
 
   /**
    * Gets a child node by index (used by editors inheriting from [godot.AnimationRootNode]).
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
-    throw NotImplementedError("_get_child_by_name·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
   }
 
   /**
    * Gets the default value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
-    throw NotImplementedError("_get_parameter_default_value·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
   }
 
   /**
@@ -110,27 +110,27 @@ public open class AnimationNode : Resource() {
    * This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).
    */
   public open fun _process(time: Double, seek: Boolean): Double {
-    throw NotImplementedError("_process·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_process is not implemented for AnimationNode")
   }
 
   /**
    * Gets the text caption for this node (used by some editors).
    */
   public open fun _getCaption(): String {
-    throw NotImplementedError("_get_caption·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_get_caption is not implemented for AnimationNode")
   }
 
   /**
    * Returns whether you want the blend tree editor to display filter editing on this node.
    */
   public open fun _hasFilter(): Boolean {
-    throw NotImplementedError("_has_filter·is·not·implemented·for·AnimationNode")
+    throw NotImplementedError("_has_filter is not implemented for AnimationNode")
   }
 
   /**
    * Amount of inputs in this node, only useful for nodes that go into [godot.AnimationNodeBlendTree].
    */
-  public open fun getInputCount(): Long {
+  public fun getInputCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -139,7 +139,7 @@ public open class AnimationNode : Resource() {
   /**
    * Gets the name of an input by index.
    */
-  public open fun getInputName(input: Long): String {
+  public fun getInputName(input: Long): String {
     TransferContext.writeArguments(LONG to input)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_NAME,
         STRING)
@@ -149,7 +149,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds an input to the node. This is only useful for nodes created for use in an [godot.AnimationNodeBlendTree].
    */
-  public open fun addInput(name: String): Unit {
+  public fun addInput(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_ADD_INPUT, NIL)
   }
@@ -157,7 +157,7 @@ public open class AnimationNode : Resource() {
   /**
    * Removes an input, call this only when inactive.
    */
-  public open fun removeInput(index: Long): Unit {
+  public fun removeInput(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_REMOVE_INPUT, NIL)
   }
@@ -165,7 +165,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds or removes a path for the filter.
    */
-  public open fun setFilterPath(path: NodePath, enable: Boolean): Unit {
+  public fun setFilterPath(path: NodePath, enable: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_FILTER_PATH, NIL)
   }
@@ -173,7 +173,7 @@ public open class AnimationNode : Resource() {
   /**
    * Returns whether the given path is filtered.
    */
-  public open fun isPathFiltered(path: NodePath): Boolean {
+  public fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_PATH_FILTERED,
         BOOL)
@@ -183,7 +183,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an animation by `blend` amount (name must be valid in the linked [godot.AnimationPlayer]). A `time` and `delta` may be passed, as well as whether `seek` happened.
    */
-  public open fun blendAnimation(
+  public fun blendAnimation(
     animation: StringName,
     time: Double,
     delta: Double,
@@ -198,7 +198,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend another animation node (in case this node contains children animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, else editors will not display your node for addition.
    */
-  public open fun blendNode(
+  public fun blendNode(
     name: StringName,
     node: AnimationNode,
     time: Double,
@@ -215,7 +215,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The `time` parameter is a relative delta, unless `seek` is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
    */
-  public open fun blendInput(
+  public fun blendInput(
     inputIndex: Long,
     time: Double,
     seek: Boolean,
@@ -231,7 +231,7 @@ public open class AnimationNode : Resource() {
   /**
    * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
-  public open fun setParameter(name: StringName, `value`: Any): Unit {
+  public fun setParameter(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_PARAMETER, NIL)
   }
@@ -239,7 +239,7 @@ public open class AnimationNode : Resource() {
   /**
    * Gets the value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
    */
-  public open fun getParameter(name: StringName): Any? {
+  public fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_PARAMETER, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

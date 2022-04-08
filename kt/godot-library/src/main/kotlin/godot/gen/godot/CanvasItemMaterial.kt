@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which a material's rendering is applied to underlying textures.
    */
-  public open var blendMode: Long
+  public var blendMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_BLEND_MODE,
@@ -42,7 +42,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The manner in which material reacts to lighting.
    */
-  public open var lightMode: Long
+  public var lightMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_LIGHT_MODE,
@@ -60,7 +60,7 @@ public open class CanvasItemMaterial : Material() {
    *
    * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
    */
-  public open var particlesAnimation: Boolean
+  public var particlesAnimation: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -78,7 +78,7 @@ public open class CanvasItemMaterial : Material() {
    *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
-  public open var particlesAnimHFrames: Long
+  public var particlesAnimHFrames: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -96,7 +96,7 @@ public open class CanvasItemMaterial : Material() {
    *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
-  public open var particlesAnimVFrames: Long
+  public var particlesAnimVFrames: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -114,7 +114,7 @@ public open class CanvasItemMaterial : Material() {
    *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
-  public open var particlesAnimLoop: Boolean
+  public var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

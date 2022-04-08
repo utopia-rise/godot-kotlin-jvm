@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var magFilter: Long
+  public var magFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAG_FILTER,
@@ -42,7 +42,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var minFilter: Long
+  public var minFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_FILTER,
@@ -58,7 +58,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var mipFilter: Long
+  public var mipFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIP_FILTER,
@@ -74,7 +74,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var repeatU: Long
+  public var repeatU: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_U, LONG)
@@ -88,7 +88,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var repeatV: Long
+  public var repeatV: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_V, LONG)
@@ -102,7 +102,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var repeatW: Long
+  public var repeatW: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_W, LONG)
@@ -116,7 +116,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var lodBias: Double
+  public var lodBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_LOD_BIAS,
@@ -131,7 +131,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var useAnisotropy: Boolean
+  public var useAnisotropy: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_USE_ANISOTROPY,
@@ -147,7 +147,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var anisotropyMax: Double
+  public var anisotropyMax: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ANISOTROPY_MAX,
@@ -163,7 +163,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var enableCompare: Boolean
+  public var enableCompare: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ENABLE_COMPARE,
@@ -179,7 +179,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var compareOp: Long
+  public var compareOp: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_COMPARE_OP,
@@ -195,7 +195,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var minLod: Double
+  public var minLod: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_LOD,
@@ -210,7 +210,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var maxLod: Double
+  public var maxLod: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAX_LOD,
@@ -225,7 +225,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var borderColor: Long
+  public var borderColor: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_BORDER_COLOR,
@@ -241,7 +241,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    *
    */
-  public open var unnormalizedUvw: Boolean
+  public var unnormalizedUvw: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

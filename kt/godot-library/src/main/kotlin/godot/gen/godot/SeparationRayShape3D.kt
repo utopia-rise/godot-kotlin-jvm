@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class SeparationRayShape3D : Shape3D() {
   /**
    * The ray's length.
    */
-  public open var length: Double
+  public var length: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_GET_LENGTH,
@@ -46,7 +46,7 @@ public open class SeparationRayShape3D : Shape3D() {
    *
    * If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.
    */
-  public open var slideOnSlope: Boolean
+  public var slideOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -73,7 +73,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label uses BBCode formatting.
    */
-  public open var bbcodeEnabled: Boolean
+  public var bbcodeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_USING_BBCODE,
@@ -88,7 +88,7 @@ public open class RichTextLabel : Control() {
   /**
    * The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags.
    */
-  public open var tabSize: Long
+  public var tabSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TAB_SIZE, LONG)
@@ -104,7 +104,7 @@ public open class RichTextLabel : Control() {
    *
    * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with `text` (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
    */
-  public open var text: String
+  public var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT, STRING)
@@ -120,7 +120,7 @@ public open class RichTextLabel : Control() {
    *
    * **Note:** This property is used as a workaround to fix issues with [godot.RichTextLabel] in [godot.Container]s, but it's unreliable in some cases and will be removed in future versions.
    */
-  public open var fitContentHeight: Boolean
+  public var fitContentHeight: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -136,7 +136,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [scrollToLine].
    */
-  public open var scrollActive: Boolean
+  public var scrollActive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_ACTIVE,
@@ -152,7 +152,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the window scrolls down to display new content automatically.
    */
-  public open var scrollFollowing: Boolean
+  public var scrollFollowing: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_FOLLOWING,
@@ -168,7 +168,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label allows text selection.
    */
-  public open var selectionEnabled: Boolean
+  public var selectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label uses the custom font color.
    */
-  public open var overrideSelectedFontColor: Boolean
+  public var overrideSelectedFontColor: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -200,7 +200,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the selected text will be deselected when focus is lost.
    */
-  public open var deselectOnFocusLossEnabled: Boolean
+  public var deselectOnFocusLossEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +218,7 @@ public open class RichTextLabel : Control() {
    *
    * To add a custom effect, it's more convenient to use [installEffect].
    */
-  public open var customEffects: VariantArray<Any?>
+  public var customEffects: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_EFFECTS, ARRAY)
@@ -232,7 +232,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label underlines meta tags such as `[url]{text}[/url]`.
    */
-  public open var metaUnderlined: Boolean
+  public var metaUnderlined: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_META_UNDERLINED,
@@ -248,7 +248,7 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label underlines hint tags such as `[hint=description]{text}[/hint]`.
    */
-  public open var hintUnderlined: Boolean
+  public var hintUnderlined: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_HINT_UNDERLINED,
@@ -264,7 +264,7 @@ public open class RichTextLabel : Control() {
   /**
    * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum AutowrapMode].
    */
-  public open var autowrapMode: Long
+  public var autowrapMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
@@ -282,7 +282,7 @@ public open class RichTextLabel : Control() {
    *
    * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
    */
-  public open var visibleCharacters: Long
+  public var visibleCharacters: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -298,7 +298,7 @@ public open class RichTextLabel : Control() {
   /**
    * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
    */
-  public open var visibleCharactersBehavior: Long
+  public var visibleCharactersBehavior: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -316,7 +316,7 @@ public open class RichTextLabel : Control() {
    *
    * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
    */
-  public open var percentVisible: Double
+  public var percentVisible: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
@@ -332,7 +332,7 @@ public open class RichTextLabel : Control() {
   /**
    * Base text writing direction.
    */
-  public open var textDirection: Long
+  public var textDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT_DIRECTION,
@@ -348,7 +348,7 @@ public open class RichTextLabel : Control() {
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open var language: String
+  public var language: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LANGUAGE,
@@ -363,7 +363,7 @@ public open class RichTextLabel : Control() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public open var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -379,7 +379,7 @@ public open class RichTextLabel : Control() {
   /**
    * Set additional options for BiDi override.
    */
-  public open var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -399,7 +399,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the text without BBCode mark-up.
    */
-  public open fun getParsedText(): String {
+  public fun getParsedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARSED_TEXT,
         STRING)
@@ -409,7 +409,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds raw non-BBCode-parsed text to the tag stack.
    */
-  public open fun addText(text: String): Unit {
+  public fun addText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_TEXT, NIL)
   }
@@ -419,7 +419,7 @@ public open class RichTextLabel : Control() {
    *
    * If `width` or `height` is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
    */
-  public open fun addImage(
+  public fun addImage(
     image: Texture2D,
     width: Long = 0,
     height: Long = 0,
@@ -433,7 +433,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a newline tag to the tag stack.
    */
-  public open fun newline(): Unit {
+  public fun newline(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_NEWLINE, NIL)
   }
@@ -443,7 +443,7 @@ public open class RichTextLabel : Control() {
    *
    * The `line` argument is the index of the line to remove, it can take values in the interval `[0, get_line_count() - 1]`.
    */
-  public open fun removeLine(line: Long): Boolean {
+  public fun removeLine(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_REMOVE_LINE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -452,7 +452,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag to the tag stack. Overrides default fonts for its duration.
    */
-  public open fun pushFont(font: Font): Unit {
+  public fun pushFont(font: Font): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT, NIL)
   }
@@ -460,7 +460,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font_size]` tag to the tag stack. Overrides default font size for its duration.
    */
-  public open fun pushFontSize(fontSize: Long): Unit {
+  public fun pushFontSize(fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_SIZE, NIL)
   }
@@ -468,7 +468,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[ot_feature]` tag to the tag stack. Overrides default OpenType font feature for its duration.
    */
-  public open fun pushFontFeatures(opentypeFeatures: Dictionary<Any?, Any?>): Unit {
+  public fun pushFontFeatures(opentypeFeatures: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to opentypeFeatures)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_FEATURES,
         NIL)
@@ -477,7 +477,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag with a normal font to the tag stack.
    */
-  public open fun pushNormal(): Unit {
+  public fun pushNormal(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_NORMAL, NIL)
   }
@@ -485,7 +485,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag with a bold font to the tag stack. This is the same as adding a `**` tag if not currently in a `*` tag.
    */
-  public open fun pushBold(): Unit {
+  public fun pushBold(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD, NIL)
   }
@@ -493,7 +493,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag with a bold italics font to the tag stack.
    */
-  public open fun pushBoldItalics(): Unit {
+  public fun pushBoldItalics(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD_ITALICS,
         NIL)
@@ -502,7 +502,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag with a italics font to the tag stack. This is the same as adding a `*` tag if not currently in a `**` tag.
    */
-  public open fun pushItalics(): Unit {
+  public fun pushItalics(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_ITALICS, NIL)
   }
@@ -510,7 +510,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[font]` tag with a monospace font to the tag stack.
    */
-  public open fun pushMono(): Unit {
+  public fun pushMono(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_MONO, NIL)
   }
@@ -518,7 +518,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[color]` tag to the tag stack.
    */
-  public open fun pushColor(color: Color): Unit {
+  public fun pushColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_COLOR, NIL)
   }
@@ -526,7 +526,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[outline_size]` tag to the tag stack. Overrides default text outline size for its duration.
    */
-  public open fun pushOutlineSize(outlineSize: Long): Unit {
+  public fun pushOutlineSize(outlineSize: Long): Unit {
     TransferContext.writeArguments(LONG to outlineSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_SIZE,
         NIL)
@@ -535,7 +535,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[outline_color]` tag to the tag stack. Adds text outline for its duration.
    */
-  public open fun pushOutlineColor(color: Color): Unit {
+  public fun pushOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_COLOR,
         NIL)
@@ -544,7 +544,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[p]` tag to the tag stack.
    */
-  public open fun pushParagraph(
+  public fun pushParagraph(
     alignment: HorizontalAlignment,
     baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
     language: String = "",
@@ -557,7 +557,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds an `[indent]` tag to the tag stack. Multiplies `level` by current [tabSize] to determine new margin length.
    */
-  public open fun pushIndent(level: Long): Unit {
+  public fun pushIndent(level: Long): Unit {
     TransferContext.writeArguments(LONG to level)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_INDENT, NIL)
   }
@@ -565,7 +565,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds `[ol]` or `[ul]` tag to the tag stack. Multiplies `level` by current [tabSize] to determine new margin length.
    */
-  public open fun pushList(
+  public fun pushList(
     level: Long,
     type: RichTextLabel.ListType,
     capitalize: Boolean
@@ -577,7 +577,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[meta]` tag to the tag stack. Similar to the BBCode `[{text}](something)`, but supports non-[godot.String] metadata types.
    */
-  public open fun pushMeta(`data`: Any): Unit {
+  public fun pushMeta(`data`: Any): Unit {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL)
   }
@@ -585,7 +585,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[hint]` tag to the tag stack. Same as BBCode `[hint=something]{text}[/hint]`.
    */
-  public open fun pushHint(description: String): Unit {
+  public fun pushHint(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_HINT, NIL)
   }
@@ -593,7 +593,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `<u>` tag to the tag stack.
    */
-  public open fun pushUnderline(): Unit {
+  public fun pushUnderline(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_UNDERLINE, NIL)
   }
@@ -601,7 +601,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `~~` tag to the tag stack.
    */
-  public open fun pushStrikethrough(): Unit {
+  public fun pushStrikethrough(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_STRIKETHROUGH,
         NIL)
@@ -610,7 +610,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[table=columns,inline_align]` tag to the tag stack.
    */
-  public open fun pushTable(columns: Long, inlineAlign: InlineAlignment =
+  public fun pushTable(columns: Long, inlineAlign: InlineAlignment =
       InlineAlignment.INLINE_ALIGNMENT_TOP_TO): Unit {
     TransferContext.writeArguments(LONG to columns, LONG to inlineAlign.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_TABLE, NIL)
@@ -619,7 +619,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
-  public open fun pushDropcap(
+  public fun pushDropcap(
     string: String,
     font: Font,
     size: Long,
@@ -639,7 +639,7 @@ public open class RichTextLabel : Control() {
    *
    * If `expand` is `false`, the column will not contribute to the total ratio.
    */
-  public open fun setTableColumnExpand(
+  public fun setTableColumnExpand(
     column: Long,
     expand: Boolean,
     ratio: Long
@@ -652,7 +652,7 @@ public open class RichTextLabel : Control() {
   /**
    * Sets color of a table cell. Separate colors for alternating rows can be specified.
    */
-  public open fun setCellRowBackgroundColor(oddRowBg: Color, evenRowBg: Color): Unit {
+  public fun setCellRowBackgroundColor(oddRowBg: Color, evenRowBg: Color): Unit {
     TransferContext.writeArguments(COLOR to oddRowBg, COLOR to evenRowBg)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_ROW_BACKGROUND_COLOR, NIL)
@@ -661,7 +661,7 @@ public open class RichTextLabel : Control() {
   /**
    * Sets color of a table cell border.
    */
-  public open fun setCellBorderColor(color: Color): Unit {
+  public fun setCellBorderColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_BORDER_COLOR,
         NIL)
@@ -670,7 +670,7 @@ public open class RichTextLabel : Control() {
   /**
    * Sets minimum and maximum size overrides for a table cell.
    */
-  public open fun setCellSizeOverride(minSize: Vector2, maxSize: Vector2): Unit {
+  public fun setCellSizeOverride(minSize: Vector2, maxSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to minSize, VECTOR2 to maxSize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_SIZE_OVERRIDE, NIL)
@@ -679,7 +679,7 @@ public open class RichTextLabel : Control() {
   /**
    * Sets inner padding of a table cell.
    */
-  public open fun setCellPadding(padding: Rect2): Unit {
+  public fun setCellPadding(padding: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to padding)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_PADDING, NIL)
   }
@@ -687,7 +687,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[cell]` tag to the tag stack. Must be inside a `[table]` tag. See [pushTable] for details.
    */
-  public open fun pushCell(): Unit {
+  public fun pushCell(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_CELL, NIL)
   }
@@ -695,7 +695,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[fgcolor]` tag to the tag stack.
    */
-  public open fun pushFgcolor(fgcolor: Color): Unit {
+  public fun pushFgcolor(fgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to fgcolor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FGCOLOR, NIL)
   }
@@ -703,7 +703,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[bgcolor]` tag to the tag stack.
    */
-  public open fun pushBgcolor(bgcolor: Color): Unit {
+  public fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BGCOLOR, NIL)
   }
@@ -711,7 +711,7 @@ public open class RichTextLabel : Control() {
   /**
    * Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods.
    */
-  public open fun pop(): Unit {
+  public fun pop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_POP, NIL)
   }
@@ -719,7 +719,7 @@ public open class RichTextLabel : Control() {
   /**
    * Clears the tag stack and sets [text] to an empty string.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_CLEAR, NIL)
   }
@@ -729,7 +729,7 @@ public open class RichTextLabel : Control() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getVScrollBar(): VScrollBar? {
+  public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_V_SCROLL_BAR,
         OBJECT)
@@ -739,7 +739,7 @@ public open class RichTextLabel : Control() {
   /**
    * Scrolls the window's top line to match `line`.
    */
-  public open fun scrollToLine(line: Long): Unit {
+  public fun scrollToLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_LINE, NIL)
   }
@@ -747,7 +747,7 @@ public open class RichTextLabel : Control() {
   /**
    * Scrolls the window's top line to match first line of the `paragraph`.
    */
-  public open fun scrollToParagraph(paragraph: Long): Unit {
+  public fun scrollToParagraph(paragraph: Long): Unit {
     TransferContext.writeArguments(LONG to paragraph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_PARAGRAPH,
         NIL)
@@ -756,7 +756,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes.
    */
-  public open fun getSelectionFrom(): Long {
+  public fun getSelectionFrom(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_FROM,
         LONG)
@@ -766,7 +766,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes.
    */
-  public open fun getSelectionTo(): Long {
+  public fun getSelectionTo(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_TO,
         LONG)
@@ -776,7 +776,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the current selection text. Does not include BBCodes.
    */
-  public open fun getSelectedText(): String {
+  public fun getSelectedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTED_TEXT,
         STRING)
@@ -786,7 +786,7 @@ public open class RichTextLabel : Control() {
   /**
    * The assignment version of [appendText]. Clears the tag stack and inserts the new content.
    */
-  public open fun parseBbcode(bbcode: String): Unit {
+  public fun parseBbcode(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_BBCODE, NIL)
   }
@@ -796,7 +796,7 @@ public open class RichTextLabel : Control() {
    *
    * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [text] instead of using [appendText].
    */
-  public open fun appendText(bbcode: String): Unit {
+  public fun appendText(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_APPEND_TEXT, NIL)
   }
@@ -804,7 +804,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the line number of the character position provided.
    */
-  public open fun getCharacterLine(character: Long): Long {
+  public fun getCharacterLine(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_LINE,
         LONG)
@@ -814,7 +814,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the paragraph number of the character position provided.
    */
-  public open fun getCharacterParagraph(character: Long): Long {
+  public fun getCharacterParagraph(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_PARAGRAPH, LONG)
@@ -824,7 +824,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the total number of characters from text tags. Does not include BBCodes.
    */
-  public open fun getTotalCharacterCount(): Long {
+  public fun getTotalCharacterCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TOTAL_CHARACTER_COUNT, LONG)
@@ -834,7 +834,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
    */
-  public open fun getLineCount(): Long {
+  public fun getLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -843,7 +843,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the number of visible lines.
    */
-  public open fun getVisibleLineCount(): Long {
+  public fun getVisibleLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_LINE_COUNT, LONG)
@@ -853,7 +853,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph.
    */
-  public open fun getParagraphCount(): Long {
+  public fun getParagraphCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_COUNT,
         LONG)
@@ -863,7 +863,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.
    */
-  public open fun getVisibleParagraphCount(): Long {
+  public fun getVisibleParagraphCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_PARAGRAPH_COUNT, LONG)
@@ -873,7 +873,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the height of the content.
    */
-  public open fun getContentHeight(): Long {
+  public fun getContentHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_HEIGHT,
         LONG)
@@ -883,7 +883,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the width of the content.
    */
-  public open fun getContentWidth(): Long {
+  public fun getContentWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_WIDTH,
         LONG)
@@ -893,7 +893,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the vertical offset of the line found at the provided index.
    */
-  public open fun getLineOffset(line: Long): Double {
+  public fun getLineOffset(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_OFFSET,
         DOUBLE)
@@ -903,7 +903,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
    */
-  public open fun getParagraphOffset(paragraph: Long): Double {
+  public fun getParagraphOffset(paragraph: Long): Double {
     TransferContext.writeArguments(LONG to paragraph)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_OFFSET,
         DOUBLE)
@@ -913,8 +913,7 @@ public open class RichTextLabel : Control() {
   /**
    * Parses BBCode parameter `expressions` into a dictionary.
    */
-  public open fun parseExpressionsForValues(expressions: PackedStringArray):
-      Dictionary<Any?, Any?> {
+  public fun parseExpressionsForValues(expressions: PackedStringArray): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_EXPRESSIONS_FOR_VALUES, DICTIONARY)
@@ -924,7 +923,7 @@ public open class RichTextLabel : Control() {
   /**
    * Installs a custom effect. `effect` should be a valid [godot.RichTextEffect].
    */
-  public open fun installEffect(effect: Any): Unit {
+  public fun installEffect(effect: Any): Unit {
     TransferContext.writeArguments(ANY to effect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT, NIL)
   }

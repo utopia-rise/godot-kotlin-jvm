@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Texture to display by default, when the node is **not** in the disabled, focused, hover or pressed state.
    */
-  public open var textureNormal: Texture2D?
+  public var textureNormal: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_NORMAL_TEXTURE,
@@ -50,7 +50,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [godot.BaseButton.shortcut] key.
    */
-  public open var texturePressed: Texture2D?
+  public var texturePressed: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_PRESSED_TEXTURE,
@@ -66,7 +66,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Texture to display when the mouse hovers the node.
    */
-  public open var textureHover: Texture2D?
+  public var textureHover: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_HOVER_TEXTURE,
@@ -82,7 +82,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Texture to display when the node is disabled. See [godot.BaseButton.disabled].
    */
-  public open var textureDisabled: Texture2D?
+  public var textureDisabled: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -98,7 +98,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Texture to display when the node has mouse or keyboard focus. [textureFocused] is displayed *over* the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons.
    */
-  public open var textureFocused: Texture2D?
+  public var textureFocused: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FOCUSED_TEXTURE,
@@ -114,7 +114,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Pure black and white [godot.BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes.
    */
-  public open var textureClickMask: BitMap?
+  public var textureClickMask: BitMap?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_CLICK_MASK,
@@ -129,7 +129,7 @@ public open class TextureButton : BaseButton() {
   /**
    * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureButton] can be shrunk down past the texture size.
    */
-  public open var ignoreTextureSize: Boolean
+  public var ignoreTextureSize: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -145,7 +145,7 @@ public open class TextureButton : BaseButton() {
   /**
    * Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options.
    */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_STRETCH_MODE,
@@ -161,7 +161,7 @@ public open class TextureButton : BaseButton() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public open var flipH: Boolean
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_H, BOOL)
@@ -175,7 +175,7 @@ public open class TextureButton : BaseButton() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public open var flipV: Boolean
+  public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_V, BOOL)

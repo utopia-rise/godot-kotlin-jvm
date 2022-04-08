@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Defines all input ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addInputPort]).
    */
-  public open fun setInputs(inputs: String): Unit {
+  public fun setInputs(inputs: String): Unit {
     TransferContext.writeArguments(STRING to inputs)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUTS, NIL)
@@ -42,7 +42,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns a [godot.String] description of the input ports as a colon-separated list using the format `id,type,name;` (see [addInputPort]).
    */
-  public open fun getInputs(): String {
+  public fun getInputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUTS, STRING)
@@ -52,7 +52,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Defines all output ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addOutputPort]).
    */
-  public open fun setOutputs(outputs: String): Unit {
+  public fun setOutputs(outputs: String): Unit {
     TransferContext.writeArguments(STRING to outputs)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUTS, NIL)
@@ -61,7 +61,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns a [godot.String] description of the output ports as a colon-separated list using the format `id,type,name;` (see [addOutputPort]).
    */
-  public open fun getOutputs(): String {
+  public fun getOutputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUTS, STRING)
@@ -71,7 +71,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns `true` if the specified port name does not override an existed port name and is valid within the shader.
    */
-  public open fun isValidPortName(name: String): Boolean {
+  public fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_IS_VALID_PORT_NAME, BOOL)
@@ -81,7 +81,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Adds an input port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
    */
-  public open fun addInputPort(
+  public fun addInputPort(
     id: Long,
     type: Long,
     name: String
@@ -94,7 +94,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes the specified input port.
    */
-  public open fun removeInputPort(id: Long): Unit {
+  public fun removeInputPort(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_INPUT_PORT, NIL)
@@ -103,7 +103,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns the number of input ports in use. Alternative for [getFreeInputPortId].
    */
-  public open fun getInputPortCount(): Long {
+  public fun getInputPortCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUT_PORT_COUNT, LONG)
@@ -113,7 +113,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns `true` if the specified input port exists.
    */
-  public open fun hasInputPort(id: Long): Boolean {
+  public fun hasInputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_INPUT_PORT, BOOL)
@@ -123,7 +123,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes all previously specified input ports.
    */
-  public open fun clearInputPorts(): Unit {
+  public fun clearInputPorts(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_INPUT_PORTS, NIL)
@@ -132,7 +132,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Adds an output port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
    */
-  public open fun addOutputPort(
+  public fun addOutputPort(
     id: Long,
     type: Long,
     name: String
@@ -145,7 +145,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes the specified output port.
    */
-  public open fun removeOutputPort(id: Long): Unit {
+  public fun removeOutputPort(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_OUTPUT_PORT, NIL)
@@ -154,7 +154,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns the number of output ports in use. Alternative for [getFreeOutputPortId].
    */
-  public open fun getOutputPortCount(): Long {
+  public fun getOutputPortCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUT_PORT_COUNT, LONG)
@@ -164,7 +164,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns `true` if the specified output port exists.
    */
-  public open fun hasOutputPort(id: Long): Boolean {
+  public fun hasOutputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_OUTPUT_PORT, BOOL)
@@ -174,7 +174,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes all previously specified output ports.
    */
-  public open fun clearOutputPorts(): Unit {
+  public fun clearOutputPorts(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_OUTPUT_PORTS, NIL)
@@ -183,7 +183,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Renames the specified input port.
    */
-  public open fun setInputPortName(id: Long, name: String): Unit {
+  public fun setInputPortName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_NAME, NIL)
@@ -192,7 +192,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Sets the specified input port's type (see [enum VisualShaderNode.PortType]).
    */
-  public open fun setInputPortType(id: Long, type: Long): Unit {
+  public fun setInputPortType(id: Long, type: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_TYPE, NIL)
@@ -201,7 +201,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Renames the specified output port.
    */
-  public open fun setOutputPortName(id: Long, name: String): Unit {
+  public fun setOutputPortName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_NAME, NIL)
@@ -210,7 +210,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Sets the specified output port's type (see [enum VisualShaderNode.PortType]).
    */
-  public open fun setOutputPortType(id: Long, type: Long): Unit {
+  public fun setOutputPortType(id: Long, type: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_TYPE, NIL)
@@ -219,7 +219,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns a free input port ID which can be used in [addInputPort].
    */
-  public open fun getFreeInputPortId(): Long {
+  public fun getFreeInputPortId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_INPUT_PORT_ID, LONG)
@@ -229,7 +229,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Returns a free output port ID which can be used in [addOutputPort].
    */
-  public open fun getFreeOutputPortId(): Long {
+  public fun getFreeOutputPortId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_OUTPUT_PORT_ID, LONG)

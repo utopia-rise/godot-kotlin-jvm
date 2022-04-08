@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -67,7 +67,7 @@ public object NavigationServer2D : Object() {
   /**
    * Create a new map.
    */
-  public open fun mapCreate(): RID {
+  public fun mapCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -76,7 +76,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the map active.
    */
-  public open fun mapSetActive(map: RID, active: Boolean): Unit {
+  public fun mapSetActive(map: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_SET_ACTIVE,
         NIL)
@@ -85,7 +85,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns true if the map is active.
    */
-  public open fun mapIsActive(nap: RID): Boolean {
+  public fun mapIsActive(nap: RID): Boolean {
     TransferContext.writeArguments(_RID to nap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_IS_ACTIVE,
         BOOL)
@@ -95,7 +95,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the map cell size used to weld the navigation mesh polygons.
    */
-  public open fun mapSetCellSize(map: RID, cellSize: Double): Unit {
+  public fun mapSetCellSize(map: RID, cellSize: Double): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to cellSize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_SET_CELL_SIZE, NIL)
@@ -104,7 +104,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the map cell size.
    */
-  public open fun mapGetCellSize(map: RID): Double {
+  public fun mapGetCellSize(map: RID): Double {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_CELL_SIZE, DOUBLE)
@@ -114,7 +114,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the map edge connection margin used to weld the compatible region edges.
    */
-  public open fun mapSetEdgeConnectionMargin(map: RID, margin: Double): Unit {
+  public fun mapSetEdgeConnectionMargin(map: RID, margin: Double): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to margin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_SET_EDGE_CONNECTION_MARGIN, NIL)
@@ -123,7 +123,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the edge connection margin of the map. The edge connection margin is a distance used to connect two regions.
    */
-  public open fun mapGetEdgeConnectionMargin(map: RID): Double {
+  public fun mapGetEdgeConnectionMargin(map: RID): Double {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_EDGE_CONNECTION_MARGIN, DOUBLE)
@@ -133,7 +133,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation path to reach the destination from the origin. `layers` is a bitmask of all region layers that are allowed to be in the path.
    */
-  public open fun mapGetPath(
+  public fun mapGetPath(
     map: RID,
     origin: Vector2,
     destination: Vector2,
@@ -149,7 +149,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the point closest to the provided `to_point` on the navigation mesh surface.
    */
-  public open fun mapGetClosestPoint(map: RID, toPoint: Vector2): Vector2 {
+  public fun mapGetClosestPoint(map: RID, toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(_RID to map, VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_CLOSEST_POINT, VECTOR2)
@@ -159,7 +159,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the owner region RID for the point returned by [mapGetClosestPoint].
    */
-  public open fun mapGetClosestPointOwner(map: RID, toPoint: Vector2): RID {
+  public fun mapGetClosestPointOwner(map: RID, toPoint: Vector2): RID {
     TransferContext.writeArguments(_RID to map, VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_MAP_GET_CLOSEST_POINT_OWNER, _RID)
@@ -169,7 +169,7 @@ public object NavigationServer2D : Object() {
   /**
    * Creates a new region.
    */
-  public open fun regionCreate(): RID {
+  public fun regionCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_CREATE,
         _RID)
@@ -179,7 +179,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the map for the region.
    */
-  public open fun regionSetMap(region: RID, map: RID): Unit {
+  public fun regionSetMap(region: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to region, _RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_SET_MAP,
         NIL)
@@ -188,7 +188,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the region's layers. This allows selecting regions from a path request (when using [godot.NavigationServer2D.mapGetPath]).
    */
-  public open fun regionSetLayers(region: RID, layers: Long): Unit {
+  public fun regionSetLayers(region: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to region, LONG to layers)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_SET_LAYERS, NIL)
@@ -197,7 +197,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the region's layers.
    */
-  public open fun regionGetLayers(region: RID): Long {
+  public fun regionGetLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_GET_LAYERS, LONG)
@@ -207,7 +207,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the global transformation for the region.
    */
-  public open fun regionSetTransform(region: RID, transform: Transform2D): Unit {
+  public fun regionSetTransform(region: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to region, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_SET_TRANSFORM, NIL)
@@ -216,7 +216,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the navigation mesh for the region.
    */
-  public open fun regionSetNavpoly(region: RID, navPoly: NavigationPolygon): Unit {
+  public fun regionSetNavpoly(region: RID, navPoly: NavigationPolygon): Unit {
     TransferContext.writeArguments(_RID to region, OBJECT to navPoly)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_SET_NAVPOLY, NIL)
@@ -225,7 +225,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns how many connections this `region` has with other regions in the map.
    */
-  public open fun regionGetConnectionsCount(region: RID): Long {
+  public fun regionGetConnectionsCount(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_GET_CONNECTIONS_COUNT, LONG)
@@ -235,7 +235,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the starting point of a connection door. `connection` is an index between 0 and the return value of [regionGetConnectionsCount].
    */
-  public open fun regionGetConnectionPathwayStart(region: RID, connection: Long): Vector2 {
+  public fun regionGetConnectionPathwayStart(region: RID, connection: Long): Vector2 {
     TransferContext.writeArguments(_RID to region, LONG to connection)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_GET_CONNECTION_PATHWAY_START, VECTOR2)
@@ -245,7 +245,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the ending point of a connection door. `connection` is an index between 0 and the return value of [regionGetConnectionsCount].
    */
-  public open fun regionGetConnectionPathwayEnd(region: RID, connection: Long): Vector2 {
+  public fun regionGetConnectionPathwayEnd(region: RID, connection: Long): Vector2 {
     TransferContext.writeArguments(_RID to region, LONG to connection)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_GET_CONNECTION_PATHWAY_END, VECTOR2)
@@ -255,7 +255,7 @@ public object NavigationServer2D : Object() {
   /**
    * Creates the agent.
    */
-  public open fun agentCreate(): RID {
+  public fun agentCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_CREATE,
         _RID)
@@ -265,7 +265,7 @@ public object NavigationServer2D : Object() {
   /**
    * Puts the agent in the map.
    */
-  public open fun agentSetMap(agent: RID, map: RID): Unit {
+  public fun agentSetMap(agent: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to agent, _RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_MAP,
         NIL)
@@ -274,7 +274,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe.
    */
-  public open fun agentSetNeighborDist(agent: RID, dist: Double): Unit {
+  public fun agentSetNeighborDist(agent: RID, dist: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to dist)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_NEIGHBOR_DIST, NIL)
@@ -283,7 +283,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe.
    */
-  public open fun agentSetMaxNeighbors(agent: RID, count: Long): Unit {
+  public fun agentSetMaxNeighbors(agent: RID, count: Long): Unit {
     TransferContext.writeArguments(_RID to agent, LONG to count)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_MAX_NEIGHBORS, NIL)
@@ -292,7 +292,7 @@ public object NavigationServer2D : Object() {
   /**
    * The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. Must be positive.
    */
-  public open fun agentSetTimeHorizon(agent: RID, time: Double): Unit {
+  public fun agentSetTimeHorizon(agent: RID, time: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to time)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_TIME_HORIZON, NIL)
@@ -301,7 +301,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the radius of the agent.
    */
-  public open fun agentSetRadius(agent: RID, radius: Double): Unit {
+  public fun agentSetRadius(agent: RID, radius: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to radius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_RADIUS,
         NIL)
@@ -310,7 +310,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the maximum speed of the agent. Must be positive.
    */
-  public open fun agentSetMaxSpeed(agent: RID, maxSpeed: Double): Unit {
+  public fun agentSetMaxSpeed(agent: RID, maxSpeed: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_MAX_SPEED, NIL)
@@ -319,7 +319,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the current velocity of the agent.
    */
-  public open fun agentSetVelocity(agent: RID, velocity: Vector2): Unit {
+  public fun agentSetVelocity(agent: RID, velocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_VELOCITY, NIL)
@@ -328,7 +328,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the new target velocity.
    */
-  public open fun agentSetTargetVelocity(agent: RID, targetVelocity: Vector2): Unit {
+  public fun agentSetTargetVelocity(agent: RID, targetVelocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to targetVelocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_TARGET_VELOCITY, NIL)
@@ -337,7 +337,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the position of the agent in world space.
    */
-  public open fun agentSetPosition(agent: RID, position: Vector2): Unit {
+  public fun agentSetPosition(agent: RID, position: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_SET_POSITION, NIL)
@@ -346,7 +346,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns true if the map got changed the previous frame.
    */
-  public open fun agentIsMapChanged(agent: RID): Boolean {
+  public fun agentIsMapChanged(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_AGENT_IS_MAP_CHANGED, BOOL)
@@ -356,7 +356,7 @@ public object NavigationServer2D : Object() {
   /**
    * Callback called at the end of the RVO process.
    */
-  public open fun agentSetCallback(
+  public fun agentSetCallback(
     agent: RID,
     `receiver`: Object,
     method: StringName,
@@ -370,7 +370,7 @@ public object NavigationServer2D : Object() {
   /**
    * Destroy the RID
    */
-  public open fun free(_object: RID): Unit {
+  public fun free(_object: RID): Unit {
     TransferContext.writeArguments(_RID to _object)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_FREE, NIL)
   }

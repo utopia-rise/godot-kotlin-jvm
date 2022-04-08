@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * If `true`, the modification's [_execute] function will be called by the [godot.SkeletonModificationStack2D].
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes.
    */
-  public open var executionMode: Long
+  public var executionMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -87,7 +87,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Returns the [godot.SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton3D the modification is operating on.
    */
-  public open fun getModificationStack(): SkeletonModificationStack2D? {
+  public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_MODIFICATION_STACK, OBJECT)
@@ -97,7 +97,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Manually allows you to set the setup state of the modification. This function should only rarely be used, as the [godot.SkeletonModificationStack2D] the modification is bound to should handle setting the modification up.
    */
-  public open fun setIsSetup(isSetup: Boolean): Unit {
+  public fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_IS_SETUP,
         NIL)
@@ -106,7 +106,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Returns whether this modification has been successfully setup or not.
    */
-  public open fun getIsSetup(): Boolean {
+  public fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_IS_SETUP,
         BOOL)
@@ -116,7 +116,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Takes a angle and clamps it so it is within the passed-in `min` and `max` range. `invert` will inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
-  public open fun clampAngle(
+  public fun clampAngle(
     angle: Double,
     min: Double,
     max: Double,
@@ -131,7 +131,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
    */
-  public open fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
+  public fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawGizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_EDITOR_DRAW_GIZMO, NIL)
@@ -140,7 +140,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
    */
-  public open fun getEditorDrawGizmo(): Boolean {
+  public fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_EDITOR_DRAW_GIZMO, BOOL)

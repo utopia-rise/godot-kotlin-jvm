@@ -138,11 +138,6 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.packedVector3Array,
             -> "$type()"
 
-            GodotTypes.nodePath -> {
-                val parameter = if (defaultValueString.isEmpty()) "" else "\"$defaultValueString\""
-                "${KotlinTypes.nodePath}($parameter)"
-            }
-
             else -> defaultValueString
         }
     } else {

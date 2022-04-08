@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Determines the source for the lookup. See [enum Source] for options.
    */
-  public open var source: Long
+  public var source: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -41,7 +41,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * The source texture, if needed for the selected [source].
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +57,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [enum TextureType] for options.
    */
-  public open var textureType: Long
+  public var textureType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class ShaderMaterial : Material() {
   /**
    * The [godot.Shader] program used to render this material.
    */
-  public open var shader: Shader?
+  public var shader: Shader?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
@@ -54,7 +54,7 @@ public open class ShaderMaterial : Material() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  public open fun setShaderParam(`param`: StringName, `value`: Any): Unit {
+  public fun setShaderParam(`param`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
         NIL)
@@ -63,7 +63,7 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
-  public open fun getShaderParam(`param`: StringName): Any? {
+  public fun getShaderParam(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
         ANY)
@@ -73,7 +73,7 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns `true` if the property identified by `name` can be reverted to a default value.
    */
-  public open fun propertyCanRevert(name: String): Boolean {
+  public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
         BOOL)
@@ -83,7 +83,7 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns the default value of the material property with given `name`.
    */
-  public open fun propertyGetRevert(name: String): Any? {
+  public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
         ANY)

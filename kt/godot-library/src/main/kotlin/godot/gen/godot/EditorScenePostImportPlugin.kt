@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,14 +43,14 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    * Return true or false whether a given option should be visible. Return null to ignore.
    */
   public open fun _getInternalOptionVisibility(category: Long, option: String): Any? {
-    throw NotImplementedError("_get_internal_option_visibility·is·not·implemented·for·EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_internal_option_visibility is not implemented for EditorScenePostImportPlugin")
   }
 
   /**
    * Return true whether updating the 3D view of the import dialog needs to be updated if an option has changed.
    */
   public open fun _getInternalOptionUpdateViewRequired(category: Long, option: String): Any? {
-    throw NotImplementedError("_get_internal_option_update_view_required·is·not·implemented·for·EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_internal_option_update_view_required is not implemented for EditorScenePostImportPlugin")
   }
 
   /**
@@ -74,7 +74,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    * Return true or false whether a given option should be visible. Return null to ignore.
    */
   public open fun _getOptionVisibility(path: String, option: String): Any? {
-    throw NotImplementedError("_get_option_visibility·is·not·implemented·for·EditorScenePostImportPlugin")
+    throw NotImplementedError("_get_option_visibility is not implemented for EditorScenePostImportPlugin")
   }
 
   /**
@@ -92,7 +92,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Query the value of an option. This function can only be called from those querying visibility, or processing.
    */
-  public open fun getOptionValue(name: StringName): Any? {
+  public fun getOptionValue(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_GET_OPTION_VALUE, ANY)
@@ -102,7 +102,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Add a specific import option (name and default value only). This function can only be called from [_getImportOptions] and [_getInternalImportOptions].
    */
-  public open fun addImportOption(name: String, `value`: Any): Unit {
+  public fun addImportOption(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION, NIL)
@@ -111,7 +111,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   /**
    * Add a specific import option. This function can only be called from [_getImportOptions] and [_getInternalImportOptions].
    */
-  public open fun addImportOptionAdvanced(
+  public fun addImportOptionAdvanced(
     type: VariantType,
     name: String,
     defaultValue: Any,

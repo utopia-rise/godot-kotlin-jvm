@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * The [godot.core.NodePath] to the [godot.Bone2D] node that this `PhysicalBone2D` node is supposed to be simulating.
    */
-  public open var bone2dNodepath: NodePath
+  public var bone2dNodepath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -49,7 +49,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * The index of the [godot.Bone2D] node that this `PhysicalBone2D` node is supposed to be simulating.
    */
-  public open var bone2dIndex: Long
+  public var bone2dIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_INDEX,
@@ -65,7 +65,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * If `true`, the `PhysicalBone2D` node will automatically configure the first [godot.Joint2D] child node. The automatic configuration is limited to setting up the node properties and positioning the [godot.Joint2D].
    */
-  public open var autoConfigureJoint: Boolean
+  public var autoConfigureJoint: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -83,7 +83,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
    *
    * **Note:** To have the Bone2D nodes visually follow the `PhysicalBone2D` node, use a [godot.SkeletonModification2DPhysicalBones] modification on the [godot.Skeleton2D] node with the [godot.Bone2D] nodes.
    */
-  public open var simulatePhysics: Boolean
+  public var simulatePhysics: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -99,7 +99,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * If `true`, the `PhysicalBone2D` will keep the transform of the bone it is bound to when simulating physics.
    */
-  public open var followBoneWhenSimulating: Boolean
+  public var followBoneWhenSimulating: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * Returns the first [godot.Joint2D] child node, if one exists. This is mainly a helper function to make it easier to get the [godot.Joint2D] that the `PhysicalBone2D` is autoconfiguring.
    */
-  public open fun getJoint(): Joint2D? {
+  public fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_JOINT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Joint2D?
@@ -128,7 +128,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   /**
    * Returns a boolean that indicates whether the `PhysicalBone2D` node is running and simulating using the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics.
    */
-  public open fun isSimulatingPhysics(): Boolean {
+  public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_IS_SIMULATING_PHYSICS, BOOL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class TextureProgressBar : Range() {
   /**
    * The fill direction. See [enum FillMode] for possible values.
    */
-  public open var fillMode: Long
+  public var fillMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_MODE,
@@ -49,7 +49,7 @@ public open class TextureProgressBar : Range() {
   /**
    * If `true`, Godot treats the bar's textures like in [godot.NinePatchRect]. Use the `stretch_margin_*` properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial [fillMode], this setting will enable stretching.
    */
-  public open var ninePatchStretch: Boolean
+  public var ninePatchStretch: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -65,7 +65,7 @@ public open class TextureProgressBar : Range() {
   /**
    * [godot.Texture2D] that draws under the progress bar. The bar's background.
    */
-  public open var textureUnder: Texture2D?
+  public var textureUnder: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -81,7 +81,7 @@ public open class TextureProgressBar : Range() {
   /**
    * [godot.Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [textureProgress].
    */
-  public open var textureOver: Texture2D?
+  public var textureOver: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -99,7 +99,7 @@ public open class TextureProgressBar : Range() {
    *
    * The `value` property comes from [godot.Range]. See [godot.Range.value], [godot.Range.minValue], [godot.Range.maxValue].
    */
-  public open var textureProgress: Texture2D?
+  public var textureProgress: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -115,7 +115,7 @@ public open class TextureProgressBar : Range() {
   /**
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
    */
-  public open var textureProgressOffset: Vector2
+  public var textureProgressOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -131,7 +131,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_under` texture.
    */
-  public open var tintUnder: Color
+  public var tintUnder: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_UNDER,
@@ -147,7 +147,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
-  public open var tintOver: Color
+  public var tintOver: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_OVER,
@@ -163,7 +163,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's `texture_progress` texture.
    */
-  public open var tintProgress: Color
+  public var tintProgress: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -179,7 +179,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [radialFillDegrees].
    */
-  public open var radialInitialAngle: Double
+  public var radialInitialAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -197,7 +197,7 @@ public open class TextureProgressBar : Range() {
    *
    * See [godot.Range.value], [godot.Range.maxValue].
    */
-  public open var radialFillDegrees: Double
+  public var radialFillDegrees: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -213,7 +213,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
    */
-  public open var radialCenterOffset: Vector2
+  public var radialCenterOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -233,7 +233,7 @@ public open class TextureProgressBar : Range() {
   /**
    *
    */
-  public open fun setStretchMargin(margin: Side, `value`: Long): Unit {
+  public fun setStretchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
@@ -242,7 +242,7 @@ public open class TextureProgressBar : Range() {
   /**
    *
    */
-  public open fun getStretchMargin(margin: Side): Long {
+  public fun getStretchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)

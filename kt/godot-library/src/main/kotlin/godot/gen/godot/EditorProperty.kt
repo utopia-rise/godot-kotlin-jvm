@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -90,7 +90,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Set this property to change the label (if you want to show one).
    */
-  public open var label: String
+  public var label: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_LABEL, STRING)
@@ -104,7 +104,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property is read-only.
    */
-  public open var readOnly: Boolean
+  public var readOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_READ_ONLY, BOOL)
@@ -118,7 +118,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property is checkable.
    */
-  public open var checkable: Boolean
+  public var checkable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKABLE, BOOL)
@@ -132,7 +132,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property is checked.
    */
-  public open var checked: Boolean
+  public var checked: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKED, BOOL)
@@ -146,7 +146,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property is drawn with the editor theme's warning color. This is used for editable children's properties.
    */
-  public open var drawWarning: Boolean
+  public var drawWarning: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DRAW_WARNING,
@@ -162,7 +162,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property can add keys for animation.
    */
-  public open var keying: Boolean
+  public var keying: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_KEYING, BOOL)
@@ -176,7 +176,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by the inspector, set to `true` when the property can be deleted by the user.
    */
-  public open var deletable: Boolean
+  public var deletable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DELETABLE, BOOL)
@@ -200,7 +200,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Gets the edited property. If your editor is for a single property (added via [godot.EditorInspectorPlugin.ParseProperty]), then this will return the property.
    */
-  public open fun getEditedProperty(): StringName {
+  public fun getEditedProperty(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_PROPERTY,
         STRING_NAME)
@@ -210,7 +210,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Gets the edited object.
    */
-  public open fun getEditedObject(): Object? {
+  public fun getEditedObject(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_OBJECT,
         OBJECT)
@@ -220,7 +220,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Must be implemented to provide a custom tooltip to the property editor.
    */
-  public open fun getTooltipText(): String {
+  public fun getTooltipText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_TOOLTIP_TEXT,
         STRING)
@@ -230,7 +230,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    *
    */
-  public open fun updateProperty(): Unit {
+  public fun updateProperty(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_UPDATE_PROPERTY, NIL)
   }
@@ -238,7 +238,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * If any of the controls added can gain keyboard focus, add it here. This ensures that focus will be restored if the inspector is refreshed.
    */
-  public open fun addFocusable(control: Control): Unit {
+  public fun addFocusable(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_ADD_FOCUSABLE, NIL)
   }
@@ -246,7 +246,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Puts the `editor` control below the property label. The control must be previously added using [godot.Node.addChild].
    */
-  public open fun setBottomEditor(editor: Control): Unit {
+  public fun setBottomEditor(editor: Control): Unit {
     TransferContext.writeArguments(OBJECT to editor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_BOTTOM_EDITOR,
         NIL)
@@ -255,7 +255,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * If one or several properties have changed, this must be called. `field` is used in case your editor can modify fields separately (as an example, Vector3.x). The `changing` argument avoids the editor requesting this property to be refreshed (leave as `false` if unsure).
    */
-  public open fun emitChanged(
+  public fun emitChanged(
     `property`: StringName,
     `value`: Any,
     `field`: StringName = StringName(""),

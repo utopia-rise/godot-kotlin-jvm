@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, transparency is enabled on the body. See also [blendMode].
    */
-  public open var transparency: Long
+  public var transparency: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
@@ -52,7 +52,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Threshold at which the alpha scissor will discard values.
    */
-  public open var alphaScissorThreshold: Double
+  public var alphaScissorThreshold: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -68,7 +68,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
-  public open var alphaHashScale: Double
+  public var alphaHashScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The type of alpha antialiasing to apply. See [enum AlphaAntiAliasing].
    */
-  public open var alphaAntialiasingMode: Long
+  public var alphaAntialiasingMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
-  public open var alphaAntialiasingEdge: Double
+  public var alphaAntialiasingEdge: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Values other than `Mix` force the object into the transparent pipeline. See [enum BlendMode].
    */
-  public open var blendMode: Long
+  public var blendMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
@@ -134,7 +134,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Determines which side of the triangle to cull depending on whether the triangle faces towards or away from the camera. See [enum CullMode].
    */
-  public open var cullMode: Long
+  public var cullMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
@@ -149,7 +149,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [transparency].
    */
-  public open var depthDrawMode: Long
+  public var depthDrawMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -165,7 +165,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets whether the shading takes place per-pixel or per-vertex. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel.
    */
-  public open var shadingMode: Long
+  public var shadingMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
@@ -181,7 +181,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The algorithm used for diffuse light scattering. See [enum DiffuseMode].
    */
-  public open var diffuseMode: Long
+  public var diffuseMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
@@ -199,7 +199,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Only applies to the specular blob. Does not affect specular reflections from the Sky, SSR, or ReflectionProbes.
    */
-  public open var specularMode: Long
+  public var specularMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
@@ -215,7 +215,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's base color.
    */
-  public open var albedoColor: Color
+  public var albedoColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALBEDO, COLOR)
@@ -229,7 +229,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between `0` and `1` should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [roughness].
    */
-  public open var metallic: Double
+  public var metallic: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC,
@@ -246,7 +246,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [roughness].
    */
-  public open var metallicSpecular: Double
+  public var metallicSpecular: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR,
@@ -261,7 +261,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [metallicTexture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public open var metallicTextureChannel: Long
+  public var metallicTextureChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -277,7 +277,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely blurs the reflection. See also [metallic].
    */
-  public open var roughness: Double
+  public var roughness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS,
@@ -292,7 +292,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public open var roughnessTextureChannel: Long
+  public var roughnessTextureChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -308,7 +308,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The emitted light's color. See [emissionEnabled].
    */
-  public open var emission: Color
+  public var emission: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION,
@@ -323,7 +323,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The emitted light's strength. See [emissionEnabled].
    */
-  public open var emissionEnergy: Double
+  public var emissionEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -339,7 +339,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See [enum EmissionOperator] for options.
    */
-  public open var emissionOperator: Long
+  public var emissionOperator: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -355,7 +355,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the normal map's effect.
    */
-  public open var normalScale: Double
+  public var normalScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_NORMAL_SCALE,
@@ -371,7 +371,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the strength of the rim lighting effect.
    */
-  public open var rim: Double
+  public var rim: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM, DOUBLE)
@@ -385,7 +385,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The amount of to blend light and albedo color when rendering rim effect. If `0` the light color is used, while `1` means albedo color is used. An intermediate value generally works best.
    */
-  public open var rimTint: Double
+  public var rimTint: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM_TINT,
@@ -400,7 +400,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the clearcoat effect.
    */
-  public open var clearcoat: Double
+  public var clearcoat: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT,
@@ -415,7 +415,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a lower value results in a smoother clearcoat.
    */
-  public open var clearcoatRoughness: Double
+  public var clearcoatRoughness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -431,7 +431,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel.
    */
-  public open var anisotropy: Double
+  public var anisotropy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ANISOTROPY,
@@ -447,7 +447,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic.
    */
-  public open var aoLightAffect: Double
+  public var aoLightAffect: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -463,7 +463,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public open var aoTextureChannel: Long
+  public var aoTextureChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -479,7 +479,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapScale: Double
+  public var heightmapScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -495,7 +495,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapDeepParallax: Boolean
+  public var heightmapDeepParallax: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -511,7 +511,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapMinLayers: Long
+  public var heightmapMinLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -527,7 +527,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapMaxLayers: Long
+  public var heightmapMaxLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -543,7 +543,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapFlipTangent: Boolean
+  public var heightmapFlipTangent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -559,7 +559,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var heightmapFlipBinormal: Boolean
+  public var heightmapFlipBinormal: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -575,7 +575,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the subsurface scattering effect.
    */
-  public open var subsurfScatterStrength: Double
+  public var subsurfScatterStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -591,7 +591,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var subsurfScatterTransmittanceColor: Color
+  public var subsurfScatterTransmittanceColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -607,7 +607,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var subsurfScatterTransmittanceDepth: Double
+  public var subsurfScatterTransmittanceDepth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -623,7 +623,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    *
    */
-  public open var subsurfScatterTransmittanceBoost: Double
+  public var subsurfScatterTransmittanceBoost: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -639,7 +639,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The color used by the backlight effect. Represents the light passing through an object.
    */
-  public open var backlight: Color
+  public var backlight: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BACKLIGHT,
@@ -654,7 +654,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the refraction effect.
    */
-  public open var refractionScale: Double
+  public var refractionScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION,
@@ -670,7 +670,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
-  public open var refractionTextureChannel: Long
+  public var refractionTextureChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -686,7 +686,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [enum BlendMode] for options.
    */
-  public open var detailBlendMode: Long
+  public var detailBlendMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -702,7 +702,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies whether to use `UV` or `UV2` for the detail layer. See [enum DetailUV] for options.
    */
-  public open var detailUvLayer: Long
+  public var detailUvLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
@@ -717,7 +717,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function.
    */
-  public open var uv1Scale: Vector3
+  public var uv1Scale: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_SCALE,
@@ -732,7 +732,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture.
    */
-  public open var uv1Offset: Vector3
+  public var uv1Offset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_OFFSET,
@@ -748,7 +748,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more sharply.
    */
-  public open var uv1TriplanarSharpness: Double
+  public var uv1TriplanarSharpness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -764,7 +764,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
    */
-  public open var uv2Scale: Vector3
+  public var uv2Scale: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_SCALE,
@@ -779,7 +779,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture.
    */
-  public open var uv2Offset: Vector3
+  public var uv2Offset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_OFFSET,
@@ -795,7 +795,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more sharply.
    */
-  public open var uv2TriplanarSharpness: Double
+  public var uv2TriplanarSharpness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -811,7 +811,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Filter flags for the texture. See [enum TextureFilter] for options.
    */
-  public open var textureFilter: Long
+  public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
@@ -829,7 +829,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [godot.GitHub issue #41567](https://github.com/godotengine/godot/issues/41567) for details.
    */
-  public open var billboardMode: Long
+  public var billboardMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
@@ -845,7 +845,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The number of horizontal frames in the particle sprite sheet. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
-  public open var particlesAnimHFrames: Long
+  public var particlesAnimHFrames: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -861,7 +861,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The number of vertical frames in the particle sprite sheet. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
-  public open var particlesAnimVFrames: Long
+  public var particlesAnimVFrames: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -877,7 +877,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, particle animations are looped. Only enabled when using [BILLBOARD_PARTICLES]. See [billboardMode].
    */
-  public open var particlesAnimLoop: Boolean
+  public var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -893,7 +893,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, enables the vertex grow setting. See [growAmount].
    */
-  public open var grow: Boolean
+  public var grow: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_GROW_ENABLED,
@@ -909,7 +909,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Grows object vertices in the direction of their normals.
    */
-  public open var growAmount: Double
+  public var growAmount: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_GROW, DOUBLE)
@@ -923,7 +923,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The point size in pixels. See [usePointSize].
    */
-  public open var pointSize: Double
+  public var pointSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_POINT_SIZE,
@@ -939,7 +939,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object.
    */
-  public open var proximityFadeEnable: Boolean
+  public var proximityFadeEnable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -955,7 +955,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Distance over which the fade effect takes place. The larger the distance the longer it takes for an object to fade.
    */
-  public open var proximityFadeDistance: Double
+  public var proximityFadeDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -971,7 +971,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s.
    */
-  public open var distanceFadeMode: Long
+  public var distanceFadeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
@@ -989,7 +989,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** If `distance_fade_min_distance` is greater than `distance_fade_max_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
    */
-  public open var distanceFadeMinDistance: Double
+  public var distanceFadeMinDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1007,7 +1007,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    *
    * **Note:** If `distance_fade_max_distance` is less than `distance_fade_min_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
    */
-  public open var distanceFadeMaxDistance: Double
+  public var distanceFadeMaxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1027,7 +1027,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by setting the corresponding member to `true`. See [enum Flags] enumerator for options.
    */
-  public open fun setFlag(flag: BaseMaterial3D.Flags, enable: Boolean): Unit {
+  public fun setFlag(flag: BaseMaterial3D.Flags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
   }
@@ -1035,7 +1035,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns `true`, if the specified flag is enabled. See [enum Flags] enumerator for options.
    */
-  public open fun getFlag(flag: BaseMaterial3D.Flags): Boolean {
+  public fun getFlag(flag: BaseMaterial3D.Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1044,7 +1044,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, enables the specified [enum Feature]. Many features that are available in [godot.BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only incurred when specified. Features can also be enabled by setting the corresponding member to `true`.
    */
-  public open fun setFeature(feature: BaseMaterial3D.Feature, enable: Boolean): Unit {
+  public fun setFeature(feature: BaseMaterial3D.Feature, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
   }
@@ -1052,7 +1052,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns `true`, if the specified [enum Feature] is enabled.
    */
-  public open fun getFeature(feature: BaseMaterial3D.Feature): Boolean {
+  public fun getFeature(feature: BaseMaterial3D.Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1061,7 +1061,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the texture for the slot specified by `param`. See [enum TextureParam] for available slots.
    */
-  public open fun setTexture(`param`: BaseMaterial3D.TextureParam, texture: Texture2D): Unit {
+  public fun setTexture(`param`: BaseMaterial3D.TextureParam, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
   }
@@ -1069,7 +1069,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns the [godot.Texture] associated with the specified [enum TextureParam].
    */
-  public open fun getTexture(`param`: BaseMaterial3D.TextureParam): Texture2D? {
+  public fun getTexture(`param`: BaseMaterial3D.TextureParam): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?

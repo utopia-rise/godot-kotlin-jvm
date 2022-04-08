@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * The first body attached to the joint. Must derive from [godot.PhysicsBody2D].
    */
-  public open var nodeA: NodePath
+  public var nodeA: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_NODE_A, NODE_PATH)
@@ -42,7 +42,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * The second body attached to the joint. Must derive from [godot.PhysicsBody2D].
    */
-  public open var nodeB: NodePath
+  public var nodeB: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_NODE_B, NODE_PATH)
@@ -58,7 +58,7 @@ public open class Joint2D internal constructor() : Node2D() {
    *
    * When set to `0`, the default value from [godot.ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
-  public open var bias: Double
+  public var bias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_BIAS, DOUBLE)
@@ -72,7 +72,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * If `true`, [nodeA] and [nodeB] can not collide.
    */
-  public open var disableCollision: Boolean
+  public var disableCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

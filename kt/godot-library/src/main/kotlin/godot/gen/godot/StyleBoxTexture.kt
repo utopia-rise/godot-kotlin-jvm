@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * The texture to use when drawing this style box.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE,
@@ -50,7 +50,7 @@ public open class StyleBoxTexture : StyleBox() {
    *
    * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
    */
-  public open var regionRect: Rect2
+  public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_REGION_RECT,
@@ -66,7 +66,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
    */
-  public open var axisStretchHorizontal: Long
+  public var axisStretchHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -82,7 +82,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values.
    */
-  public open var axisStretchVertical: Long
+  public var axisStretchVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -98,7 +98,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Modulates the color of the texture when this style box is drawn.
    */
-  public open var modulateColor: Color
+  public var modulateColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_MODULATE,
@@ -113,7 +113,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * If `true`, the nine-patch texture's center tile will be drawn.
    */
-  public open var drawCenter: Boolean
+  public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the margin to `size` pixels for the specified [enum Side].
    */
-  public open fun setMarginSize(margin: Side, size: Double): Unit {
+  public fun setMarginSize(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_MARGIN_SIZE,
         NIL)
@@ -142,7 +142,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Returns the margin size of the specified [enum Side].
    */
-  public open fun getMarginSize(margin: Side): Double {
+  public fun getMarginSize(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_MARGIN_SIZE,
         DOUBLE)
@@ -152,7 +152,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to `size` pixels for the specified [enum Side].
    */
-  public open fun setExpandMarginSize(margin: Side, size: Double): Unit {
+  public fun setExpandMarginSize(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_SIZE, NIL)
@@ -161,7 +161,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin to `size` pixels for all margins.
    */
-  public open fun setExpandMarginAll(size: Double): Unit {
+  public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
@@ -170,7 +170,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Sets the expand margin for each margin to `size_left`, `size_top`, `size_right`, and `size_bottom` pixels.
    */
-  public open fun setExpandMarginIndividual(
+  public fun setExpandMarginIndividual(
     sizeLeft: Double,
     sizeTop: Double,
     sizeRight: Double,
@@ -184,7 +184,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Returns the expand margin size of the specified [enum Side].
    */
-  public open fun getExpandMarginSize(margin: Side): Double {
+  public fun getExpandMarginSize(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN_SIZE, DOUBLE)

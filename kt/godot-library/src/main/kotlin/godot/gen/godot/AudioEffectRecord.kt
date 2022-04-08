@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Specifies the format in which the sample will be recorded. See [enum AudioStreamSample.Format] for available formats.
    */
-  public open var format: Long
+  public var format: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_FORMAT,
@@ -53,7 +53,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * If `true`, the sound will be recorded. Note that restarting the recording will remove the previously recorded sample.
    */
-  public open fun setRecordingActive(record: Boolean): Unit {
+  public fun setRecordingActive(record: Boolean): Unit {
     TransferContext.writeArguments(BOOL to record)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_SET_RECORDING_ACTIVE, NIL)
@@ -62,7 +62,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Returns whether the recording is active or not.
    */
-  public open fun isRecordingActive(): Boolean {
+  public fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_IS_RECORDING_ACTIVE, BOOL)
@@ -72,7 +72,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Returns the recorded sample.
    */
-  public open fun getRecording(): AudioStreamSample? {
+  public fun getRecording(): AudioStreamSample? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_RECORDING,
         OBJECT)

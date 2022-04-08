@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    *
    */
-  public open var varyingName: StringName
+  public var varyingName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,7 +40,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    *
    */
-  public open var varyingType: Long
+  public var varyingType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

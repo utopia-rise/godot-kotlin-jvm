@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns `true` if the addon is ready to respond to function calls, else returns `false`.
    */
-  public open fun isAddonReady(): Boolean {
+  public fun isAddonReady(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_ADDON_READY,
         BOOL)
@@ -45,7 +45,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Initializes the VCS addon if not already. Uses the argument value as the path to the working directory of the project. Creates the initial commit if required. Returns `true` if no failure occurs, else returns `false`.
    */
-  public open fun initialize(projectRootPath: String): Boolean {
+  public fun initialize(projectRootPath: String): Boolean {
     TransferContext.writeArguments(STRING to projectRootPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_INITIALIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -54,7 +54,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns `true` if the VCS addon has been initialized, else returns `false`.
    */
-  public open fun isVcsInitialized(): Boolean {
+  public fun isVcsInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_VCS_INITIALIZED, BOOL)
@@ -76,7 +76,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
    *
    * - `4`: Typechanged
    */
-  public open fun getModifiedFilesData(): Dictionary<Any?, Any?> {
+  public fun getModifiedFilesData(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_MODIFIED_FILES_DATA, DICTIONARY)
@@ -86,7 +86,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Stages the file which should be committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
    */
-  public open fun stageFile(filePath: String): Unit {
+  public fun stageFile(filePath: String): Unit {
     TransferContext.writeArguments(STRING to filePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_STAGE_FILE, NIL)
   }
@@ -94,7 +94,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Unstages the file which was staged previously to be committed, so that it is no longer committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
    */
-  public open fun unstageFile(filePath: String): Unit {
+  public fun unstageFile(filePath: String): Unit {
     TransferContext.writeArguments(STRING to filePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
         NIL)
@@ -103,7 +103,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Creates a version commit if the addon is initialized, else returns without doing anything. Uses the files which have been staged previously, with the commit message set to a value as provided as in the argument.
    */
-  public open fun commit(msg: String): Unit {
+  public fun commit(msg: String): Unit {
     TransferContext.writeArguments(STRING to msg)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_COMMIT, NIL)
   }
@@ -125,7 +125,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
    *
    * - `"offset"` to store the offset of the line change since the first contextual line content.
    */
-  public open fun getFileDiff(filePath: String): VariantArray<Any?> {
+  public fun getFileDiff(filePath: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to filePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_FILE_DIFF,
         ARRAY)
@@ -135,7 +135,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Shuts down the VCS addon to allow cleanup code to run on call. Returns `true` is no failure occurs, else returns `false`.
    */
-  public open fun shutDown(): Boolean {
+  public fun shutDown(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_SHUT_DOWN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -144,7 +144,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns the project name of the VCS working directory.
    */
-  public open fun getProjectName(): String {
+  public fun getProjectName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_PROJECT_NAME,
         STRING)
@@ -154,7 +154,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns the name of the VCS if the VCS has been initialized, else return an empty string.
    */
-  public open fun getVcsName(): String {
+  public fun getVcsName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_VCS_NAME,
         STRING)

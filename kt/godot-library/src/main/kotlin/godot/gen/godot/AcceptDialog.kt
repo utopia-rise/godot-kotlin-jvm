@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class AcceptDialog : Window() {
   /**
    * The text displayed by the dialog.
    */
-  public open var dialogText: String
+  public var dialogText: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_TEXT, STRING)
@@ -62,7 +62,7 @@ public open class AcceptDialog : Window() {
    *
    * **Note:** Some nodes derived from this class can have a different default value, and potentially their own built-in logic overriding this setting. For example [godot.FileDialog] defaults to `false`, and has its own input validation code that is called when you press OK, which eventually hides the dialog if the input is valid. As such, this property can't be used in [godot.FileDialog] to disable hiding the dialog when pressing OK.
    */
-  public open var dialogHideOnOk: Boolean
+  public var dialogHideOnOk: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_HIDE_ON_OK, BOOL)
@@ -76,7 +76,7 @@ public open class AcceptDialog : Window() {
   /**
    * Sets autowrapping for the text in the dialog.
    */
-  public open var dialogAutowrap: Boolean
+  public var dialogAutowrap: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_HAS_AUTOWRAP, BOOL)
@@ -96,7 +96,7 @@ public open class AcceptDialog : Window() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getOkButton(): Button? {
+  public fun getOkButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
@@ -107,7 +107,7 @@ public open class AcceptDialog : Window() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getLabel(): Label? {
+  public fun getLabel(): Label? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_LABEL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Label?
@@ -120,7 +120,7 @@ public open class AcceptDialog : Window() {
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
-  public open fun addButton(
+  public fun addButton(
     text: String,
     right: Boolean = false,
     action: String = ""
@@ -135,7 +135,7 @@ public open class AcceptDialog : Window() {
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
-  public open fun addCancelButton(name: String): Button? {
+  public fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_CANCEL_BUTTON,
         OBJECT)
@@ -145,7 +145,7 @@ public open class AcceptDialog : Window() {
   /**
    * Removes the `button` from the dialog. Does NOT free the `button`. The `button` must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the `button` will no longer emit this dialog's [customAction] or [cancelled] signals.
    */
-  public open fun removeButton(button: Control): Unit {
+  public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REMOVE_BUTTON, NIL)
   }
@@ -153,7 +153,7 @@ public open class AcceptDialog : Window() {
   /**
    * Registers a [godot.LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
    */
-  public open fun registerTextEnter(lineEdit: Control): Unit {
+  public fun registerTextEnter(lineEdit: Control): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
         NIL)

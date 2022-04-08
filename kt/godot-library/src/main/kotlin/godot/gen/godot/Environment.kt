@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class Environment : Resource() {
   /**
    * The background mode. See [enum BGMode] for possible values.
    */
-  public open var backgroundMode: Long
+  public var backgroundMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
@@ -58,7 +58,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
    */
-  public open var backgroundColor: Color
+  public var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_COLOR, COLOR)
@@ -72,7 +72,7 @@ public open class Environment : Resource() {
   /**
    * The power of the light emitted by the background.
    */
-  public open var backgroundEnergy: Double
+  public var backgroundEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY, DOUBLE)
@@ -86,7 +86,7 @@ public open class Environment : Resource() {
   /**
    * The maximum layer ID to display. Only effective when using the [BG_CANVAS] background mode.
    */
-  public open var backgroundCanvasMaxLayer: Long
+  public var backgroundCanvasMaxLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CANVAS_MAX_LAYER,
@@ -102,7 +102,7 @@ public open class Environment : Resource() {
   /**
    * The ID of the camera feed to show in the background.
    */
-  public open var backgroundCameraFeedId: Long
+  public var backgroundCameraFeedId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CAMERA_FEED_ID,
@@ -118,7 +118,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.Sky] resource used for this [godot.Environment].
    */
-  public open var sky: Sky?
+  public var sky: Sky?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY, OBJECT)
@@ -132,7 +132,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var skyCustomFov: Double
+  public var skyCustomFov: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_CUSTOM_FOV,
@@ -148,7 +148,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var skyRotation: Vector3
+  public var skyRotation: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_ROTATION,
@@ -163,7 +163,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var ambientLightSource: Long
+  public var ambientLightSource: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
@@ -179,7 +179,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light's [godot.core.Color].
    */
-  public open var ambientLightColor: Color
+  public var ambientLightColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -197,7 +197,7 @@ public open class Environment : Resource() {
    *
    * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0` (inclusive).
    */
-  public open var ambientLightSkyContribution: Double
+  public var ambientLightSkyContribution: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -213,7 +213,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light's energy. The higher the value, the stronger the light.
    */
-  public open var ambientLightEnergy: Double
+  public var ambientLightEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -229,7 +229,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var reflectedLightSource: Long
+  public var reflectedLightSource: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
@@ -245,7 +245,7 @@ public open class Environment : Resource() {
   /**
    * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
-  public open var tonemapMode: Long
+  public var tonemapMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
@@ -259,7 +259,7 @@ public open class Environment : Resource() {
   /**
    * The default exposure used for tonemapping.
    */
-  public open var tonemapExposure: Double
+  public var tonemapExposure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_EXPOSURE,
@@ -275,7 +275,7 @@ public open class Environment : Resource() {
   /**
    * The white reference value for tonemapping. Only effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR].
    */
-  public open var tonemapWhite: Double
+  public var tonemapWhite: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_WHITE,
@@ -291,7 +291,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the renderer will automatically determine the exposure setting to adapt to the scene's illumination and the observed light.
    */
-  public open var autoExposureEnabled: Boolean
+  public var autoExposureEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -307,7 +307,7 @@ public open class Environment : Resource() {
   /**
    * The scale of the auto exposure effect. Affects the intensity of auto exposure.
    */
-  public open var autoExposureScale: Double
+  public var autoExposureScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -323,7 +323,7 @@ public open class Environment : Resource() {
   /**
    * The minimum luminance value for the auto exposure.
    */
-  public open var autoExposureMinLuma: Double
+  public var autoExposureMinLuma: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -339,7 +339,7 @@ public open class Environment : Resource() {
   /**
    * The maximum luminance value for the auto exposure.
    */
-  public open var autoExposureMaxLuma: Double
+  public var autoExposureMaxLuma: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -355,7 +355,7 @@ public open class Environment : Resource() {
   /**
    * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure.
    */
-  public open var autoExposureSpeed: Double
+  public var autoExposureSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -371,7 +371,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate than reflections from [godot.VoxelGI]s or [godot.ReflectionProbe]s, but are slower and can't reflect surfaces occluded by others.
    */
-  public open var ssrEnabled: Boolean
+  public var ssrEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSR_ENABLED, BOOL)
@@ -385,7 +385,7 @@ public open class Environment : Resource() {
   /**
    * The maximum number of steps for screen-space reflections. Higher values are slower.
    */
-  public open var ssrMaxSteps: Long
+  public var ssrMaxSteps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_MAX_STEPS,
@@ -401,7 +401,7 @@ public open class Environment : Resource() {
   /**
    * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection). Only positive values are valid (negative values will be clamped to `0.0`).
    */
-  public open var ssrFadeIn: Double
+  public var ssrFadeIn: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_IN,
@@ -416,7 +416,7 @@ public open class Environment : Resource() {
   /**
    * The fade-out distance for screen-space reflections. Affects the area from the screen-space reflection to the "global" reflection. Only positive values are valid (negative values will be clamped to `0.0`).
    */
-  public open var ssrFadeOut: Double
+  public var ssrFadeOut: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_OUT,
@@ -431,7 +431,7 @@ public open class Environment : Resource() {
   /**
    * The depth tolerance for screen-space reflections.
    */
-  public open var ssrDepthTolerance: Double
+  public var ssrDepthTolerance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -447,7 +447,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, the screen-space ambient occlusion effect is enabled. This darkens objects' corners and cavities to simulate ambient light not reaching the entire object as in real life. This works well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
    */
-  public open var ssaoEnabled: Boolean
+  public var ssaoEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSAO_ENABLED, BOOL)
@@ -461,7 +461,7 @@ public open class Environment : Resource() {
   /**
    * The distance at which objects can occlude each other when calculating screen-space ambient occlusion. Higher values will result in occlusion over a greater distance at the cost of performance and quality.
    */
-  public open var ssaoRadius: Double
+  public var ssaoRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_RADIUS,
@@ -476,7 +476,7 @@ public open class Environment : Resource() {
   /**
    * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space ambient occlusion effect. A higher value results in darker occlusion.
    */
-  public open var ssaoIntensity: Double
+  public var ssaoIntensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_INTENSITY,
@@ -492,7 +492,7 @@ public open class Environment : Resource() {
   /**
    * The distribution of occlusion. A higher value results in darker occlusion, similar to [ssaoIntensity], but with a sharper falloff.
    */
-  public open var ssaoPower: Double
+  public var ssaoPower: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_POWER,
@@ -507,7 +507,7 @@ public open class Environment : Resource() {
   /**
    * Sets the strength of the additional level of detail for the screen-space ambient occlusion effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in your final image.
    */
-  public open var ssaoDetail: Double
+  public var ssaoDetail: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DETAIL,
@@ -522,7 +522,7 @@ public open class Environment : Resource() {
   /**
    * The threshold for considering whether a given point on a surface is occluded or not represented as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no occlusion.
    */
-  public open var ssaoHorizon: Double
+  public var ssaoHorizon: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_HORIZON,
@@ -537,7 +537,7 @@ public open class Environment : Resource() {
   /**
    * The amount that the screen-space ambient occlusion effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
    */
-  public open var ssaoSharpness: Double
+  public var ssaoSharpness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_SHARPNESS,
@@ -553,7 +553,7 @@ public open class Environment : Resource() {
   /**
    * The screen-space ambient occlusion intensity in direct light. In real life, ambient occlusion only applies to indirect light, which means its effects can't be seen in direct light. Values higher than `0` will make the SSAO effect visible in direct light.
    */
-  public open var ssaoLightAffect: Double
+  public var ssaoLightAffect: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -569,7 +569,7 @@ public open class Environment : Resource() {
   /**
    * The screen-space ambient occlusion intensity on materials that have an AO texture defined. Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
    */
-  public open var ssaoAoChannelAffect: Double
+  public var ssaoAoChannelAffect: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -585,7 +585,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, the screen-space indirect lighting effect is enabled. Screen space indirect lighting is a form of indirect lighting that allows diffuse light to bounce between nearby objects. Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it only affects a limited range. It is intended to be used along with a form of proper global illumination like SDFGI or [godot.VoxelGI]. Screen-space indirect lighting is not affected by individual light's [godot.Light3D.lightIndirectEnergy].
    */
-  public open var ssilEnabled: Boolean
+  public var ssilEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSIL_ENABLED, BOOL)
@@ -599,7 +599,7 @@ public open class Environment : Resource() {
   /**
    * The distance that bounced lighting can travel when using the screen space indirect lighting effect. A larger value will result in light bouncing further in a scene, but may result in under-sampling artifacts which look like long spikes surrounding light sources.
    */
-  public open var ssilRadius: Double
+  public var ssilRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_RADIUS,
@@ -614,7 +614,7 @@ public open class Environment : Resource() {
   /**
    * The brightness multiplier for the screen-space indirect lighting effect. A higher value will result in brighter light.
    */
-  public open var ssilIntensity: Double
+  public var ssilIntensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_INTENSITY,
@@ -630,7 +630,7 @@ public open class Environment : Resource() {
   /**
    * The amount that the screen-space indirect lighting effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
    */
-  public open var ssilSharpness: Double
+  public var ssilSharpness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_SHARPNESS,
@@ -646,7 +646,7 @@ public open class Environment : Resource() {
   /**
    * Amount of normal rejection used when calculating screen-space indirect lighting. Normal rejection uses the normal of a given sample point to reject samples that are facing away from the current pixel. Normal rejection is necessary to avoid light leaking when only one side of an object is illuminated. However, normal rejection can be disabled if light leaking is desirable, such as when the scene mostly contains emissive objects that emit light from faces that cannot be seen from the camera.
    */
-  public open var ssilNormalRejection: Double
+  public var ssilNormalRejection: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -666,7 +666,7 @@ public open class Environment : Resource() {
    *
    * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the loops to close the mesh.
    */
-  public open var sdfgiEnabled: Boolean
+  public var sdfgiEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_ENABLED,
@@ -682,7 +682,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiUseOcclusion: Boolean
+  public var sdfgiUseOcclusion: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -698,7 +698,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiReadSkyLight: Boolean
+  public var sdfgiReadSkyLight: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -714,7 +714,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiBounceFeedback: Double
+  public var sdfgiBounceFeedback: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -730,7 +730,7 @@ public open class Environment : Resource() {
   /**
    * The number of cascades to use for SDFGI (between 1 and 8). A higher number of cascades allows displaying SDFGI further away while preserving detail up close, at the cost of performance. When using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to improve performance.
    */
-  public open var sdfgiCascades: Long
+  public var sdfgiCascades: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADES,
@@ -746,7 +746,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiMinCellSize: Double
+  public var sdfgiMinCellSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -762,7 +762,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiCascade0Distance: Double
+  public var sdfgiCascade0Distance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -778,7 +778,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiMaxDistance: Double
+  public var sdfgiMaxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -794,7 +794,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiYScale: Long
+  public var sdfgiYScale: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
@@ -810,7 +810,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiEnergy: Double
+  public var sdfgiEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_ENERGY,
@@ -825,7 +825,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiNormalBias: Double
+  public var sdfgiNormalBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_NORMAL_BIAS,
@@ -841,7 +841,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var sdfgiProbeBias: Double
+  public var sdfgiProbeBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_PROBE_BIAS,
@@ -857,7 +857,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, the glow effect is enabled.
    */
-  public open var glowEnabled: Boolean
+  public var glowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_ENABLED, BOOL)
@@ -871,7 +871,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 1st level of glow. This is the most "local" level (least blurry).
    */
-  public open val glowLevels_1: Double
+  public val glowLevels_1: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -882,7 +882,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 2nd level of glow.
    */
-  public open val glowLevels_2: Double
+  public val glowLevels_2: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -893,7 +893,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 3rd level of glow.
    */
-  public open val glowLevels_3: Double
+  public val glowLevels_3: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -904,7 +904,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 4th level of glow.
    */
-  public open val glowLevels_4: Double
+  public val glowLevels_4: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -915,7 +915,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 5th level of glow.
    */
-  public open val glowLevels_5: Double
+  public val glowLevels_5: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -926,7 +926,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 6th level of glow.
    */
-  public open val glowLevels_6: Double
+  public val glowLevels_6: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -937,7 +937,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 7th level of glow. This is the most "global" level (blurriest).
    */
-  public open val glowLevels_7: Double
+  public val glowLevels_7: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -948,7 +948,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, glow levels will be normalized so that summed together their intensities equal `1.0`.
    */
-  public open var glowNormalized: Boolean
+  public var glowNormalized: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_NORMALIZED,
@@ -964,7 +964,7 @@ public open class Environment : Resource() {
   /**
    * The overall brightness multiplier of the glow effect. When using the OpenGL renderer, this should be increased to 1.5 to compensate for the lack of HDR rendering.
    */
-  public open var glowIntensity: Double
+  public var glowIntensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_INTENSITY,
@@ -980,7 +980,7 @@ public open class Environment : Resource() {
   /**
    * The strength of the glow effect. This applies as the glow is blurred across the screen and increases the distance and intensity of the blur. When using the OpenGL renderer, this should be increased to 1.3 to compensate for the lack of HDR rendering.
    */
-  public open var glowStrength: Double
+  public var glowStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_STRENGTH,
@@ -996,7 +996,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var glowMix: Double
+  public var glowMix: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MIX, DOUBLE)
@@ -1010,7 +1010,7 @@ public open class Environment : Resource() {
   /**
    * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas darker than the [glowHdrThreshold].
    */
-  public open var glowBloom: Double
+  public var glowBloom: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLOOM,
@@ -1025,7 +1025,7 @@ public open class Environment : Resource() {
   /**
    * The glow blending mode.
    */
-  public open var glowBlendMode: Long
+  public var glowBlendMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
@@ -1041,7 +1041,7 @@ public open class Environment : Resource() {
   /**
    * The lower threshold of the HDR glow. When using the OpenGL renderer (which doesn't support HDR), this needs to be below `1.0` for glow to be visible. A value of `0.9` works well in this case.
    */
-  public open var glowHdrThreshold: Double
+  public var glowHdrThreshold: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1057,7 +1057,7 @@ public open class Environment : Resource() {
   /**
    * The bleed scale of the HDR glow.
    */
-  public open var glowHdrScale: Double
+  public var glowHdrScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1073,7 +1073,7 @@ public open class Environment : Resource() {
   /**
    * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for the purposes of the glow effect.
    */
-  public open var glowHdrLuminanceCap: Double
+  public var glowHdrLuminanceCap: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1089,7 +1089,7 @@ public open class Environment : Resource() {
   /**
    * How strong of an impact the [glowMap] should have on the overall glow effect. A strength of `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the glow has a full effect on the overall glow effect (and can turn off glow entirely in specific areas of the screen if the glow map has black areas).
    */
-  public open var glowMapStrength: Double
+  public var glowMapStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP_STRENGTH,
@@ -1107,7 +1107,7 @@ public open class Environment : Resource() {
    *
    * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
    */
-  public open var glowMap: Texture2D?
+  public var glowMap: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP, OBJECT)
@@ -1121,7 +1121,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, fog effects are enabled.
    */
-  public open var fogEnabled: Boolean
+  public var fogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_FOG_ENABLED, BOOL)
@@ -1135,7 +1135,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var fogLightColor: Color
+  public var fogLightColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_COLOR,
@@ -1151,7 +1151,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var fogLightEnergy: Double
+  public var fogLightEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_ENERGY,
@@ -1167,7 +1167,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var fogSunScatter: Double
+  public var fogSunScatter: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SUN_SCATTER,
@@ -1183,7 +1183,7 @@ public open class Environment : Resource() {
   /**
    *
    */
-  public open var fogDensity: Double
+  public var fogDensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_DENSITY,
@@ -1200,7 +1200,7 @@ public open class Environment : Resource() {
    *
    * This is useful to simulate [aerial perspective](https://en.wikipedia.org/wiki/Aerial_perspective) in large scenes with low density fog. However, it is not very useful for high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely from the [godot.Sky]. If set to `0.0`, aerial perspective is disabled.
    */
-  public open var fogAerialPerspective: Double
+  public var fogAerialPerspective: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1216,7 +1216,7 @@ public open class Environment : Resource() {
   /**
    * The height at which the height fog effect begins.
    */
-  public open var fogHeight: Double
+  public var fogHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT,
@@ -1231,7 +1231,7 @@ public open class Environment : Resource() {
   /**
    * The density used to increase fog as height decreases. To make fog increase as height increases, use a negative value.
    */
-  public open var fogHeightDensity: Double
+  public var fogHeightDensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1247,7 +1247,7 @@ public open class Environment : Resource() {
   /**
    * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts with [godot.FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR single-scattering model based on extinction, scattering, and emission which it exposes to users as density, albedo, and emission.
    */
-  public open var volumetricFogEnabled: Boolean
+  public var volumetricFogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1263,7 +1263,7 @@ public open class Environment : Resource() {
   /**
    * The base density of the volumetric fog. Set this to the lowest density you want to have globally.
    */
-  public open var volumetricFogDensity: Double
+  public var volumetricFogDensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1279,7 +1279,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
-  public open var volumetricFogAlbedo: Color
+  public var volumetricFogAlbedo: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1295,7 +1295,7 @@ public open class Environment : Resource() {
   /**
    * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
    */
-  public open var volumetricFogEmission: Color
+  public var volumetricFogEmission: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1311,7 +1311,7 @@ public open class Environment : Resource() {
   /**
    * The brightness of the emitted light from the volumetric fog.
    */
-  public open var volumetricFogEmissionEnergy: Double
+  public var volumetricFogEmissionEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1327,7 +1327,7 @@ public open class Environment : Resource() {
   /**
    * Scales the strength of Global Illumination used in the volumetric fog. A value of `0` means that Global Illumination will not impact the volumetric fog.
    */
-  public open var volumetricFogGiInject: Double
+  public var volumetricFogGiInject: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1343,7 +1343,7 @@ public open class Environment : Resource() {
   /**
    * The direction of scattered light as it goes through the volumetric fog. A value close `1` means almost all light is scattered forward. A value close to `0` means light is scattered equally in all directions. A value close to `-1` means light is scattered mostly backward. Fog and mist scatter light slightly forward, while smoke scatters light equally in all directions.
    */
-  public open var volumetricFogAnisotropy: Double
+  public var volumetricFogAnisotropy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1359,7 +1359,7 @@ public open class Environment : Resource() {
   /**
    * The distance over which the volumetric fog is computed. Increase to compute fog over a greater range, decrease to add more detail when a long range is not needed. For best quality fog, keep this as low as possible.
    */
-  public open var volumetricFogLength: Double
+  public var volumetricFogLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1375,7 +1375,7 @@ public open class Environment : Resource() {
   /**
    * The distribution of size down the length of the froxel buffer. A higher value compresses the froxels closer to the camera and places more detail closer to the camera.
    */
-  public open var volumetricFogDetailSpread: Double
+  public var volumetricFogDetailSpread: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1391,7 +1391,7 @@ public open class Environment : Resource() {
   /**
    * Scales the strength of ambient light used in the volumetric fog. A value of `0` means that ambient light will not impact the volumetric fog.
    */
-  public open var volumetricFogAmbientInject: Double
+  public var volumetricFogAmbientInject: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1407,7 +1407,7 @@ public open class Environment : Resource() {
   /**
    * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal, however it does lead to moving [godot.FogVolume]s and [godot.Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [godot.FogVolume]s or [godot.Light3D]s too fast.
    */
-  public open var volumetricFogTemporalReprojectionEnabled: Boolean
+  public var volumetricFogTemporalReprojectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1425,7 +1425,7 @@ public open class Environment : Resource() {
   /**
    * The amount by which to blend the last frame with the current frame. A higher number results in smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can result in the per-frame temporal jitter becoming visible.
    */
-  public open var volumetricFogTemporalReprojectionAmount: Double
+  public var volumetricFogTemporalReprojectionAmount: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1442,7 +1442,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`, modifications to the `adjustment_*` properties will have no effect on the rendered scene.
    */
-  public open var adjustmentEnabled: Boolean
+  public var adjustmentEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_ADJUSTMENT_ENABLED,
@@ -1458,7 +1458,7 @@ public open class Environment : Resource() {
   /**
    * The global brightness value of the rendered scene. Effective only if `adjustment_enabled` is `true`.
    */
-  public open var adjustmentBrightness: Double
+  public var adjustmentBrightness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1474,7 +1474,7 @@ public open class Environment : Resource() {
   /**
    * The global contrast value of the rendered scene (default value is 1). Effective only if `adjustment_enabled` is `true`.
    */
-  public open var adjustmentContrast: Double
+  public var adjustmentContrast: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1490,7 +1490,7 @@ public open class Environment : Resource() {
   /**
    * The global color saturation value of the rendered scene (default value is 1). Effective only if `adjustment_enabled` is `true`.
    */
-  public open var adjustmentSaturation: Double
+  public var adjustmentSaturation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1506,7 +1506,7 @@ public open class Environment : Resource() {
   /**
    * The [godot.Texture2D] or [godot.Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [godot.GradientTexture1D] for a 1-dimensional LUT, or a [godot.Texture3D] for a more complex LUT. Effective only if `adjustment_enabled` is `true`.
    */
-  public open var adjustmentColorCorrection: Material?
+  public var adjustmentColorCorrection: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -1526,7 +1526,7 @@ public open class Environment : Resource() {
   /**
    * Sets the intensity of the glow level `idx`. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
    */
-  public open fun setGlowLevel(idx: Long, intensity: Double): Unit {
+  public fun setGlowLevel(idx: Long, intensity: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to intensity)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_LEVEL, NIL)
   }

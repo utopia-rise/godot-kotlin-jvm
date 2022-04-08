@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class LightmapGIData : Resource() {
   /**
    *
    */
-  public open var lightTexture: TextureLayered?
+  public var lightTexture: TextureLayered?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_LIGHT_TEXTURE,
@@ -42,7 +42,7 @@ public open class LightmapGIData : Resource() {
           NIL)
     }
 
-  public open var usesSphericalHarmonics: Boolean
+  public var usesSphericalHarmonics: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -62,7 +62,7 @@ public open class LightmapGIData : Resource() {
   /**
    *
    */
-  public open fun addUser(
+  public fun addUser(
     path: NodePath,
     uvScale: Rect2,
     sliceIndex: Long,
@@ -75,7 +75,7 @@ public open class LightmapGIData : Resource() {
   /**
    *
    */
-  public open fun getUserCount(): Long {
+  public fun getUserCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_USER_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -84,7 +84,7 @@ public open class LightmapGIData : Resource() {
   /**
    *
    */
-  public open fun getUserPath(userIdx: Long): NodePath {
+  public fun getUserPath(userIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_USER_PATH,
         NODE_PATH)
@@ -94,7 +94,7 @@ public open class LightmapGIData : Resource() {
   /**
    *
    */
-  public open fun clearUsers(): Unit {
+  public fun clearUsers(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_CLEAR_USERS, NIL)
   }

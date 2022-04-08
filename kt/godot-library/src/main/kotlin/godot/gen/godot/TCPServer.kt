@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class TCPServer : RefCounted() {
    *
    * If `bind_address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
-  public open fun listen(port: Long, bindAddress: String = "*"): GodotError {
+  public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -53,7 +53,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns `true` if a connection is available for taking.
    */
-  public open fun isConnectionAvailable(): Boolean {
+  public fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_CONNECTION_AVAILABLE,
         BOOL)
@@ -63,7 +63,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns `true` if the server is currently listening for connections.
    */
-  public open fun isListening(): Boolean {
+  public fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_LISTENING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -72,7 +72,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns the local port this server is listening to.
    */
-  public open fun getLocalPort(): Long {
+  public fun getLocalPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_GET_LOCAL_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -81,7 +81,7 @@ public open class TCPServer : RefCounted() {
   /**
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
-  public open fun takeConnection(): StreamPeerTCP? {
+  public fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?
@@ -90,7 +90,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Stops listening.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_STOP, NIL)
   }

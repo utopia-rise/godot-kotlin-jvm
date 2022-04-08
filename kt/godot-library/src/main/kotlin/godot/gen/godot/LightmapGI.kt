@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var quality: Long
+  public var quality: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BAKE_QUALITY, LONG)
@@ -49,7 +49,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var bounces: Long
+  public var bounces: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BOUNCES, LONG)
@@ -63,7 +63,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var directional: Boolean
+  public var directional: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_DIRECTIONAL, BOOL)
@@ -77,7 +77,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var interior: Boolean
+  public var interior: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_INTERIOR, BOOL)
@@ -91,7 +91,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var useDenoiser: Boolean
+  public var useDenoiser: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_USING_DENOISER,
@@ -106,7 +106,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var bias: Double
+  public var bias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BIAS, DOUBLE)
@@ -120,7 +120,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var maxTextureSize: Long
+  public var maxTextureSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_MAX_TEXTURE_SIZE,
@@ -136,7 +136,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var environmentMode: Long
+  public var environmentMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_MODE,
@@ -152,7 +152,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var environmentCustomSky: Sky?
+  public var environmentCustomSky: Sky?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -168,7 +168,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var environmentCustomColor: Color
+  public var environmentCustomColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var environmentCustomEnergy: Double
+  public var environmentCustomEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -200,7 +200,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var generateProbesSubdiv: Long
+  public var generateProbesSubdiv: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_GENERATE_PROBES,
@@ -216,7 +216,7 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    *
    */
-  public open var lightData: LightmapGIData?
+  public var lightData: LightmapGIData?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_LIGHT_DATA, OBJECT)

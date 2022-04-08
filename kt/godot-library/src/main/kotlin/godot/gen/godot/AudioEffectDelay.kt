@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0 to 1.
    */
-  public open var dry: Double
+  public var dry: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_GET_DRY, DOUBLE)
@@ -42,7 +42,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, `tap1` will be enabled.
    */
-  public open var tap1_active: Boolean
+  public var tap1_active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_IS_TAP1_ACTIVE,
@@ -58,7 +58,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * `tap1` delay time in milliseconds.
    */
-  public open var tap1_delayMs: Double
+  public var tap1_delayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for `tap1`.
    */
-  public open var tap1_levelDb: Double
+  public var tap1_levelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Pan position for `tap1`. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public open var tap1_pan: Double
+  public var tap1_pan: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_GET_TAP1_PAN,
@@ -106,7 +106,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, `tap2` will be enabled.
    */
-  public open var tap2_active: Boolean
+  public var tap2_active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_IS_TAP2_ACTIVE,
@@ -122,7 +122,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * **Tap2** delay time in milliseconds.
    */
-  public open var tap2_delayMs: Double
+  public var tap2_delayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -138,7 +138,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for `tap2`.
    */
-  public open var tap2_levelDb: Double
+  public var tap2_levelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -154,7 +154,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Pan position for `tap2`. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public open var tap2_pan: Double
+  public var tap2_pan: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_GET_TAP2_PAN,
@@ -170,7 +170,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, feedback is enabled.
    */
-  public open var feedback_active: Boolean
+  public var feedback_active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -186,7 +186,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Feedback delay time in milliseconds.
    */
-  public open var feedback_delayMs: Double
+  public var feedback_delayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -202,7 +202,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for `tap1`.
    */
-  public open var feedback_levelDb: Double
+  public var feedback_levelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +218,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal.
    */
-  public open var feedback_lowpass: Double
+  public var feedback_lowpass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class OptimizedTranslation : Translation() {
   /**
    * Generates and sets an optimized translation from the given [godot.Translation] resource.
    */
-  public open fun generate(from: Translation): Unit {
+  public fun generate(from: Translation): Unit {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIMIZEDTRANSLATION_GENERATE, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * The aspect ratio to enforce on child controls. This is the width divided by the height. The ratio depends on the [stretchMode].
    */
-  public open var ratio: Double
+  public var ratio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_RATIO,
@@ -42,7 +42,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * The stretch mode used to align child controls.
    */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the horizontal relative position of child controls.
    */
-  public open var alignmentHorizontal: Long
+  public var alignmentHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * Specifies the vertical relative position of child controls.
    */
-  public open var alignmentVertical: Long
+  public var alignmentVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

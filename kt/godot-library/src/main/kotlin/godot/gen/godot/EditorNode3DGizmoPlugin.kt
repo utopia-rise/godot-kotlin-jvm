@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,21 +46,21 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    * Override this method to define which Node3D nodes have a gizmo from this plugin. Whenever a [godot.Node3D] node is added to a scene this method is called, if it returns `true` the node gets a generic [godot.EditorNode3DGizmo] assigned and is added to this plugin's list of active gizmos.
    */
   public open fun _hasGizmo(forNode3d: Node3D): Boolean {
-    throw NotImplementedError("_has_gizmo·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_has_gizmo is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
    * Override this method to return a custom [godot.EditorNode3DGizmo] for the spatial nodes of your choice, return `null` for the rest of nodes. See also [_hasGizmo].
    */
   public open fun _createGizmo(forNode3d: Node3D): EditorNode3DGizmo? {
-    throw NotImplementedError("_create_gizmo·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_create_gizmo is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
    * Override this method to provide the name that will appear in the gizmo visibility menu.
    */
   public open fun _getGizmoName(): String {
-    throw NotImplementedError("_get_gizmo_name·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_get_gizmo_name is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -69,21 +69,21 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    * All built-in editor gizmos return a priority of `-1`. If not overridden, this method will return `0`, which means custom gizmos will automatically get higher priority than built-in gizmos.
    */
   public open fun _getPriority(): Long {
-    throw NotImplementedError("_get_priority·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_get_priority is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
    * Override this method to define whether the gizmos handled by this plugin can be hidden or not. Returns `true` if not overridden.
    */
   public open fun _canBeHidden(): Boolean {
-    throw NotImplementedError("_can_be_hidden·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_can_be_hidden is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
    * Override this method to define whether Node3D with this gizmo should be selectable even when the gizmo is hidden.
    */
   public open fun _isSelectableWhenHidden(): Boolean {
-    throw NotImplementedError("_is_selectable_when_hidden·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_is_selectable_when_hidden is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -100,7 +100,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     handleId: Long,
     secondary: Boolean
   ): String {
-    throw NotImplementedError("_get_handle_name·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -111,7 +111,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     handleId: Long,
     secondary: Boolean
   ): Boolean {
-    throw NotImplementedError("_is_handle_highlighted·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -126,7 +126,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     handleId: Long,
     secondary: Boolean
   ): Any? {
-    throw NotImplementedError("_get_handle_value·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -171,7 +171,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     camera: Camera3D,
     screenPos: Vector2
   ): Long {
-    throw NotImplementedError("_subgizmos_intersect_ray·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -182,14 +182,14 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     camera: Camera3D,
     frustumPlanes: VariantArray<Any?>
   ): PackedInt32Array {
-    throw NotImplementedError("_subgizmos_intersect_frustum·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_subgizmos_intersect_frustum is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
    * Override this method to return the current transform of a subgizmo. As with all subgizmo methods, the transform should be in local space respect to the gizmo's Node3D. This transform will be requested at the start of an edit and used in the `restore` argument in [_commitSubgizmos]. Called for this plugin's active gizmos.
    */
   public open fun _getSubgizmoTransform(gizmo: EditorNode3DGizmo, subgizmoId: Long): Transform3D {
-    throw NotImplementedError("_get_subgizmo_transform·is·not·implemented·for·EditorNode3DGizmoPlugin")
+    throw NotImplementedError("_get_subgizmo_transform is not implemented for EditorNode3DGizmoPlugin")
   }
 
   /**
@@ -218,7 +218,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorNode3DGizmo.addMesh] and [godot.EditorNode3DGizmo.addLines]. Should not be overridden.
    */
-  public open fun createMaterial(
+  public fun createMaterial(
     name: String,
     color: Color,
     billboard: Boolean = false,
@@ -233,7 +233,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Creates an icon material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorNode3DGizmo.addUnscaledBillboard]. Should not be overridden.
    */
-  public open fun createIconMaterial(
+  public fun createIconMaterial(
     name: String,
     texture: Texture2D,
     onTop: Boolean = false,
@@ -249,7 +249,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    *
    * You can optionally provide a texture to use instead of the default icon.
    */
-  public open fun createHandleMaterial(
+  public fun createHandleMaterial(
     name: String,
     billboard: Boolean = false,
     texture: Texture2D? = null
@@ -262,7 +262,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Adds a new material to the internal material list for the plugin. It can then be accessed with [getMaterial]. Should not be overridden.
    */
-  public open fun addMaterial(name: String, material: StandardMaterial3D): Unit {
+  public fun addMaterial(name: String, material: StandardMaterial3D): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to material)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_ADD_MATERIAL, NIL)
@@ -271,7 +271,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Gets material from the internal list of materials. If an [godot.EditorNode3DGizmo] is provided, it will try to get the corresponding variant (selected and/or editable).
    */
-  public open fun getMaterial(name: String, gizmo: EditorNode3DGizmo? = null): StandardMaterial3D? {
+  public fun getMaterial(name: String, gizmo: EditorNode3DGizmo? = null): StandardMaterial3D? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_GET_MATERIAL, OBJECT)

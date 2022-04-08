@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * The [godot.NavigationMesh] resource to use.
    */
-  public open var navmesh: NavigationMesh?
+  public var navmesh: NavigationMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +57,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Determines if the [godot.NavigationRegion3D] is enabled or disabled.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_IS_ENABLED,
@@ -73,7 +73,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * A bitfield determining all layers the region belongs to. These layers can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath].
    */
-  public open var layers: Long
+  public var layers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_LAYERS,
@@ -93,7 +93,7 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Bakes the [godot.NavigationMesh]. The baking is done in a separate thread because navigation baking is not a cheap operation. This can be done at runtime. When it is completed, it automatically sets the new [godot.NavigationMesh].
    */
-  public open fun bakeNavigationMesh(): Unit {
+  public fun bakeNavigationMesh(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_BAKE_NAVIGATION_MESH, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    *
    * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than `encode_buffer_max_size`, the method will error out with [ERR_OUT_OF_MEMORY].
    */
-  public open var encodeBufferMaxSize: Long
+  public var encodeBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
-  public open fun getVar(allowObjects: Boolean = false): Any? {
+  public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_VAR, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -68,7 +68,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Sends a [Variant] as a packet. If `full_objects` is `true`, encoding objects is allowed (and can potentially include code).
    */
-  public open fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
+  public fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -77,7 +77,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Gets a raw packet.
    */
-  public open fun getPacket(): PackedByteArray {
+  public fun getPacket(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET,
         PACKED_BYTE_ARRAY)
@@ -87,7 +87,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Sends a raw packet.
    */
-  public open fun putPacket(buffer: PackedByteArray): GodotError {
+  public fun putPacket(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_PACKET, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -96,7 +96,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Returns the error state of the last packet received (via [getPacket] and [getVar]).
    */
-  public open fun getPacketError(): GodotError {
+  public fun getPacketError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET_ERROR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -105,7 +105,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Returns the number of packets currently available in the ring-buffer.
    */
-  public open fun getAvailablePacketCount(): Long {
+  public fun getAvailablePacketCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_AVAILABLE_PACKET_COUNT, LONG)

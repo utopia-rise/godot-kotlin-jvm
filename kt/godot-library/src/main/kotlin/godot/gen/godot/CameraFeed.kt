@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * If `true`, the feed is active.
    */
-  public open var feedIsActive: Boolean
+  public var feedIsActive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_IS_ACTIVE, BOOL)
@@ -49,7 +49,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * The transform applied to the camera's image.
    */
-  public open var feedTransform: Transform2D
+  public var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_TRANSFORM,
@@ -68,7 +68,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the unique ID for this feed.
    */
-  public open fun getId(): Long {
+  public fun getId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -77,7 +77,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the camera's name.
    */
-  public open fun getName(): String {
+  public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -86,7 +86,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the position of camera on the device.
    */
-  public open fun getPosition(): CameraFeed.FeedPosition {
+  public fun getPosition(): CameraFeed.FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
     return CameraFeed.FeedPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -95,7 +95,7 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns feed image data type.
    */
-  public open fun getDatatype(): CameraFeed.FeedDataType {
+  public fun getDatatype(): CameraFeed.FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
     return CameraFeed.FeedDataType.values()[TransferContext.readReturnValue(JVM_INT) as Int]

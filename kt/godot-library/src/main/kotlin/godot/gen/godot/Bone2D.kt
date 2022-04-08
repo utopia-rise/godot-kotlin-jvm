@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class Bone2D : Node2D() {
   /**
    * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
    */
-  public open var rest: Transform2D
+  public var rest: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
@@ -54,7 +54,7 @@ public open class Bone2D : Node2D() {
   /**
    * Stores the node's current transforms in [rest].
    */
-  public open fun applyRest(): Unit {
+  public fun applyRest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL)
   }
@@ -62,7 +62,7 @@ public open class Bone2D : Node2D() {
   /**
    * Returns the node's [rest] `Transform2D` if it doesn't have a parent, or its rest pose relative to its parent.
    */
-  public open fun getSkeletonRest(): Transform2D {
+  public fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
         TRANSFORM2D)
@@ -72,7 +72,7 @@ public open class Bone2D : Node2D() {
   /**
    * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
    */
-  public open fun getIndexInSkeleton(): Long {
+  public fun getIndexInSkeleton(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -81,7 +81,7 @@ public open class Bone2D : Node2D() {
   /**
    * Deprecated. Please use `set_length` instead.
    */
-  public open fun setDefaultLength(defaultLength: Double): Unit {
+  public fun setDefaultLength(defaultLength: Double): Unit {
     TransferContext.writeArguments(DOUBLE to defaultLength)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL)
   }
@@ -89,7 +89,7 @@ public open class Bone2D : Node2D() {
   /**
    * Deprecated. Please use  `get_length` instead.
    */
-  public open fun getDefaultLength(): Double {
+  public fun getDefaultLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_DEFAULT_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -98,7 +98,7 @@ public open class Bone2D : Node2D() {
   /**
    * When set to `true`, the `Bone2D` node will attempt to automatically calculate the bone angle and length using the first child `Bone2D` node, if one exists. If none exist, the `Bone2D` cannot automatically calculate these values and will print a warning.
    */
-  public open fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
+  public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONE2D_SET_AUTOCALCULATE_LENGTH_AND_ANGLE, NIL)
@@ -107,7 +107,7 @@ public open class Bone2D : Node2D() {
   /**
    * Returns whether this `Bone2D` node is going to autocalculate its length and bone angle using its first `Bone2D` child node, if one exists. If there are no `Bone2D` children, then it cannot autocalculate these values and will print a warning.
    */
-  public open fun getAutocalculateLengthAndAngle(): Boolean {
+  public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL)
@@ -117,7 +117,7 @@ public open class Bone2D : Node2D() {
   /**
    * Sets the length of the bone in the `Bone2D` node.
    */
-  public open fun setLength(length: Double): Unit {
+  public fun setLength(length: Double): Unit {
     TransferContext.writeArguments(DOUBLE to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL)
   }
@@ -125,7 +125,7 @@ public open class Bone2D : Node2D() {
   /**
    * Returns the length of the bone in the `Bone2D` node.
    */
-  public open fun getLength(): Double {
+  public fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -136,7 +136,7 @@ public open class Bone2D : Node2D() {
    *
    * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public open fun setBoneAngle(angle: Double): Unit {
+  public fun setBoneAngle(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL)
   }
@@ -146,7 +146,7 @@ public open class Bone2D : Node2D() {
    *
    * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public open fun getBoneAngle(): Double {
+  public fun getBoneAngle(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,7 +22,7 @@ public open class RDAttachmentFormat : RefCounted() {
   /**
    *
    */
-  public open var format: Long
+  public var format: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_FORMAT,
@@ -38,7 +38,7 @@ public open class RDAttachmentFormat : RefCounted() {
   /**
    *
    */
-  public open var samples: Long
+  public var samples: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_SAMPLES,
@@ -54,7 +54,7 @@ public open class RDAttachmentFormat : RefCounted() {
   /**
    *
    */
-  public open var usageFlags: Long
+  public var usageFlags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

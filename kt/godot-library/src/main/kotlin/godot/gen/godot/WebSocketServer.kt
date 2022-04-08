@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
 
   public val clientDisconnected: Signal2<Long, Boolean> by signal("id", "wasCleanClose")
 
-  public open var bindIp: String
+  public var bindIp: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_BIND_IP,
@@ -53,7 +53,7 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_BIND_IP, NIL)
     }
 
-  public open var privateKey: CryptoKey?
+  public var privateKey: CryptoKey?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PRIVATE_KEY,
@@ -66,7 +66,7 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
           NIL)
     }
 
-  public open var sslCertificate: X509Certificate?
+  public var sslCertificate: X509Certificate?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_SSL_CERTIFICATE, NIL)
     }
 
-  public open var caChain: X509Certificate?
+  public var caChain: X509Certificate?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_CA_CHAIN,
@@ -91,7 +91,7 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_CA_CHAIN, NIL)
     }
 
-  public open var handshakeTimeout: Double
+  public var handshakeTimeout: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -108,13 +108,13 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     callConstructor(ENGINECLASS_WEBSOCKETSERVER)
   }
 
-  public open fun isListening(): Boolean {
+  public fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_IS_LISTENING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun listen(
+  public fun listen(
     port: Long,
     protocols: PackedStringArray = PackedStringArray(),
     gdMpApi: Boolean = false
@@ -124,31 +124,31 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_STOP, NIL)
   }
 
-  public open fun hasPeer(id: Long): Boolean {
+  public fun hasPeer(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_HAS_PEER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun getPeerAddress(id: Long): String {
+  public fun getPeerAddress(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_ADDRESS,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun getPeerPort(id: Long): Long {
+  public fun getPeerPort(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun disconnectPeer(
+  public fun disconnectPeer(
     id: Long,
     code: Long = 1000,
     reason: String = ""

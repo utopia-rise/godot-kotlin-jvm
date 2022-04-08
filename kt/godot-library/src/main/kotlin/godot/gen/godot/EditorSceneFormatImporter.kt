@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,14 +33,14 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
    *
    */
   public open fun _getImportFlags(): Long {
-    throw NotImplementedError("_get_import_flags·is·not·implemented·for·EditorSceneFormatImporter")
+    throw NotImplementedError("_get_import_flags is not implemented for EditorSceneFormatImporter")
   }
 
   /**
    *
    */
   public open fun _getExtensions(): PackedStringArray {
-    throw NotImplementedError("_get_extensions·is·not·implemented·for·EditorSceneFormatImporter")
+    throw NotImplementedError("_get_extensions is not implemented for EditorSceneFormatImporter")
   }
 
   /**
@@ -52,7 +52,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
     options: Dictionary<Any?, Any?>,
     bakeFps: Long
   ): Object? {
-    throw NotImplementedError("_import_scene·is·not·implemented·for·EditorSceneFormatImporter")
+    throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")
   }
 
   /**
@@ -64,7 +64,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
     options: Dictionary<Any?, Any?>,
     bakeFps: Long
   ): Animation? {
-    throw NotImplementedError("_import_animation·is·not·implemented·for·EditorSceneFormatImporter")
+    throw NotImplementedError("_import_animation is not implemented for EditorSceneFormatImporter")
   }
 
   /**
@@ -77,7 +77,7 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
    *
    */
   public open fun _getOptionVisibility(path: String, option: String): Any? {
-    throw NotImplementedError("_get_option_visibility·is·not·implemented·for·EditorSceneFormatImporter")
+    throw NotImplementedError("_get_option_visibility is not implemented for EditorSceneFormatImporter")
   }
 
   public companion object {

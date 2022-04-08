@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * If `true`, this [godot.StreamPeer] will using big-endian format for encoding and decoding.
    */
-  public open var bigEndian: Boolean
+  public var bigEndian: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_IS_BIG_ENDIAN_ENABLED,
@@ -60,7 +60,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum @GlobalScope.Error] code.
    */
-  public open fun putData(`data`: PackedByteArray): GodotError {
+  public fun putData(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DATA, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -69,7 +69,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum @GlobalScope.Error] code and an integer, describing how much data was actually sent.
    */
-  public open fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
+  public fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_PARTIAL_DATA, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -78,7 +78,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the `bytes` argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum @GlobalScope.Error] code and a data array.
    */
-  public open fun getData(bytes: Long): VariantArray<Any?> {
+  public fun getData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DATA, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -87,7 +87,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum @GlobalScope.Error] code, and a data array.
    */
-  public open fun getPartialData(bytes: Long): VariantArray<Any?> {
+  public fun getPartialData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_PARTIAL_DATA, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -96,7 +96,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Returns the amount of bytes this [godot.StreamPeer] has available.
    */
-  public open fun getAvailableBytes(): Long {
+  public fun getAvailableBytes(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_AVAILABLE_BYTES,
         LONG)
@@ -106,7 +106,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed byte into the stream.
    */
-  public open fun put8(`value`: Long): Unit {
+  public fun put8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_8, NIL)
   }
@@ -114,7 +114,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned byte into the stream.
    */
-  public open fun putU8(`value`: Long): Unit {
+  public fun putU8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U8, NIL)
   }
@@ -122,7 +122,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 16-bit value into the stream.
    */
-  public open fun put16(`value`: Long): Unit {
+  public fun put16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_16, NIL)
   }
@@ -130,7 +130,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 16-bit value into the stream.
    */
-  public open fun putU16(`value`: Long): Unit {
+  public fun putU16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U16, NIL)
   }
@@ -138,7 +138,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 32-bit value into the stream.
    */
-  public open fun put32(`value`: Long): Unit {
+  public fun put32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_32, NIL)
   }
@@ -146,7 +146,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 32-bit value into the stream.
    */
-  public open fun putU32(`value`: Long): Unit {
+  public fun putU32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U32, NIL)
   }
@@ -154,7 +154,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 64-bit value into the stream.
    */
-  public open fun put64(`value`: Long): Unit {
+  public fun put64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_64, NIL)
   }
@@ -162,7 +162,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 64-bit value into the stream.
    */
-  public open fun putU64(`value`: Long): Unit {
+  public fun putU64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U64, NIL)
   }
@@ -170,7 +170,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a single-precision float into the stream.
    */
-  public open fun putFloat(`value`: Double): Unit {
+  public fun putFloat(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_FLOAT, NIL)
   }
@@ -178,7 +178,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a double-precision float into the stream.
    */
-  public open fun putDouble(`value`: Double): Unit {
+  public fun putDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DOUBLE, NIL)
   }
@@ -204,7 +204,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun putString(`value`: String): Unit {
+  public fun putString(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_STRING, NIL)
   }
@@ -230,7 +230,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun putUtf8String(`value`: String): Unit {
+  public fun putUtf8String(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_UTF8_STRING, NIL)
   }
@@ -238,7 +238,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a Variant into the stream. If `full_objects` is `true` encoding objects is allowed (and can potentially include code).
    */
-  public open fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
+  public fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL)
   }
@@ -246,7 +246,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed byte from the stream.
    */
-  public open fun get8(): Long {
+  public fun get8(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_8, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -255,7 +255,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned byte from the stream.
    */
-  public open fun getU8(): Long {
+  public fun getU8(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U8, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -264,7 +264,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 16-bit value from the stream.
    */
-  public open fun get16(): Long {
+  public fun get16(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_16, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -273,7 +273,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 16-bit value from the stream.
    */
-  public open fun getU16(): Long {
+  public fun getU16(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U16, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -282,7 +282,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 32-bit value from the stream.
    */
-  public open fun get32(): Long {
+  public fun get32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_32, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -291,7 +291,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 32-bit value from the stream.
    */
-  public open fun getU32(): Long {
+  public fun getU32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U32, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -300,7 +300,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 64-bit value from the stream.
    */
-  public open fun get64(): Long {
+  public fun get64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_64, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -309,7 +309,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 64-bit value from the stream.
    */
-  public open fun getU64(): Long {
+  public fun getU64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U64, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -318,7 +318,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a single-precision float from the stream.
    */
-  public open fun getFloat(): Double {
+  public fun getFloat(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_FLOAT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -327,7 +327,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a double-precision float from the stream.
    */
-  public open fun getDouble(): Double {
+  public fun getDouble(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DOUBLE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -336,7 +336,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an ASCII string with byte-length `bytes` from the stream. If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putString].
    */
-  public open fun getString(bytes: Long = -1): String {
+  public fun getString(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -345,7 +345,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an UTF-8 string with byte-length `bytes` from the stream (this decodes the string sent as UTF-8). If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
    */
-  public open fun getUtf8String(bytes: Long = -1): String {
+  public fun getUtf8String(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_UTF8_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -356,7 +356,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
-  public open fun getVar(allowObjects: Boolean = false): Any? {
+  public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_VAR, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

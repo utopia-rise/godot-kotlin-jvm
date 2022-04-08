@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * A hint applied to the uniform, which controls the values it can take when set through the inspector.
    */
-  public open var hint: Long
+  public var hint: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * Maximum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public open var min: Long
+  public var min: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * Minimum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public open var max: Long
+  public var max: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * Step (increment) value for the range hint with step. Used if [hint] is set to [HINT_RANGE_STEP].
    */
-  public open var step: Long
+  public var step: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public open var defaultValueEnabled: Boolean
+  public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -106,7 +106,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   /**
    * A default value to be assigned within the shader.
    */
-  public open var defaultValue: Long
+  public var defaultValue: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

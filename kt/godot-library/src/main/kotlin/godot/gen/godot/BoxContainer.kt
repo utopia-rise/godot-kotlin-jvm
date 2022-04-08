@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class BoxContainer internal constructor() : Container() {
   /**
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
-  public open var alignment: Long
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
@@ -45,7 +45,7 @@ public open class BoxContainer internal constructor() : Container() {
   /**
    * Adds a [godot.Control] node to the box as a spacer. If `begin` is `true`, it will insert the [godot.Control] node in front of all other children.
    */
-  public open fun addSpacer(begin: Boolean): Control? {
+  public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_ADD_SPACER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Control?

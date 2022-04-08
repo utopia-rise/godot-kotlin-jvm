@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the moving object's travel before collision.
    */
-  public open fun getTravel(): Vector2 {
+  public fun getTravel(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_TRAVEL, VECTOR2)
@@ -44,7 +44,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the moving object's remaining movement vector.
    */
-  public open fun getRemainder(): Vector2 {
+  public fun getRemainder(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_REMAINDER, VECTOR2)
@@ -54,7 +54,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the point of collision in global coordinates, if a collision occurred.
    */
-  public open fun getCollisionPoint(): Vector2 {
+  public fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_POINT, VECTOR2)
@@ -64,7 +64,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the colliding body's shape's normal at the point of collision, if a collision occurred.
    */
-  public open fun getCollisionNormal(): Vector2 {
+  public fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_NORMAL, VECTOR2)
@@ -74,7 +74,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the colliding body's velocity, if a collision occurred.
    */
-  public open fun getColliderVelocity(): Vector2 {
+  public fun getColliderVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_VELOCITY, VECTOR2)
@@ -84,7 +84,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the unique instance ID of the colliding body's attached [godot.Object], if a collision occurred. See [godot.Object.getInstanceId].
    */
-  public open fun getColliderId(): Long {
+  public fun getColliderId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_ID, LONG)
@@ -94,7 +94,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the colliding body's [RID] used by the [godot.PhysicsServer2D], if a collision occurred.
    */
-  public open fun getColliderRid(): RID {
+  public fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_RID, _RID)
@@ -104,7 +104,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the colliding body's attached [godot.Object], if a collision occurred.
    */
-  public open fun getCollider(): Object? {
+  public fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER, OBJECT)
@@ -114,7 +114,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the colliding body's shape index, if a collision occurred. See [godot.CollisionObject2D].
    */
-  public open fun getColliderShape(): Long {
+  public fun getColliderShape(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLIDER_SHAPE, LONG)
@@ -124,7 +124,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the moving object's colliding shape, if a collision occurred.
    */
-  public open fun getCollisionLocalShape(): Long {
+  public fun getCollisionLocalShape(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_LOCAL_SHAPE, LONG)
@@ -134,7 +134,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the length of overlap along the collision normal, if a collision occurred.
    */
-  public open fun getCollisionDepth(): Double {
+  public fun getCollisionDepth(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_DEPTH, DOUBLE)
@@ -144,7 +144,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
    */
-  public open fun getCollisionSafeFraction(): Double {
+  public fun getCollisionSafeFraction(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_SAFE_FRACTION, DOUBLE)
@@ -154,7 +154,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   /**
    * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
    */
-  public open fun getCollisionUnsafeFraction(): Double {
+  public fun getCollisionUnsafeFraction(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT2D_GET_COLLISION_UNSAFE_FRACTION, DOUBLE)

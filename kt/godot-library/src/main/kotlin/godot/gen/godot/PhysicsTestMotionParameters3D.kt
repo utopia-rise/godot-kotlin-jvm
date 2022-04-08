@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Transform in global space where the motion should start. Usually set to [godot.Node3D.globalTransform] for the current body's transform.
    */
-  public open var from: Transform3D
+  public var from: Transform3D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -51,7 +51,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Motion vector to define the length and direction of the motion to test.
    */
-  public open var motion: Vector3
+  public var motion: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -67,7 +67,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Increases the size of the shapes involved in the collision detection.
    */
-  public open var margin: Double
+  public var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -83,7 +83,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest detected collisions.
    */
-  public open var maxCollisions: Long
+  public var maxCollisions: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +101,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    *
    * If set to `false`, shapes of type [godot.PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
-  public open var collideSeparationRay: Boolean
+  public var collideSeparationRay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Optional array of body [RID] to exclude from collision.
    */
-  public open var excludeBodies: VariantArray<Any?>
+  public var excludeBodies: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
    */
-  public open var excludeObjects: VariantArray<Any?>
+  public var excludeObjects: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

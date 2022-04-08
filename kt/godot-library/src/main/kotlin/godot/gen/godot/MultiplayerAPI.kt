@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -80,7 +80,7 @@ public open class MultiplayerAPI : RefCounted() {
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
-  public open var allowObjectDecoding: Boolean
+  public var allowObjectDecoding: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -96,7 +96,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * If `true`, the MultiplayerAPI's [multiplayerPeer] refuses new incoming connections.
    */
-  public open var refuseNewConnections: Boolean
+  public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -112,7 +112,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * The peer object to handle the RPC system (effectively enabling networking when set). Depending on the peer itself, the MultiplayerAPI will become a network server (check with [isServer]) and will set root node's network mode to authority, or it will become a regular client peer. All child nodes are set to inherit the network mode by default. Handling of networking-related events (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.
    */
-  public open var multiplayerPeer: MultiplayerPeer?
+  public var multiplayerPeer: MultiplayerPeer?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -130,7 +130,7 @@ public open class MultiplayerAPI : RefCounted() {
    *
    * This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.
    */
-  public open var rootPath: NodePath
+  public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ROOT_PATH,
@@ -149,7 +149,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Sends the given raw `bytes` to a specific peer identified by `id` (see [godot.MultiplayerPeer.setTargetPeer]). Default ID is `0`, i.e. broadcast to all peers.
    */
-  public open fun sendBytes(
+  public fun sendBytes(
     bytes: PackedByteArray,
     id: Long = 0,
     mode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
@@ -163,7 +163,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Returns `true` if there is a [multiplayerPeer] set.
    */
-  public open fun hasMultiplayerPeer(): Boolean {
+  public fun hasMultiplayerPeer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_HAS_MULTIPLAYER_PEER,
         BOOL)
@@ -173,7 +173,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Returns the unique peer ID of this MultiplayerAPI's [multiplayerPeer].
    */
-  public open fun getUniqueId(): Long {
+  public fun getUniqueId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_UNIQUE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -182,7 +182,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Returns `true` if this MultiplayerAPI's [multiplayerPeer] is valid and in server mode (listening for connections).
    */
-  public open fun isServer(): Boolean {
+  public fun isServer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_SERVER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -193,7 +193,7 @@ public open class MultiplayerAPI : RefCounted() {
    *
    * **Note:** If not inside an RPC this method will return 0.
    */
-  public open fun getRemoteSenderId(): Long {
+  public fun getRemoteSenderId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_REMOTE_SENDER_ID,
         LONG)
@@ -205,7 +205,7 @@ public open class MultiplayerAPI : RefCounted() {
    *
    * **Note:** This method results in RPCs being called, so they will be executed in the same context of this function (e.g. `_process`, `physics`, [godot.Thread]).
    */
-  public open fun poll(): Unit {
+  public fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, NIL)
   }
@@ -213,7 +213,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Clears the current MultiplayerAPI network state (you shouldn't call this unless you know what you are doing).
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CLEAR, NIL)
   }
@@ -221,7 +221,7 @@ public open class MultiplayerAPI : RefCounted() {
   /**
    * Returns the peer IDs of all connected peers of this MultiplayerAPI's [multiplayerPeer].
    */
-  public open fun getPeers(): PackedInt32Array {
+  public fun getPeers(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_PEERS,
         PACKED_INT_32_ARRAY)

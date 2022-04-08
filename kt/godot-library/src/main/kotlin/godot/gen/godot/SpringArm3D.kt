@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * The layers against which the collision check shall be done. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_COLLISION_MASK,
@@ -55,7 +55,7 @@ public open class SpringArm3D : Node3D() {
    *
    * When the shape is set, the SpringArm3D will cast the [godot.Shape3D] on its z axis instead of performing a ray cast.
    */
-  public open var shape: Shape3D?
+  public var shape: Shape3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_SHAPE, OBJECT)
@@ -71,7 +71,7 @@ public open class SpringArm3D : Node3D() {
    *
    * To know more about how to perform a shape cast or a ray cast, please consult the [godot.PhysicsDirectSpaceState3D] documentation.
    */
-  public open var springLength: Double
+  public var springLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_LENGTH, DOUBLE)
@@ -89,7 +89,7 @@ public open class SpringArm3D : Node3D() {
    *
    * This margin is useful for when the SpringArm3D has a [godot.Camera3D] as a child node: without the margin, the [godot.Camera3D] would be placed on the exact point of collision, while with the margin the [godot.Camera3D] would be placed close to the point of collision.
    */
-  public open var margin: Double
+  public var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_MARGIN, DOUBLE)
@@ -107,7 +107,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * Returns the spring arm's current length.
    */
-  public open fun getHitLength(): Double {
+  public fun getHitLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_HIT_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -116,7 +116,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * Adds the [godot.PhysicsBody3D] object with the given [RID] to the list of [godot.PhysicsBody3D] objects excluded from the collision check.
    */
-  public open fun addExcludedObject(RID: RID): Unit {
+  public fun addExcludedObject(RID: RID): Unit {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_ADD_EXCLUDED_OBJECT,
         NIL)
@@ -125,7 +125,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * Removes the given [RID] from the list of [godot.PhysicsBody3D] objects excluded from the collision check.
    */
-  public open fun removeExcludedObject(RID: RID): Boolean {
+  public fun removeExcludedObject(RID: RID): Boolean {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_REMOVE_EXCLUDED_OBJECT,
         BOOL)
@@ -135,7 +135,7 @@ public open class SpringArm3D : Node3D() {
   /**
    * Clears the list of [godot.PhysicsBody3D] objects excluded from the collision check.
    */
-  public open fun clearExcludedObjects(): Unit {
+  public fun clearExcludedObjects(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_CLEAR_EXCLUDED_OBJECTS,
         NIL)

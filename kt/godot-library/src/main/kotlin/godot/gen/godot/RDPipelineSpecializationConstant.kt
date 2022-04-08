@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   /**
    *
    */
-  public open var `value`: Any?
+  public var `value`: Any?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,7 +40,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   /**
    *
    */
-  public open var constantId: Long
+  public var constantId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

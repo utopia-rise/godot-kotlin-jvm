@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -48,7 +48,7 @@ public open class Sprite2D : Node2D() {
   /**
    * [godot.Texture2D] object to draw.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_TEXTURE, OBJECT)
@@ -62,7 +62,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is centered.
    */
-  public open var centered: Boolean
+  public var centered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_CENTERED, BOOL)
@@ -76,7 +76,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The texture's drawing offset.
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_OFFSET, VECTOR2)
@@ -90,7 +90,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public open var flipH: Boolean
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_H, BOOL)
@@ -104,7 +104,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public open var flipV: Boolean
+  public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_V, BOOL)
@@ -118,7 +118,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The number of columns in the sprite sheet.
    */
-  public open var hframes: Long
+  public var hframes: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_HFRAMES, LONG)
@@ -132,7 +132,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The number of rows in the sprite sheet.
    */
-  public open var vframes: Long
+  public var vframes: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_VFRAMES, LONG)
@@ -146,7 +146,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frame: Long
+  public var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FRAME, LONG)
@@ -160,7 +160,7 @@ public open class Sprite2D : Node2D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frameCoords: Vector2i
+  public var frameCoords: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FRAME_COORDS,
@@ -175,7 +175,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is cut from a larger atlas texture. See [regionRect].
    */
-  public open var regionEnabled: Boolean
+  public var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_REGION_ENABLED, BOOL)
@@ -189,7 +189,7 @@ public open class Sprite2D : Node2D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
-  public open var regionRect: Rect2
+  public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_REGION_RECT, RECT2)
@@ -203,7 +203,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, the outermost pixels get blurred out. [regionEnabled] must be `true`.
    */
-  public open var regionFilterClipEnabled: Boolean
+  public var regionFilterClipEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -225,7 +225,7 @@ public open class Sprite2D : Node2D() {
    *
    * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position is invalid.
    */
-  public open fun isPixelOpaque(pos: Vector2): Boolean {
+  public fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_PIXEL_OPAQUE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -280,7 +280,7 @@ public open class Sprite2D : Node2D() {
    *
    * [/codeblocks]
    */
-  public open fun getRect(): Rect2 {
+  public fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2

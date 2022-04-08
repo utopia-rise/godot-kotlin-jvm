@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -17,7 +17,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class OpenXRInteractionProfile : Resource() {
-  public open var interactionProfilePath: String
+  public var interactionProfilePath: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -30,7 +30,7 @@ public open class OpenXRInteractionProfile : Resource() {
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_SET_INTERACTION_PROFILE_PATH, NIL)
     }
 
-  public open var bindings: OpenXRIPBinding?
+  public var bindings: OpenXRIPBinding?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

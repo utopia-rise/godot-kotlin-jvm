@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -50,7 +50,7 @@ public object CameraServer : Object() {
   /**
    * Returns the [godot.CameraFeed] corresponding to the camera with the given `index`.
    */
-  public open fun getFeed(index: Long): CameraFeed? {
+  public fun getFeed(index: Long): CameraFeed? {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CameraFeed?
@@ -59,7 +59,7 @@ public object CameraServer : Object() {
   /**
    * Returns the number of [godot.CameraFeed]s registered.
    */
-  public open fun getFeedCount(): Long {
+  public fun getFeedCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -68,7 +68,7 @@ public object CameraServer : Object() {
   /**
    * Returns an array of [godot.CameraFeed]s.
    */
-  public open fun feeds(): VariantArray<Any?> {
+  public fun feeds(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -77,7 +77,7 @@ public object CameraServer : Object() {
   /**
    * Adds the camera `feed` to the camera server.
    */
-  public open fun addFeed(feed: CameraFeed): Unit {
+  public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_ADD_FEED, NIL)
   }
@@ -85,7 +85,7 @@ public object CameraServer : Object() {
   /**
    * Removes the specified camera `feed`.
    */
-  public open fun removeFeed(feed: CameraFeed): Unit {
+  public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_REMOVE_FEED, NIL)
   }

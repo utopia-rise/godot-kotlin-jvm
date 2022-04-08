@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
    * Controls how the object faces the camera. See [enum BillboardType].
    */
-  public open var billboardType: Long
+  public var billboardType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
    * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding.
    */
-  public open var keepScale: Boolean
+  public var keepScale: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

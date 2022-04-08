@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class NinePatchRect : Control() {
   /**
    * The node's texture resource.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_TEXTURE, OBJECT)
@@ -50,7 +50,7 @@ public open class NinePatchRect : Control() {
   /**
    * If `true`, draw the panel's center. Else, only draw the 9-slice's borders.
    */
-  public open var drawCenter: Boolean
+  public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -66,7 +66,7 @@ public open class NinePatchRect : Control() {
   /**
    * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
    */
-  public open var regionRect: Rect2
+  public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_REGION_RECT,
@@ -82,7 +82,7 @@ public open class NinePatchRect : Control() {
   /**
    * The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
    */
-  public open var axisStretchHorizontal: Long
+  public var axisStretchHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -98,7 +98,7 @@ public open class NinePatchRect : Control() {
   /**
    * The stretch mode to use for vertical stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
    */
-  public open var axisStretchVertical: Long
+  public var axisStretchVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class NinePatchRect : Control() {
   /**
    * Sets the size of the margin on the specified [enum Side] to `value` pixels.
    */
-  public open fun setPatchMargin(margin: Side, `value`: Long): Unit {
+  public fun setPatchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN, NIL)
   }
@@ -126,7 +126,7 @@ public open class NinePatchRect : Control() {
   /**
    * Returns the size of the margin on the specified [enum Side].
    */
-  public open fun getPatchMargin(margin: Side): Long {
+  public fun getPatchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
         LONG)

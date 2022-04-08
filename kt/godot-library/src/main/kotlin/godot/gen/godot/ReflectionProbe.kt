@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets how frequently the [godot.ReflectionProbe] is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
-  public open var updateMode: Long
+  public var updateMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
@@ -55,7 +55,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Defines the reflection intensity. Intensity modulates the strength of the reflection.
    */
-  public open var intensity: Double
+  public var intensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTENSITY,
@@ -73,7 +73,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** The maximum reflection distance is always at least equal to the [extents]. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [extents] are already large.
    */
-  public open var maxDistance: Double
+  public var maxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MAX_DISTANCE,
@@ -91,7 +91,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
-  public open var extents: Vector3
+  public var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_EXTENTS,
@@ -106,7 +106,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets the origin offset to be used when this [godot.ReflectionProbe] is in [boxProjection] mode. This can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing the amount of objects that "get in the way" of the reflection.
    */
-  public open var originOffset: Vector3
+  public var originOffset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ORIGIN_OFFSET,
@@ -124,7 +124,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
-  public open var boxProjection: Boolean
+  public var boxProjection: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -140,7 +140,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * If `true`, reflections will ignore sky contribution.
    */
-  public open var interior: Boolean
+  public var interior: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -156,7 +156,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * If `true`, computes shadows in the reflection probe. This makes the reflection probe slower to render; you may want to disable this if using the [UPDATE_ALWAYS] [updateMode].
    */
-  public open var enableShadows: Boolean
+  public var enableShadows: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -172,7 +172,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets the cull mask which determines what objects are drawn by this probe. Every [godot.VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. To improve performance, it is best to only include large objects which are likely to take up a lot of space in the reflection.
    */
-  public open var cullMask: Long
+  public var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_CULL_MASK,
@@ -190,7 +190,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
    */
-  public open var meshLodThreshold: Double
+  public var meshLodThreshold: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -206,7 +206,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The ambient color to use within the [godot.ReflectionProbe]'s [extents]. The ambient color will smoothly blend with other [godot.ReflectionProbe]s and the rest of the scene (outside the [godot.ReflectionProbe]'s [extents]).
    */
-  public open var ambientMode: Long
+  public var ambientMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,
@@ -222,7 +222,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color to use within the [godot.ReflectionProbe]'s [extents]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
-  public open var ambientColor: Color
+  public var ambientColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_COLOR,
@@ -238,7 +238,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color energy to use within the [godot.ReflectionProbe]'s [extents]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
-  public open var ambientColorEnergy: Double
+  public var ambientColorEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

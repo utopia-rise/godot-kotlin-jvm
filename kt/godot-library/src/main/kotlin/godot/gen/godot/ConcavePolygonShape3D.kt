@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
-  public open var `data`: PackedVector3Array
+  public var `data`: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_FACES,
@@ -46,7 +46,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
   /**
    * If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals.
    */
-  public open var backfaceCollision: Boolean
+  public var backfaceCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

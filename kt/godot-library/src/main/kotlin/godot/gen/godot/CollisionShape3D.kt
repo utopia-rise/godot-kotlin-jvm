@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * The actual shape owned by this collision shape.
    */
-  public open var shape: Shape3D?
+  public var shape: Shape3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_SHAPE,
@@ -43,7 +43,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * A disabled collision shape has no effect in the world.
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
@@ -63,7 +63,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * If this method exists within a script it will be called whenever the shape resource has been modified.
    */
-  public open fun resourceChanged(resource: Resource): Unit {
+  public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_RESOURCE_CHANGED,
         NIL)
@@ -72,7 +72,7 @@ public open class CollisionShape3D : Node3D() {
   /**
    * Sets the collision shape's shape to the addition of all its convexed [godot.MeshInstance3D] siblings geometry.
    */
-  public open fun makeConvexFromSiblings(): Unit {
+  public fun makeConvexFromSiblings(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_MAKE_CONVEX_FROM_SIBLINGS, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * The VisibleOnScreenNotifier2D's bounding rectangle.
    */
-  public open var rect: Rect2
+  public var rect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -65,7 +65,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    *
    * **Note:** It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return `false` right after it is instantiated, even if it will be on screen in the draw pass.
    */
-  public open fun isOnScreen(): Boolean {
+  public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER2D_IS_ON_SCREEN, BOOL)

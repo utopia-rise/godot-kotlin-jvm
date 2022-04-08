@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines which source should be used for the sampling. See [enum Source] for options.
    */
-  public open var source: Long
+  public var source: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -41,7 +41,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * The [godot.Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
-  public open var cubeMap: Cubemap?
+  public var cubeMap: Cubemap?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +57,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines the type of data provided by the source texture. See [enum TextureType] for options.
    */
-  public open var textureType: Long
+  public var textureType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

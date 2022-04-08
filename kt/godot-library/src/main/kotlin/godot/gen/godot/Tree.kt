@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -178,7 +178,7 @@ public open class Tree : Control() {
   /**
    * The number of columns.
    */
-  public open var columns: Long
+  public var columns: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMNS, LONG)
@@ -192,7 +192,7 @@ public open class Tree : Control() {
   /**
    * If `true`, column titles are visible.
    */
-  public open var columnTitlesVisible: Boolean
+  public var columnTitlesVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ARE_COLUMN_TITLES_VISIBLE,
@@ -208,7 +208,7 @@ public open class Tree : Control() {
   /**
    * If `true`, the currently selected cell may be selected again.
    */
-  public open var allowReselect: Boolean
+  public var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ALLOW_RESELECT, BOOL)
@@ -222,7 +222,7 @@ public open class Tree : Control() {
   /**
    * If `true`, a right mouse button click can select items.
    */
-  public open var allowRmbSelect: Boolean
+  public var allowRmbSelect: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ALLOW_RMB_SELECT, BOOL)
@@ -236,7 +236,7 @@ public open class Tree : Control() {
   /**
    * If `true`, the folding arrow is hidden.
    */
-  public open var hideFolding: Boolean
+  public var hideFolding: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_FOLDING_HIDDEN, BOOL)
@@ -250,7 +250,7 @@ public open class Tree : Control() {
   /**
    * If `true`, the tree's root is hidden.
    */
-  public open var hideRoot: Boolean
+  public var hideRoot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_ROOT_HIDDEN, BOOL)
@@ -266,7 +266,7 @@ public open class Tree : Control() {
    *
    * This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
    */
-  public open var dropModeFlags: Long
+  public var dropModeFlags: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_DROP_MODE_FLAGS, LONG)
@@ -280,7 +280,7 @@ public open class Tree : Control() {
   /**
    * Allows single or multiple selection. See the [enum SelectMode] constants.
    */
-  public open var selectMode: Long
+  public var selectMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECT_MODE, LONG)
@@ -294,7 +294,7 @@ public open class Tree : Control() {
   /**
    * If `true`, enables horizontal scrolling.
    */
-  public open var scrollHorizontalEnabled: Boolean
+  public var scrollHorizontalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_H_SCROLL_ENABLED, BOOL)
@@ -308,7 +308,7 @@ public open class Tree : Control() {
   /**
    * If `true`, enables vertical scrolling.
    */
-  public open var scrollVerticalEnabled: Boolean
+  public var scrollVerticalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_V_SCROLL_ENABLED, BOOL)
@@ -326,7 +326,7 @@ public open class Tree : Control() {
   /**
    * Clears the tree. This removes all items.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_CLEAR, NIL)
   }
@@ -338,7 +338,7 @@ public open class Tree : Control() {
    *
    * The new item will be the `idx`th child of parent, or it will be the last child if there are not enough siblings.
    */
-  public open fun createItem(parent: TreeItem? = null, idx: Long = -1): TreeItem? {
+  public fun createItem(parent: TreeItem? = null, idx: Long = -1): TreeItem? {
     TransferContext.writeArguments(OBJECT to parent, LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_CREATE_ITEM, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -347,7 +347,7 @@ public open class Tree : Control() {
   /**
    * Returns the tree's root item, or `null` if the tree is empty.
    */
-  public open fun getRoot(): TreeItem? {
+  public fun getRoot(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ROOT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -356,7 +356,7 @@ public open class Tree : Control() {
   /**
    * Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
    */
-  public open fun setColumnCustomMinimumWidth(column: Long, minWidth: Long): Unit {
+  public fun setColumnCustomMinimumWidth(column: Long, minWidth: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to minWidth)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_CUSTOM_MINIMUM_WIDTH, NIL)
@@ -365,7 +365,7 @@ public open class Tree : Control() {
   /**
    * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
    */
-  public open fun setColumnExpand(column: Long, expand: Boolean): Unit {
+  public fun setColumnExpand(column: Long, expand: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_EXPAND, NIL)
   }
@@ -373,7 +373,7 @@ public open class Tree : Control() {
   /**
    *
    */
-  public open fun setColumnExpandRatio(column: Long, ratio: Long): Unit {
+  public fun setColumnExpandRatio(column: Long, ratio: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to ratio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_EXPAND_RATIO, NIL)
   }
@@ -381,7 +381,7 @@ public open class Tree : Control() {
   /**
    *
    */
-  public open fun setColumnClipContent(column: Long, enable: Boolean): Unit {
+  public fun setColumnClipContent(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_CLIP_CONTENT, NIL)
   }
@@ -389,7 +389,7 @@ public open class Tree : Control() {
   /**
    *
    */
-  public open fun isColumnExpanding(column: Long): Boolean {
+  public fun isColumnExpanding(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_COLUMN_EXPANDING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -398,7 +398,7 @@ public open class Tree : Control() {
   /**
    *
    */
-  public open fun isColumnClippingContent(column: Long): Boolean {
+  public fun isColumnClippingContent(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_COLUMN_CLIPPING_CONTENT,
         BOOL)
@@ -408,7 +408,7 @@ public open class Tree : Control() {
   /**
    *
    */
-  public open fun getColumnExpandRatio(column: Long): Long {
+  public fun getColumnExpandRatio(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_EXPAND_RATIO, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -417,7 +417,7 @@ public open class Tree : Control() {
   /**
    * Returns the column's width in pixels.
    */
-  public open fun getColumnWidth(column: Long): Long {
+  public fun getColumnWidth(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -428,7 +428,7 @@ public open class Tree : Control() {
    *
    * If `from` is `null`, this returns the first selected item.
    */
-  public open fun getNextSelected(from: TreeItem): TreeItem? {
+  public fun getNextSelected(from: TreeItem): TreeItem? {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_NEXT_SELECTED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -441,7 +441,7 @@ public open class Tree : Control() {
    *
    * To get the currently selected item(s), use [getNextSelected].
    */
-  public open fun getSelected(): TreeItem? {
+  public fun getSelected(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -454,7 +454,7 @@ public open class Tree : Control() {
    *
    * To tell whether a column of an item is selected, use [godot.TreeItem.isSelected].
    */
-  public open fun getSelectedColumn(): Long {
+  public fun getSelectedColumn(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -463,7 +463,7 @@ public open class Tree : Control() {
   /**
    * Returns the last pressed button's index.
    */
-  public open fun getPressedButton(): Long {
+  public fun getPressedButton(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_PRESSED_BUTTON, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -512,7 +512,7 @@ public open class Tree : Control() {
    *
    * [/codeblocks]
    */
-  public open fun getEdited(): TreeItem? {
+  public fun getEdited(): TreeItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_EDITED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -521,7 +521,7 @@ public open class Tree : Control() {
   /**
    * Returns the column for the currently edited item.
    */
-  public open fun getEditedColumn(): Long {
+  public fun getEditedColumn(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_EDITED_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -530,7 +530,7 @@ public open class Tree : Control() {
   /**
    * Edits the selected tree item as if it was clicked. The item must be set editable with [godot.TreeItem.setEditable]. Returns `true` if the item could be edited. Fails if no item is selected.
    */
-  public open fun editSelected(): Boolean {
+  public fun editSelected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -539,7 +539,7 @@ public open class Tree : Control() {
   /**
    * Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [godot.TreeItem.setCellMode].
    */
-  public open fun getCustomPopupRect(): Rect2 {
+  public fun getCustomPopupRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_CUSTOM_POPUP_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -548,7 +548,7 @@ public open class Tree : Control() {
   /**
    * Returns the rectangle area for the specified [godot.TreeItem]. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
    */
-  public open fun getItemAreaRect(item: TreeItem, column: Long = -1): Rect2 {
+  public fun getItemAreaRect(item: TreeItem, column: Long = -1): Rect2 {
     TransferContext.writeArguments(OBJECT to item, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ITEM_AREA_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -557,7 +557,7 @@ public open class Tree : Control() {
   /**
    * Returns the tree item at the specified position (relative to the tree origin position).
    */
-  public open fun getItemAtPosition(position: Vector2): TreeItem? {
+  public fun getItemAtPosition(position: Vector2): TreeItem? {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_ITEM_AT_POSITION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
@@ -566,7 +566,7 @@ public open class Tree : Control() {
   /**
    * Returns the column index at `position`, or -1 if no item is there.
    */
-  public open fun getColumnAtPosition(position: Vector2): Long {
+  public fun getColumnAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_AT_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -579,7 +579,7 @@ public open class Tree : Control() {
    *
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
-  public open fun getDropSectionAtPosition(position: Vector2): Long {
+  public fun getDropSectionAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_DROP_SECTION_AT_POSITION,
         LONG)
@@ -589,7 +589,7 @@ public open class Tree : Control() {
   /**
    * Returns the button id at `position`, or -1 if no button is there.
    */
-  public open fun getButtonIdAtPosition(position: Vector2): Long {
+  public fun getButtonIdAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_BUTTON_ID_AT_POSITION,
         LONG)
@@ -603,7 +603,7 @@ public open class Tree : Control() {
    *
    * **Note:** Despite the name of this method, the focus cursor itself is only visible in [SELECT_MULTI] mode.
    */
-  public open fun ensureCursorIsVisible(): Unit {
+  public fun ensureCursorIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ENSURE_CURSOR_IS_VISIBLE, NIL)
   }
@@ -611,7 +611,7 @@ public open class Tree : Control() {
   /**
    * Sets the title of a column.
    */
-  public open fun setColumnTitle(column: Long, title: String): Unit {
+  public fun setColumnTitle(column: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE, NIL)
   }
@@ -619,7 +619,7 @@ public open class Tree : Control() {
   /**
    * Returns the column's title.
    */
-  public open fun getColumnTitle(column: Long): String {
+  public fun getColumnTitle(column: Long): String {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -628,7 +628,7 @@ public open class Tree : Control() {
   /**
    * Sets column title base writing direction.
    */
-  public open fun setColumnTitleDirection(column: Long, direction: Control.TextDirection): Unit {
+  public fun setColumnTitleDirection(column: Long, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to column, LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_DIRECTION,
         NIL)
@@ -637,7 +637,7 @@ public open class Tree : Control() {
   /**
    * Returns column title base writing direction.
    */
-  public open fun getColumnTitleDirection(column: Long): Control.TextDirection {
+  public fun getColumnTitleDirection(column: Long): Control.TextDirection {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_DIRECTION,
         LONG)
@@ -647,7 +647,7 @@ public open class Tree : Control() {
   /**
    * Sets OpenType feature `tag` for the column title.
    */
-  public open fun setColumnTitleOpentypeFeature(
+  public fun setColumnTitleOpentypeFeature(
     column: Long,
     tag: String,
     `value`: Long
@@ -660,7 +660,7 @@ public open class Tree : Control() {
   /**
    * Returns OpenType feature `tag` of the column title.
    */
-  public open fun getColumnTitleOpentypeFeature(column: Long, tag: String): Long {
+  public fun getColumnTitleOpentypeFeature(column: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to column, STRING to tag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_OPENTYPE_FEATURE, LONG)
@@ -670,7 +670,7 @@ public open class Tree : Control() {
   /**
    * Removes all OpenType features from the item's text.
    */
-  public open fun clearColumnTitleOpentypeFeatures(column: Long): Unit {
+  public fun clearColumnTitleOpentypeFeatures(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TREE_CLEAR_COLUMN_TITLE_OPENTYPE_FEATURES, NIL)
@@ -679,7 +679,7 @@ public open class Tree : Control() {
   /**
    * Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open fun setColumnTitleLanguage(column: Long, language: String): Unit {
+  public fun setColumnTitleLanguage(column: Long, language: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_LANGUAGE, NIL)
   }
@@ -687,7 +687,7 @@ public open class Tree : Control() {
   /**
    * Returns column title language code.
    */
-  public open fun getColumnTitleLanguage(column: Long): String {
+  public fun getColumnTitleLanguage(column: Long): String {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLE_LANGUAGE,
         STRING)
@@ -697,7 +697,7 @@ public open class Tree : Control() {
   /**
    * Returns the current scrolling position.
    */
-  public open fun getScroll(): Vector2 {
+  public fun getScroll(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SCROLL, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -706,7 +706,7 @@ public open class Tree : Control() {
   /**
    * Causes the [godot.Tree] to jump to the specified [godot.TreeItem].
    */
-  public open fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
+  public fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)
   }

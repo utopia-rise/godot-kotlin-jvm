@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * The node attached to the first side (A) of the joint.
    */
-  public open var nodes_nodeA: NodePath
+  public var nodes_nodeA: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
@@ -45,7 +45,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * The node attached to the second side (B) of the joint.
    */
-  public open var nodes_nodeB: NodePath
+  public var nodes_nodeB: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
@@ -59,7 +59,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
    */
-  public open var solver_priority: Long
+  public var solver_priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_SOLVER_PRIORITY, LONG)
@@ -73,7 +73,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * If `true`, the two bodies of the nodes are not able to collide with each other.
    */
-  public open var collision_excludeNodes: Boolean
+  public var collision_excludeNodes: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

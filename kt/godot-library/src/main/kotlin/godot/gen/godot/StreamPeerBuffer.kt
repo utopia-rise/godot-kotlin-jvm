@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * The underlying data buffer. Setting this value resets the cursor.
    */
-  public open var dataArray: PackedByteArray
+  public var dataArray: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_DATA_ARRAY,
@@ -49,7 +49,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Moves the cursor to the specified position. `position` must be a valid index of [dataArray].
    */
-  public open fun seek(position: Long): Unit {
+  public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)
   }
@@ -57,7 +57,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns the size of [dataArray].
    */
-  public open fun getSize(): Long {
+  public fun getSize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -66,7 +66,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns the current cursor position.
    */
-  public open fun getPosition(): Long {
+  public fun getPosition(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -75,7 +75,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
-  public open fun resize(size: Long): Unit {
+  public fun resize(size: Long): Unit {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL)
   }
@@ -83,7 +83,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Clears the [dataArray] and resets the cursor.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_CLEAR, NIL)
   }
@@ -91,7 +91,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns a new [godot.StreamPeerBuffer] with the same [dataArray] content.
    */
-  public open fun duplicate(): StreamPeerBuffer? {
+  public fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?

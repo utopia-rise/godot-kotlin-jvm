@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   /**
    * Defines the type of data provided by the source texture. See [enum TextureType] for options.
    */
-  public open var textureType: Long
+  public var textureType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,7 +40,7 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   /**
    * Sets the default color if no texture is assigned to the uniform.
    */
-  public open var colorDefault: Long
+  public var colorDefault: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -56,7 +56,7 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   /**
    * Sets the texture filtering mode. See [enum TextureFilter] for options.
    */
-  public open var textureFilter: Long
+  public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -72,7 +72,7 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   /**
    * Sets the texture repeating mode. See [enum TextureRepeat] for options.
    */
-  public open var textureRepeat: Long
+  public var textureRepeat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

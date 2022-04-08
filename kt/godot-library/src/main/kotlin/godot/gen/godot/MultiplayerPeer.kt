@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -64,7 +64,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * If `true`, this [godot.MultiplayerPeer] refuses new connections.
    */
-  public open var refuseNewConnections: Boolean
+  public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -80,7 +80,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * The manner in which to send packets to the `target_peer`. See [enum TransferMode].
    */
-  public open var transferMode: Long
+  public var transferMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
@@ -98,7 +98,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    *
    * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each [enum TransferMode]) so that [TRANSFER_MODE_RELIABLE] and [TRANSFER_MODE_UNRELIABLE_ORDERED] does not interact with each other by default. Refer to the specific network API documentation (e.g. ENet or WebRTC) to learn how to set up channels correctly.
    */
-  public open var transferChannel: Long
+  public var transferChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +120,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    *
    * The `id` can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers, [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that specific peer, a negative peer ID to send to all peers except that one. By default, the target peer is [TARGET_PEER_BROADCAST].
    */
-  public open fun setTargetPeer(id: Long): Unit {
+  public fun setTargetPeer(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TARGET_PEER,
         NIL)
@@ -129,7 +129,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the ID of the [godot.MultiplayerPeer] who sent the most recent packet.
    */
-  public open fun getPacketPeer(): Long {
+  public fun getPacketPeer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_PEER,
         LONG)
@@ -139,7 +139,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Waits up to 1 second to receive a new network event.
    */
-  public open fun poll(): Unit {
+  public fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_POLL, NIL)
   }
@@ -147,7 +147,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the current state of the connection. See [enum ConnectionStatus].
    */
-  public open fun getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
+  public fun getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS, LONG)
@@ -157,7 +157,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns the ID of this [godot.MultiplayerPeer].
    */
-  public open fun getUniqueId(): Long {
+  public fun getUniqueId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_UNIQUE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -166,7 +166,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Returns a randomly generated integer that can be used as a network unique ID.
    */
-  public open fun generateUniqueId(): Long {
+  public fun generateUniqueId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GENERATE_UNIQUE_ID,
         LONG)

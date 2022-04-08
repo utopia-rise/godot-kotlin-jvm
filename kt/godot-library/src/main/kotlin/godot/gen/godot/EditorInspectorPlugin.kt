@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -51,7 +51,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    * Returns `true` if this object can be handled by this plugin.
    */
   public open fun _canHandle(_object: Any): Boolean {
-    throw NotImplementedError("_can_handle·is·not·implemented·for·EditorInspectorPlugin")
+    throw NotImplementedError("_can_handle is not implemented for EditorInspectorPlugin")
   }
 
   /**
@@ -84,7 +84,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     usageFlags: Long,
     wide: Boolean
   ): Boolean {
-    throw NotImplementedError("_parse_property·is·not·implemented·for·EditorInspectorPlugin")
+    throw NotImplementedError("_parse_property is not implemented for EditorInspectorPlugin")
   }
 
   /**
@@ -96,7 +96,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Adds a custom control, which is not necessarily a property editor.
    */
-  public open fun addCustomControl(control: Control): Unit {
+  public fun addCustomControl(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_CUSTOM_CONTROL, NIL)
@@ -105,7 +105,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Adds a property editor for an individual property. The `editor` control must extend [godot.EditorProperty].
    */
-  public open fun addPropertyEditor(`property`: String, editor: Control): Unit {
+  public fun addPropertyEditor(`property`: String, editor: Control): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR, NIL)
@@ -114,7 +114,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   /**
    * Adds an editor that allows modifying multiple properties. The `editor` control must extend [godot.EditorProperty].
    */
-  public open fun addPropertyEditorForMultipleProperties(
+  public fun addPropertyEditorForMultipleProperties(
     label: String,
     properties: PackedStringArray,
     editor: Control

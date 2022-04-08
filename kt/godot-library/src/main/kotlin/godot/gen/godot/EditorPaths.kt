@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class EditorPaths internal constructor() : Object() {
    * 				- Linux: ~/.local/share/godot/
    * 				```
    */
-  public open fun getDataDir(): String {
+  public fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -61,7 +61,7 @@ public open class EditorPaths internal constructor() : Object() {
    * 				- Linux: ~/.config/godot/
    * 				```
    */
-  public open fun getConfigDir(): String {
+  public fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -78,7 +78,7 @@ public open class EditorPaths internal constructor() : Object() {
    * 				- Linux: ~/.cache/godot/
    * 				```
    */
-  public open fun getCacheDir(): String {
+  public fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -91,7 +91,7 @@ public open class EditorPaths internal constructor() : Object() {
    *
    * **Note:** The Steam release of Godot uses self-contained mode by default.
    */
-  public open fun isSelfContained(): Boolean {
+  public fun isSelfContained(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -100,7 +100,7 @@ public open class EditorPaths internal constructor() : Object() {
   /**
    * Returns the absolute path to the self-contained file that makes the current Godot editor instance be considered as self-contained. Returns an empty string if the current Godot editor instance isn't self-contained. See also [isSelfContained].
    */
-  public open fun getSelfContainedFile(): String {
+  public fun getSelfContainedFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
         STRING)

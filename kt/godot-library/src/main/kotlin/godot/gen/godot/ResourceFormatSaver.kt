@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,21 +38,21 @@ public open class ResourceFormatSaver : RefCounted() {
     resource: Resource,
     flags: Long
   ): Long {
-    throw NotImplementedError("_save·is·not·implemented·for·ResourceFormatSaver")
+    throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
   }
 
   /**
    * Returns whether the given resource object can be saved by this saver.
    */
   public open fun _recognize(resource: Resource): Boolean {
-    throw NotImplementedError("_recognize·is·not·implemented·for·ResourceFormatSaver")
+    throw NotImplementedError("_recognize is not implemented for ResourceFormatSaver")
   }
 
   /**
    * Returns the list of extensions available for saving the resource object, provided it is recognized (see [_recognize]).
    */
   public open fun _getRecognizedExtensions(resource: Resource): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions·is·not·implemented·for·ResourceFormatSaver")
+    throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
   }
 
   public companion object

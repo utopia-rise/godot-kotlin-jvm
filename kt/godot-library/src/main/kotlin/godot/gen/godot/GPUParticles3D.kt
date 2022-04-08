@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles are being emitted.
    */
-  public open var emitting: Boolean
+  public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_EMITTING, BOOL)
@@ -57,7 +57,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Number of particles to emit.
    */
-  public open var amount: Long
+  public var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_AMOUNT, LONG)
@@ -71,7 +71,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var subEmitter: NodePath
+  public var subEmitter: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SUB_EMITTER,
@@ -87,7 +87,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time each particle will exist.
    */
-  public open var lifetime: Double
+  public var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_LIFETIME,
@@ -102,7 +102,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, only `amount` particles will be emitted.
    */
-  public open var oneShot: Boolean
+  public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_ONE_SHOT, BOOL)
@@ -116,7 +116,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time to preprocess the particles before animation starts. Lets you start the animation some time after particles have started emitting.
    */
-  public open var preprocess: Double
+  public var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -132,7 +132,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  public open var speedScale: Double
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SPEED_SCALE,
@@ -148,7 +148,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Time ratio between each emission. If `0`, particles are emitted continuously. If `1`, all particles are emitted simultaneously.
    */
-  public open var explosiveness: Double
+  public var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -164,7 +164,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Emission randomness ratio.
    */
-  public open var randomness: Double
+  public var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -180,7 +180,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
-  public open var fixedFps: Long
+  public var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_FIXED_FPS,
@@ -195,7 +195,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var interpolate: Boolean
+  public var interpolate: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_INTERPOLATE,
@@ -211,7 +211,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  public open var fractDelta: Boolean
+  public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -227,7 +227,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var collisionBaseSize: Double
+  public var collisionBaseSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -245,7 +245,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    *
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
-  public open var visibilityAabb: AABB
+  public var visibilityAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -261,7 +261,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  public open var localCoords: Boolean
+  public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -277,7 +277,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public open var drawOrder: Long
+  public var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
@@ -293,7 +293,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var transformAlign: Long
+  public var transformAlign: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -309,7 +309,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var trailEnabled: Boolean
+  public var trailEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_TRAIL_ENABLED,
@@ -325,7 +325,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var trailLengthSecs: Double
+  public var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LENGTH,
@@ -341,7 +341,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
    */
-  public open var processMaterial: Material?
+  public var processMaterial: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -357,7 +357,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * The number of draw passes when rendering particles.
    */
-  public open var drawPasses: Long
+  public var drawPasses: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASSES,
@@ -373,7 +373,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the first draw pass.
    */
-  public open val drawPass1: Mesh?
+  public val drawPass1: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
@@ -384,7 +384,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the second draw pass.
    */
-  public open val drawPass2: Mesh?
+  public val drawPass2: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
@@ -395,7 +395,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the third draw pass.
    */
-  public open val drawPass3: Mesh?
+  public val drawPass3: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
@@ -406,7 +406,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * [godot.Mesh] that is drawn for the fourth draw pass.
    */
-  public open val drawPass4: Mesh?
+  public val drawPass4: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
@@ -417,7 +417,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    *
    */
-  public open var drawSkin: Skin?
+  public var drawSkin: Skin?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SKIN, OBJECT)
@@ -435,7 +435,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [godot.Mesh] that is drawn at index `pass`.
    */
-  public open fun setDrawPassMesh(pass: Long, mesh: Mesh): Unit {
+  public fun setDrawPassMesh(pass: Long, mesh: Mesh): Unit {
     TransferContext.writeArguments(LONG to pass, OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
         NIL)
@@ -444,7 +444,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Restarts the particle emission, clearing existing particles.
    */
-  public open fun restart(): Unit {
+  public fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_RESTART, NIL)
   }
@@ -452,7 +452,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the axis-aligned bounding box that contains all the particles that are active in the current frame.
    */
-  public open fun captureAabb(): AABB {
+  public fun captureAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_CAPTURE_AABB,
         godot.core.VariantType.AABB)
@@ -462,7 +462,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Emits a single particle. Whether `xform`, `velocity`, `color` and `custom` are applied depends on the value of `flags`. See [enum EmitFlags].
    */
-  public open fun emitParticle(
+  public fun emitParticle(
     xform: Transform3D,
     velocity: Vector3,
     color: Color,

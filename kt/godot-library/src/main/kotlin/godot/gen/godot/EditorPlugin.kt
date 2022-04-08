@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -139,7 +139,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _forwardCanvasGuiInput(event: InputEvent): Boolean {
-    throw NotImplementedError("_forward_canvas_gui_input·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_forward_canvas_gui_input is not implemented for EditorPlugin")
   }
 
   /**
@@ -280,7 +280,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _forward3dGuiInput(viewportCamera: Camera3D, event: InputEvent): Long {
-    throw NotImplementedError("_forward_3d_gui_input·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_forward_3d_gui_input is not implemented for EditorPlugin")
   }
 
   /**
@@ -365,7 +365,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", and "AssetLib" buttons.
    */
   public open fun _getPluginName(): String {
-    throw NotImplementedError("_get_plugin_name·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_get_plugin_name is not implemented for EditorPlugin")
   }
 
   /**
@@ -412,14 +412,14 @@ public open class EditorPlugin internal constructor() : Node() {
    * [/codeblocks]
    */
   public open fun _getPluginIcon(): Texture2D? {
-    throw NotImplementedError("_get_plugin_icon·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_get_plugin_icon is not implemented for EditorPlugin")
   }
 
   /**
    * Returns `true` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script** and **AssetLib**).
    */
   public open fun _hasMainScreen(): Boolean {
-    throw NotImplementedError("_has_main_screen·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_has_main_screen is not implemented for EditorPlugin")
   }
 
   /**
@@ -440,14 +440,14 @@ public open class EditorPlugin internal constructor() : Node() {
    * Implement this function if your plugin edits a specific type of object (Resource or Node). If you return `true`, then you will get the functions [_edit] and [_makeVisible] called when the editor requests them. If you have declared the methods [_forwardCanvasGuiInput] and [_forward3dGuiInput] these will be called too.
    */
   public open fun _handles(_object: Any): Boolean {
-    throw NotImplementedError("_handles·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_handles is not implemented for EditorPlugin")
   }
 
   /**
    * Gets the state of your plugin editor. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns).
    */
   public open fun _getState(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_state·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_get_state is not implemented for EditorPlugin")
   }
 
   /**
@@ -480,7 +480,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * This is for editors that edit script-based objects. You can return a list of breakpoints in the format (`script:line`), for example: `res://path_to_script.gd:25`.
    */
   public open fun _getBreakpoints(): PackedStringArray {
-    throw NotImplementedError("_get_breakpoints·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_get_breakpoints is not implemented for EditorPlugin")
   }
 
   /**
@@ -501,7 +501,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * This method must return a boolean. If this method returns `false`, the project will not run. The run is aborted immediately, so this also prevents all other plugins' [_build] methods from running.
    */
   public open fun _build(): Boolean {
-    throw NotImplementedError("_build·is·not·implemented·for·EditorPlugin")
+    throw NotImplementedError("_build is not implemented for EditorPlugin")
   }
 
   /**
@@ -523,7 +523,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromContainer] and free it with [godot.Node.queueFree].
    */
-  public open fun addControlToContainer(container: EditorPlugin.CustomControlContainer,
+  public fun addControlToContainer(container: EditorPlugin.CustomControlContainer,
       control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
@@ -533,7 +533,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a control to the bottom panel (together with Output, Debug, Animation, etc). Returns a reference to the button added. It's up to you to hide/show the button when needed. When your plugin is deactivated, make sure to remove your custom control with [removeControlFromBottomPanel] and free it with [godot.Node.queueFree].
    */
-  public open fun addControlToBottomPanel(control: Control, title: String): Button? {
+  public fun addControlToBottomPanel(control: Control, title: String): Button? {
     TransferContext.writeArguments(OBJECT to control, STRING to title)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_BOTTOM_PANEL, OBJECT)
@@ -547,7 +547,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * When your plugin is deactivated, make sure to remove your custom control with [removeControlFromDocks] and free it with [godot.Node.queueFree].
    */
-  public open fun addControlToDock(slot: EditorPlugin.DockSlot, control: Control): Unit {
+  public fun addControlToDock(slot: EditorPlugin.DockSlot, control: Control): Unit {
     TransferContext.writeArguments(LONG to slot.id, OBJECT to control)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
         NIL)
@@ -556,7 +556,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the control from the dock. You have to manually [godot.Node.queueFree] the control.
    */
-  public open fun removeControlFromDocks(control: Control): Unit {
+  public fun removeControlFromDocks(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_DOCKS, NIL)
@@ -565,7 +565,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the control from the bottom panel. You have to manually [godot.Node.queueFree] the control.
    */
-  public open fun removeControlFromBottomPanel(control: Control): Unit {
+  public fun removeControlFromBottomPanel(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_BOTTOM_PANEL, NIL)
@@ -574,7 +574,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the control from the specified container. You have to manually [godot.Node.queueFree] the control.
    */
-  public open fun removeControlFromContainer(container: EditorPlugin.CustomControlContainer,
+  public fun removeControlFromContainer(container: EditorPlugin.CustomControlContainer,
       control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
     TransferContext.callMethod(rawPtr,
@@ -584,7 +584,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a custom menu item to **Project > Tools** named `name`. When clicked, the provided `callable` will be called.
    */
-  public open fun addToolMenuItem(name: String, callable: Callable): Unit {
+  public fun addToolMenuItem(name: String, callable: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_MENU_ITEM,
         NIL)
@@ -593,7 +593,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a custom [godot.PopupMenu] submenu under **Project > Tools >** `name`. Use `remove_tool_menu_item(name)` on plugin clean up to remove the menu.
    */
-  public open fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
+  public fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to submenu)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_SUBMENU_ITEM,
         NIL)
@@ -602,7 +602,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a menu `name` from **Project > Tools**.
    */
-  public open fun removeToolMenuItem(name: String): Unit {
+  public fun removeToolMenuItem(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TOOL_MENU_ITEM,
         NIL)
@@ -617,7 +617,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * During run-time, this will be a simple object with a script so this function does not need to be called then.
    */
-  public open fun addCustomType(
+  public fun addCustomType(
     type: String,
     base: String,
     script: Script,
@@ -630,7 +630,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a custom type added by [addCustomType].
    */
-  public open fun removeCustomType(type: String): Unit {
+  public fun removeCustomType(type: String): Unit {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CUSTOM_TYPE,
         NIL)
@@ -639,7 +639,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a script at `path` to the Autoload list as `name`.
    */
-  public open fun addAutoloadSingleton(name: String, path: String): Unit {
+  public fun addAutoloadSingleton(name: String, path: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_AUTOLOAD_SINGLETON,
         NIL)
@@ -648,7 +648,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes an Autoload `name` from the list.
    */
-  public open fun removeAutoloadSingleton(name: String): Unit {
+  public fun removeAutoloadSingleton(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_AUTOLOAD_SINGLETON, NIL)
@@ -657,7 +657,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Updates the overlays of the 2D and 3D editor viewport. Causes methods [_forwardCanvasDrawOverViewport], [_forwardCanvasForceDrawOverViewport], [_forward3dDrawOverViewport] and [_forward3dForceDrawOverViewport] to be called.
    */
-  public open fun updateOverlays(): Long {
+  public fun updateOverlays(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_UPDATE_OVERLAYS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -666,7 +666,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Makes a specific item in the bottom panel visible.
    */
-  public open fun makeBottomPanelItemVisible(item: Control): Unit {
+  public fun makeBottomPanelItemVisible(item: Control): Unit {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_MAKE_BOTTOM_PANEL_ITEM_VISIBLE, NIL)
@@ -675,7 +675,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Minimizes the bottom panel.
    */
-  public open fun hideBottomPanel(): Unit {
+  public fun hideBottomPanel(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_HIDE_BOTTOM_PANEL, NIL)
   }
@@ -683,7 +683,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Gets the undo/redo object. Most actions in the editor can be undoable, so use this object to make sure this happens when it's worth it.
    */
-  public open fun getUndoRedo(): UndoRedo? {
+  public fun getUndoRedo(): UndoRedo? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as UndoRedo?
@@ -694,7 +694,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * The callback should have 4 arguments: [godot.Object] `undo_redo`, [godot.Object] `modified_object`, [godot.String] `property` and [Variant] `new_value`. They are, respectively, the [godot.UndoRedo] object used by the inspector, the currently modified object, the name of the modified property and the new value the property is about to take.
    */
-  public open fun addUndoRedoInspectorHookCallback(callable: Callable): Unit {
+  public fun addUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
@@ -703,7 +703,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a callback previsously added by [addUndoRedoInspectorHookCallback].
    */
-  public open fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
+  public fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
@@ -712,7 +712,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Queue save the project's editor layout.
    */
-  public open fun queueSaveLayout(): Unit {
+  public fun queueSaveLayout(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_QUEUE_SAVE_LAYOUT, NIL)
   }
@@ -720,7 +720,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Registers a custom translation parser plugin for extracting translatable strings from custom files.
    */
-  public open fun addTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
+  public fun addTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TRANSLATION_PARSER_PLUGIN, NIL)
@@ -729,7 +729,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a custom translation parser plugin registered by [addTranslationParserPlugin].
    */
-  public open fun removeTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
+  public fun removeTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TRANSLATION_PARSER_PLUGIN, NIL)
@@ -744,8 +744,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * See [addInspectorPlugin] for an example of how to register a plugin.
    */
-  public open fun addImportPlugin(importer: EditorImportPlugin, firstPriority: Boolean = false):
-      Unit {
+  public fun addImportPlugin(importer: EditorImportPlugin, firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to importer, BOOL to firstPriority)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_IMPORT_PLUGIN, NIL)
   }
@@ -753,7 +752,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes an import plugin registered by [addImportPlugin].
    */
-  public open fun removeImportPlugin(importer: EditorImportPlugin): Unit {
+  public fun removeImportPlugin(importer: EditorImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to importer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_IMPORT_PLUGIN,
         NIL)
@@ -764,7 +763,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * If `first_priority` is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
-  public open fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
+  public fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter, BOOL to firstPriority)
     TransferContext.callMethod(rawPtr,
@@ -774,8 +773,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a scene format importer registered by [addSceneFormatImporterPlugin].
    */
-  public open fun removeSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter):
-      Unit {
+  public fun removeSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_FORMAT_IMPORTER_PLUGIN, NIL)
@@ -786,7 +784,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * If `first_priority` is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
-  public open fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
+  public fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin, BOOL to firstPriority)
     TransferContext.callMethod(rawPtr,
@@ -796,8 +794,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Remove the [godot.EditorScenePostImportPlugin], added with [addScenePostImportPlugin].
    */
-  public open fun removeScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin):
-      Unit {
+  public fun removeScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_POST_IMPORT_PLUGIN, NIL)
@@ -808,7 +805,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * See [addInspectorPlugin] for an example of how to register a plugin.
    */
-  public open fun addExportPlugin(plugin: EditorExportPlugin): Unit {
+  public fun addExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_EXPORT_PLUGIN, NIL)
   }
@@ -816,7 +813,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes an export plugin registered by [addExportPlugin].
    */
-  public open fun removeExportPlugin(plugin: EditorExportPlugin): Unit {
+  public fun removeExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_EXPORT_PLUGIN,
         NIL)
@@ -827,7 +824,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * See [addInspectorPlugin] for an example of how to register a plugin.
    */
-  public open fun addSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
+  public fun addSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SPATIAL_GIZMO_PLUGIN, NIL)
@@ -836,7 +833,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes a gizmo plugin registered by [addSpatialGizmoPlugin].
    */
-  public open fun removeSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
+  public fun removeSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SPATIAL_GIZMO_PLUGIN, NIL)
@@ -871,7 +868,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [/codeblocks]
    */
-  public open fun addInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
+  public fun addInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_INSPECTOR_PLUGIN,
         NIL)
@@ -880,7 +877,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes an inspector plugin registered by [addImportPlugin]
    */
-  public open fun removeInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
+  public fun removeInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_INSPECTOR_PLUGIN, NIL)
@@ -889,7 +886,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Use this method if you always want to receive inputs from 3D view screen inside [_forward3dGuiInput]. It might be especially usable if your plugin will want to use raycast in the scene.
    */
-  public open fun setInputEventForwardingAlwaysEnabled(): Unit {
+  public fun setInputEventForwardingAlwaysEnabled(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_INPUT_EVENT_FORWARDING_ALWAYS_ENABLED, NIL)
@@ -898,7 +895,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Enables calling of [_forwardCanvasForceDrawOverViewport] for the 2D editor and [_forward3dForceDrawOverViewport] for the 3D editor when their viewports are updated. You need to call this method only once and it will work permanently for this plugin.
    */
-  public open fun setForceDrawOverForwardingEnabled(): Unit {
+  public fun setForceDrawOverForwardingEnabled(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_FORCE_DRAW_OVER_FORWARDING_ENABLED, NIL)
@@ -907,7 +904,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Returns the [godot.EditorInterface] object that gives you control over Godot editor's window and its functionalities.
    */
-  public open fun getEditorInterface(): EditorInterface? {
+  public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EDITOR_INTERFACE,
         OBJECT)
@@ -921,7 +918,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
-  public open fun getScriptCreateDialog(): ScriptCreateDialog? {
+  public fun getScriptCreateDialog(): ScriptCreateDialog? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_SCRIPT_CREATE_DIALOG, OBJECT)
@@ -931,7 +928,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Adds a [godot.Script] as debugger plugin to the Debugger. The script must extend [godot.EditorDebuggerPlugin].
    */
-  public open fun addDebuggerPlugin(script: Script): Unit {
+  public fun addDebuggerPlugin(script: Script): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_DEBUGGER_PLUGIN,
         NIL)
@@ -940,7 +937,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Removes the debugger plugin with given script from the Debugger.
    */
-  public open fun removeDebuggerPlugin(script: Script): Unit {
+  public fun removeDebuggerPlugin(script: Script): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_DEBUGGER_PLUGIN,
         NIL)

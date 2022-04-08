@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -126,7 +126,7 @@ public open class Tween : RefCounted() {
    * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * 				```
    */
-  public open fun tweenProperty(
+  public fun tweenProperty(
     _object: Object,
     `property`: NodePath,
     finalVal: Any,
@@ -160,7 +160,7 @@ public open class Tween : RefCounted() {
    * 				tween.tween_interval(2)
    * 				```
    */
-  public open fun tweenInterval(time: Double): IntervalTweener? {
+  public fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_INTERVAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?
@@ -184,7 +184,7 @@ public open class Tween : RefCounted() {
    * 				tween.tween_callback($Sprite.set_modulate.bind(Color.blue)).set_delay(2)
    * 				```
    */
-  public open fun tweenCallback(callback: Callable): CallbackTweener? {
+  public fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_CALLBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?
@@ -211,7 +211,7 @@ public open class Tween : RefCounted() {
    * 				    $Label.text = "Counting " + str(value)
    * 				```
    */
-  public open fun tweenMethod(
+  public fun tweenMethod(
     method: Callable,
     from: Any,
     to: Any,
@@ -229,7 +229,7 @@ public open class Tween : RefCounted() {
    *
    * **Note:** The [godot.Tween] will become invalid after finished, but you can call [stop] after the step, to keep it and reset.
    */
-  public open fun customStep(delta: Double): Boolean {
+  public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CUSTOM_STEP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -238,7 +238,7 @@ public open class Tween : RefCounted() {
   /**
    * Stops the tweening and resets the [godot.Tween] to its initial state. This will not remove any appended [godot.Tweener]s.
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_STOP, NIL)
   }
@@ -246,7 +246,7 @@ public open class Tween : RefCounted() {
   /**
    * Pauses the tweening. The animation can be resumed by using [play].
    */
-  public open fun pause(): Unit {
+  public fun pause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PAUSE, NIL)
   }
@@ -254,7 +254,7 @@ public open class Tween : RefCounted() {
   /**
    * Resumes a paused or stopped [godot.Tween].
    */
-  public open fun play(): Unit {
+  public fun play(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PLAY, NIL)
   }
@@ -262,7 +262,7 @@ public open class Tween : RefCounted() {
   /**
    * Aborts all tweening operations and invalidates the [godot.Tween].
    */
-  public open fun kill(): Unit {
+  public fun kill(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_KILL, NIL)
   }
@@ -270,7 +270,7 @@ public open class Tween : RefCounted() {
   /**
    * Returns whether the [godot.Tween] is currently running, i.e. it wasn't paused and it's not finished.
    */
-  public open fun isRunning(): Boolean {
+  public fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_RUNNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -279,7 +279,7 @@ public open class Tween : RefCounted() {
   /**
    * Returns whether the [godot.Tween] is valid. A valid [godot.Tween] is a [godot.Tween] contained by the scene tree (i.e. the array from [godot.SceneTree.getProcessedTweens] will contain this [godot.Tween]). [godot.Tween] might become invalid when it has finished tweening or was killed, also when created with `Tween.new()`. Invalid [godot.Tween] can't have [godot.Tweener]s appended, because it can't animate them. You can however still use [interpolateValue].
    */
-  public open fun isValid(): Boolean {
+  public fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_VALID, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -290,7 +290,7 @@ public open class Tween : RefCounted() {
    *
    * For a shorter way to create and bind a [godot.Tween], you can use [godot.Node.createTween].
    */
-  public open fun bindNode(node: Node): Tween? {
+  public fun bindNode(node: Node): Tween? {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_BIND_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -301,7 +301,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
-  public open fun setProcessMode(mode: Tween.TweenProcessMode): Tween? {
+  public fun setProcessMode(mode: Tween.TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -312,7 +312,7 @@ public open class Tween : RefCounted() {
    *
    * Default value is [TWEEN_PAUSE_BOUND].
    */
-  public open fun setPauseMode(mode: Tween.TweenPauseMode): Tween? {
+  public fun setPauseMode(mode: Tween.TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -321,7 +321,7 @@ public open class Tween : RefCounted() {
   /**
    * If `parallel` is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
    */
-  public open fun setParallel(parallel: Boolean = true): Tween? {
+  public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -334,7 +334,7 @@ public open class Tween : RefCounted() {
    *
    * **Warning:** Make sure to always add some duration/delay when using infinite loops. 0-duration looped animations (e.g. single [godot.CallbackTweener] with no delay or [godot.PropertyTweener] with invalid node) are equivalent to infinite `while` loops and will freeze your game. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
-  public open fun setLoops(loops: Long = 0): Tween? {
+  public fun setLoops(loops: Long = 0): Tween? {
     TransferContext.writeArguments(LONG to loops)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -343,7 +343,7 @@ public open class Tween : RefCounted() {
   /**
    * Scales the speed of tweening. This affects all [godot.Tweener]s and their delays.
    */
-  public open fun setSpeedScale(speed: Double): Tween? {
+  public fun setSpeedScale(speed: Double): Tween? {
     TransferContext.writeArguments(DOUBLE to speed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_SPEED_SCALE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -352,7 +352,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default transition type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public open fun setTrans(trans: Tween.TransitionType): Tween? {
+  public fun setTrans(trans: Tween.TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -361,7 +361,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default ease type for [godot.PropertyTweener]s and [godot.MethodTweener]s animated by this [godot.Tween].
    */
-  public open fun setEase(ease: Tween.EaseType): Tween? {
+  public fun setEase(ease: Tween.EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -381,7 +381,7 @@ public open class Tween : RefCounted() {
    *
    * You can make the [godot.Tween] parallel by default by using [setParallel].
    */
-  public open fun parallel(): Tween? {
+  public fun parallel(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PARALLEL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -397,7 +397,7 @@ public open class Tween : RefCounted() {
    * 				tween.chain().tween_property(...) # Will run after two above are finished.
    * 				```
    */
-  public open fun chain(): Tween? {
+  public fun chain(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CHAIN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
@@ -416,7 +416,7 @@ public open class Tween : RefCounted() {
    *
    * **Note:** If `duration` is equal to `0`, the method will always return the final value, regardless of `elapsed_time` provided.
    */
-  public open fun interpolateValue(
+  public fun interpolateValue(
     initialValue: Any,
     deltaValue: Any,
     elapsedTime: Double,

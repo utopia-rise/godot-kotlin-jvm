@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public object Geometry2D : Object() {
   /**
    * Returns `true` if `point` is inside the circle or if it's located exactly *on* the circle's boundary, otherwise returns `false`.
    */
-  public open fun isPointInCircle(
+  public fun isPointInCircle(
     point: Vector2,
     circlePosition: Vector2,
     circleRadius: Double
@@ -58,7 +58,7 @@ public object Geometry2D : Object() {
   /**
    * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
    */
-  public open fun segmentIntersectsSegment(
+  public fun segmentIntersectsSegment(
     fromA: Vector2,
     toA: Vector2,
     fromB: Vector2,
@@ -75,7 +75,7 @@ public object Geometry2D : Object() {
    *
    * **Note:** The lines are specified using direction vectors, not end points.
    */
-  public open fun lineIntersectsLine(
+  public fun lineIntersectsLine(
     fromA: Vector2,
     dirA: Vector2,
     fromB: Vector2,
@@ -90,7 +90,7 @@ public object Geometry2D : Object() {
   /**
    * Given the two 2D segments (`p1`, `q1`) and (`p2`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.PackedVector2Array] that contains this point on (`p1`, `q1`) as well the accompanying point on (`p2`, `q2`).
    */
-  public open fun getClosestPointsBetweenSegments(
+  public fun getClosestPointsBetweenSegments(
     p1: Vector2,
     q1: Vector2,
     p2: Vector2,
@@ -106,7 +106,7 @@ public object Geometry2D : Object() {
   /**
    * Returns the 2D point on the 2D segment (`s1`, `s2`) that is closest to `point`. The returned point will always be inside the specified segment.
    */
-  public open fun getClosestPointToSegment(
+  public fun getClosestPointToSegment(
     point: Vector2,
     s1: Vector2,
     s2: Vector2
@@ -120,7 +120,7 @@ public object Geometry2D : Object() {
   /**
    * Returns the 2D point on the 2D line defined by (`s1`, `s2`) that is closest to `point`. The returned point can be inside the segment (`s1`, `s2`) or outside of it, i.e. somewhere on the line extending from the segment.
    */
-  public open fun getClosestPointToSegmentUncapped(
+  public fun getClosestPointToSegmentUncapped(
     point: Vector2,
     s1: Vector2,
     s2: Vector2
@@ -134,7 +134,7 @@ public object Geometry2D : Object() {
   /**
    * Returns if `point` is inside the triangle specified by `a`, `b` and `c`.
    */
-  public open fun pointIsInsideTriangle(
+  public fun pointIsInsideTriangle(
     point: Vector2,
     a: Vector2,
     b: Vector2,
@@ -149,7 +149,7 @@ public object Geometry2D : Object() {
   /**
    * Returns `true` if `polygon`'s vertices are ordered in clockwise order, otherwise returns `false`.
    */
-  public open fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
+  public fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POLYGON_CLOCKWISE,
         BOOL)
@@ -159,7 +159,7 @@ public object Geometry2D : Object() {
   /**
    * Returns `true` if `point` is inside `polygon` or if it's located exactly *on* polygon's boundary, otherwise returns `false`.
    */
-  public open fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
+  public fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_POLYGON,
         BOOL)
@@ -169,7 +169,7 @@ public object Geometry2D : Object() {
   /**
    * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
    */
-  public open fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
+  public fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_POLYGON,
         PACKED_INT_32_ARRAY)
@@ -179,7 +179,7 @@ public object Geometry2D : Object() {
   /**
    * Triangulates the area specified by discrete set of `points` such that no point is inside the circumcircle of any resulting triangle. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `points` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
    */
-  public open fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
+  public fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_DELAUNAY,
         PACKED_INT_32_ARRAY)
@@ -189,7 +189,7 @@ public object Geometry2D : Object() {
   /**
    * Given an array of [godot.core.Vector2]s, returns the convex hull as a list of points in counterclockwise order. The last point is the same as the first one.
    */
-  public open fun convexHull(points: PackedVector2Array): PackedVector2Array {
+  public fun convexHull(points: PackedVector2Array): PackedVector2Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CONVEX_HULL,
         PACKED_VECTOR2_ARRAY)
@@ -201,7 +201,7 @@ public object Geometry2D : Object() {
    *
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  public open fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
+  public fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MERGE_POLYGONS, ARRAY)
@@ -213,7 +213,7 @@ public object Geometry2D : Object() {
    *
    * If `polygon_b` is enclosed by `polygon_a`, returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
    */
-  public open fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
+  public fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYGONS, ARRAY)
@@ -225,7 +225,7 @@ public object Geometry2D : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  public open fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
+  public fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYGONS,
@@ -238,7 +238,7 @@ public object Geometry2D : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  public open fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
+  public fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_EXCLUDE_POLYGONS, ARRAY)
@@ -248,8 +248,8 @@ public object Geometry2D : Object() {
   /**
    * Clips `polyline` against `polygon` and returns an array of clipped polylines. This performs [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
    */
-  public open fun clipPolylineWithPolygon(polyline: PackedVector2Array,
-      polygon: PackedVector2Array): VariantArray<Any?> {
+  public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
+      VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYLINE_WITH_POLYGON, ARRAY)
@@ -259,7 +259,7 @@ public object Geometry2D : Object() {
   /**
    * Intersects `polyline` with `polygon` and returns an array of intersected polylines. This performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
    */
-  public open fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
+  public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
@@ -306,7 +306,7 @@ public object Geometry2D : Object() {
    *
    * [/codeblocks]
    */
-  public open fun offsetPolygon(
+  public fun offsetPolygon(
     polygon: PackedVector2Array,
     delta: Double,
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
@@ -325,7 +325,7 @@ public object Geometry2D : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  public open fun offsetPolyline(
+  public fun offsetPolyline(
     polyline: PackedVector2Array,
     delta: Double,
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
@@ -339,7 +339,7 @@ public object Geometry2D : Object() {
   /**
    * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a vector of [godot.core.Vector2] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.core.Vector2].
    */
-  public open fun makeAtlas(sizes: PackedVector2Array): Dictionary<Any?, Any?> {
+  public fun makeAtlas(sizes: PackedVector2Array): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MAKE_ATLAS, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>

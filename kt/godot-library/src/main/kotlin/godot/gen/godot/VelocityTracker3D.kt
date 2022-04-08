@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VelocityTracker3D : RefCounted() {
   /**
    *
    */
-  public open var trackPhysicsStep: Boolean
+  public var trackPhysicsStep: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -44,7 +44,7 @@ public open class VelocityTracker3D : RefCounted() {
   /**
    *
    */
-  public open fun updatePosition(position: Vector3): Unit {
+  public fun updatePosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_UPDATE_POSITION,
         NIL)
@@ -53,7 +53,7 @@ public open class VelocityTracker3D : RefCounted() {
   /**
    *
    */
-  public open fun getTrackedLinearVelocity(): Vector3 {
+  public fun getTrackedLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_GET_TRACKED_LINEAR_VELOCITY, VECTOR3)
@@ -63,7 +63,7 @@ public open class VelocityTracker3D : RefCounted() {
   /**
    *
    */
-  public open fun reset(position: Vector3): Unit {
+  public fun reset(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_RESET, NIL)
   }

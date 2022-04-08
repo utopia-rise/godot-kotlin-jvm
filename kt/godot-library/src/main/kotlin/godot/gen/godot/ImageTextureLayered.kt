@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   /**
    *
    */
-  public open fun createFromImages(images: VariantArray<Any?>): GodotError {
+  public fun createFromImages(images: VariantArray<Any?>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)
@@ -43,7 +43,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   /**
    *
    */
-  public open fun updateLayer(image: Image, layer: Long): Unit {
+  public fun updateLayer(image: Image, layer: Long): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_UPDATE_LAYER,
         NIL)

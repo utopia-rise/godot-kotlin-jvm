@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -47,28 +47,28 @@ public open class Texture2D : Texture() {
    *
    */
   public open fun _getWidth(): Long {
-    throw NotImplementedError("_get_width·is·not·implemented·for·Texture2D")
+    throw NotImplementedError("_get_width is not implemented for Texture2D")
   }
 
   /**
    *
    */
   public open fun _getHeight(): Long {
-    throw NotImplementedError("_get_height·is·not·implemented·for·Texture2D")
+    throw NotImplementedError("_get_height is not implemented for Texture2D")
   }
 
   /**
    *
    */
   public open fun _isPixelOpaque(x: Long, y: Long): Boolean {
-    throw NotImplementedError("_is_pixel_opaque·is·not·implemented·for·Texture2D")
+    throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
   }
 
   /**
    *
    */
   public open fun _hasAlpha(): Boolean {
-    throw NotImplementedError("_has_alpha·is·not·implemented·for·Texture2D")
+    throw NotImplementedError("_has_alpha is not implemented for Texture2D")
   }
 
   /**
@@ -110,7 +110,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture width.
    */
-  public open fun getWidth(): Long {
+  public fun getWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -119,7 +119,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture height.
    */
-  public open fun getHeight(): Long {
+  public fun getHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -128,7 +128,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture size.
    */
-  public open fun getSize(): Vector2 {
+  public fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -137,7 +137,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns `true` if this [godot.Texture2D] has an alpha channel.
    */
-  public open fun hasAlpha(): Boolean {
+  public fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_HAS_ALPHA, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -146,7 +146,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API at the specified `position`.
    */
-  public open fun draw(
+  public fun draw(
     canvasItem: RID,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -159,7 +159,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
    */
-  public open fun drawRect(
+  public fun drawRect(
     canvasItem: RID,
     rect: Rect2,
     tile: Boolean,
@@ -173,7 +173,7 @@ public open class Texture2D : Texture() {
   /**
    * Draws a part of the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
    */
-  public open fun drawRectRegion(
+  public fun drawRectRegion(
     canvasItem: RID,
     rect: Rect2,
     srcRect: Rect2,
@@ -188,7 +188,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D]. [godot.Image]s can be accessed and manipulated directly.
    */
-  public open fun getImage(): Image? {
+  public fun getImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_IMAGE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?

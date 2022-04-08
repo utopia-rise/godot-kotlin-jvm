@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Poll the connection to check for incoming packets. Call this frequently to update the status and keep the connection working.
    */
-  public open fun poll(): Unit {
+  public fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_POLL, NIL)
   }
@@ -49,7 +49,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Connects a `peer` beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). If `validate_certs` is `true`, [godot.PacketPeerDTLS] will validate that the certificate presented by the remote peer and match it with the `for_hostname` argument. You can specify a custom [godot.X509Certificate] to use for validation via the `valid_certificate` argument.
    */
-  public open fun connectToPeer(
+  public fun connectToPeer(
     packetPeer: PacketPeerUDP,
     validateCerts: Boolean = true,
     forHostname: String = "",
@@ -64,7 +64,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Returns the status of the connection. See [enum Status] for values.
    */
-  public open fun getStatus(): PacketPeerDTLS.Status {
+  public fun getStatus(): PacketPeerDTLS.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_GET_STATUS, LONG)
     return PacketPeerDTLS.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -73,7 +73,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Disconnects this peer, terminating the DTLS session.
    */
-  public open fun disconnectFromPeer(): Unit {
+  public fun disconnectFromPeer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_DISCONNECT_FROM_PEER,
         NIL)

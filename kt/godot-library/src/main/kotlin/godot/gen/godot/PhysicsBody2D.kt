@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -47,7 +47,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
    */
-  public open fun moveAndCollide(
+  public fun moveAndCollide(
     distance: Vector2,
     testOnly: Boolean = false,
     safeMargin: Double = 0.08
@@ -67,7 +67,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    *
    * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
    */
-  public open fun testMove(
+  public fun testMove(
     from: Transform2D,
     distance: Vector2,
     collision: KinematicCollision2D? = null,
@@ -81,7 +81,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public open fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS, ARRAY)
@@ -91,7 +91,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public open fun addCollisionExceptionWith(body: Node): Unit {
+  public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_ADD_COLLISION_EXCEPTION_WITH, NIL)
@@ -100,7 +100,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public open fun removeCollisionExceptionWith(body: Node): Unit {
+  public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)

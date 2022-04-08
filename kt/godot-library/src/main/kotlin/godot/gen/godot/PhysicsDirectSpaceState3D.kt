@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -46,7 +46,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
    */
-  public open fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Long = 32):
+  public fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -71,7 +71,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    */
-  public open fun intersectRay(parameters: PhysicsRayQueryParameters3D): Dictionary<Any?, Any?> {
+  public fun intersectRay(parameters: PhysicsRayQueryParameters3D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_RAY, DICTIONARY)
@@ -93,7 +93,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
-  public open fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
+  public fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -108,7 +108,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** Any [godot.Shape3D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [collideShape] to determine the [godot.Shape3D]s that the shape is already colliding with.
    */
-  public open fun castMotion(parameters: PhysicsShapeQueryParameters3D): VariantArray<Any?> {
+  public fun castMotion(parameters: PhysicsShapeQueryParameters3D): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_CAST_MOTION, ARRAY)
@@ -122,7 +122,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
-  public open fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
+  public fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -149,7 +149,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
-  public open fun getRestInfo(parameters: PhysicsShapeQueryParameters3D): Dictionary<Any?, Any?> {
+  public fun getRestInfo(parameters: PhysicsShapeQueryParameters3D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_GET_REST_INFO, DICTIONARY)

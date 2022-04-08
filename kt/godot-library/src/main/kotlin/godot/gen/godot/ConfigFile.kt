@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -201,7 +201,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
    */
-  public open fun setValue(
+  public fun setValue(
     section: String,
     key: String,
     `value`: Any
@@ -213,7 +213,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback `default` value. If `default` is not specified or set to `null`, an error is also raised.
    */
-  public open fun getValue(
+  public fun getValue(
     section: String,
     key: String,
     default: Any? = null
@@ -226,7 +226,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns `true` if the specified section exists.
    */
-  public open fun hasSection(section: String): Boolean {
+  public fun hasSection(section: String): Boolean {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -235,7 +235,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns `true` if the specified section-key pair exists.
    */
-  public open fun hasSectionKey(section: String, key: String): Boolean {
+  public fun hasSectionKey(section: String, key: String): Boolean {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION_KEY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -244,7 +244,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns an array of all defined section identifiers.
    */
-  public open fun getSections(): PackedStringArray {
+  public fun getSections(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
         PACKED_STRING_ARRAY)
@@ -254,7 +254,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
    */
-  public open fun getSectionKeys(section: String): PackedStringArray {
+  public fun getSectionKeys(section: String): PackedStringArray {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
         PACKED_STRING_ARRAY)
@@ -264,7 +264,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
    */
-  public open fun eraseSection(section: String): Unit {
+  public fun eraseSection(section: String): Unit {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL)
   }
@@ -272,7 +272,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
    */
-  public open fun eraseSectionKey(section: String, key: String): Unit {
+  public fun eraseSectionKey(section: String, key: String): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY, NIL)
   }
@@ -282,7 +282,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun load(path: String): GodotError {
+  public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -293,7 +293,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun parse(`data`: String): GodotError {
+  public fun parse(`data`: String): GodotError {
     TransferContext.writeArguments(STRING to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_PARSE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -304,7 +304,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun save(path: String): GodotError {
+  public fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -315,7 +315,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
+  public fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -326,7 +326,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun loadEncryptedPass(path: String, password: String): GodotError {
+  public fun loadEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
         LONG)
@@ -338,7 +338,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
+  public fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -349,7 +349,7 @@ public open class ConfigFile : RefCounted() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun saveEncryptedPass(path: String, password: String): GodotError {
+  public fun saveEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED_PASS,
         LONG)
@@ -359,7 +359,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Removes the entire contents of the config.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
   }

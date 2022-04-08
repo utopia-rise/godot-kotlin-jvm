@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -57,7 +57,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The distance threshold before a target is considered to be reached. This will allow an agent to not have to hit a point on the path exactly, but in the area.
    */
-  public open var targetDesiredDistance: Double
+  public var targetDesiredDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -73,7 +73,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The radius of the agent.
    */
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_RADIUS,
@@ -88,7 +88,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The agent height offset to match the navigation mesh height.
    */
-  public open var agentHeightOffset: Double
+  public var agentHeightOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -104,7 +104,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The distance to search for other agents.
    */
-  public open var neighborDist: Double
+  public var neighborDist: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +120,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The maximum number of neighbors for the agent to consider.
    */
-  public open var maxNeighbors: Long
+  public var maxNeighbors: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -136,7 +136,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. Must be positive.
    */
-  public open var timeHorizon: Double
+  public var timeHorizon: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -152,7 +152,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The maximum speed that an agent can move.
    */
-  public open var maxSpeed: Double
+  public var maxSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_MAX_SPEED,
@@ -168,7 +168,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * The maximum distance the agent is allowed away from the ideal path to the final location. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
    */
-  public open var pathMaxDistance: Double
+  public var pathMaxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -184,7 +184,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Ignores collisions on the Y axis. Must be true to move on a horizontal plane.
    */
-  public open var ignoreY: Boolean
+  public var ignoreY: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_IGNORE_Y,
@@ -204,7 +204,7 @@ public open class NavigationAgent3D : Node() {
   /**
    *
    */
-  public open fun getRid(): RID {
+  public fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -213,7 +213,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Sets the user desired final location. This will clear the current navigation path.
    */
-  public open fun setTargetLocation(location: Vector3): Unit {
+  public fun setTargetLocation(location: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to location)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_TARGET_LOCATION, NIL)
@@ -222,7 +222,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns the user defined [godot.core.Vector3] after setting the target location.
    */
-  public open fun getTargetLocation(): Vector3 {
+  public fun getTargetLocation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_TARGET_LOCATION, VECTOR3)
@@ -232,7 +232,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns a [godot.core.Vector3] in global coordinates, that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the origin of the agent's parent.
    */
-  public open fun getNextLocation(): Vector3 {
+  public fun getNextLocation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_NEXT_LOCATION,
         VECTOR3)
@@ -242,7 +242,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns the distance to the target location, using the agent's global position. The user must set the target location with [setTargetLocation] in order for this to be accurate.
    */
-  public open fun distanceToTarget(): Double {
+  public fun distanceToTarget(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_DISTANCE_TO_TARGET, DOUBLE)
@@ -252,7 +252,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Sends the passed in velocity to the collision avoidance algorithm. It will adjust the velocity to avoid collisions. Once the adjustment to the velocity is complete, it will emit the [velocityComputed] signal.
    */
-  public open fun setVelocity(velocity: Vector3): Unit {
+  public fun setVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_VELOCITY, NIL)
   }
@@ -260,7 +260,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns the path from start to finish in global coordinates.
    */
-  public open fun getNavPath(): PackedVector3Array {
+  public fun getNavPath(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_NAV_PATH,
         PACKED_VECTOR3_ARRAY)
@@ -270,7 +270,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns which index the agent is currently on in the navigation path's [godot.PackedVector3Array].
    */
-  public open fun getNavPathIndex(): Long {
+  public fun getNavPathIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_NAV_PATH_INDEX, LONG)
@@ -280,7 +280,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns true if the target location is reached. The target location is set using [setTargetLocation]. It may not always be possible to reach the target location. It should always be possible to reach the final location though. See [getFinalLocation].
    */
-  public open fun isTargetReached(): Boolean {
+  public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_IS_TARGET_REACHED,
         BOOL)
@@ -290,7 +290,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns true if the target location is reachable. The target location is set using [setTargetLocation].
    */
-  public open fun isTargetReachable(): Boolean {
+  public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_IS_TARGET_REACHABLE, BOOL)
@@ -300,7 +300,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns true if the navigation path's final location has been reached.
    */
-  public open fun isNavigationFinished(): Boolean {
+  public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_IS_NAVIGATION_FINISHED, BOOL)
@@ -310,7 +310,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * Returns the reachable final location in global coordinates. This can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
    */
-  public open fun getFinalLocation(): Vector3 {
+  public fun getFinalLocation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_FINAL_LOCATION, VECTOR3)

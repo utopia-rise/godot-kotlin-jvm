@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -130,7 +130,7 @@ public open class Control : CanvasItem() {
   /**
    * Enables whether rendering of [godot.CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input.
    */
-  public open var clipContents: Boolean
+  public var clipContents: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_CLIPPING_CONTENTS,
@@ -142,10 +142,7 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_CLIP_CONTENTS, NIL)
     }
 
-  /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
-   */
-  public open var minimumSize: Vector2
+  public var customMinimumSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CUSTOM_MINIMUM_SIZE,
@@ -161,7 +158,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public open var layoutDirection: Long
+  public var layoutDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_LAYOUT_DIRECTION,
@@ -176,7 +173,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public open var growHorizontal: Long
+  public var growHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_GROW_DIRECTION,
@@ -191,7 +188,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
    */
-  public open var growVertical: Long
+  public var growVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_GROW_DIRECTION,
@@ -206,7 +203,7 @@ public open class Control : CanvasItem() {
   /**
    * The size of the node's bounding rectangle, in pixels. [godot.Container] nodes update this property automatically.
    */
-  public open val size: Vector2
+  public val size: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SIZE, VECTOR2)
@@ -216,7 +213,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's position, relative to its parent. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
    */
-  public open val position: Vector2
+  public val position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_POSITION, VECTOR2)
@@ -226,7 +223,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's global position, relative to the world (usually to the top-left corner of the window).
    */
-  public open val globalPosition: Vector2
+  public val globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_GLOBAL_POSITION,
@@ -237,7 +234,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's position.
    */
-  public open var rotation: Double
+  public var rotation: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ROTATION, DOUBLE)
@@ -255,7 +252,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
-  public open var scale: Vector2
+  public var scale: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SCALE, VECTOR2)
@@ -269,7 +266,7 @@ public open class Control : CanvasItem() {
   /**
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
    */
-  public open var pivotOffset: Vector2
+  public var pivotOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_PIVOT_OFFSET, VECTOR2)
@@ -283,7 +280,7 @@ public open class Control : CanvasItem() {
   /**
    * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
-  public open var sizeFlagsHorizontal: Long
+  public var sizeFlagsHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_SIZE_FLAGS, LONG)
@@ -297,7 +294,7 @@ public open class Control : CanvasItem() {
   /**
    * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
    */
-  public open var sizeFlagsVertical: Long
+  public var sizeFlagsVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_SIZE_FLAGS, LONG)
@@ -311,7 +308,7 @@ public open class Control : CanvasItem() {
   /**
    * If the node and at least one of its neighbors uses the [SIZE_EXPAND] size flag, the parent [godot.Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space.
    */
-  public open var sizeFlagsStretchRatio: Double
+  public var sizeFlagsStretchRatio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_STRETCH_RATIO, DOUBLE)
@@ -327,7 +324,7 @@ public open class Control : CanvasItem() {
    *
    * Also decides if the node's strings should be parsed for POT generation.
    */
-  public open var autoTranslate: Boolean
+  public var autoTranslate: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_AUTO_TRANSLATING, BOOL)
@@ -379,7 +376,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open var hintTooltip: String
+  public var hintTooltip: String
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property hintTooltip: has no getter")
@@ -394,7 +391,7 @@ public open class Control : CanvasItem() {
    *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
    */
-  public open var focusNext: NodePath
+  public var focusNext: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEXT, NODE_PATH)
@@ -410,7 +407,7 @@ public open class Control : CanvasItem() {
    *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
    */
-  public open var focusPrevious: NodePath
+  public var focusPrevious: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_PREVIOUS,
@@ -425,7 +422,7 @@ public open class Control : CanvasItem() {
   /**
    * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard signals.
    */
-  public open var focusMode: Long
+  public var focusMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_MODE, LONG)
@@ -439,7 +436,7 @@ public open class Control : CanvasItem() {
   /**
    * Controls whether the control will be able to receive mouse button input events through [_guiInput] and how these events should be handled. Also controls whether the control can receive the [mouseEntered], and [mouseExited] signals. See the constants to learn what each does.
    */
-  public open var mouseFilter: Long
+  public var mouseFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MOUSE_FILTER, LONG)
@@ -455,7 +452,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
-  public open var mouseDefaultCursorShape: Long
+  public var mouseDefaultCursorShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_DEFAULT_CURSOR_SHAPE,
@@ -471,7 +468,7 @@ public open class Control : CanvasItem() {
   /**
    * The [godot.Theme] resource this node and all its [godot.Control] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
    */
-  public open var theme: Theme?
+  public var theme: Theme?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME, OBJECT)
@@ -491,7 +488,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** Theme items are looked for in the tree order, from branch to root, where each [godot.Control] node is checked for its [theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
    */
-  public open var themeTypeVariation: String
+  public var themeTypeVariation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_TYPE_VARIATION,
@@ -516,7 +513,7 @@ public open class Control : CanvasItem() {
    * **Note:** If you want to check if a point is inside the control, you can use `get_rect().has_point(point)`.
    */
   public open fun _hasPoint(position: Vector2): Boolean {
-    throw NotImplementedError("_has_point·is·not·implemented·for·Control")
+    throw NotImplementedError("_has_point is not implemented for Control")
   }
 
   /**
@@ -526,7 +523,7 @@ public open class Control : CanvasItem() {
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Any?> {
-    throw NotImplementedError("_structured_text_parser·is·not·implemented·for·Control")
+    throw NotImplementedError("_structured_text_parser is not implemented for Control")
   }
 
   /**
@@ -537,7 +534,7 @@ public open class Control : CanvasItem() {
    * **Note:** This method will not be called when the script is attached to a [godot.Control] node that already overrides its minimum size (e.g. [godot.Label], [godot.Button], [godot.PanelContainer] etc.). It can only be used with most basic GUI nodes, like [godot.Control], [godot.Container], [godot.Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size·is·not·implemented·for·Control")
+    throw NotImplementedError("_get_minimum_size is not implemented for Control")
   }
 
   /**
@@ -578,7 +575,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
-    throw NotImplementedError("_get_drag_data·is·not·implemented·for·Control")
+    throw NotImplementedError("_get_drag_data is not implemented for Control")
   }
 
   /**
@@ -619,7 +616,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any): Boolean {
-    throw NotImplementedError("_can_drop_data·is·not·implemented·for·Control")
+    throw NotImplementedError("_can_drop_data is not implemented for Control")
   }
 
   /**
@@ -744,7 +741,7 @@ public open class Control : CanvasItem() {
    * [/codeblocks]
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
-    throw NotImplementedError("_make_custom_tooltip·is·not·implemented·for·Control")
+    throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
   }
 
   /**
@@ -814,7 +811,7 @@ public open class Control : CanvasItem() {
   /**
    * Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [godot.Node.UnhandledInput] or [godot.Node.UnhandledKeyInput].
    */
-  public open fun acceptEvent(): Unit {
+  public fun acceptEvent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ACCEPT_EVENT, NIL)
   }
@@ -822,7 +819,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the minimum size for this control. See [minimumSize].
    */
-  public open fun getMinimumSize(): Vector2 {
+  public fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MINIMUM_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -831,7 +828,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns combined minimum size from [minimumSize] and [getMinimumSize].
    */
-  public open fun getCombinedMinimumSize(): Vector2 {
+  public fun getCombinedMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_COMBINED_MINIMUM_SIZE,
         VECTOR2)
@@ -843,8 +840,7 @@ public open class Control : CanvasItem() {
    *
    * If `keep_offsets` is `true`, control's position will also be updated.
    */
-  public open fun setAnchorsPreset(preset: Control.LayoutPreset, keepOffsets: Boolean = false):
-      Unit {
+  public fun setAnchorsPreset(preset: Control.LayoutPreset, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to preset.id, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHORS_PRESET, NIL)
   }
@@ -856,7 +852,7 @@ public open class Control : CanvasItem() {
    *
    * Use parameter `margin` to determine the gap between the [godot.Control] and the edges.
    */
-  public open fun setOffsetsPreset(
+  public fun setOffsetsPreset(
     preset: Control.LayoutPreset,
     resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
@@ -868,7 +864,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets both anchor preset and offset preset. See [setAnchorsPreset] and [setOffsetsPreset].
    */
-  public open fun setAnchorsAndOffsetsPreset(
+  public fun setAnchorsAndOffsetsPreset(
     preset: Control.LayoutPreset,
     resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
@@ -885,7 +881,7 @@ public open class Control : CanvasItem() {
    *
    * If `push_opposite_anchor` is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If `push_opposite_anchor` was `false`, the left anchor would get value 0.5.
    */
-  public open fun setAnchor(
+  public fun setAnchor(
     side: Side,
     anchor: Double,
     keepOffset: Boolean = false,
@@ -898,7 +894,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the anchor for the specified [enum Side]. A getter method for [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
    */
-  public open fun getAnchor(side: Side): Double {
+  public fun getAnchor(side: Side): Double {
     TransferContext.writeArguments(LONG to side.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -907,7 +903,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets the offset for the specified [enum Side] to `offset`. A setter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
    */
-  public open fun setOffset(side: Side, offset: Double): Unit {
+  public fun setOffset(side: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to side.id, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_OFFSET, NIL)
   }
@@ -915,7 +911,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the anchor for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
    */
-  public open fun getOffset(offset: Side): Double {
+  public fun getOffset(offset: Side): Double {
     TransferContext.writeArguments(LONG to offset.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -924,7 +920,7 @@ public open class Control : CanvasItem() {
   /**
    * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [setOffset]).
    */
-  public open fun setAnchorAndOffset(
+  public fun setAnchorAndOffset(
     side: Side,
     anchor: Double,
     offset: Double,
@@ -937,7 +933,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets [offsetLeft] and [offsetTop] at the same time. Equivalent of changing [position].
    */
-  public open fun setBegin(position: Vector2): Unit {
+  public fun setBegin(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_BEGIN, NIL)
   }
@@ -945,7 +941,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets [offsetRight] and [offsetBottom] at the same time.
    */
-  public open fun setEnd(position: Vector2): Unit {
+  public fun setEnd(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_END, NIL)
   }
@@ -955,7 +951,7 @@ public open class Control : CanvasItem() {
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
-  public open fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
+  public fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_POSITION, NIL)
   }
@@ -965,7 +961,7 @@ public open class Control : CanvasItem() {
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
-  public open fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
+  public fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to size, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SIZE, NIL)
   }
@@ -973,7 +969,7 @@ public open class Control : CanvasItem() {
   /**
    * Resets the size to [getCombinedMinimumSize]. This is equivalent to calling `set_size(Vector2())` (or any size below the minimum).
    */
-  public open fun resetSize(): Unit {
+  public fun resetSize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_RESET_SIZE, NIL)
   }
@@ -983,7 +979,7 @@ public open class Control : CanvasItem() {
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
-  public open fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
+  public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_GLOBAL_POSITION, NIL)
   }
@@ -991,7 +987,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns [offsetLeft] and [offsetTop]. See also [position].
    */
-  public open fun getBegin(): Vector2 {
+  public fun getBegin(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_BEGIN, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1000,7 +996,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns [offsetRight] and [offsetBottom].
    */
-  public open fun getEnd(): Vector2 {
+  public fun getEnd(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_END, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1009,7 +1005,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the width/height occupied in the parent control.
    */
-  public open fun getParentAreaSize(): Vector2 {
+  public fun getParentAreaSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_PARENT_AREA_SIZE,
         VECTOR2)
@@ -1029,7 +1025,7 @@ public open class Control : CanvasItem() {
    * 				popup_menu.popup()
    * 				```
    */
-  public open fun getScreenPosition(): Vector2 {
+  public fun getScreenPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SCREEN_POSITION,
         VECTOR2)
@@ -1039,7 +1035,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the position and size of the control relative to the top-left corner of the parent Control. See [position] and [size].
    */
-  public open fun getRect(): Rect2 {
+  public fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -1048,7 +1044,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the position and size of the control relative to the top-left corner of the screen. See [position] and [size].
    */
-  public open fun getGlobalRect(): Rect2 {
+  public fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_GLOBAL_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -1057,7 +1053,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if this is the current focused control. See [focusMode].
    */
-  public open fun hasFocus(): Boolean {
+  public fun hasFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_FOCUS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1066,7 +1062,7 @@ public open class Control : CanvasItem() {
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
    */
-  public open fun grabFocus(): Unit {
+  public fun grabFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GRAB_FOCUS, NIL)
   }
@@ -1074,7 +1070,7 @@ public open class Control : CanvasItem() {
   /**
    * Give up the focus. No other control will be able to receive keyboard input.
    */
-  public open fun releaseFocus(): Unit {
+  public fun releaseFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_RELEASE_FOCUS, NIL)
   }
@@ -1082,7 +1078,7 @@ public open class Control : CanvasItem() {
   /**
    * Finds the previous (above in the tree) [godot.Control] that can receive the focus.
    */
-  public open fun findPrevValidFocus(): Control? {
+  public fun findPrevValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_PREV_VALID_FOCUS,
         OBJECT)
@@ -1092,7 +1088,7 @@ public open class Control : CanvasItem() {
   /**
    * Finds the next (below in the tree) [godot.Control] that can receive the focus.
    */
-  public open fun findNextValidFocus(): Control? {
+  public fun findNextValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_NEXT_VALID_FOCUS,
         OBJECT)
@@ -1102,7 +1098,7 @@ public open class Control : CanvasItem() {
   /**
    * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until [endBulkThemeOverride] is called.
    */
-  public open fun beginBulkThemeOverride(): Unit {
+  public fun beginBulkThemeOverride(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_BEGIN_BULK_THEME_OVERRIDE,
         NIL)
@@ -1111,7 +1107,7 @@ public open class Control : CanvasItem() {
   /**
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
-  public open fun endBulkThemeOverride(): Unit {
+  public fun endBulkThemeOverride(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_END_BULK_THEME_OVERRIDE,
         NIL)
@@ -1122,7 +1118,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeIcon].
    */
-  public open fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
+  public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_ICON_OVERRIDE,
         NIL)
@@ -1183,7 +1179,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
+  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_STYLEBOX_OVERRIDE,
         NIL)
@@ -1194,7 +1190,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFont].
    */
-  public open fun addThemeFontOverride(name: StringName, font: Font): Unit {
+  public fun addThemeFontOverride(name: StringName, font: Font): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_FONT_OVERRIDE,
         NIL)
@@ -1205,7 +1201,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFontSize].
    */
-  public open fun addThemeFontSizeOverride(name: StringName, fontSize: Long): Unit {
+  public fun addThemeFontSizeOverride(name: StringName, fontSize: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to fontSize)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_FONT_SIZE_OVERRIDE, NIL)
@@ -1254,7 +1250,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun addThemeColorOverride(name: StringName, color: Color): Unit {
+  public fun addThemeColorOverride(name: StringName, color: Color): Unit {
     TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_COLOR_OVERRIDE,
         NIL)
@@ -1265,7 +1261,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeConstant].
    */
-  public open fun addThemeConstantOverride(name: StringName, constant: Long): Unit {
+  public fun addThemeConstantOverride(name: StringName, constant: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to constant)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_THEME_CONSTANT_OVERRIDE,
         NIL)
@@ -1274,7 +1270,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme icon with the specified `name` previously added by [addThemeIconOverride] or via the Inspector dock.
    */
-  public open fun removeThemeIconOverride(name: StringName): Unit {
+  public fun removeThemeIconOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_ICON_OVERRIDE,
         NIL)
@@ -1283,7 +1279,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme [godot.StyleBox] with the specified `name` previously added by [addThemeStyleboxOverride] or via the Inspector dock.
    */
-  public open fun removeThemeStyleboxOverride(name: StringName): Unit {
+  public fun removeThemeStyleboxOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_STYLEBOX_OVERRIDE, NIL)
@@ -1292,7 +1288,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme [godot.Font] with the specified `name` previously added by [addThemeFontOverride] or via the Inspector dock.
    */
-  public open fun removeThemeFontOverride(name: StringName): Unit {
+  public fun removeThemeFontOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_FONT_OVERRIDE,
         NIL)
@@ -1301,7 +1297,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme font size with the specified `name` previously added by [addThemeFontSizeOverride] or via the Inspector dock.
    */
-  public open fun removeThemeFontSizeOverride(name: StringName): Unit {
+  public fun removeThemeFontSizeOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_FONT_SIZE_OVERRIDE, NIL)
@@ -1310,7 +1306,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme [godot.core.Color] with the specified `name` previously added by [addThemeColorOverride] or via the Inspector dock.
    */
-  public open fun removeThemeColorOverride(name: StringName): Unit {
+  public fun removeThemeColorOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_COLOR_OVERRIDE,
         NIL)
@@ -1319,7 +1315,7 @@ public open class Control : CanvasItem() {
   /**
    * Removes a local override for a theme constant with the specified `name` previously added by [addThemeConstantOverride] or via the Inspector dock.
    */
-  public open fun removeThemeConstantOverride(name: StringName): Unit {
+  public fun removeThemeConstantOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_THEME_CONSTANT_OVERRIDE, NIL)
@@ -1330,8 +1326,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
-      Texture2D? {
+  public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
@@ -1342,8 +1337,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      StyleBox? {
+  public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
@@ -1354,7 +1348,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
+  public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
@@ -1365,7 +1359,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
+  public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_FONT_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1412,7 +1406,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
+  public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -1423,7 +1417,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
+  public fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1434,7 +1428,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeIconOverride].
    */
-  public open fun hasThemeIconOverride(name: StringName): Boolean {
+  public fun hasThemeIconOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_ICON_OVERRIDE,
         BOOL)
@@ -1446,7 +1440,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeStyleboxOverride].
    */
-  public open fun hasThemeStyleboxOverride(name: StringName): Boolean {
+  public fun hasThemeStyleboxOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_STYLEBOX_OVERRIDE,
         BOOL)
@@ -1458,7 +1452,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeFontOverride].
    */
-  public open fun hasThemeFontOverride(name: StringName): Boolean {
+  public fun hasThemeFontOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT_OVERRIDE,
         BOOL)
@@ -1470,7 +1464,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeFontSizeOverride].
    */
-  public open fun hasThemeFontSizeOverride(name: StringName): Boolean {
+  public fun hasThemeFontSizeOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT_SIZE_OVERRIDE, BOOL)
@@ -1482,7 +1476,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeColorOverride].
    */
-  public open fun hasThemeColorOverride(name: StringName): Boolean {
+  public fun hasThemeColorOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_COLOR_OVERRIDE,
         BOOL)
@@ -1494,7 +1488,7 @@ public open class Control : CanvasItem() {
    *
    * See [addThemeConstantOverride].
    */
-  public open fun hasThemeConstantOverride(name: StringName): Boolean {
+  public fun hasThemeConstantOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_CONSTANT_OVERRIDE,
         BOOL)
@@ -1506,7 +1500,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1517,8 +1511,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1529,7 +1522,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1540,8 +1533,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT_SIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1552,7 +1544,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1563,8 +1555,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1575,7 +1566,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeDefaultBaseScale(): Double {
+  public fun getThemeDefaultBaseScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_DEFAULT_BASE_SCALE, DOUBLE)
@@ -1587,7 +1578,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeDefaultFont(): Font? {
+  public fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_DEFAULT_FONT,
         OBJECT)
@@ -1599,7 +1590,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
-  public open fun getThemeDefaultFontSize(): Long {
+  public fun getThemeDefaultFontSize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_DEFAULT_FONT_SIZE,
         LONG)
@@ -1609,7 +1600,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the parent control node.
    */
-  public open fun getParentControl(): Control? {
+  public fun getParentControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_PARENT_CONTROL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
@@ -1618,7 +1609,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the tooltip, which will appear when the cursor is resting over this control. See [hintTooltip].
    */
-  public open fun getTooltip(atPosition: Vector2 = Vector2(0.0, 0.0)): String {
+  public fun getTooltip(atPosition: Vector2 = Vector2(0.0, 0.0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_TOOLTIP, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1627,7 +1618,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
    */
-  public open fun getCursorShape(position: Vector2 = Vector2(0.0, 0.0)): Control.CursorShape {
+  public fun getCursorShape(position: Vector2 = Vector2(0.0, 0.0)): Control.CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)
     return Control.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1636,7 +1627,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets the anchor for the specified [enum Side] to the [godot.Control] at `neighbor` node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
    */
-  public open fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
+  public fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
     TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOR, NIL)
   }
@@ -1644,7 +1635,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the focus neighbor for the specified [enum Side]. A getter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
    */
-  public open fun getFocusNeighbor(side: Side): NodePath {
+  public fun getFocusNeighbor(side: Side): NodePath {
     TransferContext.writeArguments(LONG to side.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOR,
         NODE_PATH)
@@ -1656,7 +1647,7 @@ public open class Control : CanvasItem() {
    *
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive drop data.
    */
-  public open fun forceDrag(`data`: Any, preview: Control): Unit {
+  public fun forceDrag(`data`: Any, preview: Control): Unit {
     TransferContext.writeArguments(ANY to data, OBJECT to preview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FORCE_DRAG, NIL)
   }
@@ -1688,7 +1679,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun grabClickFocus(): Unit {
+  public fun grabClickFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GRAB_CLICK_FOCUS, NIL)
   }
@@ -1812,7 +1803,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun setDragForwarding(target: Object): Unit {
+  public fun setDragForwarding(target: Object): Unit {
     TransferContext.writeArguments(OBJECT to target)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DRAG_FORWARDING, NIL)
   }
@@ -1874,7 +1865,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
-  public open fun setDragPreview(control: Control): Unit {
+  public fun setDragPreview(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DRAG_PREVIEW, NIL)
   }
@@ -1882,7 +1873,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if drag operation is successful.
    */
-  public open fun isDragSuccessful(): Boolean {
+  public fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_DRAG_SUCCESSFUL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1891,7 +1882,7 @@ public open class Control : CanvasItem() {
   /**
    * Moves the mouse cursor to `position`, relative to [position] of this [godot.Control].
    */
-  public open fun warpMouse(position: Vector2): Unit {
+  public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_WARP_MOUSE, NIL)
   }
@@ -1899,7 +1890,7 @@ public open class Control : CanvasItem() {
   /**
    * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [minimumSize] directly calls this method automatically.
    */
-  public open fun updateMinimumSize(): Unit {
+  public fun updateMinimumSize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_UPDATE_MINIMUM_SIZE, NIL)
   }
@@ -1907,7 +1898,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if layout is right-to-left.
    */
-  public open fun isLayoutRtl(): Boolean {
+  public fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_LAYOUT_RTL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

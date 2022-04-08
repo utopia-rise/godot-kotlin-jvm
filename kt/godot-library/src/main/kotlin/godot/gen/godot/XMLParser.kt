@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Reads the next node of the file. This returns an error code.
    */
-  public open fun read(): GodotError {
+  public fun read(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_READ, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -47,7 +47,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the type of the current node. Compare with [enum NodeType] constants.
    */
-  public open fun getNodeType(): XMLParser.NodeType {
+  public fun getNodeType(): XMLParser.NodeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_TYPE, LONG)
     return XMLParser.NodeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -56,7 +56,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the name of the current element node. This will raise an error if the current node type is neither [NODE_ELEMENT] nor [NODE_ELEMENT_END].
    */
-  public open fun getNodeName(): String {
+  public fun getNodeName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -65,7 +65,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the contents of a text node. This will raise an error in any other type of node.
    */
-  public open fun getNodeData(): String {
+  public fun getNodeData(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_DATA, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -74,7 +74,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the byte offset of the current node since the beginning of the file or buffer.
    */
-  public open fun getNodeOffset(): Long {
+  public fun getNodeOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_OFFSET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -83,7 +83,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the amount of attributes in the current element.
    */
-  public open fun getAttributeCount(): Long {
+  public fun getAttributeCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -92,7 +92,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the name of the attribute specified by the index in `idx` argument.
    */
-  public open fun getAttributeName(idx: Long): String {
+  public fun getAttributeName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_NAME,
         STRING)
@@ -102,7 +102,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the value of the attribute specified by the index in `idx` argument.
    */
-  public open fun getAttributeValue(idx: Long): String {
+  public fun getAttributeValue(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_VALUE,
         STRING)
@@ -112,7 +112,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Check whether the current element has a certain attribute.
    */
-  public open fun hasAttribute(name: String): Boolean {
+  public fun hasAttribute(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_HAS_ATTRIBUTE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -121,7 +121,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the value of a certain attribute of the current element by name. This will raise an error if the element has no such attribute.
    */
-  public open fun getNamedAttributeValue(name: String): String {
+  public fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE,
         STRING)
@@ -131,7 +131,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the value of a certain attribute of the current element by name. This will return an empty [godot.String] if the attribute is not found.
    */
-  public open fun getNamedAttributeValueSafe(name: String): String {
+  public fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE_SAFE, STRING)
@@ -141,7 +141,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Check whether the current element is empty (this only works for completely empty tags, e.g. `<element \>`).
    */
-  public open fun isEmpty(): Boolean {
+  public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_IS_EMPTY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -150,7 +150,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Gets the current line in the parsed file (currently not implemented).
    */
-  public open fun getCurrentLine(): Long {
+  public fun getCurrentLine(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_CURRENT_LINE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -159,7 +159,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Skips the current section. If the node contains other elements, they will be ignored and the cursor will go to the closing of the current element.
    */
-  public open fun skipSection(): Unit {
+  public fun skipSection(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SKIP_SECTION, NIL)
   }
@@ -167,7 +167,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Moves the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
    */
-  public open fun seek(position: Long): GodotError {
+  public fun seek(position: Long): GodotError {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SEEK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -176,7 +176,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Opens an XML file for parsing. This returns an error code.
    */
-  public open fun `open`(`file`: String): GodotError {
+  public fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -185,7 +185,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Opens an XML raw buffer for parsing. This returns an error code.
    */
-  public open fun openBuffer(buffer: PackedByteArray): GodotError {
+  public fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

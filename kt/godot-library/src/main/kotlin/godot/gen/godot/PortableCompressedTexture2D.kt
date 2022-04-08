@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Allow overriding the texture size (for 2D only).
    */
-  public open var sizeOverride: Vector2
+  public var sizeOverride: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    *
    * This flag allows to keep the compressed data in memory if you intend it to persist after loading.
    */
-  public open var keepCompressedBuffer: Boolean
+  public var keepCompressedBuffer: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -85,7 +85,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    *
    * If lossy compression is requested, the quality setting can optionally be provided. This maps to Lossy WEBP compression quality.
    */
-  public open fun createFromImage(
+  public fun createFromImage(
     image: Image,
     compressionMode: PortableCompressedTexture2D.CompressionMode,
     normalMap: Boolean = false,
@@ -99,7 +99,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Return the image format used (valid after initialized).
    */
-  public open fun getFormat(): Image.Format {
+  public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_FORMAT, LONG)
@@ -109,7 +109,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Return the compression mode used (valid after initialized).
    */
-  public open fun getCompressionMode(): PortableCompressedTexture2D.CompressionMode {
+  public fun getCompressionMode(): PortableCompressedTexture2D.CompressionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG)

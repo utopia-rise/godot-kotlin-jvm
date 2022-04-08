@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class InputEventAction : InputEvent() {
   /**
    * The action's name. Actions are accessed via this [godot.String].
    */
-  public open var action: StringName
+  public var action: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_GET_ACTION,
@@ -47,7 +47,7 @@ public open class InputEventAction : InputEvent() {
   /**
    * If `true`, the action's state is pressed. If `false`, the action's state is released.
    */
-  public open var pressed: Boolean
+  public var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
@@ -59,7 +59,7 @@ public open class InputEventAction : InputEvent() {
   /**
    * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by specifying how strongly the joypad axis is bent or pressed.
    */
-  public open var strength: Double
+  public var strength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_GET_STRENGTH,

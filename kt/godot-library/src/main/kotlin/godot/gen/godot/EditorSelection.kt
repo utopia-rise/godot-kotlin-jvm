@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class EditorSelection internal constructor() : Object() {
   /**
    * Clear the selection.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
   }
@@ -49,7 +49,7 @@ public open class EditorSelection internal constructor() : Object() {
    *
    * **Note:** The newly selected node will not be automatically edited in the inspector. If you want to edit a node, use [godot.EditorInterface.editNode].
    */
-  public open fun addNode(node: Node): Unit {
+  public fun addNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_ADD_NODE, NIL)
   }
@@ -57,7 +57,7 @@ public open class EditorSelection internal constructor() : Object() {
   /**
    * Removes a node from the selection.
    */
-  public open fun removeNode(node: Node): Unit {
+  public fun removeNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
   }
@@ -65,7 +65,7 @@ public open class EditorSelection internal constructor() : Object() {
   /**
    * Gets the list of selected nodes.
    */
-  public open fun getSelectedNodes(): VariantArray<Any?> {
+  public fun getSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
         ARRAY)
@@ -75,7 +75,7 @@ public open class EditorSelection internal constructor() : Object() {
   /**
    * Gets the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc). This list avoids situations where a node is selected and also child/grandchild.
    */
-  public open fun getTransformableSelectedNodes(): VariantArray<Any?> {
+  public fun getTransformableSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)

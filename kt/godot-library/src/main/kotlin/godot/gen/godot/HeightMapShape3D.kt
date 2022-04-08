@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Width of the height map data. Changing this will resize the [mapData].
    */
-  public open var mapWidth: Long
+  public var mapWidth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_WIDTH,
@@ -44,7 +44,7 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Depth of the height map data. Changing this will resize the [mapData].
    */
-  public open var mapDepth: Long
+  public var mapDepth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DEPTH,
@@ -60,7 +60,7 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Height map data, pool array must be of [mapWidth] * [mapDepth] size.
    */
-  public open var mapData: PackedFloat32Array
+  public var mapData: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DATA,

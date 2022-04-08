@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFState : Resource() {
-  public open var json: Dictionary<Any?, Any?>
+  public var json: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_JSON, DICTIONARY)
@@ -41,7 +41,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_JSON, NIL)
     }
 
-  public open var majorVersion: Long
+  public var majorVersion: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_MAJOR_VERSION, LONG)
@@ -52,7 +52,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_MAJOR_VERSION, NIL)
     }
 
-  public open var minorVersion: Long
+  public var minorVersion: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_MINOR_VERSION, LONG)
@@ -63,7 +63,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_MINOR_VERSION, NIL)
     }
 
-  public open var glbData: PackedByteArray
+  public var glbData: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_GLB_DATA,
@@ -75,7 +75,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_GLB_DATA, NIL)
     }
 
-  public open var useNamedSkinBinds: Boolean
+  public var useNamedSkinBinds: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -88,7 +88,7 @@ public open class GLTFState : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_USE_NAMED_SKIN_BINDS, NIL)
     }
 
-  public open var nodes: VariantArray<Any?>
+  public var nodes: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_NODES, ARRAY)
@@ -99,7 +99,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_NODES, NIL)
     }
 
-  public open var buffers: VariantArray<Any?>
+  public var buffers: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_BUFFERS, ARRAY)
@@ -110,7 +110,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_BUFFERS, NIL)
     }
 
-  public open var bufferViews: VariantArray<Any?>
+  public var bufferViews: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_BUFFER_VIEWS, ARRAY)
@@ -121,7 +121,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_BUFFER_VIEWS, NIL)
     }
 
-  public open var accessors: VariantArray<Any?>
+  public var accessors: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ACCESSORS, ARRAY)
@@ -132,7 +132,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ACCESSORS, NIL)
     }
 
-  public open var meshes: VariantArray<Any?>
+  public var meshes: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_MESHES, ARRAY)
@@ -143,7 +143,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_MESHES, NIL)
     }
 
-  public open var materials: VariantArray<Any?>
+  public var materials: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_MATERIALS, ARRAY)
@@ -154,7 +154,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_MATERIALS, NIL)
     }
 
-  public open var sceneName: String
+  public var sceneName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SCENE_NAME, STRING)
@@ -165,7 +165,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SCENE_NAME, NIL)
     }
 
-  public open var rootNodes: PackedInt32Array
+  public var rootNodes: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ROOT_NODES,
@@ -177,7 +177,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ROOT_NODES, NIL)
     }
 
-  public open var textures: VariantArray<Any?>
+  public var textures: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_TEXTURES, ARRAY)
@@ -188,7 +188,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_TEXTURES, NIL)
     }
 
-  public open var images: VariantArray<Any?>
+  public var images: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_IMAGES, ARRAY)
@@ -199,7 +199,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_IMAGES, NIL)
     }
 
-  public open var skins: VariantArray<Any?>
+  public var skins: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SKINS, ARRAY)
@@ -210,7 +210,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKINS, NIL)
     }
 
-  public open var cameras: VariantArray<Any?>
+  public var cameras: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_CAMERAS, ARRAY)
@@ -221,7 +221,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_CAMERAS, NIL)
     }
 
-  public open var lights: VariantArray<Any?>
+  public var lights: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_LIGHTS, ARRAY)
@@ -232,7 +232,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_LIGHTS, NIL)
     }
 
-  public open var uniqueNames: VariantArray<Any?>
+  public var uniqueNames: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_UNIQUE_NAMES, ARRAY)
@@ -243,7 +243,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_UNIQUE_NAMES, NIL)
     }
 
-  public open var uniqueAnimationNames: VariantArray<Any?>
+  public var uniqueAnimationNames: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -256,7 +256,7 @@ public open class GLTFState : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_UNIQUE_ANIMATION_NAMES, NIL)
     }
 
-  public open var skeletons: VariantArray<Any?>
+  public var skeletons: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SKELETONS, ARRAY)
@@ -267,7 +267,7 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_SKELETONS, NIL)
     }
 
-  public open var skeletonToNode: Dictionary<Any?, Any?>
+  public var skeletonToNode: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SKELETON_TO_NODE,
@@ -280,7 +280,7 @@ public open class GLTFState : Resource() {
           NIL)
     }
 
-  public open var animations: VariantArray<Any?>
+  public var animations: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ANIMATIONS, ARRAY)
@@ -295,21 +295,21 @@ public open class GLTFState : Resource() {
     callConstructor(ENGINECLASS_GLTFSTATE)
   }
 
-  public open fun getAnimationPlayersCount(idx: Long): Long {
+  public fun getAnimationPlayersCount(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ANIMATION_PLAYERS_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getAnimationPlayer(idx: Long): AnimationPlayer? {
+  public fun getAnimationPlayer(idx: Long): AnimationPlayer? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_ANIMATION_PLAYER,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as AnimationPlayer?
   }
 
-  public open fun getSceneNode(idx: Long): Node? {
+  public fun getSceneNode(idx: Long): Node? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_SCENE_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?

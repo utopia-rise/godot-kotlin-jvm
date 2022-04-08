@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -82,7 +82,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * **Note:** For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
    */
-  public open var visible: Boolean
+  public var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_VISIBLE, BOOL)
@@ -96,7 +96,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The color applied to textures on this [godot.CanvasItem].
    */
-  public open var modulate: Color
+  public var modulate: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_MODULATE, COLOR)
@@ -110,7 +110,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The color applied to textures on this [godot.CanvasItem]. This is not inherited by children [godot.CanvasItem]s.
    */
-  public open var selfModulate: Color
+  public var selfModulate: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_SELF_MODULATE,
@@ -125,7 +125,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `true`, the object draws behind its parent.
    */
-  public open var showBehindParent: Boolean
+  public var showBehindParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -141,7 +141,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `true`, this [godot.CanvasItem] will *not* inherit its transform from parent [godot.CanvasItem]s. Its draw order will also be changed to make it draw on top of other [godot.CanvasItem]s that do not have [topLevel] set to `true`. The [godot.CanvasItem] will effectively act as if it was placed as a child of a bare [godot.Node].
    */
-  public open var topLevel: Boolean
+  public var topLevel: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_SET_AS_TOP_LEVEL,
@@ -156,7 +156,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    *
    */
-  public open var clipChildren: Boolean
+  public var clipChildren: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_CLIPPING_CHILDREN,
@@ -171,7 +171,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The rendering layers in which this [godot.CanvasItem] responds to [godot.Light2D] nodes.
    */
-  public open var lightMask: Long
+  public var lightMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_LIGHT_MASK, LONG)
@@ -185,7 +185,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture filtering mode to use on this [godot.CanvasItem].
    */
-  public open var textureFilter: Long
+  public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_FILTER,
@@ -201,7 +201,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture repeating mode to use on this [godot.CanvasItem].
    */
-  public open var textureRepeat: Long
+  public var textureRepeat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TEXTURE_REPEAT,
@@ -217,7 +217,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The material applied to textures on this [godot.CanvasItem].
    */
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_MATERIAL, OBJECT)
@@ -231,7 +231,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `true`, the parent [godot.CanvasItem]'s [material] property is used as this one's material.
    */
-  public open var useParentMaterial: Boolean
+  public var useParentMaterial: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -257,7 +257,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the canvas item RID used by [godot.RenderingServer] for this item.
    */
-  public open fun getCanvasItem(): RID {
+  public fun getCanvasItem(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS_ITEM, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -266,7 +266,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
    */
-  public open fun isVisibleInTree(): Boolean {
+  public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_VISIBLE_IN_TREE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -275,7 +275,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Show the [godot.CanvasItem] if it's currently hidden. This is equivalent to setting [visible] to `true`. For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
    */
-  public open fun show(): Unit {
+  public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SHOW, NIL)
   }
@@ -283,7 +283,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Hide the [godot.CanvasItem] if it's currently visible. This is equivalent to setting [visible] to `false`.
    */
-  public open fun hide(): Unit {
+  public fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_HIDE, NIL)
   }
@@ -291,7 +291,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Queue the [godot.CanvasItem] for update. [NOTIFICATION_DRAW] will be called on idle time to request redraw.
    */
-  public open fun update(): Unit {
+  public fun update(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_UPDATE, NIL)
   }
@@ -299,7 +299,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
    */
-  public open fun drawLine(
+  public fun drawLine(
     from: Vector2,
     to: Vector2,
     color: Color,
@@ -312,7 +312,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a dashed line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
    */
-  public open fun drawDashedLine(
+  public fun drawDashedLine(
     from: Vector2,
     to: Vector2,
     color: Color,
@@ -326,7 +326,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws interconnected line segments with a uniform `color` and `width`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    */
-  public open fun drawPolyline(
+  public fun drawPolyline(
     points: PackedVector2Array,
     color: Color,
     width: Double = 1.0,
@@ -339,7 +339,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    */
-  public open fun drawPolylineColors(
+  public fun drawPolylineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Double = 1.0,
@@ -353,7 +353,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a unfilled arc between the given angles. The larger the value of `point_count`, the smoother the curve. See also [drawCircle].
    */
-  public open fun drawArc(
+  public fun drawArc(
     center: Vector2,
     radius: Double,
     startAngle: Double,
@@ -370,7 +370,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws multiple disconnected lines with a uniform `color`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    */
-  public open fun drawMultiline(
+  public fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
     width: Double = 1.0
@@ -382,7 +382,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws multiple disconnected lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
    */
-  public open fun drawMultilineColors(
+  public fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Double = 1.0
@@ -397,7 +397,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * **Note:** `width` is only effective if `filled` is `false`.
    */
-  public open fun drawRect(
+  public fun drawRect(
     rect: Rect2,
     color: Color,
     filled: Boolean = true,
@@ -410,7 +410,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a colored, unfilled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
    */
-  public open fun drawCircle(
+  public fun drawCircle(
     position: Vector2,
     radius: Double,
     color: Color
@@ -422,7 +422,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a texture at a given position.
    */
-  public open fun drawTexture(
+  public fun drawTexture(
     texture: Texture2D,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1))
@@ -434,7 +434,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a textured rectangle at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
    */
-  public open fun drawTextureRect(
+  public fun drawTextureRect(
     texture: Texture2D,
     rect: Rect2,
     tile: Boolean,
@@ -448,7 +448,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a textured rectangle region at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
    */
-  public open fun drawTextureRectRegion(
+  public fun drawTextureRectRegion(
     texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
@@ -468,7 +468,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * Value of the `pixel_range` should the same that was used during distance field texture generation.
    */
-  public open fun drawMsdfTextureRectRegion(
+  public fun drawMsdfTextureRectRegion(
     texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
@@ -484,7 +484,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a styled rectangle.
    */
-  public open fun drawStyleBox(styleBox: StyleBox, rect: Rect2): Unit {
+  public fun drawStyleBox(styleBox: StyleBox, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STYLE_BOX, NIL)
   }
@@ -492,7 +492,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
    */
-  public open fun drawPrimitive(
+  public fun drawPrimitive(
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array,
@@ -506,7 +506,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a solid polygon of any amount of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
    */
-  public open fun drawPolygon(
+  public fun drawPolygon(
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -519,7 +519,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a colored polygon of any amount of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
    */
-  public open fun drawColoredPolygon(
+  public fun drawColoredPolygon(
     points: PackedVector2Array,
     color: Color,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -573,7 +573,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * See also [godot.Font.drawString].
    */
-  public open fun drawString(
+  public fun drawString(
     font: Font,
     pos: Vector2,
     text: String,
@@ -592,7 +592,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Breaks `text` to the lines and draws it using the specified `font` at the `position` (top-left corner). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
-  public open fun drawMultilineString(
+  public fun drawMultilineString(
     font: Font,
     pos: Vector2,
     text: String,
@@ -613,7 +613,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a string character using a custom font. Returns the advance, depending on the character width and kerning with an optional next character.
    */
-  public open fun drawChar(
+  public fun drawChar(
     font: Font,
     pos: Vector2,
     char: String,
@@ -631,7 +631,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a [godot.Mesh] in 2D, using the provided texture. See [godot.MeshInstance2D] for related documentation.
    */
-  public open fun drawMesh(
+  public fun drawMesh(
     mesh: Mesh,
     texture: Texture2D,
     transform: Transform2D = Transform2D(),
@@ -644,7 +644,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a [godot.MultiMesh] in 2D with the provided texture. See [godot.MultiMeshInstance2D] for related documentation.
    */
-  public open fun drawMultimesh(multimesh: MultiMesh, texture: Texture2D): Unit {
+  public fun drawMultimesh(multimesh: MultiMesh, texture: Texture2D): Unit {
     TransferContext.writeArguments(OBJECT to multimesh, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTIMESH, NIL)
   }
@@ -652,7 +652,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
    */
-  public open fun drawSetTransform(
+  public fun drawSetTransform(
     position: Vector2,
     rotation: Double = 0.0,
     scale: Vector2 = Vector2(1.0, 1.0)
@@ -664,7 +664,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this.
    */
-  public open fun drawSetTransformMatrix(xform: Transform2D): Unit {
+  public fun drawSetTransformMatrix(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_SET_TRANSFORM_MATRIX, NIL)
@@ -673,7 +673,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
    */
-  public open fun drawAnimationSlice(
+  public fun drawAnimationSlice(
     animationLength: Double,
     sliceBegin: Double,
     sliceEnd: Double,
@@ -687,7 +687,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * After submitting all animations slices via [drawAnimationSlice], this function can be used to revert drawing to its default state (all subsequent drawing commands will be visible). If you don't care about this particular use case, usage of this function after submitting the slices is not required.
    */
-  public open fun drawEndAnimation(): Unit {
+  public fun drawEndAnimation(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_END_ANIMATION, NIL)
   }
@@ -695,7 +695,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the transform matrix of this item.
    */
-  public open fun getTransform(): Transform2D {
+  public fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TRANSFORM,
         TRANSFORM2D)
@@ -705,7 +705,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the global transform matrix of this item.
    */
-  public open fun getGlobalTransform(): Transform2D {
+  public fun getGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_GLOBAL_TRANSFORM,
         TRANSFORM2D)
@@ -715,7 +715,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the global transform matrix of this item in relation to the canvas.
    */
-  public open fun getGlobalTransformWithCanvas(): Transform2D {
+  public fun getGlobalTransformWithCanvas(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_GLOBAL_TRANSFORM_WITH_CANVAS, TRANSFORM2D)
@@ -725,7 +725,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns this item's transform in relation to the viewport.
    */
-  public open fun getViewportTransform(): Transform2D {
+  public fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VIEWPORT_TRANSFORM,
         TRANSFORM2D)
@@ -735,7 +735,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the viewport's boundaries as a [godot.core.Rect2].
    */
-  public open fun getViewportRect(): Rect2 {
+  public fun getViewportRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VIEWPORT_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -744,7 +744,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the transform matrix of this item's canvas.
    */
-  public open fun getCanvasTransform(): Transform2D {
+  public fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS_TRANSFORM,
         TRANSFORM2D)
@@ -756,7 +756,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * Equals to [getGlobalTransform] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
    */
-  public open fun getScreenTransform(): Transform2D {
+  public fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_SCREEN_TRANSFORM,
         TRANSFORM2D)
@@ -766,7 +766,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the mouse's position in this [godot.CanvasItem] using the local coordinate system of this [godot.CanvasItem].
    */
-  public open fun getLocalMousePosition(): Vector2 {
+  public fun getLocalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_LOCAL_MOUSE_POSITION,
         VECTOR2)
@@ -776,7 +776,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the mouse's position in the [godot.CanvasLayer] that this [godot.CanvasItem] is in using the coordinate system of the [godot.CanvasLayer].
    */
-  public open fun getGlobalMousePosition(): Vector2 {
+  public fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_GLOBAL_MOUSE_POSITION, VECTOR2)
@@ -786,7 +786,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the [RID] of the [godot.World2D] canvas where this item is in.
    */
-  public open fun getCanvas(): RID {
+  public fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -795,7 +795,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the [godot.World2D] where this item is in.
    */
-  public open fun getWorld2d(): World2D? {
+  public fun getWorld2d(): World2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_WORLD_2D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World2D?
@@ -804,7 +804,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `enable` is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
    */
-  public open fun setNotifyLocalTransform(enable: Boolean): Unit {
+  public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_NOTIFY_LOCAL_TRANSFORM, NIL)
@@ -813,7 +813,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns `true` if local transform notifications are communicated to children.
    */
-  public open fun isLocalTransformNotificationEnabled(): Boolean {
+  public fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_LOCAL_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -823,7 +823,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `enable` is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
    */
-  public open fun setNotifyTransform(enable: Boolean): Unit {
+  public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_NOTIFY_TRANSFORM,
         NIL)
@@ -832,7 +832,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns `true` if global transform notifications are communicated to children.
    */
-  public open fun isTransformNotificationEnabled(): Boolean {
+  public fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -842,7 +842,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
    */
-  public open fun forceUpdateTransform(): Unit {
+  public fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_FORCE_UPDATE_TRANSFORM,
         NIL)
@@ -851,7 +851,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Assigns `screen_point` as this node's new local transform.
    */
-  public open fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
+  public fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_MAKE_CANVAS_POSITION_LOCAL, VECTOR2)
@@ -861,7 +861,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Transformations issued by `event`'s inputs are applied in local space instead of global space.
    */
-  public open fun makeInputLocal(event: InputEvent): InputEvent? {
+  public fun makeInputLocal(event: InputEvent): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_MAKE_INPUT_LOCAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as InputEvent?

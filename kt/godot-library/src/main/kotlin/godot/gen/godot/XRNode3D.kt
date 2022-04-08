@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class XRNode3D internal constructor() : Node3D() {
    *
    * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [godot.XRInterface].
    */
-  public open var tracker: String
+  public var tracker: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_TRACKER, STRING)
@@ -47,7 +47,7 @@ public open class XRNode3D internal constructor() : Node3D() {
    *
    * Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [godot.XRInterface].
    */
-  public open var pose: String
+  public var pose: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE_NAME, STRING)
@@ -65,7 +65,7 @@ public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Returns `true` if the [tracker] has been registered and the [pose] is being tracked.
    */
-  public open fun getIsActive(): Boolean {
+  public fun getIsActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -74,7 +74,7 @@ public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Returns `true` if the [tracker] has current tracking data for the [pose] being tracked.
    */
-  public open fun getHasTrackingData(): Boolean {
+  public fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_HAS_TRACKING_DATA,
         BOOL)
@@ -84,7 +84,7 @@ public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Returns the [godot.XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose.
    */
-  public open fun getPose(): XRPose? {
+  public fun getPose(): XRPose? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as XRPose?
@@ -95,7 +95,7 @@ public open class XRNode3D internal constructor() : Node3D() {
    *
    * `action_name` is the name of the action for this pulse.
    */
-  public open fun triggerHapticPulse(
+  public fun triggerHapticPulse(
     actionName: String,
     frequency: Double,
     amplitude: Double,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -48,7 +48,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If `true`, changing the `Mode` property will set the window title accordingly (e.g. setting mode to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
-  public open var modeOverridesTitle: Boolean
+  public var modeOverridesTitle: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -64,7 +64,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
    */
-  public open var fileMode: Long
+  public var fileMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
@@ -80,7 +80,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Warning:** Currently, in sandboxed environments such as HTML5 builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
    */
-  public open var access: Long
+  public var access: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
@@ -94,7 +94,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected.
    */
-  public open var filters: PackedStringArray
+  public var filters: PackedStringArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILTERS,
@@ -109,7 +109,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If `true`, the dialog will show hidden files.
    */
-  public open var showHiddenFiles: Boolean
+  public var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -125,7 +125,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The current working directory of the file dialog.
    */
-  public open var currentDir: String
+  public var currentDir: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_DIR,
@@ -140,7 +140,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The currently selected file of the file dialog.
    */
-  public open var currentFile: String
+  public var currentFile: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_FILE,
@@ -155,7 +155,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The currently selected file path of the file dialog.
    */
-  public open var currentPath: String
+  public var currentPath: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_PATH,
@@ -174,7 +174,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Clear all the added filters in the dialog.
    */
-  public open fun clearFilters(): Unit {
+  public fun clearFilters(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_CLEAR_FILTERS, NIL)
   }
@@ -186,7 +186,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * Example filters: `"*.png ; PNG Images"`, `"project.godot ; Godot Project"`.
    */
-  public open fun addFilter(filter: String): Unit {
+  public fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)
   }
@@ -196,7 +196,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getVbox(): VBoxContainer? {
+  public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
@@ -207,7 +207,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getLineEdit(): LineEdit? {
+  public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
@@ -216,7 +216,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Clear all currently selected items in the dialog.
    */
-  public open fun deselectAll(): Unit {
+  public fun deselectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_DESELECT_ALL, NIL)
   }
@@ -224,7 +224,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Invalidate and update the current dialog content list.
    */
-  public open fun invalidate(): Unit {
+  public fun invalidate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_INVALIDATE, NIL)
   }

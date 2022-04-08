@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -48,7 +48,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun worldBoundaryShapeCreate(): RID {
+  public fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_WORLD_BOUNDARY_SHAPE_CREATE, _RID)
@@ -58,7 +58,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun separationRayShapeCreate(): RID {
+  public fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEPARATION_RAY_SHAPE_CREATE, _RID)
@@ -68,7 +68,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun segmentShapeCreate(): RID {
+  public fun segmentShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEGMENT_SHAPE_CREATE, _RID)
@@ -78,7 +78,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun circleShapeCreate(): RID {
+  public fun circleShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CIRCLE_SHAPE_CREATE,
         _RID)
@@ -88,7 +88,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun rectangleShapeCreate(): RID {
+  public fun rectangleShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_RECTANGLE_SHAPE_CREATE, _RID)
@@ -98,7 +98,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun capsuleShapeCreate(): RID {
+  public fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CAPSULE_SHAPE_CREATE, _RID)
@@ -108,7 +108,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun convexPolygonShapeCreate(): RID {
+  public fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONVEX_POLYGON_SHAPE_CREATE, _RID)
@@ -118,7 +118,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun concavePolygonShapeCreate(): RID {
+  public fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONCAVE_POLYGON_SHAPE_CREATE, _RID)
@@ -128,7 +128,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [shapeGetType].
    */
-  public open fun shapeSetData(shape: RID, `data`: Any): Unit {
+  public fun shapeSetData(shape: RID, `data`: Any): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_SET_DATA, NIL)
   }
@@ -136,7 +136,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a shape's type (see [enum ShapeType]).
    */
-  public open fun shapeGetType(shape: RID): PhysicsServer2D.ShapeType {
+  public fun shapeGetType(shape: RID): PhysicsServer2D.ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_TYPE,
         LONG)
@@ -146,7 +146,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the shape data.
    */
-  public open fun shapeGetData(shape: RID): Any? {
+  public fun shapeGetData(shape: RID): Any? {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_DATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -155,7 +155,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body with [bodySetSpace].
    */
-  public open fun spaceCreate(): RID {
+  public fun spaceCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -164,7 +164,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
    */
-  public open fun spaceSetActive(space: RID, active: Boolean): Unit {
+  public fun spaceSetActive(space: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to space, BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_ACTIVE,
         NIL)
@@ -173,7 +173,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns whether the space is active.
    */
-  public open fun spaceIsActive(space: RID): Boolean {
+  public fun spaceIsActive(space: RID): Boolean {
     TransferContext.writeArguments(_RID to space)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_IS_ACTIVE,
         BOOL)
@@ -183,7 +183,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the value for a space parameter. See [enum SpaceParameter] for a list of available parameters.
    */
-  public open fun spaceSetParam(
+  public fun spaceSetParam(
     space: RID,
     `param`: PhysicsServer2D.SpaceParameter,
     `value`: Double
@@ -196,7 +196,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a space parameter.
    */
-  public open fun spaceGetParam(space: RID, `param`: PhysicsServer2D.SpaceParameter): Double {
+  public fun spaceGetParam(space: RID, `param`: PhysicsServer2D.SpaceParameter): Double {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_PARAM,
         DOUBLE)
@@ -206,7 +206,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the state of a space, a [godot.PhysicsDirectSpaceState2D]. This object can be used to make collision/intersection queries.
    */
-  public open fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState2D? {
+  public fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments(_RID to space)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_DIRECT_STATE, OBJECT)
@@ -216,7 +216,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Creates an [godot.Area2D]. After creating an [godot.Area2D] with this method, assign it to a space using [areaSetSpace] to use the created [godot.Area2D] in the physics world.
    */
-  public open fun areaCreate(): RID {
+  public fun areaCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -225,7 +225,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns a space to the area.
    */
-  public open fun areaSetSpace(area: RID, space: RID): Unit {
+  public fun areaSetSpace(area: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to area, _RID to space)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SPACE, NIL)
   }
@@ -233,7 +233,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the space assigned to the area.
    */
-  public open fun areaGetSpace(area: RID): RID {
+  public fun areaGetSpace(area: RID): RID {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SPACE,
         _RID)
@@ -243,7 +243,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
-  public open fun areaAddShape(
+  public fun areaAddShape(
     area: RID,
     shape: RID,
     transform: Transform2D = Transform2D(),
@@ -256,7 +256,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
    */
-  public open fun areaSetShape(
+  public fun areaSetShape(
     area: RID,
     shapeIdx: Long,
     shape: RID
@@ -268,7 +268,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the transform matrix for an area shape.
    */
-  public open fun areaSetShapeTransform(
+  public fun areaSetShapeTransform(
     area: RID,
     shapeIdx: Long,
     transform: Transform2D
@@ -281,7 +281,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Disables a given shape in an area.
    */
-  public open fun areaSetShapeDisabled(
+  public fun areaSetShapeDisabled(
     area: RID,
     shapeIdx: Long,
     disabled: Boolean
@@ -294,7 +294,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the number of shapes assigned to an area.
    */
-  public open fun areaGetShapeCount(area: RID): Long {
+  public fun areaGetShapeCount(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_COUNT, LONG)
@@ -304,7 +304,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the [RID] of the nth shape of an area.
    */
-  public open fun areaGetShape(area: RID, shapeIdx: Long): RID {
+  public fun areaGetShape(area: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE,
         _RID)
@@ -314,7 +314,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the transform matrix of a shape within an area.
    */
-  public open fun areaGetShapeTransform(area: RID, shapeIdx: Long): Transform2D {
+  public fun areaGetShapeTransform(area: RID, shapeIdx: Long): Transform2D {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_TRANSFORM, TRANSFORM2D)
@@ -324,7 +324,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
    */
-  public open fun areaRemoveShape(area: RID, shapeIdx: Long): Unit {
+  public fun areaRemoveShape(area: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_REMOVE_SHAPE,
         NIL)
@@ -333,7 +333,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
    */
-  public open fun areaClearShapes(area: RID): Unit {
+  public fun areaClearShapes(area: RID): Unit {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CLEAR_SHAPES,
         NIL)
@@ -342,7 +342,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns the area to one or many physics layers.
    */
-  public open fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
+  public fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to layer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_LAYER, NIL)
@@ -351,7 +351,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets which physics layers the area will monitor.
    */
-  public open fun areaSetCollisionMask(area: RID, mask: Long): Unit {
+  public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_MASK, NIL)
@@ -360,7 +360,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the value for an area parameter. See [enum AreaParameter] for a list of available parameters.
    */
-  public open fun areaSetParam(
+  public fun areaSetParam(
     area: RID,
     `param`: PhysicsServer2D.AreaParameter,
     `value`: Any
@@ -372,7 +372,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the transform matrix for an area.
    */
-  public open fun areaSetTransform(area: RID, transform: Transform2D): Unit {
+  public fun areaSetTransform(area: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to area, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_TRANSFORM,
         NIL)
@@ -381,7 +381,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns an area parameter value. See [enum AreaParameter] for a list of available parameters.
    */
-  public open fun areaGetParam(area: RID, `param`: PhysicsServer2D.AreaParameter): Any? {
+  public fun areaGetParam(area: RID, `param`: PhysicsServer2D.AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -390,7 +390,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the transform matrix for an area.
    */
-  public open fun areaGetTransform(area: RID): Transform2D {
+  public fun areaGetTransform(area: RID): Transform2D {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_TRANSFORM,
         TRANSFORM2D)
@@ -400,7 +400,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns the area to a descendant of [godot.Object], so it can exist in the node tree.
    */
-  public open fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
+  public fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_OBJECT_INSTANCE_ID, NIL)
@@ -409,7 +409,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Gets the instance ID of the object the area is assigned to.
    */
-  public open fun areaGetObjectInstanceId(area: RID): Long {
+  public fun areaGetObjectInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_OBJECT_INSTANCE_ID, LONG)
@@ -419,7 +419,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun areaAttachCanvasInstanceId(area: RID, id: Long): Unit {
+  public fun areaAttachCanvasInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_CANVAS_INSTANCE_ID, NIL)
@@ -428,7 +428,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun areaGetCanvasInstanceId(area: RID): Long {
+  public fun areaGetCanvasInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_CANVAS_INSTANCE_ID, LONG)
@@ -448,7 +448,7 @@ public object PhysicsServer2D : Object() {
    *
    * 5: The shape index of the area where the object entered/exited.
    */
-  public open fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
+  public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITOR_CALLBACK, NIL)
@@ -457,7 +457,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
+  public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_AREA_MONITOR_CALLBACK, NIL)
@@ -466,7 +466,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
+  public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITORABLE, NIL)
@@ -475,7 +475,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Creates a physics body.
    */
-  public open fun bodyCreate(): RID {
+  public fun bodyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -484,7 +484,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns a space to the body (see [spaceCreate]).
    */
-  public open fun bodySetSpace(body: RID, space: RID): Unit {
+  public fun bodySetSpace(body: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to space)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SPACE, NIL)
   }
@@ -492,7 +492,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the [RID] of the space assigned to a body.
    */
-  public open fun bodyGetSpace(body: RID): RID {
+  public fun bodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SPACE,
         _RID)
@@ -502,7 +502,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the body mode using one of the [enum BodyMode] constants.
    */
-  public open fun bodySetMode(body: RID, mode: PhysicsServer2D.BodyMode): Unit {
+  public fun bodySetMode(body: RID, mode: PhysicsServer2D.BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MODE, NIL)
   }
@@ -510,7 +510,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the body mode.
    */
-  public open fun bodyGetMode(body: RID): PhysicsServer2D.BodyMode {
+  public fun bodyGetMode(body: RID): PhysicsServer2D.BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MODE, LONG)
     return PhysicsServer2D.BodyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -519,7 +519,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
    */
-  public open fun bodyAddShape(
+  public fun bodyAddShape(
     body: RID,
     shape: RID,
     transform: Transform2D = Transform2D(),
@@ -532,7 +532,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
    */
-  public open fun bodySetShape(
+  public fun bodySetShape(
     body: RID,
     shapeIdx: Long,
     shape: RID
@@ -544,7 +544,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the transform matrix for a body shape.
    */
-  public open fun bodySetShapeTransform(
+  public fun bodySetShapeTransform(
     body: RID,
     shapeIdx: Long,
     transform: Transform2D
@@ -557,7 +557,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the number of shapes assigned to a body.
    */
-  public open fun bodyGetShapeCount(body: RID): Long {
+  public fun bodyGetShapeCount(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_COUNT, LONG)
@@ -567,7 +567,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the [RID] of the nth shape of a body.
    */
-  public open fun bodyGetShape(body: RID, shapeIdx: Long): RID {
+  public fun bodyGetShape(body: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE,
         _RID)
@@ -577,7 +577,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the transform matrix of a body shape.
    */
-  public open fun bodyGetShapeTransform(body: RID, shapeIdx: Long): Transform2D {
+  public fun bodyGetShapeTransform(body: RID, shapeIdx: Long): Transform2D {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_TRANSFORM, TRANSFORM2D)
@@ -587,7 +587,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
    */
-  public open fun bodyRemoveShape(body: RID, shapeIdx: Long): Unit {
+  public fun bodyRemoveShape(body: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_SHAPE,
         NIL)
@@ -596,7 +596,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes all shapes from a body.
    */
-  public open fun bodyClearShapes(body: RID): Unit {
+  public fun bodyClearShapes(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CLEAR_SHAPES,
         NIL)
@@ -605,7 +605,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Disables shape in body if `disable` is `true`.
    */
-  public open fun bodySetShapeDisabled(
+  public fun bodySetShapeDisabled(
     body: RID,
     shapeIdx: Long,
     disabled: Boolean
@@ -618,7 +618,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Enables one way collision on body if `enable` is `true`.
    */
-  public open fun bodySetShapeAsOneWayCollision(
+  public fun bodySetShapeAsOneWayCollision(
     body: RID,
     shapeIdx: Long,
     enable: Boolean,
@@ -632,7 +632,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Assigns the area to a descendant of [godot.Object], so it can exist in the node tree.
    */
-  public open fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
+  public fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_OBJECT_INSTANCE_ID, NIL)
@@ -641,7 +641,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Gets the instance ID of the object the area is assigned to.
    */
-  public open fun bodyGetObjectInstanceId(body: RID): Long {
+  public fun bodyGetObjectInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_OBJECT_INSTANCE_ID, LONG)
@@ -651,7 +651,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun bodyAttachCanvasInstanceId(body: RID, id: Long): Unit {
+  public fun bodyAttachCanvasInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_CANVAS_INSTANCE_ID, NIL)
@@ -660,7 +660,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun bodyGetCanvasInstanceId(body: RID): Long {
+  public fun bodyGetCanvasInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CANVAS_INSTANCE_ID, LONG)
@@ -672,7 +672,7 @@ public object PhysicsServer2D : Object() {
    *
    * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
    */
-  public open fun bodySetContinuousCollisionDetectionMode(body: RID, mode: PhysicsServer2D.CCDMode):
+  public fun bodySetContinuousCollisionDetectionMode(body: RID, mode: PhysicsServer2D.CCDMode):
       Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
@@ -682,7 +682,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the continuous collision detection mode.
    */
-  public open fun bodyGetContinuousCollisionDetectionMode(body: RID): PhysicsServer2D.CCDMode {
+  public fun bodyGetContinuousCollisionDetectionMode(body: RID): PhysicsServer2D.CCDMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
@@ -692,7 +692,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the physics layer or layers a body belongs to.
    */
-  public open fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
+  public fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_LAYER, NIL)
@@ -701,7 +701,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers a body belongs to.
    */
-  public open fun bodyGetCollisionLayer(body: RID): Long {
+  public fun bodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_LAYER, LONG)
@@ -711,7 +711,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the physics layer or layers a body can collide with.
    */
-  public open fun bodySetCollisionMask(body: RID, mask: Long): Unit {
+  public fun bodySetCollisionMask(body: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_MASK, NIL)
@@ -720,7 +720,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the physics layer or layers a body can collide with.
    */
-  public open fun bodyGetCollisionMask(body: RID): Long {
+  public fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_MASK, LONG)
@@ -730,7 +730,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets a body parameter. See [enum BodyParameter] for a list of available parameters.
    */
-  public open fun bodySetParam(
+  public fun bodySetParam(
     body: RID,
     `param`: PhysicsServer2D.BodyParameter,
     `value`: Any
@@ -742,7 +742,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a body parameter. See [enum BodyParameter] for a list of available parameters.
    */
-  public open fun bodyGetParam(body: RID, `param`: PhysicsServer2D.BodyParameter): Any? {
+  public fun bodyGetParam(body: RID, `param`: PhysicsServer2D.BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_PARAM, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -751,7 +751,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Restores the default inertia and center of mass based on shapes to cancel any custom values previously set using [bodySetParam].
    */
-  public open fun bodyResetMassProperties(body: RID): Unit {
+  public fun bodyResetMassProperties(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_RESET_MASS_PROPERTIES, NIL)
@@ -762,7 +762,7 @@ public object PhysicsServer2D : Object() {
    *
    * Note that the method doesn't take effect immediately. The state will change on the next physics frame.
    */
-  public open fun bodySetState(
+  public fun bodySetState(
     body: RID,
     state: PhysicsServer2D.BodyState,
     `value`: Any
@@ -774,7 +774,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a body state.
    */
-  public open fun bodyGetState(body: RID, state: PhysicsServer2D.BodyState): Any? {
+  public fun bodyGetState(body: RID, state: PhysicsServer2D.BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_STATE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -787,7 +787,7 @@ public object PhysicsServer2D : Object() {
    *
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
-  public open fun bodyApplyCentralImpulse(body: RID, impulse: Vector2): Unit {
+  public fun bodyApplyCentralImpulse(body: RID, impulse: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_IMPULSE, NIL)
@@ -798,7 +798,7 @@ public object PhysicsServer2D : Object() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    */
-  public open fun bodyApplyTorqueImpulse(body: RID, impulse: Double): Unit {
+  public fun bodyApplyTorqueImpulse(body: RID, impulse: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE_IMPULSE, NIL)
@@ -811,7 +811,7 @@ public object PhysicsServer2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun bodyApplyImpulse(
+  public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector2,
     position: Vector2 = Vector2(0.0, 0.0)
@@ -826,7 +826,7 @@ public object PhysicsServer2D : Object() {
    *
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
-  public open fun bodyApplyCentralForce(body: RID, force: Vector2): Unit {
+  public fun bodyApplyCentralForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_FORCE, NIL)
@@ -837,7 +837,7 @@ public object PhysicsServer2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun bodyApplyForce(
+  public fun bodyApplyForce(
     body: RID,
     force: Vector2,
     position: Vector2 = Vector2(0.0, 0.0)
@@ -850,7 +850,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    */
-  public open fun bodyApplyTorque(body: RID, torque: Double): Unit {
+  public fun bodyApplyTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE,
         NIL)
@@ -861,7 +861,7 @@ public object PhysicsServer2D : Object() {
    *
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
-  public open fun bodyAddConstantCentralForce(body: RID, force: Vector2): Unit {
+  public fun bodyAddConstantCentralForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -872,7 +872,7 @@ public object PhysicsServer2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun bodyAddConstantForce(
+  public fun bodyAddConstantForce(
     body: RID,
     force: Vector2,
     position: Vector2 = Vector2(0.0, 0.0)
@@ -885,7 +885,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `body_set_constant_torque(body, 0)`.
    */
-  public open fun bodyAddConstantTorque(body: RID, torque: Double): Unit {
+  public fun bodyAddConstantTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_TORQUE, NIL)
@@ -896,7 +896,7 @@ public object PhysicsServer2D : Object() {
    *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
-  public open fun bodySetConstantForce(body: RID, force: Vector2): Unit {
+  public fun bodySetConstantForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_FORCE, NIL)
@@ -907,7 +907,7 @@ public object PhysicsServer2D : Object() {
    *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
-  public open fun bodyGetConstantForce(body: RID): Vector2 {
+  public fun bodyGetConstantForce(body: RID): Vector2 {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_FORCE, VECTOR2)
@@ -919,7 +919,7 @@ public object PhysicsServer2D : Object() {
    *
    * See [bodyAddConstantTorque].
    */
-  public open fun bodySetConstantTorque(body: RID, torque: Double): Unit {
+  public fun bodySetConstantTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_TORQUE, NIL)
@@ -930,7 +930,7 @@ public object PhysicsServer2D : Object() {
    *
    * See [bodyAddConstantTorque].
    */
-  public open fun bodyGetConstantTorque(body: RID): Double {
+  public fun bodyGetConstantTorque(body: RID): Double {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_TORQUE, DOUBLE)
@@ -940,7 +940,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
    */
-  public open fun bodySetAxisVelocity(body: RID, axisVelocity: Vector2): Unit {
+  public fun bodySetAxisVelocity(body: RID, axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to axisVelocity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_AXIS_VELOCITY, NIL)
@@ -949,7 +949,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a body to the list of bodies exempt from collisions.
    */
-  public open fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
+  public fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_COLLISION_EXCEPTION, NIL)
@@ -958,7 +958,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes a body from the list of bodies exempt from collisions.
    */
-  public open fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
+  public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_COLLISION_EXCEPTION, NIL)
@@ -967,7 +967,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
    */
-  public open fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
+  public fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MAX_CONTACTS_REPORTED, NIL)
@@ -976,7 +976,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the maximum contacts that can be reported. See [bodySetMaxContactsReported].
    */
-  public open fun bodyGetMaxContactsReported(body: RID): Long {
+  public fun bodyGetMaxContactsReported(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MAX_CONTACTS_REPORTED, LONG)
@@ -986,7 +986,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets whether a body uses a callback function to calculate its own physics (see [bodySetForceIntegrationCallback]).
    */
-  public open fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
+  public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_OMIT_FORCE_INTEGRATION, NIL)
@@ -995,7 +995,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns whether a body uses a callback function to calculate its own physics (see [bodySetForceIntegrationCallback]).
    */
-  public open fun bodyIsOmittingForceIntegration(body: RID): Boolean {
+  public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_IS_OMITTING_FORCE_INTEGRATION, BOOL)
@@ -1011,7 +1011,7 @@ public object PhysicsServer2D : Object() {
    *
    * `userdata:` Optional user data, if it was passed when calling `body_set_force_integration_callback`.
    */
-  public open fun bodySetForceIntegrationCallback(
+  public fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
     userdata: Any? = null
@@ -1024,7 +1024,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns `true` if a collision would result from moving along a motion vector from a given point in space. [godot.PhysicsTestMotionParameters2D] is passed to set motion parameters. [godot.PhysicsTestMotionResult2D] can be passed to return additional information.
    */
-  public open fun bodyTestMotion(
+  public fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters2D,
     result: PhysicsTestMotionResult2D? = null
@@ -1038,7 +1038,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the [godot.PhysicsDirectBodyState2D] of the body. Returns `null` if the body is destroyed or removed from the physics space.
    */
-  public open fun bodyGetDirectState(body: RID): PhysicsDirectBodyState2D? {
+  public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState2D? {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_DIRECT_STATE, OBJECT)
@@ -1048,7 +1048,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun jointCreate(): RID {
+  public fun jointCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -1057,7 +1057,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun jointClear(joint: RID): Unit {
+  public fun jointClear(joint: RID): Unit {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CLEAR, NIL)
   }
@@ -1065,7 +1065,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets a joint parameter. See [enum JointParam] for a list of available parameters.
    */
-  public open fun jointSetParam(
+  public fun jointSetParam(
     joint: RID,
     `param`: PhysicsServer2D.JointParam,
     `value`: Double
@@ -1078,7 +1078,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a joint parameter.
    */
-  public open fun jointGetParam(joint: RID, `param`: PhysicsServer2D.JointParam): Double {
+  public fun jointGetParam(joint: RID, `param`: PhysicsServer2D.JointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_PARAM,
         DOUBLE)
@@ -1088,7 +1088,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun jointMakePin(
+  public fun jointMakePin(
     joint: RID,
     anchor: Vector2,
     bodyA: RID,
@@ -1101,7 +1101,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun jointMakeGroove(
+  public fun jointMakeGroove(
     joint: RID,
     groove1A: Vector2,
     groove2A: Vector2,
@@ -1117,7 +1117,7 @@ public object PhysicsServer2D : Object() {
   /**
    *
    */
-  public open fun jointMakeDampedSpring(
+  public fun jointMakeDampedSpring(
     joint: RID,
     anchorA: Vector2,
     anchorB: Vector2,
@@ -1132,7 +1132,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets a damped spring joint parameter. See [enum DampedSpringParam] for a list of available parameters.
    */
-  public open fun dampedSpringJointSetParam(
+  public fun dampedSpringJointSetParam(
     joint: RID,
     `param`: PhysicsServer2D.DampedSpringParam,
     `value`: Double
@@ -1145,7 +1145,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns the value of a damped spring joint parameter. See [enum DampedSpringParam] for a list of available parameters.
    */
-  public open fun dampedSpringJointGetParam(joint: RID, `param`: PhysicsServer2D.DampedSpringParam):
+  public fun dampedSpringJointGetParam(joint: RID, `param`: PhysicsServer2D.DampedSpringParam):
       Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr,
@@ -1156,7 +1156,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns a joint's type (see [enum JointType]).
    */
-  public open fun jointGetType(joint: RID): PhysicsServer2D.JointType {
+  public fun jointGetType(joint: RID): PhysicsServer2D.JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_TYPE,
         LONG)
@@ -1166,7 +1166,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Destroys any of the objects created by PhysicsServer2D. If the [RID] passed is not one of the objects that can be created by PhysicsServer2D, an error will be sent to the console.
    */
-  public open fun freeRid(rid: RID): Unit {
+  public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_FREE_RID, NIL)
   }
@@ -1174,7 +1174,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Activates or deactivates the 2D physics engine.
    */
-  public open fun setActive(active: Boolean): Unit {
+  public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SET_ACTIVE, NIL)
   }
@@ -1182,7 +1182,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Returns information about the current state of the 2D physics engine. See [enum ProcessInfo] for a list of available states.
    */
-  public open fun getProcessInfo(processInfo: PhysicsServer2D.ProcessInfo): Long {
+  public fun getProcessInfo(processInfo: PhysicsServer2D.ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_GET_PROCESS_INFO,
         LONG)

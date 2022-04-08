@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1.
    */
-  public open var ceilingDb: Double
+  public var ceilingDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTLIMITER_GET_CEILING_DB,
@@ -42,7 +42,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to 0.
    */
-  public open var thresholdDb: Double
+  public var thresholdDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * Applies a gain to the limited waves, in decibels. Value can range from 0 to 6.
    */
-  public open var softClipDb: Double
+  public var softClipDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    *
    */
-  public open var softClipRatio: Double
+  public var softClipRatio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

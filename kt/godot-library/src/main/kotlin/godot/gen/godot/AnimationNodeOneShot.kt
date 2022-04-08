@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  public open var mixMode: Long
+  public var mixMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
@@ -47,7 +47,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  public open var fadeinTime: Double
+  public var fadeinTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  public open var fadeoutTime: Double
+  public var fadeoutTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
    */
-  public open var autorestart: Boolean
+  public var autorestart: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    * The delay after which the automatic restart is triggered, in seconds.
    */
-  public open var autorestartDelay: Double
+  public var autorestartDelay: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -111,7 +111,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [autorestartDelay].
    */
-  public open var autorestartRandomDelay: Double
+  public var autorestartRandomDelay: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -127,7 +127,7 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  public open var sync: Boolean
+  public var sync: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

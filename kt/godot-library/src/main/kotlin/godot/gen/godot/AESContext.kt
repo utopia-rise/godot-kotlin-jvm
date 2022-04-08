@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -173,7 +173,7 @@ public open class AESContext : RefCounted() {
   /**
    * Start the AES context in the given `mode`. A `key` of either 16 or 32 bytes must always be provided, while an `iv` (initialization vector) of exactly 16 bytes, is only needed when `mode` is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
-  public open fun start(
+  public fun start(
     mode: AESContext.Mode,
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray()
@@ -188,7 +188,7 @@ public open class AESContext : RefCounted() {
    *
    * **Note:** The size of `src` must be a multiple of 16. Apply some padding if needed.
    */
-  public open fun update(src: PackedByteArray): PackedByteArray {
+  public fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
         PACKED_BYTE_ARRAY)
@@ -200,7 +200,7 @@ public open class AESContext : RefCounted() {
    *
    * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
-  public open fun getIvState(): PackedByteArray {
+  public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
         PACKED_BYTE_ARRAY)
@@ -210,7 +210,7 @@ public open class AESContext : RefCounted() {
   /**
    * Close this AES context so it can be started again. See [start].
    */
-  public open fun finish(): Unit {
+  public fun finish(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL)
   }

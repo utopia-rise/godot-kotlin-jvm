@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var sampleCount: Long
+  public var sampleCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,7 +45,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var enableSampleShading: Boolean
+  public var enableSampleShading: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var minSampleShading: Double
+  public var minSampleShading: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,7 +77,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var enableAlphaToCoverage: Boolean
+  public var enableAlphaToCoverage: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -93,7 +93,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var enableAlphaToOne: Boolean
+  public var enableAlphaToOne: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -109,7 +109,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   /**
    *
    */
-  public open var sampleMasks: VariantArray<Any?>
+  public var sampleMasks: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

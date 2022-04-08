@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -128,7 +128,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
    */
-  public open var blendShapeMode: Long
+  public var blendShapeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
@@ -144,7 +144,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
-  public open var customAabb: AABB
+  public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_CUSTOM_AABB,
@@ -159,7 +159,7 @@ public open class ArrayMesh : Mesh() {
   /**
    *
    */
-  public open var shadowMesh: ArrayMesh?
+  public var shadowMesh: ArrayMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_SHADOW_MESH, OBJECT)
@@ -177,7 +177,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
    */
-  public open fun addBlendShape(name: StringName): Unit {
+  public fun addBlendShape(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_BLEND_SHAPE, NIL)
   }
@@ -185,7 +185,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the number of blend shapes that the [godot.ArrayMesh] holds.
    */
-  public open fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_COUNT,
         LONG)
@@ -195,7 +195,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the name of the blend shape at this index.
    */
-  public open fun getBlendShapeName(index: Long): StringName {
+  public fun getBlendShapeName(index: Long): StringName {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_NAME,
         STRING_NAME)
@@ -205,7 +205,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets the name of the blend shape at this index.
    */
-  public open fun setBlendShapeName(index: Long, name: StringName): Unit {
+  public fun setBlendShapeName(index: Long, name: StringName): Unit {
     TransferContext.writeArguments(LONG to index, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_NAME, NIL)
   }
@@ -213,7 +213,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Removes all blend shapes from this [godot.ArrayMesh].
    */
-  public open fun clearBlendShapes(): Unit {
+  public fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_BLEND_SHAPES, NIL)
   }
@@ -225,7 +225,7 @@ public open class ArrayMesh : Mesh() {
    *
    * The `arrays` argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
    */
-  public open fun addSurfaceFromArrays(
+  public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -240,7 +240,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Removes all surfaces from this [godot.ArrayMesh].
    */
-  public open fun clearSurfaces(): Unit {
+  public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_SURFACES, NIL)
   }
@@ -248,7 +248,7 @@ public open class ArrayMesh : Mesh() {
   /**
    *
    */
-  public open fun surfaceUpdateVertexRegion(
+  public fun surfaceUpdateVertexRegion(
     surfIdx: Long,
     offset: Long,
     `data`: PackedByteArray
@@ -261,7 +261,7 @@ public open class ArrayMesh : Mesh() {
   /**
    *
    */
-  public open fun surfaceUpdateAttributeRegion(
+  public fun surfaceUpdateAttributeRegion(
     surfIdx: Long,
     offset: Long,
     `data`: PackedByteArray
@@ -274,7 +274,7 @@ public open class ArrayMesh : Mesh() {
   /**
    *
    */
-  public open fun surfaceUpdateSkinRegion(
+  public fun surfaceUpdateSkinRegion(
     surfIdx: Long,
     offset: Long,
     `data`: PackedByteArray
@@ -287,7 +287,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the length in vertices of the vertex array in the requested surface (see [addSurfaceFromArrays]).
    */
-  public open fun surfaceGetArrayLen(surfIdx: Long): Long {
+  public fun surfaceGetArrayLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_LEN,
         LONG)
@@ -297,7 +297,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the length in indices of the index array in the requested surface (see [addSurfaceFromArrays]).
    */
-  public open fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
+  public fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_INDEX_LEN, LONG)
@@ -307,7 +307,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the format mask of the requested surface (see [addSurfaceFromArrays]).
    */
-  public open fun surfaceGetFormat(surfIdx: Long): Long {
+  public fun surfaceGetFormat(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -316,7 +316,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the primitive type of the requested surface (see [addSurfaceFromArrays]).
    */
-  public open fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
+  public fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
@@ -326,7 +326,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Returns the index of the first surface with this name held within this [godot.ArrayMesh]. If none are found, -1 is returned.
    */
-  public open fun surfaceFindByName(name: String): Long {
+  public fun surfaceFindByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_FIND_BY_NAME,
         LONG)
@@ -336,7 +336,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets a name for a given surface.
    */
-  public open fun surfaceSetName(surfIdx: Long, name: String): Unit {
+  public fun surfaceSetName(surfIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to surfIdx, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_SET_NAME, NIL)
   }
@@ -344,7 +344,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Gets the name assigned to this surface.
    */
-  public open fun surfaceGetName(surfIdx: Long): String {
+  public fun surfaceGetName(surfIdx: Long): String {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -353,7 +353,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Will regenerate normal maps for the [godot.ArrayMesh].
    */
-  public open fun regenNormalMaps(): Unit {
+  public fun regenNormalMaps(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_REGEN_NORMAL_MAPS, NIL)
   }
@@ -361,7 +361,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Will perform a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
    */
-  public open fun lightmapUnwrap(transform: Transform3D, texelSize: Double): GodotError {
+  public fun lightmapUnwrap(transform: Transform3D, texelSize: Double): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

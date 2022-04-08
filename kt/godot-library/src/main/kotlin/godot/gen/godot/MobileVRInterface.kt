@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -16,7 +16,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class MobileVRInterface : XRInterface() {
-  public open var eyeHeight: Double
+  public var eyeHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_EYE_HEIGHT,
@@ -29,7 +29,7 @@ public open class MobileVRInterface : XRInterface() {
           NIL)
     }
 
-  public open var iod: Double
+  public var iod: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_IOD, DOUBLE)
@@ -40,7 +40,7 @@ public open class MobileVRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_IOD, NIL)
     }
 
-  public open var displayWidth: Double
+  public var displayWidth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -53,7 +53,7 @@ public open class MobileVRInterface : XRInterface() {
           ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_DISPLAY_WIDTH, NIL)
     }
 
-  public open var displayToLens: Double
+  public var displayToLens: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -66,7 +66,7 @@ public open class MobileVRInterface : XRInterface() {
           ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_DISPLAY_TO_LENS, NIL)
     }
 
-  public open var oversample: Double
+  public var oversample: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_OVERSAMPLE,
@@ -79,7 +79,7 @@ public open class MobileVRInterface : XRInterface() {
           NIL)
     }
 
-  public open var k1: Double
+  public var k1: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_K1, DOUBLE)
@@ -90,7 +90,7 @@ public open class MobileVRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_K1, NIL)
     }
 
-  public open var k2: Double
+  public var k2: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_K2, DOUBLE)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,21 +26,21 @@ public open class EditorResourceConversionPlugin internal constructor() : RefCou
    *
    */
   public open fun _convertsTo(): String {
-    throw NotImplementedError("_converts_to·is·not·implemented·for·EditorResourceConversionPlugin")
+    throw NotImplementedError("_converts_to is not implemented for EditorResourceConversionPlugin")
   }
 
   /**
    *
    */
   public open fun _handles(resource: Resource): Boolean {
-    throw NotImplementedError("_handles·is·not·implemented·for·EditorResourceConversionPlugin")
+    throw NotImplementedError("_handles is not implemented for EditorResourceConversionPlugin")
   }
 
   /**
    *
    */
   public open fun _convert(resource: Resource): Resource? {
-    throw NotImplementedError("_convert·is·not·implemented·for·EditorResourceConversionPlugin")
+    throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")
   }
 
   public companion object

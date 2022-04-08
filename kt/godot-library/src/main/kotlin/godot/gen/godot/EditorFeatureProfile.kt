@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * If `disable` is `true`, disables the class specified by `class_name`. When disabled, the class won't appear in the Create New Node dialog.
    */
-  public open fun setDisableClass(className: StringName, disable: Boolean): Unit {
+  public fun setDisableClass(className: StringName, disable: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to className, BOOL to disable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS, NIL)
@@ -48,7 +48,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns `true` if the class specified by `class_name` is disabled. When disabled, the class won't appear in the Create New Node dialog.
    */
-  public open fun isClassDisabled(className: StringName): Boolean {
+  public fun isClassDisabled(className: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_DISABLED, BOOL)
@@ -58,7 +58,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * If `disable` is `true`, disables editing for the class specified by `class_name`. When disabled, the class will still appear in the Create New Node dialog but the inspector will be read-only when selecting a node that extends the class.
    */
-  public open fun setDisableClassEditor(className: StringName, disable: Boolean): Unit {
+  public fun setDisableClassEditor(className: StringName, disable: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to className, BOOL to disable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_EDITOR, NIL)
@@ -67,7 +67,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns `true` if editing for the class specified by `class_name` is disabled. When disabled, the class will still appear in the Create New Node dialog but the inspector will be read-only when selecting a node that extends the class.
    */
-  public open fun isClassEditorDisabled(className: StringName): Boolean {
+  public fun isClassEditorDisabled(className: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_EDITOR_DISABLED, BOOL)
@@ -77,7 +77,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * If `disable` is `true`, disables editing for `property` in the class specified by `class_name`. When a property is disabled, it won't appear in the inspector when selecting a node that extends the class specified by `class_name`.
    */
-  public open fun setDisableClassProperty(
+  public fun setDisableClassProperty(
     className: StringName,
     `property`: StringName,
     disable: Boolean
@@ -90,7 +90,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns `true` if `property` is disabled in the class specified by `class_name`. When a property is disabled, it won't appear in the inspector when selecting a node that extends the class specified by `class_name`.
    */
-  public open fun isClassPropertyDisabled(className: StringName, `property`: StringName): Boolean {
+  public fun isClassPropertyDisabled(className: StringName, `property`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_PROPERTY_DISABLED, BOOL)
@@ -100,7 +100,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * If `disable` is `true`, disables the editor feature specified in `feature`. When a feature is disabled, it will disappear from the editor entirely.
    */
-  public open fun setDisableFeature(feature: EditorFeatureProfile.Feature, disable: Boolean): Unit {
+  public fun setDisableFeature(feature: EditorFeatureProfile.Feature, disable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to disable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_FEATURE, NIL)
@@ -109,7 +109,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns `true` if the `feature` is disabled. When a feature is disabled, it will disappear from the editor entirely.
    */
-  public open fun isFeatureDisabled(feature: EditorFeatureProfile.Feature): Boolean {
+  public fun isFeatureDisabled(feature: EditorFeatureProfile.Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_FEATURE_DISABLED, BOOL)
@@ -119,7 +119,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Returns the specified `feature`'s human-readable name.
    */
-  public open fun getFeatureName(feature: EditorFeatureProfile.Feature): String {
+  public fun getFeatureName(feature: EditorFeatureProfile.Feature): String {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_GET_FEATURE_NAME, STRING)
@@ -129,7 +129,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Saves the editor feature profile to a file in JSON format. It can then be imported using the feature profile manager's **Import** button or the [loadFromFile] button.
    */
-  public open fun saveToFile(path: String): GodotError {
+  public fun saveToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SAVE_TO_FILE,
         LONG)
@@ -139,7 +139,7 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
   /**
    * Loads an editor feature profile from a file. The file must follow the JSON format obtained by using the feature profile manager's **Export** button or the [saveToFile] method.
    */
-  public open fun loadFromFile(path: String): GodotError {
+  public fun loadFromFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_LOAD_FROM_FILE,
         LONG)

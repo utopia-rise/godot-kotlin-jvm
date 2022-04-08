@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The location from which the user may select a file, including `res://`, `user://`, and the local file system.
    */
-  public open var access: Long
+  public var access: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_ACCESS, LONG)
@@ -59,7 +59,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The view format in which the [godot.EditorFileDialog] displays resources to the user.
    */
-  public open var displayMode: Long
+  public var displayMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
@@ -75,7 +75,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
    */
-  public open var fileMode: Long
+  public var fileMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,
@@ -91,7 +91,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The currently occupied directory.
    */
-  public open var currentDir: String
+  public var currentDir: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_DIR,
@@ -107,7 +107,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The currently selected file.
    */
-  public open var currentFile: String
+  public var currentFile: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_FILE,
@@ -123,7 +123,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * The file system path in the address bar.
    */
-  public open var currentPath: String
+  public var currentPath: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_CURRENT_PATH,
@@ -139,7 +139,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * If `true`, hidden files and directories will be visible in the [godot.EditorFileDialog].
    */
-  public open var showHiddenFiles: Boolean
+  public var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * If `true`, the [godot.EditorFileDialog] will not warn the user before overwriting files.
    */
-  public open var disableOverwriteWarning: Boolean
+  public var disableOverwriteWarning: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -175,7 +175,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * Removes all filters except for "All Files (*)".
    */
-  public open fun clearFilters(): Unit {
+  public fun clearFilters(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_CLEAR_FILTERS, NIL)
   }
@@ -185,7 +185,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
    *
    * For example, `"*.tscn, *.scn; Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
    */
-  public open fun addFilter(filter: String): Unit {
+  public fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_FILTER, NIL)
   }
@@ -195,7 +195,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getVbox(): VBoxContainer? {
+  public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_VBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
@@ -204,7 +204,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   /**
    * Notify the [godot.EditorFileDialog] that its view of the data is no longer accurate. Updates the view contents on next view update.
    */
-  public open fun invalidate(): Unit {
+  public fun invalidate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_INVALIDATE, NIL)
   }

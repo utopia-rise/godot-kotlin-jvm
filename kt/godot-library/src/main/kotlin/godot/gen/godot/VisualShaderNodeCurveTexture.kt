@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +23,7 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   /**
    * The source texture.
    */
-  public open var texture: CurveTexture?
+  public var texture: CurveTexture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * [godot.Texture2D] object to draw.
    */
-  public open var texture: Texture?
+  public var texture: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_TEXTURE, OBJECT)
@@ -57,7 +57,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The number of columns in the sprite sheet.
    */
-  public open var hframes: Long
+  public var hframes: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_HFRAMES, LONG)
@@ -71,7 +71,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The number of rows in the sprite sheet.
    */
-  public open var vframes: Long
+  public var vframes: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_VFRAMES, LONG)
@@ -85,7 +85,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frame: Long
+  public var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_FRAME, LONG)
@@ -99,7 +99,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frameCoords: Vector2
+  public var frameCoords: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_FRAME_COORDS,
@@ -114,7 +114,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    *
    */
-  public open var regionEnabled: Boolean
+  public var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_IS_REGION_ENABLED, BOOL)
@@ -128,7 +128,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
-  public open var regionRect: Rect2
+  public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_REGION_RECT, RECT2)

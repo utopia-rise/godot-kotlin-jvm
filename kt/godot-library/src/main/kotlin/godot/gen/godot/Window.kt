@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -103,7 +103,7 @@ public open class Window : Viewport() {
   /**
    * The window's title.
    */
-  public open var title: String
+  public var title: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_TITLE, STRING)
@@ -117,7 +117,7 @@ public open class Window : Viewport() {
   /**
    * The window's position in pixels.
    */
-  public open var position: Vector2i
+  public var position: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_POSITION, VECTOR2I)
@@ -131,7 +131,7 @@ public open class Window : Viewport() {
   /**
    * The window's size in pixels.
    */
-  public open var size: Vector2i
+  public var size: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_SIZE, VECTOR2I)
@@ -147,7 +147,7 @@ public open class Window : Viewport() {
    *
    * **Note:** Fullscreen mode is not exclusive fullscreen on Windows and Linux.
    */
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MODE, LONG)
@@ -161,7 +161,7 @@ public open class Window : Viewport() {
   /**
    * The screen the window is currently on.
    */
-  public open var currentScreen: Long
+  public var currentScreen: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CURRENT_SCREEN, LONG)
@@ -175,7 +175,7 @@ public open class Window : Viewport() {
   /**
    * If `true`, the window is visible.
    */
-  public open var visible: Boolean
+  public var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_VISIBLE, BOOL)
@@ -189,7 +189,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var wrapControls: Boolean
+  public var wrapControls: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_WRAPPING_CONTROLS, BOOL)
@@ -203,7 +203,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var transient: Boolean
+  public var transient: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_TRANSIENT, BOOL)
@@ -217,7 +217,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var exclusive: Boolean
+  public var exclusive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_EXCLUSIVE, BOOL)
@@ -231,7 +231,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var minSize: Vector2i
+  public var minSize: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MIN_SIZE, VECTOR2I)
@@ -245,7 +245,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var maxSize: Vector2i
+  public var maxSize: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_MAX_SIZE, VECTOR2I)
@@ -259,7 +259,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var contentScaleSize: Vector2i
+  public var contentScaleSize: Vector2i
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_SIZE,
@@ -275,7 +275,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var contentScaleMode: Long
+  public var contentScaleMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_MODE,
@@ -291,7 +291,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var contentScaleAspect: Long
+  public var contentScaleAspect: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_ASPECT,
@@ -307,7 +307,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var contentScaleFactor: Double
+  public var contentScaleFactor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_FACTOR,
@@ -323,7 +323,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var theme: Theme?
+  public var theme: Theme?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME, OBJECT)
@@ -337,7 +337,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open var themeTypeVariation: String
+  public var themeTypeVariation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_TYPE_VARIATION,
@@ -353,7 +353,7 @@ public open class Window : Viewport() {
   /**
    * Toggles if any text should automatically change to its translated version depending on the current locale.
    */
-  public open var autoTranslate: Boolean
+  public var autoTranslate: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
@@ -371,7 +371,7 @@ public open class Window : Viewport() {
   /**
    * Resets the size to the minimum size, which is the max of [minSize] and (if [wrapControls] is enabled) [getContentsMinimumSize]. This is equivalent to calling `set_size(Vector2i())` (or any size below the minimum).
    */
-  public open fun resetSize(): Unit {
+  public fun resetSize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_RESET_SIZE, NIL)
   }
@@ -379,7 +379,7 @@ public open class Window : Viewport() {
   /**
    * Returns the window's size including its border.
    */
-  public open fun getRealSize(): Vector2i {
+  public fun getRealSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_REAL_SIZE, VECTOR2I)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
@@ -388,7 +388,7 @@ public open class Window : Viewport() {
   /**
    * Sets a specified window flag.
    */
-  public open fun setFlag(flag: Window.Flags, enabled: Boolean): Unit {
+  public fun setFlag(flag: Window.Flags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_FLAG, NIL)
   }
@@ -396,7 +396,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if the flag is set.
    */
-  public open fun getFlag(flag: Window.Flags): Boolean {
+  public fun getFlag(flag: Window.Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -405,7 +405,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun isMaximizeAllowed(): Boolean {
+  public fun isMaximizeAllowed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_MAXIMIZE_ALLOWED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -414,7 +414,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun requestAttention(): Unit {
+  public fun requestAttention(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_REQUEST_ATTENTION, NIL)
   }
@@ -422,7 +422,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun moveToForeground(): Unit {
+  public fun moveToForeground(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_MOVE_TO_FOREGROUND, NIL)
   }
@@ -430,7 +430,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hide(): Unit {
+  public fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HIDE, NIL)
   }
@@ -438,7 +438,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun show(): Unit {
+  public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SHOW, NIL)
   }
@@ -446,7 +446,7 @@ public open class Window : Viewport() {
   /**
    * Returns whether the window is being drawn to the screen.
    */
-  public open fun canDraw(): Boolean {
+  public fun canDraw(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_CAN_DRAW, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -455,7 +455,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if the window is focused.
    */
-  public open fun hasFocus(): Boolean {
+  public fun hasFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_FOCUS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -464,7 +464,7 @@ public open class Window : Viewport() {
   /**
    * Causes the window to grab focus, allowing it to receive user input.
    */
-  public open fun grabFocus(): Unit {
+  public fun grabFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GRAB_FOCUS, NIL)
   }
@@ -472,7 +472,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun setImeActive(active: Boolean): Unit {
+  public fun setImeActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_IME_ACTIVE, NIL)
   }
@@ -480,7 +480,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun setImePosition(position: Vector2i): Unit {
+  public fun setImePosition(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_IME_POSITION, NIL)
   }
@@ -488,7 +488,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if the window is currently embedded in another window.
    */
-  public open fun isEmbedded(): Boolean {
+  public fun isEmbedded(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_EMBEDDED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -497,7 +497,7 @@ public open class Window : Viewport() {
   /**
    * Returns the combined minimum size from the child [godot.Control] nodes of the window.
    */
-  public open fun getContentsMinimumSize(): Vector2 {
+  public fun getContentsMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENTS_MINIMUM_SIZE,
         VECTOR2)
@@ -507,7 +507,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun setUseFontOversampling(enable: Boolean): Unit {
+  public fun setUseFontOversampling(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_USE_FONT_OVERSAMPLING,
         NIL)
@@ -516,7 +516,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun isUsingFontOversampling(): Boolean {
+  public fun isUsingFontOversampling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_USING_FONT_OVERSAMPLING,
         BOOL)
@@ -526,7 +526,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun childControlsChanged(): Unit {
+  public fun childControlsChanged(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_CHILD_CONTROLS_CHANGED, NIL)
   }
@@ -534,8 +534,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
-      Texture2D? {
+  public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
@@ -544,8 +543,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      StyleBox? {
+  public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
@@ -554,7 +552,7 @@ public open class Window : Viewport() {
   /**
    * Returns the [godot.Font] at `name` if the theme has `theme_type`.
    */
-  public open fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
+  public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
@@ -563,7 +561,7 @@ public open class Window : Viewport() {
   /**
    * Returns the font size at `name` if the theme has `theme_type`.
    */
-  public open fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
+  public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -572,7 +570,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
+  public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -581,7 +579,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
+  public fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -590,7 +588,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -599,8 +597,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -611,7 +608,7 @@ public open class Window : Viewport() {
    *
    * Returns `false` if the theme does not have `theme_type`.
    */
-  public open fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -622,8 +619,7 @@ public open class Window : Viewport() {
    *
    * Returns `false` if the theme does not have `theme_type`.
    */
-  public open fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_SIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -632,7 +628,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
+  public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -641,8 +637,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -651,7 +646,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeDefaultBaseScale(): Double {
+  public fun getThemeDefaultBaseScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_DEFAULT_BASE_SCALE,
         DOUBLE)
@@ -661,7 +656,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeDefaultFont(): Font? {
+  public fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_DEFAULT_FONT,
         OBJECT)
@@ -671,7 +666,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeDefaultFontSize(): Long {
+  public fun getThemeDefaultFontSize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_DEFAULT_FONT_SIZE,
         LONG)
@@ -681,7 +676,7 @@ public open class Window : Viewport() {
   /**
    * Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public open fun setLayoutDirection(direction: Window.LayoutDirection): Unit {
+  public fun setLayoutDirection(direction: Window.LayoutDirection): Unit {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_LAYOUT_DIRECTION, NIL)
   }
@@ -689,7 +684,7 @@ public open class Window : Viewport() {
   /**
    * Returns layout direction and text writing direction.
    */
-  public open fun getLayoutDirection(): Window.LayoutDirection {
+  public fun getLayoutDirection(): Window.LayoutDirection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_LAYOUT_DIRECTION, LONG)
     return Window.LayoutDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -698,7 +693,7 @@ public open class Window : Viewport() {
   /**
    * Returns `true` if layout is right-to-left.
    */
-  public open fun isLayoutRtl(): Boolean {
+  public fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_LAYOUT_RTL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -707,7 +702,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popup(rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)): Unit {
+  public fun popup(rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP, NIL)
   }
@@ -715,7 +710,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupOnParent(parentRect: Rect2i): Unit {
+  public fun popupOnParent(parentRect: Rect2i): Unit {
     TransferContext.writeArguments(RECT2I to parentRect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_ON_PARENT, NIL)
   }
@@ -723,7 +718,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupCenteredRatio(ratio: Double = 0.8): Unit {
+  public fun popupCenteredRatio(ratio: Double = 0.8): Unit {
     TransferContext.writeArguments(DOUBLE to ratio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_RATIO, NIL)
   }
@@ -731,7 +726,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupCentered(minsize: Vector2i = Vector2i(0.0, 0.0)): Unit {
+  public fun popupCentered(minsize: Vector2i = Vector2i(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED, NIL)
   }
@@ -739,8 +734,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupCenteredClamped(minsize: Vector2i = Vector2i(0.0, 0.0), fallbackRatio: Double
-      = 0.75): Unit {
+  public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0.0, 0.0), fallbackRatio: Double =
+      0.75): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
   }

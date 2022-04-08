@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class SubViewportContainer : Container() {
   /**
    * If `true`, the sub-viewport will be automatically resized to the control's size.
    */
-  public open var stretch: Boolean
+  public var stretch: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -50,7 +50,7 @@ public open class SubViewportContainer : Container() {
    *
    * **Note:** [stretch] must be `true` for this property to work.
    */
-  public open var stretchShrink: Long
+  public var stretchShrink: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

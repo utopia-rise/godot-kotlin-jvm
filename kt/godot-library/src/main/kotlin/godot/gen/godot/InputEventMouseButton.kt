@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * The amount (or delta) of the event. When used for high-precision scroll events, this indicates the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported sensitivity varies depending on the platform. May be `0` if not supported.
    */
-  public open var factor: Double
+  public var factor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_FACTOR,
@@ -48,7 +48,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * The mouse button identifier, one of the [enum MouseButton] button or button wheel constants.
    */
-  public open var buttonIndex: Long
+  public var buttonIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -64,7 +64,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is released.
    */
-  public open var pressed: Boolean
+  public var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
@@ -77,7 +77,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * If `true`, the mouse button's state is a double-click.
    */
-  public open var doubleClick: Boolean
+  public var doubleClick: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

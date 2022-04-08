@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -97,7 +97,7 @@ public open class LineEdit : Control() {
    *
    * **Note:** Changing text using this property won't emit the [textChanged] signal.
    */
-  public open var text: String
+  public var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT, STRING)
@@ -111,7 +111,7 @@ public open class LineEdit : Control() {
   /**
    * Text shown when the [godot.LineEdit] is empty. It is **not** the [godot.LineEdit]'s default value (see [text]).
    */
-  public open var placeholderText: String
+  public var placeholderText: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_PLACEHOLDER, STRING)
@@ -125,7 +125,7 @@ public open class LineEdit : Control() {
   /**
    * Text alignment as defined in the [enum HorizontalAlignment] enum.
    */
-  public open var alignment: Long
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_HORIZONTAL_ALIGNMENT,
@@ -185,7 +185,7 @@ public open class LineEdit : Control() {
    *
    * [/codeblocks]
    */
-  public open var maxLength: Long
+  public var maxLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MAX_LENGTH, LONG)
@@ -199,7 +199,7 @@ public open class LineEdit : Control() {
   /**
    * If `false`, existing text cannot be modified and new text cannot be added.
    */
-  public open var editable: Boolean
+  public var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_EDITABLE, BOOL)
@@ -213,7 +213,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, every character is replaced with the secret character (see [secretCharacter]).
    */
-  public open var secret: Boolean
+  public var secret: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SECRET, BOOL)
@@ -227,7 +227,7 @@ public open class LineEdit : Control() {
   /**
    * The character to use to mask secret input (defaults to "*"). Only a single character can be used as the secret character.
    */
-  public open var secretCharacter: String
+  public var secretCharacter: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET_CHARACTER,
@@ -243,7 +243,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
    */
-  public open var expandToTextLength: Boolean
+  public var expandToTextLength: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -259,7 +259,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the context menu will appear when right-clicked.
    */
-  public open var contextMenuEnabled: Boolean
+  public var contextMenuEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CONTEXT_MENU_ENABLED,
@@ -275,7 +275,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
    */
-  public open var virtualKeyboardEnabled: Boolean
+  public var virtualKeyboardEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -291,7 +291,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] will show a clear button if `text` is not empty, which can be used to clear the text quickly.
    */
-  public open var clearButtonEnabled: Boolean
+  public var clearButtonEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CLEAR_BUTTON_ENABLED,
@@ -307,7 +307,7 @@ public open class LineEdit : Control() {
   /**
    * If `false`, using shortcuts will be disabled.
    */
-  public open var shortcutKeysEnabled: Boolean
+  public var shortcutKeysEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SHORTCUT_KEYS_ENABLED,
@@ -325,7 +325,7 @@ public open class LineEdit : Control() {
    *
    * **Note:** This method is only implemented on Linux.
    */
-  public open var middleMousePasteEnabled: Boolean
+  public var middleMousePasteEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -341,7 +341,7 @@ public open class LineEdit : Control() {
   /**
    * If `false`, it's impossible to select the text using mouse nor keyboard.
    */
-  public open var selectingEnabled: Boolean
+  public var selectingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SELECTING_ENABLED,
@@ -357,7 +357,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the selected text will be deselected when focus is lost.
    */
-  public open var deselectOnFocusLossEnabled: Boolean
+  public var deselectOnFocusLossEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -373,7 +373,7 @@ public open class LineEdit : Control() {
   /**
    * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
-  public open var rightIcon: Texture?
+  public var rightIcon: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_RIGHT_ICON, OBJECT)
@@ -387,7 +387,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] don't display decoration.
    */
-  public open var flat: Boolean
+  public var flat: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_FLAT, BOOL)
@@ -401,7 +401,7 @@ public open class LineEdit : Control() {
   /**
    * Base text writing direction.
    */
-  public open var textDirection: Long
+  public var textDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT_DIRECTION, LONG)
@@ -415,7 +415,7 @@ public open class LineEdit : Control() {
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open var language: String
+  public var language: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_LANGUAGE, STRING)
@@ -429,7 +429,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, control characters are displayed.
    */
-  public open var drawControlChars: Boolean
+  public var drawControlChars: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_DRAW_CONTROL_CHARS,
@@ -445,7 +445,7 @@ public open class LineEdit : Control() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public open var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -461,7 +461,7 @@ public open class LineEdit : Control() {
   /**
    * Set additional options for BiDi override.
    */
-  public open var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -477,7 +477,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the caret (text cursor) blinks.
    */
-  public open var caretBlink: Boolean
+  public var caretBlink: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CARET_BLINK_ENABLED,
@@ -493,7 +493,7 @@ public open class LineEdit : Control() {
   /**
    * Duration (in seconds) of a caret's blinking cycle.
    */
-  public open var caretBlinkSpeed: Double
+  public var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK_SPEED,
@@ -509,7 +509,7 @@ public open class LineEdit : Control() {
   /**
    * The caret's column position inside the [godot.LineEdit]. When set, the text may scroll to accommodate it.
    */
-  public open var caretColumn: Long
+  public var caretColumn: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_COLUMN, LONG)
@@ -523,7 +523,7 @@ public open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] will always show the caret, even if focus is lost.
    */
-  public open var caretForceDisplayed: Boolean
+  public var caretForceDisplayed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CARET_FORCE_DISPLAYED,
@@ -541,7 +541,7 @@ public open class LineEdit : Control() {
    *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
-  public open var caretMidGrapheme: Boolean
+  public var caretMidGrapheme: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -561,7 +561,7 @@ public open class LineEdit : Control() {
   /**
    * Erases the [godot.LineEdit]'s [text].
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR, NIL)
   }
@@ -597,7 +597,7 @@ public open class LineEdit : Control() {
    *
    * [/codeblocks]
    */
-  public open fun select(from: Long = 0, to: Long = -1): Unit {
+  public fun select(from: Long = 0, to: Long = -1): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT, NIL)
   }
@@ -605,7 +605,7 @@ public open class LineEdit : Control() {
   /**
    * Selects the whole [godot.String].
    */
-  public open fun selectAll(): Unit {
+  public fun selectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT_ALL, NIL)
   }
@@ -613,7 +613,7 @@ public open class LineEdit : Control() {
   /**
    * Clears the current selection.
    */
-  public open fun deselect(): Unit {
+  public fun deselect(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DESELECT, NIL)
   }
@@ -621,7 +621,7 @@ public open class LineEdit : Control() {
   /**
    * Returns `true` if the user has selected text.
    */
-  public open fun hasSelection(): Boolean {
+  public fun hasSelection(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_HAS_SELECTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -630,7 +630,7 @@ public open class LineEdit : Control() {
   /**
    * Returns the selection begin column.
    */
-  public open fun getSelectionFromColumn(): Long {
+  public fun getSelectionFromColumn(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTION_FROM_COLUMN,
         LONG)
@@ -640,7 +640,7 @@ public open class LineEdit : Control() {
   /**
    * Returns the selection end column.
    */
-  public open fun getSelectionToColumn(): Long {
+  public fun getSelectionToColumn(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTION_TO_COLUMN,
         LONG)
@@ -650,7 +650,7 @@ public open class LineEdit : Control() {
   /**
    * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public open fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_OPENTYPE_FEATURE, NIL)
   }
@@ -658,7 +658,7 @@ public open class LineEdit : Control() {
   /**
    * Returns OpenType feature `tag`.
    */
-  public open fun getOpentypeFeature(tag: String): Long {
+  public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -667,7 +667,7 @@ public open class LineEdit : Control() {
   /**
    * Removes all OpenType features.
    */
-  public open fun clearOpentypeFeatures(): Unit {
+  public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR_OPENTYPE_FEATURES,
         NIL)
@@ -676,7 +676,7 @@ public open class LineEdit : Control() {
   /**
    * Returns the scroll offset due to [caretColumn], as a number of characters.
    */
-  public open fun getScrollOffset(): Long {
+  public fun getScrollOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -685,7 +685,7 @@ public open class LineEdit : Control() {
   /**
    * Inserts `text` at the caret. If the resulting value is longer than [maxLength], nothing happens.
    */
-  public open fun insertTextAtCaret(text: String): Unit {
+  public fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_INSERT_TEXT_AT_CARET, NIL)
   }
@@ -693,7 +693,7 @@ public open class LineEdit : Control() {
   /**
    * Deletes one character at the caret's current position (equivalent to pressing [kbd]Delete[/kbd]).
    */
-  public open fun deleteCharAtCaret(): Unit {
+  public fun deleteCharAtCaret(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_CHAR_AT_CARET, NIL)
   }
@@ -701,7 +701,7 @@ public open class LineEdit : Control() {
   /**
    * Deletes a section of the [text] going from position `from_column` to `to_column`. Both parameters should be within the text's length.
    */
-  public open fun deleteText(fromColumn: Long, toColumn: Long): Unit {
+  public fun deleteText(fromColumn: Long, toColumn: Long): Unit {
     TransferContext.writeArguments(LONG to fromColumn, LONG to toColumn)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_TEXT, NIL)
   }
@@ -709,7 +709,7 @@ public open class LineEdit : Control() {
   /**
    * Executes a given action as defined in the [enum MenuItems] enum.
    */
-  public open fun menuOption(option: Long): Unit {
+  public fun menuOption(option: Long): Unit {
     TransferContext.writeArguments(LONG to option)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_MENU_OPTION, NIL)
   }
@@ -719,7 +719,7 @@ public open class LineEdit : Control() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
-  public open fun getMenu(): PopupMenu? {
+  public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MENU, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
@@ -728,7 +728,7 @@ public open class LineEdit : Control() {
   /**
    * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
    */
-  public open fun isMenuVisible(): Boolean {
+  public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_MENU_VISIBLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,27 +27,27 @@ public open class VisualScriptNode internal constructor() : Resource() {
     callConstructor(ENGINECLASS_VISUALSCRIPTNODE)
   }
 
-  public open fun getVisualScript(): VisualScript? {
+  public fun getVisualScript(): VisualScript? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_VISUAL_SCRIPT,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualScript?
   }
 
-  public open fun setDefaultInputValue(portIdx: Long, `value`: Any): Unit {
+  public fun setDefaultInputValue(portIdx: Long, `value`: Any): Unit {
     TransferContext.writeArguments(LONG to portIdx, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE, NIL)
   }
 
-  public open fun getDefaultInputValue(portIdx: Long): Any? {
+  public fun getDefaultInputValue(portIdx: Long): Any? {
     TransferContext.writeArguments(LONG to portIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_DEFAULT_INPUT_VALUE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun portsChangedNotify(): Unit {
+  public fun portsChangedNotify(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_PORTS_CHANGED_NOTIFY, NIL)

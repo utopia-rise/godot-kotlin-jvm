@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the top. Blends with [skyHorizonColor].
    */
-  public open var skyTopColor: Color
+  public var skyTopColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the horizon. Blends with [skyTopColor].
    */
-  public open var skyHorizonColor: Color
+  public var skyHorizonColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the [skyHorizonColor] fades into the [skyTopColor].
    */
-  public open var skyCurve: Double
+  public var skyCurve: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Amount of energy contribution from the sky.
    */
-  public open var skyEnergy: Double
+  public var skyEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * The sky cover texture to use. This texture must use an equirectangular projection (similar to [godot.PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergy] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
    */
-  public open var skyCover: Texture2D?
+  public var skyCover: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -111,7 +111,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
    */
-  public open var skyCoverModulate: Color
+  public var skyCoverModulate: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -127,7 +127,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
    */
-  public open var groundBottomColor: Color
+  public var groundBottomColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -143,7 +143,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the horizon. Blends with [groundBottomColor].
    */
-  public open var groundHorizonColor: Color
+  public var groundHorizonColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the [groundHorizonColor] fades into the [groundBottomColor].
    */
-  public open var groundCurve: Double
+  public var groundCurve: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -175,7 +175,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Amount of energy contribution from the ground.
    */
-  public open var groundEnergy: Double
+  public var groundEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Distance from center of sun where it fades out completely.
    */
-  public open var sunAngleMax: Double
+  public var sunAngleMax: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -207,7 +207,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * How quickly the sun fades away between the edge of the sun disk and [sunAngleMax].
    */
-  public open var sunCurve: Double
+  public var sunCurve: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

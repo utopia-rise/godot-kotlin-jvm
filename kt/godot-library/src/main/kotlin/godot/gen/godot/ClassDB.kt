@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public object ClassDB : Object() {
   /**
    * Returns the names of all the classes available.
    */
-  public open fun getClassList(): PackedStringArray {
+  public fun getClassList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_CLASS_LIST,
         PACKED_STRING_ARRAY)
@@ -55,7 +55,7 @@ public object ClassDB : Object() {
   /**
    * Returns the names of all the classes that directly or indirectly inherit from `class`.
    */
-  public open fun getInheritersFromClass(_class: StringName): PackedStringArray {
+  public fun getInheritersFromClass(_class: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_INHERITERS_FROM_CLASS,
         PACKED_STRING_ARRAY)
@@ -65,7 +65,7 @@ public object ClassDB : Object() {
   /**
    * Returns the parent class of `class`.
    */
-  public open fun getParentClass(_class: StringName): StringName {
+  public fun getParentClass(_class: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_PARENT_CLASS,
         STRING_NAME)
@@ -75,7 +75,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether the specified `class` is available or not.
    */
-  public open fun classExists(_class: StringName): Boolean {
+  public fun classExists(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_EXISTS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -84,7 +84,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether `inherits` is an ancestor of `class` or not.
    */
-  public open fun isParentClass(_class: StringName, inherits: StringName): Boolean {
+  public fun isParentClass(_class: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_PARENT_CLASS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -93,7 +93,7 @@ public object ClassDB : Object() {
   /**
    * Returns `true` if you can instance objects from the specified `class`, `false` in other case.
    */
-  public open fun canInstantiate(_class: StringName): Boolean {
+  public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CAN_INSTANTIATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -102,7 +102,7 @@ public object ClassDB : Object() {
   /**
    * Creates an instance of `class`.
    */
-  public open fun instantiate(_class: StringName): Any? {
+  public fun instantiate(_class: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_INSTANTIATE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -111,7 +111,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether `class` or its ancestry has a signal called `signal` or not.
    */
-  public open fun classHasSignal(_class: StringName, signal: StringName): Boolean {
+  public fun classHasSignal(_class: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_SIGNAL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -120,7 +120,7 @@ public object ClassDB : Object() {
   /**
    * Returns the `signal` data of `class` or its ancestry. The returned value is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    */
-  public open fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
+  public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL,
         DICTIONARY)
@@ -130,7 +130,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the signals of `class` or its ancestry if `no_inheritance` is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
    */
-  public open fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
+  public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL_LIST,
@@ -141,7 +141,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the properties of `class` or its ancestry if `no_inheritance` is `false`.
    */
-  public open fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
+  public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY_LIST,
@@ -152,7 +152,7 @@ public object ClassDB : Object() {
   /**
    * Returns the value of `property` of `class` or its ancestry.
    */
-  public open fun classGetProperty(_object: Object, `property`: StringName): Any? {
+  public fun classGetProperty(_object: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -161,7 +161,7 @@ public object ClassDB : Object() {
   /**
    * Sets `property` value of `class` to `value`.
    */
-  public open fun classSetProperty(
+  public fun classSetProperty(
     _object: Object,
     `property`: StringName,
     `value`: Any
@@ -174,7 +174,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether `class` (or its ancestry if `no_inheritance` is `false`) has a method called `method` or not.
    */
-  public open fun classHasMethod(
+  public fun classHasMethod(
     _class: StringName,
     method: StringName,
     noInheritance: Boolean = false
@@ -189,7 +189,7 @@ public object ClassDB : Object() {
    *
    * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
-  public open fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
+  public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_METHOD_LIST,
@@ -200,7 +200,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with the names all the integer constants of `class` or its ancestry.
    */
-  public open fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
+  public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr,
@@ -211,7 +211,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether `class` or its ancestry has an integer constant called `name` or not.
    */
-  public open fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
+  public fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_INTEGER_CONSTANT,
         BOOL)
@@ -221,7 +221,7 @@ public object ClassDB : Object() {
   /**
    * Returns the value of the integer constant `name` of `class` or its ancestry. Always returns 0 when the constant could not be found.
    */
-  public open fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
+  public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT,
         LONG)
@@ -231,7 +231,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether `class` or its ancestry has an enum called `name` or not.
    */
-  public open fun classHasEnum(
+  public fun classHasEnum(
     _class: StringName,
     name: StringName,
     noInheritance: Boolean = false
@@ -244,7 +244,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the enums of `class` or its ancestry.
    */
-  public open fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
+  public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_LIST,
@@ -255,7 +255,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the keys in `enum` of `class` or its ancestry.
    */
-  public open fun classGetEnumConstants(
+  public fun classGetEnumConstants(
     _class: StringName,
     _enum: StringName,
     noInheritance: Boolean = false
@@ -269,7 +269,7 @@ public object ClassDB : Object() {
   /**
    * Returns which enum the integer constant `name` of `class` or its ancestry belongs to.
    */
-  public open fun classGetIntegerConstantEnum(
+  public fun classGetIntegerConstantEnum(
     _class: StringName,
     name: StringName,
     noInheritance: Boolean = false
@@ -283,7 +283,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether this `class` is enabled or not.
    */
-  public open fun isClassEnabled(_class: StringName): Boolean {
+  public fun isClassEnabled(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_CLASS_ENABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -135,7 +135,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
    */
-  public open var rightDisconnects: Boolean
+  public var rightDisconnects: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -151,7 +151,7 @@ public open class GraphEdit : Control() {
   /**
    * The scroll offset.
    */
-  public open var scrollOffset: Vector2
+  public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS, VECTOR2)
@@ -165,7 +165,7 @@ public open class GraphEdit : Control() {
   /**
    * The snapping distance in pixels.
    */
-  public open var snapDistance: Long
+  public var snapDistance: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG)
@@ -179,7 +179,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, enables snapping.
    */
-  public open var useSnap: Boolean
+  public var useSnap: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL)
@@ -193,7 +193,7 @@ public open class GraphEdit : Control() {
   /**
    * Defines the control scheme for panning with mouse wheel.
    */
-  public open var panningScheme: Long
+  public var panningScheme: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
@@ -208,7 +208,7 @@ public open class GraphEdit : Control() {
   /**
    * The thickness of the lines between the nodes.
    */
-  public open var connectionLinesThickness: Double
+  public var connectionLinesThickness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -224,7 +224,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the lines between nodes will use antialiasing.
    */
-  public open var connectionLinesAntialiased: Boolean
+  public var connectionLinesAntialiased: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -240,7 +240,7 @@ public open class GraphEdit : Control() {
   /**
    * The current zoom value.
    */
-  public open var zoom: Double
+  public var zoom: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM, DOUBLE)
@@ -254,7 +254,7 @@ public open class GraphEdit : Control() {
   /**
    * The lower zoom limit.
    */
-  public open var zoomMin: Double
+  public var zoomMin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MIN, DOUBLE)
@@ -268,7 +268,7 @@ public open class GraphEdit : Control() {
   /**
    * The upper zoom limit.
    */
-  public open var zoomMax: Double
+  public var zoomMax: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MAX, DOUBLE)
@@ -282,7 +282,7 @@ public open class GraphEdit : Control() {
   /**
    * The step of each zoom level.
    */
-  public open var zoomStep: Double
+  public var zoomStep: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_STEP, DOUBLE)
@@ -296,7 +296,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, makes a label with the current zoom level visible. The zoom value is displayed in percents.
    */
-  public open var showZoomLabel: Boolean
+  public var showZoomLabel: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
@@ -312,7 +312,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the minimap is visible.
    */
-  public open var minimapEnabled: Boolean
+  public var minimapEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_MINIMAP_ENABLED,
@@ -328,7 +328,7 @@ public open class GraphEdit : Control() {
   /**
    * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
    */
-  public open var minimapSize: Vector2
+  public var minimapSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
@@ -343,7 +343,7 @@ public open class GraphEdit : Control() {
   /**
    * The opacity of the minimap rectangle.
    */
-  public open var minimapOpacity: Double
+  public var minimapOpacity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
@@ -381,7 +381,7 @@ public open class GraphEdit : Control() {
     slotIndex: Long,
     mousePosition: Vector2
   ): Boolean {
-    throw NotImplementedError("_is_in_input_hotzone·is·not·implemented·for·GraphEdit")
+    throw NotImplementedError("_is_in_input_hotzone is not implemented for GraphEdit")
   }
 
   /**
@@ -403,20 +403,20 @@ public open class GraphEdit : Control() {
     slotIndex: Long,
     mousePosition: Vector2
   ): Boolean {
-    throw NotImplementedError("_is_in_output_hotzone·is·not·implemented·for·GraphEdit")
+    throw NotImplementedError("_is_in_output_hotzone is not implemented for GraphEdit")
   }
 
   /**
    * Virtual method which can be overridden to customize how connections are drawn.
    */
   public open fun _getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
-    throw NotImplementedError("_get_connection_line·is·not·implemented·for·GraphEdit")
+    throw NotImplementedError("_get_connection_line is not implemented for GraphEdit")
   }
 
   /**
    * Create a connection between the `from_port` slot of the `from` GraphNode and the `to_port` slot of the `to` GraphNode. If the connection already exists, no connection is created.
    */
-  public open fun connectNode(
+  public fun connectNode(
     from: StringName,
     fromPort: Long,
     to: StringName,
@@ -430,7 +430,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns `true` if the `from_port` slot of the `from` GraphNode is connected to the `to_port` slot of the `to` GraphNode.
    */
-  public open fun isNodeConnected(
+  public fun isNodeConnected(
     from: StringName,
     fromPort: Long,
     to: StringName,
@@ -444,7 +444,7 @@ public open class GraphEdit : Control() {
   /**
    * Removes the connection between the `from_port` slot of the `from` GraphNode and the `to_port` slot of the `to` GraphNode. If the connection does not exist, no connection is removed.
    */
-  public open fun disconnectNode(
+  public fun disconnectNode(
     from: StringName,
     fromPort: Long,
     to: StringName,
@@ -457,7 +457,7 @@ public open class GraphEdit : Control() {
   /**
    * Sets the coloration of the connection between `from`'s `from_port` and `to`'s `to_port` with the color provided in the [theme_item activity] theme property.
    */
-  public open fun setConnectionActivity(
+  public fun setConnectionActivity(
     from: StringName,
     fromPort: Long,
     to: StringName,
@@ -472,7 +472,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }`.
    */
-  public open fun getConnectionList(): VariantArray<Any?> {
+  public fun getConnectionList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
         ARRAY)
@@ -482,7 +482,7 @@ public open class GraphEdit : Control() {
   /**
    * Removes all connections between nodes.
    */
-  public open fun clearConnections(): Unit {
+  public fun clearConnections(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CLEAR_CONNECTIONS, NIL)
   }
@@ -494,7 +494,7 @@ public open class GraphEdit : Control() {
    *
    * **Note:** This method suppresses any other connection request signals apart from [connectionDragEnded].
    */
-  public open fun forceConnectionDragEnd(): Unit {
+  public fun forceConnectionDragEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_FORCE_CONNECTION_DRAG_END,
         NIL)
@@ -503,7 +503,7 @@ public open class GraphEdit : Control() {
   /**
    * Makes possible to disconnect nodes when dragging from the slot at the right if it has the specified type.
    */
-  public open fun addValidRightDisconnectType(type: Long): Unit {
+  public fun addValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_RIGHT_DISCONNECT_TYPE, NIL)
@@ -512,7 +512,7 @@ public open class GraphEdit : Control() {
   /**
    * Removes the possibility to disconnect nodes when dragging from the slot at the right if it has the specified type.
    */
-  public open fun removeValidRightDisconnectType(type: Long): Unit {
+  public fun removeValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_RIGHT_DISCONNECT_TYPE, NIL)
@@ -521,7 +521,7 @@ public open class GraphEdit : Control() {
   /**
    * Makes possible to disconnect nodes when dragging from the slot at the left if it has the specified type.
    */
-  public open fun addValidLeftDisconnectType(type: Long): Unit {
+  public fun addValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_LEFT_DISCONNECT_TYPE, NIL)
@@ -530,7 +530,7 @@ public open class GraphEdit : Control() {
   /**
    * Removes the possibility to disconnect nodes when dragging from the slot at the left if it has the specified type.
    */
-  public open fun removeValidLeftDisconnectType(type: Long): Unit {
+  public fun removeValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_LEFT_DISCONNECT_TYPE, NIL)
@@ -539,7 +539,7 @@ public open class GraphEdit : Control() {
   /**
    * Makes possible the connection between two different slot types. The type is defined with the [godot.GraphNode.setSlot] method.
    */
-  public open fun addValidConnectionType(fromType: Long, toType: Long): Unit {
+  public fun addValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_CONNECTION_TYPE,
         NIL)
@@ -548,7 +548,7 @@ public open class GraphEdit : Control() {
   /**
    * Makes it not possible to connect between two different slot types. The type is defined with the [godot.GraphNode.setSlot] method.
    */
-  public open fun removeValidConnectionType(fromType: Long, toType: Long): Unit {
+  public fun removeValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_CONNECTION_TYPE, NIL)
@@ -557,7 +557,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns whether it's possible to connect slots of the specified types.
    */
-  public open fun isValidConnectionType(fromType: Long, toType: Long): Boolean {
+  public fun isValidConnectionType(fromType: Long, toType: Long): Boolean {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_VALID_CONNECTION_TYPE,
         BOOL)
@@ -567,7 +567,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns the points which would make up a connection between `from` and `to`.
    */
-  public open fun getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
+  public fun getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
         PACKED_VECTOR2_ARRAY)
@@ -579,7 +579,7 @@ public open class GraphEdit : Control() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getZoomHbox(): HBoxContainer? {
+  public fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?
@@ -588,7 +588,7 @@ public open class GraphEdit : Control() {
   /**
    * Rearranges selected nodes in a layout with minimum crossings between connections and uniform horizontal and vertical gap between nodes.
    */
-  public open fun arrangeNodes(): Unit {
+  public fun arrangeNodes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ARRANGE_NODES, NIL)
   }
@@ -596,7 +596,7 @@ public open class GraphEdit : Control() {
   /**
    * Sets the specified `node` as the one selected.
    */
-  public open fun setSelected(node: Node): Unit {
+  public fun setSelected(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SELECTED, NIL)
   }

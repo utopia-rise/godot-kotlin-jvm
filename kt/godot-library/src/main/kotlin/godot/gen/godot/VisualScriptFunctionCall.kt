@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,7 +22,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunctionCall : VisualScriptNode() {
-  public open var callMode: Long
+  public var callMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -35,7 +35,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_CALL_MODE, NIL)
     }
 
-  public open var baseType: String
+  public var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -48,7 +48,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_TYPE, NIL)
     }
 
-  public open var baseScript: String
+  public var baseScript: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_SCRIPT, NIL)
     }
 
-  public open var singleton: String
+  public var singleton: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_SINGLETON, NIL)
     }
 
-  public open var basicType: Long
+  public var basicType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -87,7 +87,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASIC_TYPE, NIL)
     }
 
-  public open var nodePath: NodePath
+  public var nodePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_PATH, NIL)
     }
 
-  public open var function: String
+  public var function: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -113,7 +113,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_FUNCTION, NIL)
     }
 
-  public open var useDefaultArgs: Long
+  public var useDefaultArgs: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -126,7 +126,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_USE_DEFAULT_ARGS, NIL)
     }
 
-  public open var validate: Boolean
+  public var validate: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -139,7 +139,7 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_VALIDATE, NIL)
     }
 
-  public open var rpcCallMode: Long
+  public var rpcCallMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

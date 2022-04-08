@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class CurveTexture : Texture2D() {
   /**
    * The width of the texture.
    */
-  public open var width: Long
+  public var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
@@ -38,7 +38,7 @@ public open class CurveTexture : Texture2D() {
   /**
    *
    */
-  public open var textureMode: Long
+  public var textureMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,
@@ -54,7 +54,7 @@ public open class CurveTexture : Texture2D() {
   /**
    * The `curve` rendered onto the texture.
    */
-  public open var curve: Curve?
+  public var curve: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_CURVE, OBJECT)

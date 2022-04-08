@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip.
    */
-  public open var colorAttachments: PackedInt32Array
+  public var colorAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -44,7 +44,7 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [godot.RDUniform] for the uniform set.
    */
-  public open var inputAttachments: PackedInt32Array
+  public var inputAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,7 +60,7 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * If the color attachments are multisampled, non-multisampled resolve attachments can be provided.
    */
-  public open var resolveAttachments: PackedInt32Array
+  public var resolveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,7 +76,7 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Attachments to preserve in this pass (otherwise they are erased).
    */
-  public open var preserveAttachments: PackedInt32Array
+  public var preserveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -92,7 +92,7 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass.
    */
-  public open var depthAttachment: Long
+  public var depthAttachment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

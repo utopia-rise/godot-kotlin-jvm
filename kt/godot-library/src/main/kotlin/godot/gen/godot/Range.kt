@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class Range : Control() {
   /**
    * Minimum value. Range is clamped if `value` is less than `min_value`.
    */
-  public open var minValue: Double
+  public var minValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE)
@@ -56,7 +56,7 @@ public open class Range : Control() {
   /**
    * Maximum value. Range is clamped if `value` is greater than `max_value`.
    */
-  public open var maxValue: Double
+  public var maxValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE)
@@ -70,7 +70,7 @@ public open class Range : Control() {
   /**
    * If greater than 0, `value` will always be rounded to a multiple of `step`. If `rounded` is also `true`, `value` will first be rounded to a multiple of `step` then rounded to the nearest integer.
    */
-  public open var step: Double
+  public var step: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_STEP, DOUBLE)
@@ -84,7 +84,7 @@ public open class Range : Control() {
   /**
    * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by `page` over the difference between `min_value` and `max_value`.
    */
-  public open var page: Double
+  public var page: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE)
@@ -98,7 +98,7 @@ public open class Range : Control() {
   /**
    * Range's current value.
    */
-  public open var `value`: Double
+  public var `value`: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_VALUE, DOUBLE)
@@ -112,7 +112,7 @@ public open class Range : Control() {
   /**
    * The value mapped between 0 and 1.
    */
-  public open var ratio: Double
+  public var ratio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE)
@@ -126,7 +126,7 @@ public open class Range : Control() {
   /**
    * If `true`, and `min_value` is greater than 0, `value` will be represented exponentially rather than linearly.
    */
-  public open var expEdit: Boolean
+  public var expEdit: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL)
@@ -140,7 +140,7 @@ public open class Range : Control() {
   /**
    * If `true`, `value` will always be rounded to the nearest integer.
    */
-  public open var rounded: Boolean
+  public var rounded: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
@@ -155,7 +155,7 @@ public open class Range : Control() {
   /**
    * If `true`, [value] may be greater than [maxValue].
    */
-  public open var allowGreater: Boolean
+  public var allowGreater: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL)
@@ -169,7 +169,7 @@ public open class Range : Control() {
   /**
    * If `true`, [value] may be less than [minValue].
    */
-  public open var allowLesser: Boolean
+  public var allowLesser: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL)
@@ -193,7 +193,7 @@ public open class Range : Control() {
   /**
    * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
    */
-  public open fun share(with: Node): Unit {
+  public fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SHARE, NIL)
   }
@@ -201,7 +201,7 @@ public open class Range : Control() {
   /**
    * Stops the [godot.Range] from sharing its member variables with any other.
    */
-  public open fun unshare(): Unit {
+  public fun unshare(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_UNSHARE, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -65,7 +65,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Disable 3D rendering (but keep 2D rendering).
    */
-  public open var disable3d: Boolean
+  public var disable3d: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL)
@@ -79,7 +79,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset.
    */
-  public open var useXr: Boolean
+  public var useXr: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL)
@@ -93,7 +93,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport will process 3D audio streams.
    */
-  public open var audioListenerEnable3d: Boolean
+  public var audioListenerEnable3d: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
@@ -109,7 +109,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport will use the [godot.World3D] defined in [world3d].
    */
-  public open var ownWorld3d: Boolean
+  public var ownWorld3d: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
@@ -125,7 +125,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The custom [godot.World3D] which can be used as 3D environment source.
    */
-  public open var world3d: World3D?
+  public var world3d: World3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT)
@@ -139,7 +139,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The custom [godot.World2D] which can be used as 2D environment source.
    */
-  public open var world2d: World2D?
+  public var world2d: World2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
@@ -153,7 +153,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport should render its background as transparent.
    */
-  public open var transparentBg: Boolean
+  public var transparentBg: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -169,7 +169,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var handleInputLocally: Boolean
+  public var handleInputLocally: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -185,7 +185,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var snap2dTransformsToPixel: Boolean
+  public var snap2dTransformsToPixel: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -201,7 +201,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var snap2dVerticesToPixel: Boolean
+  public var snap2dVerticesToPixel: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -217,7 +217,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The multisample anti-aliasing mode. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive.
    */
-  public open var msaa: Long
+  public var msaa: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG)
@@ -231,7 +231,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
    */
-  public open var screenSpaceAa: Long
+  public var screenSpaceAa: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
@@ -246,7 +246,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var useDebanding: Boolean
+  public var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING, BOOL)
@@ -262,7 +262,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([godot.GeometryInstance3D.visibilityRangeBegin] and [godot.GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
    */
-  public open var useOcclusionCulling: Boolean
+  public var useOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -282,7 +282,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
    */
-  public open var meshLodThreshold: Double
+  public var meshLodThreshold: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
@@ -298,7 +298,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
-  public open var debugDraw: Long
+  public var debugDraw: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
@@ -314,7 +314,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
    */
-  public open var scaling3dMode: Long
+  public var scaling3dMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
@@ -333,7 +333,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/scale] project setting.
    */
-  public open var scaling3dScale: Double
+  public var scaling3dScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
@@ -351,7 +351,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrMipmapBias] project setting.
    */
-  public open var fsrMipmapBias: Double
+  public var fsrMipmapBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_MIPMAP_BIAS,
@@ -368,7 +368,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
    */
-  public open var fsrSharpness: Double
+  public var fsrSharpness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
@@ -383,7 +383,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the default filter mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options.
    */
-  public open var canvasItemDefaultTextureFilter: Long
+  public var canvasItemDefaultTextureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -399,7 +399,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the default repeat mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options.
    */
-  public open var canvasItemDefaultTextureRepeat: Long
+  public var canvasItemDefaultTextureRepeat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -415,7 +415,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport will process 2D audio streams.
    */
-  public open var audioListenerEnable2d: Boolean
+  public var audioListenerEnable2d: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
@@ -431,7 +431,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
    */
-  public open var physicsObjectPicking: Boolean
+  public var physicsObjectPicking: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -447,7 +447,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the viewport will not receive input events.
    */
-  public open var guiDisableInput: Boolean
+  public var guiDisableInput: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED, BOOL)
@@ -461,7 +461,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the GUI controls on the viewport will lay pixel perfectly.
    */
-  public open var guiSnapControlsToPixels: Boolean
+  public var guiSnapControlsToPixels: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -477,7 +477,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system.
    */
-  public open var guiEmbedSubwindows: Boolean
+  public var guiEmbedSubwindows: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
@@ -493,7 +493,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var sdfOversize: Long
+  public var sdfOversize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
@@ -507,7 +507,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var sdfScale: Long
+  public var sdfScale: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
@@ -523,7 +523,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** If this is set to 0, shadows won't be visible.
    */
-  public open var shadowAtlasSize: Long
+  public var shadowAtlasSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_SIZE,
@@ -539,7 +539,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open var shadowAtlas16Bits: Boolean
+  public var shadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_16_BITS,
@@ -555,7 +555,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the first quadrant on the shadow atlas.
    */
-  public open val shadowAtlasQuad0: Long
+  public val shadowAtlasQuad0: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -566,7 +566,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the second quadrant on the shadow atlas.
    */
-  public open val shadowAtlasQuad1: Long
+  public val shadowAtlasQuad1: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -577,7 +577,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the third quadrant on the shadow atlas.
    */
-  public open val shadowAtlasQuad2: Long
+  public val shadowAtlasQuad2: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -588,7 +588,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The subdivision amount of the fourth quadrant on the shadow atlas.
    */
-  public open val shadowAtlasQuad3: Long
+  public val shadowAtlasQuad3: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -599,7 +599,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
-  public open var canvasTransform: Transform2D
+  public var canvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
@@ -615,7 +615,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
-  public open var globalCanvasTransform: Transform2D
+  public var globalCanvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -635,7 +635,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the first valid [godot.World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.
    */
-  public open fun findWorld2d(): World2D? {
+  public fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World2D?
@@ -644,7 +644,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the total transform of the viewport.
    */
-  public open fun getFinalTransform(): Transform2D {
+  public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FINAL_TRANSFORM,
         TRANSFORM2D)
@@ -654,7 +654,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the visible rectangle in global screen coordinates.
    */
-  public open fun getVisibleRect(): Rect2 {
+  public fun getVisibleRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VISIBLE_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -663,7 +663,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
+  public fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -694,7 +694,7 @@ public open class Viewport internal constructor() : Node() {
    *
    * [/codeblocks]
    */
-  public open fun getTexture(): ViewportTexture? {
+  public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?
@@ -703,7 +703,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the viewport's RID from the [godot.RenderingServer].
    */
-  public open fun getViewportRid(): RID {
+  public fun getViewportRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -712,7 +712,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns `true` if the viewport is currently embedding windows.
    */
-  public open fun pushTextInput(text: String): Unit {
+  public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_TEXT_INPUT, NIL)
   }
@@ -720,7 +720,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
+  public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL)
   }
@@ -728,7 +728,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
+  public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT, NIL)
   }
@@ -736,7 +736,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the currently active 2D camera. Returns null if there are no active cameras.
    */
-  public open fun getCamera2d(): Camera2D? {
+  public fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Camera2D?
@@ -745,7 +745,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the mouse's position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
-  public open fun getMousePosition(): Vector2 {
+  public fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
         VECTOR2)
@@ -755,7 +755,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
-  public open fun warpMouse(position: Vector2): Unit {
+  public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
   }
@@ -763,7 +763,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the drag data from the GUI, that was previously returned by [godot.Control.GetDragData].
    */
-  public open fun guiGetDragData(): Any? {
+  public fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -772,7 +772,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns `true` if the viewport is currently performing a drag operation.
    */
-  public open fun guiIsDragging(): Boolean {
+  public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAGGING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -781,7 +781,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns `true` if the drag operation is successful.
    */
-  public open fun guiIsDragSuccessful(): Boolean {
+  public fun guiIsDragSuccessful(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
         BOOL)
@@ -791,7 +791,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Removes the focus from the currently focused [godot.Control] within this viewport. If no [godot.Control] has the focus, does nothing.
    */
-  public open fun guiReleaseFocus(): Unit {
+  public fun guiReleaseFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_RELEASE_FOCUS, NIL)
   }
@@ -799,7 +799,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the [godot.Control] having the focus within this viewport. If no [godot.Control] has the focus, returns null.
    */
-  public open fun guiGetFocusOwner(): Control? {
+  public fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
         OBJECT)
@@ -809,7 +809,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
    */
-  public open fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
+  public fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
       subdiv: Viewport.ShadowAtlasQuadrantSubdiv): Unit {
     TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
     TransferContext.callMethod(rawPtr,
@@ -819,7 +819,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Stops the input from propagating further down the [godot.SceneTree].
    */
-  public open fun setInputAsHandled(): Unit {
+  public fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED, NIL)
   }
@@ -827,7 +827,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    *
    */
-  public open fun isInputHandled(): Boolean {
+  public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -836,7 +836,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the first valid [godot.World3D] for this viewport, searching the [world3d] property of itself and any Viewport ancestor.
    */
-  public open fun findWorld3d(): World3D? {
+  public fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World3D?
@@ -845,7 +845,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the currently active 3D camera.
    */
-  public open fun getCamera3d(): Camera3D? {
+  public fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Camera3D?

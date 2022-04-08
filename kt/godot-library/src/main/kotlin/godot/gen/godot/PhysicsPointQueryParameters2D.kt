@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The position being queried for, in global coordinates.
    */
-  public open var position: Vector2
+  public var position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * If different from `0`, restricts the query to a specific canvas layer specified by its instance id. See [godot.Object.getInstanceId].
    */
-  public open var canvasInstanceId: Long
+  public var canvasInstanceId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The list of objects or object [RID]s that will be excluded from collisions.
    */
-  public open var exclude: VariantArray<Any?>
+  public var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [godot.PhysicsBody2D]s into account.
    */
-  public open var collideWithBodies: Boolean
+  public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -112,7 +112,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [godot.Area2D]s into account.
    */
-  public open var collideWithAreas: Boolean
+  public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -70,7 +70,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
    *
    * - `shortcut_text`: [godot.String] (Shortcut text of the **Command** if available.)
    */
-  public open fun addCommand(
+  public fun addCommand(
     commandName: String,
     keyName: String,
     bindedCallable: Callable,
@@ -86,7 +86,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
    *
    * - `key_name`: [godot.String] (Name of the key for a particular **Command**.)
    */
-  public open fun removeCommand(keyName: String): Unit {
+  public fun removeCommand(keyName: String): Unit {
     TransferContext.writeArguments(STRING to keyName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_REMOVE_COMMAND,
         NIL)

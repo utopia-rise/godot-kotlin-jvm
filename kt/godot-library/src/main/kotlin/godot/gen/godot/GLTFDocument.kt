@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFDocument : Resource() {
-  public open var extensions: VariantArray<Any?>
+  public var extensions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_EXTENSIONS,
@@ -43,7 +43,7 @@ public open class GLTFDocument : Resource() {
     callConstructor(ENGINECLASS_GLTFDOCUMENT)
   }
 
-  public open fun appendFromFile(
+  public fun appendFromFile(
     path: String,
     state: GLTFState,
     flags: Long = 0,
@@ -55,7 +55,7 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun appendFromBuffer(
+  public fun appendFromBuffer(
     bytes: PackedByteArray,
     basePath: String,
     state: GLTFState,
@@ -68,7 +68,7 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun appendFromScene(
+  public fun appendFromScene(
     node: Node,
     state: GLTFState,
     flags: Long = 0,
@@ -80,20 +80,20 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun generateScene(state: GLTFState, bakeFps: Long = 30): Node? {
+  public fun generateScene(state: GLTFState, bakeFps: Long = 30): Node? {
     TransferContext.writeArguments(OBJECT to state, LONG to bakeFps)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
-  public open fun generateBuffer(state: GLTFState): PackedByteArray {
+  public fun generateBuffer(state: GLTFState): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_BUFFER,
         PACKED_BYTE_ARRAY)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
-  public open fun writeToFilesystem(state: GLTFState, path: String): GodotError {
+  public fun writeToFilesystem(state: GLTFState, path: String): GodotError {
     TransferContext.writeArguments(OBJECT to state, STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_WRITE_TO_FILESYSTEM,
         LONG)

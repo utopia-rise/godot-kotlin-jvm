@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * The box's width, height and depth.
    */
-  public open var size: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SIZE, VECTOR3)
@@ -44,7 +44,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the X axis.
    */
-  public open var subdivideWidth: Long
+  public var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_WIDTH, LONG)
@@ -58,7 +58,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Y axis.
    */
-  public open var subdivideHeight: Long
+  public var subdivideHeight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_HEIGHT,
@@ -73,7 +73,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Z axis.
    */
-  public open var subdivideDepth: Long
+  public var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_DEPTH, LONG)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class SkinReference internal constructor() : RefCounted() {
   /**
    *
    */
-  public open fun getSkeleton(): RID {
+  public fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -35,7 +35,7 @@ public open class SkinReference internal constructor() : RefCounted() {
   /**
    *
    */
-  public open fun getSkin(): Skin? {
+  public fun getSkin(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Skin?

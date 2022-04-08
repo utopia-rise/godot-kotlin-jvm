@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -66,7 +66,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Sends a message with given `message` and `data` array.
    */
-  public open fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
+  public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_SEND_MESSAGE,
         NIL)
@@ -77,7 +77,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    *
    * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
    */
-  public open fun registerMessageCapture(name: StringName, callable: Callable): Unit {
+  public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL)
@@ -86,7 +86,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Unregisters the message capture with given name.
    */
-  public open fun unregisterMessageCapture(name: StringName): Unit {
+  public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_UNREGISTER_MESSAGE_CAPTURE, NIL)
@@ -95,7 +95,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Returns `true` if a message capture with given name is present otherwise `false`.
    */
-  public open fun hasCapture(name: StringName): Boolean {
+  public fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_HAS_CAPTURE,
         BOOL)
@@ -105,7 +105,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Returns `true` if the game is in break state otherwise `false`.
    */
-  public open fun isBreaked(): Boolean {
+  public fun isBreaked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_BREAKED,
         BOOL)
@@ -115,7 +115,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Returns `true` if the game can be debugged otherwise `false`.
    */
-  public open fun isDebuggable(): Boolean {
+  public fun isDebuggable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_DEBUGGABLE,
         BOOL)
@@ -125,7 +125,7 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Returns `true` if there is an instance of the game running with the attached debugger otherwise `false`.
    */
-  public open fun isSessionActive(): Boolean {
+  public fun isSessionActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_SESSION_ACTIVE, BOOL)

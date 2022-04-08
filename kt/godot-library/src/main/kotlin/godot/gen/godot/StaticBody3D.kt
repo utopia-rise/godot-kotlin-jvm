@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class StaticBody3D : PhysicsBody3D() {
    *
    * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
-  public open var physicsMaterialOverride: PhysicsMaterial?
+  public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -54,7 +54,7 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
-  public open var constantLinearVelocity: Vector3
+  public var constantLinearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -70,7 +70,7 @@ public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
    */
-  public open var constantAngularVelocity: Vector3
+  public var constantAngularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

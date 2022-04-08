@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collisions will be reported.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_ENABLED, BOOL)
@@ -56,7 +56,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, the parent node will be excluded from collision detection.
    */
-  public open var excludeParent: Boolean
+  public var excludeParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_EXCLUDE_PARENT_BODY,
@@ -72,7 +72,7 @@ public open class RayCast2D : Node2D() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    */
-  public open var targetPosition: Vector2
+  public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_TARGET_POSITION,
@@ -88,7 +88,7 @@ public open class RayCast2D : Node2D() {
   /**
    * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_MASK,
@@ -103,7 +103,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
    */
-  public open var hitFromInside: Boolean
+  public var hitFromInside: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collision with [godot.Area2D]s will be reported.
    */
-  public open var collideWithAreas: Boolean
+  public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collision with [godot.PhysicsBody2D]s will be reported.
    */
-  public open var collideWithBodies: Boolean
+  public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns whether any object is intersecting with the ray's vector (considering the vector length).
    */
-  public open fun isColliding(): Boolean {
+  public fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_COLLIDING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -166,7 +166,7 @@ public open class RayCast2D : Node2D() {
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public open fun forceRaycastUpdate(): Unit {
+  public fun forceRaycastUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_FORCE_RAYCAST_UPDATE, NIL)
   }
@@ -174,7 +174,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public open fun getCollider(): Object? {
+  public fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLIDER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
@@ -183,7 +183,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public open fun getColliderShape(): Long {
+  public fun getColliderShape(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLIDER_SHAPE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -194,7 +194,7 @@ public open class RayCast2D : Node2D() {
    *
    * **Note:** This point is in the **global** coordinate system.
    */
-  public open fun getCollisionPoint(): Vector2 {
+  public fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_POINT,
         VECTOR2)
@@ -204,7 +204,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0, 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
    */
-  public open fun getCollisionNormal(): Vector2 {
+  public fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_NORMAL,
         VECTOR2)
@@ -214,7 +214,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public open fun addExceptionRid(rid: RID): Unit {
+  public fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_ADD_EXCEPTION_RID, NIL)
   }
@@ -222,7 +222,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [godot.CollisionObject2D] node.
    */
-  public open fun addException(node: CollisionObject2D): Unit {
+  public fun addException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_ADD_EXCEPTION, NIL)
   }
@@ -230,7 +230,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public open fun removeExceptionRid(rid: RID): Unit {
+  public fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_REMOVE_EXCEPTION_RID, NIL)
   }
@@ -238,7 +238,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [godot.CollisionObject2D] node.
    */
-  public open fun removeException(node: CollisionObject2D): Unit {
+  public fun removeException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_REMOVE_EXCEPTION, NIL)
   }
@@ -246,7 +246,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public open fun clearExceptions(): Unit {
+  public fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_CLEAR_EXCEPTIONS, NIL)
   }
@@ -254,7 +254,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
    */
-  public open fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_SET_COLLISION_MASK_VALUE,
         NIL)
@@ -263,7 +263,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getCollisionMaskValue(layerNumber: Long): Boolean {
+  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_MASK_VALUE,
         BOOL)

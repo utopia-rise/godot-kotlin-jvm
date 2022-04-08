@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,13 +21,13 @@ public open class GDScript : Script() {
     callConstructor(ENGINECLASS_GDSCRIPT)
   }
 
-  public open fun new(vararg __var_args: Any?): Any? {
+  public fun new(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  public open fun getAsByteCode(): PackedByteArray {
+  public fun getAsByteCode(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_GET_AS_BYTE_CODE,
         PACKED_BYTE_ARRAY)

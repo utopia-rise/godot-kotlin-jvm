@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class MultiMesh : Resource() {
   /**
    * Format of transform used to transform mesh, either 2D or 3D.
    */
-  public open var transformFormat: Long
+  public var transformFormat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
@@ -61,7 +61,7 @@ public open class MultiMesh : Resource() {
   /**
    * If `true`, the [godot.MultiMesh] will use color data (see [colorArray]).
    */
-  public open var useColors: Boolean
+  public var useColors: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS, BOOL)
@@ -75,7 +75,7 @@ public open class MultiMesh : Resource() {
   /**
    * If `true`, the [godot.MultiMesh] will use custom data (see [customDataArray]).
    */
-  public open var useCustomData: Boolean
+  public var useCustomData: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
@@ -91,7 +91,7 @@ public open class MultiMesh : Resource() {
   /**
    * Number of instances that will get drawn. This clears and (re)sizes the buffers. By default, all instances are drawn but you can limit this with [visibleInstanceCount].
    */
-  public open var instanceCount: Long
+  public var instanceCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
@@ -106,7 +106,7 @@ public open class MultiMesh : Resource() {
   /**
    * Limits the number of instances drawn, -1 draws all instances. Changing this does not change the sizes of the buffers.
    */
-  public open var visibleInstanceCount: Long
+  public var visibleInstanceCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -122,7 +122,7 @@ public open class MultiMesh : Resource() {
   /**
    * Mesh to be drawn.
    */
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT)
@@ -136,7 +136,7 @@ public open class MultiMesh : Resource() {
   /**
    *
    */
-  public open var buffer: PackedFloat32Array
+  public var buffer: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_BUFFER,
@@ -155,7 +155,7 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the [godot.Transform3D] for a specific instance.
    */
-  public open fun setInstanceTransform(instance: Long, transform: Transform3D): Unit {
+  public fun setInstanceTransform(instance: Long, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to instance, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM,
         NIL)
@@ -164,7 +164,7 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the [godot.core.Transform2D] for a specific instance.
    */
-  public open fun setInstanceTransform2d(instance: Long, transform: Transform2D): Unit {
+  public fun setInstanceTransform2d(instance: Long, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to instance, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
         NIL)
@@ -173,7 +173,7 @@ public open class MultiMesh : Resource() {
   /**
    * Returns the [godot.Transform3D] of a specific instance.
    */
-  public open fun getInstanceTransform(instance: Long): Transform3D {
+  public fun getInstanceTransform(instance: Long): Transform3D {
     TransferContext.writeArguments(LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
         TRANSFORM3D)
@@ -183,7 +183,7 @@ public open class MultiMesh : Resource() {
   /**
    * Returns the [godot.core.Transform2D] of a specific instance.
    */
-  public open fun getInstanceTransform2d(instance: Long): Transform2D {
+  public fun getInstanceTransform2d(instance: Long): Transform2D {
     TransferContext.writeArguments(LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
         TRANSFORM2D)
@@ -195,7 +195,7 @@ public open class MultiMesh : Resource() {
    *
    * For the color to take effect, ensure that [useColors] is `true` on the [godot.MultiMesh] and [godot.BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material.
    */
-  public open fun setInstanceColor(instance: Long, color: Color): Unit {
+  public fun setInstanceColor(instance: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR, NIL)
   }
@@ -203,7 +203,7 @@ public open class MultiMesh : Resource() {
   /**
    * Gets a specific instance's color.
    */
-  public open fun getInstanceColor(instance: Long): Color {
+  public fun getInstanceColor(instance: Long): Color {
     TransferContext.writeArguments(LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -214,7 +214,7 @@ public open class MultiMesh : Resource() {
    *
    * For the custom data to be used, ensure that [useCustomData] is `true`.
    */
-  public open fun setInstanceCustomData(instance: Long, customData: Color): Unit {
+  public fun setInstanceCustomData(instance: Long, customData: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to customData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
         NIL)
@@ -223,7 +223,7 @@ public open class MultiMesh : Resource() {
   /**
    * Returns the custom data that has been set for a specific instance.
    */
-  public open fun getInstanceCustomData(instance: Long): Color {
+  public fun getInstanceCustomData(instance: Long): Color {
     TransferContext.writeArguments(LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
         COLOR)
@@ -233,7 +233,7 @@ public open class MultiMesh : Resource() {
   /**
    * Returns the visibility axis-aligned bounding box in local space. See also [godot.VisualInstance3D.getTransformedAabb].
    */
-  public open fun getAabb(): AABB {
+  public fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
         godot.core.VariantType.AABB)

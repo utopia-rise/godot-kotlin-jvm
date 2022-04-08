@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,7 +22,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var format: Long
+  public var format: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_FORMAT, LONG)
@@ -36,7 +36,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var width: Long
+  public var width: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_WIDTH, LONG)
@@ -50,7 +50,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var height: Long
+  public var height: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_HEIGHT, LONG)
@@ -64,7 +64,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var depth: Long
+  public var depth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_DEPTH, LONG)
@@ -78,7 +78,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var arrayLayers: Long
+  public var arrayLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_ARRAY_LAYERS,
@@ -94,7 +94,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var mipmaps: Long
+  public var mipmaps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_MIPMAPS, LONG)
@@ -108,7 +108,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var textureType: Long
+  public var textureType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_TEXTURE_TYPE,
@@ -124,7 +124,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var samples: Long
+  public var samples: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_SAMPLES, LONG)
@@ -138,7 +138,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open var usageBits: Long
+  public var usageBits: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_USAGE_BITS,
@@ -158,7 +158,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
+  public fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_ADD_SHAREABLE_FORMAT, NIL)
@@ -167,7 +167,7 @@ public open class RDTextureFormat : RefCounted() {
   /**
    *
    */
-  public open fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
+  public fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_REMOVE_SHAREABLE_FORMAT, NIL)

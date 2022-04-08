@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The actual shape owned by this collision shape.
    */
-  public open var shape: Shape2D?
+  public var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_SHAPE,
@@ -45,7 +45,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_IS_DISABLED,
@@ -61,7 +61,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * Sets whether this collision shape should only detect collision on one side (top or bottom).
    */
-  public open var oneWayCollision: Boolean
+  public var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,7 +77,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity.
    */
-  public open var oneWayCollisionMargin: Double
+  public var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

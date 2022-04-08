@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -64,7 +64,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Creates a new PCK file with the name `pck_name`. The `.pck` file extension isn't added automatically, so it should be part of `pck_name` (even though it's not required).
    */
-  public open fun pckStart(
+  public fun pckStart(
     pckName: String,
     alignment: Long = 32,
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
@@ -78,7 +78,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Adds the `source_path` file to the current PCK package at the `pck_path` internal path (should start with `res://`).
    */
-  public open fun addFile(
+  public fun addFile(
     pckPath: String,
     sourcePath: String,
     encrypt: Boolean = false
@@ -91,7 +91,7 @@ public open class PCKPacker : RefCounted() {
   /**
    * Writes the files specified using all [addFile] calls since the last flush. If `verbose` is `true`, a list of files added will be printed to the console for easier debugging.
    */
-  public open fun flush(verbose: Boolean = false): GodotError {
+  public fun flush(verbose: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to verbose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_FLUSH, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

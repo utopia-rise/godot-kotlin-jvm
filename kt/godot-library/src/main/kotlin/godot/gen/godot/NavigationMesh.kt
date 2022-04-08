@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
-  public open var vertices: PackedVector3Array
+  public var vertices: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTICES,
@@ -50,7 +50,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values.
    */
-  public open var samplePartitionType_samplePartitionType: Long
+  public var samplePartitionType_samplePartitionType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -66,7 +66,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
    */
-  public open var geometry_parsedGeometryType: Long
+  public var geometry_parsedGeometryType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class NavigationMesh : Resource() {
    *
    * Only used when [geometry/parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
    */
-  public open var geometry_collisionMask: Long
+  public var geometry_collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK,
@@ -100,7 +100,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
    */
-  public open var geometry_sourceGeometryMode: Long
+  public var geometry_sourceGeometryMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class NavigationMesh : Resource() {
    *
    * Only used when [geometry/sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
-  public open var geometry_sourceGroupName: String
+  public var geometry_sourceGroupName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -134,7 +134,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The XZ plane cell size to use for fields.
    */
-  public open var cell_size: Double
+  public var cell_size: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_SIZE,
@@ -149,7 +149,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The Y axis cell size to use for fields.
    */
-  public open var cell_height: Double
+  public var cell_height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_HEIGHT,
@@ -167,7 +167,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/height].
    */
-  public open var agent_height: Double
+  public var agent_height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_HEIGHT,
@@ -185,7 +185,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/size].
    */
-  public open var agent_radius: Double
+  public var agent_radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_RADIUS,
@@ -203,7 +203,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** While baking, this value will be rounded down to the nearest multiple of [cell/height].
    */
-  public open var agent_maxClimb: Double
+  public var agent_maxClimb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -219,7 +219,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum slope that is considered walkable, in degrees.
    */
-  public open var agent_maxSlope: Double
+  public var agent_maxSlope: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -237,7 +237,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** This value will be squared to calculate the minimum number of cells allowed to form isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
-  public open var region_minSize: Double
+  public var region_minSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -255,7 +255,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** This value will be squared to calculate the number of cells. For example, a value of 20 will set the number of cells to 400.
    */
-  public open var region_mergeSize: Double
+  public var region_mergeSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -273,7 +273,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/size].
    */
-  public open var edge_maxLength: Double
+  public var edge_maxLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -289,7 +289,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
    */
-  public open var edge_maxError: Double
+  public var edge_maxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_EDGE_MAX_ERROR,
@@ -305,7 +305,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
    */
-  public open var polygon_vertsPerPoly: Double
+  public var polygon_vertsPerPoly: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTS_PER_POLY,
@@ -321,7 +321,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The sampling distance to use when generating the detail mesh, in cell unit.
    */
-  public open var detail_sampleDistance: Double
+  public var detail_sampleDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -337,7 +337,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The maximum distance the detail mesh surface should deviate from heightfield, in cell unit.
    */
-  public open var detail_sampleMaxError: Double
+  public var detail_sampleMaxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -353,7 +353,7 @@ public open class NavigationMesh : Resource() {
   /**
    * If `true`, marks non-walkable spans as walkable if their maximum is within [agent/maxClimb] of a walkable neighbor.
    */
-  public open var filter_lowHangingObstacles: Boolean
+  public var filter_lowHangingObstacles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -369,7 +369,7 @@ public open class NavigationMesh : Resource() {
   /**
    * If `true`, marks spans that are ledges as non-walkable.
    */
-  public open var filter_ledgeSpans: Boolean
+  public var filter_ledgeSpans: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -385,7 +385,7 @@ public open class NavigationMesh : Resource() {
   /**
    * If `true`, marks walkable spans as not walkable if the clearance above the span is less than [agent/height].
    */
-  public open var filter_filterWalkableLowHeightSpans: Boolean
+  public var filter_filterWalkableLowHeightSpans: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -405,7 +405,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Based on `value`, enables or disables the specified layer in the [geometry/collisionMask], given a `layer_number` between 1 and 32.
    */
-  public open fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK_VALUE, NIL)
@@ -414,7 +414,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Returns whether or not the specified layer of the [geometry/collisionMask] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getCollisionMaskValue(layerNumber: Long): Boolean {
+  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK_VALUE, BOOL)
@@ -424,7 +424,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
-  public open fun addPolygon(polygon: PackedInt32Array): Unit {
+  public fun addPolygon(polygon: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_ADD_POLYGON, NIL)
   }
@@ -432,7 +432,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Returns the number of polygons in the navigation mesh.
    */
-  public open fun getPolygonCount(): Long {
+  public fun getPolygonCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON_COUNT,
         LONG)
@@ -442,7 +442,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Returns a [godot.PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
-  public open fun getPolygon(idx: Long): PackedInt32Array {
+  public fun getPolygon(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON,
         PACKED_INT_32_ARRAY)
@@ -452,7 +452,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Clears the array of polygons, but it doesn't clear the array of vertices.
    */
-  public open fun clearPolygons(): Unit {
+  public fun clearPolygons(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR_POLYGONS, NIL)
   }
@@ -460,7 +460,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [godot.Mesh].
    */
-  public open fun createFromMesh(mesh: Mesh): Unit {
+  public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CREATE_FROM_MESH,
         NIL)

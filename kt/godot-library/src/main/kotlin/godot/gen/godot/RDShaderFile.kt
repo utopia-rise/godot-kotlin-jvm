@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open var baseError: String
+  public var baseError: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_BASE_ERROR,
@@ -46,7 +46,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
+  public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BYTECODE, NIL)
   }
@@ -54,7 +54,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
+  public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_SPIRV, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?
@@ -63,7 +63,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open fun getVersionList(): PackedStringArray {
+  public fun getVersionList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_VERSION_LIST,
         PACKED_STRING_ARRAY)

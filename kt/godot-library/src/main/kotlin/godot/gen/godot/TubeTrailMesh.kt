@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIUS, DOUBLE)
@@ -39,7 +39,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var radialSteps: Long
+  public var radialSteps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIAL_STEPS,
@@ -55,7 +55,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sections: Long
+  public var sections: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTIONS, LONG)
@@ -69,7 +69,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sectionLength: Double
+  public var sectionLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_LENGTH,
@@ -85,7 +85,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sectionRings: Long
+  public var sectionRings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_RINGS,
@@ -101,7 +101,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var curve: Curve?
+  public var curve: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_CURVE, OBJECT)

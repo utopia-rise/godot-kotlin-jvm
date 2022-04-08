@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * Length that the resulting collision extends in either direction perpendicular to its polygon.
    */
-  public open var depth: Double
+  public var depth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_DEPTH,
@@ -45,7 +45,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * If `true`, no collision will be produced.
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_IS_DISABLED,
@@ -63,7 +63,7 @@ public open class CollisionPolygon3D : Node3D() {
    *
    * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the `polygon` member.
    */
-  public open var polygon: PackedVector2Array
+  public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_POLYGON,
@@ -79,7 +79,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * The collision margin for the generated [godot.Shape3D]. See [godot.Shape3D.margin] for more details.
    */
-  public open var margin: Double
+  public var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_MARGIN,

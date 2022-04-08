@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -50,7 +50,7 @@ public open class Resource : RefCounted() {
   /**
    * If `true`, the resource will be made unique in each instance of its local scene. It can thus be modified in a scene instance without impacting other instances of that same scene.
    */
-  public open var resourceLocalToScene: Boolean
+  public var resourceLocalToScene: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_IS_LOCAL_TO_SCENE, BOOL)
@@ -64,7 +64,7 @@ public open class Resource : RefCounted() {
   /**
    * The path to the resource. In case it has its own file, it will return its filepath. If it's tied to the scene, it will return the scene's path, followed by the resource's index.
    */
-  public open var resourcePath: String
+  public var resourcePath: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_PATH, STRING)
@@ -78,7 +78,7 @@ public open class Resource : RefCounted() {
   /**
    * The name of the resource. This is an optional identifier. If [resourceName] is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the [resourceName] will be displayed as the tab name in the script editor.
    */
-  public open var resourceName: StringName
+  public var resourceName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING_NAME)
@@ -96,7 +96,7 @@ public open class Resource : RefCounted() {
   /**
    * Sets the path of the resource, potentially overriding an existing cache entry for this path. This differs from setting [resourcePath], as the latter would error out if another resource was already cached for the given path.
    */
-  public open fun takeOverPath(path: String): Unit {
+  public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL)
   }
@@ -104,7 +104,7 @@ public open class Resource : RefCounted() {
   /**
    * Returns the RID of the resource (or an empty RID). Many resources (such as [godot.Texture2D], [godot.Mesh], etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
    */
-  public open fun getRid(): RID {
+  public fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -113,7 +113,7 @@ public open class Resource : RefCounted() {
   /**
    * If [resourceLocalToScene] is enabled and the resource was loaded from a [godot.PackedScene] instantiation, returns the local scene where this resource's unique copy is in use. Otherwise, returns `null`.
    */
-  public open fun getLocalScene(): Node? {
+  public fun getLocalScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_LOCAL_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -124,7 +124,7 @@ public open class Resource : RefCounted() {
    *
    * For most resources, this method performs no base logic. [godot.ViewportTexture] performs custom logic to properly set the proxy texture and flags in the local viewport.
    */
-  public open fun setupLocalToScene(): Unit {
+  public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SETUP_LOCAL_TO_SCENE, NIL)
   }
@@ -142,7 +142,7 @@ public open class Resource : RefCounted() {
    *
    * **Note:** This method is called automatically for built-in resources.
    */
-  public open fun emitChanged(): Unit {
+  public fun emitChanged(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)
   }
@@ -156,7 +156,7 @@ public open class Resource : RefCounted() {
    *
    * **Note:** When duplicating a resource, only `export`ed properties are copied. Other properties will be set to their default value in the new resource.
    */
-  public open fun duplicate(subresources: Boolean = false): Resource? {
+  public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?

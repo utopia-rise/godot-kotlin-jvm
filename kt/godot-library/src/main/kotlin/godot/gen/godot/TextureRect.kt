@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class TextureRect : Control() {
   /**
    * The node's [godot.Texture2D] resource.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_TEXTURE, OBJECT)
@@ -44,7 +44,7 @@ public open class TextureRect : Control() {
   /**
    * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureRect] can be shrunk down past the texture size. Useful for preventing [godot.TextureRect]s from breaking GUI layout regardless of their texture size.
    */
-  public open var ignoreTextureSize: Boolean
+  public var ignoreTextureSize: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,7 +60,7 @@ public open class TextureRect : Control() {
   /**
    * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode].
    */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,
@@ -75,7 +75,7 @@ public open class TextureRect : Control() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public open var flipH: Boolean
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_H, BOOL)
@@ -89,7 +89,7 @@ public open class TextureRect : Control() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public open var flipV: Boolean
+  public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_V, BOOL)

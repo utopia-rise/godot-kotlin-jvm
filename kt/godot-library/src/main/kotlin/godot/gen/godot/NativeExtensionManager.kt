@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun loadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun loadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_LOAD_EXTENSION, LONG)
@@ -47,7 +47,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun reloadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun reloadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_RELOAD_EXTENSION, LONG)
@@ -57,7 +57,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun unloadExtension(path: String): NativeExtensionManager.LoadStatus {
+  public fun unloadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_UNLOAD_EXTENSION, LONG)
@@ -67,7 +67,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun isExtensionLoaded(path: String): Boolean {
+  public fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL)
@@ -77,7 +77,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun getLoadedExtensions(): PackedStringArray {
+  public fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_LOADED_EXTENSIONS, PACKED_STRING_ARRAY)
@@ -87,7 +87,7 @@ public object NativeExtensionManager : Object() {
   /**
    *
    */
-  public open fun getExtension(path: String): NativeExtension? {
+  public fun getExtension(path: String): NativeExtension? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_EXTENSION, OBJECT)

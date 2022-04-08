@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -341,7 +341,7 @@ public open class HTTPRequest : Node() {
   /**
    * The file to download into. Will output any received file into it.
    */
-  public open var downloadFile: String
+  public var downloadFile: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
@@ -359,7 +359,7 @@ public open class HTTPRequest : Node() {
    *
    * Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.
    */
-  public open var downloadChunkSize: Long
+  public var downloadChunkSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -375,7 +375,7 @@ public open class HTTPRequest : Node() {
   /**
    * If `true`, multithreading is used to improve performance.
    */
-  public open var useThreads: Boolean
+  public var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
@@ -396,7 +396,7 @@ public open class HTTPRequest : Node() {
    *
    * If `false` no header will be added, and no decompression will be performed on response bodies. The raw bytes of the response body will be returned via `request_completed`.
    */
-  public open var acceptGzip: Boolean
+  public var acceptGzip: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
@@ -411,7 +411,7 @@ public open class HTTPRequest : Node() {
   /**
    * Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body.
    */
-  public open var bodySizeLimit: Long
+  public var bodySizeLimit: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
@@ -427,7 +427,7 @@ public open class HTTPRequest : Node() {
   /**
    * Maximum number of allowed redirects.
    */
-  public open var maxRedirects: Long
+  public var maxRedirects: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
@@ -443,7 +443,7 @@ public open class HTTPRequest : Node() {
   /**
    *
    */
-  public open var timeout: Double
+  public var timeout: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
@@ -467,7 +467,7 @@ public open class HTTPRequest : Node() {
    *
    * **Note:** It's recommended to use transport encryption (SSL/TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
    */
-  public open fun request(
+  public fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
     sslValidateDomain: Boolean = true,
@@ -484,7 +484,7 @@ public open class HTTPRequest : Node() {
    *
    * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
    */
-  public open fun requestRaw(
+  public fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
     sslValidateDomain: Boolean = true,
@@ -499,7 +499,7 @@ public open class HTTPRequest : Node() {
   /**
    * Cancels the current request.
    */
-  public open fun cancelRequest(): Unit {
+  public fun cancelRequest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
   }
@@ -507,7 +507,7 @@ public open class HTTPRequest : Node() {
   /**
    * Returns the current status of the underlying [godot.HTTPClient]. See [enum HTTPClient.Status].
    */
-  public open fun getHttpClientStatus(): HTTPClient.Status {
+  public fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
         LONG)
@@ -517,7 +517,7 @@ public open class HTTPRequest : Node() {
   /**
    * Returns the amount of bytes this HTTPRequest downloaded.
    */
-  public open fun getDownloadedBytes(): Long {
+  public fun getDownloadedBytes(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
         LONG)
@@ -529,7 +529,7 @@ public open class HTTPRequest : Node() {
    *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
-  public open fun getBodySize(): Long {
+  public fun getBodySize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -540,7 +540,7 @@ public open class HTTPRequest : Node() {
    *
    * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun setHttpProxy(host: String, port: Long): Unit {
+  public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
   }
@@ -550,7 +550,7 @@ public open class HTTPRequest : Node() {
    *
    * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun setHttpsProxy(host: String, port: Long): Unit {
+  public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
   }

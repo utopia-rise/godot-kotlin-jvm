@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +30,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The [godot.Gradient] used to fill the texture.
    */
-  public open var gradient: Gradient?
+  public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_GRADIENT,
@@ -46,7 +46,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The number of horizontal color samples that will be obtained from the [godot.Gradient], which also represents the texture's width.
    */
-  public open var width: Long
+  public var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
@@ -58,7 +58,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The number of vertical color samples that will be obtained from the [godot.Gradient], which also represents the texture's height.
    */
-  public open var height: Long
+  public var height: Long
     @JvmName("getHeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
@@ -70,7 +70,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * If `true`, the generated texture will support high dynamic range ([godot.Image.FORMAT_RGBAF] format). This allows for glow effects to work if [godot.Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([godot.Image.FORMAT_RGBA8] format).
    */
-  public open var useHdr: Boolean
+  public var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_IS_USING_HDR,
@@ -86,7 +86,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets.
    */
-  public open var fill: Long
+  public var fill: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
@@ -100,7 +100,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
    */
-  public open var fillFrom: Vector2
+  public var fillFrom: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_FROM,
@@ -116,7 +116,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The final offset used to fill the texture specified in UV coordinates.
    */
-  public open var fillTo: Vector2
+  public var fillTo: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_TO,
@@ -132,7 +132,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the entire texture.
    */
-  public open var repeat: Long
+  public var repeat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,

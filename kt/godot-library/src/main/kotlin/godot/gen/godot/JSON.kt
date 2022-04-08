@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -105,7 +105,7 @@ public open class JSON : RefCounted() {
    * 				}
    * 				```
    */
-  public open fun stringify(
+  public fun stringify(
     `data`: Any,
     indent: String = "",
     sortKeys: Boolean = true,
@@ -121,7 +121,7 @@ public open class JSON : RefCounted() {
    *
    * Returns an [enum Error]. If the parse was successful, it returns `OK` and the result can be retrieved using [getData]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for identifying the source of the failure.
    */
-  public open fun parse(jsonString: String): GodotError {
+  public fun parse(jsonString: String): GodotError {
     TransferContext.writeArguments(STRING to jsonString)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -132,7 +132,7 @@ public open class JSON : RefCounted() {
    *
    * **Note:** It will return `Null` if the last call to parse was unsuccessful or [parse] has not yet been called.
    */
-  public open fun getData(): Any? {
+  public fun getData(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_DATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -141,7 +141,7 @@ public open class JSON : RefCounted() {
   /**
    * Returns `0` if the last call to [parse] was successful, or the line number where the parse failed.
    */
-  public open fun getErrorLine(): Long {
+  public fun getErrorLine(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_LINE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -150,7 +150,7 @@ public open class JSON : RefCounted() {
   /**
    * Returns an empty string if the last call to [parse] was successful, or the error message if it failed.
    */
-  public open fun getErrorMessage(): String {
+  public fun getErrorMessage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_MESSAGE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

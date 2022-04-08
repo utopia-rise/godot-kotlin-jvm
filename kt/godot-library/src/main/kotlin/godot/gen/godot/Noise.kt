@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,25 +28,25 @@ public open class Noise internal constructor() : Resource() {
     callConstructor(ENGINECLASS_NOISE)
   }
 
-  public open fun getNoise1d(x: Double): Double {
+  public fun getNoise1d(x: Double): Double {
     TransferContext.writeArguments(DOUBLE to x)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_1D, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getNoise2d(x: Double, y: Double): Double {
+  public fun getNoise2d(x: Double, y: Double): Double {
     TransferContext.writeArguments(DOUBLE to x, DOUBLE to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2D, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getNoise2dv(v: Vector2): Double {
+  public fun getNoise2dv(v: Vector2): Double {
     TransferContext.writeArguments(VECTOR2 to v)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2DV, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getNoise3d(
+  public fun getNoise3d(
     x: Double,
     y: Double,
     z: Double
@@ -56,13 +56,13 @@ public open class Noise internal constructor() : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getNoise3dv(v: Vector3): Double {
+  public fun getNoise3dv(v: Vector3): Double {
     TransferContext.writeArguments(VECTOR3 to v)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3DV, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getImage(
+  public fun getImage(
     width: Long,
     height: Long,
     invert: Boolean = false
@@ -72,7 +72,7 @@ public open class Noise internal constructor() : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
-  public open fun getSeamlessImage(
+  public fun getSeamlessImage(
     width: Long,
     height: Long,
     invert: Boolean = false,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,7 +21,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGCylinder3D : CSGPrimitive3D() {
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_GET_RADIUS, DOUBLE)
@@ -32,7 +32,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_SET_RADIUS, NIL)
     }
 
-  public open var height: Double
+  public var height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_GET_HEIGHT, DOUBLE)
@@ -43,7 +43,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_SET_HEIGHT, NIL)
     }
 
-  public open var sides: Long
+  public var sides: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_GET_SIDES, LONG)
@@ -54,7 +54,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_SET_SIDES, NIL)
     }
 
-  public open var cone: Boolean
+  public var cone: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_IS_CONE, BOOL)
@@ -65,7 +65,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_SET_CONE, NIL)
     }
 
-  public open var smoothFaces: Boolean
+  public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_GET_SMOOTH_FACES,
@@ -78,7 +78,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_GET_MATERIAL,

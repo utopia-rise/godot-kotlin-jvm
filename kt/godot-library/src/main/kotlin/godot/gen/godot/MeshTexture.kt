@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the mesh used to draw. It must be a mesh using 2D vertices.
    */
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_MESH, OBJECT)
@@ -39,7 +39,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the base texture that the Mesh will use to draw.
    */
-  public open var baseTexture: Texture2D?
+  public var baseTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_BASE_TEXTURE,
@@ -54,7 +54,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the size of the image, needed for reference.
    */
-  public open var imageSize: Vector2
+  public var imageSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_IMAGE_SIZE,

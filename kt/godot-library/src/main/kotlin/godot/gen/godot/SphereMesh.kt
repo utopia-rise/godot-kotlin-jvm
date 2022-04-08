@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class SphereMesh : PrimitiveMesh() {
   /**
    * Radius of sphere.
    */
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RADIUS, DOUBLE)
@@ -42,7 +42,7 @@ public open class SphereMesh : PrimitiveMesh() {
   /**
    * Full height of the sphere.
    */
-  public open var height: Double
+  public var height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_HEIGHT, DOUBLE)
@@ -56,7 +56,7 @@ public open class SphereMesh : PrimitiveMesh() {
   /**
    * Number of radial segments on the sphere.
    */
-  public open var radialSegments: Long
+  public var radialSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RADIAL_SEGMENTS,
@@ -72,7 +72,7 @@ public open class SphereMesh : PrimitiveMesh() {
   /**
    * Number of segments along the height of the sphere.
    */
-  public open var rings: Long
+  public var rings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RINGS, LONG)
@@ -88,7 +88,7 @@ public open class SphereMesh : PrimitiveMesh() {
    *
    * **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.
    */
-  public open var isHemisphere: Boolean
+  public var isHemisphere: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_IS_HEMISPHERE,

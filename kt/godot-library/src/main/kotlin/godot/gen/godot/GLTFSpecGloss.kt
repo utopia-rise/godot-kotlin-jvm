@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +19,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
-  public open var diffuseImg: Object?
+  public var diffuseImg: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_DIFFUSE_IMG,
@@ -32,7 +32,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public open var diffuseFactor: Color
+  public var diffuseFactor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_DIFFUSE_FACTOR,
@@ -45,7 +45,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public open var glossFactor: Double
+  public var glossFactor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_GLOSS_FACTOR,
@@ -58,7 +58,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public open var specularFactor: Color
+  public var specularFactor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_SPECULAR_FACTOR,
@@ -71,7 +71,7 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public open var specGlossImg: Object?
+  public var specGlossImg: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_SPEC_GLOSS_IMG,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class OccluderInstance3D : Node3D() {
    *
    * Alternatively, you can select a primitive occluder to use: [godot.QuadOccluder3D], [godot.BoxOccluder3D] or [godot.SphereOccluder3D].
    */
-  public open var occluder: Occluder3D?
+  public var occluder: Occluder3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_OCCLUDER,
@@ -59,7 +59,7 @@ public open class OccluderInstance3D : Node3D() {
    *
    * To improve performance and avoid artifacts, it is recommended to exclude dynamic objects, small objects and fixtures from the baking process by moving them to a separate visual layer and excluding this layer in [bakeMask].
    */
-  public open var bakeMask: Long
+  public var bakeMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK,
@@ -81,7 +81,7 @@ public open class OccluderInstance3D : Node3D() {
    *
    * **Note:** This uses the [meshoptimizer](https://meshoptimizer.org/) library under the hood, similar to LOD generation.
    */
-  public open var bakeSimplificationDistance: Double
+  public var bakeSimplificationDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +101,7 @@ public open class OccluderInstance3D : Node3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [bakeMask], given a `layer_number` between 1 and 32.
    */
-  public open fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK_VALUE, NIL)
@@ -110,7 +110,7 @@ public open class OccluderInstance3D : Node3D() {
   /**
    * Returns whether or not the specified layer of the [bakeMask] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getBakeMaskValue(layerNumber: Long): Boolean {
+  public fun getBakeMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK_VALUE, BOOL)

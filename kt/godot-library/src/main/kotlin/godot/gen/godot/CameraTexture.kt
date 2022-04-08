@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class CameraTexture : Texture2D() {
   /**
    * The ID of the [godot.CameraFeed] for which we want to display the image.
    */
-  public open var cameraFeedId: Long
+  public var cameraFeedId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERATEXTURE_GET_CAMERA_FEED_ID,
@@ -44,7 +44,7 @@ public open class CameraTexture : Texture2D() {
   /**
    * Which image within the [godot.CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component.
    */
-  public open var whichFeed: Long
+  public var whichFeed: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERATEXTURE_GET_WHICH_FEED,
@@ -59,7 +59,7 @@ public open class CameraTexture : Texture2D() {
   /**
    * Convenience property that gives access to the active property of the [godot.CameraFeed].
    */
-  public open var cameraIsActive: Boolean
+  public var cameraIsActive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERATEXTURE_GET_CAMERA_ACTIVE,

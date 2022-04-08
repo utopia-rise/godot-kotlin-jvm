@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Sets the motion mode which defines the behavior of [moveAndSlide]. See [enum MotionMode] constants for available modes.
    */
-  public open var motionMode: Long
+  public var motionMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MOTION_MODE,
@@ -54,7 +54,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Direction vector used to determine what is a wall and what is a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. Defaults to `Vector2.UP`. If set to `Vector2(0, 0)`, everything is considered a wall. This is useful for topdown games.
    */
-  public open var upDirection: Vector2
+  public var upDirection: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_UP_DIRECTION,
@@ -70,7 +70,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    */
-  public open var velocity: Vector2
+  public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_VELOCITY,
@@ -85,7 +85,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically.
    */
-  public open var slideOnCeiling: Boolean
+  public var slideOnCeiling: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +101,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Maximum number of times the body can change direction before it stops when calling [moveAndSlide].
    */
-  public open var maxSlides: Long
+  public var maxSlides: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MAX_SLIDES,
@@ -117,7 +117,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [motionMode] is [MOTION_MODE_FLOATING].
    */
-  public open var wallMinSlideAngle: Double
+  public var wallMinSlideAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * If `false`, the body will slide on floor's slopes when [velocity] applies a downward force.
    */
-  public open var floorStopOnSlope: Boolean
+  public var floorStopOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -153,7 +153,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [floorSnapLength] to stick along a downward slope at constant speed.
    */
-  public open var floorConstantSpeed: Boolean
+  public var floorConstantSpeed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -169,7 +169,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them.
    */
-  public open var floorBlockOnWall: Boolean
+  public var floorBlockOnWall: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -185,7 +185,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. The default value equals 45 degrees.
    */
-  public open var floorMaxAngle: Double
+  public var floorMaxAngle: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -203,7 +203,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * As long as the snapping vector is in contact with the ground and the body moves against `up_direction`, the body will remain attached to the surface. Snapping is not applied if the body moves along `up_direction`, so it will be able to detach from the ground when jumping.
    */
-  public open var floorSnapLength: Double
+  public var floorSnapLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -219,7 +219,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum MovingPlatformApplyVelocityOnLeave] constants for available behavior.
    */
-  public open var movingPlatformApplyVelocityOnLeave: Long
+  public var movingPlatformApplyVelocityOnLeave: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -236,7 +236,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity.
    */
-  public open var movingPlatformFloorLayers: Long
+  public var movingPlatformFloorLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -252,7 +252,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all wall bodies are ignored.
    */
-  public open var movingPlatformWallLayers: Long
+  public var movingPlatformWallLayers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -274,7 +274,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
    */
-  public open var collision_safeMargin: Double
+  public var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SAFE_MARGIN,
@@ -302,7 +302,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * Returns `true` if the body collided, otherwise, returns `false`.
    */
-  public open fun moveAndSlide(): Boolean {
+  public fun moveAndSlide(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_MOVE_AND_SLIDE,
         BOOL)
@@ -312,7 +312,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided with the floor on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "floor" or not.
    */
-  public open fun isOnFloor(): Boolean {
+  public fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_FLOOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -321,7 +321,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided only with the floor on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "floor" or not.
    */
-  public open fun isOnFloorOnly(): Boolean {
+  public fun isOnFloorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_FLOOR_ONLY,
         BOOL)
@@ -331,7 +331,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided with the ceiling on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "ceiling" or not.
    */
-  public open fun isOnCeiling(): Boolean {
+  public fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_CEILING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -340,7 +340,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided only with the ceiling on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "ceiling" or not.
    */
-  public open fun isOnCeilingOnly(): Boolean {
+  public fun isOnCeilingOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_CEILING_ONLY,
         BOOL)
@@ -350,7 +350,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided with a wall on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "wall" or not.
    */
-  public open fun isOnWall(): Boolean {
+  public fun isOnWall(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_WALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -359,7 +359,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns `true` if the body collided only with a wall on the last call of [moveAndSlide]. Otherwise, returns `false`. The [upDirection] and [floorMaxAngle] are used to determine whether a surface is "wall" or not.
    */
-  public open fun isOnWallOnly(): Boolean {
+  public fun isOnWallOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_WALL_ONLY,
         BOOL)
@@ -369,7 +369,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the surface normal of the floor at the last collision point. Only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
-  public open fun getFloorNormal(): Vector2 {
+  public fun getFloorNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_NORMAL,
         VECTOR2)
@@ -379,7 +379,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the surface normal of the wall at the last collision point. Only valid after calling [moveAndSlide] and when [isOnWall] returns `true`.
    */
-  public open fun getWallNormal(): Vector2 {
+  public fun getWallNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_WALL_NORMAL,
         VECTOR2)
@@ -389,7 +389,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the last motion applied to the [godot.CharacterBody2D] during the last call to [moveAndSlide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement.
    */
-  public open fun getLastMotion(): Vector2 {
+  public fun getLastMotion(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_LAST_MOTION,
         VECTOR2)
@@ -399,7 +399,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the travel (position delta) that occurred during the last call to [moveAndSlide].
    */
-  public open fun getPositionDelta(): Vector2 {
+  public fun getPositionDelta(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_POSITION_DELTA,
         VECTOR2)
@@ -409,7 +409,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the current real velocity since the last call to [moveAndSlide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
    */
-  public open fun getRealVelocity(): Vector2 {
+  public fun getRealVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_REAL_VELOCITY,
         VECTOR2)
@@ -419,7 +419,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the floor's collision angle at the last collision point according to `up_direction`, which is `Vector2.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
-  public open fun getFloorAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
+  public fun getFloorAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_ANGLE,
         DOUBLE)
@@ -429,7 +429,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the linear velocity of the platform at the last collision point. Only valid after calling [moveAndSlide].
    */
-  public open fun getPlatformVelocity(): Vector2 {
+  public fun getPlatformVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_VELOCITY, VECTOR2)
@@ -439,7 +439,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide].
    */
-  public open fun getSlideCollisionCount(): Long {
+  public fun getSlideCollisionCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SLIDE_COLLISION_COUNT, LONG)
@@ -479,7 +479,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * [/codeblocks]
    */
-  public open fun getSlideCollision(slideIdx: Long): KinematicCollision2D? {
+  public fun getSlideCollision(slideIdx: Long): KinematicCollision2D? {
     TransferContext.writeArguments(LONG to slideIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SLIDE_COLLISION,
         OBJECT)
@@ -489,7 +489,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Returns a [godot.KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [moveAndSlide].
    */
-  public open fun getLastSlideCollision(): KinematicCollision2D? {
+  public fun getLastSlideCollision(): KinematicCollision2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_LAST_SLIDE_COLLISION, OBJECT)

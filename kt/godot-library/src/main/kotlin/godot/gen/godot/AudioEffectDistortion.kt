@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Distortion type.
    */
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
@@ -49,7 +49,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Increases or decreases the volume before the effect. Value can range from -60 to 60.
    */
-  public open var preGain: Double
+  public var preGain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -65,7 +65,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000.
    */
-  public open var keepHfHz: Double
+  public var keepHfHz: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -81,7 +81,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Distortion power. Value can range from 0 to 1.
    */
-  public open var drive: Double
+  public var drive: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
@@ -97,7 +97,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   /**
    * Increases or decreases the volume after the effect. Value can range from -80 to 24.
    */
-  public open var postGain: Double
+  public var postGain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

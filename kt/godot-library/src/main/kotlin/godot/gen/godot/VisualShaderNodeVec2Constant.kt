@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Vector2] constant which represents the state of this node.
    */
-  public open var constant: Vector2
+  public var constant: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

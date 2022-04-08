@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public open class AudioStreamSample : AudioStream() {
    *
    * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.
    */
-  public open var `data`: PackedByteArray
+  public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_DATA,
@@ -52,7 +52,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * Audio format. See [enum Format] constants for values.
    */
-  public open var format: Long
+  public var format: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_FORMAT,
@@ -67,7 +67,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
    */
-  public open var loopMode: Long
+  public var loopMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_MODE,
@@ -83,7 +83,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
    */
-  public open var loopBegin: Long
+  public var loopBegin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_BEGIN,
@@ -99,7 +99,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
    */
-  public open var loopEnd: Long
+  public var loopEnd: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_END,
@@ -119,7 +119,7 @@ public open class AudioStreamSample : AudioStream() {
    *
    * According to the [godot.Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
    */
-  public open var mixRate: Long
+  public var mixRate: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_MIX_RATE,
@@ -135,7 +135,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * If `true`, audio is stereo.
    */
-  public open var stereo: Boolean
+  public var stereo: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_IS_STEREO, BOOL)
@@ -155,7 +155,7 @@ public open class AudioStreamSample : AudioStream() {
    *
    * **Note:** A `.wav` extension is automatically appended to `path` if it is missing.
    */
-  public open fun saveToWav(path: String): GodotError {
+  public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SAVE_TO_WAV, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

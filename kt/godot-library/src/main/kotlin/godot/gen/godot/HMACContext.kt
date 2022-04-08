@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -123,7 +123,7 @@ public open class HMACContext : RefCounted() {
   /**
    * Initializes the HMACContext. This method cannot be called again on the same HMACContext until [finish] has been called.
    */
-  public open fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
+  public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -132,7 +132,7 @@ public open class HMACContext : RefCounted() {
   /**
    * Updates the message to be HMACed. This can be called multiple times before [finish] is called to append `data` to the message, but cannot be called until [start] has been called.
    */
-  public open fun update(`data`: PackedByteArray): GodotError {
+  public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -141,7 +141,7 @@ public open class HMACContext : RefCounted() {
   /**
    * Returns the resulting HMAC. If the HMAC failed, an empty [godot.PackedByteArray] is returned.
    */
-  public open fun finish(): PackedByteArray {
+  public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_FINISH,
         PACKED_BYTE_ARRAY)

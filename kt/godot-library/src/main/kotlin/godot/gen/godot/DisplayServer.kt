@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -72,7 +72,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun hasFeature(feature: DisplayServer.Feature): Boolean {
+  public fun hasFeature(feature: DisplayServer.Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -81,7 +81,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun getName(): String {
+  public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -99,7 +99,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddItem(
+  public fun globalMenuAddItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -124,7 +124,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddCheckItem(
+  public fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -149,7 +149,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddIconItem(
+  public fun globalMenuAddIconItem(
     menuRoot: String,
     icon: Texture2D,
     label: String,
@@ -175,7 +175,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddIconCheckItem(
+  public fun globalMenuAddIconCheckItem(
     menuRoot: String,
     icon: Texture2D,
     label: String,
@@ -203,7 +203,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddRadioCheckItem(
+  public fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -230,7 +230,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddIconRadioCheckItem(
+  public fun globalMenuAddIconRadioCheckItem(
     menuRoot: String,
     icon: Texture2D,
     label: String,
@@ -258,7 +258,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddMultistateItem(
+  public fun globalMenuAddMultistateItem(
     menuRoot: String,
     labe: String,
     maxStates: Long,
@@ -285,7 +285,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddSubmenuItem(
+  public fun globalMenuAddSubmenuItem(
     menuRoot: String,
     label: String,
     submenu: String,
@@ -308,7 +308,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Unit {
+  public fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SEPARATOR, NIL)
@@ -319,7 +319,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Long {
+  public fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Long {
     TransferContext.writeArguments(STRING to menuRoot, STRING to text)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TEXT, LONG)
@@ -331,7 +331,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Long {
+  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Long {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TAG, LONG)
@@ -343,7 +343,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuIsItemChecked(menuRoot: String, idx: Long): Boolean {
+  public fun globalMenuIsItemChecked(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_CHECKED, BOOL)
@@ -355,7 +355,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuIsItemCheckable(menuRoot: String, idx: Long): Boolean {
+  public fun globalMenuIsItemCheckable(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_CHECKABLE, BOOL)
@@ -369,7 +369,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Long): Boolean {
+  public fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_RADIO_CHECKABLE, BOOL)
@@ -381,7 +381,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable {
+  public fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_CALLBACK, CALLABLE)
@@ -393,7 +393,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemTag(menuRoot: String, idx: Long): Any? {
+  public fun globalMenuGetItemTag(menuRoot: String, idx: Long): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_TAG, ANY)
@@ -405,7 +405,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemText(menuRoot: String, idx: Long): String {
+  public fun globalMenuGetItemText(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_TEXT, STRING)
@@ -417,7 +417,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemSubmenu(menuRoot: String, idx: Long): String {
+  public fun globalMenuGetItemSubmenu(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_SUBMENU, STRING)
@@ -429,7 +429,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemAccelerator(menuRoot: String, idx: Long): Key {
+  public fun globalMenuGetItemAccelerator(menuRoot: String, idx: Long): Key {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ACCELERATOR, LONG)
@@ -443,7 +443,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuIsItemDisabled(menuRoot: String, idx: Long): Boolean {
+  public fun globalMenuIsItemDisabled(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_DISABLED, BOOL)
@@ -455,7 +455,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemTooltip(menuRoot: String, idx: Long): String {
+  public fun globalMenuGetItemTooltip(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_TOOLTIP, STRING)
@@ -467,7 +467,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemState(menuRoot: String, idx: Long): Long {
+  public fun globalMenuGetItemState(menuRoot: String, idx: Long): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_STATE, LONG)
@@ -479,7 +479,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemMaxStates(menuRoot: String, idx: Long): Long {
+  public fun globalMenuGetItemMaxStates(menuRoot: String, idx: Long): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_MAX_STATES, LONG)
@@ -491,7 +491,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuGetItemIcon(menuRoot: String, idx: Long): Texture2D? {
+  public fun globalMenuGetItemIcon(menuRoot: String, idx: Long): Texture2D? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ICON, OBJECT)
@@ -503,7 +503,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemChecked(
+  public fun globalMenuSetItemChecked(
     menuRoot: String,
     idx: Long,
     checked: Boolean
@@ -518,7 +518,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemCheckable(
+  public fun globalMenuSetItemCheckable(
     menuRoot: String,
     idx: Long,
     checkable: Boolean
@@ -535,7 +535,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemRadioCheckable(
+  public fun globalMenuSetItemRadioCheckable(
     menuRoot: String,
     idx: Long,
     checkable: Boolean
@@ -550,7 +550,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemCallback(
+  public fun globalMenuSetItemCallback(
     menuRoot: String,
     idx: Long,
     callback: Callable
@@ -565,7 +565,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemTag(
+  public fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Long,
     tag: Any
@@ -580,7 +580,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemText(
+  public fun globalMenuSetItemText(
     menuRoot: String,
     idx: Long,
     text: String
@@ -595,7 +595,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemSubmenu(
+  public fun globalMenuSetItemSubmenu(
     menuRoot: String,
     idx: Long,
     submenu: String
@@ -610,7 +610,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemAccelerator(
+  public fun globalMenuSetItemAccelerator(
     menuRoot: String,
     idx: Long,
     keycode: Key
@@ -625,7 +625,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemDisabled(
+  public fun globalMenuSetItemDisabled(
     menuRoot: String,
     idx: Long,
     disabled: Boolean
@@ -640,7 +640,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemTooltip(
+  public fun globalMenuSetItemTooltip(
     menuRoot: String,
     idx: Long,
     tooltip: String
@@ -655,7 +655,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemState(
+  public fun globalMenuSetItemState(
     menuRoot: String,
     idx: Long,
     state: Long
@@ -670,7 +670,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuSetItemMaxStates(
+  public fun globalMenuSetItemMaxStates(
     menuRoot: String,
     idx: Long,
     maxStates: Long
@@ -687,7 +687,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is not supported by macOS "_dock" menu items.
    */
-  public open fun globalMenuSetItemIcon(
+  public fun globalMenuSetItemIcon(
     menuRoot: String,
     idx: Long,
     icon: Texture2D
@@ -704,7 +704,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun globalMenuRemoveItem(menuRoot: String, idx: Long): Unit {
+  public fun globalMenuRemoveItem(menuRoot: String, idx: Long): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_REMOVE_ITEM, NIL)
@@ -722,7 +722,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
-  public open fun globalMenuClear(menuRoot: String): Unit {
+  public fun globalMenuClear(menuRoot: String): Unit {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_CLEAR,
         NIL)
@@ -731,7 +731,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun mouseSetMode(mouseMode: DisplayServer.MouseMode): Unit {
+  public fun mouseSetMode(mouseMode: DisplayServer.MouseMode): Unit {
     TransferContext.writeArguments(LONG to mouseMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_SET_MODE, NIL)
   }
@@ -739,7 +739,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun mouseGetMode(): DisplayServer.MouseMode {
+  public fun mouseGetMode(): DisplayServer.MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_MODE, LONG)
     return DisplayServer.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -748,7 +748,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the mouse cursor position to the given `position` relative to an origin at the upper left corner of the currently focused game Window Manager window.
    */
-  public open fun warpMouse(position: Vector2i): Unit {
+  public fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WARP_MOUSE, NIL)
   }
@@ -756,7 +756,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mouse cursor's current position.
    */
-  public open fun mouseGetPosition(): Vector2i {
+  public fun mouseGetPosition(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_POSITION,
         VECTOR2I)
@@ -766,7 +766,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun mouseGetButtonState(): MouseButton {
+  public fun mouseGetButtonState(): MouseButton {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_GET_BUTTON_STATE, LONG)
@@ -776,7 +776,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the user's clipboard content to the given string.
    */
-  public open fun clipboardSet(clipboard: String): Unit {
+  public fun clipboardSet(clipboard: String): Unit {
     TransferContext.writeArguments(STRING to clipboard)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_SET, NIL)
   }
@@ -784,7 +784,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the user's clipboard as a string if possible.
    */
-  public open fun clipboardGet(): String {
+  public fun clipboardGet(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_GET, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -793,7 +793,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if there is content on the user's clipboard.
    */
-  public open fun clipboardHas(): Boolean {
+  public fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_HAS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -804,7 +804,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is only implemented on Linux.
    */
-  public open fun clipboardSetPrimary(clipboardPrimary: String): Unit {
+  public fun clipboardSetPrimary(clipboardPrimary: String): Unit {
     TransferContext.writeArguments(STRING to clipboardPrimary)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_SET_PRIMARY,
         NIL)
@@ -815,7 +815,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is only implemented on Linux.
    */
-  public open fun clipboardGetPrimary(): String {
+  public fun clipboardGetPrimary(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_GET_PRIMARY,
         STRING)
@@ -825,7 +825,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun getScreenCount(): Long {
+  public fun getScreenCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_SCREEN_COUNT,
         LONG)
@@ -835,7 +835,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenGetPosition(screen: Long = -1): Vector2i {
+  public fun screenGetPosition(screen: Long = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_POSITION,
         VECTOR2I)
@@ -845,7 +845,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenGetSize(screen: Long = -1): Vector2i {
+  public fun screenGetSize(screen: Long = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_SIZE,
         VECTOR2I)
@@ -855,7 +855,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenGetUsableRect(screen: Long = -1): Rect2i {
+  public fun screenGetUsableRect(screen: Long = -1): Rect2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_USABLE_RECT, RECT2I)
@@ -880,7 +880,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, Linux, macOS and Windows. Returns `72` on unsupported platforms.
    */
-  public open fun screenGetDpi(screen: Long = -1): Long {
+  public fun screenGetDpi(screen: Long = -1): Long {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_DPI, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -893,7 +893,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun screenGetScale(screen: Long = -1): Double {
+  public fun screenGetScale(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_SCALE,
         DOUBLE)
@@ -903,7 +903,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenIsTouchscreen(screen: Long = -1): Boolean {
+  public fun screenIsTouchscreen(screen: Long = -1): Boolean {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_IS_TOUCHSCREEN,
         BOOL)
@@ -917,7 +917,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  public open fun screenGetMaxScale(): Double {
+  public fun screenGetMaxScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_MAX_SCALE,
         DOUBLE)
@@ -937,7 +937,7 @@ public object DisplayServer : Object() {
    * 				    refresh_rate = 60.0
    * 				```
    */
-  public open fun screenGetRefreshRate(screen: Long = -1): Double {
+  public fun screenGetRefreshRate(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_REFRESH_RATE, DOUBLE)
@@ -947,8 +947,8 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenSetOrientation(orientation: DisplayServer.ScreenOrientation, screen: Long
-      = -1): Unit {
+  public fun screenSetOrientation(orientation: DisplayServer.ScreenOrientation, screen: Long = -1):
+      Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_SET_ORIENTATION, NIL)
@@ -957,7 +957,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenGetOrientation(screen: Long = -1): DisplayServer.ScreenOrientation {
+  public fun screenGetOrientation(screen: Long = -1): DisplayServer.ScreenOrientation {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_ORIENTATION, LONG)
@@ -967,7 +967,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenSetKeepOn(enable: Boolean): Unit {
+  public fun screenSetKeepOn(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_SET_KEEP_ON,
         NIL)
@@ -976,7 +976,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun screenIsKeptOn(): Boolean {
+  public fun screenIsKeptOn(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_IS_KEPT_ON,
         BOOL)
@@ -986,7 +986,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun getWindowList(): PackedInt32Array {
+  public fun getWindowList(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_WINDOW_LIST,
         PACKED_INT_32_ARRAY)
@@ -996,7 +996,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun getWindowAtScreenPosition(position: Vector2i): Long {
+  public fun getWindowAtScreenPosition(position: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_WINDOW_AT_SCREEN_POSITION, LONG)
@@ -1006,7 +1006,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun createSubWindow(
+  public fun createSubWindow(
     mode: DisplayServer.WindowMode,
     vsyncMode: DisplayServer.VSyncMode,
     flags: Long,
@@ -1021,7 +1021,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun deleteSubWindow(windowId: Long): Unit {
+  public fun deleteSubWindow(windowId: Long): Unit {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DELETE_SUB_WINDOW,
         NIL)
@@ -1032,8 +1032,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
    */
-  public open fun windowGetNativeHandle(handleType: DisplayServer.HandleType, windowId: Long = 0):
-      Long {
+  public fun windowGetNativeHandle(handleType: DisplayServer.HandleType, windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_NATIVE_HANDLE, LONG)
@@ -1043,7 +1042,7 @@ public object DisplayServer : Object() {
   /**
    * Returns ID of the active popup window, or [INVALID_WINDOW_ID] if there is none.
    */
-  public open fun windowGetActivePopup(): Long {
+  public fun windowGetActivePopup(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_ACTIVE_POPUP, LONG)
@@ -1053,7 +1052,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system. Clicking this area will not auto-close this popup.
    */
-  public open fun windowSetPopupSafeRect(window: Long, rect: Rect2i): Unit {
+  public fun windowSetPopupSafeRect(window: Long, rect: Rect2i): Unit {
     TransferContext.writeArguments(LONG to window, RECT2I to rect)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_POPUP_SAFE_RECT, NIL)
@@ -1062,7 +1061,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system.
    */
-  public open fun windowGetPopupSafeRect(window: Long): Rect2i {
+  public fun windowGetPopupSafeRect(window: Long): Rect2i {
     TransferContext.writeArguments(LONG to window)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POPUP_SAFE_RECT, RECT2I)
@@ -1072,7 +1071,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the title of the given window to `title`.
    */
-  public open fun windowSetTitle(title: String, windowId: Long = 0): Unit {
+  public fun windowSetTitle(title: String, windowId: Long = 0): Unit {
     TransferContext.writeArguments(STRING to title, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_TITLE, NIL)
   }
@@ -1130,7 +1129,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Long = 0): Unit {
+  public fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Long = 0): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MOUSE_PASSTHROUGH, NIL)
@@ -1139,7 +1138,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetCurrentScreen(windowId: Long = 0): Long {
+  public fun windowGetCurrentScreen(windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_CURRENT_SCREEN, LONG)
@@ -1149,7 +1148,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetCurrentScreen(screen: Long, windowId: Long = 0): Unit {
+  public fun windowSetCurrentScreen(screen: Long, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to screen, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_CURRENT_SCREEN, NIL)
@@ -1158,7 +1157,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the position of the given window to on the screen.
    */
-  public open fun windowGetPosition(windowId: Long = 0): Vector2i {
+  public fun windowGetPosition(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POSITION,
         VECTOR2I)
@@ -1168,7 +1167,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the position of the given window to `position`.
    */
-  public open fun windowSetPosition(position: Vector2i, windowId: Long = 0): Unit {
+  public fun windowSetPosition(position: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_POSITION,
         NIL)
@@ -1177,7 +1176,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetSize(windowId: Long = 0): Vector2i {
+  public fun windowGetSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_SIZE,
         VECTOR2I)
@@ -1187,7 +1186,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the size of the given window to `size`.
    */
-  public open fun windowSetSize(size: Vector2i, windowId: Long = 0): Unit {
+  public fun windowSetSize(size: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_SIZE, NIL)
   }
@@ -1195,7 +1194,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetRectChangedCallback(callback: Callable, windowId: Long = 0): Unit {
+  public fun windowSetRectChangedCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_RECT_CHANGED_CALLBACK, NIL)
@@ -1204,7 +1203,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetWindowEventCallback(callback: Callable, windowId: Long = 0): Unit {
+  public fun windowSetWindowEventCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_WINDOW_EVENT_CALLBACK, NIL)
@@ -1213,7 +1212,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetInputEventCallback(callback: Callable, windowId: Long = 0): Unit {
+  public fun windowSetInputEventCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_INPUT_EVENT_CALLBACK, NIL)
@@ -1222,7 +1221,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetInputTextCallback(callback: Callable, windowId: Long = 0): Unit {
+  public fun windowSetInputTextCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_INPUT_TEXT_CALLBACK, NIL)
@@ -1231,7 +1230,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetDropFilesCallback(callback: Callable, windowId: Long = 0): Unit {
+  public fun windowSetDropFilesCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_DROP_FILES_CALLBACK, NIL)
@@ -1240,7 +1239,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowAttachInstanceId(instanceId: Long, windowId: Long = 0): Unit {
+  public fun windowAttachInstanceId(instanceId: Long, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to instanceId, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_ATTACH_INSTANCE_ID, NIL)
@@ -1249,7 +1248,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetAttachedInstanceId(windowId: Long = 0): Long {
+  public fun windowGetAttachedInstanceId(windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_ATTACHED_INSTANCE_ID, LONG)
@@ -1259,7 +1258,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetMaxSize(windowId: Long = 0): Vector2i {
+  public fun windowGetMaxSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MAX_SIZE,
         VECTOR2I)
@@ -1269,7 +1268,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetMaxSize(maxSize: Vector2i, windowId: Long = 0): Unit {
+  public fun windowSetMaxSize(maxSize: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MAX_SIZE,
         NIL)
@@ -1278,7 +1277,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetMinSize(windowId: Long = 0): Vector2i {
+  public fun windowGetMinSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MIN_SIZE,
         VECTOR2I)
@@ -1290,7 +1289,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents issues that can arise when the window is resized to a near-zero size.
    */
-  public open fun windowSetMinSize(minSize: Vector2i, windowId: Long = 0): Unit {
+  public fun windowSetMinSize(minSize: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MIN_SIZE,
         NIL)
@@ -1299,7 +1298,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowGetRealSize(windowId: Long = 0): Vector2i {
+  public fun windowGetRealSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_REAL_SIZE,
         VECTOR2I)
@@ -1309,7 +1308,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mode of the given window.
    */
-  public open fun windowGetMode(windowId: Long = 0): DisplayServer.WindowMode {
+  public fun windowGetMode(windowId: Long = 0): DisplayServer.WindowMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MODE, LONG)
     return DisplayServer.WindowMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1320,7 +1319,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Setting the window to fullscreen forcibly sets the borderless flag to `true`, so make sure to set it back to `false` when not wanted.
    */
-  public open fun windowSetMode(mode: DisplayServer.WindowMode, windowId: Long = 0): Unit {
+  public fun windowSetMode(mode: DisplayServer.WindowMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MODE, NIL)
   }
@@ -1328,7 +1327,7 @@ public object DisplayServer : Object() {
   /**
    * Enables or disables the given window's given `flag`. See [enum WindowFlags] for possible values and their behavior.
    */
-  public open fun windowSetFlag(
+  public fun windowSetFlag(
     flag: DisplayServer.WindowFlags,
     enabled: Boolean,
     windowId: Long = 0
@@ -1340,7 +1339,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current value of the given window's `flag`.
    */
-  public open fun windowGetFlag(flag: DisplayServer.WindowFlags, windowId: Long = 0): Boolean {
+  public fun windowGetFlag(flag: DisplayServer.WindowFlags, windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1349,7 +1348,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowRequestAttention(windowId: Long = 0): Unit {
+  public fun windowRequestAttention(windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_REQUEST_ATTENTION, NIL)
@@ -1358,7 +1357,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowMoveToForeground(windowId: Long = 0): Unit {
+  public fun windowMoveToForeground(windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_MOVE_TO_FOREGROUND, NIL)
@@ -1367,7 +1366,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowCanDraw(windowId: Long = 0): Boolean {
+  public fun windowCanDraw(windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_CAN_DRAW, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1376,7 +1375,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetTransient(windowId: Long, parentWindowId: Long): Unit {
+  public fun windowSetTransient(windowId: Long, parentWindowId: Long): Unit {
     TransferContext.writeArguments(LONG to windowId, LONG to parentWindowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_TRANSIENT,
         NIL)
@@ -1389,7 +1388,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public open fun windowSetExclusive(windowId: Long, exclusive: Boolean): Unit {
+  public fun windowSetExclusive(windowId: Long, exclusive: Boolean): Unit {
     TransferContext.writeArguments(LONG to windowId, BOOL to exclusive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_EXCLUSIVE,
         NIL)
@@ -1398,7 +1397,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetImeActive(active: Boolean, windowId: Long = 0): Unit {
+  public fun windowSetImeActive(active: Boolean, windowId: Long = 0): Unit {
     TransferContext.writeArguments(BOOL to active, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_IME_ACTIVE,
         NIL)
@@ -1407,7 +1406,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun windowSetImePosition(position: Vector2i, windowId: Long = 0): Unit {
+  public fun windowSetImePosition(position: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_IME_POSITION, NIL)
@@ -1420,7 +1419,7 @@ public object DisplayServer : Object() {
    *
    * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED], if the desired mode is not supported.
    */
-  public open fun windowSetVsyncMode(vsyncMode: DisplayServer.VSyncMode, windowId: Long = 0): Unit {
+  public fun windowSetVsyncMode(vsyncMode: DisplayServer.VSyncMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_VSYNC_MODE,
         NIL)
@@ -1429,7 +1428,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the VSync mode of the given window.
    */
-  public open fun windowGetVsyncMode(windowId: Long = 0): DisplayServer.VSyncMode {
+  public fun windowGetVsyncMode(windowId: Long = 0): DisplayServer.VSyncMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_VSYNC_MODE,
         LONG)
@@ -1439,7 +1438,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun imeGetSelection(): Vector2i {
+  public fun imeGetSelection(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_IME_GET_SELECTION,
         VECTOR2I)
@@ -1449,7 +1448,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun imeGetText(): String {
+  public fun imeGetText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_IME_GET_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1472,7 +1471,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS and UWP.
    */
-  public open fun virtualKeyboardShow(
+  public fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     multiline: Boolean = false,
@@ -1488,7 +1487,7 @@ public object DisplayServer : Object() {
   /**
    * Hides the virtual keyboard if it is shown, does nothing otherwise.
    */
-  public open fun virtualKeyboardHide(): Unit {
+  public fun virtualKeyboardHide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_VIRTUAL_KEYBOARD_HIDE,
         NIL)
@@ -1497,7 +1496,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it is currently hidden.
    */
-  public open fun virtualKeyboardGetHeight(): Long {
+  public fun virtualKeyboardGetHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_VIRTUAL_KEYBOARD_GET_HEIGHT, LONG)
@@ -1507,7 +1506,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun cursorSetShape(shape: DisplayServer.CursorShape): Unit {
+  public fun cursorSetShape(shape: DisplayServer.CursorShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_SET_SHAPE, NIL)
   }
@@ -1515,7 +1514,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun cursorGetShape(): DisplayServer.CursorShape {
+  public fun cursorGetShape(): DisplayServer.CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CURSOR_GET_SHAPE,
         LONG)
@@ -1525,7 +1524,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun cursorSetCustomImage(
+  public fun cursorSetCustomImage(
     cursor: Resource,
     shape: DisplayServer.CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0.0, 0.0)
@@ -1538,7 +1537,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun getSwapCancelOk(): Boolean {
+  public fun getSwapCancelOk(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GET_SWAP_CANCEL_OK,
         BOOL)
@@ -1548,7 +1547,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun enableForStealingFocus(processId: Long): Unit {
+  public fun enableForStealingFocus(processId: Long): Unit {
     TransferContext.writeArguments(LONG to processId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_ENABLE_FOR_STEALING_FOCUS, NIL)
@@ -1557,7 +1556,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun dialogShow(
+  public fun dialogShow(
     title: String,
     description: String,
     buttons: PackedStringArray,
@@ -1571,7 +1570,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun dialogInputText(
+  public fun dialogInputText(
     title: String,
     description: String,
     existingText: String,
@@ -1588,7 +1587,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardGetLayoutCount(): Long {
+  public fun keyboardGetLayoutCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_LAYOUT_COUNT, LONG)
@@ -1600,7 +1599,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardGetCurrentLayout(): Long {
+  public fun keyboardGetCurrentLayout(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_CURRENT_LAYOUT, LONG)
@@ -1612,7 +1611,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardSetCurrentLayout(index: Long): Unit {
+  public fun keyboardSetCurrentLayout(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_SET_CURRENT_LAYOUT, NIL)
@@ -1623,7 +1622,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardGetLayoutLanguage(index: Long): String {
+  public fun keyboardGetLayoutLanguage(index: Long): String {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_LAYOUT_LANGUAGE, STRING)
@@ -1635,7 +1634,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardGetLayoutName(index: Long): String {
+  public fun keyboardGetLayoutName(index: Long): String {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_LAYOUT_NAME, STRING)
@@ -1647,7 +1646,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  public open fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
+  public fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_KEYCODE_FROM_PHYSICAL, LONG)
@@ -1657,7 +1656,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun processEvents(): Unit {
+  public fun processEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_PROCESS_EVENTS, NIL)
   }
@@ -1665,7 +1664,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun forceProcessAndDropEvents(): Unit {
+  public fun forceProcessAndDropEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_FORCE_PROCESS_AND_DROP_EVENTS, NIL)
@@ -1674,7 +1673,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun setNativeIcon(filename: String): Unit {
+  public fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SET_NATIVE_ICON, NIL)
   }
@@ -1682,7 +1681,7 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun setIcon(image: Image): Unit {
+  public fun setIcon(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SET_ICON, NIL)
   }
@@ -1692,7 +1691,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  public open fun tabletGetDriverCount(): Long {
+  public fun tabletGetDriverCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TABLET_GET_DRIVER_COUNT, LONG)
@@ -1704,7 +1703,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  public open fun tabletGetDriverName(idx: Long): String {
+  public fun tabletGetDriverName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TABLET_GET_DRIVER_NAME, STRING)
@@ -1716,7 +1715,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  public open fun tabletGetCurrentDriver(): String {
+  public fun tabletGetCurrentDriver(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TABLET_GET_CURRENT_DRIVER, STRING)
@@ -1728,7 +1727,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  public open fun tabletSetCurrentDriver(name: String): Unit {
+  public fun tabletSetCurrentDriver(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_TABLET_SET_CURRENT_DRIVER, NIL)

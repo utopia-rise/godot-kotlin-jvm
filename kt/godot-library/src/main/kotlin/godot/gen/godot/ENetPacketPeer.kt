@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,39 +30,39 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     callConstructor(ENGINECLASS_ENETPACKETPEER)
   }
 
-  public open fun peerDisconnect(`data`: Long = 0): Unit {
+  public fun peerDisconnect(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT, NIL)
   }
 
-  public open fun peerDisconnectLater(`data`: Long = 0): Unit {
+  public fun peerDisconnectLater(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_LATER, NIL)
   }
 
-  public open fun peerDisconnectNow(`data`: Long = 0): Unit {
+  public fun peerDisconnectNow(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_NOW,
         NIL)
   }
 
-  public open fun ping(): Unit {
+  public fun ping(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING, NIL)
   }
 
-  public open fun pingInterval(pingInterval: Long): Unit {
+  public fun pingInterval(pingInterval: Long): Unit {
     TransferContext.writeArguments(LONG to pingInterval)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING_INTERVAL, NIL)
   }
 
-  public open fun reset(): Unit {
+  public fun reset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_RESET, NIL)
   }
 
-  public open fun send(
+  public fun send(
     channel: Long,
     packet: PackedByteArray,
     flags: Long
@@ -72,7 +72,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun throttleConfigure(
+  public fun throttleConfigure(
     interval: Long,
     acceleration: Long,
     deceleration: Long
@@ -82,7 +82,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
         NIL)
   }
 
-  public open fun setTimeout(
+  public fun setTimeout(
     timeout: Long,
     timeoutMin: Long,
     timeoutMax: Long
@@ -91,26 +91,26 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL)
   }
 
-  public open fun getStatistic(statistic: ENetPacketPeer.PeerStatistic): Double {
+  public fun getStatistic(statistic: ENetPacketPeer.PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getState(): ENetPacketPeer.PeerState {
+  public fun getState(): ENetPacketPeer.PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
     return ENetPacketPeer.PeerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun getChannels(): Long {
+  public fun getChannels(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_CHANNELS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun isActive(): Boolean {
+  public fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

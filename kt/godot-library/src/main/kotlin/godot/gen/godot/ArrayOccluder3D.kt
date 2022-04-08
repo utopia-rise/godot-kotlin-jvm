@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class ArrayOccluder3D : Occluder3D() {
   /**
    *
    */
-  public open var vertices: PackedVector3Array
+  public var vertices: PackedVector3Array
     @JvmName("getVertices_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getVertices()
@@ -41,7 +41,7 @@ public open class ArrayOccluder3D : Occluder3D() {
   /**
    *
    */
-  public open var indices: PackedInt32Array
+  public var indices: PackedInt32Array
     @JvmName("getIndices_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getIndices()
@@ -57,7 +57,7 @@ public open class ArrayOccluder3D : Occluder3D() {
   /**
    *
    */
-  public open fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
+  public fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_ARRAYS, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class GradientTexture1D : Texture2D() {
   /**
    * The [godot.Gradient] that will be used to fill the texture.
    */
-  public open var gradient: Gradient?
+  public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_GET_GRADIENT,
@@ -44,7 +44,7 @@ public open class GradientTexture1D : Texture2D() {
   /**
    * The number of color samples that will be obtained from the [godot.Gradient].
    */
-  public open var width: Long
+  public var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
@@ -56,7 +56,7 @@ public open class GradientTexture1D : Texture2D() {
   /**
    * If `true`, the generated texture will support high dynamic range ([godot.Image.FORMAT_RGBAF] format). This allows for glow effects to work if [godot.Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([godot.Image.FORMAT_RGBA8] format).
    */
-  public open var useHdr: Boolean
+  public var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_IS_USING_HDR,

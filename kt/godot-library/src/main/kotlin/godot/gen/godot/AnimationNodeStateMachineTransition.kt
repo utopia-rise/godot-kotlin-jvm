@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The transition type.
    */
-  public open var switchMode: Long
+  public var switchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -54,7 +54,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Turn on the transition automatically when this state is reached. This works best with [SWITCH_MODE_AT_END].
    */
-  public open var autoAdvance: Boolean
+  public var autoAdvance: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -86,7 +86,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    *
    * [/codeblocks]
    */
-  public open var advanceCondition: StringName
+  public var advanceCondition: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -103,7 +103,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The time to cross-fade between this state and the next.
    */
-  public open var xfadeTime: Double
+  public var xfadeTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Lower priority transitions are preferred when travelling through the tree via [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
    */
-  public open var priority: Long
+  public var priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Don't use this transition during [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

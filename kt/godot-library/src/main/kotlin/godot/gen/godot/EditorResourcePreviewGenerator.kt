@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * Returns `true` if your generator supports the resource of type `type`.
    */
   public open fun _handles(type: String): Boolean {
-    throw NotImplementedError("_handles·is·not·implemented·for·EditorResourcePreviewGenerator")
+    throw NotImplementedError("_handles is not implemented for EditorResourcePreviewGenerator")
   }
 
   /**
@@ -40,7 +40,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * Care must be taken because this function is always called from a thread (not the main thread).
    */
   public open fun _generate(resource: Resource, size: Vector2i): Texture2D? {
-    throw NotImplementedError("_generate·is·not·implemented·for·EditorResourcePreviewGenerator")
+    throw NotImplementedError("_generate is not implemented for EditorResourcePreviewGenerator")
   }
 
   /**
@@ -51,7 +51,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * Care must be taken because this function is always called from a thread (not the main thread).
    */
   public open fun _generateFromPath(path: String, size: Vector2i): Texture2D? {
-    throw NotImplementedError("_generate_from_path·is·not·implemented·for·EditorResourcePreviewGenerator")
+    throw NotImplementedError("_generate_from_path is not implemented for EditorResourcePreviewGenerator")
   }
 
   /**
@@ -60,7 +60,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * By default, it returns `false`.
    */
   public open fun _generateSmallPreviewAutomatically(): Boolean {
-    throw NotImplementedError("_generate_small_preview_automatically·is·not·implemented·for·EditorResourcePreviewGenerator")
+    throw NotImplementedError("_generate_small_preview_automatically is not implemented for EditorResourcePreviewGenerator")
   }
 
   /**
@@ -69,7 +69,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
    * By default, it returns `false`.
    */
   public open fun _canGenerateSmallPreview(): Boolean {
-    throw NotImplementedError("_can_generate_small_preview·is·not·implemented·for·EditorResourcePreviewGenerator")
+    throw NotImplementedError("_can_generate_small_preview is not implemented for EditorResourcePreviewGenerator")
   }
 
   public companion object

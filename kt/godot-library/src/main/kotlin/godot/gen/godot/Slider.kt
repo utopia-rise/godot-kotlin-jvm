@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -41,7 +41,7 @@ public open class Slider internal constructor() : Range() {
   /**
    * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
    */
-  public open var editable: Boolean
+  public var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_EDITABLE, BOOL)
@@ -55,7 +55,7 @@ public open class Slider internal constructor() : Range() {
   /**
    * If `true`, the value can be changed using the mouse wheel.
    */
-  public open var scrollable: Boolean
+  public var scrollable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_SCROLLABLE, BOOL)
@@ -69,7 +69,7 @@ public open class Slider internal constructor() : Range() {
   /**
    * Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers.
    */
-  public open var tickCount: Long
+  public var tickCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS, LONG)
@@ -83,7 +83,7 @@ public open class Slider internal constructor() : Range() {
   /**
    * If `true`, the slider will display ticks for minimum and maximum values.
    */
-  public open var ticksOnBorders: Boolean
+  public var ticksOnBorders: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS_ON_BORDERS, BOOL)

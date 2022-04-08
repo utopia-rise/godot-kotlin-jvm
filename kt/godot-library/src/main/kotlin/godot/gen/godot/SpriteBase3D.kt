@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -35,7 +35,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, texture will be centered.
    */
-  public open var centered: Boolean
+  public var centered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_CENTERED, BOOL)
@@ -49,7 +49,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The texture's drawing offset.
    */
-  public open var offset: Vector2
+  public var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_OFFSET, VECTOR2)
@@ -63,7 +63,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public open var flipH: Boolean
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_FLIPPED_H, BOOL)
@@ -77,7 +77,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public open var flipV: Boolean
+  public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_FLIPPED_V, BOOL)
@@ -93,7 +93,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    *
    * **Note:** If a [godot.GeometryInstance3D.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
-  public open var modulate: Color
+  public var modulate: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_MODULATE, COLOR)
@@ -107,7 +107,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The size of one pixel's width on the sprite to scale it in 3D.
    */
-  public open var pixelSize: Double
+  public var pixelSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_PIXEL_SIZE,
@@ -122,7 +122,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The direction in which the front of the texture faces.
    */
-  public open var axis: Long
+  public var axis: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_AXIS, LONG)
@@ -136,7 +136,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The billboard mode to use for the sprite. See [enum BaseMaterial3D.BillboardMode] for possible values.
    */
-  public open var billboard: Long
+  public var billboard: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_BILLBOARD_MODE,
@@ -152,7 +152,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
    */
-  public open var alphaCut: Long
+  public var alphaCut: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_CUT_MODE,
@@ -172,7 +172,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, the specified flag will be enabled. See [enum SpriteBase3D.DrawFlags] for a list of flags.
    */
-  public open fun setDrawFlag(flag: SpriteBase3D.DrawFlags, enabled: Boolean): Unit {
+  public fun setDrawFlag(flag: SpriteBase3D.DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
   }
@@ -180,7 +180,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns the value of the specified flag.
    */
-  public open fun getDrawFlag(flag: SpriteBase3D.DrawFlags): Boolean {
+  public fun getDrawFlag(flag: SpriteBase3D.DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -189,7 +189,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns the rectangle representing this sprite.
    */
-  public open fun getItemRect(): Rect2 {
+  public fun getItemRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ITEM_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -198,7 +198,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns a [godot.TriangleMesh] with the sprite's vertices following its current configuration (such as its [axis] and [pixelSize]).
    */
-  public open fun generateTriangleMesh(): TriangleMesh? {
+  public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GENERATE_TRIANGLE_MESH,
         OBJECT)

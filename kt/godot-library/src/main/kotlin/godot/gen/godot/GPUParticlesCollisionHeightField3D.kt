@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,7 +28,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    *
    */
-  public open var extents: Vector3
+  public var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -44,7 +44,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    *
    */
-  public open var resolution: Long
+  public var resolution: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,7 +60,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    *
    */
-  public open var updateMode: Long
+  public var updateMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,7 +76,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    *
    */
-  public open var followCameraEnabled: Boolean
+  public var followCameraEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -93,7 +93,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    *
    */
-  public open var followCameraPushRatio: Double
+  public var followCameraPushRatio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -92,7 +92,7 @@ public open class Button : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  public open var text: String
+  public var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING)
@@ -106,7 +106,7 @@ public open class Button : BaseButton() {
   /**
    * Base text writing direction.
    */
-  public open var textDirection: Long
+  public var textDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION, LONG)
@@ -120,7 +120,7 @@ public open class Button : BaseButton() {
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open var language: String
+  public var language: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING)
@@ -136,7 +136,7 @@ public open class Button : BaseButton() {
    *
    * To edit margin and spacing of the icon, use [theme_item hseparation] theme property and `content_margin_*` properties of the used [godot.StyleBox]es.
    */
-  public open var icon: Texture2D?
+  public var icon: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_BUTTON_ICON, OBJECT)
@@ -150,7 +150,7 @@ public open class Button : BaseButton() {
   /**
    * Flat buttons don't display decoration.
    */
-  public open var flat: Boolean
+  public var flat: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_FLAT, BOOL)
@@ -164,7 +164,7 @@ public open class Button : BaseButton() {
   /**
    * When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text.
    */
-  public open var clipText: Boolean
+  public var clipText: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_CLIP_TEXT, BOOL)
@@ -178,7 +178,7 @@ public open class Button : BaseButton() {
   /**
    * Text alignment policy for the button's text, use one of the [enum @GlobalScope.HorizontalAlignment] constants.
    */
-  public open var alignment: Long
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_ALIGNMENT, LONG)
@@ -192,7 +192,7 @@ public open class Button : BaseButton() {
   /**
    * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum @GlobalScope.HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
    */
-  public open var iconAlignment: Long
+  public var iconAlignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGNMENT, LONG)
@@ -206,7 +206,7 @@ public open class Button : BaseButton() {
   /**
    * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
    */
-  public open var expandIcon: Boolean
+  public var expandIcon: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_EXPAND_ICON, BOOL)
@@ -224,7 +224,7 @@ public open class Button : BaseButton() {
   /**
    * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public open fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL)
   }
@@ -232,7 +232,7 @@ public open class Button : BaseButton() {
   /**
    * Returns OpenType feature `tag`.
    */
-  public open fun getOpentypeFeature(tag: String): Long {
+  public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -241,7 +241,7 @@ public open class Button : BaseButton() {
   /**
    * Removes all OpenType features.
    */
-  public open fun clearOpentypeFeatures(): Unit {
+  public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES, NIL)
   }

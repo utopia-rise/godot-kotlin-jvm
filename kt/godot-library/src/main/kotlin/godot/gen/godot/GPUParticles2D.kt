@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * If `true`, particles are being emitted.
    */
-  public open var emitting: Boolean
+  public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_IS_EMITTING, BOOL)
@@ -58,7 +58,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Number of particles emitted in one emission cycle.
    */
-  public open var amount: Long
+  public var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_AMOUNT, LONG)
@@ -72,7 +72,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * The [godot.core.NodePath] to the [godot.GPUParticles2D] used for sub-emissions.
    */
-  public open var subEmitter: NodePath
+  public var subEmitter: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_SUB_EMITTER,
@@ -88,7 +88,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Amount of time each particle will exist.
    */
-  public open var lifetime: Double
+  public var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_LIFETIME,
@@ -103,7 +103,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
-  public open var oneShot: Boolean
+  public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_ONE_SHOT, BOOL)
@@ -117,7 +117,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  public open var preprocess: Double
+  public var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  public open var speedScale: Double
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_SPEED_SCALE,
@@ -149,7 +149,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
-  public open var explosiveness: Double
+  public var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -165,7 +165,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Emission lifetime randomness ratio.
    */
-  public open var randomness: Double
+  public var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -181,7 +181,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
-  public open var fixedFps: Long
+  public var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_FIXED_FPS,
@@ -196,7 +196,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  public open var fractDelta: Boolean
+  public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -212,7 +212,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var collisionBaseSize: Double
+  public var collisionBaseSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -230,7 +230,7 @@ public open class GPUParticles2D : Node2D() {
    *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
-  public open var visibilityRect: Rect2
+  public var visibilityRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -246,7 +246,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  public open var localCoords: Boolean
+  public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -262,7 +262,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public open var drawOrder: Long
+  public var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_DRAW_ORDER,
@@ -278,7 +278,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var trailEnabled: Boolean
+  public var trailEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_IS_TRAIL_ENABLED,
@@ -294,7 +294,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var trailLengthSecs: Double
+  public var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_LENGTH,
@@ -310,7 +310,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var trailSections: Long
+  public var trailSections: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_SECTIONS,
@@ -326,7 +326,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var trailSectionSubdivisions: Long
+  public var trailSectionSubdivisions: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -342,7 +342,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
    */
-  public open var processMaterial: Material?
+  public var processMaterial: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -358,7 +358,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Particle texture. If `null`, particles will be squares.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TEXTURE,
@@ -377,7 +377,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Returns a rectangle containing the positions of all existing particles.
    */
-  public open fun captureRect(): Rect2 {
+  public fun captureRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_CAPTURE_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -386,7 +386,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Restarts all the existing particles.
    */
-  public open fun restart(): Unit {
+  public fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_RESTART, NIL)
   }
@@ -394,7 +394,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Emits a single particle. Whether `xform`, `velocity`, `color` and `custom` are applied depends on the value of `flags`. See [enum EmitFlags].
    */
-  public open fun emitParticle(
+  public fun emitParticle(
     xform: Transform2D,
     velocity: Vector2,
     color: Color,

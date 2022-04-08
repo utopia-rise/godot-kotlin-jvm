@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -126,7 +126,7 @@ public open class Expression : RefCounted() {
    *
    * You can optionally specify names of variables that may appear in the expression with `input_names`, so that you can bind them when it gets executed.
    */
-  public open fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
+  public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_PARSE, LONG)
@@ -138,7 +138,7 @@ public open class Expression : RefCounted() {
    *
    * If you defined input variables in [parse], you can specify their values in the inputs array, in the same order.
    */
-  public open fun execute(
+  public fun execute(
     inputs: VariantArray<Any?> = godot.core.variantArrayOf(),
     baseInstance: Object? = null,
     showError: Boolean = true
@@ -151,7 +151,7 @@ public open class Expression : RefCounted() {
   /**
    * Returns `true` if [execute] has failed.
    */
-  public open fun hasExecuteFailed(): Boolean {
+  public fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_HAS_EXECUTE_FAILED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -160,7 +160,7 @@ public open class Expression : RefCounted() {
   /**
    * Returns the error text if [parse] has failed.
    */
-  public open fun getErrorText(): String {
+  public fun getErrorText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_GET_ERROR_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

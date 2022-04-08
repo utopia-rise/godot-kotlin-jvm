@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -48,7 +48,7 @@ public object Time : Object() {
    *
    * The returned Dictionary's values will be the same as the [getDatetimeDictFromSystem] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.
    */
-  public open fun getDatetimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
+  public fun getDatetimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_UNIX_TIME, DICTIONARY)
@@ -58,7 +58,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and `weekday`.
    */
-  public open fun getDateDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
+  public fun getDateDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_DICT_FROM_UNIX_TIME,
         DICTIONARY)
@@ -68,7 +68,7 @@ public object Time : Object() {
   /**
    * Converts the given time to a dictionary of keys: `hour`, `minute`, and `second`.
    */
-  public open fun getTimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
+  public fun getTimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_DICT_FROM_UNIX_TIME,
         DICTIONARY)
@@ -80,8 +80,7 @@ public object Time : Object() {
    *
    * If `use_space` is true, use a space instead of the letter T in the middle.
    */
-  public open fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false):
-      String {
+  public fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false): String {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_UNIX_TIME, STRING)
@@ -91,7 +90,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to an ISO 8601 date string (YYYY-MM-DD).
    */
-  public open fun getDateStringFromUnixTime(unixTimeVal: Long): String {
+  public fun getDateStringFromUnixTime(unixTimeVal: Long): String {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_STRING_FROM_UNIX_TIME,
         STRING)
@@ -101,7 +100,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to an ISO 8601 time string (HH:MM:SS).
    */
-  public open fun getTimeStringFromUnixTime(unixTimeVal: Long): String {
+  public fun getTimeStringFromUnixTime(unixTimeVal: Long): String {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_STRING_FROM_UNIX_TIME,
         STRING)
@@ -113,8 +112,7 @@ public object Time : Object() {
    *
    * If `weekday` is false, then the `weekday` entry is excluded (the calculation is relatively expensive).
    */
-  public open fun getDatetimeDictFromString(datetime: String, weekday: Boolean):
-      Dictionary<Any?, Any?> {
+  public fun getDatetimeDictFromString(datetime: String, weekday: Boolean): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_STRING,
         DICTIONARY)
@@ -130,7 +128,7 @@ public object Time : Object() {
    *
    * If `use_space` is true, use a space instead of the letter T in the middle.
    */
-  public open fun getDatetimeStringFromDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
+  public fun getDatetimeStringFromDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
       String {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DICT,
@@ -149,7 +147,7 @@ public object Time : Object() {
    *
    * **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime dictionary.
    */
-  public open fun getUnixTimeFromDatetimeDict(datetime: Dictionary<Any?, Any?>): Long {
+  public fun getUnixTimeFromDatetimeDict(datetime: Dictionary<Any?, Any?>): Long {
     TransferContext.writeArguments(DICTIONARY to datetime)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_DATETIME_DICT, LONG)
@@ -161,7 +159,7 @@ public object Time : Object() {
    *
    * **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime string.
    */
-  public open fun getUnixTimeFromDatetimeString(datetime: String): Long {
+  public fun getUnixTimeFromDatetimeString(datetime: String): Long {
     TransferContext.writeArguments(STRING to datetime)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_DATETIME_STRING, LONG)
@@ -171,7 +169,7 @@ public object Time : Object() {
   /**
    * Converts the given timezone offset in minutes to a timezone offset string. For example, -480 returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00".
    */
-  public open fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
+  public fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
     TransferContext.writeArguments(LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_OFFSET_STRING_FROM_OFFSET_MINUTES, STRING)
@@ -181,7 +179,7 @@ public object Time : Object() {
   /**
    * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
    */
-  public open fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_SYSTEM,
         DICTIONARY)
@@ -193,7 +191,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
    */
-  public open fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_DICT_FROM_SYSTEM,
         DICTIONARY)
@@ -205,7 +203,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
    */
-  public open fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_DICT_FROM_SYSTEM,
         DICTIONARY)
@@ -219,8 +217,7 @@ public object Time : Object() {
    *
    * If `use_space` is true, use a space instead of the letter T in the middle.
    */
-  public open fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false):
-      String {
+  public fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_SYSTEM, STRING)
@@ -232,7 +229,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
    */
-  public open fun getDateStringFromSystem(utc: Boolean = false): String {
+  public fun getDateStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATE_STRING_FROM_SYSTEM,
         STRING)
@@ -244,7 +241,7 @@ public object Time : Object() {
    *
    * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
    */
-  public open fun getTimeStringFromSystem(utc: Boolean = false): String {
+  public fun getTimeStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_STRING_FROM_SYSTEM,
         STRING)
@@ -254,7 +251,7 @@ public object Time : Object() {
   /**
    * Returns the current time zone as a dictionary of keys: `bias` and `name`. The `bias` value is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.
    */
-  public open fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
+  public fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TIME_ZONE_FROM_SYSTEM,
         DICTIONARY)
@@ -264,7 +261,7 @@ public object Time : Object() {
   /**
    * Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC.
    */
-  public open fun getUnixTimeFromSystem(): Double {
+  public fun getUnixTimeFromSystem(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_UNIX_TIME_FROM_SYSTEM,
         DOUBLE)
@@ -276,7 +273,7 @@ public object Time : Object() {
    *
    * Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly 500 million years).
    */
-  public open fun getTicksMsec(): Long {
+  public fun getTicksMsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TICKS_MSEC, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -287,7 +284,7 @@ public object Time : Object() {
    *
    * Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly half a million years).
    */
-  public open fun getTicksUsec(): Long {
+  public fun getTicksUsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_TICKS_USEC, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

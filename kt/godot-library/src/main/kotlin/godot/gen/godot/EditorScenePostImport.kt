@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -122,13 +122,13 @@ public open class EditorScenePostImport internal constructor() : RefCounted() {
    * Called after the scene was imported. This method must return the modified version of the scene.
    */
   public open fun _postImport(scene: Node): Object? {
-    throw NotImplementedError("_post_import·is·not·implemented·for·EditorScenePostImport")
+    throw NotImplementedError("_post_import is not implemented for EditorScenePostImport")
   }
 
   /**
    * Returns the source file path which got imported (e.g. `res://scene.dae`).
    */
-  public open fun getSourceFile(): String {
+  public fun getSourceFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORT_GET_SOURCE_FILE, STRING)

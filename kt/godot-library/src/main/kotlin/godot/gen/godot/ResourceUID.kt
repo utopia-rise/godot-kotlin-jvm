@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -37,7 +37,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun idToText(id: Long): String {
+  public fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ID_TO_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -46,7 +46,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun textToId(textId: String): Long {
+  public fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_TEXT_TO_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -55,7 +55,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun createId(): Long {
+  public fun createId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_CREATE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -64,7 +64,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun hasId(id: Long): Boolean {
+  public fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_HAS_ID, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -73,7 +73,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun addId(id: Long, path: String): Unit {
+  public fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ADD_ID, NIL)
   }
@@ -81,7 +81,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun setId(id: Long, path: String): Unit {
+  public fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_SET_ID, NIL)
   }
@@ -89,7 +89,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun getIdPath(id: Long): String {
+  public fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_GET_ID_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -98,7 +98,7 @@ public object ResourceUID : Object() {
   /**
    *
    */
-  public open fun removeId(id: Long): Unit {
+  public fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_REMOVE_ID, NIL)
   }

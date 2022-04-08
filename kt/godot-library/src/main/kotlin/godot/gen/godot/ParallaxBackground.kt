@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,7 +26,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
    */
-  public open var scrollOffset: Vector2
+  public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -42,7 +42,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base position offset for all [godot.ParallaxLayer] children.
    */
-  public open var scrollBaseOffset: Vector2
+  public var scrollBaseOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base motion scale for all [godot.ParallaxLayer] children.
    */
-  public open var scrollBaseScale: Vector2
+  public var scrollBaseScale: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    */
-  public open var scrollLimitBegin: Vector2
+  public var scrollLimitBegin: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +90,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    */
-  public open var scrollLimitEnd: Vector2
+  public var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
@@ -106,7 +106,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * If `true`, elements in [godot.ParallaxLayer] child aren't affected by the zoom level of the camera.
    */
-  public open var scrollIgnoreCameraZoom: Boolean
+  public var scrollIgnoreCameraZoom: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -49,7 +49,7 @@ public object ResourceLoader : Object() {
   /**
    * Loads the resource using threads. If `use_sub_threads` is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
    */
-  public open fun loadThreadedRequest(
+  public fun loadThreadedRequest(
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false
@@ -65,7 +65,7 @@ public object ResourceLoader : Object() {
    *
    * An array variable can optionally be passed via `progress`, and will return a one-element array containing the percentage of completion of the threaded loading.
    */
-  public open fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
+  public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(rawPtr,
@@ -78,7 +78,7 @@ public object ResourceLoader : Object() {
    *
    * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
    */
-  public open fun loadThreadedGet(path: String): Resource? {
+  public fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET,
         OBJECT)
@@ -98,7 +98,7 @@ public object ResourceLoader : Object() {
    *
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
    */
-  public open fun load(
+  public fun load(
     path: String,
     typeHint: String = "",
     cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
@@ -111,7 +111,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the list of recognized extensions for a resource type.
    */
-  public open fun getRecognizedExtensionsForType(type: String): PackedStringArray {
+  public fun getRecognizedExtensionsForType(type: String): PackedStringArray {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
@@ -122,7 +122,7 @@ public object ResourceLoader : Object() {
   /**
    * Changes the behavior on missing sub-resources. The default behavior is to abort loading.
    */
-  public open fun setAbortOnMissingResources(abort: Boolean): Unit {
+  public fun setAbortOnMissingResources(abort: Boolean): Unit {
     TransferContext.writeArguments(BOOL to abort)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL)
@@ -131,7 +131,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the dependencies for the resource at the given `path`.
    */
-  public open fun getDependencies(path: String): PackedStringArray {
+  public fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_DEPENDENCIES,
         PACKED_STRING_ARRAY)
@@ -143,7 +143,7 @@ public object ResourceLoader : Object() {
    *
    * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] method will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
    */
-  public open fun hasCached(path: String): Boolean {
+  public fun hasCached(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_HAS_CACHED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -154,7 +154,7 @@ public object ResourceLoader : Object() {
    *
    * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    */
-  public open fun exists(path: String, typeHint: String = ""): Boolean {
+  public fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_EXISTS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -163,7 +163,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the ID associated with a given resource path, or `-1` when no such ID exists.
    */
-  public open fun getResourceUid(path: String): Long {
+  public fun getResourceUid(path: String): Long {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RESOURCE_UID,
         LONG)

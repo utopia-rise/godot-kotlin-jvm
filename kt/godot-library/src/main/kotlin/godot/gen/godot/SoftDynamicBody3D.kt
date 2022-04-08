@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionLayer: Long
+  public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    *
    * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * [godot.core.NodePath] to a [godot.CollisionObject3D] this SoftDynamicBody3D should avoid clipping.
    */
-  public open var parentCollisionIgnore: NodePath
+  public var parentCollisionIgnore: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Increasing this value will improve the resulting simulation, but can affect performance. Use with care.
    */
-  public open var simulationPrecision: Long
+  public var simulationPrecision: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -111,7 +111,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * The SoftDynamicBody3D's mass.
    */
-  public open var totalMass: Double
+  public var totalMass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_TOTAL_MASS,
@@ -127,7 +127,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    *
    */
-  public open var linearStiffness: Double
+  public var linearStiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -143,7 +143,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    *
    */
-  public open var pressureCoefficient: Double
+  public var pressureCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    *
    */
-  public open var dampingCoefficient: Double
+  public var dampingCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -175,7 +175,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    *
    */
-  public open var dragCoefficient: Double
+  public var dragCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * If `true`, the [godot.SoftDynamicBody3D] will respond to [godot.RayCast3D]s.
    */
-  public open var rayPickable: Boolean
+  public var rayPickable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_RAY_PICKABLE,
@@ -207,7 +207,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
    */
-  public open var disableMode: Long
+  public var disableMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -227,7 +227,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    *
    */
-  public open fun getPhysicsRid(): RID {
+  public fun getPhysicsRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PHYSICS_RID,
         _RID)
@@ -237,7 +237,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
    */
-  public open fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_MASK_VALUE, NIL)
@@ -246,7 +246,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getCollisionMaskValue(layerNumber: Long): Boolean {
+  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_MASK_VALUE, BOOL)
@@ -256,7 +256,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [collisionLayer], given a `layer_number` between 1 and 32.
    */
-  public open fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_LAYER_VALUE, NIL)
@@ -265,7 +265,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getCollisionLayerValue(layerNumber: Long): Boolean {
+  public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_LAYER_VALUE, BOOL)
@@ -275,7 +275,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public open fun getCollisionExceptions(): VariantArray<Any?> {
+  public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
@@ -285,7 +285,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public open fun addCollisionExceptionWith(body: Node): Unit {
+  public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL)
@@ -294,7 +294,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public open fun removeCollisionExceptionWith(body: Node): Unit {
+  public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
@@ -303,7 +303,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Returns local translation of a vertex in the surface array.
    */
-  public open fun getPointTransform(pointIndex: Long): Vector3 {
+  public fun getPointTransform(pointIndex: Long): Vector3 {
     TransferContext.writeArguments(LONG to pointIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_POINT_TRANSFORM, VECTOR3)
@@ -313,10 +313,10 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Sets the pinned state of a surface vertex. When set to `true`, the optional `attachment_path` can define a [godot.Node3D] the pinned vertex will be attached to.
    */
-  public open fun setPointPinned(
+  public fun setPointPinned(
     pointIndex: Long,
     pinned: Boolean,
-    attachmentPath: NodePath = NodePath("NodePath("")")
+    attachmentPath: NodePath = NodePath("")
   ): Unit {
     TransferContext.writeArguments(LONG to pointIndex, BOOL to pinned, NODE_PATH to attachmentPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_POINT_PINNED,
@@ -326,7 +326,7 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   /**
    * Returns `true` if vertex is set to pinned.
    */
-  public open fun isPointPinned(pointIndex: Long): Boolean {
+  public fun isPointPinned(pointIndex: Long): Boolean {
     TransferContext.writeArguments(LONG to pointIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_POINT_PINNED,
         BOOL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the number or scene tiles this TileSet source has.
    */
-  public open fun getSceneTilesCount(): Long {
+  public fun getSceneTilesCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILES_COUNT, LONG)
@@ -43,7 +43,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the scene tile ID of the scene tile at index `index`.
    */
-  public open fun getSceneTileId(index: Long): Long {
+  public fun getSceneTileId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_ID, LONG)
@@ -53,7 +53,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns whether this TileSet source has a scene tile with id `id`.
    */
-  public open fun hasSceneTileId(id: Long): Boolean {
+  public fun hasSceneTileId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_HAS_SCENE_TILE_ID, BOOL)
@@ -65,7 +65,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    *
    * Returns a newly generated unique ID.
    */
-  public open fun createSceneTile(packedScene: PackedScene, idOverride: Long = -1): Long {
+  public fun createSceneTile(packedScene: PackedScene, idOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_CREATE_SCENE_TILE, LONG)
@@ -75,7 +75,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Changes a scene tile's ID from `id` to `new_id`. This will fail if there is already a tile with a ID equal to `new_id`.
    */
-  public open fun setSceneTileId(id: Long, newId: Long): Unit {
+  public fun setSceneTileId(id: Long, newId: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to newId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_ID, NIL)
@@ -84,7 +84,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Assigns a [godot.PackedScene] resource to the scene tile with id `id`. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
-  public open fun setSceneTileScene(id: Long, packedScene: PackedScene): Unit {
+  public fun setSceneTileScene(id: Long, packedScene: PackedScene): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to packedScene)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_SCENE, NIL)
@@ -93,7 +93,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the [godot.PackedScene] resource of scene tile with id `id`.
    */
-  public open fun getSceneTileScene(id: Long): PackedScene? {
+  public fun getSceneTileScene(id: Long): PackedScene? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_SCENE, OBJECT)
@@ -103,7 +103,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Sets whether or not the scene tile with id `id` should display a placeholder in the editor. This might be useful for scenes that are not visible.
    */
-  public open fun setSceneTileDisplayPlaceholder(id: Long, displayPlaceholder: Boolean): Unit {
+  public fun setSceneTileDisplayPlaceholder(id: Long, displayPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to displayPlaceholder)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_DISPLAY_PLACEHOLDER,
@@ -113,7 +113,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns whether the scene tile with id `id` displays a placeholder in the editor.
    */
-  public open fun getSceneTileDisplayPlaceholder(id: Long): Boolean {
+  public fun getSceneTileDisplayPlaceholder(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_DISPLAY_PLACEHOLDER,
@@ -124,7 +124,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Remove the scene tile with id `id`.
    */
-  public open fun removeSceneTile(id: Long): Unit {
+  public fun removeSceneTile(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_REMOVE_SCENE_TILE, NIL)
@@ -133,7 +133,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the scene ID a following call to [createSceneTile] would return.
    */
-  public open fun getNextSceneTileId(): Long {
+  public fun getNextSceneTileId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_NEXT_SCENE_TILE_ID, LONG)

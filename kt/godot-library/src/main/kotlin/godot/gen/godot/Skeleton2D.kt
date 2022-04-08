@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -49,7 +49,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the number of [godot.Bone2D] nodes in the node hierarchy parented by Skeleton2D.
    */
-  public open fun getBoneCount(): Long {
+  public fun getBoneCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -58,7 +58,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns a [godot.Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter `idx`. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling.
    */
-  public open fun getBone(idx: Long): Bone2D? {
+  public fun getBone(idx: Long): Bone2D? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Bone2D?
@@ -67,7 +67,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the [RID] of a Skeleton2D instance.
    */
-  public open fun getSkeleton(): RID {
+  public fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -76,7 +76,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Sets the [godot.SkeletonModificationStack2D] attached to this skeleton.
    */
-  public open fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
+  public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_MODIFICATION_STACK,
         NIL)
@@ -85,7 +85,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the [godot.SkeletonModificationStack2D] attached to this skeleton, if one exists.
    */
-  public open fun getModificationStack(): SkeletonModificationStack2D? {
+  public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_MODIFICATION_STACK,
         OBJECT)
@@ -95,7 +95,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Executes all the modifications on the [godot.SkeletonModificationStack2D], if the Skeleton3D has one assigned.
    */
-  public open fun executeModifications(delta: Double, executionMode: Long): Unit {
+  public fun executeModifications(delta: Double, executionMode: Long): Unit {
     TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_EXECUTE_MODIFICATIONS,
         NIL)
@@ -108,7 +108,7 @@ public open class Skeleton2D : Node2D() {
    *
    * **Note:** The pose transform needs to be a local transform relative to the [godot.Bone2D] node at `bone_idx`!
    */
-  public open fun setBoneLocalPoseOverride(
+  public fun setBoneLocalPoseOverride(
     boneIdx: Long,
     overridePose: Transform2D,
     strength: Double,
@@ -122,7 +122,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the local pose override transform for `bone_idx`.
    */
-  public open fun getBoneLocalPoseOverride(boneIdx: Long): Transform2D {
+  public fun getBoneLocalPoseOverride(boneIdx: Long): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_LOCAL_POSE_OVERRIDE, TRANSFORM2D)

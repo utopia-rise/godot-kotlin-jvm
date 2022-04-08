@@ -322,13 +322,16 @@ class GenerationService(
 //        if (clazz.newName == "CPUParticles" && newName == "scale") newName = "_scale"
 
         val modifiers = mutableListOf<KModifier>()
-        modifiers.add(
-            if (classGraphService.doAncestorsHaveProperty(
-                    enrichedClass,
-                    property
-                )
-            ) KModifier.OVERRIDE else KModifier.OPEN
-        )
+
+        if (classGraphService.doAncestorsHaveProperty(
+                enrichedClass,
+                property
+            )
+        ) {
+            modifiers.add(KModifier.OVERRIDE)
+        } else if (property.getterMethod?.internal?.isVirtual == true || property.setterMethod?.internal?.isVirtual == true) {
+            modifiers.add(KModifier.OPEN)
+        }
 
         val propertyTypeName = property.getTypeClassName()
         val propertyType = propertyTypeName.typeName
@@ -470,13 +473,15 @@ class GenerationService(
     private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
-        modifiers.add(
-            if (classGraphService.doAncestorsHaveMethod(
-                    enrichedClass,
-                    method
-                )
-            ) KModifier.OVERRIDE else KModifier.OPEN
-        )
+        if (classGraphService.doAncestorsHaveMethod(
+                enrichedClass,
+                method
+            )
+        ) {
+            modifiers.add(KModifier.OVERRIDE)
+        } else if (method.internal.isVirtual) {
+            modifiers.add(KModifier.OPEN)
+        }
 
         val generatedFunBuilder = FunSpec
             .builder(method.name)
@@ -521,6 +526,16 @@ class GenerationService(
         val kDoc = docRepository.findByClassName(enrichedClass.name)?.functions?.get(method.internal.name)?.description
         if (kDoc != null) {
             generatedFunBuilder.addKdoc("%L", kDoc)
+        }
+
+        for (jvmReservedMethod in jvmReservedMethods) {
+            if (method.isSameSignature(jvmReservedMethod) && !method.internal.isVirtual) {
+                generatedFunBuilder.addAnnotation(
+                    AnnotationSpec.builder(JvmName::class)
+                        .addMember(CodeBlock.of("\"%L%L\"", enrichedClass.name.decapitalize(), method.name.capitalize()))
+                        .build()
+                )
+            }
         }
 
         return generatedFunBuilder.build()
@@ -768,7 +783,7 @@ class GenerationService(
                 "%L·%T(%S)",
                 "throw",
                 NotImplementedError::class,
-                "${enrichedMethod.internal.name}·is·not·implemented·for·${clazz.internal.name}"
+                "${enrichedMethod.internal.name} is not implemented for ${clazz.internal.name}"
             )
         }
     }
@@ -834,7 +849,8 @@ class GenerationService(
                 .addMember(
                     "\"PackageDirectoryMismatch\", \"unused\", \"FunctionName\", \"RedundantModalityModifier\", " +
                             "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
-                            "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\""
+                            "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\", " +
+                            "\"RedundantUnitReturnType\", \"MemberVisibilityCanBePrivate\""
                 )
                 .build()
         )

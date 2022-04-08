@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class PacketPeerStream : PacketPeer() {
   /**
    *
    */
-  public open var inputBufferMaxSize: Long
+  public var inputBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -43,7 +43,7 @@ public open class PacketPeerStream : PacketPeer() {
   /**
    *
    */
-  public open var outputBufferMaxSize: Long
+  public var outputBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class PacketPeerStream : PacketPeer() {
   /**
    * The wrapped [godot.StreamPeer] object.
    */
-  public open var streamPeer: StreamPeer?
+  public var streamPeer: StreamPeer?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_STREAM_PEER,

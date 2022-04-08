@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions will be reported.
    */
-  public open var enabled: Boolean
+  public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_IS_ENABLED, BOOL)
@@ -58,7 +58,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions will be ignored for this RayCast3D's immediate parent.
    */
-  public open var excludeParent: Boolean
+  public var excludeParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_EXCLUDE_PARENT_BODY,
@@ -74,7 +74,7 @@ public open class RayCast3D : Node3D() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    */
-  public open var targetPosition: Vector3
+  public var targetPosition: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_TARGET_POSITION,
@@ -90,7 +90,7 @@ public open class RayCast3D : Node3D() {
   /**
    * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public open var collisionMask: Long
+  public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLISION_MASK,
@@ -105,7 +105,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or heightmap.
    */
-  public open var hitFromInside: Boolean
+  public var hitFromInside: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -121,7 +121,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collision with [godot.Area3D]s will be reported.
    */
-  public open var collideWithAreas: Boolean
+  public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -137,7 +137,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collision with [godot.PhysicsBody3D]s will be reported.
    */
-  public open var collideWithBodies: Boolean
+  public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class RayCast3D : Node3D() {
    *
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
-  public open var debugShapeCustomColor: Color
+  public var debugShapeCustomColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [godot.RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time.
    */
-  public open var debugShapeThickness: Long
+  public var debugShapeThickness: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns whether any object is intersecting with the ray's vector (considering the vector length).
    */
-  public open fun isColliding(): Boolean {
+  public fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_IS_COLLIDING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -202,7 +202,7 @@ public open class RayCast3D : Node3D() {
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public open fun forceRaycastUpdate(): Unit {
+  public fun forceRaycastUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_FORCE_RAYCAST_UPDATE, NIL)
   }
@@ -210,7 +210,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public open fun getCollider(): Object? {
+  public fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLIDER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
@@ -219,7 +219,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public open fun getColliderShape(): Long {
+  public fun getColliderShape(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLIDER_SHAPE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -230,7 +230,7 @@ public open class RayCast3D : Node3D() {
    *
    * **Note:** This point is in the **global** coordinate system.
    */
-  public open fun getCollisionPoint(): Vector3 {
+  public fun getCollisionPoint(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLISION_POINT,
         VECTOR3)
@@ -240,7 +240,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns the normal of the intersecting object's shape at the collision point, or `Vector3(0, 0, 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
    */
-  public open fun getCollisionNormal(): Vector3 {
+  public fun getCollisionNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLISION_NORMAL,
         VECTOR3)
@@ -250,7 +250,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public open fun addExceptionRid(rid: RID): Unit {
+  public fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_ADD_EXCEPTION_RID, NIL)
   }
@@ -258,7 +258,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [godot.CollisionObject3D] node.
    */
-  public open fun addException(node: CollisionObject3D): Unit {
+  public fun addException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_ADD_EXCEPTION, NIL)
   }
@@ -266,7 +266,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public open fun removeExceptionRid(rid: RID): Unit {
+  public fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_REMOVE_EXCEPTION_RID, NIL)
   }
@@ -274,7 +274,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [godot.CollisionObject3D] node.
    */
-  public open fun removeException(node: CollisionObject3D): Unit {
+  public fun removeException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_REMOVE_EXCEPTION, NIL)
   }
@@ -282,7 +282,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public open fun clearExceptions(): Unit {
+  public fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_CLEAR_EXCEPTIONS, NIL)
   }
@@ -290,7 +290,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
    */
-  public open fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_SET_COLLISION_MASK_VALUE,
         NIL)
@@ -299,7 +299,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
    */
-  public open fun getCollisionMaskValue(layerNumber: Long): Boolean {
+  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLISION_MASK_VALUE,
         BOOL)

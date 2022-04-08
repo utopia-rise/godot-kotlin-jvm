@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -85,7 +85,7 @@ public open class EditorScript internal constructor() : RefCounted() {
    *
    * **Warning:** The implementation of this method is currently disabled.
    */
-  public open fun addRootNode(node: Node): Unit {
+  public fun addRootNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_ADD_ROOT_NODE, NIL)
   }
@@ -93,7 +93,7 @@ public open class EditorScript internal constructor() : RefCounted() {
   /**
    * Returns the Editor's currently active scene.
    */
-  public open fun getScene(): Node? {
+  public fun getScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -102,7 +102,7 @@ public open class EditorScript internal constructor() : RefCounted() {
   /**
    * Returns the [godot.EditorInterface] singleton instance.
    */
-  public open fun getEditorInterface(): EditorInterface? {
+  public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
         OBJECT)

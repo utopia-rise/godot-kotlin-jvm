@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class Thread : RefCounted() {
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
-  public open fun start(
+  public fun start(
     callable: Callable,
     userdata: Any? = null,
     priority: Thread.Priority = Thread.Priority.PRIORITY_NORMAL
@@ -58,7 +58,7 @@ public open class Thread : RefCounted() {
   /**
    * Returns the current [godot.Thread]'s ID, uniquely identifying it among all threads. If the [godot.Thread] is not running this returns an empty string.
    */
-  public open fun getId(): String {
+  public fun getId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -67,7 +67,7 @@ public open class Thread : RefCounted() {
   /**
    * Returns `true` if this [godot.Thread] has been started. Once started, this will return `true` until it is joined using [waitToFinish]. For checking if a [godot.Thread] is still executing its task, use [isAlive].
    */
-  public open fun isStarted(): Boolean {
+  public fun isStarted(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -78,7 +78,7 @@ public open class Thread : RefCounted() {
    *
    * To check if a [godot.Thread] is joinable, use [isStarted].
    */
-  public open fun isAlive(): Boolean {
+  public fun isAlive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -93,7 +93,7 @@ public open class Thread : RefCounted() {
    *
    * **Note:** After the [godot.Thread] finishes joining it will be disposed. If you want to use it again you will have to create a new instance of it.
    */
-  public open fun waitToFinish(): Any? {
+  public fun waitToFinish(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

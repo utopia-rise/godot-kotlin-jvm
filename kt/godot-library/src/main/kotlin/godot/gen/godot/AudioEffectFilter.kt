@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Threshold frequency for the filter, in Hz.
    */
-  public open var cutoffHz: Double
+  public var cutoffHz: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_CUTOFF,
@@ -44,7 +44,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Amount of boost in the frequency range near the cutoff frequency.
    */
-  public open var resonance: Double
+  public var resonance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_RESONANCE,
@@ -60,7 +60,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Gain amount of the frequencies after the filter.
    */
-  public open var gain: Double
+  public var gain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_GAIN,
@@ -75,7 +75,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    *
    */
-  public open var db: Long
+  public var db: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_DB, LONG)

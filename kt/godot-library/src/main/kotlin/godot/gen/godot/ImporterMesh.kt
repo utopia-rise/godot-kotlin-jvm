@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -49,7 +49,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Adds name for a blend shape that will be added with [addSurface]. Must be called before surface is added.
    */
-  public open fun addBlendShape(name: String): Unit {
+  public fun addBlendShape(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_BLEND_SHAPE, NIL)
   }
@@ -57,7 +57,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the number of blend shapes that the mesh holds.
    */
-  public open fun getBlendShapeCount(): Long {
+  public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_COUNT,
         LONG)
@@ -67,7 +67,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the name of the blend shape at this index.
    */
-  public open fun getBlendShapeName(blendShapeIdx: Long): String {
+  public fun getBlendShapeName(blendShapeIdx: Long): String {
     TransferContext.writeArguments(LONG to blendShapeIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_NAME,
         STRING)
@@ -77,7 +77,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
    */
-  public open fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
+  public fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_BLEND_SHAPE_MODE,
         NIL)
@@ -86,7 +86,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the blend shape mode for this Mesh.
    */
-  public open fun getBlendShapeMode(): Mesh.BlendShapeMode {
+  public fun getBlendShapeMode(): Mesh.BlendShapeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_MODE,
         LONG)
@@ -100,7 +100,7 @@ public open class ImporterMesh : Resource() {
    *
    * The `arrays` argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
    */
-  public open fun addSurface(
+  public fun addSurface(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -116,7 +116,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the amount of surfaces that the mesh holds.
    */
-  public open fun getSurfaceCount(): Long {
+  public fun getSurfaceCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_COUNT,
         LONG)
@@ -126,7 +126,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the primitive type of the requested surface (see [addSurface]).
    */
-  public open fun getSurfacePrimitiveType(surfaceIdx: Long): Mesh.PrimitiveType {
+  public fun getSurfacePrimitiveType(surfaceIdx: Long): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_PRIMITIVE_TYPE, LONG)
@@ -136,7 +136,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Gets the name assigned to this surface.
    */
-  public open fun getSurfaceName(surfaceIdx: Long): String {
+  public fun getSurfaceName(surfaceIdx: Long): String {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_NAME,
         STRING)
@@ -146,7 +146,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface. See [addSurface].
    */
-  public open fun getSurfaceArrays(surfaceIdx: Long): VariantArray<Any?> {
+  public fun getSurfaceArrays(surfaceIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_ARRAYS,
         ARRAY)
@@ -156,8 +156,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns a single set of blend shape arrays for the requested blend shape index for a surface.
    */
-  public open fun getSurfaceBlendShapeArrays(surfaceIdx: Long, blendShapeIdx: Long):
-      VariantArray<Any?> {
+  public fun getSurfaceBlendShapeArrays(surfaceIdx: Long, blendShapeIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to blendShapeIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_BLEND_SHAPE_ARRAYS, ARRAY)
@@ -167,7 +166,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the amount of lods that the mesh holds on a given surface.
    */
-  public open fun getSurfaceLodCount(surfaceIdx: Long): Long {
+  public fun getSurfaceLodCount(surfaceIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_COUNT,
         LONG)
@@ -177,7 +176,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the screen ratio which activates a lod for a surface.
    */
-  public open fun getSurfaceLodSize(surfaceIdx: Long, lodIdx: Long): Double {
+  public fun getSurfaceLodSize(surfaceIdx: Long, lodIdx: Long): Double {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_SIZE,
         DOUBLE)
@@ -187,7 +186,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the index buffer of a lod for a surface.
    */
-  public open fun getSurfaceLodIndices(surfaceIdx: Long, lodIdx: Long): PackedInt32Array {
+  public fun getSurfaceLodIndices(surfaceIdx: Long, lodIdx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_INDICES, PACKED_INT_32_ARRAY)
@@ -197,7 +196,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
    */
-  public open fun getSurfaceMaterial(surfaceIdx: Long): Material? {
+  public fun getSurfaceMaterial(surfaceIdx: Long): Material? {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_MATERIAL,
         OBJECT)
@@ -207,7 +206,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the format of the surface that the mesh holds.
    */
-  public open fun getSurfaceFormat(surfaceIdx: Long): Long {
+  public fun getSurfaceFormat(surfaceIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfaceIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_FORMAT,
         LONG)
@@ -217,7 +216,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets a name for a given surface.
    */
-  public open fun setSurfaceName(surfaceIdx: Long, name: String): Unit {
+  public fun setSurfaceName(surfaceIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_NAME, NIL)
   }
@@ -225,7 +224,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
    */
-  public open fun setSurfaceMaterial(surfaceIdx: Long, material: Material): Unit {
+  public fun setSurfaceMaterial(surfaceIdx: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_MATERIAL,
         NIL)
@@ -238,7 +237,7 @@ public open class ImporterMesh : Resource() {
    *
    * If not yet cached and `base_mesh` is provided, `base_mesh` will be used and mutated.
    */
-  public open fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
+  public fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
@@ -247,7 +246,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Removes all surfaces and blend shapes from this [godot.ImporterMesh].
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_CLEAR, NIL)
   }
@@ -255,7 +254,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
-  public open fun setLightmapSizeHint(size: Vector2i): Unit {
+  public fun setLightmapSizeHint(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_LIGHTMAP_SIZE_HINT,
         NIL)
@@ -264,7 +263,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
-  public open fun getLightmapSizeHint(): Vector2i {
+  public fun getLightmapSizeHint(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_LIGHTMAP_SIZE_HINT,
         VECTOR2I)

@@ -17,16 +17,14 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
         method: EnrichedMethod
     ): Pair<EnrichedClass, EnrichedMethod>? {
         fun check(m: EnrichedMethod): Boolean {
-            if (m.name == method.name && m.arguments.size == method.arguments.size) {
-                var flag = true
-
-                m.arguments.withIndex().forEach {
-                    if (it.value.type != method.arguments[it.index].type) flag = false
-                }
-
-                if (flag) return true
+            if (m.name != method.name || m.arguments.size != method.arguments.size) {
+                return false
             }
-            return false
+
+            m.arguments.withIndex().forEach {
+                if (it.value.type != method.arguments[it.index].type) return false
+            }
+            return true
         }
 
         tailrec fun Graph.Node<EnrichedClass>.findMethodInHierarchy(): Pair<EnrichedClass, EnrichedMethod>? {
@@ -44,7 +42,9 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
 
         tailrec fun Graph.Node<EnrichedClass>.findPropertyInHierarchy(): Boolean? {
             value.properties.forEach {
-                if (it.name == prop.name) return true
+                if (it.name == prop.name) {
+                    return true
+                }
             }
             return parent?.findPropertyInHierarchy()
         }
@@ -52,7 +52,9 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
     }
 
     override fun doAncestorsHaveMethod(cl: EnrichedClass, method: EnrichedMethod): Boolean {
-        if (method.name == "toString") return true
+        if (method.name == "toString") {
+            return true
+        }
 
         if (cl.inherits == "") return false
 

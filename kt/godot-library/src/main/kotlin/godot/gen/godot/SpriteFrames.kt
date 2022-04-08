@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -39,7 +39,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Adds a new animation to the library.
    */
-  public open fun addAnimation(anim: StringName): Unit {
+  public fun addAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_ANIMATION, NIL)
   }
@@ -47,7 +47,7 @@ public open class SpriteFrames : Resource() {
   /**
    * If `true`, the named animation exists.
    */
-  public open fun hasAnimation(anim: StringName): Boolean {
+  public fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_HAS_ANIMATION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -56,7 +56,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Removes the given animation.
    */
-  public open fun removeAnimation(anim: StringName): Unit {
+  public fun removeAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_ANIMATION, NIL)
   }
@@ -64,7 +64,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Changes the animation's name to `newname`.
    */
-  public open fun renameAnimation(anim: StringName, newname: StringName): Unit {
+  public fun renameAnimation(anim: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_RENAME_ANIMATION, NIL)
   }
@@ -72,7 +72,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Returns an array containing the names associated to each animation. Values are placed in alphabetical order.
    */
-  public open fun getAnimationNames(): PackedStringArray {
+  public fun getAnimationNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_NAMES,
         PACKED_STRING_ARRAY)
@@ -82,7 +82,7 @@ public open class SpriteFrames : Resource() {
   /**
    * The animation's speed in frames per second.
    */
-  public open fun setAnimationSpeed(anim: StringName, speed: Double): Unit {
+  public fun setAnimationSpeed(anim: StringName, speed: Double): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, DOUBLE to speed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_SPEED,
         NIL)
@@ -91,7 +91,7 @@ public open class SpriteFrames : Resource() {
   /**
    * The animation's speed in frames per second.
    */
-  public open fun getAnimationSpeed(anim: StringName): Double {
+  public fun getAnimationSpeed(anim: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_SPEED,
         DOUBLE)
@@ -101,7 +101,7 @@ public open class SpriteFrames : Resource() {
   /**
    * If `true`, the animation will loop.
    */
-  public open fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
+  public fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to loop)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_LOOP,
         NIL)
@@ -110,7 +110,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Returns `true` if the given animation is configured to loop when it finishes playing. Otherwise, returns `false`.
    */
-  public open fun getAnimationLoop(anim: StringName): Boolean {
+  public fun getAnimationLoop(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_LOOP,
         BOOL)
@@ -120,7 +120,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Adds a frame to the given animation.
    */
-  public open fun addFrame(
+  public fun addFrame(
     anim: StringName,
     frame: Texture2D,
     atPosition: Long = -1
@@ -132,7 +132,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Returns the number of frames in the animation.
    */
-  public open fun getFrameCount(anim: StringName): Long {
+  public fun getFrameCount(anim: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -141,7 +141,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Returns the animation's selected frame.
    */
-  public open fun getFrame(anim: StringName, idx: Long): Texture2D? {
+  public fun getFrame(anim: StringName, idx: Long): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
@@ -150,7 +150,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Sets the texture of the given frame.
    */
-  public open fun setFrame(
+  public fun setFrame(
     anim: StringName,
     idx: Long,
     txt: Texture2D
@@ -162,7 +162,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Removes the animation's selected frame.
    */
-  public open fun removeFrame(anim: StringName, idx: Long): Unit {
+  public fun removeFrame(anim: StringName, idx: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL)
   }
@@ -170,7 +170,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Removes all frames from the given animation.
    */
-  public open fun clear(anim: StringName): Unit {
+  public fun clear(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR, NIL)
   }
@@ -178,7 +178,7 @@ public open class SpriteFrames : Resource() {
   /**
    * Removes all animations. A "default" animation will be created.
    */
-  public open fun clearAll(): Unit {
+  public fun clearAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR_ALL, NIL)
   }

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -70,7 +70,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns `true` if the button with the given `name` is pressed.
    */
-  public open fun isButtonPressed(name: StringName): Boolean {
+  public fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_IS_BUTTON_PRESSED,
         BOOL)
@@ -80,7 +80,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a numeric value for the input with the given `name`. This is used for triggers and grip sensors.
    */
-  public open fun getValue(name: StringName): Double {
+  public fun getValue(name: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VALUE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -89,7 +89,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a [godot.core.Vector2] for the input with the given `name`. This is used for thumbsticks and thumbpads found on many controllers.
    */
-  public open fun getAxis(name: StringName): Vector2 {
+  public fun getAxis(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_AXIS, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -98,7 +98,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand].
    */
-  public open fun getTrackerHand(): XRPositionalTracker.TrackerHand {
+  public fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_TRACKER_HAND,
         LONG)

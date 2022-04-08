@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,14 +40,14 @@ public open class WebRTCPeerConnection : RefCounted() {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION)
   }
 
-  public open fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
+  public fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
     TransferContext.writeArguments(DICTIONARY to configuration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_INITIALIZE,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun createDataChannel(label: String, options: Dictionary<Any?, Any?> = Dictionary()):
+  public fun createDataChannel(label: String, options: Dictionary<Any?, Any?> = Dictionary()):
       WebRTCDataChannel? {
     TransferContext.writeArguments(STRING to label, DICTIONARY to options)
     TransferContext.callMethod(rawPtr,
@@ -55,28 +55,28 @@ public open class WebRTCPeerConnection : RefCounted() {
     return TransferContext.readReturnValue(OBJECT, true) as WebRTCDataChannel?
   }
 
-  public open fun createOffer(): GodotError {
+  public fun createOffer(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CREATE_OFFER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun setLocalDescription(type: String, sdp: String): GodotError {
+  public fun setLocalDescription(type: String, sdp: String): GodotError {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_LOCAL_DESCRIPTION, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun setRemoteDescription(type: String, sdp: String): GodotError {
+  public fun setRemoteDescription(type: String, sdp: String): GodotError {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_REMOTE_DESCRIPTION, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun addIceCandidate(
+  public fun addIceCandidate(
     media: String,
     index: Long,
     name: String
@@ -87,18 +87,18 @@ public open class WebRTCPeerConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun poll(): GodotError {
+  public fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_POLL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun close(): Unit {
+  public fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CLOSE, NIL)
   }
 
-  public open fun getConnectionState(): WebRTCPeerConnection.ConnectionState {
+  public fun getConnectionState(): WebRTCPeerConnection.ConnectionState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_CONNECTION_STATE, LONG)

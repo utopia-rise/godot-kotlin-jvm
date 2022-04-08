@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,7 +29,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public open var enableLogicOp: Boolean
+  public var enableLogicOp: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,7 +45,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public open var logicOp: Long
+  public var logicOp: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public open var blendConstant: Color
+  public var blendConstant: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,7 +77,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    *
    */
-  public open var attachments: VariantArray<Any?>
+  public var attachments: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

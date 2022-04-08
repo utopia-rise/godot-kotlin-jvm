@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,7 +22,7 @@ import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class NoiseTexture : Texture2D() {
-  public open var width: Long
+  public var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
@@ -31,7 +31,7 @@ public open class NoiseTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_WIDTH, NIL)
     }
 
-  public open var height: Long
+  public var height: Long
     @JvmName("getHeight_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
@@ -40,7 +40,7 @@ public open class NoiseTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_HEIGHT, NIL)
     }
 
-  public open var invert: Boolean
+  public var invert: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_INVERT, BOOL)
@@ -51,7 +51,7 @@ public open class NoiseTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_INVERT, NIL)
     }
 
-  public open var seamless: Boolean
+  public var seamless: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_SEAMLESS, BOOL)
@@ -62,7 +62,7 @@ public open class NoiseTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_SEAMLESS, NIL)
     }
 
-  public open var seamlessBlendSkirt: Double
+  public var seamlessBlendSkirt: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -75,7 +75,7 @@ public open class NoiseTexture : Texture2D() {
           ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_SEAMLESS_BLEND_SKIRT, NIL)
     }
 
-  public open var asNormalMap: Boolean
+  public var asNormalMap: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_IS_NORMAL_MAP, BOOL)
@@ -87,7 +87,7 @@ public open class NoiseTexture : Texture2D() {
           NIL)
     }
 
-  public open var bumpStrength: Double
+  public var bumpStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_BUMP_STRENGTH,
@@ -100,7 +100,7 @@ public open class NoiseTexture : Texture2D() {
           NIL)
     }
 
-  public open var noise: Noise?
+  public var noise: Noise?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_NOISE, OBJECT)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * The level above which compression is applied to the audio. Value can range from -60 to 0.
    */
-  public open var threshold: Double
+  public var threshold: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -54,7 +54,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Amount of compression applied to the audio once it passes the threshold level. The higher the ratio, the more the loud parts of the audio will be compressed. Value can range from 1 to 48.
    */
-  public open var ratio: Double
+  public var ratio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_RATIO,
@@ -70,7 +70,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Gain applied to the output signal.
    */
-  public open var gain: Double
+  public var gain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_GAIN,
@@ -86,7 +86,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Compressor's reaction time when the signal exceeds the threshold, in microseconds. Value can range from 20 to 2000.
    */
-  public open var attackUs: Double
+  public var attackUs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -102,7 +102,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Compressor's delay time to stop reducing the signal after the signal level falls below the threshold, in milliseconds. Value can range from 20 to 2000.
    */
-  public open var releaseMs: Double
+  public var releaseMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Balance between original signal and effect signal. Value can range from 0 (totally dry) to 1 (totally wet).
    */
-  public open var mix: Double
+  public var mix: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_MIX,
@@ -134,7 +134,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * Reduce the sound level using another audio bus for threshold detection.
    */
-  public open var sidechain: StringName
+  public var sidechain: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

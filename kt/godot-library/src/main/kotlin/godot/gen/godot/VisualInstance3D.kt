@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class VisualInstance3D : Node3D() {
    *
    * This object will only be visible for [godot.Camera3D]s whose cull mask includes the render object this [godot.VisualInstance3D] is set to.
    */
-  public open var layers: Long
+  public var layers: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
@@ -53,13 +53,13 @@ public open class VisualInstance3D : Node3D() {
    *
    */
   public open fun _getAabb(): AABB {
-    throw NotImplementedError("_get_aabb·is·not·implemented·for·VisualInstance3D")
+    throw NotImplementedError("_get_aabb is not implemented for VisualInstance3D")
   }
 
   /**
    * Sets the resource that is instantiated by this [godot.VisualInstance3D], which changes how the engine handles the [godot.VisualInstance3D] under the hood. Equivalent to [godot.RenderingServer.instanceSetBase].
    */
-  public open fun setBase(base: RID): Unit {
+  public fun setBase(base: RID): Unit {
     TransferContext.writeArguments(_RID to base)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_BASE, NIL)
   }
@@ -67,7 +67,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns the RID of the resource associated with this [godot.VisualInstance3D]. For example, if the Node is a [godot.MeshInstance3D], this will return the RID of the associated [godot.Mesh].
    */
-  public open fun getBase(): RID {
+  public fun getBase(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_BASE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -76,7 +76,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns the RID of this instance. This RID is the same as the RID returned by [godot.RenderingServer.instanceCreate]. This RID is needed if you want to call [godot.RenderingServer] functions directly on this [godot.VisualInstance3D].
    */
-  public open fun getInstance(): RID {
+  public fun getInstance(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_INSTANCE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -85,7 +85,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [layers], given a `layer_number` between 1 and 20.
    */
-  public open fun setLayerMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setLayerMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK_VALUE, NIL)
@@ -94,7 +94,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns whether or not the specified layer of the [layers] is enabled, given a `layer_number` between 1 and 20.
    */
-  public open fun getLayerMaskValue(layerNumber: Long): Boolean {
+  public fun getLayerMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK_VALUE, BOOL)
@@ -106,7 +106,7 @@ public open class VisualInstance3D : Node3D() {
    *
    * Transformed in this case means the [AABB] plus the position, rotation, and scale of the [godot.Node3D]'s [godot.Transform3D]. See also [getAabb].
    */
-  public open fun getTransformedAabb(): AABB {
+  public fun getTransformedAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_TRANSFORMED_AABB, godot.core.VariantType.AABB)
@@ -116,7 +116,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns the [AABB] (also known as the bounding box) for this [godot.VisualInstance3D]. See also [getTransformedAabb].
    */
-  public open fun getAabb(): AABB {
+  public fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_AABB,
         godot.core.VariantType.AABB)

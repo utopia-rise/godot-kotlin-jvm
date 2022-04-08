@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -33,7 +33,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun getProperties(): VariantArray<Any?> {
+  public fun getProperties(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_GET_PROPERTIES, ARRAY)
@@ -43,7 +43,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun addProperty(path: NodePath, index: Long = -1): Unit {
+  public fun addProperty(path: NodePath, index: Long = -1): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_ADD_PROPERTY,
         NIL)
@@ -52,7 +52,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun removeProperty(path: NodePath): Unit {
+  public fun removeProperty(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_REMOVE_PROPERTY, NIL)
@@ -61,7 +61,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun propertyGetIndex(path: NodePath): Long {
+  public fun propertyGetIndex(path: NodePath): Long {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_INDEX, LONG)
@@ -71,7 +71,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun propertyGetSpawn(path: NodePath): Boolean {
+  public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_SPAWN, BOOL)
@@ -81,7 +81,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
+  public fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_SPAWN, NIL)
@@ -90,7 +90,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun propertyGetSync(path: NodePath): Boolean {
+  public fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_SYNC, BOOL)
@@ -100,7 +100,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    *
    */
-  public open fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
+  public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_SYNC, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class XRPose : RefCounted() {
   /**
    * If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was.
    */
-  public open var hasTrackingData: Boolean
+  public var hasTrackingData: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_HAS_TRACKING_DATA,
@@ -55,7 +55,7 @@ public open class XRPose : RefCounted() {
    *
    * - `skeleton` defines the root location a hand mesh should be placed when using hand tracking and the animated skeleton supplied by the XR runtime.
    */
-  public open var name: String
+  public var name: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING)
@@ -69,7 +69,7 @@ public open class XRPose : RefCounted() {
   /**
    * The transform containing the original and transform as reported by the XR runtime.
    */
-  public open var transform: String
+  public var transform: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, STRING)
@@ -83,7 +83,7 @@ public open class XRPose : RefCounted() {
   /**
    * The linear velocity of this pose.
    */
-  public open var linearVelocity: String
+  public var linearVelocity: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_LINEAR_VELOCITY,
@@ -98,7 +98,7 @@ public open class XRPose : RefCounted() {
   /**
    * The angular velocity for this pose.
    */
-  public open var angularVelocity: String
+  public var angularVelocity: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ANGULAR_VELOCITY,
@@ -113,7 +113,7 @@ public open class XRPose : RefCounted() {
   /**
    * The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is.
    */
-  public open var trackingConfidence: Long
+  public var trackingConfidence: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
@@ -133,7 +133,7 @@ public open class XRPose : RefCounted() {
   /**
    * Returns the [transform] with world scale and our reference frame applied. This is the transform used to position [godot.XRNode3D] objects.
    */
-  public open fun getAdjustedTransform(): Transform3D {
+  public fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ADJUSTED_TRANSFORM,
         TRANSFORM3D)

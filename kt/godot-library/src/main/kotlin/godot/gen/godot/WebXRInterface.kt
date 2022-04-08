@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -50,7 +50,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   public val sessionStarted: Signal0 by signal()
 
-  public open var sessionMode: String
+  public var sessionMode: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_SESSION_MODE,
@@ -63,7 +63,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
           NIL)
     }
 
-  public open var requiredFeatures: String
+  public var requiredFeatures: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,7 +76,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_REQUIRED_FEATURES, NIL)
     }
 
-  public open var optionalFeatures: String
+  public var optionalFeatures: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -89,7 +89,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_OPTIONAL_FEATURES, NIL)
     }
 
-  public open var requestedReferenceSpaceTypes: String
+  public var requestedReferenceSpaceTypes: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -102,7 +102,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_REQUESTED_REFERENCE_SPACE_TYPES, NIL)
     }
 
-  public open val referenceSpaceType: String
+  public val referenceSpaceType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -110,7 +110,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public open val visibilityState: String
+  public val visibilityState: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -118,7 +118,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public open val boundsGeometry: PackedVector3Array
+  public val boundsGeometry: PackedVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -130,13 +130,13 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     callConstructor(ENGINECLASS_WEBXRINTERFACE)
   }
 
-  public open fun isSessionSupported(sessionMode: String): Unit {
+  public fun isSessionSupported(sessionMode: String): Unit {
     TransferContext.writeArguments(STRING to sessionMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_IS_SESSION_SUPPORTED,
         NIL)
   }
 
-  public open fun getController(controllerId: Long): XRPositionalTracker? {
+  public fun getController(controllerId: Long): XRPositionalTracker? {
     TransferContext.writeArguments(LONG to controllerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_CONTROLLER,
         OBJECT)

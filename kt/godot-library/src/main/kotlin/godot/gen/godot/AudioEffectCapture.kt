@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized.
    */
-  public open var bufferLength: Double
+  public var bufferLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -52,7 +52,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns `true` if at least `frames` audio frames are available to read in the internal ring buffer.
    */
-  public open fun canGetBuffer(frames: Long): Boolean {
+  public fun canGetBuffer(frames: Long): Boolean {
     TransferContext.writeArguments(LONG to frames)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_CAN_GET_BUFFER,
         BOOL)
@@ -64,7 +64,7 @@ public open class AudioEffectCapture : AudioEffect() {
    *
    * Returns a [godot.PackedVector2Array] containing exactly `frames` audio samples if available, or an empty [godot.PackedVector2Array] if insufficient data was available.
    */
-  public open fun getBuffer(frames: Long): PackedVector2Array {
+  public fun getBuffer(frames: Long): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER,
         PACKED_VECTOR2_ARRAY)
@@ -74,7 +74,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Clears the internal ring buffer.
    */
-  public open fun clearBuffer(): Unit {
+  public fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_CLEAR_BUFFER,
         NIL)
@@ -83,7 +83,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of frames available to read using [getBuffer].
    */
-  public open fun getFramesAvailable(): Long {
+  public fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_FRAMES_AVAILABLE, LONG)
@@ -93,7 +93,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of audio frames discarded from the audio bus due to full buffer.
    */
-  public open fun getDiscardedFrames(): Long {
+  public fun getDiscardedFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_DISCARDED_FRAMES, LONG)
@@ -103,7 +103,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the total size of the internal ring buffer in frames.
    */
-  public open fun getBufferLengthFrames(): Long {
+  public fun getBufferLengthFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER_LENGTH_FRAMES, LONG)
@@ -113,7 +113,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of audio frames inserted from the audio bus.
    */
-  public open fun getPushedFrames(): Long {
+  public fun getPushedFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_PUSHED_FRAMES, LONG)

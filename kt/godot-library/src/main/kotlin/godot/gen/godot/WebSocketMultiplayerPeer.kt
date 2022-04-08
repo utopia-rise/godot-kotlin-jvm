@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,7 +27,7 @@ public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerP
     callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
   }
 
-  public open fun setBuffers(
+  public fun setBuffers(
     inputBufferSizeKb: Long,
     inputMaxPackets: Long,
     outputBufferSizeKb: Long,
@@ -39,7 +39,7 @@ public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerP
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun getPeer(peerId: Long): WebSocketPeer? {
+  public fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
         OBJECT)

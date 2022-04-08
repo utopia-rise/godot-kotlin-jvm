@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -168,7 +168,7 @@ public open class PackedScene : Resource() {
   /**
    * Pack will ignore any sub-nodes not owned by given node. See [godot.Node.owner].
    */
-  public open fun pack(path: Node): GodotError {
+  public fun pack(path: Node): GodotError {
     TransferContext.writeArguments(OBJECT to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_PACK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -177,7 +177,7 @@ public open class PackedScene : Resource() {
   /**
    * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_INSTANCED] notification on the root node.
    */
-  public open fun instantiate(editState: PackedScene.GenEditState =
+  public fun instantiate(editState: PackedScene.GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANTIATE, OBJECT)
@@ -187,7 +187,7 @@ public open class PackedScene : Resource() {
   /**
    * Returns `true` if the scene file has nodes.
    */
-  public open fun canInstantiate(): Boolean {
+  public fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_CAN_INSTANTIATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -196,7 +196,7 @@ public open class PackedScene : Resource() {
   /**
    * Returns the `SceneState` representing the scene file contents.
    */
-  public open fun getState(): SceneState? {
+  public fun getState(): SceneState? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_GET_STATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as SceneState?

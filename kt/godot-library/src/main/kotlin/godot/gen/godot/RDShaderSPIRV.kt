@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,8 +29,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    *
    */
-  public open fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
-      Unit {
+  public fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): Unit {
     TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
         NIL)
@@ -39,7 +38,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    *
    */
-  public open fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
+  public fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
         PACKED_BYTE_ARRAY)
@@ -49,8 +48,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    *
    */
-  public open fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
-      Unit {
+  public fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
@@ -59,7 +57,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    *
    */
-  public open fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
+  public fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +24,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ENetMultiplayerPeer : MultiplayerPeer() {
-  public open var serverRelay: Boolean
+  public var serverRelay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -37,7 +37,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY_ENABLED, NIL)
     }
 
-  public open val host: ENetConnection?
+  public val host: ENetConnection?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_HOST,
@@ -49,7 +49,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     callConstructor(ENGINECLASS_ENETMULTIPLAYERPEER)
   }
 
-  public open fun createServer(
+  public fun createServer(
     port: Long,
     maxClients: Long = 32,
     maxChannels: Long = 0,
@@ -62,7 +62,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun createClient(
+  public fun createClient(
     address: String,
     port: Long,
     channelCount: Long = 0,
@@ -76,33 +76,33 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun createMesh(uniqueId: Long): GodotError {
+  public fun createMesh(uniqueId: Long): GodotError {
     TransferContext.writeArguments(LONG to uniqueId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_MESH,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun addMeshPeer(peerId: Long, host: ENetConnection): GodotError {
+  public fun addMeshPeer(peerId: Long, host: ENetConnection): GodotError {
     TransferContext.writeArguments(LONG to peerId, OBJECT to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_ADD_MESH_PEER,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun closeConnection(waitUsec: Long = 100): Unit {
+  public fun closeConnection(waitUsec: Long = 100): Unit {
     TransferContext.writeArguments(LONG to waitUsec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CLOSE_CONNECTION, NIL)
   }
 
-  public open fun setBindIp(ip: String): Unit {
+  public fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_BIND_IP,
         NIL)
   }
 
-  public open fun getPeer(id: Long): ENetPacketPeer? {
+  public fun getPeer(id: Long): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_PEER,
         OBJECT)

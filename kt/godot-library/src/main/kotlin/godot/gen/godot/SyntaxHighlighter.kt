@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class SyntaxHighlighter : Resource() {
    * See [getLineSyntaxHighlighting] for more details.
    */
   public open fun _getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_line_syntax_highlighting·is·not·implemented·for·SyntaxHighlighter")
+    throw NotImplementedError("_get_line_syntax_highlighting is not implemented for SyntaxHighlighter")
   }
 
   /**
@@ -75,7 +75,7 @@ public open class SyntaxHighlighter : Resource() {
    *
    * This will color columns 0-4 red, and columns 5-eol in green.
    */
-  public open fun getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
+  public fun getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_LINE_SYNTAX_HIGHLIGHTING, DICTIONARY)
@@ -87,7 +87,7 @@ public open class SyntaxHighlighter : Resource() {
    *
    * **Note:** This is called automatically when the associated [godot.TextEdit] node, updates its own cache.
    */
-  public open fun updateCache(): Unit {
+  public fun updateCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_UPDATE_CACHE, NIL)
   }
@@ -97,7 +97,7 @@ public open class SyntaxHighlighter : Resource() {
    *
    * Then calls overridable method [_clearHighlightingCache].
    */
-  public open fun clearHighlightingCache(): Unit {
+  public fun clearHighlightingCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_CLEAR_HIGHLIGHTING_CACHE, NIL)
@@ -106,7 +106,7 @@ public open class SyntaxHighlighter : Resource() {
   /**
    * Returns the associated [godot.TextEdit] node.
    */
-  public open fun getTextEdit(): TextEdit? {
+  public fun getTextEdit(): TextEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_TEXT_EDIT,
         OBJECT)

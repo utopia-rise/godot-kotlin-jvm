@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +19,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamOGGVorbis : AudioStream() {
-  public open var packetSequence: Object?
+  public var packetSequence: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -32,7 +32,7 @@ public open class AudioStreamOGGVorbis : AudioStream() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_SET_PACKET_SEQUENCE, NIL)
     }
 
-  public open var loop: Boolean
+  public var loop: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_HAS_LOOP,
@@ -45,7 +45,7 @@ public open class AudioStreamOGGVorbis : AudioStream() {
           NIL)
     }
 
-  public open var loopOffset: Double
+  public var loopOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -73,7 +73,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   /**
    * Returns the underlying [godot.Control] used for editing scripts. This can be either [godot.CodeEdit] (for text scripts) or [godot.GraphEdit] (for visual scripts).
    */
-  public open fun getBaseEditor(): Control? {
+  public fun getBaseEditor(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_GET_BASE_EDITOR,
         OBJECT)
@@ -83,7 +83,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   /**
    * Adds a [godot.EditorSyntaxHighlighter] to the open script.
    */
-  public open fun addSyntaxHighlighter(highlighter: EditorSyntaxHighlighter): Unit {
+  public fun addSyntaxHighlighter(highlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to highlighter)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_ADD_SYNTAX_HIGHLIGHTER, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,7 +21,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class CSGSphere3D : CSGPrimitive3D() {
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_GET_RADIUS, DOUBLE)
@@ -32,7 +32,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_RADIUS, NIL)
     }
 
-  public open var radialSegments: Long
+  public var radialSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_GET_RADIAL_SEGMENTS,
@@ -45,7 +45,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
           NIL)
     }
 
-  public open var rings: Long
+  public var rings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_GET_RINGS, LONG)
@@ -56,7 +56,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_RINGS, NIL)
     }
 
-  public open var smoothFaces: Boolean
+  public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_GET_SMOOTH_FACES,
@@ -68,7 +68,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_SMOOTH_FACES, NIL)
     }
 
-  public open var material: Material?
+  public var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_GET_MATERIAL, OBJECT)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -34,7 +34,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    *
    * When possible, this will also update the [boneIndex] based on data provided by the [godot.Skeleton3D].
    */
-  public open var boneName: StringName
+  public var boneName: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -52,7 +52,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    *
    * When possible, this will also update the [boneName] based on data provided by the [godot.Skeleton3D].
    */
-  public open var boneIndex: Long
+  public var boneIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -68,7 +68,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * The NodePath to the node that is the target for the modification.
    */
-  public open var targetNodepath: NodePath
+  public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -88,7 +88,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * Sets the amount of extra rotation to be applied after the LookAt modification executes. This allows you to adjust the finished result.
    */
-  public open fun setAdditionalRotation(additionalRotation: Vector3): Unit {
+  public fun setAdditionalRotation(additionalRotation: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to additionalRotation)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_ADDITIONAL_ROTATION, NIL)
@@ -97,7 +97,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * Returns the amount of extra rotation that is applied to the bone after the LookAt modification executes.
    */
-  public open fun getAdditionalRotation(): Vector3 {
+  public fun getAdditionalRotation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_ADDITIONAL_ROTATION, VECTOR3)
@@ -107,7 +107,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * When `true`, the LookAt modification will limit its rotation to a single plane in 3D space. The plane used can be configured using the `set_lock_rotation_plane` function.
    */
-  public open fun setLockRotationToPlane(lockToPlane: Boolean): Unit {
+  public fun setLockRotationToPlane(lockToPlane: Boolean): Unit {
     TransferContext.writeArguments(BOOL to lockToPlane)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_TO_PLANE, NIL)
@@ -116,7 +116,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * Returns whether the LookAt modification is limiting rotation to a single plane in 3D space.
    */
-  public open fun getLockRotationToPlane(): Boolean {
+  public fun getLockRotationToPlane(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_TO_PLANE, BOOL)
@@ -126,7 +126,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    *
    */
-  public open fun setLockRotationPlane(plane: Long): Unit {
+  public fun setLockRotationPlane(plane: Long): Unit {
     TransferContext.writeArguments(LONG to plane)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_PLANE, NIL)
@@ -135,7 +135,7 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   /**
    * Returns the plane that the LookAt modification is limiting rotation to.
    */
-  public open fun getLockRotationPlane(): Long {
+  public fun getLockRotationPlane(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_PLANE, LONG)

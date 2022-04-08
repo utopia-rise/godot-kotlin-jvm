@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,8 +29,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   /**
    * Sets the [godot.SkeletonModificationStack2D] that this modification is holding. This modification stack will then be executed when this modification is executed.
    */
-  public open fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D):
-      Unit {
+  public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_SET_HELD_MODIFICATION_STACK, NIL)
@@ -39,7 +38,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   /**
    * Returns the [godot.SkeletonModificationStack2D] that this modification is holding.
    */
-  public open fun getHeldModificationStack(): SkeletonModificationStack2D? {
+  public fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_GET_HELD_MODIFICATION_STACK,

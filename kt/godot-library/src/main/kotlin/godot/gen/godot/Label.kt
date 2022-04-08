@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class Label : Control() {
   /**
    * The text to display on screen.
    */
-  public open var text: String
+  public var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT, STRING)
@@ -52,7 +52,7 @@ public open class Label : Control() {
   /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants.
    */
-  public open var horizontalAlignment: Long
+  public var horizontalAlignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_HORIZONTAL_ALIGNMENT,
@@ -68,7 +68,7 @@ public open class Label : Control() {
   /**
    * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one of the [enum VerticalAlignment] constants.
    */
-  public open var verticalAlignment: Long
+  public var verticalAlignment: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VERTICAL_ALIGNMENT,
@@ -83,7 +83,7 @@ public open class Label : Control() {
   /**
    * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum AutowrapMode].
    */
-  public open var autowrapMode: Long
+  public var autowrapMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_AUTOWRAP_MODE, LONG)
@@ -97,7 +97,7 @@ public open class Label : Control() {
   /**
    * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
    */
-  public open var clipText: Boolean
+  public var clipText: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_CLIPPING_TEXT, BOOL)
@@ -111,7 +111,7 @@ public open class Label : Control() {
   /**
    * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum OverrunBehavior] for a description of all modes.
    */
-  public open var textOverrunBehavior: Long
+  public var textOverrunBehavior: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_OVERRUN_BEHAVIOR,
@@ -127,7 +127,7 @@ public open class Label : Control() {
   /**
    * If `true`, all the text displays as UPPERCASE.
    */
-  public open var uppercase: Boolean
+  public var uppercase: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_UPPERCASE, BOOL)
@@ -141,7 +141,7 @@ public open class Label : Control() {
   /**
    * The node ignores the first `lines_skipped` lines before it starts to display text.
    */
-  public open var linesSkipped: Long
+  public var linesSkipped: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINES_SKIPPED, LONG)
@@ -155,7 +155,7 @@ public open class Label : Control() {
   /**
    * Limits the lines of text the node shows on screen.
    */
-  public open var maxLinesVisible: Long
+  public var maxLinesVisible: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_MAX_LINES_VISIBLE, LONG)
@@ -171,7 +171,7 @@ public open class Label : Control() {
    *
    * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
    */
-  public open var visibleCharacters: Long
+  public var visibleCharacters: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS,
@@ -186,7 +186,7 @@ public open class Label : Control() {
   /**
    * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
    */
-  public open var visibleCharactersBehavior: Long
+  public var visibleCharactersBehavior: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -204,7 +204,7 @@ public open class Label : Control() {
    *
    * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
    */
-  public open var percentVisible: Double
+  public var percentVisible: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_PERCENT_VISIBLE, DOUBLE)
@@ -218,7 +218,7 @@ public open class Label : Control() {
   /**
    * Base text writing direction.
    */
-  public open var textDirection: Long
+  public var textDirection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_DIRECTION, LONG)
@@ -232,7 +232,7 @@ public open class Label : Control() {
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public open var language: String
+  public var language: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LANGUAGE, STRING)
@@ -246,7 +246,7 @@ public open class Label : Control() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public open var structuredTextBidiOverride: Long
+  public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -262,7 +262,7 @@ public open class Label : Control() {
   /**
    * Set additional options for BiDi override.
    */
-  public open var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -282,7 +282,7 @@ public open class Label : Control() {
   /**
    * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public open fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_OPENTYPE_FEATURE, NIL)
   }
@@ -290,7 +290,7 @@ public open class Label : Control() {
   /**
    * Returns OpenType feature `tag`.
    */
-  public open fun getOpentypeFeature(tag: String): Long {
+  public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -299,7 +299,7 @@ public open class Label : Control() {
   /**
    * Removes all OpenType features.
    */
-  public open fun clearOpentypeFeatures(): Unit {
+  public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_CLEAR_OPENTYPE_FEATURES, NIL)
   }
@@ -311,7 +311,7 @@ public open class Label : Control() {
    *
    * If there're no lines returns font size in pixels.
    */
-  public open fun getLineHeight(line: Long = -1): Long {
+  public fun getLineHeight(line: Long = -1): Long {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -320,7 +320,7 @@ public open class Label : Control() {
   /**
    * Returns the amount of lines of text the Label has.
    */
-  public open fun getLineCount(): Long {
+  public fun getLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -329,7 +329,7 @@ public open class Label : Control() {
   /**
    * Returns the number of lines shown. Useful if the [godot.Label]'s height cannot currently display all lines.
    */
-  public open fun getVisibleLineCount(): Long {
+  public fun getVisibleLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -338,7 +338,7 @@ public open class Label : Control() {
   /**
    * Returns the total number of printable characters in the text (excluding spaces and newlines).
    */
-  public open fun getTotalCharacterCount(): Long {
+  public fun getTotalCharacterCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TOTAL_CHARACTER_COUNT,
         LONG)

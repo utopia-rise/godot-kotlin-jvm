@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -55,7 +55,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.
    */
-  public open var disabled: Boolean
+  public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_DISABLED, BOOL)
@@ -69,7 +69,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked.
    */
-  public open var toggleMode: Boolean
+  public var toggleMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_TOGGLE_MODE, BOOL)
@@ -83,7 +83,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
    */
-  public open var shortcutInTooltip: Boolean
+  public var shortcutInTooltip: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +101,7 @@ public open class BaseButton : Control() {
    *
    * **Note:** Setting [buttonPressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
-  public open var buttonPressed: Boolean
+  public var buttonPressed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_PRESSED, BOOL)
@@ -115,7 +115,7 @@ public open class BaseButton : Control() {
   /**
    * Determines when the button is considered clicked, one of the [enum ActionMode] constants.
    */
-  public open var actionMode: Long
+  public var actionMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ACTION_MODE, LONG)
@@ -131,7 +131,7 @@ public open class BaseButton : Control() {
    *
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
    */
-  public open var buttonMask: Long
+  public var buttonMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_MASK, LONG)
@@ -147,7 +147,7 @@ public open class BaseButton : Control() {
    *
    * **Note:** This property only affects the button's visual appearance. Signals will be emitted at the same moment regardless of this property's value.
    */
-  public open var keepPressedOutside: Boolean
+  public var keepPressedOutside: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -163,7 +163,7 @@ public open class BaseButton : Control() {
   /**
    * [godot.Shortcut] associated to the button.
    */
-  public open var shortcut: Shortcut?
+  public var shortcut: Shortcut?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT, OBJECT)
@@ -177,7 +177,7 @@ public open class BaseButton : Control() {
   /**
    * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
    */
-  public open var buttonGroup: ButtonGroup?
+  public var buttonGroup: ButtonGroup?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_GROUP,
@@ -192,7 +192,7 @@ public open class BaseButton : Control() {
   /**
    * The [godot.Node] which must be a parent of the focused GUI [godot.Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
    */
-  public open var shortcutContext: Node?
+  public var shortcutContext: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT_CONTEXT,
@@ -226,7 +226,7 @@ public open class BaseButton : Control() {
    *
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
-  public open fun setPressedNoSignal(pressed: Boolean): Unit {
+  public fun setPressedNoSignal(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_PRESSED_NO_SIGNAL,
         NIL)
@@ -235,7 +235,7 @@ public open class BaseButton : Control() {
   /**
    * Returns `true` if the mouse has entered the button and has not left it yet.
    */
-  public open fun isHovered(): Boolean {
+  public fun isHovered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_HOVERED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -244,7 +244,7 @@ public open class BaseButton : Control() {
   /**
    * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
    */
-  public open fun getDrawMode(): BaseButton.DrawMode {
+  public fun getDrawMode(): BaseButton.DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
     return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]

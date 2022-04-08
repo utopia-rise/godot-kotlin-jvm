@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    *
    */
-  public open var mesh: Mesh?
+  public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -41,7 +41,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    *
    */
-  public open var useAllSurfaces: Boolean
+  public var useAllSurfaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +57,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    *
    */
-  public open var surfaceIndex: Long
+  public var surfaceIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

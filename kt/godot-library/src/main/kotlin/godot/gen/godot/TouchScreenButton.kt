@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the normal state.
    */
-  public open var textureNormal: Texture2D?
+  public var textureNormal: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the pressed state.
    */
-  public open var texturePressed: Texture2D?
+  public var texturePressed: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,7 +77,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's bitmask.
    */
-  public open var bitmask: BitMap?
+  public var bitmask: BitMap?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_BITMASK,
@@ -93,7 +93,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's shape.
    */
-  public open var shape: Shape2D?
+  public var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE,
@@ -108,7 +108,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
    */
-  public open var shapeCentered: Boolean
+  public var shapeCentered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -124,7 +124,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the button's shape is visible in the editor.
    */
-  public open var shapeVisible: Boolean
+  public var shapeVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -142,7 +142,7 @@ public open class TouchScreenButton : Node2D() {
    *
    * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
-  public open var passbyPress: Boolean
+  public var passbyPress: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -158,7 +158,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's action. Actions can be handled with [godot.InputEventAction].
    */
-  public open var action: StringName
+  public var action: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_ACTION,
@@ -173,7 +173,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's visibility mode. See [enum VisibilityMode] for possible values.
    */
-  public open var visibilityMode: Long
+  public var visibilityMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -193,7 +193,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * Returns `true` if this button is currently pressed.
    */
-  public open fun isPressed(): Boolean {
+  public fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_IS_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

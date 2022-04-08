@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -44,7 +44,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    *
    */
-  public open var replication: VariantArray<Any?>
+  public var replication: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,7 +60,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    *
    */
-  public open var spawnPath: NodePath
+  public var spawnPath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_PATH,
@@ -76,7 +76,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    *
    */
-  public open var spawnLimit: Long
+  public var spawnLimit: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -92,7 +92,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    *
    */
-  public open var autoSpawn: Boolean
+  public var autoSpawn: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -113,13 +113,13 @@ public open class MultiplayerSpawner : Node() {
    *
    */
   public open fun _spawnCustom(`data`: Any): Object? {
-    throw NotImplementedError("_spawn_custom·is·not·implemented·for·MultiplayerSpawner")
+    throw NotImplementedError("_spawn_custom is not implemented for MultiplayerSpawner")
   }
 
   /**
    *
    */
-  public open fun spawn(`data`: Any? = null): Node? {
+  public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?

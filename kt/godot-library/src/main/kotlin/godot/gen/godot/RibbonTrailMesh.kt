@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -25,7 +25,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var shape: Long
+  public var shape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SHAPE, LONG)
@@ -39,7 +39,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var size: Double
+  public var size: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SIZE, DOUBLE)
@@ -53,7 +53,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sections: Long
+  public var sections: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SECTIONS,
@@ -68,7 +68,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sectionLength: Double
+  public var sectionLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var sectionSegments: Long
+  public var sectionSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public open var curve: Curve?
+  public var curve: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_CURVE, OBJECT)

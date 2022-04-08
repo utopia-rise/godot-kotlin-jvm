@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,7 +31,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the strength of the Rayleigh scattering. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky.
    */
-  public open var rayleighCoefficient: Double
+  public var rayleighCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -47,7 +47,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the Rayleigh scattering. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
-  public open var rayleighColor: Color
+  public var rayleighColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +63,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the strength of mie scattering for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, mie scattering results in a whitish color around the sun and horizon.
    */
-  public open var mieCoefficient: Double
+  public var mieCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the direction of the mie scattering. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards.
    */
-  public open var mieEccentricity: Double
+  public var mieEccentricity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Controls the [godot.core.Color] of the mie scattering effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
-  public open var mieColor: Color
+  public var mieColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COLOR,
@@ -111,7 +111,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere.
    */
-  public open var turbidity: Double
+  public var turbidity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_TURBIDITY,
@@ -127,7 +127,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Sets the size of the sun disk. Default value is based on Sol's perceived size from Earth.
    */
-  public open var sunDiskScale: Double
+  public var sunDiskScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -143,7 +143,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
    */
-  public open var groundColor: Color
+  public var groundColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Sets the exposure of the sky. Higher exposure values make the entire sky brighter.
    */
-  public open var exposure: Double
+  public var exposure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_EXPOSURE,
@@ -175,7 +175,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Sets the amount of dithering to use. Dithering helps reduce banding that appears from the smooth changes in color in the sky. Use the lowest value possible, higher amounts may add fuzziness to the sky.
    */
-  public open var ditherStrength: Double
+  public var ditherStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * [godot.Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day.
    */
-  public open var nightSky: Texture2D?
+  public var nightSky: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_NIGHT_SKY,

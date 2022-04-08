@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -45,7 +45,7 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default `AStar2D` class.
    */
   public open fun _estimateCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_estimate_cost·is·not·implemented·for·AStar2D")
+    throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
   }
 
   /**
@@ -54,13 +54,13 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default `AStar2D` class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_compute_cost·is·not·implemented·for·AStar2D")
+    throw NotImplementedError("_compute_cost is not implemented for AStar2D")
   }
 
   /**
    * Returns the next available point ID with no point associated to it.
    */
-  public open fun getAvailablePointId(): Long {
+  public fun getAvailablePointId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_AVAILABLE_POINT_ID,
         LONG)
@@ -94,7 +94,7 @@ public open class AStar2D : RefCounted() {
    *
    * If there already exists a point for the given `id`, its position and weight scale are updated to the given values.
    */
-  public open fun addPoint(
+  public fun addPoint(
     id: Long,
     position: Vector2,
     weightScale: Double = 1.0
@@ -106,7 +106,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the position of the point associated with the given `id`.
    */
-  public open fun getPointPosition(id: Long): Vector2 {
+  public fun getPointPosition(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -115,7 +115,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Sets the `position` for the point with the given `id`.
    */
-  public open fun setPointPosition(id: Long, position: Vector2): Unit {
+  public fun setPointPosition(id: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_POSITION, NIL)
   }
@@ -123,7 +123,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the weight scale of the point associated with the given `id`.
    */
-  public open fun getPointWeightScale(id: Long): Double {
+  public fun getPointWeightScale(id: Long): Double {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_WEIGHT_SCALE,
         DOUBLE)
@@ -133,7 +133,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Sets the `weight_scale` for the point with the given `id`. The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
    */
-  public open fun setPointWeightScale(id: Long, weightScale: Double): Unit {
+  public fun setPointWeightScale(id: Long, weightScale: Double): Unit {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_WEIGHT_SCALE, NIL)
   }
@@ -141,7 +141,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Removes the point associated with the given `id` from the points pool.
    */
-  public open fun removePoint(id: Long): Unit {
+  public fun removePoint(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_REMOVE_POINT, NIL)
   }
@@ -149,7 +149,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether a point associated with the given `id` exists.
    */
-  public open fun hasPoint(id: Long): Boolean {
+  public fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_HAS_POINT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -210,7 +210,7 @@ public open class AStar2D : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun getPointConnections(id: Long): PackedInt32Array {
+  public fun getPointConnections(id: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_CONNECTIONS,
         PACKED_INT_32_ARRAY)
@@ -220,7 +220,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array of all point IDs.
    */
-  public open fun getPointIds(): VariantArray<Any?> {
+  public fun getPointIds(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_IDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -229,7 +229,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
    */
-  public open fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
+  public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_DISABLED, NIL)
   }
@@ -237,7 +237,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether a point is disabled or not for pathfinding. By default, all points are enabled.
    */
-  public open fun isPointDisabled(id: Long): Boolean {
+  public fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_IS_POINT_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -274,7 +274,7 @@ public open class AStar2D : RefCounted() {
    *
    * [/codeblocks]
    */
-  public open fun connectPoints(
+  public fun connectPoints(
     id: Long,
     toId: Long,
     bidirectional: Boolean = true
@@ -286,7 +286,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Deletes the segment between the given points.
    */
-  public open fun disconnectPoints(id: Long, toId: Long): Unit {
+  public fun disconnectPoints(id: Long, toId: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_DISCONNECT_POINTS, NIL)
   }
@@ -294,7 +294,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether there is a connection/segment between the given points.
    */
-  public open fun arePointsConnected(id: Long, toId: Long): Boolean {
+  public fun arePointsConnected(id: Long, toId: Long): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ARE_POINTS_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -303,7 +303,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the number of points currently in the points pool.
    */
-  public open fun getPointCount(): Long {
+  public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -312,7 +312,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the capacity of the structure backing the points, useful in conjunction with `reserve_space`.
    */
-  public open fun getPointCapacity(): Long {
+  public fun getPointCapacity(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_CAPACITY, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -321,7 +321,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Reserves space internally for `num_nodes` points, useful if you're adding a known large number of points at once, for a grid for instance. New capacity must be greater or equals to old capacity.
    */
-  public open fun reserveSpace(numNodes: Long): Unit {
+  public fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_RESERVE_SPACE, NIL)
   }
@@ -329,7 +329,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Clears all the points and segments.
    */
-  public open fun clear(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_CLEAR, NIL)
   }
@@ -339,7 +339,7 @@ public open class AStar2D : RefCounted() {
    *
    * **Note:** If several points are the closest to `to_position`, the one with the smallest ID will be returned, ensuring a deterministic result.
    */
-  public open fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
+  public fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_CLOSEST_POINT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -382,7 +382,7 @@ public open class AStar2D : RefCounted() {
    *
    * The result is in the segment that goes from `y = 0` to `y = 5`. It's the closest position in the segment to the given point.
    */
-  public open fun getClosestPositionInSegment(toPosition: Vector2): Vector2 {
+  public fun getClosestPositionInSegment(toPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_CLOSEST_POSITION_IN_SEGMENT, VECTOR2)
@@ -394,7 +394,7 @@ public open class AStar2D : RefCounted() {
    *
    * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector2Array] and will print an error message.
    */
-  public open fun getPointPath(fromId: Long, toId: Long): PackedVector2Array {
+  public fun getPointPath(fromId: Long, toId: Long): PackedVector2Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_POINT_PATH,
         PACKED_VECTOR2_ARRAY)
@@ -464,7 +464,7 @@ public open class AStar2D : RefCounted() {
    *
    * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
    */
-  public open fun getIdPath(fromId: Long, toId: Long): PackedInt32Array {
+  public fun getIdPath(fromId: Long, toId: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_GET_ID_PATH,
         PACKED_INT_32_ARRAY)

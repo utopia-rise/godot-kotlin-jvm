@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -43,7 +43,7 @@ public open class Camera3D : Node3D() {
   /**
    * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
-  public open var keepAspect: Long
+  public var keepAspect: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
@@ -59,7 +59,7 @@ public open class Camera3D : Node3D() {
   /**
    * The culling mask that describes which 3D render layers are rendered by this camera.
    */
-  public open var cullMask: Long
+  public var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK, LONG)
@@ -73,7 +73,7 @@ public open class Camera3D : Node3D() {
   /**
    * The [godot.Environment] to use for this camera.
    */
-  public open var environment: Environment?
+  public var environment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ENVIRONMENT, OBJECT)
@@ -87,7 +87,7 @@ public open class Camera3D : Node3D() {
   /**
    * The [godot.CameraEffects] to use for this camera.
    */
-  public open var effects: CameraEffects?
+  public var effects: CameraEffects?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_EFFECTS, OBJECT)
@@ -101,7 +101,7 @@ public open class Camera3D : Node3D() {
   /**
    * The horizontal (X) offset of the camera viewport.
    */
-  public open var hOffset: Double
+  public var hOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_H_OFFSET, DOUBLE)
@@ -115,7 +115,7 @@ public open class Camera3D : Node3D() {
   /**
    * The vertical (Y) offset of the camera viewport.
    */
-  public open var vOffset: Double
+  public var vOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_V_OFFSET, DOUBLE)
@@ -129,7 +129,7 @@ public open class Camera3D : Node3D() {
   /**
    * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values.
    */
-  public open var dopplerTracking: Long
+  public var dopplerTracking: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
@@ -145,7 +145,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size.
    */
-  public open var projection: Long
+  public var projection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)
@@ -159,7 +159,7 @@ public open class Camera3D : Node3D() {
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
    */
-  public open var current: Boolean
+  public var current: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_CURRENT, BOOL)
@@ -183,7 +183,7 @@ public open class Camera3D : Node3D() {
    *
    * - ~121.63 degrees in a 21:9 viewport
    */
-  public open var fov: Double
+  public var fov: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FOV, DOUBLE)
@@ -197,7 +197,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal mode. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
    */
-  public open var size: Double
+  public var size: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_SIZE, DOUBLE)
@@ -211,7 +211,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
    */
-  public open var frustumOffset: Vector2
+  public var frustumOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM_OFFSET,
@@ -226,7 +226,7 @@ public open class Camera3D : Node3D() {
   /**
    * The distance to the near culling boundary for this camera relative to its local Z axis.
    */
-  public open var near: Double
+  public var near: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_NEAR, DOUBLE)
@@ -240,7 +240,7 @@ public open class Camera3D : Node3D() {
   /**
    * The distance to the far culling boundary for this camera relative to its local Z axis.
    */
-  public open var far: Double
+  public var far: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FAR, DOUBLE)
@@ -258,7 +258,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
-  public open fun projectRayNormal(screenPoint: Vector2): Vector3 {
+  public fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_NORMAL,
         VECTOR3)
@@ -268,7 +268,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns a normal vector from the screen point location directed along the camera. Orthogonal cameras are normalized. Perspective cameras account for perspective, screen width/height, etc.
    */
-  public open fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
+  public fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_LOCAL_RAY_NORMAL,
         VECTOR3)
@@ -278,7 +278,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
-  public open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
+  public fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_ORIGIN,
         VECTOR3)
@@ -297,7 +297,7 @@ public open class Camera3D : Node3D() {
    * 				control.rect_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
    * 				```
    */
-  public open fun unprojectPosition(worldPoint: Vector3): Vector2 {
+  public fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_UNPROJECT_POSITION,
         VECTOR2)
@@ -309,7 +309,7 @@ public open class Camera3D : Node3D() {
    *
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
-  public open fun isPositionBehind(worldPoint: Vector3): Boolean {
+  public fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_BEHIND, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -318,7 +318,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the 3D point in world space that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given `z_depth` distance into the scene away from the camera.
    */
-  public open fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
+  public fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -327,7 +327,7 @@ public open class Camera3D : Node3D() {
   /**
    * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a `fov` (field of view) angle in degrees, and the `z_near` and `z_far` clip planes in world space units.
    */
-  public open fun setPerspective(
+  public fun setPerspective(
     fov: Double,
     zNear: Double,
     zFar: Double
@@ -339,7 +339,7 @@ public open class Camera3D : Node3D() {
   /**
    * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a `size`, and the `z_near` and `z_far` clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
    */
-  public open fun setOrthogonal(
+  public fun setOrthogonal(
     size: Double,
     zNear: Double,
     zFar: Double
@@ -351,7 +351,7 @@ public open class Camera3D : Node3D() {
   /**
    * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units.
    */
-  public open fun setFrustum(
+  public fun setFrustum(
     size: Double,
     offset: Vector2,
     zNear: Double,
@@ -364,7 +364,7 @@ public open class Camera3D : Node3D() {
   /**
    * Makes this camera the current camera for the [godot.Viewport] (see class description). If the camera node is outside the scene tree, it will attempt to become current once it's added.
    */
-  public open fun makeCurrent(): Unit {
+  public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_MAKE_CURRENT, NIL)
   }
@@ -372,7 +372,7 @@ public open class Camera3D : Node3D() {
   /**
    * If this is the current camera, remove it from being current. If `enable_next` is `true`, request to make the next camera current, if any.
    */
-  public open fun clearCurrent(enableNext: Boolean = true): Unit {
+  public fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_CLEAR_CURRENT, NIL)
   }
@@ -380,7 +380,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the transform of the camera plus the vertical ([vOffset]) and horizontal ([hOffset]) offsets; and any other adjustments made to the position and orientation of the camera by subclassed cameras such as [godot.XRCamera3D].
    */
-  public open fun getCameraTransform(): Transform3D {
+  public fun getCameraTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_TRANSFORM,
         TRANSFORM3D)
@@ -390,7 +390,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the camera's frustum planes in world space units as an array of [godot.core.Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
    */
-  public open fun getFrustum(): VariantArray<Any?> {
+  public fun getFrustum(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -399,7 +399,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [godot.See this diagram](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png) for an overview of position query methods.
    */
-  public open fun isPositionInFrustum(worldPoint: Vector3): Boolean {
+  public fun isPositionInFrustum(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_IN_FRUSTUM,
         BOOL)
@@ -409,7 +409,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the camera's RID from the [godot.RenderingServer].
    */
-  public open fun getCameraRid(): RID {
+  public fun getCameraRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -418,7 +418,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the RID of a pyramid shape encompassing the camera's view frustum, ignoring the camera's near plane. The tip of the pyramid represents the position of the camera.
    */
-  public open fun getPyramidShapeRid(): RID {
+  public fun getPyramidShapeRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PYRAMID_SHAPE_RID,
         _RID)
@@ -428,7 +428,7 @@ public open class Camera3D : Node3D() {
   /**
    * Based on `value`, enables or disables the specified layer in the [cullMask], given a `layer_number` between 1 and 20.
    */
-  public open fun setCullMaskValue(layerNumber: Long, `value`: Boolean): Unit {
+  public fun setCullMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK_VALUE, NIL)
   }
@@ -436,7 +436,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns whether or not the specified layer of the [cullMask] is enabled, given a `layer_number` between 1 and 20.
    */
-  public open fun getCullMaskValue(layerNumber: Long): Boolean {
+  public fun getCullMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK_VALUE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -36,7 +36,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The NodePath to the node that is the target for the Jiggle modification. This node is what the Jiggle chain will attempt to rotate the bone chain to.
    */
-  public open var targetNodepath: NodePath
+  public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -52,7 +52,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The amount of Jiggle joints in the Jiggle modification.
    */
-  public open var jiggleDataChainLength: Long
+  public var jiggleDataChainLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -68,7 +68,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of stiffness assigned to the Jiggle joints, if they are not overridden. Higher values act more like springs, quickly moving into the correct position.
    */
-  public open var stiffness: Double
+  public var stiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of mass assigned to the Jiggle joints, if they are not overridden. Higher values lead to faster movements and more overshooting.
    */
-  public open var mass: Double
+  public var mass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of dampening applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied.
    */
-  public open var damping: Double
+  public var damping: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -116,7 +116,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Whether the gravity vector, [gravity], should be applied to the Jiggle joints, assuming they are not overriding the default settings.
    */
-  public open var useGravity: Boolean
+  public var useGravity: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -132,7 +132,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
    */
-  public open var gravity: Vector2
+  public var gravity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -152,7 +152,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * If `true`, the Jiggle modifier will take colliders into account, keeping them from entering into these collision objects.
    */
-  public open fun setUseColliders(useColliders: Boolean): Unit {
+  public fun setUseColliders(useColliders: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useColliders)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_USE_COLLIDERS, NIL)
@@ -161,7 +161,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns whether the jiggle modifier is taking physics colliders into account when solving.
    */
-  public open fun getUseColliders(): Boolean {
+  public fun getUseColliders(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_USE_COLLIDERS, BOOL)
@@ -171,7 +171,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the collision mask that the Jiggle modifier will use when reacting to colliders, if the Jiggle modifier is set to take colliders into account.
    */
-  public open fun setCollisionMask(collisionMask: Long): Unit {
+  public fun setCollisionMask(collisionMask: Long): Unit {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_COLLISION_MASK, NIL)
@@ -180,7 +180,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the collision mask used by the Jiggle modifier when collisions are enabled.
    */
-  public open fun getCollisionMask(): Long {
+  public fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_COLLISION_MASK, LONG)
@@ -190,7 +190,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the [godot.Bone2D] node assigned to the Jiggle joint at `joint_idx`.
    */
-  public open fun setJiggleJointBone2dNode(jointIdx: Long, bone2dNode: NodePath): Unit {
+  public fun setJiggleJointBone2dNode(jointIdx: Long, bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to bone2dNode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_BONE2D_NODE, NIL)
@@ -199,7 +199,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the [godot.Bone2D] node assigned to the Jiggle joint at `joint_idx`.
    */
-  public open fun getJiggleJointBone2dNode(jointIdx: Long): NodePath {
+  public fun getJiggleJointBone2dNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_BONE2D_NODE,
@@ -210,7 +210,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the bone index, `bone_index`, of the Jiggle joint at `joint_idx`. When possible, this will also update the `bone2d_node` of the Jiggle joint based on data provided by the linked skeleton.
    */
-  public open fun setJiggleJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
+  public fun setJiggleJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_BONE_INDEX, NIL)
@@ -219,7 +219,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the index of the [godot.Bone2D] node assigned to the Jiggle joint at `joint_idx`.
    */
-  public open fun getJiggleJointBoneIndex(jointIdx: Long): Long {
+  public fun getJiggleJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_BONE_INDEX, LONG)
@@ -229,7 +229,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets whether the Jiggle joint at `joint_idx` should override the default Jiggle joint settings. Setting this to `true` will make the joint use its own settings rather than the default ones attached to the modification.
    */
-  public open fun setJiggleJointOverride(jointIdx: Long, `override`: Boolean): Unit {
+  public fun setJiggleJointOverride(jointIdx: Long, `override`: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to override)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_OVERRIDE, NIL)
@@ -238,7 +238,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns a boolean that indicates whether the joint at `joint_idx` is overriding the default Jiggle joint data defined in the modification.
    */
-  public open fun getJiggleJointOverride(jointIdx: Long): Boolean {
+  public fun getJiggleJointOverride(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_OVERRIDE, BOOL)
@@ -248,7 +248,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the of stiffness of the Jiggle joint at `joint_idx`.
    */
-  public open fun setJiggleJointStiffness(jointIdx: Long, stiffness: Double): Unit {
+  public fun setJiggleJointStiffness(jointIdx: Long, stiffness: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to stiffness)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_STIFFNESS, NIL)
@@ -257,7 +257,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the stiffness of the Jiggle joint at `joint_idx`.
    */
-  public open fun getJiggleJointStiffness(jointIdx: Long): Double {
+  public fun getJiggleJointStiffness(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_STIFFNESS, DOUBLE)
@@ -267,7 +267,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the of mass of the Jiggle joint at `joint_idx`.
    */
-  public open fun setJiggleJointMass(jointIdx: Long, mass: Double): Unit {
+  public fun setJiggleJointMass(jointIdx: Long, mass: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to mass)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_MASS, NIL)
@@ -276,7 +276,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the amount of mass of the jiggle joint at `joint_idx`.
    */
-  public open fun getJiggleJointMass(jointIdx: Long): Double {
+  public fun getJiggleJointMass(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_MASS, DOUBLE)
@@ -286,7 +286,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the amount of dampening of the Jiggle joint at `joint_idx`.
    */
-  public open fun setJiggleJointDamping(jointIdx: Long, damping: Double): Unit {
+  public fun setJiggleJointDamping(jointIdx: Long, damping: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to damping)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_DAMPING, NIL)
@@ -295,7 +295,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the amount of damping of the Jiggle joint at `joint_idx`.
    */
-  public open fun getJiggleJointDamping(jointIdx: Long): Double {
+  public fun getJiggleJointDamping(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_DAMPING, DOUBLE)
@@ -305,7 +305,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets whether the Jiggle joint at `joint_idx` should use gravity.
    */
-  public open fun setJiggleJointUseGravity(jointIdx: Long, useGravity: Boolean): Unit {
+  public fun setJiggleJointUseGravity(jointIdx: Long, useGravity: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useGravity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_USE_GRAVITY, NIL)
@@ -314,7 +314,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns a boolean that indicates whether the joint at `joint_idx` is using gravity or not.
    */
-  public open fun getJiggleJointUseGravity(jointIdx: Long): Boolean {
+  public fun getJiggleJointUseGravity(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_USE_GRAVITY, BOOL)
@@ -324,7 +324,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the gravity vector of the Jiggle joint at `joint_idx`.
    */
-  public open fun setJiggleJointGravity(jointIdx: Long, gravity: Vector2): Unit {
+  public fun setJiggleJointGravity(jointIdx: Long, gravity: Vector2): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR2 to gravity)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_SET_JIGGLE_JOINT_GRAVITY, NIL)
@@ -333,7 +333,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns a [godot.core.Vector2] representing the amount of gravity the Jiggle joint at `joint_idx` is influenced by.
    */
-  public open fun getJiggleJointGravity(jointIdx: Long): Vector2 {
+  public fun getJiggleJointGravity(jointIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to jointIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DJIGGLE_GET_JIGGLE_JOINT_GRAVITY, VECTOR2)

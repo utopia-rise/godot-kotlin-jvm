@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -40,7 +40,7 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
 
   public val connectionClosed: Signal1<Boolean> by signal("wasCleanClose")
 
-  public open var verifySsl: Boolean
+  public var verifySsl: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -53,7 +53,7 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL_ENABLED, NIL)
     }
 
-  public open var trustedSslCertificate: X509Certificate?
+  public var trustedSslCertificate: X509Certificate?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -70,7 +70,7 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
     callConstructor(ENGINECLASS_WEBSOCKETCLIENT)
   }
 
-  public open fun connectToUrl(
+  public fun connectToUrl(
     url: String,
     protocols: PackedStringArray = PackedStringArray(),
     gdMpApi: Boolean = false,
@@ -82,20 +82,20 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun disconnectFromHost(code: Long = 1000, reason: String = ""): Unit {
+  public fun disconnectFromHost(code: Long = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code, STRING to reason)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_DISCONNECT_FROM_HOST, NIL)
   }
 
-  public open fun getConnectedHost(): String {
+  public fun getConnectedHost(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_HOST,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun getConnectedPort(): Long {
+  public fun getConnectedPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_PORT,
         LONG)

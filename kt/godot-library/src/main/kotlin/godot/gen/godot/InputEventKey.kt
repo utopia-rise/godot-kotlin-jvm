@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * If `true`, the key's state is pressed. If `false`, the key's state is released.
    */
-  public open var pressed: Boolean
+  public var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
@@ -46,7 +46,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
    */
-  public open var keycode: Long
+  public var keycode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE, LONG)
@@ -62,7 +62,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
    */
-  public open var physicalKeycode: Long
+  public var physicalKeycode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -78,7 +78,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * The key Unicode identifier (when relevant). Unicode identifiers for the composite characters and complex scripts may not be available unless IME input mode is active. See [godot.Window.setImeActive] for more information.
    */
-  public open var unicode: Long
+  public var unicode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_UNICODE, LONG)
@@ -92,7 +92,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * If `true`, the key was already pressed before this event. It means the user is holding the key down.
    */
-  public open var echo: Boolean
+  public var echo: Boolean
     @JvmName("isEcho_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isEcho()
@@ -110,7 +110,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey] with modifiers, use `OS.get_keycode_string(event.get_keycode_with_modifiers())` where `event` is the [godot.InputEventKey].
    */
-  public open fun getKeycodeWithModifiers(): Key {
+  public fun getKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE_WITH_MODIFIERS, LONG)
@@ -122,7 +122,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * To get a human-readable representation of the [godot.InputEventKey] with modifiers, use `OS.get_keycode_string(event.get_physical_keycode_with_modifiers())` where `event` is the [godot.InputEventKey].
    */
-  public open fun getPhysicalKeycodeWithModifiers(): Key {
+  public fun getPhysicalKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG)

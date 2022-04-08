@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * Number of times to subdivide the grid that the [godot.VoxelGI] operates on. A higher number results in finer detail and thus higher visual quality, while lower numbers result in better performance.
    */
-  public open var subdiv: Long
+  public var subdiv: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SUBDIV, LONG)
@@ -52,7 +52,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * The size of the area covered by the [godot.VoxelGI]. If you make the extents larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
    */
-  public open var extents: Vector3
+  public var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_EXTENTS, VECTOR3)
@@ -66,7 +66,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * The [godot.VoxelGIData] resource that holds the data for this [godot.VoxelGI].
    */
-  public open var `data`: VoxelGIData?
+  public var `data`: VoxelGIData?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_PROBE_DATA, OBJECT)
@@ -88,7 +88,7 @@ public open class VoxelGI : VisualInstance3D() {
    *
    * **Note:** [godot.GeometryInstance3D]s and [godot.Light3D]s must be fully ready before [bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [godot.VoxelGI], use `call_deferred("bake")` instead of calling [bake] directly.
    */
-  public open fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
+  public fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_BAKE, NIL)
   }
@@ -96,7 +96,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * Calls [bake] with `create_visual_debug` enabled.
    */
-  public open fun debugBake(): Unit {
+  public fun debugBake(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_DEBUG_BAKE, NIL)
   }

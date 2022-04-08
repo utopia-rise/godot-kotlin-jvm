@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +20,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptPropertyGet : VisualScriptNode() {
-  public open var setMode: Long
+  public var setMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -33,7 +33,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_CALL_MODE, NIL)
     }
 
-  public open var baseType: String
+  public var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,7 +46,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_TYPE, NIL)
     }
 
-  public open var baseScript: String
+  public var baseScript: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -59,7 +59,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_SCRIPT, NIL)
     }
 
-  public open var basicType: Long
+  public var basicType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -72,7 +72,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASIC_TYPE, NIL)
     }
 
-  public open var nodePath: NodePath
+  public var nodePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -85,7 +85,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_PATH, NIL)
     }
 
-  public open var `property`: String
+  public var `property`: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -98,7 +98,7 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_PROPERTY, NIL)
     }
 
-  public open var index: String
+  public var index: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_INDEX,

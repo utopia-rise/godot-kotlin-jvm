@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -38,7 +38,7 @@ public open class StreamPeerSSL : StreamPeer() {
   /**
    *
    */
-  public open var blockingHandshake: Boolean
+  public var blockingHandshake: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -58,7 +58,7 @@ public open class StreamPeerSSL : StreamPeer() {
   /**
    * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
    */
-  public open fun poll(): Unit {
+  public fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
   }
@@ -66,7 +66,7 @@ public open class StreamPeerSSL : StreamPeer() {
   /**
    * Accepts a peer connection as a server using the given `private_key` and providing the given `certificate` to the client. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
    */
-  public open fun acceptStream(
+  public fun acceptStream(
     stream: StreamPeer,
     privateKey: CryptoKey,
     certificate: X509Certificate,
@@ -82,7 +82,7 @@ public open class StreamPeerSSL : StreamPeer() {
    *
    * **Note:** Specifying a custom `valid_certificate` is not supported in HTML5 exports due to browsers restrictions.
    */
-  public open fun connectToStream(
+  public fun connectToStream(
     stream: StreamPeer,
     validateCerts: Boolean = false,
     forHostname: String = "",
@@ -97,7 +97,7 @@ public open class StreamPeerSSL : StreamPeer() {
   /**
    * Returns the status of the connection. See [enum Status] for values.
    */
-  public open fun getStatus(): StreamPeerSSL.Status {
+  public fun getStatus(): StreamPeerSSL.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_STATUS, LONG)
     return StreamPeerSSL.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -106,7 +106,7 @@ public open class StreamPeerSSL : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public open fun disconnectFromStream(): Unit {
+  public fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)

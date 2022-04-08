@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -42,7 +42,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * If `true`, particles are being emitted.
    */
-  public open var emitting: Boolean
+  public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_IS_EMITTING, BOOL)
@@ -56,7 +56,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Number of particles emitted in one emission cycle.
    */
-  public open var amount: Long
+  public var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_AMOUNT, LONG)
@@ -70,7 +70,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Amount of time each particle will exist.
    */
-  public open var lifetime: Double
+  public var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LIFETIME,
@@ -85,7 +85,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
-  public open var oneShot: Boolean
+  public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ONE_SHOT, BOOL)
@@ -99,7 +99,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  public open var preprocess: Double
+  public var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -115,7 +115,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  public open var speedScale: Double
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPEED_SCALE,
@@ -131,7 +131,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
-  public open var explosiveness: Double
+  public var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -147,7 +147,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Emission lifetime randomness ratio.
    */
-  public open var randomness: Double
+  public var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -163,7 +163,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle lifetime randomness ratio.
    */
-  public open var lifetimeRandomness: Double
+  public var lifetimeRandomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -179,7 +179,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
-  public open var fixedFps: Long
+  public var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FIXED_FPS,
@@ -194,7 +194,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  public open var fractDelta: Boolean
+  public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -210,7 +210,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  public open var localCoords: Boolean
+  public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -226,7 +226,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public open var drawOrder: Long
+  public var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DRAW_ORDER,
@@ -242,7 +242,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particle texture. If `null`, particles will be squares.
    */
-  public open var texture: Texture2D?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TEXTURE,
@@ -257,7 +257,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
    */
-  public open var emissionShape: Long
+  public var emissionShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_SHAPE,
@@ -273,7 +273,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The sphere's radius if [emissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
-  public open var emissionSphereRadius: Double
+  public var emissionSphereRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -289,7 +289,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    */
-  public open var emissionRectExtents: Vector2
+  public var emissionRectExtents: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -305,7 +305,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionPoints: PackedVector2Array
+  public var emissionPoints: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -321,7 +321,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionNormals: PackedVector2Array
+  public var emissionNormals: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -337,7 +337,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var emissionColors: PackedColorArray
+  public var emissionColors: PackedColorArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -353,7 +353,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Unit vector specifying the particles' emission direction.
    */
-  public open var direction: Vector2
+  public var direction: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DIRECTION,
@@ -368,7 +368,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's initial direction range from `+spread` to `-spread` degrees.
    */
-  public open var spread: Double
+  public var spread: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPREAD, DOUBLE)
@@ -382,7 +382,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Gravity applied to every particle.
    */
-  public open var gravity: Vector2
+  public var gravity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_GRAVITY,
@@ -397,7 +397,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var splitScale: Boolean
+  public var splitScale: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPLIT_SCALE,
@@ -413,7 +413,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var scaleCurveX: Curve?
+  public var scaleCurveX: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_CURVE_X,
@@ -429,7 +429,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open var scaleCurveY: Curve?
+  public var scaleCurveY: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_CURVE_Y,
@@ -445,7 +445,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
    */
-  public open var color: Color
+  public var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR, COLOR)
@@ -459,7 +459,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's color will vary along this [godot.Gradient] (multiplied with [color]).
    */
-  public open var colorRamp: Gradient?
+  public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_RAMP,
@@ -475,7 +475,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
    */
-  public open var colorInitialRamp: Gradient?
+  public var colorInitialRamp: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -495,7 +495,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Restarts the particle emitter.
    */
-  public open fun restart(): Unit {
+  public fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_RESTART, NIL)
   }
@@ -503,7 +503,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open fun setParamMin(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
+  public fun setParamMin(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
   }
@@ -511,7 +511,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open fun getParamMin(`param`: CPUParticles2D.Parameter): Double {
+  public fun getParamMin(`param`: CPUParticles2D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
         DOUBLE)
@@ -521,7 +521,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open fun setParamMax(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
+  public fun setParamMax(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
   }
@@ -529,7 +529,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    *
    */
-  public open fun getParamMax(`param`: CPUParticles2D.Parameter): Double {
+  public fun getParamMax(`param`: CPUParticles2D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
         DOUBLE)
@@ -539,7 +539,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public open fun setParamCurve(`param`: CPUParticles2D.Parameter, curve: Curve): Unit {
+  public fun setParamCurve(`param`: CPUParticles2D.Parameter, curve: Curve): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE, NIL)
   }
@@ -547,7 +547,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Returns the [godot.Curve] of the parameter specified by [enum Parameter].
    */
-  public open fun getParamCurve(`param`: CPUParticles2D.Parameter): Curve? {
+  public fun getParamCurve(`param`: CPUParticles2D.Parameter): Curve? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
         OBJECT)
@@ -557,8 +557,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Enables or disables the given flag (see [enum ParticleFlags] for options).
    */
-  public open fun setParticleFlag(particleFlag: CPUParticles2D.ParticleFlags, enable: Boolean):
-      Unit {
+  public fun setParticleFlag(particleFlag: CPUParticles2D.ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARTICLE_FLAG,
         NIL)
@@ -567,7 +566,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Returns the enabled state of the given flag (see [enum ParticleFlags] for options).
    */
-  public open fun getParticleFlag(particleFlag: CPUParticles2D.ParticleFlags): Boolean {
+  public fun getParticleFlag(particleFlag: CPUParticles2D.ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARTICLE_FLAG,
         BOOL)
@@ -577,7 +576,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Sets this node's properties to match a given [godot.GPUParticles2D] node with an assigned [godot.ParticlesMaterial].
    */
-  public open fun convertFromParticles(particles: Node): Unit {
+  public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_CONVERT_FROM_PARTICLES, NIL)

@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -55,7 +55,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The background color of the stylebox.
    */
-  public open var bgColor: Color
+  public var bgColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BG_COLOR, COLOR)
@@ -69,7 +69,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Toggles drawing of the inner part of the stylebox.
    */
-  public open var drawCenter: Boolean
+  public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -84,7 +84,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the color of the border.
    */
-  public open var borderColor: Color
+  public var borderColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_COLOR,
@@ -100,7 +100,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * If `true`, the border will fade into the background color.
    */
-  public open var borderBlend: Boolean
+  public var borderBlend: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_BLEND,
@@ -120,7 +120,7 @@ public open class StyleBoxFlat : StyleBox() {
    *
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
    */
-  public open var cornerDetail: Long
+  public var cornerDetail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_DETAIL,
@@ -136,7 +136,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
-  public open var shadowColor: Color
+  public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_COLOR,
@@ -152,7 +152,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow size in pixels.
    */
-  public open var shadowSize: Long
+  public var shadowSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_SIZE,
@@ -167,7 +167,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
-  public open var shadowOffset: Vector2
+  public var shadowOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_OFFSET,
@@ -185,7 +185,7 @@ public open class StyleBoxFlat : StyleBox() {
    *
    * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.
    */
-  public open var antiAliasing: Boolean
+  public var antiAliasing: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_IS_ANTI_ALIASED,
@@ -201,7 +201,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * This changes the size of the faded ring. Higher values can be used to achieve a "blurry" effect.
    */
-  public open var antiAliasingSize: Double
+  public var antiAliasingSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_AA_SIZE, DOUBLE)
@@ -219,7 +219,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the border width to `width` pixels for all sides.
    */
-  public open fun setBorderWidthAll(width: Long): Unit {
+  public fun setBorderWidthAll(width: Long): Unit {
     TransferContext.writeArguments(LONG to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_ALL,
         NIL)
@@ -228,7 +228,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the smallest border width out of all four borders.
    */
-  public open fun getBorderWidthMin(): Long {
+  public fun getBorderWidthMin(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_MIN,
         LONG)
@@ -238,7 +238,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the specified [enum Side]'s border width to `width` pixels.
    */
-  public open fun setBorderWidth(margin: Side, width: Long): Unit {
+  public fun setBorderWidth(margin: Side, width: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH, NIL)
   }
@@ -246,7 +246,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the specified [enum Side]'s border width.
    */
-  public open fun getBorderWidth(margin: Side): Long {
+  public fun getBorderWidth(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -255,7 +255,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius for each corner to `radius_top_left`, `radius_top_right`, `radius_bottom_right`, and `radius_bottom_left` pixels.
    */
-  public open fun setCornerRadiusIndividual(
+  public fun setCornerRadiusIndividual(
     radiusTopLeft: Long,
     radiusTopRight: Long,
     radiusBottomRight: Long,
@@ -269,7 +269,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to `radius` pixels for all corners.
    */
-  public open fun setCornerRadiusAll(radius: Long): Unit {
+  public fun setCornerRadiusAll(radius: Long): Unit {
     TransferContext.writeArguments(LONG to radius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_ALL,
         NIL)
@@ -278,7 +278,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to `radius` pixels for the given `corner`. See [enum Corner] for possible values.
    */
-  public open fun setCornerRadius(corner: Corner, radius: Long): Unit {
+  public fun setCornerRadius(corner: Corner, radius: Long): Unit {
     TransferContext.writeArguments(LONG to corner.id, LONG to radius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS, NIL)
   }
@@ -286,7 +286,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the given `corner`'s radius. See [enum Corner] for possible values.
    */
-  public open fun getCornerRadius(corner: Corner): Long {
+  public fun getCornerRadius(corner: Corner): Long {
     TransferContext.writeArguments(LONG to corner.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
         LONG)
@@ -296,7 +296,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to `size` pixels for the specified [enum Side].
    */
-  public open fun setExpandMargin(margin: Side, size: Double): Unit {
+  public fun setExpandMargin(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN, NIL)
   }
@@ -304,7 +304,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to `size` pixels for all margins.
    */
-  public open fun setExpandMarginAll(size: Double): Unit {
+  public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
         NIL)
@@ -313,7 +313,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin for each margin to `size_left`, `size_top`, `size_right`, and `size_bottom` pixels.
    */
-  public open fun setExpandMarginIndividual(
+  public fun setExpandMarginIndividual(
     sizeLeft: Double,
     sizeTop: Double,
     sizeRight: Double,
@@ -327,7 +327,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the size of the specified [enum Side]'s expand margin.
    */
-  public open fun getExpandMargin(margin: Side): Double {
+  public fun getExpandMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
         DOUBLE)

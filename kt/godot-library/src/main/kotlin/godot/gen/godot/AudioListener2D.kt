@@ -2,7 +2,7 @@
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
     "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier")
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -32,7 +32,7 @@ public open class AudioListener2D : Node2D() {
    *
    * This method will have no effect if the [godot.AudioListener2D] is not added to [godot.SceneTree].
    */
-  public open fun makeCurrent(): Unit {
+  public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_MAKE_CURRENT, NIL)
   }
@@ -40,7 +40,7 @@ public open class AudioListener2D : Node2D() {
   /**
    * Disables the [godot.AudioListener2D]. If it's not set as current, this method will have no effect.
    */
-  public open fun clearCurrent(): Unit {
+  public fun clearCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_CLEAR_CURRENT, NIL)
   }
@@ -48,7 +48,7 @@ public open class AudioListener2D : Node2D() {
   /**
    * Returns `true` if this [godot.AudioListener2D] is currently active.
    */
-  public open fun isCurrent(): Boolean {
+  public fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_IS_CURRENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
