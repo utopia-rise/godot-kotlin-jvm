@@ -27,7 +27,7 @@ jobs:
             binary: godot.osx.opt.tools.64
             cat_command: cat
           - name: Windows
-            os: windows-latest
+            os: windows-2019
             platform: windows
             binary: godot.windows.opt.tools.64.exe
             cat_command: type
