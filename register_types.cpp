@@ -1,6 +1,5 @@
-#include <editor/editor_node.h>
-
 #ifdef TOOLS_ENABLED
+#include <editor/editor_node.h>
 #include <modules/kotlin_jvm/src/kotlin_editor_export_plugin.h>
 #include "src/editor/godot_kotlin_jvm_editor.h"
 #endif

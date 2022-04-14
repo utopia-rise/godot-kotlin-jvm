@@ -234,7 +234,14 @@ String KotlinLanguage::validate_path(const String& p_path) const {
     List<String> keywords;
     get_reserved_words(&keywords);
     if (keywords.find(p_path.get_file().get_basename())) {
-        return TTR("Please don't use reserved keywords as file name.");
+        String alert{"Please don't use reserved keywords as file name."};
+        return
+#ifdef TOOLS_ENABLED
+                TTR(alert)
+#else
+                RTR(alert)
+#endif
+        ;
     }
     return "";
 }
