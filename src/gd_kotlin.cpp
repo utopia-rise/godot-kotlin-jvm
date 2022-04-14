@@ -503,7 +503,7 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #endif
 
         Error err;
-        DirAccess* dir_access{
+        Ref<DirAccess> dir_access{
                 DirAccess::open(libs_res_path, &err)
         };
 
@@ -512,7 +512,6 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #endif
 
         dir_access->copy(jar_res_path, jar_user_path);
-        memdelete(dir_access);
     }
 #endif
 }

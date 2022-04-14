@@ -38,9 +38,8 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
 
         } else {
             if (FileAccess::exists(configuration_path)) {
-                FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
+                Ref<FileAccess> configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
                 GdKotlinConfiguration configuration{GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string())};
-                configuration_access_read->close();
                 jni::Jvm::Type jvm_type{configuration.get_vm_type()};
                 switch (jvm_type) {
                     case jni::Jvm::JVM:
@@ -76,7 +75,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         const Vector<String>& path_split = p_path.split("/");
         String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
         Error error;
-        DirAccess* dir_access{DirAccess::open(export_dir, &error)};
+        Ref<DirAccess> dir_access{DirAccess::open(export_dir, &error)};
         if (error == OK) {
             if (dir_access->copy_dir(
                     ProjectSettings::get_singleton()->globalize_path("res://jre"),
@@ -88,7 +87,6 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         } else {
             LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
         }
-        memdelete(dir_access);
     }
 
     LOG_INFO("Finished Godot-Jvm specific exports.");

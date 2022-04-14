@@ -17,16 +17,13 @@ Error KtResourceFormatSaver::save(const String& p_path, const RES& p_resource, u
     ERR_FAIL_COND_V(script.is_null(), ERR_INVALID_PARAMETER);
     String source = script->get_source_code();
     Error err;
-    FileAccess *file = FileAccess::open(p_path, FileAccess::WRITE, &err);
+    Ref<FileAccess> file{FileAccess::open(p_path, FileAccess::WRITE, &err)};
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot save Kotlin script file '" + p_path + "'.");
     file->store_string(source);
 
     if (file->get_error() != OK && file->get_error() != ERR_FILE_EOF) {
-        memdelete(file);
         return ERR_CANT_CREATE;
     }
 
-    file->close();
-    memdelete(file);
     return OK;
 }
