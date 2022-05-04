@@ -25,7 +25,7 @@ Error kt_read_all_file_utf8(const String &p_path, String &r_content) {
     return OK;
 }
 
-RES KtResourceFormatLoader::load(const String &p_path, const String &p_original_path, Error *r_error,
+Ref<Resource> KtResourceFormatLoader::load(const String &p_path, const String &p_original_path, Error *r_error,
                                  bool p_use_sub_threads, float *r_progress, CacheMode p_cache_mode) {
     Ref<KotlinScript> ref {memnew(KotlinScript)};
     ref->set_path(p_original_path, true);

@@ -159,10 +159,10 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 
     Object* owner{ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
 
-    REF ref;
+    Ref<Resource> ref;
     auto* r{Object::cast_to<RefCounted>(owner)};
     if (r) {
-        ref = REF(r);
+        ref = Ref<Resource>(r);
     }
 
     ScriptInstance* instance{_instance_create(p_args, p_argcount, owner)};
