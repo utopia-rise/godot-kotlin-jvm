@@ -173,7 +173,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Sets the amount of dithering to use. Dithering helps reduce banding that appears from the smooth changes in color in the sky. Use the lowest value possible, higher amounts may add fuzziness to the sky.
+   * The amount of dithering to use. Dithering helps reduce banding that appears from the smooth changes in color in the sky. Use the lowest value possible for your given sky settings, as higher amounts may add fuzziness to the sky.
    */
   public var ditherStrength: Double
     get() {

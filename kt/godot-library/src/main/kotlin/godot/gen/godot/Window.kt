@@ -87,6 +87,18 @@ public open class Window : Viewport() {
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
+   *
+   * Note that this method only works with non-embedded windows, i.e. the main window and [godot.Window]-derived nodes when [godot.Viewport.guiEmbedSubwindows] is disabled in the main viewport.
+   *
+   * Example usage:
+   *
+   * ```
+   * 				func _ready():
+   * 				    get_viewport().files_dropped.connect(on_files_dropped)
+   *
+   * 				func on_files_dropped(files):
+   * 				    print(files)
+   * 				```
    */
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 

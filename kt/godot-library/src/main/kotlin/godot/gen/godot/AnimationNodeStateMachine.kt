@@ -229,18 +229,12 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REMOVE_TRANSITION, NIL)
   }
 
-  /**
-   * Sets the given node as the graph start point.
-   */
   public fun setStartNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_START_NODE, NIL)
   }
 
-  /**
-   * Returns the graph's end node.
-   */
   public fun getStartNode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -248,18 +242,12 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Sets the given node as the graph end point.
-   */
   public fun setEndNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_END_NODE, NIL)
   }
 
-  /**
-   * Returns the graph's end node.
-   */
   public fun getEndNode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

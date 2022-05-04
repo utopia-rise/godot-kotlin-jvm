@@ -23,6 +23,9 @@ import kotlin.Unit
 /**
  * Base node for containers.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Base node for containers. A [godot.Container] contains other controls and automatically arranges them in a certain way.
  *
  * A Control can inherit this to create custom container classes.

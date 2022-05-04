@@ -1871,7 +1871,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if drag operation is successful.
+   * Returns `true` if a drag operation is successful. Alternative to [godot.Viewport.guiIsDragSuccessful].
+   *
+   * Best used with [godot.Node.NOTIFICATION_DRAG_END].
    */
   public fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
@@ -2019,35 +2021,12 @@ public open class Control : CanvasItem() {
   public enum class StructuredTextParser(
     id: Long
   ) {
-    /**
-     * Use default behavior. Same as `STRUCTURED_TEXT_NONE` unless specified otherwise in the control description.
-     */
     STRUCTURED_TEXT_DEFAULT(0),
-    /**
-     * BiDi override for URI.
-     */
     STRUCTURED_TEXT_URI(1),
-    /**
-     * BiDi override for file path.
-     */
     STRUCTURED_TEXT_FILE(2),
-    /**
-     * BiDi override for email.
-     */
     STRUCTURED_TEXT_EMAIL(3),
-    /**
-     * BiDi override for lists.
-     *
-     * Structured text options: list separator `String`.
-     */
     STRUCTURED_TEXT_LIST(4),
-    /**
-     * Use default Unicode BiDi algorithm.
-     */
     STRUCTURED_TEXT_NONE(5),
-    /**
-     * User defined structured text BiDi override function.
-     */
     STRUCTURED_TEXT_CUSTOM(6),
     ;
 

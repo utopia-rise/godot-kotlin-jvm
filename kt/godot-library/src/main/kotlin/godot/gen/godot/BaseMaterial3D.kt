@@ -214,6 +214,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The material's base color.
+   *
+   * **Note:** If [detailEnabled] is `true` and a [detailAlbedo] texture is specified, [albedoColor] will *not* modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
   public var albedoColor: Color
     get() {
@@ -1557,7 +1559,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TEXTURE_CHANNEL_ALPHA(3),
     /**
-     * Currently unused.
+     * Used to read from the linear (non-perceptual) average of the red, green and blue channels of a texture.
      */
     TEXTURE_CHANNEL_GRAYSCALE(4),
     ;

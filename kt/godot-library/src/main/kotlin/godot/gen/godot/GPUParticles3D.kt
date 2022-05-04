@@ -193,7 +193,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   *
+   * Enables particle interpolation, which makes the particle movement smoother when their [fixedFps] is lower than the screen refresh rate.
    */
   public var interpolate: Boolean
     get() {

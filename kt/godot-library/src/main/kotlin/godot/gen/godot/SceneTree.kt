@@ -178,9 +178,6 @@ public open class SceneTree : MainLoop() {
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
 
-  /**
-   * The default [godot.MultiplayerAPI] instance for this [godot.SceneTree].
-   */
   public var multiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
@@ -438,7 +435,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   *
+   * Returns the first node in the specified group, or `null` if the group is empty or does not exist.
    */
   public fun getFirstNodeInGroup(group: StringName): Node? {
     TransferContext.writeArguments(STRING_NAME to group)

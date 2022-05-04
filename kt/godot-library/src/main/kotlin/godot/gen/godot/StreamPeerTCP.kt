@@ -55,9 +55,6 @@ public open class StreamPeerTCP : StreamPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Returns `true` if this peer is currently connected or is connecting to a host, `false` otherwise.
-   */
   public fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,

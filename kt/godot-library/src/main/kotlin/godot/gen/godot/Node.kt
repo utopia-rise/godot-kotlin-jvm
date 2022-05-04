@@ -161,7 +161,7 @@ public open class Node : Object() {
     }
 
   /**
-   * The [godot.MultiplayerAPI] instance associated with this node. Either the [customMultiplayer], or the default SceneTree one (if inside tree).
+   * The [godot.MultiplayerAPI] instance associated with this node. See [godot.SceneTree.getMultiplayer].
    */
   public val multiplayer: MultiplayerAPI?
     get() {
@@ -170,9 +170,6 @@ public open class Node : Object() {
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
 
-  /**
-   * The override to the default [godot.MultiplayerAPI]. Set to `null` to use the default [godot.SceneTree] one.
-   */
   public var customMultiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
@@ -214,7 +211,7 @@ public open class Node : Object() {
     }
 
   /**
-   * Add a custom description to a node.
+   * Add a custom description to a node. It will be displayed in a tooltip when hovered in editor's scene tree.
    */
   public var editorDescription: String
     get() {
@@ -555,6 +552,8 @@ public open class Node : Object() {
    *
    * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
+   * This method can be used to handle Unicode character input with [kbd]Alt[/kbd], [kbd]Alt + Ctrl[/kbd], and [kbd]Alt + Shift[/kbd] modifiers, after shortcuts were handled.
+   *
    * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
@@ -758,19 +757,6 @@ public open class Node : Object() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
-  /**
-   * Finds descendants of this node whose, name matches `mask` as in [godot.String.match], and/or type matches `type` as in [godot.Object.isClass].
-   *
-   * `mask` does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
-   *
-   * `type` will check equality or inheritance. It is case-sensitive, `"Object"` will match a node whose type is `"Node"` but not the other way around.
-   *
-   * If `owned` is `true`, this method only finds nodes whose owner is this node. This is especially important for scenes instantiated through a script, because those scenes don't have an owner.
-   *
-   * Returns an empty array, if no matching nodes are found.
-   *
-   * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get references to other nodes. To avoid using [findNodes] too often, consider caching the node references into variables.
-   */
   public fun findNodes(
     mask: String,
     type: String = "",
@@ -783,11 +769,11 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds the first parent of the current node whose name matches `mask` as in [godot.String.match] (i.e. case-sensitive, but `"*"` matches zero or more characters and `"?"` matches any single character except `"."`).
+   * Finds the first parent of the current node whose name matches `pattern` as in [godot.String.match].
    *
-   * **Note:** It does not match against the full path, just against individual node names.
+   * `pattern` does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
    *
-   * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply nested scene trees. Whenever possible, consider using [getNode] instead. To avoid using [findParent] too often, consider caching the node reference into a variable.
+   * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply nested scene trees. Whenever possible, consider using [getNode] with unique names instead (see [uniqueNameInOwner]), or caching the node references into variable.
    */
   public fun findParent(mask: String): Node? {
     TransferContext.writeArguments(STRING to mask)
@@ -1549,12 +1535,18 @@ public open class Node : Object() {
     public final const val NOTIFICATION_INSTANCED: Long = 20
 
     /**
-     * Notification received when a drag begins.
+     * Notification received when a drag operation begins. All nodes receive this notification, not only the dragged one.
+     *
+     * Can be triggered either by dragging a [godot.Control] that provides drag data (see [godot.Control.GetDragData]) or using [godot.Control.forceDrag].
+     *
+     * Use [godot.Viewport.guiGetDragData] to get the dragged data.
      */
     public final const val NOTIFICATION_DRAG_BEGIN: Long = 21
 
     /**
-     * Notification received when a drag ends.
+     * Notification received when a drag operation ends.
+     *
+     * Use [godot.Viewport.guiIsDragSuccessful] to check if the drag succeeded.
      */
     public final const val NOTIFICATION_DRAG_END: Long = 22
 

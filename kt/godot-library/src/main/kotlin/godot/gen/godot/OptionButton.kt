@@ -208,7 +208,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds a separator to the list of items. Separators help to group items. Separator also takes up an index and is appended at the end.
+   * Adds a separator to the list of items. Separators help to group items, and can optionally be given a `text` header. A separator also gets an index assigned, and is appended at the end of the item list.
    */
   public fun addSeparator(): Unit {
     TransferContext.writeArguments()

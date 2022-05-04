@@ -308,7 +308,9 @@ public object Input : Object() {
   /**
    * Vibrate Android and iOS devices.
    *
-   * **Note:** It needs `VIBRATE` permission for Android at export settings. iOS does not support duration.
+   * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
+   *
+   * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)

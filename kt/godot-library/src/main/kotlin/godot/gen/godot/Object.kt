@@ -819,7 +819,7 @@ public open class Object : KtObject() {
    *
    * **Note:** This method is the legacy implementation for connecting signals. The recommended modern approach is to use [godot.Signal.connect] and to use [godot.Callable.bind] to add and validate parameter binds. Both syntaxes are shown below.
    *
-   * A signal can only be connected once to a [godot.Callable]. It will throw an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
+   * A signal can only be connected once to a [godot.Callable]. It will print an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
    *
    * If the callable's target is destroyed in the game's lifecycle, the connection will be lost.
    *
@@ -995,7 +995,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * While all options have the same outcome (`button`'s [godot.BaseButton.buttonDown] signal will be connected to `_on_button_down`), option 3 offers the best validation: it will throw a compile-time error if either the `button_down` signal or the `_on_button_down` callable are undefined. On the other hand, option 2 only relies on string names and will only be able to validate either names at runtime: it will throw a runtime error if `"button_down"` doesn't correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
+   * While all options have the same outcome (`button`'s [godot.BaseButton.buttonDown] signal will be connected to `_on_button_down`), option 3 offers the best validation: it will print a compile-time error if either the `button_down` signal or the `_on_button_down` callable are undefined. On the other hand, option 2 only relies on string names and will only be able to validate either names at runtime: it will print a runtime error if `"button_down"` doesn't correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
    *
    * **Parameter bindings and passing:**
    *
@@ -1097,7 +1097,7 @@ public open class Object : KtObject() {
   /**
    * Disconnects a `signal` from a given `callable`.
    *
-   * If you try to disconnect a connection that does not exist, the method will throw an error. Use [isConnected] to ensure that the connection exists.
+   * If you try to disconnect a connection that does not exist, the method will print an error. Use [isConnected] to ensure that the connection exists.
    */
   public fun disconnect(signal: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)

@@ -419,9 +419,6 @@ public object NavigationServer3D : Object() {
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
   }
 
-  /**
-   * Destroy the RID
-   */
   public fun free(_object: RID): Unit {
     TransferContext.writeArguments(_RID to _object)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_FREE, NIL)

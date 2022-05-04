@@ -173,7 +173,7 @@ public object Performance : Object() {
    *
    * Callables are called with arguments supplied in argument array.
    *
-   * **Note:** It throws an error if given id is already present.
+   * **Note:** It prints an error if given id is already present.
    */
   public fun addCustomMonitor(
     id: StringName,
@@ -187,7 +187,7 @@ public object Performance : Object() {
   /**
    * Removes the custom monitor with given id.
    *
-   * **Note:** It throws an error if the given id is already absent.
+   * **Note:** It prints an error if the given id is already absent.
    */
   public fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -208,7 +208,7 @@ public object Performance : Object() {
   /**
    * Returns the value of custom monitor with given id. The callable is called to get the value of custom monitor.
    *
-   * **Note:** It throws an error if the given id is absent.
+   * **Note:** It prints an error if the given id is absent.
    */
   public fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)

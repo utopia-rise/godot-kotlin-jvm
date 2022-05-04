@@ -11,9 +11,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Composes a [godot.core.Vector3] from three scalars within the visual shader graph.
+ * Composes a [godot.core.Vector2], [godot.core.Vector3] or 4D vector (represented as a [godot.Quaternion]) from scalars within the visual shader graph.
  *
- * Creates a `vec3` using three scalar values that can be provided from separate inputs.
+ * Creates a `vec2`, `vec3` or `vec4` using scalar values that can be provided from separate inputs.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorCompose : VisualShaderNodeVectorBase() {

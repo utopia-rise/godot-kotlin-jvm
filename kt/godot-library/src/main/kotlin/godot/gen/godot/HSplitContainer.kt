@@ -13,6 +13,9 @@ import kotlin.Unit
 /**
  * Horizontal split container.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Horizontal split container. See [godot.SplitContainer]. This goes from left to right.
  */
 @GodotBaseType

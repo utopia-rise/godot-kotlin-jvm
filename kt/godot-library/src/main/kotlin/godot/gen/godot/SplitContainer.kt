@@ -21,6 +21,9 @@ import kotlin.Unit
 /**
  * Container for splitting and adjusting.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
  */
 @GodotBaseType

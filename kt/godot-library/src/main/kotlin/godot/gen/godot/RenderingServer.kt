@@ -5261,11 +5261,11 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     * Enables bilinear scaling on 3D viewports. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     VIEWPORT_SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Enables FSR upscaling on 3D viewports. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear supersampling will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
      */
     VIEWPORT_SCALING_3D_MODE_FSR(1),
     /**
@@ -5767,19 +5767,21 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     * Output color as they came in.
+     * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
      */
     ENV_TONE_MAPPER_LINEAR(0),
     /**
-     * Use the Reinhard tonemapper.
+     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
      */
     ENV_TONE_MAPPER_REINHARD(1),
     /**
-     * Use the filmic tonemapper.
+     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
      */
     ENV_TONE_MAPPER_FILMIC(2),
     /**
-     * Use the ACES tonemapper.
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
+     *
+     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ENV_TONE_MAPPER_ACES(3),
     ;

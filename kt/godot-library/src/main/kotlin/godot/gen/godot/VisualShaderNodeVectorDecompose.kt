@@ -11,9 +11,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Decomposes a [godot.core.Vector3] into three scalars within the visual shader graph.
+ * Decomposes a [godot.core.Vector2], [godot.core.Vector3] or 4D vector (represented as a [godot.Quaternion]) into scalars within the visual shader graph.
  *
- * Takes a `vec3` and decomposes it into three scalar values that can be used as separate inputs.
+ * Takes a `vec2`, `vec3` or `vec4` and decomposes it into scalar values that can be used as separate outputs.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorDecompose : VisualShaderNodeVectorBase() {

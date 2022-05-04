@@ -130,7 +130,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If set to `0.0`, the same FOV as the current [godot.Camera3D] is used for sky rendering.
    */
   public var skyCustomFov: Double
     get() {
@@ -146,7 +146,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The rotation to use for sky rendering.
    */
   public var skyRotation: Vector3
     get() {
@@ -161,7 +161,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The ambient light source to use for rendering materials and global illumination.
    */
   public var ambientLightSource: Long
     get() {
@@ -177,7 +177,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's [godot.core.Color].
+   * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
   public var ambientLightColor: Color
     get() {
@@ -211,7 +211,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's energy. The higher the value, the stronger the light.
+   * The ambient light's energy. The higher the value, the stronger the light. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
   public var ambientLightEnergy: Double
     get() {
@@ -227,7 +227,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The reflected (specular) light source.
    */
   public var reflectedLightSource: Long
     get() {
@@ -257,7 +257,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The default exposure used for tonemapping.
+   * The default exposure used for tonemapping. Higher values result in a brighter image. See also [tonemapWhite].
    */
   public var tonemapExposure: Double
     get() {
@@ -273,7 +273,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The white reference value for tonemapping. Only effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR].
+   * The white reference value for tonemapping (also called "whitepoint"). Higher values can make highlights look less blown out, and will also slightly darken the whole scene as a result. Only effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR]. See also [tonemapExposure].
    */
   public var tonemapWhite: Double
     get() {
@@ -680,7 +680,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * If `true`, SDFGI uses an occlusion detection approach to reduce light leaking. Occlusion may however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes. [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
    */
   public var sdfgiUseOcclusion: Boolean
     get() {
@@ -696,7 +696,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for interior scenes.
    */
   public var sdfgiReadSkyLight: Boolean
     get() {
@@ -712,7 +712,11 @@ public open class Environment : Resource() {
     }
 
   /**
+   * The energy multiplier applied to light every time it bounces from a surface when using SDFGI. Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also [sdfgiEnergy].
    *
+   * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in scenes with bright materials.
+   *
+   * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in reflections as light will only bounce one time.
    */
   public var sdfgiBounceFeedback: Double
     get() {
@@ -744,7 +748,9 @@ public open class Environment : Resource() {
     }
 
   /**
+   * The cell size to use for the closest SDFGI cascade (in 3D units). Lower values allow SDFGI to be more precise up close, at the cost of making SDFGI updates more demanding. This can cause stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also reducing the performance impact of SDFGI updates.
    *
+   * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
    */
   public var sdfgiMinCellSize: Double
     get() {
@@ -760,7 +766,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its value will automatically change those properties as well.
    */
   public var sdfgiCascade0Distance: Double
     get() {
@@ -776,7 +782,9 @@ public open class Environment : Resource() {
     }
 
   /**
+   * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or other sources of GI such as [godot.ReflectionProbe] will be used as a fallback.
    *
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
    */
   public var sdfgiMaxDistance: Double
     get() {
@@ -792,7 +800,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed together more closely on the Y axis. This is used to balance between quality and covering a lot of vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast your camera may move on the Y axis).
    */
   public var sdfgiYScale: Long
     get() {
@@ -808,7 +816,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting and reflections. See also [sdfgiBounceFeedback].
    */
   public var sdfgiEnergy: Double
     get() {
@@ -823,7 +831,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public var sdfgiNormalBias: Double
     get() {
@@ -839,7 +847,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public var sdfgiProbeBias: Double
     get() {
@@ -962,7 +970,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The overall brightness multiplier of the glow effect. When using the OpenGL renderer, this should be increased to 1.5 to compensate for the lack of HDR rendering.
+   * The overall brightness multiplier of the glow effect. When using the OpenGL renderer, this should be increased to `1.5` to compensate for the lack of HDR rendering.
    */
   public var glowIntensity: Double
     get() {
@@ -994,7 +1002,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
    */
   public var glowMix: Double
     get() {
@@ -1133,7 +1141,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The fog's color.
    */
   public var fogLightColor: Color
     get() {
@@ -1149,7 +1157,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The fog's brightness. Higher values result in brighter fog.
    */
   public var fogLightEnergy: Double
     get() {
@@ -1165,7 +1173,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the view angle. This can be used to give the impression that the sun is "piercing" through the fog.
    */
   public var fogSunScatter: Double
     get() {
@@ -1181,7 +1189,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   *
+   * The exponential fog density to use. Higher values result in a more dense fog.
    */
   public var fogDensity: Double
     get() {
@@ -1570,19 +1578,21 @@ public open class Environment : Resource() {
     id: Long
   ) {
     /**
-     * Linear tonemapper operator. Reads the linear data and passes it on unmodified.
+     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
      */
     TONE_MAPPER_LINEAR(0),
     /**
-     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`.
+     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
      */
     TONE_MAPPER_REINHARDT(1),
     /**
-     * Filmic tonemapper operator.
+     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [TONE_MAPPER_REINHARDT].
      */
     TONE_MAPPER_FILMIC(2),
     /**
-     * Academy Color Encoding System tonemapper operator.
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
+     *
+     * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     TONE_MAPPER_ACES(3),
     ;
@@ -1605,7 +1615,7 @@ public open class Environment : Resource() {
      */
     REFLECTION_SOURCE_BG(0),
     /**
-     * Disable reflections.
+     * Disable reflections. This provides a slight performance boost over other options.
      */
     REFLECTION_SOURCE_DISABLED(1),
     /**
@@ -1628,15 +1638,15 @@ public open class Environment : Resource() {
     id: Long
   ) {
     /**
-     *
+     * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
      */
     SDFGI_Y_SCALE_50_PERCENT(0),
     /**
-     *
+     * Use 75% scale for SDFGI on the Y (vertical) axis. This is a balance between the 50% and 100% SDFGI Y scales.
      */
     SDFGI_Y_SCALE_75_PERCENT(1),
     /**
-     *
+     * Use 100% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
      */
     SDFGI_Y_SCALE_100_PERCENT(2),
     ;
@@ -1702,11 +1712,11 @@ public open class Environment : Resource() {
      */
     AMBIENT_SOURCE_BG(0),
     /**
-     * Disable ambient light.
+     * Disable ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
      */
     AMBIENT_SOURCE_DISABLED(1),
     /**
-     * Specify a specific [godot.core.Color] for ambient light.
+     * Specify a specific [godot.core.Color] for ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
      */
     AMBIENT_SOURCE_COLOR(2),
     /**

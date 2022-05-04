@@ -195,7 +195,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal mode. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
+   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal and frustum modes. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
    */
   public var size: Double
     get() {

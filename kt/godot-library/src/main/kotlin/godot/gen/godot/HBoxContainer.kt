@@ -13,6 +13,9 @@ import kotlin.Unit
 /**
  * Horizontal box container.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Horizontal box container. See [godot.BoxContainer].
  */
 @GodotBaseType

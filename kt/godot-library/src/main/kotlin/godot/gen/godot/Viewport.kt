@@ -771,6 +771,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns `true` if the viewport is currently performing a drag operation.
+   *
+   * Alternative to [godot.Node.NOTIFICATION_DRAG_BEGIN] and [godot.Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
    */
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
@@ -1067,11 +1069,11 @@ public open class Viewport internal constructor() : Node() {
     id: Long
   ) {
     /**
-     * Enables bilinear scaling on 3D viewports. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Enables FSR upscaling on 3D viewports. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear supersampling will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_FSR(1),
     /**

@@ -546,7 +546,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified [godot.TreeItem]. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
+   * Returns the rectangle area for the specified [godot.TreeItem]. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
   public fun getItemAreaRect(item: TreeItem, column: Long = -1): Rect2 {
     TransferContext.writeArguments(OBJECT to item, LONG to column)

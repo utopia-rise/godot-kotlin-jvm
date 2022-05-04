@@ -357,7 +357,7 @@ public object OS : Object() {
   /**
    * Returns the name of the host OS.
    *
-   * On Windows, this is `"Windows"` or `"UWP"` (Universal Windows Platform) if exported thereon.
+   * On Windows, this is `"Windows"` or `"UWP"` if exported on Universal Windows Platform.
    *
    * On macOS, this is `"macOS"`.
    *

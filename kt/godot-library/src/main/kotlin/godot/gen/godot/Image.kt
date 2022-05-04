@@ -414,7 +414,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies `src_rect` from `src` image to this image at coordinates `dst`.
+   * Copies `src_rect` from `src` image to this image at coordinates `dst`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
    */
   public fun blitRect(
     src: Image,
@@ -426,7 +426,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
+   * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`, clipped accordingly to both image bounds. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
    */
   public fun blitRectMask(
     src: Image,
@@ -439,7 +439,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`.
+   * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
    */
   public fun blendRect(
     src: Image,
@@ -451,7 +451,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
+   * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`, clipped accordingly to both image bounds. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
    */
   public fun blendRectMask(
     src: Image,

@@ -37,7 +37,7 @@ import kotlin.Unit
  *
  * By default, [godot.SceneTree] has a reference to this class that is used to provide multiplayer capabilities (i.e. RPCs) across the whole scene.
  *
- * It is possible to override the MultiplayerAPI instance used by specific Nodes by setting the [godot.Node.customMultiplayer] property, effectively allowing to run both client and server in the same scene.
+ * It is possible to override the MultiplayerAPI instance used by specific tree branches by calling the [godot.SceneTree.setMultiplayer] method, effectively allowing to run both client and server in the same scene.
  *
  * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
  *
@@ -201,7 +201,7 @@ public open class MultiplayerAPI : RefCounted() {
   }
 
   /**
-   * Method used for polling the MultiplayerAPI. You only need to worry about this if you are using [godot.Node.customMultiplayer] override or you set [godot.SceneTree.multiplayerPoll] to `false`. By default, [godot.SceneTree] will poll its MultiplayerAPI for you.
+   * Method used for polling the MultiplayerAPI. You only need to worry about this if you set [godot.SceneTree.multiplayerPoll] to `false`. By default, [godot.SceneTree] will poll its MultiplayerAPI(s) for you.
    *
    * **Note:** This method results in RPCs being called, so they will be executed in the same context of this function (e.g. `_process`, `physics`, [godot.Thread]).
    */

@@ -1044,6 +1044,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * Draws single glyph into a canvas item at the position, using `font_rid` at the size `size`.
    *
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by [shapedTextGetGlyphs] or [fontGetGlyphIndex].
+   *
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
    */
   public fun fontDrawGlyph(
     fontRid: RID,
@@ -1061,6 +1063,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * Draws single glyph outline of size `outline_size` into a canvas item at the position, using `font_rid` at the size `size`.
    *
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by [shapedTextGetGlyphs] or [fontGetGlyphIndex].
+   *
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
    */
   public fun fontDrawGlyphOutline(
     fontRid: RID,
@@ -1636,7 +1640,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Breaks text into words and returns array of character ranges.
+   * Breaks text into words and returns array of character ranges. Use `grapheme_flags` to set what characters are used for breaking (see [enum GraphemeFlag]).
    */
   public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags)

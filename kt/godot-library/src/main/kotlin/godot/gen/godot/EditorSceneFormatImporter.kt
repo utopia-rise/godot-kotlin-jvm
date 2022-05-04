@@ -55,9 +55,6 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
     throw NotImplementedError("_import_scene is not implemented for EditorSceneFormatImporter")
   }
 
-  /**
-   *
-   */
   public open fun _importAnimation(
     path: String,
     flags: Long,

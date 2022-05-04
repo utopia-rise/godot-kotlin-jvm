@@ -254,27 +254,18 @@ public open class AnimationPlayer : Node() {
     callConstructor(ENGINECLASS_ANIMATIONPLAYER)
   }
 
-  /**
-   * Adds `animation` to the player accessible with the key `name`.
-   */
   public fun addAnimation(name: StringName, animation: Animation): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_ADD_ANIMATION, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Removes the animation with key `name`.
-   */
   public fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_REMOVE_ANIMATION,
         NIL)
   }
 
-  /**
-   * Renames an existing animation with key `name` to `newname`.
-   */
   public fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_RENAME_ANIMATION,

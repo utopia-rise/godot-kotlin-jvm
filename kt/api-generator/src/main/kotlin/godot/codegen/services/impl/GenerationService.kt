@@ -88,6 +88,7 @@ class GenerationService(
                     }
                     appendReproducibleNewLine(classDoc.description)
                 }.replace(System.lineSeparator(), "\n")
+                    .replace("/*", "&#47;*")
             )
         }
 
@@ -215,7 +216,7 @@ class GenerationService(
                             docRepository.findByClassName(enum.name)?.constants?.get(valueName)?.description
                         }
                         if (kDoc != null) {
-                            it.addKdoc("%L", kDoc)
+                            it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
                         }
                     }
                     .build()
@@ -247,7 +248,7 @@ class GenerationService(
                     docRepository.findByClassName("@GlobalScope")?.constants?.get(constantName)?.description
                 }
                 if (kDoc != null) {
-                    it.addKdoc("%L", kDoc)
+                    it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
                 }
             }
             .build()
@@ -302,7 +303,7 @@ class GenerationService(
         }
         val kDoc = docRepository.findByClassName(containingClassName)?.signals?.get(signal.internal.name)?.description
         if (kDoc != null) {
-            builder.addKdoc("%L", kDoc)
+            builder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
         }
         return builder.build()
     }
@@ -441,7 +442,7 @@ class GenerationService(
         val kDoc =
             docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
         if (kDoc != null) {
-            propertySpecBuilder.addKdoc("%L", kDoc)
+            propertySpecBuilder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
         }
 
         return propertySpecBuilder.build()
@@ -535,7 +536,7 @@ class GenerationService(
 
         val kDoc = docRepository.findByClassName(enrichedClass.name)?.functions?.get(method.internal.name)?.description
         if (kDoc != null) {
-            generatedFunBuilder.addKdoc("%L", kDoc)
+            generatedFunBuilder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
         }
 
         for (jvmReservedMethod in jvmReservedMethods) {

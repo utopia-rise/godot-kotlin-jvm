@@ -52,7 +52,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Direction vector used to determine what is a wall and what is a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. Defaults to `Vector2.UP`. If set to `Vector2(0, 0)`, everything is considered a wall. This is useful for topdown games.
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to `Vector2.UP`. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    */
   public var upDirection: Vector2
     get() {

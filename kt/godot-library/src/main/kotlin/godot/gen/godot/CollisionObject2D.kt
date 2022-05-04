@@ -34,6 +34,8 @@ import kotlin.Unit
  * Base node for 2D collision objects.
  *
  * CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [godot.Shape2D]s. Each shape must be assigned to a *shape owner*. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
+ *
+ * **Note:** Only collisions between objects within the same canvas ([godot.Viewport] canvas or [godot.CanvasLayer]) are supported. The behavior of collisions between objects in different canvases is undefined.
  */
 @GodotBaseType
 public open class CollisionObject2D internal constructor() : Node2D() {

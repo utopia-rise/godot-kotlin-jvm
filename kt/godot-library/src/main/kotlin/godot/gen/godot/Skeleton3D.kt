@@ -394,7 +394,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Returns the global pose override transform for `bone_idx`.
    */
   public fun getBoneGlobalPoseOverride(boneIdx: Long): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx)

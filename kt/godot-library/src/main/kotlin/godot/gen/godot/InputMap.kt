@@ -127,6 +127,8 @@ public object InputMap : Object() {
 
   /**
    * Returns an array of [godot.InputEvent]s associated with a given action.
+   *
+   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input&#47;*` settings from [godot.ProjectSettings].
    */
   public fun actionGetEvents(action: StringName): VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to action)

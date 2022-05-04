@@ -35,7 +35,7 @@ import kotlin.Unit
  *
  * [godot.Tween] is more suited than [godot.AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [godot.Tween]; it would be difficult to do the same thing with an [godot.AnimationPlayer] node. Tweens are also more light-weight than [godot.AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a fire-and-forget manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [godot.CallbackTweener] with a delay.
  *
- * A [godot.Tween] can be created by using either [godot.SceneTree.createTween] or [godot.Node.createTween]. [godot.Tween]s created manually (i.e. by using `Tween.new()`) are invalid. They can't be used for tweening values, but you can do manual interpolation with [interpolateValue].
+ * A [godot.Tween] can be created by using either [godot.SceneTree.createTween] or [godot.Node.createTween]. [godot.Tween]s created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
  *
  * A [godot.Tween] animation is composed of a sequence of [godot.Tweener]s, which by default are executed one after another. You can create a sequence by appending [godot.Tweener]s to the [godot.Tween]. Animating something with a [godot.Tweener] is called tweening. Example tweening sequence looks like this:
  *
@@ -110,8 +110,8 @@ public open class Tween : RefCounted() {
    *
    * ```
    * 				var tween = create_tween()
-   * 				tween.tween_property($Sprite, "position", Vector2(100, 200)
-   * 				tween.tween_property($Sprite, "position", Vector2(200, 300)
+   * 				tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
+   * 				tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
    * 				```
    *
    * will move the sprite to position (100, 200) and then to (200, 300). If you use [godot.PropertyTweener.from] or [godot.PropertyTweener.fromCurrent], the starting position will be overwritten by the given value instead. See other methods in [godot.PropertyTweener] to see how the tweening can be tweaked further.
@@ -122,8 +122,8 @@ public open class Tween : RefCounted() {
    *
    * ```
    * 				var tween = create_tween()
-   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300).as_relative().set_trans(Tween.TRANS_SINE)
-   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * 				```
    */
   public fun tweenProperty(
@@ -152,10 +152,10 @@ public open class Tween : RefCounted() {
    *
    * ```
    * 				var tween = create_tween().set_loops()
-   * 				tween.tween_property("position:x", 200, 1).as_relative()
+   * 				tween.tween_property($Sprite, "position:x", 200.0, 1).as_relative()
    * 				tween.tween_callback(jump)
    * 				tween.tween_interval(2)
-   * 				tween.tween_property("position:x", -200, 1).as_relative()
+   * 				tween.tween_property($Sprite, "position:x", -200.0, 1).as_relative()
    * 				tween.tween_callback(jump)
    * 				tween.tween_interval(2)
    * 				```
@@ -277,7 +277,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Returns whether the [godot.Tween] is valid. A valid [godot.Tween] is a [godot.Tween] contained by the scene tree (i.e. the array from [godot.SceneTree.getProcessedTweens] will contain this [godot.Tween]). [godot.Tween] might become invalid when it has finished tweening or was killed, also when created with `Tween.new()`. Invalid [godot.Tween] can't have [godot.Tweener]s appended, because it can't animate them. You can however still use [interpolateValue].
+   * Returns whether the [godot.Tween] is valid. A valid [godot.Tween] is a [godot.Tween] contained by the scene tree (i.e. the array from [godot.SceneTree.getProcessedTweens] will contain this [godot.Tween]). [godot.Tween] might become invalid when it has finished tweening or was killed, also when created with `Tween.new()`. Invalid [godot.Tween] can't have [godot.Tweener]s appended, because it can't animate them.
    */
   public fun isValid(): Boolean {
     TransferContext.writeArguments()

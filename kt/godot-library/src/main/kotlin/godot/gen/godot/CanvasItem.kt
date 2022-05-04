@@ -297,7 +297,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
+   * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [drawMultiline] and [drawPolyline].
    */
   public fun drawLine(
     from: Vector2,
@@ -324,7 +324,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `color` and `width`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    */
   public fun drawPolyline(
     points: PackedVector2Array,
@@ -337,7 +337,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    */
   public fun drawPolylineColors(
     points: PackedVector2Array,

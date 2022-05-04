@@ -97,7 +97,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * Show or hide the TileMap's collision shapes. If set to `VISIBILITY_MODE_DEFAULT`, this depends on the show collision debug settings.
+   * Show or hide the TileMap's collision shapes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings.
    */
   public var collisionVisibilityMode: Long
     get() {
@@ -113,7 +113,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * Show or hide the TileMap's collision shapes. If set to `VISIBILITY_MODE_DEFAULT`, this depends on the show navigation debug settings.
+   * Show or hide the TileMap's collision shapes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings.
    */
   public var navigationVisibilityMode: Long
     get() {
