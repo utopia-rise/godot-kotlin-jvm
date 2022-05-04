@@ -97,8 +97,8 @@ namespace ktvariant {
     static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant& src) {
         Transform2D src_transform_2d{src};
         set_variant_type(des, Variant::Type::TRANSFORM2D);
-        append_vector2(des, src_transform_2d.get_axis(0));
-        append_vector2(des, src_transform_2d.get_axis(1));
+        append_vector2(des, src_transform_2d[0]);
+        append_vector2(des, src_transform_2d[1]);
         append_vector2(des, src_transform_2d.get_origin());
     }
 
@@ -126,9 +126,9 @@ namespace ktvariant {
     }
 
     static inline void append_basis(SharedBuffer* des, const Basis& data) {
-        append_vector3(des, data.elements[0]);
-        append_vector3(des, data.elements[1]);
-        append_vector3(des, data.elements[2]);
+        append_vector3(des, data.rows[0]);
+        append_vector3(des, data.rows[1]);
+        append_vector3(des, data.rows[2]);
     }
 
     static void to_kvariant_fromBASIS(SharedBuffer* des, const Variant& src) {
@@ -328,8 +328,8 @@ namespace ktvariant {
 
     static Variant from_kvariant_tokTransform2DValue(SharedBuffer* byte_buffer) {
         Transform2D transform2d;
-        transform2d.set_axis(0, to_godot_vector2(byte_buffer));
-        transform2d.set_axis(1, to_godot_vector2(byte_buffer));
+        transform2d[0] = to_godot_vector2(byte_buffer);
+        transform2d[1] = to_godot_vector2(byte_buffer);
         transform2d.set_origin(to_godot_vector2(byte_buffer));
         return Variant(transform2d);
     }
