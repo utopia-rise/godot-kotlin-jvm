@@ -26,21 +26,29 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 }
 #endif
 
-void register_kotlin_jvm_types() {
-    ClassDB::register_class<KotlinScript>();
-    ScriptServer::register_language(&KotlinLanguage::get_instance());
-    resource_format_loader.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_format_loader);
-    resource_format_saver.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_format_saver);
+void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
+        GDREGISTER_CLASS(KotlinScript);
+        ScriptServer::register_language(&KotlinLanguage::get_instance());
+        resource_format_loader.instantiate();
+        ResourceLoader::add_resource_format_loader(resource_format_loader);
+        resource_format_saver.instantiate();
+        ResourceSaver::add_resource_format_saver(resource_format_saver);
+    }
 
 #ifdef TOOLS_ENABLED
-    EditorNode::add_init_callback(editor_init);
-    EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+    if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
+        EditorNode::add_init_callback(editor_init);
+        EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+    }
 #endif
 }
 
-void unregister_kotlin_jvm_types() {
+void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) {
+        return;
+    }
+
     ScriptServer::unregister_language(&KotlinLanguage::get_instance());
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
