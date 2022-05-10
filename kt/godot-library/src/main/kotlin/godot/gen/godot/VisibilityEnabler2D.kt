@@ -8,6 +8,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
@@ -32,13 +33,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var freezeBodies: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_FREEZE_BODIES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_FREEZE_BODIES, NIL)
     }
@@ -48,13 +49,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var pauseAnimatedSprites: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_ANIMATED_SPRITES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_ANIMATED_SPRITES, NIL)
     }
@@ -64,13 +65,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var pauseAnimations: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_ANIMATIONS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_ANIMATIONS, NIL)
     }
@@ -80,13 +81,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var pauseParticles: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_PARTICLES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_PARTICLES, NIL)
     }
@@ -96,13 +97,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var physicsProcessParent: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PHYSICS_PROCESS_PARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PHYSICS_PROCESS_PARENT, NIL)
     }
@@ -112,13 +113,13 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
    */
   public open var processParent: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PROCESS_PARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PROCESS_PARENT, NIL)
     }

@@ -117,7 +117,7 @@ public open class Control : CanvasItem() {
    */
   public open val anchorBottom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -127,7 +127,7 @@ public open class Control : CanvasItem() {
    */
   public open val anchorLeft: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR_LEFT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -137,7 +137,7 @@ public open class Control : CanvasItem() {
    */
   public open val anchorRight: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR_RIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -147,7 +147,7 @@ public open class Control : CanvasItem() {
    */
   public open val anchorTop: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ANCHOR_TOP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -171,13 +171,13 @@ public open class Control : CanvasItem() {
    */
   public open var focusNeighbourBottom: NodePath
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOUR_BOTTOM, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
+      TransferContext.writeArguments(LONG to 3L, NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOUR_BOTTOM, NIL)
     }
@@ -187,13 +187,13 @@ public open class Control : CanvasItem() {
    */
   public open var focusNeighbourLeft: NodePath
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOUR_LEFT,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
+      TransferContext.writeArguments(LONG to 0L, NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOUR_LEFT,
           NIL)
     }
@@ -203,13 +203,13 @@ public open class Control : CanvasItem() {
    */
   public open var focusNeighbourRight: NodePath
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOUR_RIGHT,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
+      TransferContext.writeArguments(LONG to 2L, NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOUR_RIGHT,
           NIL)
     }
@@ -219,13 +219,13 @@ public open class Control : CanvasItem() {
    */
   public open var focusNeighbourTop: NodePath
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FOCUS_NEIGHBOUR_TOP,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
+      TransferContext.writeArguments(LONG to 1L, NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_FOCUS_NEIGHBOUR_TOP,
           NIL)
     }
@@ -340,12 +340,12 @@ public open class Control : CanvasItem() {
    */
   public open var marginBottom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MARGIN_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_MARGIN_BOTTOM, NIL)
     }
 
@@ -356,12 +356,12 @@ public open class Control : CanvasItem() {
    */
   public open var marginLeft: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MARGIN_LEFT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_MARGIN_LEFT, NIL)
     }
 
@@ -372,12 +372,12 @@ public open class Control : CanvasItem() {
    */
   public open var marginRight: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MARGIN_RIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_MARGIN_RIGHT, NIL)
     }
 
@@ -388,12 +388,12 @@ public open class Control : CanvasItem() {
    */
   public open var marginTop: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MARGIN_TOP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_MARGIN_TOP, NIL)
     }
 

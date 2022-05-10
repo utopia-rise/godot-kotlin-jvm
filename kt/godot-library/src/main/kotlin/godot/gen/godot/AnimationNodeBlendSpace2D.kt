@@ -78,7 +78,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open val blendPoint0_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_0_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -86,20 +86,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint0_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_0_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 0L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_0_POS, NIL)
     }
 
   public open val blendPoint1_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_1_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -107,20 +107,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint1_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_1_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 1L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_1_POS, NIL)
     }
 
   public open val blendPoint10_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_10_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -128,20 +128,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint10_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_10_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 10L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_10_POS, NIL)
     }
 
   public open val blendPoint11_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_11_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -149,20 +149,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint11_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_11_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 11L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_11_POS, NIL)
     }
 
   public open val blendPoint12_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_12_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -170,20 +170,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint12_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_12_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 12L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_12_POS, NIL)
     }
 
   public open val blendPoint13_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_13_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -191,20 +191,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint13_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_13_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 13L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_13_POS, NIL)
     }
 
   public open val blendPoint14_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_14_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -212,20 +212,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint14_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_14_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 14L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_14_POS, NIL)
     }
 
   public open val blendPoint15_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_15_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -233,20 +233,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint15_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_15_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 15L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_15_POS, NIL)
     }
 
   public open val blendPoint16_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_16_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -254,20 +254,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint16_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_16_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 16L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_16_POS, NIL)
     }
 
   public open val blendPoint17_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_17_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -275,20 +275,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint17_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_17_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 17L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_17_POS, NIL)
     }
 
   public open val blendPoint18_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_18_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -296,20 +296,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint18_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_18_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 18L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_18_POS, NIL)
     }
 
   public open val blendPoint19_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_19_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -317,20 +317,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint19_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_19_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 19L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_19_POS, NIL)
     }
 
   public open val blendPoint2_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_2_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -338,20 +338,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint2_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_2_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 2L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_2_POS, NIL)
     }
 
   public open val blendPoint20_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_20_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -359,20 +359,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint20_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_20_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 20L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_20_POS, NIL)
     }
 
   public open val blendPoint21_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_21_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -380,20 +380,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint21_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_21_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 21L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_21_POS, NIL)
     }
 
   public open val blendPoint22_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 22L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_22_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -401,20 +401,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint22_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 22L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_22_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 22L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_22_POS, NIL)
     }
 
   public open val blendPoint23_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 23L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_23_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -422,20 +422,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint23_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 23L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_23_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 23L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_23_POS, NIL)
     }
 
   public open val blendPoint24_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 24L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_24_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -443,20 +443,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint24_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 24L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_24_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 24L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_24_POS, NIL)
     }
 
   public open val blendPoint25_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 25L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_25_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -464,20 +464,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint25_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 25L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_25_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 25L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_25_POS, NIL)
     }
 
   public open val blendPoint26_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 26L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_26_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -485,20 +485,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint26_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 26L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_26_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 26L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_26_POS, NIL)
     }
 
   public open val blendPoint27_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 27L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_27_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -506,20 +506,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint27_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 27L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_27_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 27L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_27_POS, NIL)
     }
 
   public open val blendPoint28_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 28L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_28_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -527,20 +527,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint28_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 28L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_28_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 28L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_28_POS, NIL)
     }
 
   public open val blendPoint29_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 29L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_29_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -548,20 +548,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint29_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 29L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_29_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 29L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_29_POS, NIL)
     }
 
   public open val blendPoint3_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_3_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -569,20 +569,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint3_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_3_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 3L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_3_POS, NIL)
     }
 
   public open val blendPoint30_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 30L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_30_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -590,20 +590,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint30_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 30L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_30_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 30L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_30_POS, NIL)
     }
 
   public open val blendPoint31_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 31L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_31_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -611,20 +611,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint31_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 31L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_31_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 31L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_31_POS, NIL)
     }
 
   public open val blendPoint32_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 32L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_32_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -632,20 +632,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint32_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 32L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_32_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 32L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_32_POS, NIL)
     }
 
   public open val blendPoint33_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 33L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_33_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -653,20 +653,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint33_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 33L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_33_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 33L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_33_POS, NIL)
     }
 
   public open val blendPoint34_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 34L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_34_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -674,20 +674,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint34_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 34L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_34_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 34L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_34_POS, NIL)
     }
 
   public open val blendPoint35_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 35L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_35_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -695,20 +695,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint35_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 35L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_35_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 35L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_35_POS, NIL)
     }
 
   public open val blendPoint36_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 36L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_36_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -716,20 +716,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint36_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 36L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_36_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 36L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_36_POS, NIL)
     }
 
   public open val blendPoint37_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 37L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_37_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -737,20 +737,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint37_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 37L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_37_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 37L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_37_POS, NIL)
     }
 
   public open val blendPoint38_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 38L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_38_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -758,20 +758,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint38_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 38L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_38_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 38L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_38_POS, NIL)
     }
 
   public open val blendPoint39_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 39L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_39_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -779,20 +779,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint39_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 39L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_39_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 39L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_39_POS, NIL)
     }
 
   public open val blendPoint4_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_4_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -800,20 +800,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint4_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_4_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 4L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_4_POS, NIL)
     }
 
   public open val blendPoint40_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 40L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_40_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -821,20 +821,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint40_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 40L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_40_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 40L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_40_POS, NIL)
     }
 
   public open val blendPoint41_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 41L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_41_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -842,20 +842,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint41_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 41L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_41_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 41L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_41_POS, NIL)
     }
 
   public open val blendPoint42_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 42L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_42_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -863,20 +863,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint42_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 42L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_42_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 42L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_42_POS, NIL)
     }
 
   public open val blendPoint43_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 43L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_43_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -884,20 +884,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint43_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 43L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_43_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 43L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_43_POS, NIL)
     }
 
   public open val blendPoint44_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 44L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_44_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -905,20 +905,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint44_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 44L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_44_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 44L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_44_POS, NIL)
     }
 
   public open val blendPoint45_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 45L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_45_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -926,20 +926,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint45_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 45L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_45_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 45L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_45_POS, NIL)
     }
 
   public open val blendPoint46_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 46L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_46_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -947,20 +947,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint46_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 46L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_46_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 46L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_46_POS, NIL)
     }
 
   public open val blendPoint47_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 47L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_47_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -968,20 +968,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint47_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 47L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_47_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 47L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_47_POS, NIL)
     }
 
   public open val blendPoint48_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 48L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_48_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -989,20 +989,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint48_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 48L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_48_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 48L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_48_POS, NIL)
     }
 
   public open val blendPoint49_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 49L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_49_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1010,20 +1010,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint49_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 49L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_49_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 49L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_49_POS, NIL)
     }
 
   public open val blendPoint5_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_5_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1031,20 +1031,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint5_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_5_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 5L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_5_POS, NIL)
     }
 
   public open val blendPoint50_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 50L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_50_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1052,20 +1052,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint50_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 50L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_50_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 50L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_50_POS, NIL)
     }
 
   public open val blendPoint51_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 51L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_51_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1073,20 +1073,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint51_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 51L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_51_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 51L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_51_POS, NIL)
     }
 
   public open val blendPoint52_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 52L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_52_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1094,20 +1094,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint52_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 52L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_52_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 52L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_52_POS, NIL)
     }
 
   public open val blendPoint53_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 53L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_53_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1115,20 +1115,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint53_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 53L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_53_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 53L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_53_POS, NIL)
     }
 
   public open val blendPoint54_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 54L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_54_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1136,20 +1136,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint54_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 54L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_54_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 54L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_54_POS, NIL)
     }
 
   public open val blendPoint55_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 55L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_55_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1157,20 +1157,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint55_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 55L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_55_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 55L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_55_POS, NIL)
     }
 
   public open val blendPoint56_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 56L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_56_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1178,20 +1178,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint56_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 56L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_56_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 56L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_56_POS, NIL)
     }
 
   public open val blendPoint57_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 57L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_57_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1199,20 +1199,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint57_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 57L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_57_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 57L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_57_POS, NIL)
     }
 
   public open val blendPoint58_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 58L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_58_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1220,20 +1220,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint58_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 58L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_58_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 58L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_58_POS, NIL)
     }
 
   public open val blendPoint59_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 59L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_59_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1241,20 +1241,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint59_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 59L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_59_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 59L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_59_POS, NIL)
     }
 
   public open val blendPoint6_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_6_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1262,20 +1262,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint6_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_6_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 6L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_6_POS, NIL)
     }
 
   public open val blendPoint60_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 60L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_60_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1283,20 +1283,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint60_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 60L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_60_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 60L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_60_POS, NIL)
     }
 
   public open val blendPoint61_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 61L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_61_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1304,20 +1304,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint61_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 61L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_61_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 61L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_61_POS, NIL)
     }
 
   public open val blendPoint62_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 62L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_62_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1325,20 +1325,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint62_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 62L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_62_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 62L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_62_POS, NIL)
     }
 
   public open val blendPoint63_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 63L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_63_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1346,20 +1346,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint63_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 63L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_63_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 63L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_63_POS, NIL)
     }
 
   public open val blendPoint7_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_7_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1367,20 +1367,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint7_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_7_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 7L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_7_POS, NIL)
     }
 
   public open val blendPoint8_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_8_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1388,20 +1388,20 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint8_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_8_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 8L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_8_POS, NIL)
     }
 
   public open val blendPoint9_node: AnimationRootNode?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_9_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
@@ -1409,13 +1409,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public open var blendPoint9_pos: Vector2
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_9_POS, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(LONG to 9L, VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_9_POS, NIL)
     }

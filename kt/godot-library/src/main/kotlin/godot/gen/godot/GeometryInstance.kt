@@ -185,13 +185,13 @@ public open class GeometryInstance : VisualInstance() {
    */
   public open var useInBakedLight: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_GET_USE_IN_BAKED_LIGHT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_USE_IN_BAKED_LIGHT, NIL)
     }

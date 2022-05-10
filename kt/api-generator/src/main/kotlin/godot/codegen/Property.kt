@@ -106,14 +106,25 @@ class Property @JsonCreator constructor(
 
         if (hasValidSetter) {
             propertySpecBuilder.mutable()
+            val argumentsString = if (index == -1) {
+                "%T to value"
+            } else {
+                "%T to ${index}L, %T to value"
+            }
+
+            val argumentsTypes = if (index == -1)
+                listOf(type)
+            else
+                listOf("Long", type)
+
             propertySpecBuilder.setter(
                 FunSpec.setterBuilder()
                     .addParameter("value", propertyType)
                     .generateJvmMethodCall(
                         engineSetterIndexName,
                         "Unit",
-                        "%T to value",
-                        listOf(type),
+                        argumentsString,
+                        argumentsTypes,
                         false
                     )
                     .build()
@@ -125,13 +136,25 @@ class Property @JsonCreator constructor(
         }
 
         if (hasValidGetter) {
+            val argumentsString = if (index == -1) {
+                ""
+            } else {
+                "%T to ${index}L"
+            }
+
+            val argumentsTypes = if (index == -1) {
+                listOf()
+            } else {
+                listOf("Long")
+            }
+
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
                     .generateJvmMethodCall(
                         engineGetterIndexName,
                         type,
-                        "",
-                        listOf(),
+                        argumentsString,
+                        argumentsTypes,
                         false
                     )
                     .build()

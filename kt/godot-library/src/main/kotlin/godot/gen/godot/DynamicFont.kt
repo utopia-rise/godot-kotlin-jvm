@@ -47,13 +47,13 @@ public open class DynamicFont : Font() {
    */
   public open var extraSpacingBottom: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_BOTTOM, NIL)
     }
@@ -65,13 +65,13 @@ public open class DynamicFont : Font() {
    */
   public open var extraSpacingChar: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_CHAR, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_CHAR, NIL)
     }
@@ -83,13 +83,13 @@ public open class DynamicFont : Font() {
    */
   public open var extraSpacingSpace: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_SPACE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_SPACE, NIL)
     }
@@ -99,13 +99,13 @@ public open class DynamicFont : Font() {
    */
   public open var extraSpacingTop: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_TOP,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_TOP,
           NIL)
     }

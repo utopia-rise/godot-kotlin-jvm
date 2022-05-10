@@ -71,12 +71,12 @@ public open class Particles : GeometryInstance() {
    */
   public open var drawPass1: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_1, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_1, NIL)
     }
 
@@ -85,12 +85,12 @@ public open class Particles : GeometryInstance() {
    */
   public open var drawPass2: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_2, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_2, NIL)
     }
 
@@ -99,12 +99,12 @@ public open class Particles : GeometryInstance() {
    */
   public open var drawPass3: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_3, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_3, NIL)
     }
 
@@ -113,12 +113,12 @@ public open class Particles : GeometryInstance() {
    */
   public open var drawPass4: Mesh?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_4, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_4, NIL)
     }
 

@@ -117,13 +117,13 @@ public open class TextureProgress : Range() {
    */
   public open var stretchMarginBottom: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_GET_STRETCH_MARGIN_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_SET_STRETCH_MARGIN_BOTTOM, NIL)
     }
@@ -133,13 +133,13 @@ public open class TextureProgress : Range() {
    */
   public open var stretchMarginLeft: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_GET_STRETCH_MARGIN_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_SET_STRETCH_MARGIN_LEFT, NIL)
     }
@@ -149,13 +149,13 @@ public open class TextureProgress : Range() {
    */
   public open var stretchMarginRight: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_GET_STRETCH_MARGIN_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_SET_STRETCH_MARGIN_RIGHT, NIL)
     }
@@ -165,13 +165,13 @@ public open class TextureProgress : Range() {
    */
   public open var stretchMarginTop: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_GET_STRETCH_MARGIN_TOP, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_SET_STRETCH_MARGIN_TOP, NIL)
     }

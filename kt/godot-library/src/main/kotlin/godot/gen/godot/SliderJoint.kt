@@ -8,6 +8,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
 import kotlin.Long
@@ -24,260 +25,260 @@ import kotlin.Unit
 public open class SliderJoint : Joint() {
   public open var angularLimit_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_LIMIT_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 15L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_LIMIT_DAMPING, NIL)
     }
 
   public open var angularLimit_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_LIMIT_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_LIMIT_RESTITUTION, NIL)
     }
 
   public open var angularLimit_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_LIMIT_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_LIMIT_SOFTNESS, NIL)
     }
 
   public open var angularMotion_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_MOTION_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 18L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_MOTION_DAMPING, NIL)
     }
 
   public open var angularMotion_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_MOTION_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 17L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_MOTION_RESTITUTION, NIL)
     }
 
   public open var angularMotion_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_MOTION_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 16L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_MOTION_SOFTNESS, NIL)
     }
 
   public open var angularOrtho_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_ORTHO_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 21L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_ORTHO_DAMPING, NIL)
     }
 
   public open var angularOrtho_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_ORTHO_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_ORTHO_RESTITUTION, NIL)
     }
 
   public open var angularOrtho_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_ANGULAR_ORTHO_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 19L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_ANGULAR_ORTHO_SOFTNESS, NIL)
     }
 
   public open var linearLimit_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_LIMIT_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_LIMIT_DAMPING, NIL)
     }
 
   public open var linearLimit_lowerDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_LIMIT_LOWER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_LIMIT_LOWER_DISTANCE, NIL)
     }
 
   public open var linearLimit_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_LIMIT_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_LIMIT_RESTITUTION, NIL)
     }
 
   public open var linearLimit_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_LIMIT_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_LIMIT_SOFTNESS, NIL)
     }
 
   public open var linearLimit_upperDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_LIMIT_UPPER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_LIMIT_UPPER_DISTANCE, NIL)
     }
 
   public open var linearMotion_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_MOTION_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_MOTION_DAMPING, NIL)
     }
 
   public open var linearMotion_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_MOTION_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_MOTION_RESTITUTION, NIL)
     }
 
   public open var linearMotion_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_MOTION_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_MOTION_SOFTNESS, NIL)
     }
 
   public open var linearOrtho_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_ORTHO_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_ORTHO_DAMPING, NIL)
     }
 
   public open var linearOrtho_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_ORTHO_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_ORTHO_RESTITUTION, NIL)
     }
 
   public open var linearOrtho_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_GET_LINEAR_ORTHO_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_ORTHO_SOFTNESS, NIL)
     }
