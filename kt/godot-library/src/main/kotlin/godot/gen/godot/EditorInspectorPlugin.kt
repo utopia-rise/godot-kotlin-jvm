@@ -25,9 +25,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/inspector_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/inspector_plugins.html)
  *
- * These plugins allow adding custom property editors to [godot.EditorInspector].
- *
- * Plugins are registered via [godot.EditorPlugin.addInspectorPlugin].
+ * [godot.EditorInspectorPlugin] allows adding custom property editors to [godot.EditorInspector].
  *
  * When an object is edited, the [canHandle] function is called and must return `true` if the object type is supported.
  *
@@ -38,6 +36,8 @@ import kotlin.Unit
  * Finally, [parseEnd] will be called.
  *
  * On each of these calls, the "add" functions can be called.
+ *
+ * To use [godot.EditorInspectorPlugin], register it using the [godot.EditorPlugin.addInspectorPlugin] method first.
  */
 @GodotBaseType
 public open class EditorInspectorPlugin : Reference() {

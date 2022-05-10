@@ -90,7 +90,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Adds a button with [godot.Texture] `button` at column `column`. The `button_idx` index is used to identify the button when calling other methods. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately after this method. Optionally, the button can be `disabled` and have a `tooltip`.
+   * Adds a button with [godot.Texture] `button` at column `column`. The `button_idx` is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately after this method. Optionally, the button can be `disabled` and have a `tooltip`.
    */
   public open fun addButton(
     column: Long,
@@ -155,7 +155,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Returns the number of buttons in column `column`. May be used to get the most recently added button's index, if no index was specified.
+   * Returns the number of buttons in column `column`.
    */
   public open fun getButtonCount(column: Long): Long {
     TransferContext.writeArguments(LONG to column)

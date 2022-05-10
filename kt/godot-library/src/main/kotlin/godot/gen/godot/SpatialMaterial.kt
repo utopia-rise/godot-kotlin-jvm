@@ -66,7 +66,7 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * The strength of the anisotropy effect.
+   * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel.
    */
   public open var anisotropy: Double
     get() {
@@ -82,7 +82,11 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * If `true`, anisotropy is enabled. Changes the shape of the specular blob and aligns it to tangent space. Mesh tangents are needed for this to work. If the mesh does not contain tangents the anisotropy effect will appear broken.
+   * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns it to tangent space. This is useful for brushed aluminium and hair reflections.
+   *
+   * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.
+   *
+   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering. Anisotropic texture filtering can be enabled by selecting a texture in the FileSystem dock, going to the Import dock, checking the **Anisotropic** checkbox then clicking **Reimport**.
    */
   public open var anisotropyEnabled: Boolean
     get() {
@@ -98,7 +102,9 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * Texture that offsets the tangent map for anisotropy calculations.
+   * Texture that offsets the tangent map for anisotropy calculations and optionally controls the anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a derivative map, with the red channel representing distortion on the X axis and green channel representing distortion on the Y axis. Values below 0.5 will result in negative distortion, whereas values above 0.5 will result in positive distortion.
+   *
+   * If present, the texture's alpha channel will be used to multiply the strength of the [anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue channel is ignored.
    */
   public open var anisotropyFlowmap: Texture?
     get() {
@@ -456,7 +462,7 @@ public open class SpatialMaterial : Material() {
   /**
    * Texture that specifies the per-pixel normal of the detail overlay.
    *
-   * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
   public open var detailNormal: Texture?
     get() {
@@ -930,7 +936,7 @@ public open class SpatialMaterial : Material() {
    *
    * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [godot.SurfaceTool], you can use [godot.SurfaceTool.generateNormals] and [godot.SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
    *
-   * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
   public open var normalTexture: Texture?
     get() {

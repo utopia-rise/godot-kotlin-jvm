@@ -87,7 +87,7 @@ public open class CollisionObject2D : Node2D() {
     }
 
   /**
-   * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one `collision_layer` bit to be set.
+   * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [collisionLayer] bit to be set.
    */
   public open var inputPickable: Boolean
     get() {

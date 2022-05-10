@@ -392,7 +392,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Called when the object is initialized.
+   * Called when the object is initialized in memory. Can be defined to take in parameters, that are passed in when constructing.
+   *
+   * **Note:** If [_init] is defined with required parameters, then explicit construction is the only valid means of creating an Object of the class. If any other means (such as [godot.PackedScene.instance]) is used, then initialization will fail.
    */
   public open fun _init(): Unit {
   }
@@ -780,7 +782,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the given property. If the `property` does not exist, nothing will happen.
+   * Assigns a new value to the given property. If the `property` does not exist or the given value's type doesn't match, nothing will happen.
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */

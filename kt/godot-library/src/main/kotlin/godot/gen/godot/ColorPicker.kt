@@ -81,7 +81,7 @@ public open class ColorPicker : BoxContainer() {
     }
 
   /**
-   * If `true`, shows an alpha channel slider (transparency).
+   * If `true`, shows an alpha channel slider (opacity).
    */
   public open var editAlpha: Boolean
     get() {

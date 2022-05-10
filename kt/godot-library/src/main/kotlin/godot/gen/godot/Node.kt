@@ -154,6 +154,8 @@ public open class Node : Object() {
 
   /**
    * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
+   *
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open var owner: Node?
     get() {
@@ -797,7 +799,7 @@ public open class Node : Object() {
    * 				add_child(child_node)
    * 				```
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/3.2/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open fun addChild(node: Node, legibleUniqueName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName)

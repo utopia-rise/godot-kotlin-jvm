@@ -634,6 +634,10 @@ public open class Image : Resource() {
      * Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).
      */
     COMPRESS_SOURCE_NORMAL(2),
+    /**
+     * Source texture (before compression) is a [godot.TextureLayered].
+     */
+    COMPRESS_SOURCE_LAYERED(3),
     ;
 
     public val id: Long
@@ -958,6 +962,11 @@ public open class Image : Resource() {
      * Source texture (before compression) is a regular texture. Default for all textures.
      */
     public final const val COMPRESS_SOURCE_GENERIC: Long = 0
+
+    /**
+     * Source texture (before compression) is a [godot.TextureLayered].
+     */
+    public final const val COMPRESS_SOURCE_LAYERED: Long = 3
 
     /**
      * Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).

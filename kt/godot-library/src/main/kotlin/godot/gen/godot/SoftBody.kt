@@ -32,6 +32,8 @@ import kotlin.Unit
  * [https://docs.godotengine.org/en/3.4/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/3.4/tutorials/physics/soft_body.html)
  *
  * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
+ *
+ * **Note:** There are many known bugs in [godot.SoftBody]. Therefore, it's not recommended to use them for things that can affect gameplay (such as a player character made entirely out of soft bodies).
  */
 @GodotBaseType
 public open class SoftBody : MeshInstance() {

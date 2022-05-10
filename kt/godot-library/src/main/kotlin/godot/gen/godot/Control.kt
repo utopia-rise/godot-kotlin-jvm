@@ -99,6 +99,14 @@ public open class Control : CanvasItem() {
    * Emitted when the mouse leaves the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
    *
    * **Note:** [mouseExited] will be emitted if the mouse enters a child [godot.Control] node, even if the mouse cursor is still inside the parent's `Rect` area.
+   *
+   * If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
+   *
+   * ```
+   * 				func _on_mouse_exited():
+   * 				    if not Rect2(Vector2(), rect_size).has_point(get_local_mouse_position()):
+   * 				        # Not hovering over area.
+   * 				```
    */
   public val mouseExited: Signal0 by signal()
 
@@ -472,7 +480,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * By default, the node's pivot is its top-left corner. When you change its [rectScale], it will scale around this pivot. Set this property to [rectSize] / 2 to center the pivot in the node's rectangle.
+   * By default, the node's pivot is its top-left corner. When you change its [rectRotation] or [rectScale], it will rotate or scale around this pivot. Set this property to [rectSize] / 2 to pivot around the Control's center.
    */
   public open var rectPivotOffset: Vector2
     get() {

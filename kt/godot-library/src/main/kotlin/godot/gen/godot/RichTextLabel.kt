@@ -91,7 +91,7 @@ public open class RichTextLabel : Control() {
   /**
    * The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
    *
-   * **Note:** It is unadvised to use the `+=` operator with `bbcode_text` (e.g. `bbcode_text += "some string"`) as it replaces the whole text and can cause slowdowns. Use [appendBbcode] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
+   * **Note:** It is unadvised to use the `+=` operator with `bbcode_text` (e.g. `bbcode_text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [appendBbcode] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
    */
   public open var bbcodeText: String
     get() {

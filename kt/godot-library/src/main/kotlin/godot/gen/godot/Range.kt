@@ -32,7 +32,9 @@ public open class Range : Control() {
   public val changed: Signal0 by signal()
 
   /**
-   * Emitted when [value] changes.
+   * Emitted when [value] changes. When used on a [godot.Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [valueChanged], consider using a *debouncing* [godot.Timer] to call the function less often.
+   *
+   * **Note:** Unlike signals such as [godot.LineEdit.textChanged], [valueChanged] is also emitted when `value` is set directly via code.
    */
   public val valueChanged: Signal1<Double> by signal("value")
 
@@ -181,7 +183,7 @@ public open class Range : Control() {
   }
 
   /**
-   * Binds two ranges together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
+   * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
    */
   public open fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
@@ -189,7 +191,7 @@ public open class Range : Control() {
   }
 
   /**
-   * Stops range from sharing its member variables with any other.
+   * Stops the [godot.Range] from sharing its member variables with any other.
    */
   public open fun unshare(): Unit {
     TransferContext.writeArguments()

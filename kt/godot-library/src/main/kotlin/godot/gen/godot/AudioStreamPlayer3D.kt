@@ -45,7 +45,7 @@ public open class AudioStreamPlayer3D : Spatial() {
   public val finished: Signal0 by signal()
 
   /**
-   * Areas in which this sound plays.
+   * Determines which [godot.Area] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
    */
   public open var areaMask: Long
     get() {

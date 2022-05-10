@@ -133,7 +133,9 @@ public open class SpriteBase3D : GeometryInstance() {
     }
 
   /**
-   * A color value that gets multiplied on, could be used for mood-coloring or to simulate the color of light.
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of light.
+   *
+   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;[/color] must be inserted in the shader's `fragment()` function.
    */
   public open var modulate: Color
     get() {
@@ -161,7 +163,9 @@ public open class SpriteBase3D : GeometryInstance() {
     }
 
   /**
-   * The objects' visibility on a scale from `0` fully invisible to `1` fully visible.
+   * The texture's visibility on a scale from `0` (fully invisible) to `1` (fully visible). [opacity] is a multiplier for the [modulate] color's alpha channel.
+   *
+   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the opacity defined in [opacity] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALPHA *= COLOR.a;[/color] must be inserted in the shader's `fragment()` function.
    */
   public open var opacity: Double
     get() {

@@ -158,6 +158,9 @@ public open class TabContainer : Container() {
   public open fun _onThemeChanged(): Unit {
   }
 
+  public open fun _repaint(): Unit {
+  }
+
   public open fun _updateCurrentTab(): Unit {
   }
 

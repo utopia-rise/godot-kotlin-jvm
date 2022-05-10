@@ -25,6 +25,8 @@ import kotlin.Unit
  * The [godot.CameraServer] keeps track of different cameras accessible in Godot. These are external cameras such as webcams or the cameras on your phone.
  *
  * It is notably used to provide AR modules with a video feed from the camera.
+ *
+ * **Note:** This class is currently only implemented on macOS and iOS. On other platforms, no [godot.CameraFeed]s will be available.
  */
 @GodotBaseType
 public object CameraServer : Object() {
@@ -39,7 +41,7 @@ public object CameraServer : Object() {
   public final const val FEED_RGBA_IMAGE: Long = 0
 
   /**
-   * The YCbCr camera image.
+   * The [godot.YCbCr](https://en.wikipedia.org/wiki/YCbCr) camera image.
    */
   public final const val FEED_YCBCR_IMAGE: Long = 0
 
@@ -49,12 +51,12 @@ public object CameraServer : Object() {
   public final const val FEED_Y_IMAGE: Long = 0
 
   /**
-   * Emitted when a [godot.CameraFeed] is added (e.g. webcam is plugged in).
+   * Emitted when a [godot.CameraFeed] is added (e.g. a webcam is plugged in).
    */
   public val cameraFeedAdded: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when a [godot.CameraFeed] is removed (e.g. webcam is unplugged).
+   * Emitted when a [godot.CameraFeed] is removed (e.g. a webcam is unplugged).
    */
   public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
@@ -65,7 +67,7 @@ public object CameraServer : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Adds a camera feed to the camera server.
+   * Adds the camera `feed` to the camera server.
    */
   public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
@@ -82,7 +84,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Returns the [godot.CameraFeed] with this id.
+   * Returns the [godot.CameraFeed] corresponding to the camera with the given `index`.
    */
   public fun getFeed(index: Long): CameraFeed? {
     TransferContext.writeArguments(LONG to index)
@@ -100,7 +102,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Removes a [godot.CameraFeed].
+   * Removes the specified camera `feed`.
    */
   public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
@@ -115,7 +117,7 @@ public object CameraServer : Object() {
      */
     FEED_RGBA_IMAGE(0),
     /**
-     * The YCbCr camera image.
+     * The [godot.YCbCr](https://en.wikipedia.org/wiki/YCbCr) camera image.
      */
     FEED_YCBCR_IMAGE(0),
     /**

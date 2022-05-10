@@ -187,7 +187,9 @@ public open class Light : VisualInstance() {
     }
 
   /**
-   * Attempts to reduce [shadowBias] gap.
+   * Attempts to reduce [shadowBias] gap by rendering screen-space contact shadows. This has a performance impact, especially at higher values.
+   *
+   * **Note:** Contact shadows can look broken, so leaving this property to `0.0` is recommended.
    */
   public open var shadowContact: Double
     get() {

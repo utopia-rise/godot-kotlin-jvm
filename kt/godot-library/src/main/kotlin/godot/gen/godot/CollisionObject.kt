@@ -103,7 +103,7 @@ public open class CollisionObject : Spatial() {
     }
 
   /**
-   * If `true`, the [godot.CollisionObject]'s shapes will respond to [godot.RayCast]s.
+   * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [collisionLayer] bit to be set.
    */
   public open var inputRayPickable: Boolean
     get() {

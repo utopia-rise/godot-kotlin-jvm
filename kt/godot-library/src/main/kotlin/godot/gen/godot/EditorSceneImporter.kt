@@ -20,6 +20,10 @@ import kotlin.Unit
 
 /**
  * Imports scenes from third-parties' 3D files.
+ *
+ * [godot.EditorSceneImporter] allows to define an importer script for a third-party 3D format.
+ *
+ * To use [godot.EditorSceneImporter], register it using the [godot.EditorPlugin.addSceneImportPlugin] method first.
  */
 @GodotBaseType
 public open class EditorSceneImporter : Reference() {

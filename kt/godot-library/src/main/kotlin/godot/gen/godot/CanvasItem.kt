@@ -281,7 +281,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws an arc between the given angles. The larger the value of `point_count`, the smoother the curve.
+   * Draws a unfilled arc between the given angles. The larger the value of `point_count`, the smoother the curve. See also [drawCircle].
    */
   public open fun drawArc(
     center: Vector2,
@@ -315,7 +315,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a colored circle.
+   * Draws a colored, unfilled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
    */
   public open fun drawCircle(
     position: Vector2,
@@ -327,7 +327,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a colored polygon of any amount of points, convex or concave.
+   * Draws a colored polygon of any amount of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
    */
   public open fun drawColoredPolygon(
     points: PoolVector2Array,
@@ -344,7 +344,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+   * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [drawMultiline] and [drawPolyline].
    */
   public open fun drawLine(
     from: Vector2,
@@ -374,7 +374,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws multiple, parallel lines with a uniform `color`.
+   * Draws multiple disconnected lines with a uniform `color`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    *
    * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
    */
@@ -390,7 +390,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws multiple, parallel lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`.
+   * Draws multiple disconnected lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
    *
    * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
    */
@@ -419,7 +419,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a polygon of any amount of points, convex or concave.
+   * Draws a solid polygon of any amount of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
    */
   public open fun drawPolygon(
     points: PoolVector2Array,
@@ -435,7 +435,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing.
+   * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    */
   public open fun drawPolyline(
     points: PoolVector2Array,
@@ -449,7 +449,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `width`, segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`.
+   * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    */
   public open fun drawPolylineColors(
     points: PoolVector2Array,
@@ -464,7 +464,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+   * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
    */
   public open fun drawPrimitive(
     points: PoolVector2Array,
@@ -716,7 +716,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Hide the [godot.CanvasItem] if it's currently visible.
+   * Hide the [godot.CanvasItem] if it's currently visible. This is equivalent to setting [visible] to `false`.
    */
   public open fun hide(): Unit {
     TransferContext.writeArguments()
@@ -807,7 +807,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Show the [godot.CanvasItem] if it's currently hidden. For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
+   * Show the [godot.CanvasItem] if it's currently hidden. This is equivalent to setting [visible] to `true`. For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
    */
   public open fun show(): Unit {
     TransferContext.writeArguments()

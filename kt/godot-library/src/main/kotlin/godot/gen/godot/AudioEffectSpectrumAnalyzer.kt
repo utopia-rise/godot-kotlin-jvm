@@ -19,7 +19,7 @@ import kotlin.Unit
  * Audio effect that can be used for real-time audio visualizations.
  *
  * Tutorials:
- * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
  * This audio effect does not affect sound output, but can be used for real-time audio visualizations.
  *

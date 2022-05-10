@@ -2088,8 +2088,6 @@ private fun registerEngineTypeMethodForAnimationNodeBlendTree(): Unit {
 }
 
 private fun registerEngineTypeMethodForAnimationNodeOneShot(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "get_mix_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_mix_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "has_autorestart")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_autorestart")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "get_autorestart_delay")
@@ -2102,6 +2100,8 @@ private fun registerEngineTypeMethodForAnimationNodeOneShot(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_fadein_time")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "get_fadeout_time")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_fadeout_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "get_mix_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_mix_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "is_using_sync")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_use_sync")
 }
@@ -10719,6 +10719,7 @@ private fun registerEngineTypeMethodForTabContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_on_mouse_exited")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_on_theme_changed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_repaint")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_update_current_tab")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_current_tab_control")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_popup")

@@ -37,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CharFXTransform : Reference() {
   /**
-   * The index of the current character (starting from 0). Setting this property won't affect drawing.
+   * The index of the current character (starting from 0) for the [godot.RichTextLabel]'s BBCode text. Setting this property won't affect drawing.
    */
   public open var absoluteIndex: Long
     get() {
@@ -143,7 +143,7 @@ public open class CharFXTransform : Reference() {
     }
 
   /**
-   * The index of the current character (starting from 0). Setting this property won't affect drawing.
+   * The index of the current character (starting from 0) for this [godot.RichTextEffect] custom block. Setting this property won't affect drawing.
    */
   public open var relativeIndex: Long
     get() {
