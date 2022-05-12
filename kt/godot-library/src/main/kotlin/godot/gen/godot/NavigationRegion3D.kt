@@ -91,7 +91,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
-   * Bakes the [godot.NavigationMesh]. The baking is done in a separate thread because navigation baking is not a cheap operation. This can be done at runtime. When it is completed, it automatically sets the new [godot.NavigationMesh].
+   * Bakes the [godot.NavigationMesh]. If `on_thread` is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [godot.NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization.
    */
   public fun bakeNavigationMesh(): Unit {
     TransferContext.writeArguments()

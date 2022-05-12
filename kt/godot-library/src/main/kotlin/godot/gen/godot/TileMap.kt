@@ -313,7 +313,7 @@ public open class TileMap : Node2D() {
     layer: Long,
     coords: Vector2i,
     sourceId: Long = -1,
-    atlasCoords: Vector2i = Vector2i(-1.0, -1.0),
+    atlasCoords: Vector2i = Vector2i(-1, -1),
     alternativeTile: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)

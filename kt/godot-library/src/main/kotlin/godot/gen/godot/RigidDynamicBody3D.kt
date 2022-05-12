@@ -536,7 +536,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_IMPULSE,
         NIL)
@@ -569,7 +569,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_APPLY_FORCE, NIL)
   }
@@ -599,7 +599,7 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
+  public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_ADD_CONSTANT_FORCE, NIL)

@@ -1010,7 +1010,7 @@ public object DisplayServer : Object() {
     mode: DisplayServer.WindowMode,
     vsyncMode: DisplayServer.VSyncMode,
     flags: Long,
-    rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)
+    rect: Rect2i = Rect2i(0, 0, 0, 0)
   ): Long {
     TransferContext.writeArguments(LONG to mode.id, LONG to vsyncMode.id, LONG to flags, RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CREATE_SUB_WINDOW,
@@ -1527,7 +1527,7 @@ public object DisplayServer : Object() {
   public fun cursorSetCustomImage(
     cursor: Resource,
     shape: DisplayServer.CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
-    hotspot: Vector2 = Vector2(0.0, 0.0)
+    hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr,

@@ -714,7 +714,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public fun popup(rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)): Unit {
+  public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP, NIL)
   }
@@ -738,7 +738,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public fun popupCentered(minsize: Vector2i = Vector2i(0.0, 0.0)): Unit {
+  public fun popupCentered(minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED, NIL)
   }
@@ -746,8 +746,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0.0, 0.0), fallbackRatio: Double =
-      0.75): Unit {
+  public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Double = 0.75):
+      Unit {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
   }

@@ -1,13 +1,11 @@
 package godot.core
 
-import godot.util.RealT
-
 class Rect2i(
-    p_position: Vector2,
-    p_size: Vector2
+    p_position: Vector2i,
+    p_size: Vector2i
 ) {
-    constructor(x: RealT, y: RealT, width: RealT, height: RealT) :
-            this(Vector2(x, y), Vector2(width, height))
+    constructor(x: Int, y: Int, width: Int, height: Int) :
+            this(Vector2i(x, y), Vector2i(width, height))
 
     //TODO/4.0: Implement
 }

@@ -67,23 +67,16 @@ private:
 
     template<typename F, typename T>
     void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {
-        List<StringName> keys;
-        members.get_key_list(&keys);
-
-        for (auto i = 0; i < keys.size(); i++) {
-            p_list->push_back(members.get(keys[i])->get_member_info());
+        for (const KeyValue<StringName, T*>& E : members) {
+            p_list->push_back(E.value->get_member_info());
         }
     }
 
     template<class T>
     void delete_members(HashMap<StringName, T*>& members) {
-        List<StringName> keys;
-        members.get_key_list(&keys);
-
-        for (auto i = 0; i < keys.size(); i++) {
-            delete members.get(keys[i]);
+        for (const KeyValue<StringName, T*>& E : members) {
+            delete E.value;
         }
-
         members.clear();
     }
 

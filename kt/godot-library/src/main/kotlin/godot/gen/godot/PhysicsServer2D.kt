@@ -814,7 +814,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyApplyImpulse(
     body: RID,
     impulse: Vector2,
-    position: Vector2 = Vector2(0.0, 0.0)
+    position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_IMPULSE,
@@ -840,7 +840,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyApplyForce(
     body: RID,
     force: Vector2,
-    position: Vector2 = Vector2(0.0, 0.0)
+    position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_FORCE,
@@ -875,7 +875,7 @@ public object PhysicsServer2D : Object() {
   public fun bodyAddConstantForce(
     body: RID,
     force: Vector2,
-    position: Vector2 = Vector2(0.0, 0.0)
+    position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,

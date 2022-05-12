@@ -86,8 +86,7 @@ public open class KinematicCollision3D : RefCounted() {
   /**
    * Returns the collision angle according to `up_direction`, which is `Vector3.UP` by default. This value is always positive.
    */
-  public fun getAngle(collisionIndex: Long = 0, upDirection: Vector3 = Vector3(0.0, 1.0, 0.0)):
-      Double {
+  public fun getAngle(collisionIndex: Long = 0, upDirection: Vector3 = Vector3(0, 1, 0)): Double {
     TransferContext.writeArguments(LONG to collisionIndex, VECTOR3 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION3D_GET_ANGLE,
         DOUBLE)

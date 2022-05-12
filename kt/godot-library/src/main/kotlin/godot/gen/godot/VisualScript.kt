@@ -75,7 +75,7 @@ public open class VisualScript : Script() {
   public fun addNode(
     id: Long,
     node: VisualScriptNode,
-    position: Vector2 = Vector2(0.0, 0.0)
+    position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_NODE, NIL)

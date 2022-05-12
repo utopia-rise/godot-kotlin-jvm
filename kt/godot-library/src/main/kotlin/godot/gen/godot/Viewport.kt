@@ -672,27 +672,13 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the viewport's texture.
    *
-   * **Note:** Due to the way OpenGL works, the resulting [godot.ViewportTexture] is flipped vertically. You can use [godot.Image.flipY] on the result of [godot.Texture2D.getImage] to flip it back, for example:
+   * **Note:** When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [godot.Node.Ready]. To make sure the texture you get is correct, you can await [godot.RenderingServer.framePostDraw] signal.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * var img = get_viewport().get_texture().get_image()
-   *
-   * img.flip_y()
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * Image img = GetViewport().GetTexture().GetImage();
-   *
-   * img.FlipY();
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
+   * 				func _ready():
+   * 				    await RenderingServer.frame_post_draw
+   * 				    $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
+   * 				```
    */
   public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()

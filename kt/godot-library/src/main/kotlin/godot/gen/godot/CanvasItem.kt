@@ -655,7 +655,7 @@ public open class CanvasItem internal constructor() : Node() {
   public fun drawSetTransform(
     position: Vector2,
     rotation: Double = 0.0,
-    scale: Vector2 = Vector2(1.0, 1.0)
+    scale: Vector2 = Vector2(1, 1)
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to rotation, VECTOR2 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_SET_TRANSFORM, NIL)

@@ -3,6 +3,7 @@ package godot.core
 import godot.util.*
 import kotlin.math.*
 
+@Suppress("MemberVisibilityCanBePrivate")
 class Vector2(
     var x: RealT,
     var y: RealT
@@ -105,17 +106,10 @@ class Vector2(
     }
 
     /**
-     * Returns the vector with a maximum length.
+     * Returns a new vector with all components clamped between the components of min and max, by running
+     * @GlobalScope.clamp on each component.
      */
-    fun clamped(len: RealT): Vector2 {
-        val l: RealT = this.length()
-        var v = Vector2(this)
-        if (l > 0 && len < l) {
-            v /= l
-            v *= len
-        }
-        return v
-    }
+    fun clamp(min: Vector2, max: Vector2) = Vector2(x.coerceIn(min.x, max.x), y.coerceIn(min.y, max.y))
 
     /**
      * Returns the 2 dimensional analog of the cross product with the given vector.
@@ -182,6 +176,12 @@ class Vector2(
     }
 
     /**
+     * Creates a unit Vector2 rotated to the given angle in radians. This is equivalent to doing
+     * Vector2(cos(angle), sin(angle)) or Vector2.RIGHT.rotated(angle).
+     */
+    fun fromAngle(angle: RealT) = Vector2(cos(angle), sin(angle))
+
+    /**
      * Returns true if this vector and v are approximately equal, by running isEqualApprox on each component.
      */
     fun isEqualApprox(other: Vector2): Boolean {
@@ -214,15 +214,39 @@ class Vector2(
     }
 
     /**
-     * Returns the result of the linear interpolation between this vector and b by amount t.
-     * t is in the range of 0.0 - 1.0, representing the amount of interpolation.
+     * Returns the result of the linear interpolation between this vector and to by amount weight. weight is on the
+     * range of 0.0 to 1.0, representing the amount of interpolation.
      */
-    fun linearInterpolate(v: Vector2, t: RealT): Vector2 {
-        val res = Vector2(this)
-        res.x += (t * (v.x - x))
-        res.y += (t * (v.y - y))
-        return res
+    fun lerp(to: Vector2, weight: RealT) = Vector2(
+        x + (weight * (to.x - x)),
+        y + (weight * (to.y - y))
+    )
+
+    /**
+     * Returns the vector with a maximum length by limiting its length to length.
+     */
+    fun limitLenght(length: RealT = 1.0): Vector2 {
+        val l = length()
+        var v = Vector2(this)
+        if (l > 0 && length < l) {
+            v /= l
+            v *= length
+        }
+
+        return v
     }
+
+    /**
+     * Returns the axis of the vector's highest value. See AXIS_* constants. If all components are equal,
+     * this method returns AXIS_X.
+     */
+    fun maxAxisIndex() = if (x < y) AXIS_Y else AXIS_X
+
+    /**
+     * Returns the axis of the vector's lowest value. See AXIS_* constants. If all components are equal,
+     * this method returns AXIS_Y.
+     */
+    fun minAxisIndex() = if (x < y) AXIS_X else AXIS_Y
 
     /**
      * Moves the vector toward to by the fixed delta amount.
@@ -256,6 +280,12 @@ class Vector2(
             y /= l
         }
     }
+
+    /**
+     * Returns a perpendicular vector rotated 90 degrees counter-clockwise compared to the original,
+     * with the same length.
+     */
+    fun orthogonal() = Vector2(y, -x)
 
     /**
      * Returns a vector composed of the fposmod of this vector’s components and mod.
@@ -352,14 +382,6 @@ class Vector2(
         return Vector2(newX, newY)
     }
 
-    /**
-     * Returns a perpendicular vector.
-     */
-    fun tangent(): Vector2 {
-        return Vector2(y, -x)
-    }
-
-
     operator fun get(idx: Int): RealT =
         when (idx) {
             0 -> x
@@ -399,6 +421,8 @@ class Vector2(
     operator fun div(scalar: Double) = Vector2(x / scalar, y / scalar)
 
     operator fun unaryMinus() = Vector2(-x, -y)
+
+    fun toVector2i() = Vector2i(x.toInt(), x.toInt())
 
     override fun equals(other: Any?): Boolean =
         when (other) {

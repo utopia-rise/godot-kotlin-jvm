@@ -40,7 +40,7 @@ public open class EngineProfiler : RefCounted() {
   }
 
   /**
-   * Called once every engine iteration when the profiler is active with information about the current frame.
+   * Called once every engine iteration when the profiler is active with information about the current frame. All time values are in seconds. Lower values represent faster processing times and are therefore considered better.
    */
   public open fun _tick(
     frameTime: Double,

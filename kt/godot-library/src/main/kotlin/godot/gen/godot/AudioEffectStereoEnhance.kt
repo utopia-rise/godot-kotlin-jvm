@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * An audio effect that can be used to adjust the intensity of stereo panning.
  *
+ * An audio effect that can be used to adjust the intensity of stereo panning.
  */
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   *
+   * Values greater than 1.0 increase intensity of any panning on audio passing through this effect, whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix audio to mono.
    */
   public var panPullout: Double
     get() {

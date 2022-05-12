@@ -1609,7 +1609,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the tooltip, which will appear when the cursor is resting over this control. See [hintTooltip].
    */
-  public fun getTooltip(atPosition: Vector2 = Vector2(0.0, 0.0)): String {
+  public fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_TOOLTIP, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1618,7 +1618,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
    */
-  public fun getCursorShape(position: Vector2 = Vector2(0.0, 0.0)): Control.CursorShape {
+  public fun getCursorShape(position: Vector2 = Vector2(0, 0)): Control.CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)
     return Control.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]

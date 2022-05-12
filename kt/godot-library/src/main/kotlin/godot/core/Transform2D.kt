@@ -183,15 +183,15 @@ class Transform2D(
         }
 
         val v = if (dot > 0.9995)
-            (Vector2::linearInterpolate)(v1, v2, c).normalized()
+            v1.lerp(v2, c).normalized()
         else {
             val angle = c * acos(dot)
             val v3 = (v2 - v1 * dot).normalized()
             v1 * cos(angle) + v3 * sin(angle)
         }
 
-        val res = Transform2D(atan2(v.y, v.x), (Vector2::linearInterpolate)(p1, p2, c))
-        res.scaleBasis((Vector2::linearInterpolate)(s1, s2, c))
+        val res = Transform2D(atan2(v.y, v.x), p1.lerp(p2, c))
+        res.scaleBasis(s1.lerp(s2, c))
         return res
     }
 

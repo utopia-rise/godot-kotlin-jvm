@@ -506,7 +506,7 @@ public object Input : Object() {
   public fun setCustomMouseCursor(
     image: Resource,
     shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW,
-    hotspot: Vector2 = Vector2(0.0, 0.0)
+    hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR, NIL)

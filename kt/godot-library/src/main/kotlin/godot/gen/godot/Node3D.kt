@@ -517,7 +517,7 @@ public open class Node3D : Node() {
    *
    * Operations take place in global space.
    */
-  public fun lookAt(target: Vector3, up: Vector3 = Vector3(0.0, 1.0, 0.0)): Unit {
+  public fun lookAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT, NIL)
   }
@@ -528,7 +528,7 @@ public open class Node3D : Node() {
   public fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,
-    up: Vector3 = Vector3(0.0, 1.0, 0.0)
+    up: Vector3 = Vector3(0, 1, 0)
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT_FROM_POSITION, NIL)

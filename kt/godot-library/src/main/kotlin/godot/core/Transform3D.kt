@@ -114,8 +114,8 @@ class Transform3D(
 
         val dst = Transform3D()
         dst._basis = Basis(srcRot.slerp(dstRot, c))
-        dst._basis.scale(srcScale.linearInterpolate(dstScale, c))
-        dst._origin = srcLoc.linearInterpolate(dstLoc, c)
+        dst._basis.scale(srcScale.lerp(dstScale, c))
+        dst._origin = srcLoc.lerp(dstLoc, c)
 
         return dst
     }

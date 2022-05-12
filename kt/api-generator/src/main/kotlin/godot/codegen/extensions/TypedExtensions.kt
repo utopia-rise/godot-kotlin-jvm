@@ -113,13 +113,8 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
             GodotTypes.array -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
 
-            GodotTypes.vector2,
-            GodotTypes.vector3,
-            GodotTypes.vector2i,
-            GodotTypes.vector3i,
-            GodotTypes.rect2,
-            GodotTypes.rect2i
-            -> defaultValueString.replace(",", ".0,")
+            GodotTypes.rect2 -> defaultValueString
+                .replace(",", ".0,")
                 .replace(")", ".0)")
 
             GodotTypes.rid,

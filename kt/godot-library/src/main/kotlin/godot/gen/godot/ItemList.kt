@@ -61,25 +61,10 @@ public open class ItemList : Control() {
    */
   public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
 
-  /**
-   * Triggered when a left mouse click is issued within the rect of the list but on empty space.
-   */
   public val nothingSelected: Signal0 by signal()
 
-  /**
-   * Triggered when a right mouse click is issued within the rect of the list but on empty space.
-   *
-   * [allowRmbSelect] must be enabled.
-   */
   public val rmbClicked: Signal1<Vector2> by signal("atPosition")
 
-  /**
-   * Triggered when specified list item has been selected via right mouse clicking.
-   *
-   * The click position is also provided to allow appropriate popup of context menus at the correct location.
-   *
-   * [allowRmbSelect] must be enabled.
-   */
   public val itemRmbSelected: Signal2<Long, Vector2> by signal("index", "atPosition")
 
   /**

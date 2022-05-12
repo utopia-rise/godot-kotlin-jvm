@@ -652,7 +652,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the coodinate-level proxy for the given identifiers. The returned array contains the two proxie's target identifiers (source ID and atlas coords ID).
+   * Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).
    *
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */

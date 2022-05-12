@@ -107,13 +107,6 @@ public object Time : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
-   *
-   * If `weekday` is false, then the `weekday` entry is excluded (the calculation is relatively expensive).
-   *
-   * **Note:** Any decimal fraction in the time string will be ignored silently.
-   */
   public fun getDatetimeDictFromString(datetime: String, weekday: Boolean): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_STRING,
@@ -121,15 +114,6 @@ public object Time : Object() {
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  /**
-   * Converts the given dictionary of keys to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-   *
-   * The given dictionary can be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, and `second`. Any other entries (including `dst`) are ignored.
-   *
-   * If the dictionary is empty, `0` is returned. If some keys are omitted, they default to the equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).
-   *
-   * If `use_space` is true, use a space instead of the letter T in the middle.
-   */
   public fun getDatetimeStringFromDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
       String {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
