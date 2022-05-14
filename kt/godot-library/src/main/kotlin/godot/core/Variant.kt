@@ -54,12 +54,27 @@ private var ByteBuffer.vector2: Vector2
         putFloat(value.y.toFloat())
     }
 
+private var ByteBuffer.vector2i: Vector2i
+    get() = Vector2i(int, int)
+    set(value) {
+        putInt(value.x)
+        putInt(value.y)
+    }
+
 private var ByteBuffer.vector3: Vector3
     get() = Vector3(float.toRealT(), float.toRealT(), float.toRealT())
     set(value) {
         putFloat(value.x.toFloat())
         putFloat(value.y.toFloat())
         putFloat(value.z.toFloat())
+    }
+
+private var ByteBuffer.vector3i: Vector3i
+    get() = Vector3i(int, int, int)
+    set(value) {
+        putInt(value.x)
+        putInt(value.y)
+        putInt(value.z)
     }
 
 private var ByteBuffer.basis: Basis
@@ -189,10 +204,12 @@ enum class VariantType(
     VECTOR2I(
         6,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            buffer.vector2i
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Vector2i)
+            buffer.variantType = VECTOR2I.ordinal
+            buffer.vector2i = any
         }
     ),
     RECT2(
@@ -213,16 +230,22 @@ enum class VariantType(
     RECT2I(
         8,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            Rect2i(
+                buffer.vector2i,
+                buffer.vector2i
+            )
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Rect2i)
+            buffer.variantType = RECT2I.ordinal
+            buffer.vector2i = any._position
+            buffer.vector2i = any._size
         }
     ),
     VECTOR3(
         9,
         { buffer: ByteBuffer, _: Int ->
-            Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
+            buffer.vector3
         },
         { buffer: ByteBuffer, any: Any ->
             require(any is Vector3)
@@ -233,10 +256,12 @@ enum class VariantType(
     VECTOR3I(
         10,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            buffer.vector3i
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Vector3i)
+            buffer.variantType = VECTOR3I.ordinal
+            buffer.vector3i = any
         }
     ),
     TRANSFORM2D(
