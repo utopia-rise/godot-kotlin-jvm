@@ -25,11 +25,14 @@ internal val variantMapper = mutableMapOf(
     NodePath::class to NODE_PATH,
     Quaternion::class to QUATERNION,
     Rect2::class to RECT2,
+    Rect2i::class to RECT2I,
     RID::class to _RID,
     Transform3D::class to TRANSFORM3D,
     Transform2D::class to TRANSFORM2D,
     Vector2::class to VECTOR2,
+    Vector2i::class to VECTOR2I,
     Vector3::class to VECTOR3,
+    Vector3i::class to VECTOR3I,
     PackedByteArray::class to PACKED_BYTE_ARRAY,
     PackedColorArray::class to PACKED_COLOR_ARRAY,
     PackedInt32Array::class to PACKED_INT_32_ARRAY,
@@ -371,10 +374,11 @@ enum class VariantType(
     STRING_NAME(
         18,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            val ptr = buffer.long
+            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            STRING_NAME.toGodotNativeCoreType<StringName>(buffer, any)
         }
     ),
     NODE_PATH(
@@ -605,8 +609,11 @@ enum class VariantType(
                 is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                 is String -> STRING.toGodotWithoutNullCheck(buffer, any)
                 is Vector2 -> VECTOR2.toGodotWithoutNullCheck(buffer, any)
+                is Vector2i -> VECTOR2I.toGodotWithoutNullCheck(buffer, any)
                 is Rect2 -> RECT2.toGodotWithoutNullCheck(buffer, any)
+                is Rect2i -> RECT2I.toGodotWithoutNullCheck(buffer, any)
                 is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
+                is Vector3i -> VECTOR3I.toGodotWithoutNullCheck(buffer, any)
                 is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
                 is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
                 is Quaternion -> QUATERNION.toGodotWithoutNullCheck(buffer, any)
@@ -614,6 +621,7 @@ enum class VariantType(
                 is Basis -> BASIS.toGodotWithoutNullCheck(buffer, any)
                 is Transform3D -> TRANSFORM3D.toGodotWithoutNullCheck(buffer, any)
                 is Color -> COLOR.toGodotWithoutNullCheck(buffer, any)
+                is StringName -> STRING_NAME.toGodotWithoutNullCheck(buffer, any)
                 is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
                 is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
                 is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)

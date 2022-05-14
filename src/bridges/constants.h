@@ -10,6 +10,7 @@ namespace bridges {
     static const char* DICTIONARY_BRIDGE_CLASS_NAME = "godot.core.Dictionary$Bridge";
     static const char* RID_BRIDGE_CLASS_NAME = "godot.core.RID$Bridge";
     static const char* NODE_PATH_BRIDGE_CLASS_NAME = "godot.core.NodePath$Bridge";
+    static const char* STRING_NAME_BRIDGE_CLASS_NAME = "godot.core.StringName$Bridge";
 
     //TODO/4.0: Change class names in JVM
     static const char* PACKED_BYTE_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedByteArray$Bridge";
