@@ -5,7 +5,7 @@
 #include <modules/kotlin_jvm/src/java_instance_wrapper.h>
 
 namespace bridges {
-    class StringNameBridge : JavaInstanceWrapper<StringNameBridge> {
+    class StringNameBridge : public JavaInstanceWrapper<StringNameBridge> {
     public:
         StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
         ~StringNameBridge() = default;

@@ -79,6 +79,8 @@ public open class CollisionPolygon2D : Node2D() {
 
   /**
    * If `true`, only edges that face up, relative to [godot.CollisionPolygon2D]'s rotation, will collide with other objects.
+   *
+   * **Note:** This property has no effect if this [godot.CollisionPolygon2D] is a child of an [godot.Area2D] node.
    */
   public var oneWayCollision: Boolean
     get() {

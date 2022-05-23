@@ -92,6 +92,30 @@ private var ByteBuffer.basis: Basis
         vector3 = value._z
     }
 
+private var ByteBuffer.obj: KtObject
+    get() {
+        val ptr = long
+        val constructorIndex = int
+        val isRef = bool
+        val id = long
+
+        val existingInstance = if (isRef) {
+            GarbageCollector.getRefInstance(id.toInt())
+        } else {
+            GarbageCollector.getObjectInstance(ptr, id)
+        }
+
+        return existingInstance ?: KtObject.instantiateWith(
+            ptr,
+            id,
+            TypeManager.engineTypesConstructors[constructorIndex]
+        )
+    }
+    set(value) {
+        putLong(value.rawPtr)
+        bool = value.____DO_NOT_TOUCH_THIS_isRef____()
+    }
+
 private var ByteBuffer.variantType: Int
     get() = int
     set(value) {
@@ -404,37 +428,30 @@ enum class VariantType(
     OBJECT(
         21,
         { buffer: ByteBuffer, _: Int ->
-            val ptr = buffer.long
-            val constructorIndex = buffer.int
-            val isRef = buffer.bool
-            val id = buffer.long
-
-            val existingInstance = if (isRef) {
-                GarbageCollector.getRefInstance(id.toInt())
-            } else {
-                GarbageCollector.getObjectInstance(ptr, id)
-            }
-
-            existingInstance ?: KtObject.instantiateWith(
-                ptr,
-                id,
-                TypeManager.engineTypesConstructors[constructorIndex]
-            )
+            buffer.obj
         },
         { buffer: ByteBuffer, any: Any ->
             require(any is KtObject)
             buffer.variantType = OBJECT.ordinal
-            buffer.putLong(any.rawPtr)
-            buffer.bool = any.____DO_NOT_TOUCH_THIS_isRef____()
+            buffer.obj = any
         }
     ),
     CALLABLE(
         22,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            val isCustom = buffer.bool
+            val ptr = buffer.long
+
+            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: if (!isCustom) {
+                val obj = buffer.obj
+                val stringNamePtr = buffer.long
+                Callable(ptr, obj as godot.Object, StringName(stringNamePtr))
+            } else {
+                throw NoSuchElementException("Cannot find managed kotlin callable with ptr: $ptr")
+            }
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            CALLABLE.toGodotNativeCoreType<Callable>(buffer, any)
         }
     ),
     SIGNAL(

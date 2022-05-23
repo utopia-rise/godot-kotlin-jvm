@@ -26,12 +26,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Sprite node that can use multiple textures for animation.
+ * Sprite node that contains multiple textures as frames to play for animation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
- * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
+ * [godot.AnimatedSprite2D] is similar to the [godot.Sprite2D] node, except it carries multiple textures as animation frames. Animations are created using a [godot.SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [godot.SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
  *
  * **Note:** You can associate a set of normal or specular maps by creating additional [godot.SpriteFrames] resources with a `_normal` or `_specular` suffix. For example, having 3 [godot.SpriteFrames] resources `run`, `run_normal`, and `run_specular` will make it so the `run` animation uses normal and specular maps.
  */
@@ -48,7 +48,7 @@ public open class AnimatedSprite2D : Node2D() {
   public val animationFinished: Signal0 by signal()
 
   /**
-   * The [godot.SpriteFrames] resource containing the animation(s).
+   * The [godot.SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [godot.SpriteFrames] resource.
    */
   public var frames: SpriteFrames?
     get() {
@@ -64,7 +64,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   /**
-   * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
+   * The current animation from the [frames] resource. If this value changes, the `frame` counter is reset.
    */
   public var animation: StringName
     get() {

@@ -90,9 +90,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_MODE, NIL)
     }
 
-  /**
-   *
-   */
   public var followCameraPushRatio: Double
     get() {
       TransferContext.writeArguments()

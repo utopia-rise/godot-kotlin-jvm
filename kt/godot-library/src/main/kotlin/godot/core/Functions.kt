@@ -2,8 +2,8 @@
 
 package godot.core
 
+import godot.core.callable.KtCallable
 import godot.util.camelToSnakeCase
-import godot.util.threadLocal
 
 enum class PropertyHint {
     NONE, ///< no hint provided.
@@ -59,40 +59,11 @@ data class KtFunctionInfo(
 
 abstract class KtFunction<T : KtObject, R : Any?>(
         val functionInfo: KtFunctionInfo,
-        val parameterCount: Int,
-        val variantType: VariantType,
+        parameterCount: Int,
+        variantType: VariantType,
         vararg parameterTypes: Pair<VariantType, Boolean>
-) {
+) : KtCallable<T, R>(functionInfo.name, parameterCount, variantType, *parameterTypes) {
     val registrationName = functionInfo.name.camelToSnakeCase()
-    private val types: List<VariantType> = parameterTypes.map { it.first }
-    private val isNullables: List<Boolean> = parameterTypes.map { it.second }
-
-    fun invoke(instance: T) {
-        val argsSize = TransferContext.buffer.int
-        require(argsSize == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got $argsSize instead." }
-        readArguments(argsSize)
-        val ret = invokeKt(instance)
-        resetParamsArray()
-
-        TransferContext.writeReturnValue(ret, variantType)
-    }
-
-    private fun readArguments(argsSize: Int) {
-        for (i in 0 until argsSize) {
-            paramsArray[i] = TransferContext.readSingleArgument(types[i], isNullables[i])
-        }
-        TransferContext.buffer.rewind()
-    }
-
-    internal abstract fun invokeKt(instance: T): R
-
-    companion object {
-        val paramsArray by threadLocal { arrayOf<Any?>(null, null, null, null, null) }
-
-        fun resetParamsArray() {
-            paramsArray.fill(null)
-        }
-    }
 }
 
 class KtFunction0<T : KtObject, R : Any?>(

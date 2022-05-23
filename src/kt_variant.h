@@ -11,6 +11,7 @@
 #include "ref_db.h"
 #include "logging.h"
 #include "long_string_queue.h"
+#include "kt_custom_callable.h"
 
 
 //TODO/4.0 implement new types
@@ -180,22 +181,26 @@ namespace ktvariant {
         des->increment_position(encode_float(src_color.a, des->get_cursor()));
     }
 
-    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
-    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, variantType);
+    template<class TNativeCoreType>
+    inline static void append_nativecoretype(SharedBuffer* des, TNativeCoreType native_core_type) {
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType((src.*converter)()))),
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(native_core_type))),
                               des->get_cursor())
         );
     }
 
-    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
+    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, variantType);
+        append_nativecoretype(des, (src.*converter)());
+    }
+
+    static void append_object(SharedBuffer* des, Object* ptr) {
         //TODO/4.0: rework object cpp -> jvm
-        Object* ptr{src};
 
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
         if (!ptr) {
-            to_kvariant_fromNIL(des, src);
+            to_kvariant_fromNIL(des, ptr);
             return;
         }
 
@@ -213,7 +218,7 @@ namespace ktvariant {
             }
         }
 
-        bool is_ref{src.is_ref_counted()};
+        bool is_ref{ptr->is_ref_counted()};
         uint64_t id;
         if (is_ref) {
             auto* ref = reinterpret_cast<RefCounted*>(ptr);
@@ -240,6 +245,23 @@ namespace ktvariant {
                 des->get_cursor()));
     }
 
+    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+        append_object(des, src);
+    }
+
+    static void to_kvariant_from_CALLABLE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::CALLABLE);
+        Callable src_callable{src.operator Callable()};
+
+        bool is_callable_custom{src_callable.is_custom()};
+        des->increment_position(encode_uint32(is_callable_custom, des->get_cursor()));
+        append_nativecoretype(des, src_callable);
+        if (!is_callable_custom) {
+            append_object(des, src_callable.get_object());
+            append_nativecoretype(des, src_callable.get_method());
+        }
+    }
+
     static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
@@ -259,6 +281,7 @@ namespace ktvariant {
         to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
+        to_kt_array[Variant::STRING_NAME] = to_kvariant_from_CALLABLE;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE<Variant::DICTIONARY, Dictionary, &Variant::operator Dictionary>;
         to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::ARRAY, Array, &Variant::operator Array>;
         to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE<Variant::STRING_NAME, StringName, &Variant::operator StringName>;
@@ -503,6 +526,7 @@ namespace ktvariant {
         to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
         to_gd_array[Variant::TRANSFORM3D] = from_kvariant_tokTransform3DValue;
         to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
+        to_gd_array[Variant::CALLABLE] = from_kvariant_tokVariantNativeCoreTypeValue<Callable>;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;
         to_gd_array[Variant::STRING_NAME] = from_kvariant_tokVariantNativeCoreTypeValue<StringName>;
