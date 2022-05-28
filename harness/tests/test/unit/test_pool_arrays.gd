@@ -66,6 +66,19 @@ func test_pool_string_array_add_delete() -> void:
 	assert_eq(invocation_script.get_string_from_pool_array(2), "3", "Second element of PoolStringArray should be 3.")
 	invocation_script.delete_string_from_pool_array(0)
 	assert_eq(invocation_script.pool_string_array.size(), 2, "PoolStringArray have 2 elements")
+
+	# Test resize + set in particular
+	invocation_script.resize_real_pool_array(0)
+	assert_eq(invocation_script.pool_real_array.size(), 0, "PoolVector2Array was emptied by resize(0)")
+	invocation_script.resize_real_pool_array(3)
+	invocation_script.set_real_in_pool_array(0, 1)
+	invocation_script.set_real_in_pool_array(1, 2)
+	invocation_script.set_real_in_pool_array(2, 3)
+	assert_eq(invocation_script.pool_real_array.size(), 3, "PoolVector2Array has size 3 after resze(3) and 3x set(...)")
+	assert_eq(invocation_script.get_real_from_pool_array(0), 1, "First element of PoolVector2Array after resze(3) and 3x set(...) should be 1.")
+	assert_eq(invocation_script.get_real_from_pool_array(1), 2, "Second element of PoolVector2Array after resze(3) and 3x set(...) should be 2.")
+	assert_eq(invocation_script.get_real_from_pool_array(1), 3, "Third element of PoolVector2Array after resze(3) and 3x set(...) should be 3.")
+
 	invocation_script.free()
 
 func test_pool_vector2_array_add_delete() -> void:
@@ -80,6 +93,19 @@ func test_pool_vector2_array_add_delete() -> void:
 	assert_eq(invocation_script.get_vector2_from_pool_array(2), Vector2(3, 1), "Second element of PoolVector2Array should be Vector2(3, 1).")
 	invocation_script.delete_vector2_from_pool_array(0)
 	assert_eq(invocation_script.pool_vector2_array.size(), 2, "PoolVector2Array have 2 elements")
+
+	# Test resize + set in particular
+	invocation_script.resize_vector2_pool_array(0)
+	assert_eq(invocation_script.pool_vector2_array.size(), 0, "PoolVector2Array was emptied by resize(0)")
+	invocation_script.resize_vector2_pool_array(3)
+	invocation_script.set_vector2_in_pool_array(0, Vector2(1, 1))
+	invocation_script.set_vector2_in_pool_array(1, Vector2(2, 2))
+	invocation_script.set_vector2_in_pool_array(2, Vector2(3, 3))
+	assert_eq(invocation_script.pool_vector2_array.size(), 3, "PoolVector2Array has size 3 after resze(3) and 3x set(...)")
+	assert_eq(invocation_script.get_vector2_from_pool_array(0), Vector2(1, 1), "First element of PoolVector2Array after resze(3) and 3x set(...) should be Vector2(1, 1).")
+	assert_eq(invocation_script.get_vector2_from_pool_array(1), Vector2(2, 2), "Second element of PoolVector2Array after resze(3) and 3x set(...) should be Vector2(2, 2).")
+	assert_eq(invocation_script.get_vector2_from_pool_array(1), Vector2(3, 3), "Third element of PoolVector2Array after resze(3) and 3x set(...) should be Vector2(3, 3).")
+
 	invocation_script.free()
 
 func test_pool_vector3_array_add_delete() -> void:
@@ -94,6 +120,19 @@ func test_pool_vector3_array_add_delete() -> void:
 	assert_eq(invocation_script.get_vector3_from_pool_array(2), Vector3(3, 1, 1), "Second element of PoolVector3Array should be Vector3(3, 1).")
 	invocation_script.delete_vector3_from_pool_array(0)
 	assert_eq(invocation_script.pool_vector3_array.size(), 2, "PoolVector3Array have 2 elements")
+
+	# Test resize + set in particular
+	invocation_script.resize_vector3_pool_array(0)
+	assert_eq(invocation_script.pool_vector3_array.size(), 0, "PoolVector3Array was emptied by resize(0)")
+	invocation_script.resize_vector3_pool_array(3)
+	invocation_script.set_vector3_in_pool_array(0, Vector3(1, 1, 9))
+	invocation_script.set_vector3_in_pool_array(1, Vector3(2, 2, 9))
+	invocation_script.set_vector3_in_pool_array(2, Vector3(3, 3, 9))
+	assert_eq(invocation_script.pool_vector3_array.size(), 3, "PoolVector3Array has size 3 after resze(3) and 3x set(...)")
+	assert_eq(invocation_script.get_vector3_from_pool_array(0), Vector3(1, 1, 9), "First element of PoolVector3Array after resze(3) and 3x set(...) should be Vector3(1, 1, 9).")
+	assert_eq(invocation_script.get_vector3_from_pool_array(1), Vector3(2, 2, 9), "Second element of PoolVector3Array after resze(3) and 3x set(...) should be Vector3(2, 2, 9).")
+	assert_eq(invocation_script.get_vector3_from_pool_array(1), Vector3(3, 3, 9), "Third element of PoolVector3Array after resze(3) and 3x set(...) should be Vector3(3, 3, 9).")
+
 	invocation_script.free()
 
 func test_pool_byte_array_string_conversion() -> void:

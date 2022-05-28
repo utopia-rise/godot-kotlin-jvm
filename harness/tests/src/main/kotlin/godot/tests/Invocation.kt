@@ -570,6 +570,16 @@ class Invocation : Spatial() {
 	fun getRealFromPoolArray(index: Int) = poolRealArray[index]
 
 	@RegisterFunction
+	fun setRealInPoolArray(index: Int, value: Double) {
+		poolRealArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeRealPoolArray(newSize: Int) {
+		poolVector2Array.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addStringToPoolArray(string: String) = poolStringArray.append(string)
 
 	@RegisterFunction
@@ -594,6 +604,16 @@ class Invocation : Spatial() {
 	fun getVector2FromPoolArray(index: Int) = poolVector2Array[index]
 
 	@RegisterFunction
+	fun setVector2InPoolArray(index: Int, vector2: Vector2) {
+		poolVector2Array[index] = vector2
+	}
+
+	@RegisterFunction
+	fun resizeVector2PoolArray(newSize: Int) {
+		poolVector2Array.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addVector3ToPoolArray(vector3: Vector3) = poolVector3Array.append(vector3)
 
 	@RegisterFunction
@@ -604,6 +624,16 @@ class Invocation : Spatial() {
 
 	@RegisterFunction
 	fun getVector3FromPoolArray(index: Int) = poolVector3Array[index]
+
+	@RegisterFunction
+	fun setVector3InPoolArray(index: Int, vector3: Vector3) {
+		poolVector3Array[index] = vector3
+	}
+
+	@RegisterFunction
+	fun resizeVector3PoolArray(newSize: Int) {
+		poolVector3Array.resize(newSize)
+	}
 
 	// Singleton tests
 
