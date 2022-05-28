@@ -516,6 +516,16 @@ class Invocation : Spatial() {
 	fun getByteFromPoolArray(index: Int) = poolByteArray[index]
 
 	@RegisterFunction
+	fun setByteInPoolArray(index: Byte, value: Byte) {
+		poolByteArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeBytePoolArray(newSize: Int) {
+		poolVector2Array.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addColorToPoolArray(color: Color) = poolColorArray.append(color)
 
 	@RegisterFunction
@@ -528,6 +538,16 @@ class Invocation : Spatial() {
 	fun getColorFromPoolArray(index: Int) = poolColorArray[index]
 
 	@RegisterFunction
+	fun setColorInPoolArray(index: Int, color: Color) {
+		poolColorArray[index] = color
+	}
+
+	@RegisterFunction
+	fun resizeColorPoolArray(newSize: Int) {
+		poolColorArray.resize(newSize)
+	}
+
+	@RegisterFunction
 	fun addIntToPoolArray(int: Int) = poolIntArray.append(int)
 
 	@RegisterFunction
@@ -538,6 +558,16 @@ class Invocation : Spatial() {
 
 	@RegisterFunction
 	fun getIntFromPoolArray(index: Int) = poolIntArray[index]
+
+	@RegisterFunction
+	fun setIntInPoolArray(index: Int, value: Int) {
+		poolIntArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeIntPoolArray(newSize: Int) {
+		poolVector2Array.resize(newSize)
+	}
 
 	@RegisterFunction
 	fun addRealToPoolArray(realT: RealT) = poolRealArray.append(realT)
@@ -590,6 +620,16 @@ class Invocation : Spatial() {
 
 	@RegisterFunction
 	fun getStringFromPoolArray(index: Int) = poolStringArray[index]
+
+	@RegisterFunction
+	fun setStringInPoolArray(index: Int, value: String) {
+		poolStringArray[index] = value
+	}
+
+	@RegisterFunction
+	fun resizeStringPoolArray(newSize: Int) {
+		poolVector2Array.resize(newSize)
+	}
 
 	@RegisterFunction
 	fun addVector2ToPoolArray(vector2: Vector2) = poolVector2Array.append(vector2)
