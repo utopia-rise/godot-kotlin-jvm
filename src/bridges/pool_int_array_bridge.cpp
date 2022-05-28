@@ -159,7 +159,7 @@ void PoolIntArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instanc
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    from_uint_to_ptr<PoolIntArray>(p_raw_ptr)->remove(args[0].operator unsigned int());
+    from_uint_to_ptr<PoolIntArray>(p_raw_ptr)->resize(args[0].operator unsigned int());
 }
 
 void PoolIntArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
