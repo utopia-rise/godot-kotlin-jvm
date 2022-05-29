@@ -23,7 +23,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html)
  *
- * EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [godot.EditorPlugin] with [godot.EditorPlugin.addImportPlugin].
+ * [godot.EditorImportPlugin]s provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers.
  *
  * EditorImportPlugins work by associating with specific file extensions and a resource type. See [getRecognizedExtensions] and [getResourceType]. They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the `.import` directory (see [godot.ProjectSettings.application/config/useHiddenProjectDataDirectory]).
  *
@@ -68,6 +68,8 @@ import kotlin.Unit
  * 		    var filename = save_path + "." + get_save_extension()
  * 		    return ResourceSaver.save(filename, mesh)
  * 		```
+ *
+ * To use [godot.EditorImportPlugin], register it using the [godot.EditorPlugin.addImportPlugin] method first.
  */
 @GodotBaseType
 public open class EditorImportPlugin : ResourceImporter() {

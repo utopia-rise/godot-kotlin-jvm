@@ -779,6 +779,12 @@ public object OS : Object() {
    * 				```
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
+   *
+   * **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in `path`, `/c` as the first argument, and the desired command as the second argument.
+   *
+   * **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in `path`, `-Command` as the first argument, and the desired command as the second argument.
+   *
+   * **Note:** To execute a Unix shell built-in command, specify shell executable name in `path`, `-c` as the first argument, and the desired command as the second argument.
    */
   public fun execute(
     path: String,
@@ -1244,7 +1250,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the amount of static memory being used by the program in bytes.
+   * Returns the amount of static memory being used by the program in bytes (only works in debug).
    */
   public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()

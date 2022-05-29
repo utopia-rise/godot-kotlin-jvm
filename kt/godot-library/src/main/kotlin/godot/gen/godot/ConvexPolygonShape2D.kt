@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ConvexPolygonShape2D : Shape2D() {
   /**
-   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order.
+   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order. Only set this property with convex hull points, use [setPointCloud] to generate a convex hull shape from concave shape points.
    */
   public open var points: PoolVector2Array
     get() {

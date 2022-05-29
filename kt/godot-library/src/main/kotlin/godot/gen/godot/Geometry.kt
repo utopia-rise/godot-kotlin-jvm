@@ -581,7 +581,7 @@ public object Geometry : Object() {
   }
 
   /**
-   * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.core.PoolIntArray] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.core.PoolIntArray] is returned.
+   * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.core.PoolIntArray] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [godot.core.PoolIntArray] is returned.
    */
   public fun triangulatePolygon(polygon: PoolVector2Array): PoolIntArray {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygon)

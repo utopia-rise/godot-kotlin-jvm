@@ -153,7 +153,7 @@ public open class BakedLightmap : VisualInstance() {
     }
 
   /**
-   * Bias value to reduce the amount of light proagation in the captured octree.
+   * Bias value to reduce the amount of light propagation in the captured octree.
    */
   public open var capturePropagation: Double
     get() {

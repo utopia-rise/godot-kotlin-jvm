@@ -564,9 +564,15 @@ public object GlobalConstants : Object() {
   public final const val JOY_BUTTON_9: Long = 9
 
   /**
-   * Represents the maximum number of joystick buttons supported.
+   * The maximum number of game controller buttons supported by the engine. The actual limit may be lower on specific platforms:
+   *
+   * - Android: Up to 36 buttons.
+   *
+   * - Linux: Up to 80 buttons.
+   *
+   * - Windows and macOS: Up to 128 buttons.
    */
-  public final const val JOY_BUTTON_MAX: Long = 23
+  public final const val JOY_BUTTON_MAX: Long = 128
 
   /**
    * Gamepad DPad down.
@@ -1546,7 +1552,7 @@ public object GlobalConstants : Object() {
   /**
    * Command key mask. On macOS, this is equivalent to [KEY_MASK_META]. On other platforms, this is equivalent to [KEY_MASK_CTRL]. This mask should be preferred to [KEY_MASK_META] or [KEY_MASK_CTRL] for system shortcuts as it handles all platforms correctly.
    */
-  public final const val KEY_MASK_CMD: Long = 134217728
+  public final const val KEY_MASK_CMD: Long = 268435456
 
   /**
    * Ctrl key mask.

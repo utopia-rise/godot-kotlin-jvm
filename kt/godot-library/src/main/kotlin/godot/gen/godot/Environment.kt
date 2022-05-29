@@ -41,7 +41,15 @@ import kotlin.Unit
  *
  * - Adjustments
  *
- * These effects will only apply when the [godot.Viewport]'s intended usage is "3D" or "3D Without Effects". This can be configured for the root Viewport with [godot.ProjectSettings.rendering/quality/intendedUsage/framebufferAllocation], or for specific Viewports via the [godot.Viewport.usage] property.
+ * If the target [godot.Viewport] is set to "2D Without Sampling", all post-processing effects will be unavailable. With "3D Without Effects", the following options will be unavailable:
+ *
+ * - Ssao
+ *
+ * - Ss Reflections
+ *
+ * This can be configured for the root Viewport with [godot.ProjectSettings.rendering/quality/intendedUsage/framebufferAllocation], or for specific Viewports via the [godot.Viewport.usage] property.
+ *
+ * Note that [godot.ProjectSettings.rendering/quality/intendedUsage/framebufferAllocation] has a mobile platform override to use "3D Without Effects" by default. It improves the performance on mobile devices, but at the same time affects the screen display on mobile devices.
  */
 @GodotBaseType
 public open class Environment : Resource() {
@@ -158,7 +166,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Defines the amount of light that the sky brings on the scene. A value of 0 means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of 1 means that all the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
+   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
+   *
+   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0` (inclusive).
    */
   public open var ambientLightSkyContribution: Double
     get() {
@@ -844,6 +854,10 @@ public open class Environment : Resource() {
 
   /**
    * If `true`, the glow effect is enabled.
+   *
+   * **Note:** Only effective if [godot.ProjectSettings.rendering/quality/intendedUsage/framebufferAllocation] is **3D** (*not* **3D Without Effects**). On mobile, [godot.ProjectSettings.rendering/quality/intendedUsage/framebufferAllocation] defaults to **3D Without Effects** by default, so its `.mobile` override needs to be changed to **3D**.
+   *
+   * **Note:** When using GLES3 on mobile, HDR rendering is disabled by default for performance reasons. This means glow will only be visible if [glowHdrThreshold] is decreased below `1.0` or if [glowBloom] is increased above `0.0`. Also consider increasing [glowIntensity] to `1.5`. If you want glow to behave on mobile like it does on desktop (at a performance cost), enable [godot.ProjectSettings.rendering/quality/depth/hdr]'s `.mobile` override.
    */
   public open var glowEnabled: Boolean
     get() {
@@ -1479,7 +1493,7 @@ public open class Environment : Resource() {
      */
     TONE_MAPPER_FILMIC(2),
     /**
-     * Academy Color Encoding System tonemapper operator. Performs an aproximation of the ACES tonemapping curve.
+     * Academy Color Encoding System tonemapper operator. Performs an approximation of the ACES tonemapping curve.
      */
     TONE_MAPPER_ACES(3),
     /**
@@ -1553,7 +1567,9 @@ public open class Environment : Resource() {
      */
     BG_CANVAS(4),
     /**
-     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
+     * Keeps on screen every pixel drawn in the background. Only select this mode if you really need to keep the old data. On modern GPUs it will generally not be faster than clearing the background, and can be significantly slower, particularly on mobile.
+     *
+     * It can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
      */
     BG_KEEP(5),
     /**
@@ -1657,7 +1673,9 @@ public open class Environment : Resource() {
     public final const val BG_COLOR_SKY: Long = 3
 
     /**
-     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
+     * Keeps on screen every pixel drawn in the background. Only select this mode if you really need to keep the old data. On modern GPUs it will generally not be faster than clearing the background, and can be significantly slower, particularly on mobile.
+     *
+     * It can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
      */
     public final const val BG_KEEP: Long = 5
 
@@ -1742,7 +1760,7 @@ public open class Environment : Resource() {
     public final const val SSAO_QUALITY_MEDIUM: Long = 1
 
     /**
-     * Academy Color Encoding System tonemapper operator. Performs an aproximation of the ACES tonemapping curve.
+     * Academy Color Encoding System tonemapper operator. Performs an approximation of the ACES tonemapping curve.
      */
     public final const val TONE_MAPPER_ACES: Long = 3
 

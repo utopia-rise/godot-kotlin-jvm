@@ -78,7 +78,7 @@ public object AudioServer : Object() {
     }
 
   /**
-   * Name of the current device for audio output (see [getDeviceList]).
+   * Name of the current device for audio output (see [getDeviceList]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`.
    */
   public var device: String
     get() {
@@ -134,7 +134,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Name of the current device for audio input (see [captureGetDeviceList]).
+   * Name of the current device for audio input (see [captureGetDeviceList]). The value `"Default"` means that the system-wide default audio input is currently used.
    */
   public fun captureGetDevice(): String {
     TransferContext.writeArguments()
@@ -154,7 +154,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Sets which audio input device is used for audio capture.
+   * Sets which audio input device is used for audio capture. On systems with multiple audio inputs (such as analog and USB), this can be used to select the audio input device. Setting the value `"Default"` will record audio from the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
    */
   public fun captureSetDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)

@@ -17,7 +17,7 @@ import kotlin.Unit
  * Audio stream that generates sounds procedurally.
  *
  * Tutorials:
- * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
  * This audio stream does not play back sounds, but expects a script to generate audio data for it instead. See also [godot.AudioStreamGeneratorPlayback].
  *

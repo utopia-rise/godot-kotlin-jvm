@@ -106,7 +106,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PoolStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`.
+   * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PoolStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected.
    */
   public open var filters: PoolStringArray
     get() {
@@ -226,7 +226,11 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds `filter` as a custom filter; `filter` should be of the form `"filename.extension ; Description"`. For example, `"*.png ; PNG Images"`.
+   * Adds `filter` to the list of filters, which restricts what files can be picked.
+   *
+   * A `filter` should be of the form `"filename.extension ; Description"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   *
+   * Example filters: `"*.png ; PNG Images"`, `"project.godot ; Godot Project"`.
    */
   public open fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)

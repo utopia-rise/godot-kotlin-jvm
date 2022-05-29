@@ -33,6 +33,8 @@ import kotlin.Unit
  *
  * **Note:** [godot.Particles2D] only work when using the GLES3 renderer. If using the GLES2 renderer, use [godot.CPUParticles2D] instead. You can convert [godot.Particles2D] to [godot.CPUParticles2D] by selecting the node, clicking the **Particles** menu at the top of the 2D editor viewport then choosing **Convert to CPUParticles2D**.
  *
+ * **Note:** On macOS, [godot.Particles2D] rendering is much slower than [godot.CPUParticles2D] due to transform feedback being implemented on the CPU instead of the GPU. Consider using [godot.CPUParticles2D] instead when targeting macOS.
+ *
  * **Note:** After working on a Particles node, remember to update its [visibilityRect] by selecting it, clicking the **Particles** menu at the top of the 2D editor viewport then choose **Generate Visibility Rect**. Otherwise, particles may suddenly disappear depending on the camera position and angle.
  *
  * **Note:** Unlike [godot.CPUParticles2D], [godot.Particles2D] currently ignore the texture region defined in [godot.AtlasTexture]s.

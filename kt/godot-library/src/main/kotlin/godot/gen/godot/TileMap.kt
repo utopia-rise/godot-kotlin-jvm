@@ -520,7 +520,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Sets the tile index for the cell given by a Vector2.
+   * Sets the tile index for the given cell.
    *
    * An index of `-1` clears the cell.
    *
@@ -554,11 +554,11 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Sets the tile index for the given cell.
+   * Sets the tile index for the cell given by a Vector2.
    *
    * An index of `-1` clears the cell.
    *
-   * Optionally, the tile can also be flipped or transposed.
+   * Optionally, the tile can also be flipped, transposed, or given autotile coordinates. The autotile coordinate refers to the column and row of the subtile.
    *
    * **Note:** Data such as navigation polygons and collision shapes are not immediately updated for performance reasons.
    *
@@ -569,10 +569,11 @@ public open class TileMap : Node2D() {
     tile: Long,
     flipX: Boolean = false,
     flipY: Boolean = false,
-    transpose: Boolean = false
+    transpose: Boolean = false,
+    autotileCoord: Vector2 = Vector2(0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to tile, BOOL to flipX, BOOL to flipY,
-        BOOL to transpose)
+        BOOL to transpose, VECTOR2 to autotileCoord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLV, NIL)
   }
 

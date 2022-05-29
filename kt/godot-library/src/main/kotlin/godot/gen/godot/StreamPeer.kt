@@ -136,7 +136,7 @@ public open class StreamPeer : Reference() {
   }
 
   /**
-   * Gets a string with byte-length `bytes` from the stream. If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putString].
+   * Gets an ASCII string with byte-length `bytes` from the stream. If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putString].
    */
   public open fun getString(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)

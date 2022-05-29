@@ -42,7 +42,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Called when the node was removed from the graph.
+   * Emitted when the node was removed from the graph.
    */
   public val removedFromGraph: Signal0 by signal()
 
@@ -207,7 +207,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Returns `true` whether a given path is filtered.
+   * Returns whether the given path is filtered.
    */
   public open fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -243,7 +243,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Sets a custom parameter. These are used as local storage, because resources can be reused across the tree or scenes.
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
   public open fun setParameter(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)

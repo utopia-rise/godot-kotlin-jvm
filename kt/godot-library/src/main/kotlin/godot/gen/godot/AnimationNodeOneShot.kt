@@ -5,17 +5,14 @@
 
 package godot
 
-import godot.AnimationNodeOneShot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -113,6 +110,22 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
+  public open var mixMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
+          NIL)
+    }
+
+  /**
+   *
+   */
   public open var sync: Boolean
     get() {
       TransferContext.writeArguments()
@@ -128,25 +141,6 @@ public open class AnimationNodeOneShot : AnimationNode() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT)
-  }
-
-  /**
-   *
-   */
-  public open fun getMixMode(): AnimationNodeOneShot.MixMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
-        LONG)
-    return AnimationNodeOneShot.MixMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   *
-   */
-  public open fun setMixMode(mode: Long): Unit {
-    TransferContext.writeArguments(LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
-        NIL)
   }
 
   public enum class MixMode(

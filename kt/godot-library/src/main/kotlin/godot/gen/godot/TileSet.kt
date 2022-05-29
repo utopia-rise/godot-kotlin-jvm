@@ -574,6 +574,8 @@ public open class TileSet : Resource() {
 
   /**
    * Sets the tile's modulation color.
+   *
+   * **Note:** Modulation is performed by setting the tile's vertex color. To access this in a shader, use `COLOR` rather than `MODULATE` (which instead accesses the [godot.TileMap]'s [godot.CanvasItem.modulate] property).
    */
   public open fun tileSetModulate(id: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to id, COLOR to color)

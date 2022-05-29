@@ -149,7 +149,7 @@ public open class MeshDataTool : Reference() {
   /**
    * Returns specified edge associated with given face.
    *
-   * Edge argument must 2 or less because a face only has three edges.
+   * Edge argument must be either 0, 1, or 2 because a face only has three edges.
    */
   public open fun getFaceEdge(idx: Long, edge: Long): Long {
     TransferContext.writeArguments(LONG to idx, LONG to edge)
@@ -179,7 +179,7 @@ public open class MeshDataTool : Reference() {
   /**
    * Returns the specified vertex of the given face.
    *
-   * Vertex argument must be 2 or less because faces contain three vertices.
+   * Vertex argument must be either 0, 1, or 2 because faces contain three vertices.
    */
   public open fun getFaceVertex(idx: Long, vertex: Long): Long {
     TransferContext.writeArguments(LONG to idx, LONG to vertex)

@@ -26,9 +26,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Sprite frame library for AnimatedSprite.
+ * Sprite frame library for AnimatedSprite and AnimatedSprite3D.
  *
- * Sprite frame library for [godot.AnimatedSprite]. Contains frames and animation data for playback.
+ * Sprite frame library for an [godot.AnimatedSprite] or [godot.AnimatedSprite3D] node. Contains frames and animation data for playback.
  *
  * **Note:** You can associate a set of normal maps by creating additional [godot.SpriteFrames] resources with a `_normal` suffix. For example, having 2 [godot.SpriteFrames] resources `run` and `run_normal` will make it so the `run` animation uses the normal map.
  */

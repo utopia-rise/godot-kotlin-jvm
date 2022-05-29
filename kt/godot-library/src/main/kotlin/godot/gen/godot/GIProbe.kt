@@ -198,6 +198,8 @@ public open class GIProbe : VisualInstance() {
    * Bakes the effect from all [godot.GeometryInstance]s marked with [godot.GeometryInstance.useInBakedLight] and [godot.Light]s marked with either [godot.Light.BAKE_INDIRECT] or [godot.Light.BAKE_ALL]. If `create_visual_debug` is `true`, after baking the light, this will generate a [godot.MultiMesh] that has a cube representing each solid cell with each cube colored to the cell's albedo color. This can be used to visualize the [godot.GIProbe]'s data and debug any issues that may be occurring.
    *
    * **Note:** [bake] works from the editor and in exported projects. This makes it suitable for procedurally generated or user-built levels. Baking a [godot.GIProbe] generally takes from 5 to 20 seconds in most scenes. Reducing [subdiv] can speed up baking.
+   *
+   * **Note:** [godot.GeometryInstance]s and [godot.Light]s must be fully ready before [bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [godot.GIProbe], use `call_deferred("bake")` instead of calling [bake] directly.
    */
   public open fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)

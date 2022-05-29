@@ -1548,7 +1548,7 @@ public object PhysicsServer : Object() {
   }
 
   /**
-   * Returns an Info defined by the [enum ProcessInfo] input given.
+   * Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states. Only implemented for Godot Physics.
    */
   public fun getProcessInfo(processInfo: Long): Long {
     TransferContext.writeArguments(LONG to processInfo)

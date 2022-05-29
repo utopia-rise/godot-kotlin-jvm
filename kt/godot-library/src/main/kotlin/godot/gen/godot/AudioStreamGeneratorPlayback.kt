@@ -23,7 +23,7 @@ import kotlin.Unit
  * Plays back audio generated using [godot.AudioStreamGenerator].
  *
  * Tutorials:
- * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
  * This class is meant to be used with [godot.AudioStreamGenerator] to play back the generated audio in real-time.
  */

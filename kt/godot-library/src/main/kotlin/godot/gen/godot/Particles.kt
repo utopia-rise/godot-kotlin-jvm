@@ -32,6 +32,8 @@ import kotlin.Unit
  *
  * **Note:** [godot.Particles] only work when using the GLES3 renderer. If using the GLES2 renderer, use [godot.CPUParticles] instead. You can convert [godot.Particles] to [godot.CPUParticles] by selecting the node, clicking the **Particles** menu at the top of the 3D editor viewport then choosing **Convert to CPUParticles**.
  *
+ * **Note:** On macOS, [godot.Particles] rendering is much slower than [godot.CPUParticles] due to transform feedback being implemented on the CPU instead of the GPU. Consider using [godot.CPUParticles] instead when targeting macOS.
+ *
  * **Note:** After working on a Particles node, remember to update its [visibilityAabb] by selecting it, clicking the **Particles** menu at the top of the 3D editor viewport then choose **Generate Visibility AABB**. Otherwise, particles may suddenly disappear depending on the camera position and angle.
  */
 @GodotBaseType

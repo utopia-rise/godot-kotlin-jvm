@@ -236,6 +236,8 @@ public object ProjectSettings : Object() {
    * ```
    * 				ProjectSettings.set_setting("application/config/name", "Example")
    * 				```
+   *
+   * This can also be used to erase custom project settings. To do this change the setting value to `null`.
    */
   public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)

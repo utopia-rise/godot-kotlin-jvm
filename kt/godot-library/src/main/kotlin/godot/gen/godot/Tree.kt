@@ -273,7 +273,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Creates an item in the tree and adds it as a child of `parent`.
+   * Creates an item in the tree and adds it as a child of `parent`, which can be either a valid [godot.TreeItem] or `null`.
    *
    * If `parent` is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
    *
@@ -383,7 +383,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified item. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
+   * Returns the rectangle area for the specified [godot.TreeItem]. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
    */
   public open fun getItemAreaRect(item: Object, column: Long = -1): Rect2 {
     TransferContext.writeArguments(OBJECT to item, LONG to column)
@@ -401,7 +401,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the next selected item after the given one, or `null` if the end is reached.
+   * Returns the next selected [godot.TreeItem] after the given one, or `null` if the end is reached.
    *
    * If `from` is `null`, this returns the first selected item.
    */
@@ -465,7 +465,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Causes the [godot.Tree] to jump to the specified item.
+   * Causes the [godot.Tree] to jump to the specified [godot.TreeItem].
    */
   public open fun scrollToItem(item: Object): Unit {
     TransferContext.writeArguments(OBJECT to item)

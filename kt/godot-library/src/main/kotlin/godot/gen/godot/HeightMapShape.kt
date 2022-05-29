@@ -38,7 +38,7 @@ public open class HeightMapShape : Shape() {
     }
 
   /**
-   * Depth of the height map data. Changing this will resize the [mapData].
+   * Number of vertices in the depth of the height map. Changing this will resize the [mapData].
    */
   public open var mapDepth: Long
     get() {
@@ -53,7 +53,7 @@ public open class HeightMapShape : Shape() {
     }
 
   /**
-   * Width of the height map data. Changing this will resize the [mapData].
+   * Number of vertices in the width of the height map. Changing this will resize the [mapData].
    */
   public open var mapWidth: Long
     get() {

@@ -189,6 +189,8 @@ public open class ReflectionProbe : VisualInstance() {
 
   /**
    * The maximum distance away from the [godot.ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
+   *
+   * **Note:** The maximum reflection distance is always at least equal to the [extents]. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [extents] are already large.
    */
   public open var maxDistance: Double
     get() {
