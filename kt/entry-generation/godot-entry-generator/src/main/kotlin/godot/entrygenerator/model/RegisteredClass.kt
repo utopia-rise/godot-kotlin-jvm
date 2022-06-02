@@ -14,10 +14,12 @@ data class RegisteredClass(
     val properties: List<RegisteredProperty> = emptyList()
 ) : Clazz(fqName, supertypes) {
     internal val registeredName: String
-        get() = annotations
-            .getAnnotation<RegisterClassAnnotation>()
-            ?.customName
-            ?: fqName.replace(".", "_")
+        get() {
+            val customName = annotations
+                .getAnnotation<RegisterClassAnnotation>()
+                ?.customName
+            return if (customName.isNullOrEmpty()) fqName.replace(".", "_") else customName
+        }
 
     internal val isTool: Boolean
         get() = annotations.getAnnotation<ToolAnnotation>() != null
