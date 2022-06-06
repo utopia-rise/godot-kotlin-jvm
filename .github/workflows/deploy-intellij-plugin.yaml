@@ -10,7 +10,7 @@ jobs:
   deploy_godot_intellij_plugin:
     strategy:
       matrix:
-        ij_sdk: [ IJ203, IJ211, IJ212, IJ213 ]
+        ij_sdk: [ IJ211, IJ212, IJ213 ]
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot JVM module.

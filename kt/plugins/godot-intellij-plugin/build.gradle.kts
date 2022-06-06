@@ -19,38 +19,29 @@ plugins {
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ203" to BuildConfig(
-        sdk = "203.8084.24",
-        prefix = "IJ2020.3",
-        extraSource = "IJ183",
-        version = VersionRange("203.1", "203.*"),
-        ideVersionsForVerifierTask = listOf("2020.1.4", "2020.2.3", "2020.3"),
-        deps = listOf("java", "org.jetbrains.kotlin:203-1.5.21-release-316-IJ7717.8", "gradle")
-    ),
     "IJ211" to BuildConfig(
-        sdk = "211.7628.21",
+        sdk = "211.7442.40",
         prefix = "IJ2021.1",
         extraSource = "IJ183",
-        version = VersionRange("211.1", "211.*"),
+        version = VersionRange("211.2", "211.*"),
         ideVersionsForVerifierTask = listOf("2021.1.1", "2021.1.2", "2021.1.3"),
-        deps = listOf("java", "org.jetbrains.kotlin:211-1.5.21-release-317-IJ7442.40", "gradle")
+        deps = listOf("java", "org.jetbrains.kotlin:211-1.6.21-release-334-IJ7442.40", "gradle")
     ),
     "IJ212" to BuildConfig(
-        sdk = "212.5080.55",
+        sdk = "212.5457.46",
         prefix = "IJ2021.2",
         extraSource = "IJ183",
-        version = VersionRange("212.1", "212.*"),
+        version = VersionRange("212.3", "212.*"),
         ideVersionsForVerifierTask = listOf("2021.2.1"),
-        deps = listOf("java", "org.jetbrains.kotlin:212-1.5.30-release-409-IJ4638.7", "gradle")
+        deps = listOf("java", "org.jetbrains.kotlin:212-1.6.21-release-334-IJ5457.46", "gradle")
     ),
     "IJ213" to BuildConfig(
-        sdk = "213.5744.223",
+        sdk = "213.6777.52",
         prefix = "IJ2021.3",
         extraSource = "IJ213",
-        version = VersionRange("212.1", "213.*"),
+        version = VersionRange("213.2", "213.*"),
         ideVersionsForVerifierTask = listOf("2021.3"),
-        //TODO: replace kotlin plugin version with release channel once released by Jetbrains
-        deps = listOf("java", "org.jetbrains.kotlin:213-1.5.10-release-IJ5333@Ideadev", "gradle")
+        deps = listOf("java", "org.jetbrains.kotlin:213-1.6.21-release-334-IJ6777.52", "gradle")
     )
 )
 
