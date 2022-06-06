@@ -39,7 +39,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("gradle-plugin"))
     implementation(kotlin("gradle-plugin-api"))
-    implementation("com.github.jengelman.gradle.plugins:shadow:${DependenciesVersions.shadowJarPluginVersion}")
+    implementation("gradle.plugin.com.github.johnrengelman:shadow:${DependenciesVersions.shadowJarPluginVersion}")
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
 
     implementation(project(":godot-build-props"))
