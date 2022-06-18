@@ -43,8 +43,10 @@ public:
 
     bool is_assignable_from(KtClass* p_class) const;
 
+    const Vector<Multiplayer::RPCConfig> get_rpc_methods();
 private:
     HashMap<StringName, KtFunction*> methods;
+    Vector<Multiplayer::RPCConfig> rpc_method_configs;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
@@ -58,6 +60,8 @@ private:
     StringName get_base_godot_class(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
+
+    void fetch_rpc_methods();
 
     void fetch_properties(jni::Env& env);
 

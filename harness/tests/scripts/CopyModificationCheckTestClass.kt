@@ -1,4 +1,4 @@
-import godot.Spatial
+import godot.Node3D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
@@ -9,10 +9,10 @@ import godot.tests.Invocation
 import godot.tests.TestEnum
 
 @RegisterClass
-class CopyModificationCheckTestClass: Spatial() {
+class CopyModificationCheckTestClass: Node3D() {
 
     @RegisterProperty
-    var spatial = Spatial()
+    var node3D = Node3D()
     var vectorList = variantArrayOf(Vector3.FORWARD)
     var dictionary = Dictionary<Int, Vector3>().apply {
         set(0, Vector3.FORWARD)
@@ -22,8 +22,8 @@ class CopyModificationCheckTestClass: Spatial() {
     fun directCopyModification() {
         rotation.x = 5.0
         rotation[0] = 5.0
-        spatial.rotation.x = 5.0
-        spatial.rotation[0] = 5.0
+        node3D.rotation.x = 5.0
+        node3D.rotation[0] = 5.0
         vectorList[0].x = 5.0
         vectorList[0][0] = 5.0
         dictionary[0].x = 5.0
@@ -74,7 +74,7 @@ class CopyModificationCheckTestClass: Spatial() {
         vector--
         println(vector)
 
-        Spatial().transform = Transform3D().apply {
+        Node3D().transform = Transform3D().apply {
             basis.x = Vector3().apply {
                 x = vector
             }
@@ -117,7 +117,7 @@ class CopyModificationCheckTestClass: Spatial() {
 
     // Not allowed as it's a copy modification through some refs
     fun copyModificationThroughReferenceAndFunctionCallWithBody() {
-        val vector = spatial.rotation
+        val vector = node3D.rotation
         fun vectorProvider(): Vector3 {
             return vector
         }
@@ -142,7 +142,7 @@ class CopyModificationCheckTestClass: Spatial() {
 
     // Not allowed as one branch might return a copy of a vector
     fun copyModificationThroughDifferentReturnBranches(decision: TestEnum) {
-        val vector = spatial.rotation
+        val vector = node3D.rotation
         fun vectorProvider(): Vector3 {
             if (decision == TestEnum.ENUM_1) {
                 return Vector3()
@@ -156,27 +156,28 @@ class CopyModificationCheckTestClass: Spatial() {
 
     // Allowed as `vectorCopy` is assigned later so the change of `x` actually has a use
     fun copyButAssignedLater() {
-        val vectorCopy = spatial.rotation
+        val vectorCopy = node3D.rotation
         vectorCopy[0] = 5.0
         vectorCopy.x = 5.0
 
-        val anotherSpatial = Spatial()
-        anotherSpatial.rotation = vectorCopy
+        val anotherNode3D = Node3D()
+        anotherNode3D.rotation = vectorCopy
     }
 
     // Not allowed as modifying a local copy without using the modified local copy later.
     // We have to assume that the modification was done by "accident"
     fun copyModificationThroughReference() {
-        val vectorCopy = spatial.rotation
+        val vectorCopy = node3D.rotation
         vectorCopy[0] = 5.0
         vectorCopy.x = 5.0
     }
 
     // allowed as convenience function
     fun objectHelperFunction() {
-        spatial.rotation {
-            x += 5.0
-        }
+        //TODO/4.0: reenable
+//        node3D.rotation {
+//            x += 5.0
+//        }
     }
 
     // not allowed as globalTransform is a copy and it would not be set correctly to this (Spatial) again
@@ -188,14 +189,15 @@ class CopyModificationCheckTestClass: Spatial() {
 
     // both allowed as both are equivalent in functionality and are setting the correct value back to this (Spatial)
     fun correctlyNestedHelperFunction() {
-        globalTransform {
-            origin.x += 3
-        }
-        globalTransform {
-            origin {
-                x += 3
-            }
-        }
+        //TODO/4.0: reenable
+//        globalTransform {
+//            origin.x += 3
+//        }
+//        globalTransform {
+//            origin {
+//                x += 3
+//            }
+//        }
     }
 
     fun collectionHelperFunction() {
@@ -212,7 +214,7 @@ class CopyModificationCheckTestClass: Spatial() {
     fun poolArrayFunctions() {
         Invocation().vectorList.pushBack(Vector3.FORWARD)
         Invocation().vectorList[0].x += 5
-        Invocation().vectorList.get(0).x += 5 
+        Invocation().vectorList.get(0).x += 5
         //TODO: once helper functions are merged
     }
 }

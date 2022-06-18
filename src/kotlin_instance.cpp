@@ -123,28 +123,8 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
     return ScriptInstance::property_get_fallback(p_name, r_valid);
 }
 
-//TODO/4.0: Implement new RPC methods
-//Multiplayer::RPCMode KotlinInstance::get_rpc_mode(const StringName& p_method) const {
-//    KtFunction* function { kt_class->get_method(p_method) };
-//
-//    if (function) {
-//        return function->get_rpc_mode();
-//    } else {
-//        return Multiplayer::RPC_MODE_DISABLED;
-//    }
-//}
-//
-//Multiplayer::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variable) const {
-//    KtProperty* ktProperty { kt_class->get_property(p_variable) };
-//    if (ktProperty) {
-//        return ktProperty->get_rpc_mode();
-//    } else {
-//        return Multiplayer::RPC_MODE_DISABLED;
-//    }
-//}
-//
 const Vector<Multiplayer::RPCConfig> KotlinInstance::get_rpc_methods() const {
-    return Vector<Multiplayer::RPCConfig>();
+    return kt_class->get_rpc_methods();
 }
 
 ScriptLanguage* KotlinInstance::get_language() {

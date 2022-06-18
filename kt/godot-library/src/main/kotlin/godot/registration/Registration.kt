@@ -41,10 +41,9 @@ class KtPropertyInfoBuilderDsl {
     var hint: PropertyHint = PropertyHint.NONE
     var hintString: String = ""
     var visibleInEditor: Boolean = true
-    var rpcModeId: Int = 0
 
     internal fun build() =
-        KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, visibleInEditor, rpcModeId)
+        KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, visibleInEditor)
 }
 
 data class KtFunctionArgument(
@@ -59,7 +58,6 @@ data class KtFunctionArgument(
         PropertyHint.NONE,
         "", //always empty. Only used for properties
         true, //always true. Only used for properties
-        0 // always RPCMode.DISABLED. Only used for properties
     )
 }
 
@@ -98,7 +96,6 @@ class ClassBuilderDsl<T : KtObject>(
         hintString: String = "",
         defaultValueProvider: () -> P?,
         visibleInEditor: Boolean = true,
-        rpcModeId: Int = 0,
         isRef: Boolean = false
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -113,7 +110,6 @@ class ClassBuilderDsl<T : KtObject>(
                 hint,
                 hintString,
                 visibleInEditor,
-                rpcModeId
             ),
             kProperty,
             variantType,
@@ -126,7 +122,6 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, P>,
         noinline defaultValueProvider: () -> P,
         visibleInEditor: Boolean,
-        rpcModeId: Int = 0,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -142,7 +137,6 @@ class ClassBuilderDsl<T : KtObject>(
                 PropertyHint.ENUM,
                 hintString,
                 visibleInEditor,
-                rpcModeId
             ),
             kProperty,
             //TODO change when nullable enum are here.
@@ -156,7 +150,6 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, L>,
         noinline defaultValueProvider: () -> L,
         visibleInEditor: Boolean,
-        rpcModeId: Int = 0,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -172,7 +165,6 @@ class ClassBuilderDsl<T : KtObject>(
                 PropertyHint.ENUM,
                 hintString,
                 visibleInEditor,
-                rpcModeId
             ),
             kProperty,
             defaultValueProvider,
@@ -195,13 +187,11 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
         noinline defaultValueProvider: () -> MutableSet<P>,
         visibleInEditor: Boolean,
-        rpcModeId: Int,
         hintString: String
     ) = enumFlagProperty(
         kProperty as KMutableProperty1<T, Set<P>>,
         defaultValueProvider,
         visibleInEditor,
-        rpcModeId,
         hintString
     )
 
@@ -209,7 +199,6 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, Set<P>>,
         noinline defaultValueProvider: () -> Set<P>,
         visibleInEditor: Boolean,
-        rpcModeId: Int,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -225,7 +214,6 @@ class ClassBuilderDsl<T : KtObject>(
                 PropertyHint.FLAGS,
                 hintString,
                 visibleInEditor,
-                rpcModeId
             ),
             kProperty,
             //TODO : Change when null default values are supported
@@ -265,12 +253,10 @@ class ClassBuilderDsl<T : KtObject>(
         isRef: Boolean = false,
         defaultValueProvider: () -> P,
         visibleInEditor: Boolean = true,
-        rpcModeId: Int = 0,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val builder = KtPropertyInfoBuilderDsl()
         builder.name = kProperty.name.camelToSnakeCase()
-        builder.rpcModeId = rpcModeId
         builder.pib()
         builder.visibleInEditor = visibleInEditor
         val property = builder.build()
@@ -284,23 +270,28 @@ class ClassBuilderDsl<T : KtObject>(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean,
+        rpcTransferModeId: Int,
+        rpcChannel: Int,
     ) {
         appendFunction(
             KtFunction0(
                 KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(),
-                    KtPropertyInfo(
-                        returnType.type,
-                        "",
-                        returnType.className,
-                        PropertyHint.NONE,
-                        "",
-                        true, // always true. Only used for properties
-                        0 // always RPCMode.DISABLED. Only used for properties
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(),
+                    returnVal = KtPropertyInfo(
+                        _type = returnType.type,
+                        name = "",
+                        className = returnType.className,
+                        _hint = PropertyHint.NONE,
+                        hintString = "",
+                        visibleInEditor = true, // always true. Only used for properties
                     ),
-                    rpcModeId
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
                 ),
                 func,
                 variantType
@@ -312,15 +303,26 @@ class ClassBuilderDsl<T : KtObject>(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
         appendFunction(
             KtFunction0(
-                KtFunctionInfo(func.name.camelToSnakeCase(), listOf(), returnBuilder.build(), rpcModeId),
-                func,
-                variantType
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(),
+                    returnVal = returnBuilder.build(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType
             )
         )
     }
@@ -331,21 +333,27 @@ class ClassBuilderDsl<T : KtObject>(
         p0Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         appendFunction(
             KtFunction1(
-                KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
                         p0.toKtPropertyInfo()
                     ),
-                    returnType.toKtPropertyInfo(),
-                    rpcModeId
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel,
                 ),
-                func,
-                variantType,
-                p0Type
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type
             )
         )
     }
@@ -356,15 +364,26 @@ class ClassBuilderDsl<T : KtObject>(
         p0Type: Pair<VariantType, Boolean>,
         arg: KtPropertyInfoBuilderDsl.() -> Unit,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, arg)
         appendFunction(
             KtFunction1(
-                KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType, rpcModeId),
-                func,
-                variantType,
-                p0Type
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = arguments,
+                    returnVal = returnType,
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type
             )
         )
     }
@@ -377,23 +396,29 @@ class ClassBuilderDsl<T : KtObject>(
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         appendFunction(
             KtFunction2(
-                KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
                     ),
-                    returnType.toKtPropertyInfo(),
-                    rpcModeId
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel,
                 ),
-                func,
-                variantType,
-                p0Type,
-                p1Type
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type
             )
         )
     }
@@ -405,7 +430,10 @@ class ClassBuilderDsl<T : KtObject>(
         p1Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 2) {
@@ -413,11 +441,19 @@ class ClassBuilderDsl<T : KtObject>(
         }
         appendFunction(
             KtFunction2(
-                KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType, rpcModeId),
-                func,
-                variantType,
-                p0Type,
-                p1Type
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = arguments,
+                    returnVal = returnType,
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type
             )
         )
     }
@@ -432,25 +468,31 @@ class ClassBuilderDsl<T : KtObject>(
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         appendFunction(
             KtFunction3(
-                KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
                         p2.toKtPropertyInfo(),
                     ),
-                    returnType.toKtPropertyInfo(),
-                    rpcModeId
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel,
                 ),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type
             )
         )
     }
@@ -463,7 +505,10 @@ class ClassBuilderDsl<T : KtObject>(
         p2Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 3) {
@@ -471,12 +516,20 @@ class ClassBuilderDsl<T : KtObject>(
         }
         appendFunction(
             KtFunction3(
-                KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType, rpcModeId),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = arguments,
+                    returnVal = returnType,
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type
             )
         )
     }
@@ -493,27 +546,33 @@ class ClassBuilderDsl<T : KtObject>(
         p2: KtFunctionArgument,
         p3: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         appendFunction(
             KtFunction4(
-                KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
                         p2.toKtPropertyInfo(),
                         p3.toKtPropertyInfo(),
                     ),
-                    returnType.toKtPropertyInfo(),
-                    rpcModeId
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel,
                 ),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type,
-                p3Type
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type
             )
         )
     }
@@ -527,7 +586,10 @@ class ClassBuilderDsl<T : KtObject>(
         p3Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 4) {
@@ -535,13 +597,21 @@ class ClassBuilderDsl<T : KtObject>(
         }
         appendFunction(
             KtFunction4(
-                KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType, rpcModeId),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type,
-                p3Type
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = arguments,
+                    returnVal = returnType,
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type
             )
         )
     }
@@ -560,29 +630,35 @@ class ClassBuilderDsl<T : KtObject>(
         p3: KtFunctionArgument,
         p4: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         appendFunction(
             KtFunction5(
-                KtFunctionInfo(
-                    func.name.camelToSnakeCase(),
-                    listOf(
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
                         p2.toKtPropertyInfo(),
                         p3.toKtPropertyInfo(),
                         p4.toKtPropertyInfo()
                     ),
-                    returnType.toKtPropertyInfo(),
-                    rpcModeId
+                    returnVal = returnType.toKtPropertyInfo(),
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel,
                 ),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type,
-                p3Type,
-                p4Type
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type
             )
         )
     }
@@ -597,7 +673,10 @@ class ClassBuilderDsl<T : KtObject>(
         p4Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        rpcCallLocal: Boolean = false,
+        rpcTransferModeId: Int = 0,
+        rpcChannel: Int = 0,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 5) {
@@ -605,14 +684,22 @@ class ClassBuilderDsl<T : KtObject>(
         }
         appendFunction(
             KtFunction5(
-                KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType, rpcModeId),
-                func,
-                variantType,
-                p0Type,
-                p1Type,
-                p2Type,
-                p3Type,
-                p4Type
+                functionInfo = KtFunctionInfo(
+                    name = func.name.camelToSnakeCase(),
+                    _arguments = arguments,
+                    returnVal = returnType,
+                    rpcModeId = rpcModeId,
+                    rpcCallLocal = rpcCallLocal,
+                    rpcTransferModeId = rpcTransferModeId,
+                    rpcChannel = rpcChannel
+                ),
+                function = func,
+                variantType = variantType,
+                p0Type = p0Type,
+                p1Type = p1Type,
+                p2Type = p2Type,
+                p3Type = p3Type,
+                p4Type = p4Type
             )
         )
     }

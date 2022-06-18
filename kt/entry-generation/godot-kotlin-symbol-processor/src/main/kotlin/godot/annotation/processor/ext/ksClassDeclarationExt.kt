@@ -40,7 +40,7 @@ fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): St
 
 fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
-        "Qualified name for class declaration of a registered type or it's super types cannot be null"
+        "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces

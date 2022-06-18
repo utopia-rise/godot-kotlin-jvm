@@ -25,7 +25,6 @@ fun Type?.toKtVariantType(): ClassName = when {
         "godot.core.VariantType",
         fqName.substringAfterLast(".").camelToSnakeCase().uppercase(Locale.getDefault())
     )
-    fqName == "kotlin.Unit" -> ClassName("godot.core.VariantType", "NIL")
     fqName == "kotlin.Any" -> ClassName("godot.core.VariantType", "ANY")
     else -> ClassName("godot.core.VariantType", "OBJECT")
 }
