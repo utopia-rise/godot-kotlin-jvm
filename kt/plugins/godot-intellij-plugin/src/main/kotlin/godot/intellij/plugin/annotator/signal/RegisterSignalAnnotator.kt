@@ -32,10 +32,10 @@ class RegisterSignalAnnotator : Annotator {
     private fun checkMutability(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (ktProperty.isVar) {
             holder.registerProblem(
-                GodotPluginBundle.message("problem.signal.mutability"),
-                ktProperty.valOrVarKeyword,
-                mutabilityQuickFix,
-                ProblemHighlightType.WARNING
+                message = GodotPluginBundle.message("problem.signal.mutability"),
+                errorLocation = ktProperty.valOrVarKeyword,
+                quickFixes = arrayOf(mutabilityQuickFix),
+                problemHighlightType = ProblemHighlightType.WARNING,
             )
         }
     }
@@ -44,9 +44,9 @@ class RegisterSignalAnnotator : Annotator {
         val type = ktProperty.type() ?: return
         if (!type.getJetTypeFqName(false).startsWith("godot.signals.Signal")) {
             holder.registerProblem(
-                GodotPluginBundle.message("problem.signal.wrongType"),
-                getInitializerProblemLocation(ktProperty),
-                useDelegateQuickFix
+                message = GodotPluginBundle.message("problem.signal.wrongType"),
+                errorLocation = getInitializerProblemLocation(ktProperty),
+                quickFixes = arrayOf(useDelegateQuickFix)
             )
         }
     }

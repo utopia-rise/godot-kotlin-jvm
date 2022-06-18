@@ -1,11 +1,7 @@
 package godot.tests.rpctests
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.Rpc
-import godot.annotation.Sync
+import godot.annotation.*
 
 @RegisterClass("RPCTests")
 class RpcTests : Node() {
