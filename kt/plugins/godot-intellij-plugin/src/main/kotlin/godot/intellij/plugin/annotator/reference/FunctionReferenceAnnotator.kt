@@ -14,7 +14,6 @@ class FunctionReferenceAnnotator : Annotator {
             is KtCallableReferenceExpression -> {
                 SignalFunctionReferenceChecker.checkSignalConnectionFunction(element, holder)
                 RpcFunctionReferenceChecker.checkRpcTargetFunction(element, holder)
-                RSetPropertyReferenceChecker.checkRpcTargetProperty(element, holder)
                 CallFunctionReferenceChecker.checkGeneralTargetFunction(element, holder)
             }
         }
