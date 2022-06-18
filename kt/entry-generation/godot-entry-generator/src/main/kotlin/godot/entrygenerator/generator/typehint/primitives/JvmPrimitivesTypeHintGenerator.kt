@@ -1,7 +1,7 @@
 package godot.entrygenerator.generator.typehint.primitives
 
 import com.squareup.kotlinpoet.ClassName
-import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.exceptions.WrongPropertyAnnotationUsageException
 import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
@@ -40,7 +40,7 @@ class JvmPrimitivesTypeHintGenerator(
             is PlaceHolderTextHintAnnotation -> ClassName("godot.core.PropertyHint", "PLACE_HOLDER_TEXT")
             null -> ClassName("godot.core.PropertyHint", "NONE")
 
-            else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
+            else -> throw WrongPropertyAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }
 }

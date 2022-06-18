@@ -1,7 +1,7 @@
 package godot.entrygenerator.generator.typehint.coretypes
 
 import com.squareup.kotlinpoet.ClassName
-import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.exceptions.WrongPropertyAnnotationUsageException
 import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
@@ -17,7 +17,7 @@ class JvmCoreTypeTypeHintGenerator(
             //TODO: implement NodePathToEditedNode
             //TODO: implement NodePathValidTypes
             null -> ClassName("godot.core.PropertyHint", "NONE")
-            else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
+            else -> throw WrongPropertyAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }
 }

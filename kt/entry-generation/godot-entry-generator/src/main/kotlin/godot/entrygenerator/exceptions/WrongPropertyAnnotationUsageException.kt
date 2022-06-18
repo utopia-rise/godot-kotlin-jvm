@@ -3,7 +3,7 @@ package godot.entrygenerator.exceptions
 import godot.entrygenerator.model.PropertyHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 
-class WrongAnnotationUsageException(
+class WrongPropertyAnnotationUsageException(
     registeredProperty: RegisteredProperty,
     propertyHintAnnotation: PropertyHintAnnotation?,
     effectiveType: String? = null

@@ -6,7 +6,6 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.KSType
-import godot.RPCMode
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.EnumFlag
@@ -21,6 +20,7 @@ import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.annotation.Rpc
 import godot.annotation.Tool
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
@@ -44,8 +44,11 @@ import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterFunctionAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisterSignalAnnotation
+import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
+import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.ToolAnnotation
+import godot.entrygenerator.model.TransferMode
 
 val KSAnnotation.fqNameUnsafe: String
     get() = requireNotNull(this.annotationType.resolve().declaration.qualifiedName?.asString()) {
@@ -67,18 +70,29 @@ val KSAnnotation.rangeEnum: Range
         } ?: Range.NONE
 
 val KSAnnotation.rpcModeEnum: RpcMode
-    get() = when ((arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
-        //TODO/4.0: rework with new RPC standards (https://godotengine.org/article/multiplayer-changes-godot-4-0-report-2)
-//        "${RPCMode.REMOTE::class.qualifiedName}.${RPCMode.REMOTE.name}" -> RpcMode.REMOTE
-//        "${RPCMode.MASTER::class.qualifiedName}.${RPCMode.MASTER.name}" -> RpcMode.MASTER
-//        "${RPCMode.PUPPET::class.qualifiedName}.${RPCMode.PUPPET.name}" -> RpcMode.PUPPET
-//        "${RPCMode.SLAVE::class.qualifiedName}.${RPCMode.SLAVE.name}" -> RpcMode.SLAVE
-//        "${RPCMode.REMOTESYNC::class.qualifiedName}.${RPCMode.REMOTESYNC.name}" -> RpcMode.REMOTE_SYNC
-//        "${RPCMode.SYNC::class.qualifiedName}.${RPCMode.SYNC.name}" -> RpcMode.SYNC
-//        "${RPCMode.MASTERSYNC::class.qualifiedName}.${RPCMode.MASTERSYNC.name}" -> RpcMode.MASTER_SYNC
-//        "${RPCMode.PUPPETSYNC::class.qualifiedName}.${RPCMode.PUPPETSYNC.name}" -> RpcMode.PUPPET_SYNC
+    get() = when (((arguments.firstOrNull { it.name?.asString() == "rpcMode" }?.value ?: arguments[0].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
+        "${godot.annotation.RpcMode.ANY::class.qualifiedName}.${godot.annotation.RpcMode.ANY.name}" -> RpcMode.ANY
+        "${godot.annotation.RpcMode.AUTHORITY::class.qualifiedName}.${godot.annotation.RpcMode.AUTHORITY.name}" -> RpcMode.AUTHORITY
         else -> RpcMode.DISABLED
     }
+
+val KSAnnotation.rpcSyncEnum: Sync
+    get() = when (((arguments.firstOrNull { it.name?.asString() == "sync" }?.value ?: arguments[1].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
+        "${godot.annotation.Sync.SYNC::class.qualifiedName}.${godot.annotation.Sync.SYNC.name}" -> Sync.SYNC
+        "${godot.annotation.Sync.NO_SYNC::class.qualifiedName}.${godot.annotation.Sync.NO_SYNC.name}" -> Sync.NO_SYNC
+        else -> Sync.NO_SYNC
+    }
+
+val KSAnnotation.rpcTransferModeEnum: TransferMode
+    get() = when (((arguments.firstOrNull { it.name?.asString() == "transferMode" }?.value ?: arguments[2].value) as? KSType)?.declaration?.qualifiedName?.asString()) {
+        "${godot.annotation.TransferMode.RELIABLE::class.qualifiedName}.${godot.annotation.TransferMode.RELIABLE.name}" -> TransferMode.RELIABLE
+        "${godot.annotation.TransferMode.UNRELIABLE::class.qualifiedName}.${godot.annotation.TransferMode.UNRELIABLE.name}" -> TransferMode.UNRELIABLE
+        "${godot.annotation.TransferMode.UNRELIABLE_ORDERED::class.qualifiedName}.${godot.annotation.TransferMode.UNRELIABLE_ORDERED.name}" -> TransferMode.UNRELIABLE_ORDERED
+        else -> TransferMode.RELIABLE
+    }
+
+val KSAnnotation.rpcChannel: Int
+    get() = (arguments.firstOrNull { it.name?.asString() == "transferChannel" }?.value ?: arguments[3].value) as Int
 
 fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
     return when (fqNameUnsafe) {
@@ -86,21 +100,17 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
             arguments.first().value as? String
         )
         RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation
-        RegisterFunction::class.qualifiedName -> {
-            val rpcMode = rpcModeEnum
-            RegisterFunctionAnnotation(
-                rpcMode
-            )
-        }
-        RegisterProperty::class.qualifiedName -> {
-            val rpcMode = rpcModeEnum
-            RegisterPropertyAnnotation(
-                rpcMode
-            )
-        }
+        RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation
+        RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation
         RegisterSignal::class.qualifiedName -> RegisterSignalAnnotation
         Tool::class.qualifiedName -> ToolAnnotation
         Export::class.qualifiedName -> ExportAnnotation
+        Rpc::class.qualifiedName -> RpcAnnotation(
+            rpcMode = rpcModeEnum,
+            sync = rpcSyncEnum,
+            transferMode = rpcTransferModeEnum,
+            transferChannel = rpcChannel
+        )
         "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
         EnumFlag::class.qualifiedName -> {
             val setType = (parentDeclaration as KSPropertyDeclaration).type.resolve()

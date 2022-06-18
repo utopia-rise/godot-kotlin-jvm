@@ -51,7 +51,10 @@ data class KtFunctionInfo(
         val name: String,
         val _arguments: List<KtPropertyInfo>,
         val returnVal: KtPropertyInfo,
-        val rpcModeId: Int
+        val rpcModeId: Int,
+        val rpcCallLocal: Boolean,
+        val rpcTransferModeId: Int,
+        val rpcChannel: Int,
 ) {
     val arguments: Array<KtPropertyInfo>
         get() = _arguments.toTypedArray()

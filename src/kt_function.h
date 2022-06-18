@@ -15,7 +15,7 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
-    Multiplayer::RPCMode rpc_mode;
+    Multiplayer::RPCConfig rpc_config;
 
     MethodInfo to_method_info() const;
 
@@ -24,6 +24,9 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(GET_RETURN_VAL, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
+        JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
+        JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
+        JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
 )
 };
 
@@ -39,7 +42,7 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
-    Multiplayer::RPCMode get_rpc_mode() const;
+    Multiplayer::RPCConfig get_rpc_config() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();

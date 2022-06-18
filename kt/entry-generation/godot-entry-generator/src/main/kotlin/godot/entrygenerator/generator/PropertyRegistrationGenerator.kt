@@ -21,7 +21,6 @@ import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
-import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.TypeKind
 
 object PropertyRegistrationGenerator {
@@ -87,7 +86,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·$defaultValueProviderVariableName,·%L,·%T.id.toInt())",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·$defaultValueProviderVariableName,·%L)",
                 getPropertyReference(registeredProperty, className),
                 registeredProperty.type.toKtVariantType(),
                 registeredProperty.type.toGodotVariantType(),
@@ -98,7 +97,6 @@ object PropertyRegistrationGenerator {
                     .getHintString()
                     .replace("?", ""),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty)
             )
     }
 
@@ -112,10 +110,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
+                "enumListProperty(%L,·$defaultValueProvider,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -133,10 +130,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
+                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -154,10 +150,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
+                "enumProperty(%L,·$defaultValueProvider,·%L,·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -175,20 +170,6 @@ object PropertyRegistrationGenerator {
         return registeredProperty
             .annotations
             .hasAnnotation<ExportAnnotation>()
-    }
-
-    private fun getRpcModeEnum(registeredProperty: RegisteredProperty): ClassName {
-        return when (registeredProperty.annotations.getAnnotationUnsafe<RegisterPropertyAnnotation>().rpcMode) {
-            RpcMode.DISABLED -> ClassName("godot.MultiplayerAPI.RPCMode", "DISABLED")
-            RpcMode.REMOTE -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTE")
-            RpcMode.MASTER -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTER")
-            RpcMode.PUPPET -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPET")
-            RpcMode.SLAVE -> ClassName("godot.MultiplayerAPI.RPCMode", "SLAVE")
-            RpcMode.REMOTE_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTESYNC")
-            RpcMode.SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "SYNC")
-            RpcMode.MASTER_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTERSYNC")
-            RpcMode.PUPPET_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPETSYNC")
-        }
     }
 
     private fun generateAndProvideDefaultValueProvider(

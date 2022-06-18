@@ -61,10 +61,6 @@ public:
 
     Variant property_get_fallback(const StringName& p_name, bool* r_valid) override;
 
-    //TODO/4.0: Implement new RPC methods
-//    Multiplayer::RPCMode get_rpc_mode(const StringName& p_method) const override;
-//
-//    Multiplayer::RPCMode get_rset_mode(const StringName& p_variable) const override;
     const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
 
     ScriptLanguage* get_language() override;

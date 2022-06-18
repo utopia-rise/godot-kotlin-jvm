@@ -33,8 +33,8 @@ int KtFunction::get_parameter_count() const {
     return parameter_count;
 }
 
-Multiplayer::RPCMode KtFunction::get_rpc_mode() const {
-    return method_info->rpc_mode;
+Multiplayer::RPCConfig KtFunction::get_rpc_config() const {
+    return method_info->rpc_config;
 }
 
 KtFunctionInfo* KtFunction::get_kt_function_info() {
@@ -66,8 +66,22 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
                                     ClassLoader::get_default_loader());
-    jni::MethodId getRPCModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
-    rpc_mode = static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeMethod));
+
+    jni::MethodId getRPCModeIdMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
+    Multiplayer::RPCMode rpc_mode{static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod))};
+    jni::MethodId getRPCCallLocalMethod{get_method_id(env, jni_methods.GET_RPC_CALL_LOCAL)};
+    bool rpc_call_local = wrapped.call_boolean_method(env, getRPCCallLocalMethod);
+    jni::MethodId getRPCTransferModeIdMethod{get_method_id(env, jni_methods.GET_RPC_TRANSFER_MODE_ID)};
+    Multiplayer::TransferMode rpc_transfer_mode{static_cast<Multiplayer::TransferMode>(wrapped.call_int_method(env, getRPCTransferModeIdMethod))};
+    jni::MethodId getRPCChannelMethod{get_method_id(env, jni_methods.GET_RPC_CHANNEL)};
+    int rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
+    rpc_config = {
+            .name = name,
+            .rpc_mode = rpc_mode,
+            .call_local = rpc_call_local,
+            .transfer_mode = rpc_transfer_mode,
+            .channel = rpc_channel
+    };
 }
 
 KtFunctionInfo::~KtFunctionInfo() {
