@@ -8,7 +8,7 @@
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
 static constexpr const char* configuration_path{"res://godot_kotlin_configuration.json"};
 
-void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool p_debug, const String& p_path,
+void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path,
                                              int p_flags) {
     LOG_INFO("Beginning Godot-Jvm specific exports.");
 

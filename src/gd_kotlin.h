@@ -4,7 +4,6 @@
 #include "jni/wrapper.h"
 #include "bootstrap.h"
 #include "kt_class.h"
-#include "core/templates/map.h"
 #include "core/string/ustring.h"
 #include "transfer_context.h"
 #include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
@@ -17,7 +16,7 @@ private:
 
     ~GDKotlin() = default;
 
-    Map<StringName, KtClass*> classes;
+    HashMap<StringName, KtClass*> classes;
 
     Bootstrap* bootstrap;
 

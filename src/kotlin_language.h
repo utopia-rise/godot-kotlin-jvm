@@ -40,7 +40,7 @@ public:
 
     bool validate(const String& p_script, const String& p_path, List<String>* r_functions,
                   List<ScriptLanguage::ScriptError>* r_errors = nullptr, List<ScriptLanguage::Warning>* r_warnings = nullptr,
-                  Set<int>* r_safe_lines = nullptr) const override;
+                  HashSet<int>* r_safe_lines = nullptr) const override;
 
     String validate_path(const String& p_path) const override;
 

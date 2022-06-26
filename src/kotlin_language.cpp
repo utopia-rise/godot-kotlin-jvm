@@ -226,7 +226,7 @@ bool KotlinLanguage::is_using_templates() {
 
 bool KotlinLanguage::validate(const String& p_script, const String& p_path, List<String>* r_functions,
                               List<ScriptLanguage::ScriptError>* r_errors, List<ScriptLanguage::Warning>* r_warnings,
-                              Set<int>* r_safe_lines) const {
+                              HashSet<int>* r_safe_lines) const {
 
     //TODO
     return true;
