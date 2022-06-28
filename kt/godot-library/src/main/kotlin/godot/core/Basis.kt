@@ -418,17 +418,17 @@ class Basis() : CoreType {
      *
      */
     fun isEqualApprox(a: Basis, epsilon: RealT = CMP_EPSILON): Boolean {
-        if (isEqualApprox(this._x.x, a._x.x, epsilon)) return false
-        if (isEqualApprox(this._x.y, a._x.y, epsilon)) return false
-        if (isEqualApprox(this._x.z, a._x.z, epsilon)) return false
+        if (!isEqualApprox(this._x.x, a._x.x, epsilon)) return false
+        if (!isEqualApprox(this._x.y, a._x.y, epsilon)) return false
+        if (!isEqualApprox(this._x.z, a._x.z, epsilon)) return false
 
-        if (isEqualApprox(this._y.x, a._y.x, epsilon)) return false
-        if (isEqualApprox(this._y.y, a._y.y, epsilon)) return false
-        if (isEqualApprox(this._y.x, a._y.x, epsilon)) return false
+        if (!isEqualApprox(this._y.x, a._y.x, epsilon)) return false
+        if (!isEqualApprox(this._y.y, a._y.y, epsilon)) return false
+        if (!isEqualApprox(this._y.z, a._y.z, epsilon)) return false
 
-        if (isEqualApprox(this._z.x, a._z.x, epsilon)) return false
-        if (isEqualApprox(this._z.y, a._z.y, epsilon)) return false
-        if (isEqualApprox(this._z.z, a._z.z, epsilon)) return false
+        if (!isEqualApprox(this._z.x, a._z.x, epsilon)) return false
+        if (!isEqualApprox(this._z.y, a._z.y, epsilon)) return false
+        if (!isEqualApprox(this._z.z, a._z.z, epsilon)) return false
 
         return true
     }
