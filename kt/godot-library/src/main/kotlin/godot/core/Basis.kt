@@ -277,7 +277,7 @@ class Basis() : CoreType {
 
     private fun isOrthogonal(): Boolean {
         val id = Basis()
-        val m = this.transposed()
+        val m = this.transposed().times(this)
         return m.isEqualApprox(id)
     }
 
