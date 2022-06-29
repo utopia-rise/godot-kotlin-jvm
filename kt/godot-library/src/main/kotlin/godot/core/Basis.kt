@@ -25,7 +25,7 @@ class Basis() : CoreType {
         _y.y = 1.0
         _y.z = 0.0
         _z.x = 0.0
-        _z.y = 0.1
+        _z.y = 0.0
         _z.z = 1.0
     }
 
