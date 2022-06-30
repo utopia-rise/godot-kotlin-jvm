@@ -27,9 +27,14 @@ func test_jvm_basis_get_rotation_quat():
 	# Tests previous issues with Basis#getQuat()
 	# see https://github.com/utopia-rise/godot-kotlin-jvm/pull/330
 	var basis_test = godot_tests_coretypes_BasisTest.new()
-	var basis = Basis.IDENTITY.rotated(Vector3.ONE, 90.0 * PI / 180.0).scaled(Vector3(2.0, 2.0, 2.0))
-	var jvm_quat = basis_test.get_rotation_quat(basis) # should not throw, was throwing before
-	var engine_quat = Quat(Vector3.ONE, 90.0 * PI / 180.0)
+	var basis = Basis.IDENTITY \
+		.rotated(Vector3(1, 0, 0), 5.0 * PI / 180.0) \
+		.rotated(Vector3(0, 1, 0), 5.0 * PI / 180.0) \
+		.rotated(Vector3(0, 0, 1), 5.0 * PI / 180.0) \
+		.scaled(Vector3(1, 2, 3))
+
+	var jvm_quat = basis.get_rotation_quat()
+	var engine_quat = basis_test.get_rotation_quat(basis)
 	assert_true(engine_quat.is_equal_approx(jvm_quat), "Quat from Basis in JVM should equal expected Quat")
 	basis_test.free()
 
