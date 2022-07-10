@@ -379,6 +379,10 @@ void KotlinLanguage::get_public_constants(List<Pair<String, Variant>>* p_constan
 
 }
 
+void KotlinLanguage::get_public_annotations(List<MethodInfo>* p_annotations) const {
+
+}
+
 void KotlinLanguage::profiling_start() {
 
 }
@@ -437,4 +441,8 @@ String KotlinLanguage::get_global_class_name(const String& p_path, String* r_bas
 
 const Object* KotlinLanguage::get_custom_callable_middleman() const {
     return kt_custom_callable_middleman;
+}
+
+KotlinLanguage::KotlinLanguage() : kt_custom_callable_middleman(nullptr) {
+
 }

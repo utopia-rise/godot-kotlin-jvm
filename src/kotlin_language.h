@@ -5,7 +5,7 @@
 
 class KotlinLanguage : public ScriptLanguage {
 public:
-    KotlinLanguage() = default;
+    KotlinLanguage();
     ~KotlinLanguage() override = default;
     KotlinLanguage(const KotlinLanguage&) = delete;
     void operator=(const KotlinLanguage&) = delete;
@@ -112,6 +112,8 @@ public:
     void get_public_functions(List<MethodInfo>* p_functions) const override;
 
     void get_public_constants(List<Pair<String, Variant>>* p_constants) const override;
+
+    void get_public_annotations(List<MethodInfo> *p_annotations) const override;
 
     void profiling_start() override;
 

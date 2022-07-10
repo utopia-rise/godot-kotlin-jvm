@@ -18,13 +18,13 @@ class StringName : NativeCoreType {
 
     constructor(string: String) {
         TransferContext.writeArguments(VariantType.STRING to string)
-        _handle = Bridge.engine_call_constructor(1)
+        _handle = Bridge.engine_call_constructor_string()
         GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
     constructor(stringName: StringName) {
         TransferContext.writeArguments(VariantType.STRING_NAME to stringName)
-        _handle = Bridge.engine_call_constructor(2)
+        _handle = Bridge.engine_call_copy_constructor()
         GarbageCollector.registerNativeCoreType(this, VariantType.STRING_NAME)
     }
 
@@ -32,7 +32,9 @@ class StringName : NativeCoreType {
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun engine_call_constructor(paramType: Int = 0): VoidPtr
+        external fun engine_call_constructor(): VoidPtr
+        external fun engine_call_copy_constructor(): VoidPtr
+        external fun engine_call_constructor_string(): VoidPtr
     }
 }
 

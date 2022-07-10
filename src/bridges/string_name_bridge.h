@@ -10,7 +10,9 @@ namespace bridges {
         StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
         ~StringNameBridge() = default;
 
-        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jint param_type);
+        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance);
 
         DECLARE_JNI_METHODS()
     };
