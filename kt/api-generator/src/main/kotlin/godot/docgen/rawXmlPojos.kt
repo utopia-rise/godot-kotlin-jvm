@@ -146,7 +146,7 @@ private fun String.getFormattedDescription(): String = trim()
 /**
  * Replaces wrong comment characters sequence to avoid invalid comment syntax.
  */
-fun String.replaceInvalidCommentSequences(): String = this.replace("*/", "* / ")
+fun String.replaceInvalidCommentSequences(): String = this.replace("*/", "* / ").replace("/*", "/ *")
 
 /**
  * Replaces new line chars with two new line chars so they are rendered on an new line in kdoc
