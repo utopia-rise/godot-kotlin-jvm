@@ -67,8 +67,8 @@ bool KotlinInstance::has_method(const StringName& p_method) const {
 
 Variant
 KotlinInstance::call(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2, const Variant& p_arg3,
-                     const Variant& p_arg4, const Variant& p_arg5) {
-    return ScriptInstance::call(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
+                     const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) {
+    return ScriptInstance::call(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8);
 }
 
 Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
@@ -85,8 +85,8 @@ Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args,
 }
 
 void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
-                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5) {
-    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
+                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) {
+    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8);
 }
 
 void KotlinInstance::call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) {
