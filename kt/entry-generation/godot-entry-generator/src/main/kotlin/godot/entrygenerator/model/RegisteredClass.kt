@@ -11,8 +11,9 @@ data class RegisteredClass(
     val constructors: List<RegisteredConstructor> = emptyList(),
     val functions: List<RegisteredFunction> = emptyList(),
     val signals: List<RegisteredSignal> = emptyList(),
-    val properties: List<RegisteredProperty> = emptyList()
-) : Clazz(fqName, supertypes) {
+    val properties: List<RegisteredProperty> = emptyList(),
+    override val isAbstract: Boolean = false
+) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
     internal val registeredName: String
         get() {
             val customName = annotations
