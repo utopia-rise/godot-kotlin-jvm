@@ -115,6 +115,8 @@ public open class Spatial : Node() {
 
   /**
    * Scale part of the local transformation.
+   *
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
    */
   public open var scale: Vector3
     get() {
@@ -225,6 +227,18 @@ public open class Spatial : Node() {
   public open fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_FORCE_UPDATE_TRANSFORM, NIL)
+  }
+
+  /**
+   * When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
+   *
+   * This is particularly important for frame-based operations that take place in [godot.Node.Process], rather than [godot.Node.PhysicsProcess]. Examples include [godot.Camera]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
+   */
+  public open fun getGlobalTransformInterpolated(): Transform {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_TRANSFORM_INTERPOLATED, TRANSFORM)
+    return TransferContext.readReturnValue(TRANSFORM, false) as Transform
   }
 
   /**

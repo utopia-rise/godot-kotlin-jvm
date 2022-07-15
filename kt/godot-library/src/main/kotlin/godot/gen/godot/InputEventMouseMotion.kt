@@ -8,10 +8,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
@@ -24,10 +26,30 @@ import kotlin.Unit
  *
  * Contains mouse and pen motion information. Supports relative, absolute positions and speed. See [godot.Node.Input].
  *
- * **Note:** By default, this event is only emitted once per frame rendered at most. If you need more precise input reporting, call [godot.Input.setUseAccumulatedInput] with `false` to make events emitted as often as possible. If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
+ * **Note:** The behavior of this event is affected by the value of [godot.Input.useAccumulatedInput]. When set to `true` (default), mouse/pen motion events received from the OS will be merged to emit an accumulated event only once per frame rendered at most. When set to `false`, the events will be emitted as received, which means that they can be emitted multiple times per frame rendered, allowing for precise input reporting at the expense of CPU usage.
+ *
+ * **Note:** If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
  */
 @GodotBaseType
 public open class InputEventMouseMotion : InputEventMouse() {
+  /**
+   * Returns `true` when using the eraser end of a stylus pen.
+   *
+   * **Note:** This property is implemented on Linux, macOS and Windows.
+   */
+  public open var penInverted: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_PEN_INVERTED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PEN_INVERTED, NIL)
+    }
+
   /**
    * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
    */

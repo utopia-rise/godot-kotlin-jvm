@@ -22,7 +22,7 @@ import kotlin.jvm.JvmName
  * Input event for gamepad buttons.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see [godot.InputEventJoypadMotion].
  */
@@ -58,7 +58,7 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   /**
-   * Represents the pressure the user puts on the button with his finger, if the controller supports it. Ranges from `0` to `1`.
+   * Represents the pressure the user puts on the button with their finger, if the controller supports it. Ranges from `0` to `1`.
    */
   public open var pressure: Double
     get() {

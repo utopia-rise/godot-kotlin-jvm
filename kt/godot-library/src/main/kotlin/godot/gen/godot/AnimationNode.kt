@@ -33,7 +33,7 @@ import kotlin.Unit
  * Base resource for [godot.AnimationTree] nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * Base resource for [godot.AnimationTree] nodes. In general, it's not used directly, but you can create custom ones with custom blending formulas.
  *

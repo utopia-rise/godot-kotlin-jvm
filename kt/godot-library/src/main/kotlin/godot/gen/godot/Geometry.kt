@@ -358,7 +358,7 @@ public object Geometry : Object() {
   }
 
   /**
-   * Checks if the two lines (`from_a`, `dir_a`) and (`from_b`, `dir_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two lines (`from_a`, `dir_a`) and (`from_b`, `dir_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    *
    * **Note:** The lines are specified using direction vectors, not end points.
    */
@@ -522,7 +522,7 @@ public object Geometry : Object() {
   }
 
   /**
-   * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsSegment2d(
     fromA: Vector2,

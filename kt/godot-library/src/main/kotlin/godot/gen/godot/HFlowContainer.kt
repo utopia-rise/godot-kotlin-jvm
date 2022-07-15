@@ -9,9 +9,14 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Horizontal flow container.
+ *
+ * Horizontal version of [godot.FlowContainer].
+ */
 @GodotBaseType
-public open class BulletPhysicsDirectBodyState : PhysicsDirectBodyState() {
+public open class HFlowContainer : FlowContainer() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BULLETPHYSICSDIRECTBODYSTATE)
+    callConstructor(ENGINECLASS_HFLOWCONTAINER)
   }
 }

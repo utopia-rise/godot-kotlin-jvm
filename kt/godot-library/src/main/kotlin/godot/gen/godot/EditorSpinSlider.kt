@@ -37,6 +37,22 @@ public open class EditorSpinSlider : Range() {
     }
 
   /**
+   * If `true`, the slider is hidden.
+   */
+  public open var hideSlider: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_HIDE_SLIDER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_HIDE_SLIDER,
+          NIL)
+    }
+
+  /**
    *
    */
   public open var label: String

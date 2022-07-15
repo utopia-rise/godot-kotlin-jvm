@@ -27,7 +27,7 @@ import kotlin.Unit
  * Plays positional sound in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html)
+ * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
@@ -126,6 +126,8 @@ public open class AudioStreamPlayer3D : Spatial() {
 
   /**
    * The bus on which this audio is playing.
+   *
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public open var bus: String
     get() {

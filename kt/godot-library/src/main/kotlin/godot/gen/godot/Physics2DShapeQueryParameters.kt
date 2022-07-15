@@ -68,7 +68,7 @@ public open class Physics2DShapeQueryParameters : Reference() {
     }
 
   /**
-   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {

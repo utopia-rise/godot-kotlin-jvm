@@ -50,7 +50,7 @@ public open class EditorProperty : Container() {
   /**
    * Emitted when a property was checked. Used internally.
    */
-  public val propertyChecked: Signal2<String, String> by signal("property", "bool")
+  public val propertyChecked: Signal2<String, Boolean> by signal("property", "checked")
 
   /**
    * Emit it if you want to add this value as an animation key (check for keying being enabled first).
@@ -61,6 +61,13 @@ public open class EditorProperty : Container() {
    * Emit it if you want to key a property with a single value.
    */
   public val propertyKeyedWithValue: Signal2<String, Any> by signal("property", "value")
+
+  /**
+   * Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.
+   *
+   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instancing chain, a script or a builtin class.
+   */
+  public val propertyPinned: Signal2<String, Boolean> by signal("property", "pinned")
 
   /**
    * If you want a sub-resource to be edited, emit this signal with the resource.
@@ -166,6 +173,15 @@ public open class EditorProperty : Container() {
   }
 
   public override fun _guiInput(event: InputEvent): Unit {
+  }
+
+  public open fun _menuOption(option: Long): Unit {
+  }
+
+  public open fun _unhandledKeyInput(arg0: InputEvent): Unit {
+  }
+
+  public open fun _updateRevertAndPinStatus(): Unit {
   }
 
   /**

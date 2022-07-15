@@ -96,7 +96,7 @@ public open class EditorFileSystem : Node() {
   }
 
   /**
-   * Returns `true` of the filesystem is being scanned.
+   * Returns `true` if the filesystem is being scanned.
    */
   public open fun isScanning(): Boolean {
     TransferContext.writeArguments()

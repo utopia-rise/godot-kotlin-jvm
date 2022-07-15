@@ -187,7 +187,7 @@ public open class ColorPicker : BoxContainer() {
   public open fun _htmlFocusExit(): Unit {
   }
 
-  public open fun _presetInput(arg0: InputEvent): Unit {
+  public open fun _presetInput(arg0: InputEvent, arg1: Color): Unit {
   }
 
   public open fun _sampleDraw(): Unit {

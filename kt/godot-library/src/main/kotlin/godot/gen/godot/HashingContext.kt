@@ -45,8 +45,6 @@ import kotlin.Unit
  * 		    # Print the result as hex string and array.
  * 		    printt(res.hex_encode(), Array(res))
  * 		```
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class HashingContext : Reference() {

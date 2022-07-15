@@ -19,6 +19,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
+import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.camelToSnakeCase
 import kotlin.Any
@@ -73,6 +74,20 @@ import kotlin.reflect.KMutableProperty
 @GodotBaseType
 public open class Node : Object() {
   /**
+   * Emitted when a child node enters the scene tree, either because it entered on its own or because this node entered with it.
+   *
+   * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [treeEntered].
+   */
+  public val childEnteredTree: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when a child node is about to exit the scene tree, either because it is being removed or freed directly, or because this node is exiting the tree.
+   *
+   * When this signal is received, the child `node` is still in the tree and valid. This signal is emitted *after* the child node's own [treeExiting] and [NOTIFICATION_EXIT_TREE].
+   */
+  public val childExitingTree: Signal1<Node> by signal("node")
+
+  /**
    * Emitted when the node is ready.
    */
   public val ready: Signal0 by signal()
@@ -84,6 +99,8 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node enters the tree.
+   *
+   * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
   public val treeEntered: Signal0 by signal()
 
@@ -94,6 +111,8 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for de-initialization (or a "destructor", if you will).
+   *
+   * This signal is emitted *before* the related [NOTIFICATION_EXIT_TREE] notification.
    */
   public val treeExiting: Signal0 by signal()
 
@@ -155,7 +174,7 @@ public open class Node : Object() {
   /**
    * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open var owner: Node?
     get() {
@@ -183,6 +202,24 @@ public open class Node : Object() {
     }
 
   /**
+   * Allows enabling or disabling physics interpolation per node, offering a finer grain of control than turning physics interpolation on and off globally.
+   *
+   * **Note:** This can be especially useful for [godot.Camera]s, where custom interpolation can sometimes give superior results.
+   */
+  public open var physicsInterpolationMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_INTERPOLATION_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_INTERPOLATION_MODE, NIL)
+    }
+
+  /**
    * The node's priority in the execution order of the enabled processing callbacks (i.e. [NOTIFICATION_PROCESS], [NOTIFICATION_PHYSICS_PROCESS] and their internal counterparts). Nodes whose process priority value is *lower* will have their processing callbacks executed first.
    */
   public open var processPriority: Long
@@ -194,6 +231,24 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL)
+    }
+
+  /**
+   * Sets this node's name as a unique name in its [owner]. This allows the node to be accessed as `%Name` instead of the full path, from any node within that scene.
+   *
+   * If another node with the same owner already had that name declared as unique, that other node's name will no longer be set as having a unique name.
+   */
+  public open var uniqueNameInOwner: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_UNIQUE_NAME_IN_OWNER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_UNIQUE_NAME_IN_OWNER,
+          NIL)
     }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
@@ -711,7 +766,7 @@ public open class Node : Object() {
    *
    * For gameplay input, [_unhandledInput] and [_unhandledKeyInput] are usually a better fit as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _input(event: InputEvent): Unit {
   }
@@ -723,7 +778,7 @@ public open class Node : Object() {
    *
    * Corresponds to the [NOTIFICATION_PHYSICS_PROCESS] notification in [godot.Object.Notification].
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _physicsProcess(delta: Double): Unit {
   }
@@ -735,7 +790,7 @@ public open class Node : Object() {
    *
    * Corresponds to the [NOTIFICATION_PROCESS] notification in [godot.Object.Notification].
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _process(delta: Double): Unit {
   }
@@ -747,7 +802,7 @@ public open class Node : Object() {
    *
    * Usually used for initialization. For even earlier initialization, [godot.Object.Init] may be used. See also [_enterTree].
    *
-   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding again, `_ready` will not be called for the second time. This can be bypassed with requesting another call with [requestReady], which may be called anywhere before adding the node again.
+   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding it again, `_ready` will not be called a second time. This can be bypassed by requesting another call with [requestReady], which may be called anywhere before adding the node again.
    */
   public open fun _ready(): Unit {
   }
@@ -758,8 +813,11 @@ public open class Node : Object() {
   public open fun _setImportPath(importPath: NodePath): Unit {
   }
 
+  public open fun _setPropertyPinned(`property`: String, pinned: Boolean): Unit {
+  }
+
   /**
-   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledInput].
    *
@@ -767,13 +825,13 @@ public open class Node : Object() {
    *
    * For gameplay input, this and [_unhandledKeyInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledInput(event: InputEvent): Unit {
   }
 
   /**
-   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled key input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledKeyInput].
    *
@@ -781,7 +839,7 @@ public open class Node : Object() {
    *
    * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEventKey): Unit {
   }
@@ -799,7 +857,7 @@ public open class Node : Object() {
    * 				add_child(child_node)
    * 				```
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open fun addChild(node: Node, legibleUniqueName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName)
@@ -839,6 +897,19 @@ public open class Node : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Creates a new [godot.SceneTreeTween] and binds it to this node. This is equivalent of doing:
+   *
+   * ```
+   * 				get_tree().create_tween().bind_node(self)
+   * 				```
+   */
+  public open fun createTween(): SceneTreeTween? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CREATE_TWEEN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTween?
   }
 
   /**
@@ -955,7 +1026,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, a `null instance` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
+   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, `null` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
    *
    * **Note:** Fetching absolute paths only works when the node is inside the scene tree (see [isInsideTree]).
    *
@@ -1016,7 +1087,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the parent node of the current node, or a `null instance` if the node lacks a parent.
+   * Returns the parent node of the current node, or `null` if the node lacks a parent.
    */
   public open fun getParent(): Node? {
     TransferContext.writeArguments()
@@ -1167,6 +1238,31 @@ public open class Node : Object() {
   public open fun isNetworkMaster(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_NETWORK_MASTER, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the physics interpolated flag is set for this Node (see [physicsInterpolationMode]).
+   *
+   * **Note:** Interpolation will only be active if both the flag is set **and** physics interpolation is enabled within the [godot.SceneTree]. This can be tested using [isPhysicsInterpolatedAndEnabled].
+   */
+  public open fun isPhysicsInterpolated(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_INTERPOLATED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if physics interpolation is enabled (see [physicsInterpolationMode]) **and** enabled in the [godot.SceneTree].
+   *
+   * This is a convenience version of [isPhysicsInterpolated] that also checks whether physics interpolation is enabled globally.
+   *
+   * See [godot.SceneTree.physicsInterpolation] and [godot.ProjectSettings.physics/common/physicsInterpolation].
+   */
+  public open fun isPhysicsInterpolatedAndEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_INTERPOLATED_AND_ENABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1357,7 +1453,9 @@ public open class Node : Object() {
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
    *
-   * Note that the replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
+   * **Note:** The given node will become the new parent of any child nodes that the replaced node had.
+   *
+   * **Note:** The replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
    */
   public open fun replaceBy(node: Node, keepData: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepData)
@@ -1373,7 +1471,22 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. See also [rset] and [rsetConfig] for properties. Returns an empty [Variant].
+   * When physics interpolation is active, moving a node to a radically different transform (such as placement within a level) can result in a visible glitch as the object is rendered moving from the old to new position over the physics tick.
+   *
+   * This glitch can be prevented by calling `reset_physics_interpolation`, which temporarily turns off interpolation until the physics tick is complete.
+   *
+   * [NOTIFICATION_RESET_PHYSICS_INTERPOLATION] will be received by the node and all children recursively.
+   *
+   * **Note:** This function should be called **after** moving the node, rather than before.
+   */
+  public open fun resetPhysicsInterpolation(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RESET_PHYSICS_INTERPOLATION,
+        NIL)
+  }
+
+  /**
+   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. See also [rset] and [rsetConfig] for properties. Returns `null`.
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.SceneTree]. You also need to keep track of the connection state, either by the [godot.SceneTree] signals like `server_disconnected` or by checking `SceneTree.network_peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
@@ -1392,7 +1505,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
+   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns `null`.
    */
   public open fun rpcId(
     peerId: Long,
@@ -1406,7 +1519,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a [rpc] using an unreliable protocol. Returns an empty [Variant].
+   * Sends a [rpc] using an unreliable protocol. Returns `null`.
    */
   public open fun rpcUnreliable(method: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -1415,7 +1528,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
+   * Sends a [rpc] to a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns `null`.
    */
   public open fun rpcUnreliableId(
     peerId: Long,
@@ -1635,6 +1748,33 @@ public open class Node : Object() {
     }
   }
 
+  public enum class PhysicsInterpolationMode(
+    id: Long
+  ) {
+    /**
+     * Inherits physics interpolation mode from the node's parent. For the root node, it is equivalent to [PHYSICS_INTERPOLATION_MODE_ON]. Default.
+     */
+    PHYSICS_INTERPOLATION_MODE_INHERIT(0),
+    /**
+     * Turn off physics interpolation in this node and children set to [PHYSICS_INTERPOLATION_MODE_INHERIT].
+     */
+    PHYSICS_INTERPOLATION_MODE_OFF(1),
+    /**
+     * Turn on physics interpolation in this node and children set to [PHYSICS_INTERPOLATION_MODE_INHERIT].
+     */
+    PHYSICS_INTERPOLATION_MODE_ON(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public companion object {
     /**
      * Duplicate the node's groups.
@@ -1680,22 +1820,32 @@ public open class Node : Object() {
     public final const val NOTIFICATION_CRASH: Long = 1012
 
     /**
-     * Notification received when a drag begins.
+     * Notification received when a drag operation begins. All nodes receive this notification, not only the dragged one.
+     *
+     * Can be triggered either by dragging a [godot.Control] that provides drag data (see [godot.Control.getDragData]) or using [godot.Control.forceDrag].
+     *
+     * Use [godot.Viewport.guiGetDragData] to get the dragged data.
      */
     public final const val NOTIFICATION_DRAG_BEGIN: Long = 21
 
     /**
-     * Notification received when a drag ends.
+     * Notification received when a drag operation ends.
+     *
+     * Use [godot.Viewport.guiIsDragSuccessful] to check if the drag succeeded.
      */
     public final const val NOTIFICATION_DRAG_END: Long = 22
 
     /**
      * Notification received when the node enters a [godot.SceneTree].
+     *
+     * This notification is emitted *before* the related [treeEntered].
      */
     public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
      * Notification received when the node is about to exit a [godot.SceneTree].
+     *
+     * This notification is emitted *after* the related [treeExiting].
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
@@ -1769,6 +1919,11 @@ public open class Node : Object() {
      * Notification received when the node is ready. See [_ready].
      */
     public final const val NOTIFICATION_READY: Long = 13
+
+    /**
+     * Notification received when [resetPhysicsInterpolation] is called on the node or parent nodes.
+     */
+    public final const val NOTIFICATION_RESET_PHYSICS_INTERPOLATION: Long = 28
 
     /**
      * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [godot.Object.tr].
@@ -1855,5 +2010,20 @@ public open class Node : Object() {
      * Stops processing when the [godot.SceneTree] is paused.
      */
     public final const val PAUSE_MODE_STOP: Long = 1
+
+    /**
+     * Inherits physics interpolation mode from the node's parent. For the root node, it is equivalent to [PHYSICS_INTERPOLATION_MODE_ON]. Default.
+     */
+    public final const val PHYSICS_INTERPOLATION_MODE_INHERIT: Long = 0
+
+    /**
+     * Turn off physics interpolation in this node and children set to [PHYSICS_INTERPOLATION_MODE_INHERIT].
+     */
+    public final const val PHYSICS_INTERPOLATION_MODE_OFF: Long = 1
+
+    /**
+     * Turn on physics interpolation in this node and children set to [PHYSICS_INTERPOLATION_MODE_INHERIT].
+     */
+    public final const val PHYSICS_INTERPOLATION_MODE_ON: Long = 2
   }
 }

@@ -10,6 +10,9 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.signals.Signal0
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -24,6 +27,16 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Slider : Range() {
+  /**
+   * Emitted when dragging stops. If `value_changed` is true, [godot.Range.value] is different from the value when you started the dragging.
+   */
+  public val dragEnded: Signal1<Boolean> by signal("value_changed")
+
+  /**
+   * Emitted when dragging is started.
+   */
+  public val dragStarted: Signal0 by signal()
+
   /**
    * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
    */

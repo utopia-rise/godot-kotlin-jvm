@@ -57,7 +57,7 @@ public open class AStar2D : Reference() {
   }
 
   /**
-   * Adds a new point at the given position with the given identifier. The `id` must be 0 or larger, and the `weight_scale` must be 1 or larger.
+   * Adds a new point at the given position with the given identifier. The `id` must be 0 or larger, and the `weight_scale` must be 0.0 or greater.
    *
    * The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower `weight_scale`s to form a path.
    *
@@ -78,10 +78,14 @@ public open class AStar2D : Reference() {
   }
 
   /**
-   * Returns whether there is a connection/segment between the given points.
+   * Returns whether there is a connection/segment between the given points. If `bidirectional` is `false`, returns whether movement from `id` to `to_id` is possible through this segment.
    */
-  public open fun arePointsConnected(id: Long, toId: Long): Boolean {
-    TransferContext.writeArguments(LONG to id, LONG to toId)
+  public open fun arePointsConnected(
+    id: Long,
+    toId: Long,
+    bidirectional: Boolean = true
+  ): Boolean {
+    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_ARE_POINTS_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -114,10 +118,14 @@ public open class AStar2D : Reference() {
   }
 
   /**
-   * Deletes the segment between the given points.
+   * Deletes the segment between the given points. If `bidirectional` is `false`, only movement from `id` to `to_id` is prevented, and a unidirectional segment possibly remains.
    */
-  public open fun disconnectPoints(id: Long, toId: Long): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to toId)
+  public open fun disconnectPoints(
+    id: Long,
+    toId: Long,
+    bidirectional: Boolean = true
+  ): Unit {
+    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_DISCONNECT_POINTS, NIL)
   }
 

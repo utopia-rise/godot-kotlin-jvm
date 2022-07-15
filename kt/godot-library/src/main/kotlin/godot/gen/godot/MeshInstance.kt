@@ -8,11 +8,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -150,7 +153,9 @@ public open class MeshInstance : GeometryInstance() {
   }
 
   /**
-   * Returns the [godot.Material] for a surface of the [godot.Mesh] resource.
+   * Returns the override [godot.Material] for a surface of the [godot.Mesh] resource.
+   *
+   * **Note:** This function only returns *override* materials associated with this [godot.MeshInstance]. Consider using [getActiveMaterial] or [godot.Mesh.surfaceGetMaterial] to get materials associated with the [godot.Mesh] resource.
    */
   public open fun getSurfaceMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
@@ -160,7 +165,7 @@ public open class MeshInstance : GeometryInstance() {
   }
 
   /**
-   * Returns the number of surface materials.
+   * Returns the number of surface override materials.
    */
   public open fun getSurfaceMaterialCount(): Long {
     TransferContext.writeArguments()
@@ -170,7 +175,43 @@ public open class MeshInstance : GeometryInstance() {
   }
 
   /**
-   * Sets the [godot.Material] for a surface of the [godot.Mesh] resource.
+   * Returns `true` if this [godot.MeshInstance] can be merged with the specified `other_mesh_instance`, using the [godot.MeshInstance.mergeMeshes] function.
+   *
+   * In order to be mergeable, properties of the [godot.MeshInstance] must match, and each surface must match, in terms of material, attributes and vertex format.
+   */
+  public open fun isMergeableWith(otherMeshInstance: Node): Boolean {
+    TransferContext.writeArguments(OBJECT to otherMeshInstance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_IS_MERGEABLE_WITH,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * This function can merge together the data from several source [godot.MeshInstance]s into a single destination [godot.MeshInstance] (the MeshInstance the function is called from). This is primarily useful for improving performance by reducing the number of drawcalls and [godot.Node]s.
+   *
+   * Merging should only be attempted for simple meshes that do not contain animation.
+   *
+   * The final vertices can either be returned in global space, or in local space relative to the destination [godot.MeshInstance] global transform (the destination Node must be inside the [godot.SceneTree] for local space to work).
+   *
+   * The function will make a final check for compatibility between the [godot.MeshInstance]s by default, this should always be used unless you have previously checked for compatibility using [godot.MeshInstance.isMergeableWith]. If the compatibility check is omitted and the meshes are merged, you may see rendering errors.
+   *
+   * **Note:** The requirements for similarity between meshes are quite stringent. They can be checked using the [godot.MeshInstance.isMergeableWith] function prior to calling [godot.MeshInstance.mergeMeshes].
+   *
+   * Also note that any initial data in the destination [godot.MeshInstance] data will be discarded.
+   */
+  public open fun mergeMeshes(
+    meshInstances: VariantArray<Any?> = VariantArray(),
+    useGlobalSpace: Boolean = false,
+    checkCompatibility: Boolean = true
+  ): Boolean {
+    TransferContext.writeArguments(ARRAY to meshInstances, BOOL to useGlobalSpace, BOOL to
+        checkCompatibility)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_MERGE_MESHES, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the override [godot.Material] for the specified surface of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance] rather than with the [godot.Mesh] resource.
    */
   public open fun setSurfaceMaterial(surface: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface, OBJECT to material)

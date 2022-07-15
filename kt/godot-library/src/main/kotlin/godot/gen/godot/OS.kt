@@ -701,6 +701,14 @@ public object OS : Object() {
   }
 
   /**
+   * Crashes the engine (or the editor if called within a `tool` script). This should *only* be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [@GDScript.assert], [@GDScript.pushError] or [alert]. See also [kill].
+   */
+  public fun crash(message: String): Unit {
+    TransferContext.writeArguments(STRING to message)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_CRASH, NIL)
+  }
+
+  /**
    * Delays execution of the current thread by `msec` milliseconds. `msec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    *
    * **Note:** [delayMsec] is a *blocking* way to delay code execution. To delay code execution in a non-blocking way, see [godot.SceneTree.createTimer]. Yielding with [godot.SceneTree.createTimer] will delay the execution of code placed below the `yield` without affecting the rest of the project (or editor, for [godot.EditorPlugin]s and [godot.EditorScript]s).
@@ -757,6 +765,8 @@ public object OS : Object() {
    *
    * If `blocking` is `false`, the Godot thread will continue while the new process runs. It is not possible to retrieve the shell output in non-blocking mode, so `output` will be empty.
    *
+   * On Windows, if `open_console` is `true` and process is console app, new terminal window will be opened, it's ignored on other platforms.
+   *
    * The return value also depends on the blocking mode. When blocking, the method will return an exit code of the process. When non-blocking, the method returns a process ID, which you can use to monitor the process (and potentially terminate it with [kill]). If the process forking (non-blocking) or opening (blocking) fails, the method will return `-1` or another exit code.
    *
    * Example of blocking mode and retrieving the shell output:
@@ -791,10 +801,11 @@ public object OS : Object() {
     arguments: PoolStringArray,
     blocking: Boolean = true,
     output: VariantArray<Any?> = VariantArray(),
-    readStderr: Boolean = false
+    readStderr: Boolean = false,
+    openConsole: Boolean = false
   ): Long {
     TransferContext.writeArguments(STRING to path, POOL_STRING_ARRAY to arguments, BOOL to blocking,
-        ARRAY to output, BOOL to readStderr)
+        ARRAY to output, BOOL to readStderr, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_EXECUTE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -827,7 +838,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* cache data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
+   * Returns the *global* cache data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -854,6 +865,10 @@ public object OS : Object() {
    * 				    if argument.find("=") > -1:
    * 				        var key_value = argument.split("=")
    * 				        arguments[key_value[0].lstrip("--")] = key_value[1]
+   * 				    else:
+   * 				        # Options without an argument will be present in the dictionary,
+   * 				        # with the value set to an empty string.
+   * 				        arguments[argument.lstrip("--")] = ""
    * 				```
    */
   public fun getCmdlineArgs(): PoolStringArray {
@@ -864,7 +879,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user configuration directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
+   * Returns the *global* user configuration directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -898,7 +913,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
+   * Returns the *global* user data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -909,6 +924,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getDateDictFromSystem] instead.
+   *
    * Returns current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `dst` (Daylight Savings Time).
    */
   public fun getDate(utc: Boolean = false): Dictionary<Any?, Any?> {
@@ -918,6 +935,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getDatetimeDictFromSystem] instead.
+   *
    * Returns current datetime as a dictionary of keys: `year`, `month`, `day`, `weekday`, `dst` (Daylight Savings Time), `hour`, `minute`, `second`.
    */
   public fun getDatetime(utc: Boolean = false): Dictionary<Any?, Any?> {
@@ -927,6 +946,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getDatetimeDictFromUnixTime] instead.
+   *
    * Gets a dictionary of time values corresponding to the given UNIX epoch time (in seconds).
    *
    * The returned Dictionary's values will be the same as [getDatetime], with the exception of Daylight Savings Time as it cannot be determined from the epoch.
@@ -936,6 +957,17 @@ public object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATETIME_FROM_UNIX_TIME,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns an [godot.Array] of [godot.core.Rect2], each of which is the bounding rectangle for a display cutout or notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns an empty array if the device does not have cutouts. See also [getWindowSafeArea].
+   *
+   * **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.
+   */
+  public fun getDisplayCutouts(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DISPLAY_CUTOUTS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -1050,6 +1082,17 @@ public object OS : Object() {
   }
 
   /**
+   * Returns the ID of the main thread. See [getThreadCallerId].
+   *
+   * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
+   */
+  public fun getMainThreadId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_MAIN_THREAD_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the model name of the current device.
    *
    * **Note:** This method is implemented on Android and iOS. Returns `"GenericDevice"` on unsupported platforms.
@@ -1125,12 +1168,23 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the number of threads available on the host machine.
+   * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
   public fun getProcessorCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESSOR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
+   *
+   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [getProcessorName] returns an empty string.
+   */
+  public fun getProcessorName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESSOR_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -1206,6 +1260,25 @@ public object OS : Object() {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the current refresh rate of the specified screen. If `screen` is `-1` (the default value), the current screen will be used.
+   *
+   * **Note:** Returns `-1.0` if Godot fails to find the refresh rate for the specified screen. On HTML5, [getScreenRefreshRate] will always return `-1.0` as there is no way to retrieve the refresh rate on that platform.
+   *
+   * To fallback to a default refresh rate if the method fails, try:
+   *
+   * ```
+   * 				var refresh_rate = OS.get_screen_refresh_rate()
+   * 				if refresh_rate < 0:
+   * 				    refresh_rate = 60.0
+   * 				```
+   */
+  public fun getScreenRefreshRate(screen: Long = -1): Double {
+    TransferContext.writeArguments(LONG to screen)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_REFRESH_RATE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1323,6 +1396,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getTicksMsec] instead.
+   *
    * Returns the amount of time passed in milliseconds since the engine started.
    */
   public fun getTicksMsec(): Long {
@@ -1332,6 +1407,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getTicksUsec] instead.
+   *
    * Returns the amount of time passed in microseconds since the engine started.
    */
   public fun getTicksUsec(): Long {
@@ -1341,6 +1418,8 @@ public object OS : Object() {
   }
 
   /**
+   * Deprecated, use [godot.Time.getTimeDictFromSystem] instead.
+   *
    * Returns current time as a dictionary of keys: hour, minute, second.
    */
   public fun getTime(utc: Boolean = false): Dictionary<Any?, Any?> {
@@ -1500,6 +1579,15 @@ public object OS : Object() {
   }
 
   /**
+   * Returns `true` if there is content on the clipboard.
+   */
+  public fun hasClipboard(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_CLIPBOARD, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns `true` if the environment variable with the name `variable` exists.
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
@@ -1511,7 +1599,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.4/tutorials/export/feature_tags.html) documentation for more details.
+   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags]($DOCS_URL/tutorials/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
    */
@@ -1567,6 +1655,19 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_OK_LEFT_AND_CANCEL_RIGHT,
         BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the child process ID (`pid`) is still running or `false` if it has terminated.
+   *
+   * Must be a valid ID generated from [execute].
+   *
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
+   */
+  public fun isProcessRunning(pid: Long): Boolean {
+    TransferContext.writeArguments(LONG to pid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_PROCESS_RUNNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1665,6 +1766,18 @@ public object OS : Object() {
   }
 
   /**
+   * Converts a physical (US QWERTY) `scancode` to one in the active keyboard layout.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  public fun keyboardGetScancodeFromPhysical(scancode: Long): Long {
+    TransferContext.writeArguments(LONG to scancode)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_SCANCODE_FROM_PHYSICAL, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets active keyboard layout.
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
@@ -1676,7 +1789,7 @@ public object OS : Object() {
   }
 
   /**
-   * Kill (terminate) the process identified by the given process ID (`pid`), e.g. the one returned by [execute] in non-blocking mode.
+   * Kill (terminate) the process identified by the given process ID (`pid`), e.g. the one returned by [execute] in non-blocking mode. See also [crash].
    *
    * **Note:** This method can also be used to kill processes that were not spawned by the game.
    *
@@ -1685,6 +1798,24 @@ public object OS : Object() {
   public fun kill(pid: Long): GodotError {
     TransferContext.writeArguments(LONG to pid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KILL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Moves the file or directory to the system's recycle bin. See also [godot.Directory.remove].
+   *
+   * The method takes only global paths, so you may need to use [godot.ProjectSettings.globalizePath]. Do not use it for files in `res://` as it will not work in exported project.
+   *
+   * **Note:** If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.
+   *
+   * ```
+   * 				var file_to_remove = "user://slot1.sav"
+   * 				OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove))
+   * 				```
+   */
+  public fun moveToTrash(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_MOVE_TO_TRASH, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1962,7 +2093,7 @@ public object OS : Object() {
    *
    * - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official Godot website.
    *
-   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.Customizing `mailto:` Links](https://blog.escapecreative.com/customizing-mailto-links/) for a list of fields that can be added.
+   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.RFC 2368 - The `mailto` URL scheme](https://datatracker.ietf.org/doc/html/rfc2368) for a list of fields that can be added.
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *

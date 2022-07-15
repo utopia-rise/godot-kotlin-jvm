@@ -147,11 +147,11 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
      */
     ENABLER_PAUSE_PARTICLES(2),
     /**
-     * This enabler will stop the parent's _process function.
+     * This enabler will stop the parent's [godot.Node.Process] function.
      */
     ENABLER_PARENT_PROCESS(3),
     /**
-     * This enabler will stop the parent's _physics_process function.
+     * This enabler will stop the parent's [godot.Node.PhysicsProcess] function.
      */
     ENABLER_PARENT_PHYSICS_PROCESS(4),
     /**
@@ -186,12 +186,12 @@ public open class VisibilityEnabler2D : VisibilityNotifier2D() {
     public final const val ENABLER_MAX: Long = 6
 
     /**
-     * This enabler will stop the parent's _physics_process function.
+     * This enabler will stop the parent's [godot.Node.PhysicsProcess] function.
      */
     public final const val ENABLER_PARENT_PHYSICS_PROCESS: Long = 4
 
     /**
-     * This enabler will stop the parent's _process function.
+     * This enabler will stop the parent's [godot.Node.Process] function.
      */
     public final const val ENABLER_PARENT_PROCESS: Long = 3
 

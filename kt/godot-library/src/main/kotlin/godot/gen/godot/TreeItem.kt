@@ -90,17 +90,17 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Adds a button with [godot.Texture] `button` at column `column`. The `button_idx` is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately after this method. Optionally, the button can be `disabled` and have a `tooltip`.
+   * Adds a button with [godot.Texture] `button` at column `column`. The `id` is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be `disabled` and have a `tooltip`.
    */
   public open fun addButton(
     column: Long,
     button: Texture,
-    buttonIdx: Long = -1,
+    id: Long = -1,
     disabled: Boolean = false,
     tooltip: String = ""
   ): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to buttonIdx, BOOL to
-        disabled, STRING to tooltip)
+    TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled,
+        STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
   }
 
@@ -155,11 +155,29 @@ public open class TreeItem : Object() {
   }
 
   /**
+   * Returns the button index if there is a button with id `id` in column `column`, otherwise returns -1.
+   */
+  public open fun getButtonById(column: Long, id: Long): Long {
+    TransferContext.writeArguments(LONG to column, LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_BY_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the number of buttons in column `column`.
    */
   public open fun getButtonCount(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the id for the button at index `button_idx` in column `column`.
+   */
+  public open fun getButtonId(column: Long, buttonIdx: Long): Long {
+    TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

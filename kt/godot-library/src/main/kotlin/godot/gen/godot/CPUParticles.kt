@@ -256,6 +256,22 @@ public open class CPUParticles : GeometryInstance() {
     }
 
   /**
+   * Each particle's initial color will vary along this [godot.GradientTexture] (multiplied with [color]).
+   */
+  public open var colorInitialRamp: Gradient?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_GET_COLOR_INITIAL_RAMP, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_COLOR_INITIAL_RAMP, NIL)
+    }
+
+  /**
    * Each particle's color will vary along this [godot.GradientTexture] over its lifetime (multiplied with [color]).
    */
   public open var colorRamp: Gradient?

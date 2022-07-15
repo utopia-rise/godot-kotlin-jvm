@@ -52,6 +52,8 @@ import kotlin.Unit
  * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
  *
  * **Note:** Tween methods will return `false` if the requested operation cannot be completed.
+ *
+ * **Note:** For an alternative method of tweening, that doesn't require using nodes, see [godot.SceneTreeTween].
  */
 @GodotBaseType
 public open class Tween : Node() {
@@ -193,10 +195,14 @@ public open class Tween : Node() {
     arg2: Any? = null,
     arg3: Any? = null,
     arg4: Any? = null,
-    arg5: Any? = null
+    arg5: Any? = null,
+    arg6: Any? = null,
+    arg7: Any? = null,
+    arg8: Any? = null
   ): Boolean {
     TransferContext.writeArguments(OBJECT to _object, DOUBLE to duration, STRING to callback, ANY to
-        arg1, ANY to arg2, ANY to arg3, ANY to arg4, ANY to arg5)
+        arg1, ANY to arg2, ANY to arg3, ANY to arg4, ANY to arg5, ANY to arg6, ANY to arg7, ANY to
+        arg8)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_CALLBACK, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -212,10 +218,14 @@ public open class Tween : Node() {
     arg2: Any? = null,
     arg3: Any? = null,
     arg4: Any? = null,
-    arg5: Any? = null
+    arg5: Any? = null,
+    arg6: Any? = null,
+    arg7: Any? = null,
+    arg8: Any? = null
   ): Boolean {
     TransferContext.writeArguments(OBJECT to _object, DOUBLE to duration, STRING to callback, ANY to
-        arg1, ANY to arg2, ANY to arg3, ANY to arg4, ANY to arg5)
+        arg1, ANY to arg2, ANY to arg3, ANY to arg4, ANY to arg5, ANY to arg6, ANY to arg7, ANY to
+        arg8)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_DEFERRED_CALLBACK,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -293,7 +303,7 @@ public open class Tween : Node() {
   }
 
   /**
-   * Resets a tween to its initial value (the one given, not the one before the tween), given its object and property/method pair. By default, all tweens are removed, unless `key` is specified.
+   * Resets a tween to its initial value (the one given, not the one before the tween), given its object and property/method pair. By default, all tweens are reset, unless `key` is specified.
    */
   public open fun reset(_object: Object, key: String = ""): Boolean {
     TransferContext.writeArguments(OBJECT to _object, STRING to key)

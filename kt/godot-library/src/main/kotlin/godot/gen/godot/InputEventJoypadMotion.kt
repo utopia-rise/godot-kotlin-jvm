@@ -19,7 +19,7 @@ import kotlin.Unit
  * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time.
  */

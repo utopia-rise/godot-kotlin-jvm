@@ -27,7 +27,7 @@ import kotlin.Unit
  * Default 3D rendering material.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html)
+ * [$DOCS_URL/tutorials/3d/spatial_material.html]($DOCS_URL/tutorials/3d/spatial_material.html)
  *
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
@@ -197,6 +197,24 @@ public open class SpatialMaterial : Material() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_AO_TEXTURE_CHANNEL, NIL)
+    }
+
+  /**
+   * If [godot.ProjectSettings.rendering/gles3/shaders/shaderCompilationMode] is `Synchronous` (with or without cache), this determines how this material must behave in regards to asynchronous shader compilation.
+   *
+   * [ASYNC_MODE_VISIBLE] is the default and the best for most cases.
+   */
+  public open var asyncMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ASYNC_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ASYNC_MODE,
+          NIL)
     }
 
   /**
@@ -657,6 +675,22 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
+   * Enables signed distance field rendering shader.
+   */
+  public open var flagsAlbedoTexMsdf: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 19L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_ALBEDO_TEX_MSDF, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 19L, BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_ALBEDO_TEX_MSDF, NIL)
+    }
+
+  /**
    * If `true`, the object receives no ambient light.
    */
   public open var flagsDisableAmbientLight: Boolean
@@ -803,7 +837,13 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * If `true`, lighting is calculated per vertex rather than per pixel. This may increase performance on low-end devices.
+   * If `true`, lighting is calculated per vertex rather than per pixel. This may increase performance on low-end devices, especially for meshes with a lower polygon count. The downside is that shading becomes much less accurate, with visible linear interpolation between vertices that are joined together. This can be compensated by ensuring meshes have a sufficient level of subdivision (but not too much, to avoid reducing performance). Some material features are also not supported when vertex shading is enabled.
+   *
+   * See also [godot.ProjectSettings.rendering/quality/shading/forceVertexShading] which can globally enable vertex shading on all materials.
+   *
+   * **Note:** By default, vertex shading is enforced on mobile platforms by [godot.ProjectSettings.rendering/quality/shading/forceVertexShading]'s `mobile` override.
+   *
+   * **Note:** [flagsVertexLighting] has no effect if [flagsUnshaded] is `true`.
    */
   public open var flagsVertexLighting: Boolean
     get() {
@@ -1727,6 +1767,31 @@ public open class SpatialMaterial : Material() {
   }
 
 
+  public enum class AsyncMode(
+    id: Long
+  ) {
+    /**
+     * The real conditioned shader needed on each situation will be sent for background compilation. In the meantime, a very complex shader that adapts to every situation will be used ("ubershader"). This ubershader is much slower to render, but will keep the game running without stalling to compile. Once shader compilation is done, the ubershader is replaced by the traditional optimized shader.
+     */
+    ASYNC_MODE_VISIBLE(0),
+    /**
+     * Anything with this material applied won't be rendered while this material's shader is being compiled.
+     *
+     * This is useful for optimization, in cases where the visuals won't suffer from having certain non-essential elements missing during the short time their shaders are being compiled.
+     */
+    ASYNC_MODE_HIDDEN(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EmissionOperator(
     id: Long
   ) {
@@ -1967,9 +2032,13 @@ public open class SpatialMaterial : Material() {
      */
     FLAG_USE_SHADOW_TO_OPACITY(18),
     /**
+     * Enables signed distance field rendering shader.
+     */
+    FLAG_ALBEDO_TEXTURE_SDF(19),
+    /**
      * Represents the size of the [enum Flags] enum.
      */
-    FLAG_MAX(19),
+    FLAG_MAX(20),
     ;
 
     public val id: Long
@@ -2278,6 +2347,18 @@ public open class SpatialMaterial : Material() {
 
   public companion object {
     /**
+     * Anything with this material applied won't be rendered while this material's shader is being compiled.
+     *
+     * This is useful for optimization, in cases where the visuals won't suffer from having certain non-essential elements missing during the short time their shaders are being compiled.
+     */
+    public final const val ASYNC_MODE_HIDDEN: Long = 1
+
+    /**
+     * The real conditioned shader needed on each situation will be sent for background compilation. In the meantime, a very complex shader that adapts to every situation will be used ("ubershader"). This ubershader is much slower to render, but will keep the game running without stalling to compile. Once shader compilation is done, the ubershader is replaced by the traditional optimized shader.
+     */
+    public final const val ASYNC_MODE_VISIBLE: Long = 0
+
+    /**
      * Billboard mode is disabled.
      */
     public final const val BILLBOARD_DISABLED: Long = 0
@@ -2495,6 +2576,11 @@ public open class SpatialMaterial : Material() {
     public final const val FLAG_ALBEDO_TEXTURE_FORCE_SRGB: Long = 14
 
     /**
+     * Enables signed distance field rendering shader.
+     */
+    public final const val FLAG_ALBEDO_TEXTURE_SDF: Long = 19
+
+    /**
      * Use `UV2` coordinates to look up from the [aoTexture].
      */
     public final const val FLAG_AO_ON_UV2: Long = 11
@@ -2537,7 +2623,7 @@ public open class SpatialMaterial : Material() {
     /**
      * Represents the size of the [enum Flags] enum.
      */
-    public final const val FLAG_MAX: Long = 19
+    public final const val FLAG_MAX: Long = 20
 
     /**
      * Vertex color is in sRGB space and needs to be converted to linear. Only applies in the GLES3 renderer.
