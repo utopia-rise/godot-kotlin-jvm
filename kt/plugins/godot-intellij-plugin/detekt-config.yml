@@ -53,3 +53,5 @@ complexity:
         '**/godot/intellij/plugin/module/GodotModuleBuilder.kt',
         '**/godot/intellij/plugin/codevision/RegisteredNameInlayHint.kt',
     ]
+  LongParameterList:
+    ignoreDefaultParameters: true
