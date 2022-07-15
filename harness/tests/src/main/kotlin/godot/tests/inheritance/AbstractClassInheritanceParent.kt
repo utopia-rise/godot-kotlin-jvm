@@ -25,9 +25,6 @@ abstract class AbstractClassInheritanceParent: Node() {
     @RegisterProperty
     var closedFunctionHasBeenCalled = false
 
-    @RegisterProperty
-    var parentOpenFunctionHasBeenCalled = false
-
     //-------------------------------------------------
 
     @RegisterProperty
@@ -42,7 +39,5 @@ abstract class AbstractClassInheritanceParent: Node() {
     }
 
     @RegisterFunction
-    open fun openFunction() {
-        parentOpenFunctionHasBeenCalled = true
-    }
+    abstract fun openFunction()
 }

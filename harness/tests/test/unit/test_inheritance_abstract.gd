@@ -10,7 +10,6 @@ func test_call_parent_closed_method_from_child() -> void:
 func test_call_parent_open_method_from_child() -> void:
 	var child_script = godot_tests_inheritance_AbstractClassInheritanceChild.new()
 	child_script.open_function()
-	assert_false(child_script.parent_open_function_has_been_called)
 	assert_true(child_script.child_open_function_has_been_called)
 	child_script.free()
 
