@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,72 +25,82 @@ import kotlin.Unit
 /**
  * Internet protocol (IP) support functions such as DNS resolution.
  *
- * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [godot.StreamPeerTCP] and [godot.TCP_Server]). IP provides DNS hostname resolution support, both blocking and threaded.
+ * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [godot.StreamPeerTCP] and [godot.TCPServer]). IP provides DNS hostname resolution support, both blocking and threaded.
  */
 @GodotBaseType
 public object IP : Object() {
-  /**
-   * Invalid ID constant. Returned if [RESOLVER_MAX_QUERIES] is exceeded.
-   */
-  public final const val RESOLVER_INVALID_ID: Long = -1
-
   /**
    * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if exceeded.
    */
   public final const val RESOLVER_MAX_QUERIES: Long = 256
 
   /**
-   * DNS hostname resolver status: Done.
+   * Invalid ID constant. Returned if [RESOLVER_MAX_QUERIES] is exceeded.
    */
-  public final const val RESOLVER_STATUS_DONE: Long = 2
-
-  /**
-   * DNS hostname resolver status: Error.
-   */
-  public final const val RESOLVER_STATUS_ERROR: Long = 3
-
-  /**
-   * DNS hostname resolver status: No status.
-   */
-  public final const val RESOLVER_STATUS_NONE: Long = 0
-
-  /**
-   * DNS hostname resolver status: Waiting.
-   */
-  public final const val RESOLVER_STATUS_WAITING: Long = 1
-
-  /**
-   * Address type: Any.
-   */
-  public final const val TYPE_ANY: Long = 3
-
-  /**
-   * Address type: Internet protocol version 4 (IPv4).
-   */
-  public final const val TYPE_IPV4: Long = 1
-
-  /**
-   * Address type: Internet protocol version 6 (IPv6).
-   */
-  public final const val TYPE_IPV6: Long = 2
-
-  /**
-   * Address type: None.
-   */
-  public final const val TYPE_NONE: Long = 0
+  public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_IP)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_IP)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Removes all of a `hostname`'s cached references. If no `hostname` is given, all cached IP addresses are removed.
+   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as `ip_type`.
    */
-  public fun clearCache(hostname: String = ""): Unit {
-    TransferContext.writeArguments(STRING to hostname)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_CLEAR_CACHE, NIL)
+  public fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
+    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on `ip_type`.
+   */
+  public fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
+      VariantArray<Any?> {
+    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as `ip_type`. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
+   */
+  public fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
+    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue `id`.
+   */
+  public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
+    return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns a queued hostname's IP address, given its queue `id`. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
+   */
+  public fun getResolveItemAddress(id: Long): String {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESS, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
+   */
+  public fun getResolveItemAddresses(id: Long): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -130,60 +141,11 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's IP address, given its queue `id`. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
+   * Removes all of a `hostname`'s cached references. If no `hostname` is given, all cached IP addresses are removed.
    */
-  public fun getResolveItemAddress(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESS, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Return resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
-   */
-  public fun getResolveItemAddresses(id: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue `id`.
-   */
-  public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
-    return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as `ip_type`.
-   */
-  public fun resolveHostname(host: String, ipType: Long = 3): String {
-    TransferContext.writeArguments(STRING to host, LONG to ipType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 depending on `ip_type`.
-   */
-  public fun resolveHostnameAddresses(host: String, ipType: Long = 3): VariantArray<Any?> {
-    TransferContext.writeArguments(STRING to host, LONG to ipType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
-        ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as `ip_type`. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
-   */
-  public fun resolveHostnameQueueItem(host: String, ipType: Long = 3): Long {
-    TransferContext.writeArguments(STRING to host, LONG to ipType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public fun clearCache(hostname: String = ""): Unit {
+    TransferContext.writeArguments(STRING to hostname)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_CLEAR_CACHE, NIL)
   }
 
   public enum class ResolverStatus(

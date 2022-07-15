@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,7 +22,7 @@ import kotlin.Unit
  * Scrollbars are a [godot.Range]-based [godot.Control], that display a draggable area (the size of the page). Horizontal ([godot.HScrollBar]) and Vertical ([godot.VScrollBar]) versions are available.
  */
 @GodotBaseType
-public open class ScrollBar : Range() {
+public open class ScrollBar internal constructor() : Range() {
   /**
    * Emitted when the scrollbar is being scrolled.
    */
@@ -30,7 +31,7 @@ public open class ScrollBar : Range() {
   /**
    * Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
    */
-  public open var customStep: Double
+  public var customStep: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_GET_CUSTOM_STEP, DOUBLE)
@@ -45,12 +46,5 @@ public open class ScrollBar : Range() {
     callConstructor(ENGINECLASS_SCROLLBAR)
   }
 
-  public open fun _dragNodeExit(): Unit {
-  }
-
-  public open fun _dragNodeInput(arg0: InputEvent): Unit {
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
+  public companion object
 }

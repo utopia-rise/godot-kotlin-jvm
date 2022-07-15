@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,41 +22,11 @@ import kotlin.Unit
  * This [godot.Control] node is used in the editor's Inspector dock to allow editing of numeric values. Can be used with [godot.EditorInspectorPlugin] to recreate the same behavior.
  */
 @GodotBaseType
-public open class EditorSpinSlider : Range() {
+public open class EditorSpinSlider internal constructor() : Range() {
   /**
    *
    */
-  public open var flat: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_FLAT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
-    }
-
-  /**
-   * If `true`, the slider is hidden.
-   */
-  public open var hideSlider: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_HIDE_SLIDER,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_HIDE_SLIDER,
-          NIL)
-    }
-
-  /**
-   *
-   */
-  public open var label: String
+  public var label: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_LABEL,
@@ -68,12 +39,27 @@ public open class EditorSpinSlider : Range() {
     }
 
   /**
-   *
+   * The suffix to display after the value (in a faded color). This should generally be a plural word. You may have to use an abbreviation if the suffix is too long to be displayed.
    */
-  public open var readOnly: Boolean
+  public var suffix: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_READ_ONLY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_SUFFIX,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_SUFFIX, NIL)
+    }
+
+  /**
+   *
+   */
+  public var readOnly: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_IS_READ_ONLY,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -83,31 +69,23 @@ public open class EditorSpinSlider : Range() {
           NIL)
     }
 
+  /**
+   *
+   */
+  public var flat: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_IS_FLAT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSPINSLIDER)
   }
 
-  public open fun _grabberGuiInput(arg0: InputEvent): Unit {
-  }
-
-  public open fun _grabberMouseEntered(): Unit {
-  }
-
-  public open fun _grabberMouseExited(): Unit {
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
-
-  public open fun _valueFocusExited(): Unit {
-  }
-
-  public open fun _valueInputClosed(): Unit {
-  }
-
-  public open fun _valueInputEntered(arg0: String): Unit {
-  }
-
-  public open fun _valueInputGuiInput(event: InputEvent): Unit {
-  }
+  public companion object
 }

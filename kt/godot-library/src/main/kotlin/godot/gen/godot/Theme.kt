@@ -1,47 +1,71 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Theme for controls.
+ * Theme resource for styling/skinning [godot.Control]s and [godot.Window]s.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_skinning.html]($DOCS_URL/tutorials/ui/gui_skinning.html)
+ * [$DOCS_URL/tutorials/ui/gui_using_theme_editor.html]($DOCS_URL/tutorials/ui/gui_using_theme_editor.html)
  *
- * A theme for skinning controls. Controls can be skinned individually, but for complex applications, it's more practical to just create a global theme that defines everything. This theme can be applied to any [godot.Control]; the Control and its children will automatically use it.
+ * A theme resource is used for styling/skinning [godot.Control] and [godot.Window] nodes. While individual controls can be styled using their local theme overrides (see [godot.Control.addThemeColorOverride]), theme resources allow you to store and apply the same settings between all controls sharing the same type (e.g. style all [godot.Button]s the same). One theme resource can be used for the entire project, but you can also set a separate theme resource to a branch of control nodes. A theme resources assigned to a control node applies to the control itself, as well as all of its direct and indirect children (as long as a chain of controls is uninterrupted).
  *
- * Theme resources can alternatively be loaded by writing them in a `.theme` file, see the documentation for more information.
+ * Use [godot.ProjectSettings.gui/theme/custom] to set up a project-scope theme that will be available to every control in your project.
+ *
+ * Use [godot.Control.theme] of any control node to set up a theme that will be available to that control and all of its direct and indirect children.
  */
 @GodotBaseType
 public open class Theme : Resource() {
   /**
-   * The default font of this [godot.Theme] resource. Used as a fallback value for font items defined in this theme, but having invalid values. If this value is also invalid, the global default value is used.
+   * The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used.
+   *
+   * Use [hasDefaultBaseScale] to check if this value is valid.
+   */
+  public var defaultBaseScale: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_BASE_SCALE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_BASE_SCALE, NIL)
+    }
+
+  /**
+   * The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used.
    *
    * Use [hasDefaultFont] to check if this value is valid.
    */
-  public open var defaultFont: Font?
+  public var defaultFont: Font?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT, OBJECT)
@@ -52,591 +76,637 @@ public open class Theme : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT, NIL)
     }
 
+  /**
+   * The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used.
+   *
+   * Values below `0` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to check if this value is valid.
+   */
+  public var defaultFontSize: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT_SIZE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT_SIZE, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_THEME)
   }
 
-  public open fun _emitThemeChanged(notifyListChanged: Boolean = false): Unit {
+  /**
+   * Creates or changes the value of the icon property defined by `name` and `theme_type`. Use [clearIcon] to remove the property.
+   */
+  public fun setIcon(
+    name: StringName,
+    themeType: StringName,
+    texture: Texture2D
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL)
   }
 
   /**
-   * Adds an empty theme type for every valid data type.
+   * Returns the icon property defined by `name` and `theme_type`, if it exists.
    *
-   * **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.
+   * Returns the engine fallback icon value if the property doesn't exist. Use [hasIcon] to check for existence.
    */
-  public open fun addType(themeType: String): Unit {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_ADD_TYPE, NIL)
+  public fun getIcon(name: StringName, themeType: StringName): Texture2D? {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
   /**
-   * Clears all values on the theme.
+   * Returns `true` if the icon property defined by `name` and `theme_type` exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setIcon] to define it.
    */
-  public open fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR, NIL)
+  public fun hasIcon(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_ICON, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Clears the [godot.core.Color] at `name` if the theme has `node_type`.
+   * Renames the icon property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasIcon] to check for existence, and [clearIcon] to remove the existing property.
    */
-  public open fun clearColor(name: String, themeType: String): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_COLOR, NIL)
+  public fun renameIcon(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL)
   }
 
   /**
-   * Clears the constant at `name` if the theme has `node_type`.
+   * Removes the icon property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasIcon] to check for existence.
    */
-  public open fun clearConstant(name: String, themeType: String): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_CONSTANT, NIL)
-  }
-
-  /**
-   * Clears the [godot.Font] at `name` if the theme has `node_type`.
-   */
-  public open fun clearFont(name: String, themeType: String): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT, NIL)
-  }
-
-  /**
-   * Clears the icon at `name` if the theme has `node_type`.
-   */
-  public open fun clearIcon(name: String, themeType: String): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
+  public fun clearIcon(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_ICON, NIL)
   }
 
   /**
-   * Clears [godot.StyleBox] at `name` if the theme has `node_type`.
+   * Returns a list of names for icon properties defined with `theme_type`. Use [getIconTypeList] to get a list of possible theme type names.
    */
-  public open fun clearStylebox(name: String, themeType: String): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_STYLEBOX, NIL)
-  }
-
-  /**
-   * Clears the theme item of `data_type` at `name` if the theme has `node_type`.
-   */
-  public open fun clearThemeItem(
-    dataType: Long,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(LONG to dataType, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL)
-  }
-
-  /**
-   * Unmarks `theme_type` as being a variation of another theme type. See [setTypeVariation].
-   */
-  public open fun clearTypeVariation(themeType: String): Unit {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_TYPE_VARIATION, NIL)
-  }
-
-  /**
-   * Sets the theme's values to a copy of the default theme values.
-   */
-  public open fun copyDefaultTheme(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_COPY_DEFAULT_THEME, NIL)
-  }
-
-  /**
-   * Sets the theme's values to a copy of a given theme.
-   */
-  public open fun copyTheme(other: Theme): Unit {
-    TransferContext.writeArguments(OBJECT to other)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_COPY_THEME, NIL)
-  }
-
-  /**
-   * Returns the [godot.core.Color] at `name` if the theme has `node_type`.
-   */
-  public open fun getColor(name: String, themeType: String): Color {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
-  }
-
-  /**
-   * Returns all the [godot.core.Color]s as a [godot.core.PoolStringArray] filled with each [godot.core.Color]'s name, for use in [getColor], if the theme has `node_type`.
-   */
-  public open fun getColorList(themeType: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns all the [godot.core.Color] types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getColor] and/or [getColorList].
-   */
-  public open fun getColorTypes(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns the constant at `name` if the theme has `node_type`.
-   */
-  public open fun getConstant(name: String, themeType: String): Long {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns all the constants as a [godot.core.PoolStringArray] filled with each constant's name, for use in [getConstant], if the theme has `node_type`.
-   */
-  public open fun getConstantList(themeType: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns all the constant types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getConstant] and/or [getConstantList].
-   */
-  public open fun getConstantTypes(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns the [godot.Font] at `name` if the theme has `node_type`. If such item does not exist and [defaultFont] is set on the theme, the default font will be returned.
-   */
-  public open fun getFont(name: String, themeType: String): Font? {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Font?
-  }
-
-  /**
-   * Returns all the [godot.Font]s as a [godot.core.PoolStringArray] filled with each [godot.Font]'s name, for use in [getFont], if the theme has `node_type`.
-   */
-  public open fun getFontList(themeType: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns all the [godot.Font] types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getFont] and/or [getFontList].
-   */
-  public open fun getFontTypes(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns the icon [godot.Texture] at `name` if the theme has `node_type`.
-   */
-  public open fun getIcon(name: String, themeType: String): Texture? {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture?
-  }
-
-  /**
-   * Returns all the icons as a [godot.core.PoolStringArray] filled with each [godot.Texture]'s name, for use in [getIcon], if the theme has `node_type`.
-   */
-  public open fun getIconList(themeType: String): PoolStringArray {
+  public fun getIconList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns all the icon types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getIcon] and/or [getIconList].
+   * Returns a list of all unique theme type names for icon properties. Use [getTypeList] to get a list of all unique theme types.
    */
-  public open fun getIconTypes(): PoolStringArray {
+  public fun getIconTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns the [godot.StyleBox] at `name` if the theme has `node_type`.
-   *
-   * Valid `name`s may be found using [getStyleboxList]. Valid `node_type`s may be found using [getStyleboxTypes].
+   * Creates or changes the value of the [godot.StyleBox] property defined by `name` and `theme_type`. Use [clearStylebox] to remove the property.
    */
-  public open fun getStylebox(name: String, themeType: String): StyleBox? {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
+  public fun setStylebox(
+    name: StringName,
+    themeType: StringName,
+    texture: StyleBox
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
+  }
+
+  /**
+   * Returns the [godot.StyleBox] property defined by `name` and `theme_type`, if it exists.
+   *
+   * Returns the engine fallback stylebox value if the property doesn't exist. Use [hasStylebox] to check for existence.
+   */
+  public fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
   }
 
   /**
-   * Returns all the [godot.StyleBox]s as a [godot.core.PoolStringArray] filled with each [godot.StyleBox]'s name, for use in [getStylebox], if the theme has `node_type`.
+   * Returns `true` if the [godot.StyleBox] property defined by `name` and `theme_type` exists.
    *
-   * Valid `node_type`s may be found using [getStyleboxTypes].
+   * Returns `false` if it doesn't exist. Use [setStylebox] to define it.
    */
-  public open fun getStyleboxList(themeType: String): PoolStringArray {
+  public fun hasStylebox(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_STYLEBOX, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Renames the [godot.StyleBox] property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasStylebox] to check for existence, and [clearStylebox] to remove the existing property.
+   */
+  public fun renameStylebox(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL)
+  }
+
+  /**
+   * Removes the [godot.StyleBox] property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
+   */
+  public fun clearStylebox(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_STYLEBOX, NIL)
+  }
+
+  /**
+   * Returns a list of names for [godot.StyleBox] properties defined with `theme_type`. Use [getStyleboxTypeList] to get a list of possible theme type names.
+   */
+  public fun getStyleboxList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns all the [godot.StyleBox] types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getStylebox] and/or [getStyleboxList].
+   * Returns a list of all unique theme type names for [godot.StyleBox] properties. Use [getTypeList] to get a list of all unique theme types.
    */
-  public open fun getStyleboxTypes(): PoolStringArray {
+  public fun getStyleboxTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns the theme item of `data_type` at `name` if the theme has `node_type`.
+   * Creates or changes the value of the [godot.Font] property defined by `name` and `theme_type`. Use [clearFont] to remove the property.
+   */
+  public fun setFont(
+    name: StringName,
+    themeType: StringName,
+    font: Font
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to font)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL)
+  }
+
+  /**
+   * Returns the [godot.Font] property defined by `name` and `theme_type`, if it exists.
    *
-   * Valid `name`s may be found using [getThemeItemList] or a data type specific method. Valid `node_type`s may be found using [getThemeItemTypes] or a data type specific method.
-   */
-  public open fun getThemeItem(
-    dataType: Long,
-    name: String,
-    themeType: String
-  ): Any? {
-    TransferContext.writeArguments(LONG to dataType, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Returns all the theme items of `data_type` as a [godot.core.PoolStringArray] filled with each theme items's name, for use in [getThemeItem] or a data type specific method, if the theme has `node_type`.
+   * Returns the default theme font if the property doesn't exist and the default theme font is set up (see [defaultFont]). Use [hasFont] to check for existence of the property and [hasDefaultFont] to check for existence of the default theme font.
    *
-   * Valid `node_type`s may be found using [getThemeItemTypes] or a data type specific method.
+   * Returns the engine fallback font value, if neither exist.
    */
-  public open fun getThemeItemList(dataType: Long, themeType: String): PoolStringArray {
-    TransferContext.writeArguments(LONG to dataType, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  public fun getFont(name: StringName, themeType: StringName): Font? {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
 
   /**
-   * Returns all the theme items of `data_type` types as a [godot.core.PoolStringArray] filled with unique type names, for use in [getThemeItem], [getThemeItemList] or data type specific methods.
-   */
-  public open fun getThemeItemTypes(dataType: Long): PoolStringArray {
-    TransferContext.writeArguments(LONG to dataType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_TYPES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns all the theme types as a [godot.core.PoolStringArray] filled with unique type names, for use in other `get_*` functions of this theme.
+   * Returns `true` if the [godot.Font] property defined by `name` and `theme_type` exists, or if the default theme font is set up (see [hasDefaultFont]).
    *
-   * **Note:** `node_type` has no effect and will be removed in future version.
+   * Returns `false` if neither exist. Use [setFont] to define the property.
    */
-  public open fun getTypeList(themeType: String): PoolStringArray {
+  public fun hasFont(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Renames the [godot.Font] property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFont] to check for existence, and [clearFont] to remove the existing property.
+   */
+  public fun renameFont(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL)
+  }
+
+  /**
+   * Removes the [godot.Font] property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasFont] to check for existence.
+   */
+  public fun clearFont(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT, NIL)
+  }
+
+  /**
+   * Returns a list of names for [godot.Font] properties defined with `theme_type`. Use [getFontTypeList] to get a list of possible theme type names.
+   */
+  public fun getFontList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns the name of the base theme type if `theme_type` is a valid variation type. Returns an empty string otherwise.
+   * Returns a list of all unique theme type names for [godot.Font] properties. Use [getTypeList] to get a list of all unique theme types.
    */
-  public open fun getTypeVariationBase(themeType: String): String {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_BASE,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+  public fun getFontTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Returns a list of all type variations for the given `base_type`.
+   * Creates or changes the value of the font size property defined by `name` and `theme_type`. Use [clearFontSize] to remove the property.
    */
-  public open fun getTypeVariationList(baseType: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to baseType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_LIST,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  public fun setFontSize(
+    name: StringName,
+    themeType: StringName,
+    fontSize: Long
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to fontSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT_SIZE, NIL)
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with `name` is in `node_type`.
+   * Returns the font size property defined by `name` and `theme_type`, if it exists.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [defaultFontSize]). Use [hasFontSize] to check for existence of the property and [hasDefaultFontSize] to check for existence of the default theme font.
+   *
+   * Returns the engine fallback font size value, if neither exist.
    */
-  public open fun hasColor(name: String, themeType: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
+  public fun getFontSize(name: StringName, themeType: StringName): Long {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if the font size property defined by `name` and `theme_type` exists, or if the default theme font size is set up (see [hasDefaultFontSize]).
+   *
+   * Returns `false` if neither exist. Use [setFontSize] to define the property.
+   */
+  public fun hasFontSize(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT_SIZE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Renames the font size property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
+   */
+  public fun renameFontSize(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT_SIZE, NIL)
+  }
+
+  /**
+   * Removes the font size property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
+   */
+  public fun clearFontSize(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT_SIZE, NIL)
+  }
+
+  /**
+   * Returns a list of names for font size properties defined with `theme_type`. Use [getFontSizeTypeList] to get a list of possible theme type names.
+   */
+  public fun getFontSizeList(themeType: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns a list of all unique theme type names for font size properties. Use [getTypeList] to get a list of all unique theme types.
+   */
+  public fun getFontSizeTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Creates or changes the value of the [godot.core.Color] property defined by `name` and `theme_type`. Use [clearColor] to remove the property.
+   */
+  public fun setColor(
+    name: StringName,
+    themeType: StringName,
+    color: Color
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL)
+  }
+
+  /**
+   * Returns the [godot.core.Color] property defined by `name` and `theme_type`, if it exists.
+   *
+   * Returns the default color value if the property doesn't exist. Use [hasColor] to check for existence.
+   */
+  public fun getColor(name: StringName, themeType: StringName): Color {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR, COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Returns `true` if the [godot.core.Color] property defined by `name` and `theme_type` exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setColor] to define it.
+   */
+  public fun hasColor(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if constant with `name` is in `node_type`.
+   * Renames the [godot.core.Color] property defined by `old_name` and `theme_type` to `name`, if it exists.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasColor] to check for existence, and [clearColor] to remove the existing property.
    */
-  public open fun hasConstant(name: String, themeType: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
+  public fun renameColor(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL)
+  }
+
+  /**
+   * Removes the [godot.core.Color] property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasColor] to check for existence.
+   */
+  public fun clearColor(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_COLOR, NIL)
+  }
+
+  /**
+   * Returns a list of names for [godot.core.Color] properties defined with `theme_type`. Use [getColorTypeList] to get a list of possible theme type names.
+   */
+  public fun getColorList(themeType: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns a list of all unique theme type names for [godot.core.Color] properties. Use [getTypeList] to get a list of all unique theme types.
+   */
+  public fun getColorTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Creates or changes the value of the constant property defined by `name` and `theme_type`. Use [clearConstant] to remove the property.
+   */
+  public fun setConstant(
+    name: StringName,
+    themeType: StringName,
+    constant: Long
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to constant)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL)
+  }
+
+  /**
+   * Returns the constant property defined by `name` and `theme_type`, if it exists.
+   *
+   * Returns `0` if the property doesn't exist. Use [hasConstant] to check for existence.
+   */
+  public fun getConstant(name: StringName, themeType: StringName): Long {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if the constant property defined by `name` and `theme_type` exists.
+   *
+   * Returns `false` if it doesn't exist. Use [setConstant] to define it.
+   */
+  public fun hasConstant(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if this theme has a valid [defaultFont] value.
+   * Renames the constant property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasConstant] to check for existence, and [clearConstant] to remove the existing property.
    */
-  public open fun hasDefaultFont(): Boolean {
+  public fun renameConstant(
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL)
+  }
+
+  /**
+   * Removes the constant property defined by `name` and `theme_type`, if it exists.
+   *
+   * Fails if it doesn't exist. Use [hasConstant] to check for existence.
+   */
+  public fun clearConstant(name: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_CONSTANT, NIL)
+  }
+
+  /**
+   * Returns a list of names for constant properties defined with `theme_type`. Use [getConstantTypeList] to get a list of possible theme type names.
+   */
+  public fun getConstantList(themeType: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns a list of all unique theme type names for constant properties. Use [getTypeList] to get a list of all unique theme types.
+   */
+  public fun getConstantTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns `true` if [defaultBaseScale] has a valid value.
+   *
+   * Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
+   */
+  public fun hasDefaultBaseScale(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_BASE_SCALE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if [defaultFont] has a valid value.
+   *
+   * Returns `false` if it doesn't.
+   */
+  public fun hasDefaultFont(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if [godot.Font] with `name` is in `node_type`.
+   * Returns `true` if [defaultFontSize] has a valid value.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
    */
-  public open fun hasFont(name: String, themeType: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT, BOOL)
+  public fun hasDefaultFontSize(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT_SIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if icon [godot.Texture] with `name` is in `node_type`.
+   * Creates or changes the value of the theme property of `data_type` defined by `name` and `theme_type`. Use [clearThemeItem] to remove the property.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Fails if the `value` type is not accepted by `data_type`.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun hasIcon(name: String, themeType: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_ICON, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public fun setThemeItem(
+    dataType: Theme.DataType,
+    name: StringName,
+    themeType: StringName,
+    `value`: Any
+  ): Unit {
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with `name` is in `node_type`.
+   * Returns the theme property of `data_type` defined by `name` and `theme_type`, if it exists.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns the engine fallback icon value if the property doesn't exist. Use [hasThemeItem] to check for existence.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun hasStylebox(name: String, themeType: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_STYLEBOX, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public fun getThemeItem(
+    dataType: Theme.DataType,
+    name: StringName,
+    themeType: StringName
+  ): Any? {
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**
-   * Returns `true` if a theme item of `data_type` with `name` is in `node_type`.
+   * Returns `true` if the theme property of `data_type` defined by `name` and `theme_type` exists.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if it doesn't exist. Use [setThemeItem] to define it.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun hasThemeItem(
-    dataType: Long,
-    name: String,
-    themeType: String
+  public fun hasThemeItem(
+    dataType: Theme.DataType,
+    name: StringName,
+    themeType: StringName
   ): Boolean {
-    TransferContext.writeArguments(LONG to dataType, STRING to name, STRING to themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_THEME_ITEM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if `theme_type` is marked as a variation of `base_type`.
-   */
-  public open fun isTypeVariation(themeType: String, baseType: String): Boolean {
-    TransferContext.writeArguments(STRING to themeType, STRING to baseType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_IS_TYPE_VARIATION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Adds missing and overrides existing definitions with values from the `other` [godot.Theme].
+   * Renames the theme property of `data_type` defined by `old_name` and `theme_type` to `name`, if it exists.
    *
-   * **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasThemeItem] to check for existence, and [clearThemeItem] to remove the existing property.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun mergeWith(other: Theme): Unit {
-    TransferContext.writeArguments(OBJECT to other)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_MERGE_WITH, NIL)
-  }
-
-  /**
-   * Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base.
-   */
-  public open fun removeType(themeType: String): Unit {
-    TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_REMOVE_TYPE, NIL)
-  }
-
-  /**
-   * Renames the [godot.core.Color] at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameColor(
-    oldName: String,
-    name: String,
-    themeType: String
+  public fun renameThemeItem(
+    dataType: Theme.DataType,
+    oldName: StringName,
+    name: StringName,
+    themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL)
-  }
-
-  /**
-   * Renames the constant at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameConstant(
-    oldName: String,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL)
-  }
-
-  /**
-   * Renames the [godot.Font] at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameFont(
-    oldName: String,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL)
-  }
-
-  /**
-   * Renames the icon at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameIcon(
-    oldName: String,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL)
-  }
-
-  /**
-   * Renames [godot.StyleBox] at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameStylebox(
-    oldName: String,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to name, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL)
-  }
-
-  /**
-   * Renames the theme item of `data_type` at `old_name` to `name` if the theme has `node_type`. If `name` is already taken, this method fails.
-   */
-  public open fun renameThemeItem(
-    dataType: Long,
-    oldName: String,
-    name: String,
-    themeType: String
-  ): Unit {
-    TransferContext.writeArguments(LONG to dataType, STRING to oldName, STRING to name, STRING to
-        themeType)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_THEME_ITEM, NIL)
   }
 
   /**
-   * Sets the theme's [godot.core.Color] to `color` at `name` in `node_type`.
+   * Removes the theme property of `data_type` defined by `name` and `theme_type`, if it exists.
    *
-   * Creates `node_type` if the theme does not have it.
+   * Fails if it doesn't exist. Use [hasThemeItem] to check for existence.
+   *
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun setColor(
-    name: String,
-    themeType: String,
-    color: Color
+  public fun clearThemeItem(
+    dataType: Theme.DataType,
+    name: StringName,
+    themeType: StringName
   ): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL)
+    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL)
   }
 
   /**
-   * Sets the theme's constant to `constant` at `name` in `node_type`.
+   * Returns a list of names for properties of `data_type` defined with `theme_type`. Use [getThemeItemTypeList] to get a list of possible theme type names.
    *
-   * Creates `node_type` if the theme does not have it.
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun setConstant(
-    name: String,
-    themeType: String,
-    constant: Long
-  ): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType, LONG to constant)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL)
+  public fun getThemeItemList(dataType: Theme.DataType, themeType: String): PackedStringArray {
+    TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Sets the theme's [godot.Font] to `font` at `name` in `node_type`.
+   * Returns a list of all unique theme type names for `data_type` properties. Use [getTypeList] to get a list of all unique theme types.
    *
-   * Creates `node_type` if the theme does not have it.
+   * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
-  public open fun setFont(
-    name: String,
-    themeType: String,
-    font: Font
-  ): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType, OBJECT to font)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL)
-  }
-
-  /**
-   * Sets the theme's icon [godot.Texture] to `texture` at `name` in `node_type`.
-   *
-   * Creates `node_type` if the theme does not have it.
-   */
-  public open fun setIcon(
-    name: String,
-    themeType: String,
-    texture: Texture
-  ): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL)
-  }
-
-  /**
-   * Sets theme's [godot.StyleBox] to `stylebox` at `name` in `node_type`.
-   *
-   * Creates `node_type` if the theme does not have it.
-   */
-  public open fun setStylebox(
-    name: String,
-    themeType: String,
-    texture: StyleBox
-  ): Unit {
-    TransferContext.writeArguments(STRING to name, STRING to themeType, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
-  }
-
-  /**
-   * Sets the theme item of `data_type` to `value` at `name` in `node_type`.
-   *
-   * Does nothing if the `value` type does not match `data_type`.
-   *
-   * Creates `node_type` if the theme does not have it.
-   */
-  public open fun setThemeItem(
-    dataType: Long,
-    name: String,
-    themeType: String,
-    `value`: Any?
-  ): Unit {
-    TransferContext.writeArguments(LONG to dataType, STRING to name, STRING to themeType, ANY to
-        value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
+  public fun getThemeItemTypeList(dataType: Theme.DataType): PackedStringArray {
+    TransferContext.writeArguments(LONG to dataType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -648,9 +718,92 @@ public open class Theme : Resource() {
    *
    * **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [godot.ProjectSettings.gui/theme/custom].
    */
-  public open fun setTypeVariation(themeType: String, baseType: String): Unit {
-    TransferContext.writeArguments(STRING to themeType, STRING to baseType)
+  public fun setTypeVariation(themeType: StringName, baseType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_TYPE_VARIATION, NIL)
+  }
+
+  /**
+   * Returns `true` if `theme_type` is marked as a variation of `base_type`.
+   */
+  public fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_IS_TYPE_VARIATION, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Unmarks `theme_type` as being a variation of another theme type. See [setTypeVariation].
+   */
+  public fun clearTypeVariation(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_TYPE_VARIATION, NIL)
+  }
+
+  /**
+   * Returns the name of the base theme type if `theme_type` is a valid variation type. Returns an empty string otherwise.
+   */
+  public fun getTypeVariationBase(themeType: StringName): StringName {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_BASE,
+        STRING_NAME)
+    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+  }
+
+  /**
+   * Returns a list of all type variations for the given `base_type`.
+   */
+  public fun getTypeVariationList(baseType: StringName): PackedStringArray {
+    TransferContext.writeArguments(STRING_NAME to baseType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Adds an empty theme type for every valid data type.
+   *
+   * **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.
+   */
+  public fun addType(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_ADD_TYPE, NIL)
+  }
+
+  /**
+   * Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base.
+   */
+  public fun removeType(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_REMOVE_TYPE, NIL)
+  }
+
+  /**
+   * Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type.
+   */
+  public fun getTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Adds missing and overrides existing definitions with values from the `other` theme resource.
+   *
+   * **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.
+   */
+  public fun mergeWith(other: Theme): Unit {
+    TransferContext.writeArguments(OBJECT to other)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_MERGE_WITH, NIL)
+  }
+
+  /**
+   * Removes all the theme properties defined on the theme resource.
+   */
+  public fun clear(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR, NIL)
   }
 
   public enum class DataType(
@@ -669,17 +822,21 @@ public open class Theme : Resource() {
      */
     DATA_TYPE_FONT(2),
     /**
-     * Theme's icon [godot.Texture] item type.
+     * Theme's font size item type.
      */
-    DATA_TYPE_ICON(3),
+    DATA_TYPE_FONT_SIZE(3),
+    /**
+     * Theme's icon [godot.Texture2D] item type.
+     */
+    DATA_TYPE_ICON(4),
     /**
      * Theme's [godot.StyleBox] item type.
      */
-    DATA_TYPE_STYLEBOX(4),
+    DATA_TYPE_STYLEBOX(5),
     /**
      * Maximum value for the DataType enum.
      */
-    DATA_TYPE_MAX(5),
+    DATA_TYPE_MAX(6),
     ;
 
     public val id: Long
@@ -692,35 +849,5 @@ public open class Theme : Resource() {
     }
   }
 
-  public companion object {
-    /**
-     * Theme's [godot.core.Color] item type.
-     */
-    public final const val DATA_TYPE_COLOR: Long = 0
-
-    /**
-     * Theme's constant item type.
-     */
-    public final const val DATA_TYPE_CONSTANT: Long = 1
-
-    /**
-     * Theme's [godot.Font] item type.
-     */
-    public final const val DATA_TYPE_FONT: Long = 2
-
-    /**
-     * Theme's icon [godot.Texture] item type.
-     */
-    public final const val DATA_TYPE_ICON: Long = 3
-
-    /**
-     * Maximum value for the DataType enum.
-     */
-    public final const val DATA_TYPE_MAX: Long = 5
-
-    /**
-     * Theme's [godot.StyleBox] item type.
-     */
-    public final const val DATA_TYPE_STYLEBOX: Long = 4
-  }
+  public companion object
 }

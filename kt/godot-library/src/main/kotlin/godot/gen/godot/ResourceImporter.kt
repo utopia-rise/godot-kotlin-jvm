@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +20,7 @@ import kotlin.Unit
  * This is the base class for the resource importers implemented in core. To implement your own resource importers using editor plugins, see [godot.EditorImportPlugin].
  */
 @GodotBaseType
-public open class ResourceImporter : Reference() {
+public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEIMPORTER)
   }
@@ -47,15 +48,5 @@ public open class ResourceImporter : Reference() {
     }
   }
 
-  public companion object {
-    /**
-     * The default import order.
-     */
-    public final const val IMPORT_ORDER_DEFAULT: Long = 0
-
-    /**
-     * The import order for scenes, which ensures scenes are imported *after* all other core resources such as textures. Custom importers should generally have an import order lower than `100` to avoid issues when importing scenes that rely on custom resources.
-     */
-    public final const val IMPORT_ORDER_SCENE: Long = 100
-  }
+  public companion object
 }

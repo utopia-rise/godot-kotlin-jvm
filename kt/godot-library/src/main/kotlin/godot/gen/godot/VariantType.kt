@@ -1,0 +1,55 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+package godot
+
+import kotlin.Long
+
+public enum class VariantType(
+  id: Long
+) {
+  TYPE_NIL(0),
+  TYPE_BOOL(1),
+  TYPE_INT(2),
+  TYPE_FLOAT(3),
+  TYPE_STRING(4),
+  TYPE_VECTOR2(5),
+  TYPE_VECTOR2I(6),
+  TYPE_RECT2(7),
+  TYPE_RECT2I(8),
+  TYPE_VECTOR3(9),
+  TYPE_VECTOR3I(10),
+  TYPE_TRANSFORM2D(11),
+  TYPE_PLANE(12),
+  TYPE_QUATERNION(13),
+  TYPE_AABB(14),
+  TYPE_BASIS(15),
+  TYPE_TRANSFORM3D(16),
+  TYPE_COLOR(17),
+  TYPE_STRING_NAME(18),
+  TYPE_NODE_PATH(19),
+  TYPE_RID(20),
+  TYPE_OBJECT(21),
+  TYPE_CALLABLE(22),
+  TYPE_SIGNAL(23),
+  TYPE_DICTIONARY(24),
+  TYPE_ARRAY(25),
+  TYPE_PACKED_BYTE_ARRAY(26),
+  TYPE_PACKED_INT32_ARRAY(27),
+  TYPE_PACKED_INT64_ARRAY(28),
+  TYPE_PACKED_FLOAT32_ARRAY(29),
+  TYPE_PACKED_FLOAT64_ARRAY(30),
+  TYPE_PACKED_STRING_ARRAY(31),
+  TYPE_PACKED_VECTOR2_ARRAY(32),
+  TYPE_PACKED_VECTOR3_ARRAY(33),
+  TYPE_PACKED_COLOR_ARRAY(34),
+  TYPE_MAX(35),
+  ;
+
+  public val id: Long
+  init {
+    this.id = id
+  }
+
+  public companion object {
+    public fun from(`value`: Long) = values().single { it.id == `value` }
+  }
+}

@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -20,22 +20,20 @@ import kotlin.Unit
 /**
  * Crops out one part of a texture, such as a texture from a texture atlas.
  *
- * [godot.Texture] resource that crops out one part of the [atlas] texture, defined by [region]. The main use case is cropping out textures from a texture atlas, which is a big texture file that packs multiple smaller textures. Consists of a [godot.Texture] for the [atlas], a [region] that defines the area of [atlas] to use, and a [margin] that defines the border width.
+ * [godot.Texture2D] resource that crops out one part of the [atlas] texture, defined by [region]. The main use case is cropping out textures from a texture atlas, which is a big texture file that packs multiple smaller textures. Consists of a [godot.Texture2D] for the [atlas], a [region] that defines the area of [atlas] to use, and a [margin] that defines the border width.
  *
  * [godot.AtlasTexture] cannot be used in an [godot.AnimatedTexture], cannot be tiled in nodes such as [godot.TextureRect], and does not work properly if used inside of other [godot.AtlasTexture] resources. Multiple [godot.AtlasTexture] resources can be used to crop multiple textures from the atlas. Using a texture atlas helps to optimize video memory costs and render calls compared to using multiple small files.
- *
- * **Note:** AtlasTextures don't support repetition. The [godot.Texture.FLAG_REPEAT] and [godot.Texture.FLAG_MIRRORED_REPEAT] flags are ignored when using an AtlasTexture.
  */
 @GodotBaseType
-public open class AtlasTexture : Texture() {
+public open class AtlasTexture : Texture2D() {
   /**
-   * The texture that contains the atlas. Can be any [godot.Texture] subtype.
+   * The texture that contains the atlas. Can be any [godot.Texture2D] subtype.
    */
-  public open var atlas: Texture?
+  public var atlas: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_ATLAS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -43,24 +41,23 @@ public open class AtlasTexture : Texture() {
     }
 
   /**
-   * If `true`, clips the area outside of the region to avoid bleeding of the surrounding texture pixels.
+   * The AtlasTexture's used region.
    */
-  public open var filterClip: Boolean
+  public var region: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_FILTER_CLIP,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_REGION, RECT2)
+      return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
+      TransferContext.writeArguments(RECT2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
     }
 
   /**
    * The margin around the region. The [godot.core.Rect2]'s [godot.Rect2.size] parameter ("w" and "h" in the editor) resizes the texture so it fits within the margin.
    */
-  public open var margin: Rect2
+  public var margin: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_MARGIN, RECT2)
@@ -72,34 +69,23 @@ public open class AtlasTexture : Texture() {
     }
 
   /**
-   * The AtlasTexture's used region.
+   * If `true`, clips the area outside of the region to avoid bleeding of the surrounding texture pixels.
    */
-  public open var region: Rect2
+  public var filterClip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_REGION, RECT2)
-      return TransferContext.readReturnValue(RECT2, false) as Rect2
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_HAS_FILTER_CLIP,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ATLASTEXTURE)
   }
 
-  @CoreTypeHelper
-  public open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
-      schedule(this)
-      margin = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun region(schedule: Rect2.() -> Unit): Rect2 = region.apply{
-      schedule(this)
-      region = this
-  }
-
+  public companion object
 }

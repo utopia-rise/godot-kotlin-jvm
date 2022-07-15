@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,17 +23,42 @@ import kotlin.Unit
  *
  * As opposed to [godot.Timer], it does not require the instantiation of a node. Commonly used to create a one-shot delay timer as in the following example:
  *
- * ```
- * 		func some_function():
- * 		    print("Timer started.")
- * 		    yield(get_tree().create_timer(1.0), "timeout")
- * 		    print("Timer ended.")
- * 		```
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * func some_function():
+ *
+ *     print("Timer started.")
+ *
+ *     await get_tree().create_timer(1.0).timeout
+ *
+ *     print("Timer ended.")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public async void SomeFunction()
+ *
+ * {
+ *
+ *     GD.Print("Timer started.");
+ *
+ *     await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+ *
+ *     GD.Print("Timer ended.");
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.Reference].
  */
 @GodotBaseType
-public open class SceneTreeTimer : Reference() {
+public open class SceneTreeTimer internal constructor() : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */
@@ -41,7 +67,7 @@ public open class SceneTreeTimer : Reference() {
   /**
    * The time remaining (in seconds).
    */
-  public open var timeLeft: Double
+  public var timeLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_GET_TIME_LEFT,
@@ -56,4 +82,6 @@ public open class SceneTreeTimer : Reference() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCENETREETIMER)
   }
+
+  public companion object
 }

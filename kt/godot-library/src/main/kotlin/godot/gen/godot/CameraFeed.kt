@@ -1,12 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.CameraFeed
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -31,79 +31,44 @@ import kotlin.Unit
  * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be combined in a shader. Godot does this automatically for you if you set the environment to show the camera image in the background.
  */
 @GodotBaseType
-public open class CameraFeed : Reference() {
+public open class CameraFeed : RefCounted() {
   /**
    * If `true`, the feed is active.
    */
-  public open var feedIsActive: Boolean
+  public var feedIsActive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_FEED_IS_ACTIVE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_IS_ACTIVE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_FEED_IS_ACTIVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_ACTIVE, NIL)
     }
 
   /**
    * The transform applied to the camera's image.
    */
-  public open var feedTransform: Transform2D
+  public var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_FEED_TRANSFORM,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_TRANSFORM,
           TRANSFORM2D)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_FEED_TRANSFORM,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CAMERAFEED)
   }
 
-  @CoreTypeHelper
-  public open fun feedTransform(schedule: Transform2D.() -> Unit): Transform2D =
-      feedTransform.apply{
-      schedule(this)
-      feedTransform = this
-  }
-
-
-  public open fun _allocateTexture(
-    width: Long,
-    height: Long,
-    format: Long,
-    textureType: Long,
-    dataType: Long
-  ): Unit {
-  }
-
-  public open fun _setRGBImg(rgbImg: Image): Unit {
-  }
-
-  public open fun _setYCbCrImg(ycbcrImg: Image): Unit {
-  }
-
-  public open fun _setYCbCrImgs(yImg: Image, cbcrImg: Image): Unit {
-  }
-
-  public open fun _setName(name: String): Unit {
-  }
-
-  public open fun _setPosition(position: Long): Unit {
-  }
-
   /**
    * Returns the unique ID for this feed.
    */
-  public open fun getId(): Long {
+  public fun getId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -112,7 +77,7 @@ public open class CameraFeed : Reference() {
   /**
    * Returns the camera's name.
    */
-  public open fun getName(): String {
+  public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -121,10 +86,19 @@ public open class CameraFeed : Reference() {
   /**
    * Returns the position of camera on the device.
    */
-  public open fun getPosition(): CameraFeed.FeedPosition {
+  public fun getPosition(): CameraFeed.FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
     return CameraFeed.FeedPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns feed image data type.
+   */
+  public fun getDatatype(): CameraFeed.FeedDataType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
+    return CameraFeed.FeedDataType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public enum class FeedDataType(
@@ -185,40 +159,5 @@ public open class CameraFeed : Reference() {
     }
   }
 
-  public companion object {
-    /**
-     * Camera is mounted at the back of the device.
-     */
-    public final const val FEED_BACK: Long = 2
-
-    /**
-     * Camera is mounted at the front of the device.
-     */
-    public final const val FEED_FRONT: Long = 1
-
-    /**
-     * No image set for the feed.
-     */
-    public final const val FEED_NOIMAGE: Long = 0
-
-    /**
-     * Feed supplies RGB images.
-     */
-    public final const val FEED_RGB: Long = 1
-
-    /**
-     * Unspecified position.
-     */
-    public final const val FEED_UNSPECIFIED: Long = 0
-
-    /**
-     * Feed supplies YCbCr images that need to be converted to RGB.
-     */
-    public final const val FEED_YCBCR: Long = 2
-
-    /**
-     * Feed supplies separate Y and CbCr images that need to be combined and converted to RGB.
-     */
-    public final const val FEED_YCBCR_SEP: Long = 3
-  }
+  public companion object
 }

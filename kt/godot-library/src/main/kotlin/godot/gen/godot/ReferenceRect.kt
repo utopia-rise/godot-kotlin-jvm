@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -28,7 +28,7 @@ public open class ReferenceRect : Control() {
   /**
    * Sets the border [godot.core.Color] of the [godot.ReferenceRect].
    */
-  public open var borderColor: Color
+  public var borderColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_BORDER_COLOR,
@@ -44,7 +44,7 @@ public open class ReferenceRect : Control() {
   /**
    * Sets the border width of the [godot.ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box.
    */
-  public open var borderWidth: Double
+  public var borderWidth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_BORDER_WIDTH,
@@ -58,9 +58,9 @@ public open class ReferenceRect : Control() {
     }
 
   /**
-   * If set to `true`, the [godot.ReferenceRect] will only be visible while in editor. Otherwise, [godot.ReferenceRect] will be visible in game.
+   * If `true`, the [godot.ReferenceRect] will only be visible while in editor. Otherwise, [godot.ReferenceRect] will be visible in the running project.
    */
-  public open var editorOnly: Boolean
+  public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_EDITOR_ONLY,
@@ -77,10 +77,5 @@ public open class ReferenceRect : Control() {
     callConstructor(ENGINECLASS_REFERENCERECT)
   }
 
-  @CoreTypeHelper
-  public open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
-      schedule(this)
-      borderColor = this
-  }
-
+  public companion object
 }

@@ -17,6 +17,7 @@
 #include <modules/kotlin_jvm/src/bridges/gd_print_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/packed_int_64_array_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/packed_float_64_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/string_name_bridge.h>
 
 class BridgesManager {
 private:
@@ -28,6 +29,7 @@ private:
     bridges::DictionaryBridge* dictionary_bridge;
     bridges::RidBridge* rid_bridge;
     bridges::NodePathBridge* node_path_bridge;
+    bridges::StringNameBridge* string_name_bridge;
 
     bridges::PackedByteArrayBridge* packed_byte_array_bridge;
     bridges::PackedColorArrayBridge* packed_color_array_bridge;

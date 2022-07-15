@@ -1,21 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
-import godot.core.VariantArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -31,17 +29,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class MenuButton : Button() {
   /**
-   * Emitted when [godot.PopupMenu] of this MenuButton is about to show.
+   * Emitted when the [godot.PopupMenu] of this MenuButton is about to show.
    */
-  public val aboutToShow: Signal0 by signal()
+  public val aboutToPopup: Signal0 by signal()
 
   /**
    * If `true`, when the cursor hovers above another [godot.MenuButton] within the same parent which also has `switch_on_hover` enabled, it will close the current [godot.MenuButton] and open the other one.
    */
-  public open var switchOnHover: Boolean
+  public var switchOnHover: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_SWITCH_ON_HOVER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_IS_SWITCH_ON_HOVER,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -51,26 +49,30 @@ public open class MenuButton : Button() {
           NIL)
     }
 
+  /**
+   * The number of items currently in the list.
+   */
+  public var itemCount: Material?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MENUBUTTON)
-  }
-
-  public open fun _getItems(): VariantArray<Any?> {
-    throw NotImplementedError("_get_items is not implemented for MenuButton")
-  }
-
-  public open fun _setItems(arg0: VariantArray<Any?>): Unit {
-  }
-
-  public open fun _unhandledKeyInput(arg0: InputEvent): Unit {
   }
 
   /**
    * Returns the [godot.PopupMenu] contained in this button.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
-  public open fun getPopup(): PopupMenu? {
+  public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
@@ -79,9 +81,11 @@ public open class MenuButton : Button() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  public open fun setDisableShortcuts(disabled: Boolean): Unit {
+  public fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_DISABLE_SHORTCUTS,
         NIL)
   }
+
+  public companion object
 }

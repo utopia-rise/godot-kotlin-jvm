@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,57 +24,43 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Used to draw icons and sprites in a user interface. The texture's placement can be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its bounding rectangle.
- *
- * **Note:** You should enable [flipV] when using a TextureRect to display a [godot.ViewportTexture]. Alternatively, you can enable [godot.Viewport.renderTargetVFlip] on the Viewport. Otherwise, the image will appear upside down.
  */
 @GodotBaseType
 public open class TextureRect : Control() {
   /**
-   * If `true`, the texture scales to fit its bounding rectangle.
+   * The node's [godot.Texture2D] resource.
    */
-  public open var expand: Boolean
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_EXPAND, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_EXPAND, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_TEXTURE, NIL)
     }
 
   /**
-   * If `true`, texture is flipped horizontally.
+   * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureRect] can be shrunk down past the texture size. Useful for preventing [godot.TextureRect]s from breaking GUI layout regardless of their texture size.
    */
-  public open var flipH: Boolean
+  public var ignoreTextureSize: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_FLIP_H, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_IGNORE_TEXTURE_SIZE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_H, NIL)
-    }
-
-  /**
-   * If `true`, texture is flipped vertically.
-   */
-  public open var flipV: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_FLIP_V, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_V, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_IGNORE_TEXTURE_SIZE, NIL)
     }
 
   /**
    * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode].
    */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,
@@ -86,61 +73,68 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * The node's [godot.Texture] resource.
+   * If `true`, texture is flipped horizontally.
    */
-  public open var texture: Texture?
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_H, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_TEXTURE, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_H, NIL)
+    }
+
+  /**
+   * If `true`, texture is flipped vertically.
+   */
+  public var flipV: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_V, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_V, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURERECT)
   }
 
-  public open fun _textureChanged(): Unit {
-  }
-
   public enum class StretchMode(
     id: Long
   ) {
     /**
-     * Scale to fit the node's bounding rectangle, only if `expand` is `true`. Default `stretch_mode`, for backwards compatibility. Until you set `expand` to `true`, the texture will behave like [STRETCH_KEEP].
-     */
-    STRETCH_SCALE_ON_EXPAND(0),
-    /**
      * Scale to fit the node's bounding rectangle.
      */
-    STRETCH_SCALE(1),
+    STRETCH_SCALE(0),
     /**
      * Tile inside the node's bounding rectangle.
      */
-    STRETCH_TILE(2),
+    STRETCH_TILE(1),
     /**
      * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
      */
-    STRETCH_KEEP(3),
+    STRETCH_KEEP(2),
     /**
      * The texture keeps its original size and stays centered in the node's bounding rectangle.
      */
-    STRETCH_KEEP_CENTERED(4),
+    STRETCH_KEEP_CENTERED(3),
     /**
      * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio.
      */
-    STRETCH_KEEP_ASPECT(5),
+    STRETCH_KEEP_ASPECT(4),
     /**
      * Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio.
      */
-    STRETCH_KEEP_ASPECT_CENTERED(6),
+    STRETCH_KEEP_ASPECT_CENTERED(5),
     /**
      * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits.
      */
-    STRETCH_KEEP_ASPECT_COVERED(7),
+    STRETCH_KEEP_ASPECT_COVERED(6),
     ;
 
     public val id: Long
@@ -153,45 +147,5 @@ public open class TextureRect : Control() {
     }
   }
 
-  public companion object {
-    /**
-     * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
-     */
-    public final const val STRETCH_KEEP: Long = 3
-
-    /**
-     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio.
-     */
-    public final const val STRETCH_KEEP_ASPECT: Long = 5
-
-    /**
-     * Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio.
-     */
-    public final const val STRETCH_KEEP_ASPECT_CENTERED: Long = 6
-
-    /**
-     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits.
-     */
-    public final const val STRETCH_KEEP_ASPECT_COVERED: Long = 7
-
-    /**
-     * The texture keeps its original size and stays centered in the node's bounding rectangle.
-     */
-    public final const val STRETCH_KEEP_CENTERED: Long = 4
-
-    /**
-     * Scale to fit the node's bounding rectangle.
-     */
-    public final const val STRETCH_SCALE: Long = 1
-
-    /**
-     * Scale to fit the node's bounding rectangle, only if `expand` is `true`. Default `stretch_mode`, for backwards compatibility. Until you set `expand` to `true`, the texture will behave like [STRETCH_KEEP].
-     */
-    public final const val STRETCH_SCALE_ON_EXPAND: Long = 0
-
-    /**
-     * Tile inside the node's bounding rectangle.
-     */
-    public final const val STRETCH_TILE: Long = 2
-  }
+  public companion object
 }

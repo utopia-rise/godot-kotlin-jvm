@@ -179,7 +179,6 @@ void PackedByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_
     transfer_context->write_return_value(env, ret);
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedByteArrayBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
@@ -237,7 +236,6 @@ void PackedByteArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_inst
     from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->insert(args[0].operator unsigned int(), args[1].operator uint8_t());
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedByteArrayBridge::engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->reverse();
@@ -251,7 +249,6 @@ void PackedByteArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_in
     from_uint_to_ptr<PackedByteArray>(p_raw_ptr)->push_back(args[0].operator uint8_t());
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedByteArrayBridge::engine_call_remove_at(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     Variant args[1] = {};

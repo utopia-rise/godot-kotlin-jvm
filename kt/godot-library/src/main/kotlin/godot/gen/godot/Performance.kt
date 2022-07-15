@@ -1,14 +1,26 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
+import godot.core.StringName
 import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.STRING_NAME
+import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -19,174 +31,18 @@ import kotlin.Unit
  *
  * This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the **Monitor** tab in the editor's **Debugger** panel. By using the [getMonitor] method of this class, you can access this data from your code.
  *
+ * You can add custom monitors using the [addCustomMonitor] method. Custom monitors are available in **Monitor** tab in the editor's **Debugger** panel together with built-in monitors.
+ *
  * **Note:** A few of these monitors are only available in debug mode and will always return 0 when used in a release build.
  *
  * **Note:** Many of these monitors are not updated in real-time, so there may be a short delay between changes.
+ *
+ * **Note:** Custom monitors do not support negative values. Negative values are clamped to 0.
  */
 @GodotBaseType
 public object Performance : Object() {
-  /**
-   * Output latency of the [godot.AudioServer].
-   */
-  public final const val AUDIO_OUTPUT_LATENCY: Long = 30
-
-  /**
-   * Dynamic memory currently used, in bytes. Not available in release builds.
-   */
-  public final const val MEMORY_DYNAMIC: Long = 4
-
-  /**
-   * Available dynamic memory. Not available in release builds.
-   */
-  public final const val MEMORY_DYNAMIC_MAX: Long = 6
-
-  /**
-   * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications.
-   */
-  public final const val MEMORY_MESSAGE_BUFFER_MAX: Long = 7
-
-  /**
-   * Static memory currently used, in bytes. Not available in release builds.
-   */
-  public final const val MEMORY_STATIC: Long = 3
-
-  /**
-   * Available static memory. Not available in release builds.
-   */
-  public final const val MEMORY_STATIC_MAX: Long = 5
-
-  /**
-   * Represents the size of the [enum Monitor] enum.
-   */
-  public final const val MONITOR_MAX: Long = 31
-
-  /**
-   * Number of objects currently instanced (including nodes).
-   */
-  public final const val OBJECT_COUNT: Long = 8
-
-  /**
-   * Number of nodes currently instanced in the scene tree. This also includes the root node.
-   */
-  public final const val OBJECT_NODE_COUNT: Long = 10
-
-  /**
-   * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree.
-   */
-  public final const val OBJECT_ORPHAN_NODE_COUNT: Long = 11
-
-  /**
-   * Number of resources currently used.
-   */
-  public final const val OBJECT_RESOURCE_COUNT: Long = 9
-
-  /**
-   * Number of active [godot.RigidBody2D] nodes in the game.
-   */
-  public final const val PHYSICS_2D_ACTIVE_OBJECTS: Long = 24
-
-  /**
-   * Number of collision pairs in the 2D physics engine.
-   */
-  public final const val PHYSICS_2D_COLLISION_PAIRS: Long = 25
-
-  /**
-   * Number of islands in the 2D physics engine.
-   */
-  public final const val PHYSICS_2D_ISLAND_COUNT: Long = 26
-
-  /**
-   * Number of active [godot.RigidBody] and [godot.VehicleBody] nodes in the game.
-   */
-  public final const val PHYSICS_3D_ACTIVE_OBJECTS: Long = 27
-
-  /**
-   * Number of collision pairs in the 3D physics engine.
-   */
-  public final const val PHYSICS_3D_COLLISION_PAIRS: Long = 28
-
-  /**
-   * Number of islands in the 3D physics engine.
-   */
-  public final const val PHYSICS_3D_ISLAND_COUNT: Long = 29
-
-  /**
-   * Draw calls per frame.
-   */
-  public final const val RENDER_2D_DRAW_CALLS_IN_FRAME: Long = 19
-
-  /**
-   * Items or joined items drawn per frame.
-   */
-  public final const val RENDER_2D_ITEMS_IN_FRAME: Long = 18
-
-  /**
-   * Draw calls per frame. 3D only.
-   */
-  public final const val RENDER_DRAW_CALLS_IN_FRAME: Long = 17
-
-  /**
-   * Material changes per frame. 3D only.
-   */
-  public final const val RENDER_MATERIAL_CHANGES_IN_FRAME: Long = 14
-
-  /**
-   * 3D objects drawn per frame.
-   */
-  public final const val RENDER_OBJECTS_IN_FRAME: Long = 12
-
-  /**
-   * Shader changes per frame. 3D only.
-   */
-  public final const val RENDER_SHADER_CHANGES_IN_FRAME: Long = 15
-
-  /**
-   * Render surface changes per frame. 3D only.
-   */
-  public final const val RENDER_SURFACE_CHANGES_IN_FRAME: Long = 16
-
-  /**
-   * The amount of texture memory used.
-   */
-  public final const val RENDER_TEXTURE_MEM_USED: Long = 21
-
-  /**
-   * Unimplemented in the GLES2 and GLES3 rendering backends, always returns 0.
-   */
-  public final const val RENDER_USAGE_VIDEO_MEM_TOTAL: Long = 23
-
-  /**
-   * The amount of vertex memory used.
-   */
-  public final const val RENDER_VERTEX_MEM_USED: Long = 22
-
-  /**
-   * Vertices drawn per frame. 3D only.
-   */
-  public final const val RENDER_VERTICES_IN_FRAME: Long = 13
-
-  /**
-   * The amount of video memory used, i.e. texture and vertex memory combined.
-   */
-  public final const val RENDER_VIDEO_MEM_USED: Long = 20
-
-  /**
-   * Number of frames per second.
-   */
-  public final const val TIME_FPS: Long = 0
-
-  /**
-   * Time it took to complete one physics frame, in seconds.
-   */
-  public final const val TIME_PHYSICS_PROCESS: Long = 2
-
-  /**
-   * Time it took to complete one frame, in seconds.
-   */
-  public final const val TIME_PROCESS: Long = 1
-
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PERFORMANCE)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_PERFORMANCE)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
@@ -194,14 +50,190 @@ public object Performance : Object() {
   /**
    * Returns the value of one of the available monitors. You should provide one of the [enum Monitor] constants as the argument, like this:
    *
-   * ```
-   * 				print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GD.Print(Performance.GetMonitor(Performance.Monitor.TimeFps)); // Prints the FPS to the console.
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
-  public fun getMonitor(monitor: Long): Double {
-    TransferContext.writeArguments(LONG to monitor)
+  public fun getMonitor(monitor: Performance.Monitor): Double {
+    TransferContext.writeArguments(LONG to monitor.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Adds a custom monitor with name same as id. You can specify the category of monitor using '/' in id. If there are more than one '/' then default category is used. Default category is "Custom".
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _ready():
+   *
+   *     var monitor_value = Callable(self, "get_monitor_value")
+   *
+   *
+   *
+   *     # Adds monitor with name "MyName" to category "MyCategory".
+   *
+   *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
+   *
+   *
+   *
+   *     # Adds monitor with name "MyName" to category "Custom".
+   *
+   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code is valid.
+   *
+   *     Performance.add_custom_monitor("MyMonitor", monitor_value)
+   *
+   *
+   *
+   *     # Adds monitor with name "MyName" to category "Custom".
+   *
+   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids so the code is valid.
+   *
+   *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
+   *
+   *
+   *
+   *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   *
+   *     Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
+   *
+   *
+   *
+   * func get_monitor_value():
+   *
+   *     return randi() % 25
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     var monitorValue = new Callable(this, nameof(GetMonitorValue));
+   *
+   *
+   *
+   *     // Adds monitor with name "MyName" to category "MyCategory".
+   *
+   *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
+   *
+   *     // Adds monitor with name "MyName" to category "Custom".
+   *
+   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code is valid.
+   *
+   *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
+   *
+   *
+   *
+   *     // Adds monitor with name "MyName" to category "Custom".
+   *
+   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids so the code is valid.
+   *
+   *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
+   *
+   *
+   *
+   *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   *
+   *     Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
+   *
+   * }
+   *
+   *
+   *
+   * public int GetMonitorValue()
+   *
+   * {
+   *
+   *     return GD.Randi() % 25;
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * The debugger calls the callable to get the value of custom monitor. The callable must return a number.
+   *
+   * Callables are called with arguments supplied in argument array.
+   *
+   * **Note:** It prints an error if given id is already present.
+   */
+  public fun addCustomMonitor(
+    id: StringName,
+    callable: Callable,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_ADD_CUSTOM_MONITOR, NIL)
+  }
+
+  /**
+   * Removes the custom monitor with given id.
+   *
+   * **Note:** It prints an error if the given id is already absent.
+   */
+  public fun removeCustomMonitor(id: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_REMOVE_CUSTOM_MONITOR,
+        NIL)
+  }
+
+  /**
+   * Returns true if custom monitor with the given id is present otherwise returns false.
+   */
+  public fun hasCustomMonitor(id: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_HAS_CUSTOM_MONITOR,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the value of custom monitor with given id. The callable is called to get the value of custom monitor.
+   *
+   * **Note:** It prints an error if the given id is absent.
+   */
+  public fun getCustomMonitor(id: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Returns the last tick in which custom monitor was added/removed.
+   */
+  public fun getMonitorModificationTime(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR_MODIFICATION_TIME, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the names of active custom monitors in an array.
+   */
+  public fun getCustomMonitorNames(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR_NAMES, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public enum class Monitor(
@@ -224,117 +256,85 @@ public object Performance : Object() {
      */
     MEMORY_STATIC(3),
     /**
-     * Dynamic memory currently used, in bytes. Not available in release builds.
-     */
-    MEMORY_DYNAMIC(4),
-    /**
      * Available static memory. Not available in release builds.
      */
-    MEMORY_STATIC_MAX(5),
-    /**
-     * Available dynamic memory. Not available in release builds.
-     */
-    MEMORY_DYNAMIC_MAX(6),
+    MEMORY_STATIC_MAX(4),
     /**
      * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications.
      */
-    MEMORY_MESSAGE_BUFFER_MAX(7),
+    MEMORY_MESSAGE_BUFFER_MAX(5),
     /**
-     * Number of objects currently instanced (including nodes).
+     * Number of objects currently instantiated (including nodes).
      */
-    OBJECT_COUNT(8),
+    OBJECT_COUNT(6),
     /**
      * Number of resources currently used.
      */
-    OBJECT_RESOURCE_COUNT(9),
+    OBJECT_RESOURCE_COUNT(7),
     /**
-     * Number of nodes currently instanced in the scene tree. This also includes the root node.
+     * Number of nodes currently instantiated in the scene tree. This also includes the root node.
      */
-    OBJECT_NODE_COUNT(10),
+    OBJECT_NODE_COUNT(8),
     /**
      * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree.
      */
-    OBJECT_ORPHAN_NODE_COUNT(11),
+    OBJECT_ORPHAN_NODE_COUNT(9),
     /**
-     * 3D objects drawn per frame.
+     *
      */
-    RENDER_OBJECTS_IN_FRAME(12),
+    RENDER_TOTAL_OBJECTS_IN_FRAME(10),
     /**
-     * Vertices drawn per frame. 3D only.
+     *
      */
-    RENDER_VERTICES_IN_FRAME(13),
+    RENDER_TOTAL_PRIMITIVES_IN_FRAME(11),
     /**
-     * Material changes per frame. 3D only.
+     *
      */
-    RENDER_MATERIAL_CHANGES_IN_FRAME(14),
-    /**
-     * Shader changes per frame. 3D only.
-     */
-    RENDER_SHADER_CHANGES_IN_FRAME(15),
-    /**
-     * Render surface changes per frame. 3D only.
-     */
-    RENDER_SURFACE_CHANGES_IN_FRAME(16),
-    /**
-     * Draw calls per frame. 3D only.
-     */
-    RENDER_DRAW_CALLS_IN_FRAME(17),
-    /**
-     * Items or joined items drawn per frame.
-     */
-    RENDER_2D_ITEMS_IN_FRAME(18),
-    /**
-     * Draw calls per frame.
-     */
-    RENDER_2D_DRAW_CALLS_IN_FRAME(19),
+    RENDER_TOTAL_DRAW_CALLS_IN_FRAME(12),
     /**
      * The amount of video memory used, i.e. texture and vertex memory combined.
      */
-    RENDER_VIDEO_MEM_USED(20),
+    RENDER_VIDEO_MEM_USED(13),
     /**
      * The amount of texture memory used.
      */
-    RENDER_TEXTURE_MEM_USED(21),
+    RENDER_TEXTURE_MEM_USED(14),
     /**
-     * The amount of vertex memory used.
+     *
      */
-    RENDER_VERTEX_MEM_USED(22),
+    RENDER_BUFFER_MEM_USED(15),
     /**
-     * Unimplemented in the GLES2 and GLES3 rendering backends, always returns 0.
+     * Number of active [godot.RigidDynamicBody2D] nodes in the game.
      */
-    RENDER_USAGE_VIDEO_MEM_TOTAL(23),
-    /**
-     * Number of active [godot.RigidBody2D] nodes in the game.
-     */
-    PHYSICS_2D_ACTIVE_OBJECTS(24),
+    PHYSICS_2D_ACTIVE_OBJECTS(16),
     /**
      * Number of collision pairs in the 2D physics engine.
      */
-    PHYSICS_2D_COLLISION_PAIRS(25),
+    PHYSICS_2D_COLLISION_PAIRS(17),
     /**
      * Number of islands in the 2D physics engine.
      */
-    PHYSICS_2D_ISLAND_COUNT(26),
+    PHYSICS_2D_ISLAND_COUNT(18),
     /**
-     * Number of active [godot.RigidBody] and [godot.VehicleBody] nodes in the game.
+     * Number of active [godot.RigidDynamicBody3D] and [godot.VehicleBody3D] nodes in the game.
      */
-    PHYSICS_3D_ACTIVE_OBJECTS(27),
+    PHYSICS_3D_ACTIVE_OBJECTS(19),
     /**
      * Number of collision pairs in the 3D physics engine.
      */
-    PHYSICS_3D_COLLISION_PAIRS(28),
+    PHYSICS_3D_COLLISION_PAIRS(20),
     /**
      * Number of islands in the 3D physics engine.
      */
-    PHYSICS_3D_ISLAND_COUNT(29),
+    PHYSICS_3D_ISLAND_COUNT(21),
     /**
      * Output latency of the [godot.AudioServer].
      */
-    AUDIO_OUTPUT_LATENCY(30),
+    AUDIO_OUTPUT_LATENCY(22),
     /**
      * Represents the size of the [enum Monitor] enum.
      */
-    MONITOR_MAX(31),
+    MONITOR_MAX(23),
     ;
 
     public val id: Long

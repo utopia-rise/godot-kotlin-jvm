@@ -1,21 +1,22 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -29,10 +30,25 @@ import kotlin.Unit
  *
  * **Example:**
  *
- * ```
- * 		var state_machine = $AnimationTree.get("parameters/playback")
- * 		state_machine.travel("some_state")
- * 		```
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var state_machine = $AnimationTree.get("parameters/playback")
+ *
+ * state_machine.travel("some_state")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as AnimationNodeStateMachinePlayback;
+ *
+ * stateMachine.Travel("some_state");
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
@@ -41,29 +57,56 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
-   *
+   * Transitions from the current state to another one, following the shortest path.
    */
-  public open fun getCurrentLength(): Double {
+  public fun travel(toNode: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to toNode)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
+  }
+
+  /**
+   * Starts playing the given animation.
+   */
+  public fun start(node: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to node)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
+  }
+
+  /**
+   * Stops the currently playing animation.
+   */
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP, NIL)
+  }
+
+  /**
+   * Returns `true` if an animation is playing.
+   */
+  public fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns the currently playing animation state.
    */
-  public open fun getCurrentNode(): String {
+  public fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING_NAME)
+    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
   /**
    * Returns the playback position within the current animation state.
    */
-  public open fun getCurrentPlayPosition(): Double {
+  public fun getCurrentPlayPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
@@ -72,50 +115,25 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
+   *
+   */
+  public fun getCurrentLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the current travel path as computed internally by the A* algorithm.
    */
-  public open fun getTravelPath(): PoolStringArray {
+  public fun getTravelPath(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  /**
-   * Returns `true` if an animation is playing.
-   */
-  public open fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Starts playing the given animation.
-   */
-  public open fun start(node: String): Unit {
-    TransferContext.writeArguments(STRING to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
-  }
-
-  /**
-   * Stops the currently playing animation.
-   */
-  public open fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP, NIL)
-  }
-
-  /**
-   * Transitions from the current state to another one, following the shortest path.
-   */
-  public open fun travel(toNode: String): Unit {
-    TransferContext.writeArguments(STRING to toNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
-  }
+  public companion object
 }

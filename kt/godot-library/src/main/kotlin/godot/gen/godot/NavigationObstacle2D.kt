@@ -1,40 +1,36 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType._RID
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 2D obstacle used in navigation for collision avoidance.
+ * 2D Obstacle used in navigation for collision avoidance.
  *
- * 2D obstacle used in navigation for collision avoidance. The obstacle needs navigation data to work correctly. This can be done by having the obstacle as a child of a [godot.Navigation2D] node, or using [setNavigation]. [godot.NavigationObstacle2D] is physics safe.
- *
- * **Note:** Obstacles are intended as a last resort option for constantly moving objects that cannot be (re)baked to a navigation mesh efficiently.
+ * 2D Obstacle used in navigation for collision avoidance. The obstacle needs navigation data to work correctly. [godot.NavigationObstacle2D] is physics safe.
  */
 @GodotBaseType
 public open class NavigationObstacle2D : Node() {
   /**
    * Enables radius estimation algorithm which uses parent's collision shapes to determine the obstacle radius.
    */
-  public open var estimateRadius: Boolean
+  public var estimateRadius: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_ESTIMATE_RADIUS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_IS_RADIUS_ESTIMATED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -44,9 +40,9 @@ public open class NavigationObstacle2D : Node() {
     }
 
   /**
-   * The radius of the agent. Used only if [estimateRadius] is set to `false`.
+   * The radius of the agent. Used only if [estimateRadius] is set to false.
    */
-  public open var radius: Double
+  public var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_RADIUS,
@@ -63,31 +59,5 @@ public open class NavigationObstacle2D : Node() {
     callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE2D)
   }
 
-  /**
-   * Returns the [godot.Navigation2D] node that the obstacle is using for its navigation system.
-   */
-  public open fun getNavigation(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_NAVIGATION,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Returns the [RID] of this obstacle on the [godot.Navigation2DServer].
-   */
-  public open fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
-  }
-
-  /**
-   * Sets the [godot.Navigation2D] node used by the obstacle. Useful when you don't want to make the obstacle a child of a [godot.Navigation2D] node.
-   */
-  public open fun setNavigation(navigation: Node): Unit {
-    TransferContext.writeArguments(OBJECT to navigation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_NAVIGATION,
-        NIL)
-  }
+  public companion object
 }

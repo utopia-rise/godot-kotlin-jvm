@@ -1,12 +1,14 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.Shader
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -14,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -26,7 +29,6 @@ import kotlin.Unit
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
- * [$DOCS_URL/tutorials/shaders/introduction_to_shaders.html]($DOCS_URL/tutorials/shaders/introduction_to_shaders.html)
  *
  * This class allows you to define a custom shader program that can be used by a [godot.ShaderMaterial]. Shaders allow you to write your own custom behavior for rendering objects or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
  */
@@ -35,7 +37,7 @@ public open class Shader : Resource() {
   /**
    * Returns the shader's code as the user has written it, not the full generated code used internally.
    */
-  public open var code: String
+  public var code: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING)
@@ -46,45 +48,48 @@ public open class Shader : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CODE, NIL)
     }
 
-  /**
-   * Returns the shader's custom defines. Custom defines can be used in Godot to add GLSL preprocessor directives (e.g: extensions) required for the shader logic.
-   *
-   * **Note:** Custom defines are not validated by the Godot shader parser, so care should be taken when using them.
-   */
-  public open var customDefines: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CUSTOM_DEFINES, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CUSTOM_DEFINES, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SHADER)
+  }
+
+  /**
+   * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
+   */
+  public fun getMode(): Shader.Mode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
+    return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [godot.ShaderMaterial].
+   *
+   * **Note:** `param` must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use `index` to access the specified texture.
+   */
+  public fun setDefaultTextureParam(
+    `param`: StringName,
+    texture: Texture2D,
+    index: Long = 0
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to param, OBJECT to texture, LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
+        NIL)
   }
 
   /**
    * Returns the texture that is set as default for the specified parameter.
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
+   *
+   * **Note:** If the sampler array is used use `index` to access the specified texture.
    */
-  public open fun getDefaultTextureParam(`param`: String): Texture? {
-    TransferContext.writeArguments(STRING to param)
+  public fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
+    TransferContext.writeArguments(STRING_NAME to param, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture?
-  }
-
-  /**
-   * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
-   */
-  public open fun getMode(): Shader.Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
-    return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
   /**
@@ -92,21 +97,10 @@ public open class Shader : Resource() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  public open fun hasParam(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
+  public fun hasParam(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [godot.ShaderMaterial].
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   */
-  public open fun setDefaultTextureParam(`param`: String, texture: Texture): Unit {
-    TransferContext.writeArguments(STRING to param, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
-        NIL)
   }
 
   public enum class Mode(
@@ -124,6 +118,14 @@ public open class Shader : Resource() {
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
     MODE_PARTICLES(2),
+    /**
+     * Mode used for drawing skies. Only works with shaders attached to [godot.Sky] objects.
+     */
+    MODE_SKY(3),
+    /**
+     * Mode used for setting the color and density of volumetric fog effect.
+     */
+    MODE_FOG(4),
     ;
 
     public val id: Long
@@ -136,20 +138,5 @@ public open class Shader : Resource() {
     }
   }
 
-  public companion object {
-    /**
-     * Mode used to draw all 2D objects.
-     */
-    public final const val MODE_CANVAS_ITEM: Long = 1
-
-    /**
-     * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
-     */
-    public final const val MODE_PARTICLES: Long = 2
-
-    /**
-     * Mode used to draw all 3D objects.
-     */
-    public final const val MODE_SPATIAL: Long = 0
-  }
+  public companion object
 }

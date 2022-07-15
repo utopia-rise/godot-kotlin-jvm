@@ -1,22 +1,24 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,19 +34,35 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimatedSprite3D : SpriteBase3D() {
   /**
-   * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
-   */
-  public val animationFinished: Signal0 by signal()
-
-  /**
    * Emitted when [frame] changed.
    */
   public val frameChanged: Signal0 by signal()
 
   /**
+   * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
+   */
+  public val animationFinished: Signal0 by signal()
+
+  /**
+   * The [godot.SpriteFrames] resource containing the animation(s).
+   */
+  public var frames: SpriteFrames?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_SPRITE_FRAMES, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_SPRITE_FRAMES, NIL)
+    }
+
+  /**
    * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
    */
-  public open var animation: String
+  public var animation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_ANIMATION,
@@ -60,7 +78,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The displayed animation frame's index.
    */
-  public open var frame: Long
+  public var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_FRAME, LONG)
@@ -71,57 +89,34 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAME, NIL)
     }
 
-  /**
-   * The [godot.SpriteFrames] resource containing the animation(s).
-   */
-  public open var frames: SpriteFrames?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_GET_FRAMES,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_SET_FRAMES, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE3D)
-  }
-
-  public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AnimatedSprite3D")
-  }
-
-  public open fun _resChanged(): Unit {
-  }
-
-  public open fun _setPlaying(playing: Boolean): Unit {
-  }
-
-  /**
-   * Returns `true` if an animation is currently being played.
-   */
-  public open fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Plays the animation named `anim`. If no `anim` is provided, the current animation is played.
    */
-  public open fun play(anim: String = ""): Unit {
-    TransferContext.writeArguments(STRING to anim)
+  public fun play(anim: StringName = StringName("")): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)
   }
 
   /**
    * Stops the current animation (does not reset the frame counter).
    */
-  public open fun stop(): Unit {
+  public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_STOP, NIL)
   }
+
+  /**
+   * Returns `true` if an animation is currently being played.
+   */
+  public fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public companion object
 }

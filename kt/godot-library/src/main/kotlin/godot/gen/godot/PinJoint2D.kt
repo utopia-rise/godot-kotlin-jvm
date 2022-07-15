@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -14,16 +15,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Pin Joint for 2D shapes.
+ * Pin joint for 2D shapes.
  *
- * Pin Joint for 2D rigid bodies. It pins two bodies (rigid or static) together.
+ * Pin joint for 2D rigid bodies. It pins two bodies (dynamic or static) together.
  */
 @GodotBaseType
 public open class PinJoint2D : Joint2D() {
   /**
    * The higher this value, the more the bond to the pinned partner can flex.
    */
-  public open var softness: Double
+  public var softness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT2D_GET_SOFTNESS, DOUBLE)
@@ -37,4 +38,6 @@ public open class PinJoint2D : Joint2D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PINJOINT2D)
   }
+
+  public companion object
 }

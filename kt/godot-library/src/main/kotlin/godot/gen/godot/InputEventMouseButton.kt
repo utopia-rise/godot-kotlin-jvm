@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,41 +30,9 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventMouseButton : InputEventMouse() {
   /**
-   * The mouse button identifier, one of the [enum ButtonList] button or button wheel constants.
-   */
-  public open var buttonIndex: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_BUTTON_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_BUTTON_INDEX, NIL)
-    }
-
-  /**
-   * If `true`, the mouse button's state is a double-click.
-   */
-  public open var doubleclick: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_DOUBLECLICK, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_DOUBLECLICK, NIL)
-    }
-
-  /**
    * The amount (or delta) of the event. When used for high-precision scroll events, this indicates the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported sensitivity varies depending on the platform. May be `0` if not supported.
    */
-  public open var factor: Double
+  public var factor: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_FACTOR,
@@ -77,9 +46,25 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   /**
+   * The mouse button identifier, one of the [enum MouseButton] button or button wheel constants.
+   */
+  public var buttonIndex: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_BUTTON_INDEX, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_BUTTON_INDEX, NIL)
+    }
+
+  /**
    * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is released.
    */
-  public open var pressed: Boolean
+  public var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
@@ -89,7 +74,25 @@ public open class InputEventMouseButton : InputEventMouse() {
           NIL)
     }
 
+  /**
+   * If `true`, the mouse button's state is a double-click.
+   */
+  public var doubleClick: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_IS_DOUBLE_CLICK, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_DOUBLE_CLICK, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON)
   }
+
+  public companion object
 }

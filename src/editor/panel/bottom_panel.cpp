@@ -20,7 +20,7 @@ BottomPanel::BottomPanel() :
 
     TabContainer* panel_tabs{memnew(TabContainer)};
     add_child(panel_tabs);
-    panel_tabs->set_tab_alignment(TabContainer::ALIGNMENT_LEFT);
+    panel_tabs->set_tab_alignment(TabBar::ALIGNMENT_LEFT);
     panel_tabs->set_custom_minimum_size(Size2{0, 288} * EDSCALE);
     panel_tabs->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 

@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,9 +22,25 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
   /**
+   * Enables usage of the [defaultValue].
+   */
+  public var defaultValueEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
+    }
+
+  /**
    * A default value to be assigned within the shader.
    */
-  public open var defaultValue: Boolean
+  public var defaultValue: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -36,23 +53,9 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  /**
-   * Enables usage of the [defaultValue].
-   */
-  public open var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_GET_DEFAULT_VALUE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM)
   }
+
+  public companion object
 }

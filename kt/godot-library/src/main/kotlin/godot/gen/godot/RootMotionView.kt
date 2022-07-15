@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,8 +21,10 @@ import kotlin.Unit
  * **Note:** [godot.RootMotionView] is only visible in the editor. It will be hidden automatically in the running project, and will also be converted to a plain [godot.Node] in the running project. This means a script attached to a [godot.RootMotionView] node *must* have `extends Node` instead of `extends RootMotionView`. Additionally, it must not be a `tool` script.
  */
 @GodotBaseType
-public open class RootMotionView : VisualInstance() {
+public open class RootMotionView internal constructor() : VisualInstance3D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ROOTMOTIONVIEW)
   }
+
+  public companion object
 }

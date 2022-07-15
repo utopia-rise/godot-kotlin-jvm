@@ -3,13 +3,13 @@ package godot.global
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
-import godot.core.PoolByteArray
-import godot.core.PoolColorArray
-import godot.core.PoolIntArray
-import godot.core.PoolRealArray
-import godot.core.PoolStringArray
-import godot.core.PoolVector2Array
-import godot.core.PoolVector3Array
+import godot.core.PackedByteArray
+import godot.core.PackedColorArray
+import godot.core.PackedInt32Array
+import godot.core.PackedFloat64Array
+import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
+import godot.core.PackedVector3Array
 import godot.core.VariantArray
 import godot.util.toRealT
 
@@ -189,25 +189,25 @@ internal interface GDCore {
     fun <K, V> len(s: Dictionary<K, V>): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolByteArray): Int = s.size
+    fun len(s: PackedByteArray): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolColorArray): Int = s.size
+    fun len(s: PackedColorArray): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolIntArray): Int = s.size
+    fun len(s: PackedInt32Array): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolRealArray): Int = s.size
+    fun len(s: PackedFloat64Array): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolStringArray): Int = s.size
+    fun len(s: PackedStringArray): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolVector2Array): Int = s.size
+    fun len(s: PackedVector2Array): Int = s.size
 
     /** Returns length of Variant var */
-    fun len(s: PoolVector3Array): Int = s.size
+    fun len(s: PackedVector3Array): Int = s.size
 
     /** Returns an integer representing the Unicode code point of the given Unicode character char. */
     fun ord(char: String): Int {

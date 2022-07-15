@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,23 +30,25 @@ import kotlin.Unit
  * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
+ *
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerSSL : StreamPeer() {
   /**
    *
    */
-  public open var blockingHandshake: Boolean
+  public var blockingHandshake: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_BLOCKING_HANDSHAKE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_IS_BLOCKING_HANDSHAKE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE, NIL)
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {
@@ -53,16 +56,23 @@ public open class StreamPeerSSL : StreamPeer() {
   }
 
   /**
+   * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
+   */
+  public fun poll(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
+  }
+
+  /**
    * Accepts a peer connection as a server using the given `private_key` and providing the given `certificate` to the client. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
    */
-  public open fun acceptStream(
+  public fun acceptStream(
     stream: StreamPeer,
     privateKey: CryptoKey,
     certificate: X509Certificate,
     chain: X509Certificate? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate,
-        OBJECT to chain)
+    TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate, OBJECT to chain)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_ACCEPT_STREAM, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -72,43 +82,34 @@ public open class StreamPeerSSL : StreamPeer() {
    *
    * **Note:** Specifying a custom `valid_certificate` is not supported in HTML5 exports due to browsers restrictions.
    */
-  public open fun connectToStream(
+  public fun connectToStream(
     stream: StreamPeer,
     validateCerts: Boolean = false,
     forHostname: String = "",
     validCertificate: X509Certificate? = null
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname,
-        OBJECT to validCertificate)
+    TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_CONNECT_TO_STREAM,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Disconnects from host.
-   */
-  public open fun disconnectFromStream(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
-  }
-
-  /**
    * Returns the status of the connection. See [enum Status] for values.
    */
-  public open fun getStatus(): StreamPeerSSL.Status {
+  public fun getStatus(): StreamPeerSSL.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_STATUS, LONG)
     return StreamPeerSSL.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
+   * Disconnects from host.
    */
-  public open fun poll(): Unit {
+  public fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
   }
 
   public enum class Status(
@@ -146,30 +147,5 @@ public open class StreamPeerSSL : StreamPeer() {
     }
   }
 
-  public companion object {
-    /**
-     * A status representing a [godot.StreamPeerSSL] that is connected to a host.
-     */
-    public final const val STATUS_CONNECTED: Long = 2
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] that is disconnected.
-     */
-    public final const val STATUS_DISCONNECTED: Long = 0
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] in error state.
-     */
-    public final const val STATUS_ERROR: Long = 3
-
-    /**
-     * An error status that shows a mismatch in the SSL certificate domain presented by the host and the domain requested for validation.
-     */
-    public final const val STATUS_ERROR_HOSTNAME_MISMATCH: Long = 4
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] during handshaking.
-     */
-    public final const val STATUS_HANDSHAKING: Long = 1
-  }
+  public companion object
 }

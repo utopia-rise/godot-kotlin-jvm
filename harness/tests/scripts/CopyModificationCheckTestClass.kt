@@ -2,7 +2,7 @@ import godot.Spatial
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
-import godot.core.Transform
+import godot.core.Transform3D
 import godot.core.Vector3
 import godot.core.variantArrayOf
 import godot.tests.Invocation
@@ -40,7 +40,6 @@ class CopyModificationCheckTestClass: Spatial() {
     // Allowed as it's instantiated with a constructor call
     fun constructorCallModificationThroughReference() {
         val vector = Vector3()
-        @Suppress("UnnecessaryVariable") // we want to keep this to test through multiple references
         val vectorRef = vector
         vectorRef[0] = 5.0
         vectorRef.x = 5.0
@@ -75,14 +74,9 @@ class CopyModificationCheckTestClass: Spatial() {
         vector--
         println(vector)
 
-        @Suppress("UnnecessaryVariable")
-        Spatial().transform = Transform().apply {
-            basis {
-                x {
-                    Vector3().apply {
-                        x = vector
-                    }
-                }
+        Spatial().transform = Transform3D().apply {
+            basis.x = Vector3().apply {
+                x = vector
             }
         }
     }
@@ -192,8 +186,11 @@ class CopyModificationCheckTestClass: Spatial() {
         }
     }
 
-    // allowed
+    // both allowed as both are equivalent in functionality and are setting the correct value back to this (Spatial)
     fun correctlyNestedHelperFunction() {
+        globalTransform {
+            origin.x += 3
+        }
         globalTransform {
             origin {
                 x += 3
@@ -201,14 +198,6 @@ class CopyModificationCheckTestClass: Spatial() {
         }
     }
 
-    // not allowed as origin in transform is a copy as well
-    fun setCoreTypeInCoreType() {
-        globalTransform {
-            origin.x += 3
-        }
-    }
-
-    // allowed
     fun collectionHelperFunction() {
         dictionary.get(0) {
             x += 3
@@ -223,25 +212,7 @@ class CopyModificationCheckTestClass: Spatial() {
     fun poolArrayFunctions() {
         Invocation().vectorList.pushBack(Vector3.FORWARD)
         Invocation().vectorList[0].x += 5
-
-        @Suppress("ReplaceGetOrSet") // we explicitly want to test this case as well
-        Invocation().vectorList.get(0).x += 5
+        Invocation().vectorList.get(0).x += 5 
         //TODO: once helper functions are merged
-    }
-
-
-    // allowed as no core type is used anywhere
-    object Wrapper {
-        val intHolder = IntHolder()
-    }
-    class IntHolder {
-        val intValue = 1
-    }
-    fun regressionTextCallChainModificationFalsePositive() {
-        var number = IntHolder().intValue.toDouble()
-        number = 5.0
-
-        var numberWithWrapper = Wrapper.intHolder.intValue
-        numberWithWrapper = 5
     }
 }

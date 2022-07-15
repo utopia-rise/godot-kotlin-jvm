@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,16 +29,57 @@ import kotlin.Unit
  *
  * **Example of creating a button and assigning an action when pressed by code:**
  *
- * ```
- * 		func _ready():
- * 		    var button = Button.new()
- * 		    button.text = "Click me"
- * 		    button.connect("pressed", self, "_button_pressed")
- * 		    add_child(button)
+ * [codeblocks]
  *
- * 		func _button_pressed():
- * 		    print("Hello world!")
- * 		```
+ * [gdscript]
+ *
+ * func _ready():
+ *
+ *     var button = Button.new()
+ *
+ *     button.text = "Click me"
+ *
+ *     button.connect("pressed", self, "_button_pressed")
+ *
+ *     add_child(button)
+ *
+ *
+ *
+ * func _button_pressed():
+ *
+ *     print("Hello world!")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public override void _Ready()
+ *
+ * {
+ *
+ *     var button = new Button();
+ *
+ *     button.Text = "Click me";
+ *
+ *     button.Connect("pressed", this, nameof(ButtonPressed));
+ *
+ *     AddChild(button);
+ *
+ * }
+ *
+ *
+ *
+ * private void ButtonPressed()
+ *
+ * {
+ *
+ *     GD.Print("Hello world!");
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * Buttons (like all Control nodes) can also be created in the editor, but some situations may require creating them from code.
  *
@@ -48,23 +90,81 @@ import kotlin.Unit
 @GodotBaseType
 public open class Button : BaseButton() {
   /**
-   * Text alignment policy for the button's text, use one of the [enum TextAlign] constants.
+   * The button's text that will be displayed inside the button's area.
    */
-  public open var align: Long
+  public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ALIGN, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT, NIL)
+    }
+
+  /**
+   * Base text writing direction.
+   */
+  public var textDirection: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ALIGN, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL)
+    }
+
+  /**
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   */
+  public var language: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_LANGUAGE, NIL)
+    }
+
+  /**
+   * Button's icon, if text is present the icon will be placed before the text.
+   *
+   * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and `content_margin_*` properties of the used [godot.StyleBox]es.
+   */
+  public var icon: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_BUTTON_ICON, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_BUTTON_ICON, NIL)
+    }
+
+  /**
+   * Flat buttons don't display decoration.
+   */
+  public var flat: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_FLAT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL)
     }
 
   /**
    * When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text.
    */
-  public open var clipText: Boolean
+  public var clipText: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_CLIP_TEXT, BOOL)
@@ -76,12 +176,40 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
+   * Text alignment policy for the button's text, use one of the [enum @GlobalScope.HorizontalAlignment] constants.
    */
-  public open var expandIcon: Boolean
+  public var alignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_EXPAND_ICON, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_ALIGNMENT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_ALIGNMENT, NIL)
+    }
+
+  /**
+   * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum @GlobalScope.HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
+   */
+  public var iconAlignment: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGNMENT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGNMENT, NIL)
+    }
+
+  /**
+   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
+   */
+  public var expandIcon: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_EXPAND_ICON, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -89,109 +217,34 @@ public open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
     }
 
-  /**
-   * Flat buttons don't display decoration.
-   */
-  public open var flat: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_FLAT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL)
-    }
-
-  /**
-   * Button's icon, if text is present the icon will be placed before the text.
-   *
-   * To edit margin and spacing of the icon, use `hseparation` theme property of [godot.Button] and `content_margin_*` properties of the used [godot.StyleBox]es.
-   */
-  public open var icon: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON, NIL)
-    }
-
-  /**
-   * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum TextAlign] constants as the text alignment. If centered, text will draw on top of the icon.
-   */
-  public open var iconAlign: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGN, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGN, NIL)
-    }
-
-  /**
-   * The button's text that will be displayed inside the button's area.
-   */
-  public open var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTON)
   }
 
-  public enum class TextAlign(
-    id: Long
-  ) {
-    /**
-     * Align the text to the left.
-     */
-    ALIGN_LEFT(0),
-    /**
-     * Align the text to the center.
-     */
-    ALIGN_CENTER(1),
-    /**
-     * Align the text to the right.
-     */
-    ALIGN_RIGHT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  /**
+   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
+   */
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+    TransferContext.writeArguments(STRING to tag, LONG to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  public companion object {
-    /**
-     * Align the text to the center.
-     */
-    public final const val ALIGN_CENTER: Long = 1
-
-    /**
-     * Align the text to the left.
-     */
-    public final const val ALIGN_LEFT: Long = 0
-
-    /**
-     * Align the text to the right.
-     */
-    public final const val ALIGN_RIGHT: Long = 2
+  /**
+   * Returns OpenType feature `tag`.
+   */
+  public fun getOpentypeFeature(tag: String): Long {
+    TransferContext.writeArguments(STRING to tag)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
+
+  /**
+   * Removes all OpenType features.
+   */
+  public fun clearOpentypeFeatures(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES, NIL)
+  }
+
+  public companion object
 }

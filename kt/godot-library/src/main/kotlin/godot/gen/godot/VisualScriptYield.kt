@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -17,18 +18,20 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptYield : VisualScriptNode() {
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELD_GET_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELD_GET_YIELD_MODE,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELD_SET_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELD_SET_YIELD_MODE,
+          NIL)
     }
 
-  public open var waitTime: Double
+  public var waitTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTYIELD_GET_WAIT_TIME,
@@ -63,11 +66,5 @@ public open class VisualScriptYield : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val YIELD_FRAME: Long = 1
-
-    public final const val YIELD_PHYSICS_FRAME: Long = 2
-
-    public final const val YIELD_WAIT: Long = 3
-  }
+  public companion object
 }

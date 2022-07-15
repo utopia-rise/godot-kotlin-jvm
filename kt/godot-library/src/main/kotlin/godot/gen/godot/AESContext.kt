@@ -1,18 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PoolByteArray
+import godot.core.PackedByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -23,50 +24,175 @@ import kotlin.Unit
  *
  * This class provides access to AES encryption/decryption of raw data. Both AES-ECB and AES-CBC mode are supported.
  *
- * ```
- * 		extends Node
+ * [codeblocks]
  *
- * 		var aes = AESContext.new()
+ * [gdscript]
  *
- * 		func _ready():
- * 		    var key = "My secret key!!!" # Key must be either 16 or 32 bytes.
- * 		    var data = "My secret text!!" # Data size must be multiple of 16 bytes, apply padding if needed.
- * 		    # Encrypt ECB
- * 		    aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8())
- * 		    var encrypted = aes.update(data.to_utf8())
- * 		    aes.finish()
- * 		    # Decrypt ECB
- * 		    aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8())
- * 		    var decrypted = aes.update(encrypted)
- * 		    aes.finish()
- * 		    # Check ECB
- * 		    assert(decrypted == data.to_utf8())
+ * extends Node
  *
- * 		    var iv = "My secret iv!!!!" # IV must be of exactly 16 bytes.
- * 		    # Encrypt CBC
- * 		    aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8(), iv.to_utf8())
- * 		    encrypted = aes.update(data.to_utf8())
- * 		    aes.finish()
- * 		    # Decrypt CBC
- * 		    aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8(), iv.to_utf8())
- * 		    decrypted = aes.update(encrypted)
- * 		    aes.finish()
- * 		    # Check CBC
- * 		    assert(decrypted == data.to_utf8())
- * 		```
+ *
+ *
+ * var aes = AESContext.new()
+ *
+ *
+ *
+ * func _ready():
+ *
+ *     var key = "My secret key!!!" # Key must be either 16 or 32 bytes.
+ *
+ *     var data = "My secret text!!" # Data size must be multiple of 16 bytes, apply padding if needed.
+ *
+ *     # Encrypt ECB
+ *
+ *     aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8())
+ *
+ *     var encrypted = aes.update(data.to_utf8())
+ *
+ *     aes.finish()
+ *
+ *     # Decrypt ECB
+ *
+ *     aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8())
+ *
+ *     var decrypted = aes.update(encrypted)
+ *
+ *     aes.finish()
+ *
+ *     # Check ECB
+ *
+ *     assert(decrypted == data.to_utf8())
+ *
+ *
+ *
+ *     var iv = "My secret iv!!!!" # IV must be of exactly 16 bytes.
+ *
+ *     # Encrypt CBC
+ *
+ *     aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8(), iv.to_utf8())
+ *
+ *     encrypted = aes.update(data.to_utf8())
+ *
+ *     aes.finish()
+ *
+ *     # Decrypt CBC
+ *
+ *     aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8(), iv.to_utf8())
+ *
+ *     decrypted = aes.update(encrypted)
+ *
+ *     aes.finish()
+ *
+ *     # Check CBC
+ *
+ *     assert(decrypted == data.to_utf8())
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * using Godot;
+ *
+ * using System;
+ *
+ * using System.Diagnostics;
+ *
+ *
+ *
+ * public class Example : Node
+ *
+ * {
+ *
+ *     public AESContext Aes = new AESContext();
+ *
+ *     public override void _Ready()
+ *
+ *     {
+ *
+ *         string key = "My secret key!!!"; // Key must be either 16 or 32 bytes.
+ *
+ *         string data = "My secret text!!"; // Data size must be multiple of 16 bytes, apply padding if needed.
+ *
+ *         // Encrypt ECB
+ *
+ *         Aes.Start(AESContext.Mode.EcbEncrypt, key.ToUTF8());
+ *
+ *         byte[] encrypted = Aes.Update(data.ToUTF8());
+ *
+ *         Aes.Finish();
+ *
+ *         // Decrypt ECB
+ *
+ *         Aes.Start(AESContext.Mode.EcbDecrypt, key.ToUTF8());
+ *
+ *         byte[] decrypted = Aes.Update(encrypted);
+ *
+ *         Aes.Finish();
+ *
+ *         // Check ECB
+ *
+ *         Debug.Assert(decrypted == data.ToUTF8());
+ *
+ *
+ *
+ *         string iv = "My secret iv!!!!"; // IV must be of exactly 16 bytes.
+ *
+ *         // Encrypt CBC
+ *
+ *         Aes.Start(AESContext.Mode.EcbEncrypt, key.ToUTF8(), iv.ToUTF8());
+ *
+ *         encrypted = Aes.Update(data.ToUTF8());
+ *
+ *         Aes.Finish();
+ *
+ *         // Decrypt CBC
+ *
+ *         Aes.Start(AESContext.Mode.EcbDecrypt, key.ToUTF8(), iv.ToUTF8());
+ *
+ *         decrypted = Aes.Update(encrypted);
+ *
+ *         Aes.Finish();
+ *
+ *         // Check CBC
+ *
+ *         Debug.Assert(decrypted == data.ToUTF8());
+ *
+ *     }
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
-public open class AESContext : Reference() {
+public open class AESContext : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AESCONTEXT)
   }
 
   /**
-   * Close this AES context so it can be started again. See [start].
+   * Start the AES context in the given `mode`. A `key` of either 16 or 32 bytes must always be provided, while an `iv` (initialization vector) of exactly 16 bytes, is only needed when `mode` is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
-  public open fun finish(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL)
+  public fun start(
+    mode: AESContext.Mode,
+    key: PackedByteArray,
+    iv: PackedByteArray = PackedByteArray()
+  ): GodotError {
+    TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Run the desired operation for this AES context. Will return a [godot.PackedByteArray] containing the result of encrypting (or decrypting) the given `src`. See [start] for mode of operation.
+   *
+   * **Note:** The size of `src` must be a multiple of 16. Apply some padding if needed.
+   */
+  public fun update(src: PackedByteArray): PackedByteArray {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
+        PACKED_BYTE_ARRAY)
+    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
   /**
@@ -74,35 +200,19 @@ public open class AESContext : Reference() {
    *
    * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
-  public open fun getIvState(): PoolByteArray {
+  public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
-        POOL_BYTE_ARRAY)
-    return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
+        PACKED_BYTE_ARRAY)
+    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
   /**
-   * Start the AES context in the given `mode`. A `key` of either 16 or 32 bytes must always be provided, while an `iv` (initialization vector) of exactly 16 bytes, is only needed when `mode` is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
+   * Close this AES context so it can be started again. See [start].
    */
-  public open fun start(
-    mode: Long,
-    key: PoolByteArray,
-    iv: PoolByteArray = PoolByteArray()
-  ): GodotError {
-    TransferContext.writeArguments(LONG to mode, POOL_BYTE_ARRAY to key, POOL_BYTE_ARRAY to iv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Run the desired operation for this AES context. Will return a [godot.core.PoolByteArray] containing the result of encrypting (or decrypting) the given `src`. See [start] for mode of operation.
-   *
-   * **Note:** The size of `src` must be a multiple of 16. Apply some padding if needed.
-   */
-  public open fun update(src: PoolByteArray): PoolByteArray {
-    TransferContext.writeArguments(POOL_BYTE_ARRAY to src)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE, POOL_BYTE_ARRAY)
-    return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
+  public fun finish(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL)
   }
 
   public enum class Mode(
@@ -140,30 +250,5 @@ public open class AESContext : Reference() {
     }
   }
 
-  public companion object {
-    /**
-     * AES cipher blocker chaining decryption mode.
-     */
-    public final const val MODE_CBC_DECRYPT: Long = 3
-
-    /**
-     * AES cipher blocker chaining encryption mode.
-     */
-    public final const val MODE_CBC_ENCRYPT: Long = 2
-
-    /**
-     * AES electronic codebook decryption mode.
-     */
-    public final const val MODE_ECB_DECRYPT: Long = 1
-
-    /**
-     * AES electronic codebook encryption mode.
-     */
-    public final const val MODE_ECB_ENCRYPT: Long = 0
-
-    /**
-     * Maximum value for the mode enum.
-     */
-    public final const val MODE_MAX: Long = 4
-  }
+  public companion object
 }

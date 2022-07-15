@@ -1,6 +1,6 @@
 package godot.annotation
 
-import godot.MultiplayerAPI
+import godot.RPCMode
 
 /**
  * Registeres a property in godot so it can be used from another language or from godot
@@ -12,5 +12,5 @@ import godot.MultiplayerAPI
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RegisterProperty(
-    val rpcMode: MultiplayerAPI.RPCMode = MultiplayerAPI.RPCMode.DISABLED
+    val rpcMode: RPCMode = RPCMode.RPC_MODE_DISABLED
 )

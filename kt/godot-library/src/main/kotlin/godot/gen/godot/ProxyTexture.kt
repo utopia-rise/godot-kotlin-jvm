@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -16,15 +17,15 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class ProxyTexture : Texture() {
+public open class ProxyTexture : Texture2D() {
   /**
    *
    */
-  public open var base: Texture?
+  public var base: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXYTEXTURE_GET_BASE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -34,4 +35,6 @@ public open class ProxyTexture : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PROXYTEXTURE)
   }
+
+  public companion object
 }

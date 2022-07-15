@@ -1,17 +1,20 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
@@ -25,15 +28,13 @@ import kotlin.Unit
  * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
  *
  * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
- *
- * **Note:** Due to a renderer limitation, emissive [godot.ShaderMaterial]s cannot emit light when used in a [godot.GIProbe]. Only emissive [godot.SpatialMaterial]s can emit light in a [godot.GIProbe].
  */
 @GodotBaseType
 public open class ShaderMaterial : Material() {
   /**
    * The [godot.Shader] program used to render this material.
    */
-  public open var shader: Shader?
+  public var shader: Shader?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
@@ -48,14 +49,22 @@ public open class ShaderMaterial : Material() {
     callConstructor(ENGINECLASS_SHADERMATERIAL)
   }
 
-  public open fun _shaderChanged(): Unit {
+  /**
+   * Changes the value set for this material of a uniform in the shader.
+   *
+   * **Note:** `param` must match the name of the uniform in the code exactly.
+   */
+  public fun setShaderParam(`param`: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to param, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
+        NIL)
   }
 
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
-  public open fun getShaderParam(`param`: String): Any? {
-    TransferContext.writeArguments(STRING to param)
+  public fun getShaderParam(`param`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -64,7 +73,7 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns `true` if the property identified by `name` can be reverted to a default value.
    */
-  public open fun propertyCanRevert(name: String): Boolean {
+  public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
         BOOL)
@@ -74,21 +83,12 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns the default value of the material property with given `name`.
    */
-  public open fun propertyGetRevert(name: String): Any? {
+  public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  /**
-   * Changes the value set for this material of a uniform in the shader.
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   */
-  public open fun setShaderParam(`param`: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to param, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
-        NIL)
-  }
+  public companion object
 }

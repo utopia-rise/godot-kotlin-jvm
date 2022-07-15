@@ -62,18 +62,16 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
 GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(const String& configuration_path) {
     GdKotlinConfiguration configuration;
     if (FileAccess::exists(configuration_path)) {
-        FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
+        Ref<FileAccess> configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
         configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
-        configuration_access_read->close();
     } else {
 #ifdef TOOLS_ENABLED
         configuration = GdKotlinConfiguration();
         if (Main::is_project_manager()) {
             return configuration;
         }
-        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
+        Ref<FileAccess> file{FileAccess::open(configuration_path, FileAccess::WRITE)};
         file->store_string(configuration.to_json());
-        file->close();
 #else
         LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path));
         configuration = GdKotlinConfiguration();

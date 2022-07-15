@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,11 +21,11 @@ import kotlin.Unit
  * **Note:** You must set the [scriptOwner] for the custom context menu items to work.
  */
 @GodotBaseType
-public open class EditorScriptPicker : EditorResourcePicker() {
+public open class EditorScriptPicker internal constructor() : EditorResourcePicker() {
   /**
    * The owner [godot.Node] of the script property that holds the edited resource.
    */
-  public open var scriptOwner: Node?
+  public var scriptOwner: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,4 +41,6 @@ public open class EditorScriptPicker : EditorResourcePicker() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCRIPTPICKER)
   }
+
+  public companion object
 }

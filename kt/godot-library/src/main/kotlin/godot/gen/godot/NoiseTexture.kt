@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -13,32 +13,81 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.VECTOR2
-import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
-public open class NoiseTexture : Texture() {
-  public open var asNormalmap: Boolean
+public open class NoiseTexture : Texture2D() {
+  public var width: Long
+    @JvmName("getWidth_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getWidth()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_WIDTH, NIL)
+    }
+
+  public var height: Long
+    @JvmName("getHeight_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getHeight()
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_HEIGHT, NIL)
+    }
+
+  public var invert: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_AS_NORMALMAP,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_INVERT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_AS_NORMALMAP,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_INVERT, NIL)
+    }
+
+  public var seamless: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_SEAMLESS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_SEAMLESS, NIL)
+    }
+
+  public var seamlessBlendSkirt: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_SEAMLESS_BLEND_SKIRT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_SEAMLESS_BLEND_SKIRT, NIL)
+    }
+
+  public var asNormalMap: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_IS_NORMAL_MAP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_AS_NORMAL_MAP,
           NIL)
     }
 
-  public open var bumpStrength: Double
+  public var bumpStrength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_BUMP_STRENGTH,
@@ -51,80 +100,20 @@ public open class NoiseTexture : Texture() {
           NIL)
     }
 
-  public open var height: Long
-    @JvmName("getHeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getHeight()
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_HEIGHT, NIL)
-    }
-
-  public open var noise: OpenSimplexNoise?
+  public var noise: Noise?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_NOISE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenSimplexNoise?
+      return TransferContext.readReturnValue(OBJECT, true) as Noise?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE, NIL)
     }
 
-  public open var noiseOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_NOISE_OFFSET,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE_OFFSET,
-          NIL)
-    }
-
-  public open var seamless: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_SEAMLESS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_SEAMLESS, NIL)
-    }
-
-  public open var width: Long
-    @JvmName("getWidth_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getWidth()
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_WIDTH, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NOISETEXTURE)
   }
 
-  @CoreTypeHelper
-  public open fun noiseOffset(schedule: Vector2.() -> Unit): Vector2 = noiseOffset.apply{
-      schedule(this)
-      noiseOffset = this
-  }
-
-
-  public open fun _generateTexture(): Image? {
-    throw NotImplementedError("_generate_texture is not implemented for NoiseTexture")
-  }
-
-  public open fun _queueUpdate(): Unit {
-  }
-
-  public open fun _threadDone(image: Image): Unit {
-  }
-
-  public open fun _updateTexture(): Unit {
-  }
+  public companion object
 }

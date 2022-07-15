@@ -75,6 +75,9 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
             memdelete(reinterpret_cast<Array*>(p_raw_ptr));
             has_free = true;
             break;
+        case Variant::STRING_NAME:
+            memdelete(reinterpret_cast<StringName*>(p_raw_ptr));
+            break;
         case Variant::NODE_PATH:
             memdelete(reinterpret_cast<NodePath*>(p_raw_ptr));
             has_free = true;

@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -28,28 +29,30 @@ public open class ButtonGroup : Resource() {
   /**
    * Emitted when one of the buttons of the group is pressed.
    */
-  public val pressed: Signal1<Object> by signal("button")
+  public val pressed: Signal1<BaseButton> by signal("button")
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTONGROUP)
   }
 
   /**
-   * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.group]).
-   */
-  public open fun getButtons(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
    * Returns the current pressed button.
    */
-  public open fun getPressedButton(): BaseButton? {
+  public fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_PRESSED_BUTTON,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as BaseButton?
   }
+
+  /**
+   * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.buttonGroup]).
+   */
+  public fun getButtons(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  public companion object
 }

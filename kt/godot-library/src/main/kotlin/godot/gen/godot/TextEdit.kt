@@ -1,38 +1,43 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
+import godot.TextEdit
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.Color
-import godot.core.PoolIntArray
-import godot.core.PoolStringArray
-import godot.core.Rect2
+import godot.core.PackedStringArray
+import godot.core.Rect2i
 import godot.core.TransferContext
 import godot.core.VariantArray
+import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_INT_ARRAY
-import godot.core.VariantType.POOL_STRING_ARRAY
-import godot.core.VariantType.RECT2
+import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.RECT2I
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.signals.Signal0
-import godot.signals.Signal1
 import godot.signals.Signal2
-import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -43,34 +48,26 @@ import kotlin.Unit
  *
  * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
  *
- * **Note:** When holding down `Alt`, the vertical scroll wheel will scroll 5 times as fast as it would normally do. This also works in the Godot script editor.
+ * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast as it would normally do. This also works in the Godot script editor.
  */
 @GodotBaseType
 public open class TextEdit : Control() {
   /**
-   * Emitted when a breakpoint is placed via the breakpoint gutter.
+   * Emitted when a gutter is removed.
    */
-  public val breakpointToggled: Signal1<Long> by signal("row")
+  public val gutterRemoved: Signal0 by signal()
 
   /**
-   * Emitted when the cursor changes.
+   * Emitted when a gutter is added.
    */
-  public val cursorChanged: Signal0 by signal()
+  public val gutterAdded: Signal0 by signal()
 
   /**
-   * Emitted when the info icon is clicked.
-   */
-  public val infoClicked: Signal2<Long, String> by signal("row", "info")
-
-  /**
+   * Emitted immediately when the text changes.
    *
+   * When text is added `from_line` will be less then `to_line`. On a remove `to_line` will be less then `from_line`.
    */
-  public val requestCompletion: Signal0 by signal()
-
-  /**
-   *
-   */
-  public val symbolLookup: Signal3<String, Long, Long> by signal("symbol", "row", "column")
+  public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
   /**
    * Emitted when the text changes.
@@ -78,54 +75,451 @@ public open class TextEdit : Control() {
   public val textChanged: Signal0 by signal()
 
   /**
-   * If `true`, the bookmark gutter is visible.
+   * Emitted when the caret changes position.
    */
-  public open var bookmarkGutter: Boolean
+  public val caretChanged: Signal0 by signal()
+
+  /**
+   * Emitted when [clear] is called or [text] is set.
+   */
+  public val textSet: Signal0 by signal()
+
+  /**
+   * Emitted when a gutter is clicked.
+   */
+  public val gutterClicked: Signal2<Long, Long> by signal("line", "gutter")
+
+  /**
+   * String value of the [godot.TextEdit].
+   */
+  public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_BOOKMARK_GUTTER,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_BOOKMARK_GUTTER, NIL)
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT, NIL)
     }
 
   /**
-   * If `true`, the breakpoint gutter is visible.
+   * Text shown when the [godot.TextEdit] is empty. It is **not** the [godot.TextEdit]'s default value (see [text]).
    */
-  public open var breakpointGutter: Boolean
+  public var placeholderText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_BREAKPOINT_GUTTER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_PLACEHOLDER, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_PLACEHOLDER, NIL)
+    }
+
+  /**
+   * Base text writing direction.
+   */
+  public var textDirection: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT_DIRECTION, NIL)
+    }
+
+  /**
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   */
+  public var language: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LANGUAGE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LANGUAGE, NIL)
+    }
+
+  /**
+   * If `false`, existing text cannot be modified and new text cannot be added.
+   */
+  public var editable: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_EDITABLE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_EDITABLE, NIL)
+    }
+
+  /**
+   * If `true`, a right-click displays the context menu.
+   */
+  public var contextMenuEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CONTEXT_MENU_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_BREAKPOINT_GUTTER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CONTEXT_MENU_ENABLED,
           NIL)
     }
 
   /**
-   * If `true`, the caret (visual cursor) blinks.
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
    */
-  public open var caretBlink: Boolean
+  public var shortcutKeysEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SHORTCUT_KEYS_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SHORTCUT_KEYS_ENABLED, NIL)
+    }
+
+  /**
+   * If `true`, text can be selected.
+   *
+   * If `false`, text can not be selected by the user or by the [select] or [selectAll] methods.
+   */
+  public var selectingEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SELECTING_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTING_ENABLED,
+          NIL)
+    }
+
+  /**
+   * If `true`, the selected text will be deselected when focus is lost.
+   */
+  public var deselectOnFocusLossEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
+   */
+  public var virtualKeyboardEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_VIRTUAL_KEYBOARD_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
+    }
+
+  /**
+   * If `false`, using middle mouse button to paste clipboard will be disabled.
+   *
+   * **Note:** This method is only implemented on Linux.
+   */
+  public var middleMousePasteEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MIDDLE_MOUSE_PASTE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL)
+    }
+
+  /**
+   * Sets the line wrapping mode to use.
+   */
+  public var wrapMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_WRAPPING_MODE,
+          NIL)
+    }
+
+  /**
+   * If `true`, custom `font_selected_color` will be used for selected text.
+   */
+  public var overrideSelectedFontColor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
+    }
+
+  /**
+   * If `true`, all occurrences of the selected text will be highlighted.
+   */
+  public var highlightAllOccurrences: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_ALL_OCCURRENCES_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES, NIL)
+    }
+
+  /**
+   * If `true`, the line containing the cursor is highlighted.
+   */
+  public var highlightCurrentLine: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_CURRENT_LINE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
+    }
+
+  /**
+   * If `true`, control characters are displayed.
+   */
+  public var drawControlChars: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_CONTROL_CHARS,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CONTROL_CHARS,
+          NIL)
+    }
+
+  /**
+   * If `true`, the "tab" character will have a visible representation.
+   */
+  public var drawTabs: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_TABS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL)
+    }
+
+  /**
+   * If `true`, the "space" character will have a visible representation.
+   */
+  public var drawSpaces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_SPACES, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL)
+    }
+
+  /**
+   * Sets the [godot.SyntaxHighlighter] to use.
+   */
+  public var syntaxHighlighter: SyntaxHighlighter?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTER,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTER,
+          NIL)
+    }
+
+  /**
+   * Scroll smoothly over the text rather then jumping to the next location.
+   */
+  public var scrollSmooth: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SMOOTH_SCROLL_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLL_ENABLE,
+          NIL)
+    }
+
+  /**
+   * Sets the scroll speed with the minimap or when [scrollSmooth] is enabled.
+   */
+  public var scrollVScrollSpeed: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL_SPEED,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL_SPEED, NIL)
+    }
+
+  /**
+   * Allow scrolling past the last line into "virtual" space.
+   */
+  public var scrollPastEndOfFile: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SCROLL_PAST_END_OF_FILE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SCROLL_PAST_END_OF_FILE_ENABLED, NIL)
+    }
+
+  /**
+   * If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
+   */
+  public var scrollVertical: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL, NIL)
+    }
+
+  /**
+   * If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
+   */
+  public var scrollHorizontal: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_H_SCROLL, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_H_SCROLL, NIL)
+    }
+
+  /**
+   * If `true`, a minimap is shown, providing an outline of your source code.
+   */
+  public var minimapDraw: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_MINIMAP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_MINIMAP, NIL)
+    }
+
+  /**
+   * The width, in pixels, of the minimap.
+   */
+  public var minimapWidth: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_WIDTH, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MINIMAP_WIDTH, NIL)
+    }
+
+  /**
+   * Set the type of caret to draw.
+   */
+  public var caretType: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_TYPE, NIL)
+    }
+
+  /**
+   * Sets if the caret should blink.
+   */
+  public var caretBlink: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_BLINK_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_ENABLED,
+          NIL)
     }
 
   /**
    * Duration (in seconds) of a caret's blinking cycle.
    */
-  public open var caretBlinkSpeed: Double
+  public var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK_SPEED,
@@ -139,690 +533,551 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, the caret displays as a rectangle.
-   *
-   * If `false`, the caret displays as a bar.
-   */
-  public open var caretBlockMode: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLOCK_MODE,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLOCK_MODE,
-          NIL)
-    }
-
-  /**
-   * If `true`, a right-click moves the cursor at the mouse position before displaying the context menu.
+   * If `true`, a right-click moves the caret at the mouse position before displaying the context menu.
    *
    * If `false`, the context menu disregards mouse location.
    */
-  public open var caretMovingByRightClick: Boolean
+  public var caretMoveOnRightClick: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_MOVING_BY_RIGHT_CLICK, BOOL)
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_MOVING_BY_RIGHT_CLICK, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, NIL)
     }
 
   /**
-   * If `true`, a right-click displays the context menu.
-   */
-  public open var contextMenuEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CONTEXT_MENU_ENABLED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CONTEXT_MENU_ENABLED,
-          NIL)
-    }
-
-  /**
-   * If `true`, the selected text will be deselected when focus is lost.
-   */
-  public open var deselectOnFocusLossEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
-    }
-
-  /**
-   * If `true`, allow drag and drop of selected text.
-   */
-  public open var dragAndDropSelectionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAG_AND_DROP_SELECTION_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAG_AND_DROP_SELECTION_ENABLED, NIL)
-    }
-
-  /**
-   * If `true`, the "space" character will have a visible representation.
-   */
-  public open var drawSpaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_SPACES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL)
-    }
-
-  /**
-   * If `true`, the "tab" character will have a visible representation.
-   */
-  public open var drawTabs: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_TABS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL)
-    }
-
-  /**
-   * If `true`, the fold gutter is visible. This enables folding groups of indented lines.
-   */
-  public open var foldGutter: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FOLD_GUTTER, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_FOLD_GUTTER, NIL)
-    }
-
-  /**
-   * If `true`, all lines that have been set to hidden by [setLineAsHidden], will not be visible.
-   */
-  public open var hidingEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_HIDING_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIDING_ENABLED, NIL)
-    }
-
-  /**
-   * If `true`, all occurrences of the selected text will be highlighted.
-   */
-  public open var highlightAllOccurrences: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_HIGHLIGHT_ALL_OCCURRENCES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES, NIL)
-    }
-
-  /**
-   * If `true`, the line containing the cursor is highlighted.
-   */
-  public open var highlightCurrentLine: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_HIGHLIGHT_CURRENT_LINE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
-    }
-
-  /**
-   * If `false`, using middle mouse button to paste clipboard will be disabled.
+   * Allow moving caret, selecting and removing the individual composite character components.
    *
-   * **Note:** This method is only implemented on Linux.
+   * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
-  public open var middleMousePasteEnabled: Boolean
+  public var caretMidGrapheme: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MIDDLE_MOUSE_PASTE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_MID_GRAPHEME_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL)
     }
 
   /**
-   * If `true`, a minimap is shown, providing an outline of your source code.
+   * Set BiDi algorithm override for the structured text.
    */
-  public open var minimapDraw: Boolean
+  public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_DRAW, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MINIMAP_DRAW, NIL)
-    }
-
-  /**
-   * The width, in pixels, of the minimap.
-   */
-  public open var minimapWidth: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_WIDTH, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MINIMAP_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
     }
 
   /**
-   * If `true`, custom `font_color_selected` will be used for selected text.
+   * Set additional options for BiDi override.
    */
-  public open var overrideSelectedFontColor: Boolean
+  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OVERRIDE_SELECTED_FONT_COLOR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
-    }
-
-  /**
-   * If `true`, read-only mode is enabled. Existing text cannot be modified and new text cannot be added.
-   */
-  public open var readonly: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_READONLY, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_READONLY, NIL)
-    }
-
-  /**
-   * If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
-   */
-  public open var scrollHorizontal: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_HORIZONTAL,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SCROLL_HORIZONTAL,
-          NIL)
-    }
-
-  /**
-   * If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
-   */
-  public open var scrollVertical: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_VERTICAL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SCROLL_VERTICAL, NIL)
-    }
-
-  /**
-   * If `true`, text can be selected.
-   *
-   * If `false`, text can not be selected by the user or by the [select] or [selectAll] methods.
-   */
-  public open var selectingEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTING_ENABLED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTING_ENABLED,
-          NIL)
-    }
-
-  /**
-   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
-   */
-  public open var shortcutKeysEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SHORTCUT_KEYS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SHORTCUT_KEYS_ENABLED, NIL)
-    }
-
-  /**
-   * If `true`, line numbers are displayed to the left of the text.
-   */
-  public open var showLineNumbers: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SHOW_LINE_NUMBERS,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SHOW_LINE_NUMBERS,
-          NIL)
-    }
-
-  /**
-   * If `true`, sets the `step` of the scrollbars to `0.25` which results in smoother scrolling.
-   */
-  public open var smoothScrolling: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SMOOTH_SCROLLING,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLLING,
-          NIL)
-    }
-
-  /**
-   * If `true`, any custom color properties that have been set for this [godot.TextEdit] will be visible.
-   */
-  public open var syntaxHighlighting: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTING,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTING,
-          NIL)
-    }
-
-  /**
-   * String value of the [godot.TextEdit].
-   */
-  public open var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT, NIL)
-    }
-
-  /**
-   * Vertical scroll sensitivity.
-   */
-  public open var vScrollSpeed: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL_SPEED,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL_SPEED, NIL)
-    }
-
-  /**
-   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
-   */
-  public open var virtualKeyboardEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VIRTUAL_KEYBOARD_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
-    }
-
-  /**
-   * If `true`, enables text wrapping when it goes beyond the edge of what is visible.
-   */
-  public open var wrapEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WRAP_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_WRAP_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTEDIT)
   }
 
-  public open fun _clickSelectionHeld(): Unit {
-  }
-
-  public open fun _cursorChangedEmit(): Unit {
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
-
-  public open fun _pushCurrentOp(): Unit {
-  }
-
-  public open fun _scrollMoved(arg0: Double): Unit {
-  }
-
-  public open fun _textChangedEmit(): Unit {
-  }
-
-  public open fun _toggleDrawCaret(): Unit {
-  }
-
-  public open fun _updateWrapAt(): Unit {
-  }
-
-  public open fun _vScrollInput(): Unit {
+  /**
+   * Override this method to define what happens when the types in the provided key `unicode`.
+   */
+  public open fun _handleUnicodeInput(unicodeChar: Long): Unit {
   }
 
   /**
-   * Adds color region (given the delimiters) and its colors.
+   * Override this method to define what happens when the user presses the backspace key.
    */
-  public open fun addColorRegion(
-    beginKey: String,
-    endKey: String,
-    color: Color,
-    lineOnly: Boolean = false
-  ): Unit {
-    TransferContext.writeArguments(STRING to beginKey, STRING to endKey, COLOR to color, BOOL to
-        lineOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_COLOR_REGION, NIL)
+  public open fun _backspace(): Unit {
   }
 
   /**
-   * Adds a `keyword` and its [godot.core.Color].
+   * Override this method to define what happens when the user performs a cut operation.
    */
-  public open fun addKeywordColor(keyword: String, color: Color): Unit {
-    TransferContext.writeArguments(STRING to keyword, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_KEYWORD_COLOR, NIL)
+  public open fun _cut(): Unit {
   }
 
   /**
-   * Returns if the given line is foldable, that is, it has indented lines right below it.
+   * Override this method to define what happens when the user performs a copy operation.
    */
-  public open fun canFold(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CAN_FOLD, BOOL)
+  public open fun _copy(): Unit {
+  }
+
+  /**
+   * Override this method to define what happens when the user performs a paste operation.
+   */
+  public open fun _paste(): Unit {
+  }
+
+  /**
+   * Override this method to define what happens when the user performs a paste operation with middle mouse button.
+   *
+   * **Note:** This method is only implemented on Linux.
+   */
+  public open fun _pastePrimaryClipboard(): Unit {
+  }
+
+  /**
+   * Returns if the user has IME text.
+   */
+  public fun hasImeText(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_IME_TEXT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Centers the viewport on the line the editing cursor is at. This also resets the [scrollHorizontal] value to `0`.
+   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
    */
-  public open fun centerViewportToCursor(): Unit {
+  public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
+    TransferContext.writeArguments(STRING to tag, LONG to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OPENTYPE_FEATURE, NIL)
+  }
+
+  /**
+   * Returns OpenType feature `tag`.
+   */
+  public fun getOpentypeFeature(tag: String): Long {
+    TransferContext.writeArguments(STRING to tag)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OPENTYPE_FEATURE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Removes all OpenType features.
+   */
+  public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CURSOR,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_OPENTYPE_FEATURES,
         NIL)
   }
 
   /**
-   * Clears all custom syntax coloring information previously added with [addColorRegion] or [addKeywordColor].
+   * Sets the tab size for the [godot.TextEdit] to use.
    */
-  public open fun clearColors(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_COLORS, NIL)
+  public fun setTabSize(size: Long): Unit {
+    TransferContext.writeArguments(LONG to size)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TAB_SIZE, NIL)
   }
 
   /**
-   * Clears the undo history.
+   * Returns the [godot.TextEdit]'s' tab size.
    */
-  public open fun clearUndoHistory(): Unit {
+  public fun getTabSize(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_UNDO_HISTORY, NIL)
-  }
-
-  /**
-   * Copy's the current text selection.
-   */
-  public open fun copy(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL)
-  }
-
-  /**
-   * Returns the column the editing cursor is at.
-   */
-  public open fun cursorGetColumn(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CURSOR_GET_COLUMN, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TAB_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the line the editing cursor is at.
+   * If `true`, sets the user into overtype mode. When the user types in this mode, it will override existing text.
    */
-  public open fun cursorGetLine(): Long {
+  public fun setOvertypeModeEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERTYPE_MODE_ENABLED,
+        NIL)
+  }
+
+  /**
+   * Returns whether the user is in overtype mode.
+   */
+  public fun isOvertypeModeEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CURSOR_GET_LINE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERTYPE_MODE_ENABLED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Moves the cursor at the specified `column` index.
-   *
-   * If `adjust_viewport` is set to `true`, the viewport will center at the cursor position after the move occurs.
+   * Performs a full reset of [godot.TextEdit], including undo history.
    */
-  public open fun cursorSetColumn(column: Long, adjustViewport: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to column, BOOL to adjustViewport)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CURSOR_SET_COLUMN, NIL)
-  }
-
-  /**
-   * Moves the cursor at the specified `line` index.
-   *
-   * If `adjust_viewport` is set to `true`, the viewport will center at the cursor position after the move occurs.
-   *
-   * If `can_be_hidden` is set to `true`, the specified `line` can be hidden using [setLineAsHidden].
-   */
-  public open fun cursorSetLine(
-    line: Long,
-    adjustViewport: Boolean = true,
-    canBeHidden: Boolean = true,
-    wrapIndex: Long = 0
-  ): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG
-        to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CURSOR_SET_LINE, NIL)
-  }
-
-  /**
-   * Cut's the current selection.
-   */
-  public open fun cut(): Unit {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL)
-  }
-
-  /**
-   * Deselects the current selection.
-   */
-  public open fun deselect(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL)
-  }
-
-  /**
-   * Folds all lines that are possible to be folded (see [canFold]).
-   */
-  public open fun foldAllLines(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_FOLD_ALL_LINES, NIL)
-  }
-
-  /**
-   * Folds the given line, if possible (see [canFold]).
-   */
-  public open fun foldLine(line: Long): Unit {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_FOLD_LINE, NIL)
-  }
-
-  /**
-   * Returns an array containing the line number of each breakpoint.
-   */
-  public open fun getBreakpoints(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_BREAKPOINTS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Returns the [godot.core.Color] of the specified `keyword`.
-   */
-  public open fun getKeywordColor(keyword: String): Color {
-    TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_KEYWORD_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
-  }
-
-  /**
-   * Returns the text of a specific line.
-   */
-  public open fun getLine(line: Long): String {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line.
-   */
-  public open fun getLineColumnAtPos(position: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
-        VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR, NIL)
   }
 
   /**
    * Returns the amount of total lines in the text.
    */
-  public open fun getLineCount(): Long {
+  public fun getLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the height of a largest line.
+   * Sets the text for a specific line.
    */
-  public open fun getLineHeight(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_HEIGHT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public fun setLine(line: Long, newText: String): Unit {
+    TransferContext.writeArguments(LONG to line, STRING to newText)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE, NIL)
+  }
+
+  /**
+   * Returns the text of a specific line.
+   */
+  public fun getLine(line: Long): String {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
    * Returns the width in pixels of the `wrap_index` on `line`.
    */
-  public open fun getLineWidth(line: Long, wrapIndex: Long = -1): Long {
+  public fun getLineWidth(line: Long, wrapIndex: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the number of times the given line is wrapped.
+   * Returns the height of a largest line.
    */
-  public open fun getLineWrapCount(line: Long): Long {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_COUNT, LONG)
+  public fun getLineHeight(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns an array of [godot.String]s representing each wrapped index.
+   * Returns the amount of spaces and `tab * tab_size` before the first char.
    */
-  public open fun getLineWrappedText(line: Long): PoolStringArray {
+  public fun getIndentLevel(line: Long): Long {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_INDENT_LEVEL, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the [godot.PopupMenu] of this [godot.TextEdit]. By default, this menu is displayed when right-clicking on the [godot.TextEdit].
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * Returns the first column containing a non-whitespace character.
    */
-  public open fun getMenu(): PopupMenu? {
+  public fun getFirstNonWhitespaceColumn(line: Long): Long {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_NON_WHITESPACE_COLUMN, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Swaps the two lines.
+   */
+  public fun swapLines(fromLine: Long, toLine: Long): Unit {
+    TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SWAP_LINES, NIL)
+  }
+
+  /**
+   * Inserts a new line with `text` at `line`.
+   */
+  public fun insertLineAt(line: Long, text: String): Unit {
+    TransferContext.writeArguments(LONG to line, STRING to text)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_LINE_AT, NIL)
+  }
+
+  /**
+   * Insert the specified text at the caret position.
+   */
+  public fun insertTextAtCaret(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CARET, NIL)
+  }
+
+  /**
+   * Removes text between the given positions.
+   *
+   * **Note:** This does not adjust the caret or selection, which as a result it can end up in an invalid position.
+   */
+  public fun removeText(
+    fromLine: Long,
+    fromColumn: Long,
+    toLine: Long,
+    toColumn: Long
+  ): Unit {
+    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_TEXT, NIL)
+  }
+
+  /**
+   * Returns the last unhidden line in the entire [godot.TextEdit].
+   */
+  public fun getLastUnhiddenLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MENU, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_UNHIDDEN_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the count to the next visible line from `line` to `line + visible_amount`. Can also count backwards. For example if a [godot.TextEdit] has 5 lines with lines 2 and 3 hidden, calling this with `line = 1, visible_amount = 1` would return 3.
+   */
+  public fun getNextVisibleLineOffsetFrom(line: Long, visibleAmount: Long): Long {
+    TransferContext.writeArguments(LONG to line, LONG to visibleAmount)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_OFFSET_FROM, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Similar to [getNextVisibleLineOffsetFrom], but takes into account the line wrap indexes. In the returned vector, `x` is the line, `y` is the wrap index.
+   */
+  public fun getNextVisibleLineIndexOffsetFrom(
+    line: Long,
+    wrapIndex: Long,
+    visibleAmount: Long
+  ): Vector2i {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex, LONG to visibleAmount)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_INDEX_OFFSET_FROM, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Called when the user presses the backspace key. Can be overridden with [_backspace].
+   */
+  public fun backspace(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BACKSPACE, NIL)
+  }
+
+  /**
+   * Cut's the current selection. Can be overridden with [_cut].
+   */
+  public fun cut(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL)
+  }
+
+  /**
+   * Copies the current text selection. Can be overridden with [_copy].
+   */
+  public fun copy(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL)
+  }
+
+  /**
+   * Paste at the current location. Can be overridden with [_paste].
+   */
+  public fun paste(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL)
+  }
+
+  /**
+   * Starts a multipart edit. All edits will be treated as one action until [endComplexOperation] is called.
+   */
+  public fun beginComplexOperation(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BEGIN_COMPLEX_OPERATION,
+        NIL)
+  }
+
+  /**
+   * Ends a multipart edit, started with [beginComplexOperation]. If called outside a complex operation, the current operation is pushed onto the undo/redo stack.
+   */
+  public fun endComplexOperation(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_END_COMPLEX_OPERATION, NIL)
+  }
+
+  /**
+   * Returns `true` if an "undo" action is available.
+   */
+  public fun hasUndo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_UNDO, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if a "redo" action is available.
+   */
+  public fun hasRedo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_REDO, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Perform undo operation.
+   */
+  public fun undo(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNDO, NIL)
+  }
+
+  /**
+   * Perform redo operation.
+   */
+  public fun redo(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REDO, NIL)
+  }
+
+  /**
+   * Clears the undo history.
+   */
+  public fun clearUndoHistory(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_UNDO_HISTORY, NIL)
+  }
+
+  /**
+   * Tag the current version as saved.
+   */
+  public fun tagSavedVersion(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_TAG_SAVED_VERSION, NIL)
+  }
+
+  /**
+   * Returns the current version of the [godot.TextEdit]. The version is a count of recorded operations by the undo/redo history.
+   */
+  public fun getVersion(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VERSION, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the last tagged saved version from [tagSavedVersion]
+   */
+  public fun getSavedVersion(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SAVED_VERSION, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the search text. See [setSearchFlags].
+   */
+  public fun setSearchText(searchText: String): Unit {
+    TransferContext.writeArguments(STRING to searchText)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_TEXT, NIL)
+  }
+
+  /**
+   * Sets the search flags. This is used with [setSearchText] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum.
+   */
+  public fun setSearchFlags(flags: Long): Unit {
+    TransferContext.writeArguments(LONG to flags)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_FLAGS, NIL)
+  }
+
+  /**
+   * Perform a search inside the text. Search flags can be specified in the [enum SearchFlags] enum.
+   *
+   * In the returned vector, `x` is the column, `y` is the line. If no results are found, both are equal to `-1`.
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
+   *
+   * if  result.x != -1:
+   *
+   *     # Result found.
+   *
+   *     var line_number = result.y
+   *
+   *     var column_number = result.x
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Vector2i result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
+   *
+   * if (result.Length > 0)
+   *
+   * {
+   *
+   *     // Result found.
+   *
+   *     int lineNumber = result.y;
+   *
+   *     int columnNumber = result.x;
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public fun search(
+    text: String,
+    flags: Long,
+    fromLine: Long,
+    fromColum: Long
+  ): Vector2i {
+    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine, LONG to fromColum)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`
+   */
+  public fun setTooltipRequestFunc(callback: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TOOLTIP_REQUEST_FUNC,
+        NIL)
+  }
+
+  /**
+   * Returns the local mouse position adjusted for the text direction.
+   */
+  public fun getLocalMousePos(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LOCAL_MOUSE_POS,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the word at `position`.
+   */
+  public fun getWordAtPos(position: Vector2): String {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_AT_POS, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line. If `allow_out_of_bounds` is `false` and the position is not over the text, both vector values will be set to `-1`.
+   */
+  public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
+    TransferContext.writeArguments(VECTOR2I to position, BOOL to allowOutOfBounds)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
+        VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
   /**
@@ -830,11 +1085,11 @@ public open class TextEdit : Control() {
    *
    * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn] to get the top side position.
    */
-  public open fun getPosAtLineColumn(line: Long, column: Long): Vector2 {
+  public fun getPosAtLineColumn(line: Long, column: Long): Vector2i {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_POS_AT_LINE_COLUMN,
-        VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+        VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
   /**
@@ -842,196 +1097,36 @@ public open class TextEdit : Control() {
    *
    * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike [getPosAtLineColumn] which returns the bottom side.
    */
-  public open fun getRectAtLineColumn(line: Long, column: Long): Rect2 {
+  public fun getRectAtLineColumn(line: Long, column: Long): Rect2i {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_RECT_AT_LINE_COLUMN,
-        RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+        RECT2I)
+    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
   /**
-   * Returns the selection begin column.
+   * Returns the equivalent minimap line at `position`
    */
-  public open fun getSelectionFromColumn(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
+  public fun getMinimapLineAtPos(position: Vector2i): Long {
+    TransferContext.writeArguments(VECTOR2I to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_LINE_AT_POS,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the selection begin line.
+   * Returns `true` if the user is dragging their mouse for scrolling or selecting.
    */
-  public open fun getSelectionFromLine(): Long {
+  public fun isDraggingCursor(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the text inside the selection.
-   */
-  public open fun getSelectionText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the selection end column.
-   */
-  public open fun getSelectionToColumn(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the selection end line.
-   */
-  public open fun getSelectionToLine(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the total width of all gutters and internal padding.
-   */
-  public open fun getTotalGutterWidth(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_GUTTER_WIDTH,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the total amount of lines that could be drawn.
-   */
-  public open fun getTotalVisibleRows(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_VISIBLE_ROWS,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the number of visible lines, including wrapped text.
-   */
-  public open fun getVisibleRows(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_ROWS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns a [godot.String] text with the word under the caret (text cursor) location.
-   */
-  public open fun getWordUnderCursor(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CURSOR,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns whether the specified `keyword` has a color set to it or not.
-   */
-  public open fun hasKeywordColor(keyword: String): Boolean {
-    TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_KEYWORD_COLOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if a "redo" action is available.
-   */
-  public open fun hasRedo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if an "undo" action is available.
-   */
-  public open fun hasUndo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_UNDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Insert the specified text at the cursor position.
-   */
-  public open fun insertTextAtCursor(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CURSOR, NIL)
-  }
-
-  /**
-   * Returns whether the line at the specified index is folded or not.
-   */
-  public open fun isFolded(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_FOLDED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns whether the line at the specified index is hidden or not.
-   */
-  public open fun isLineHidden(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_HIDDEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` when the specified `line` is bookmarked.
-   */
-  public open fun isLineSetAsBookmark(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BOOKMARK,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` when the specified `line` has a breakpoint.
-   */
-  public open fun isLineSetAsBreakpoint(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BREAKPOINT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` when the specified `line` is marked as safe.
-   */
-  public open fun isLineSetAsSafe(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_SAFE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns if the given line is wrapped.
-   */
-  public open fun isLineWrapped(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAGGING_CURSOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns whether the mouse is over selection. If `edges` is `true`, the edges are considered part of the selection.
    */
-  public open fun isMouseOverSelection(edges: Boolean): Boolean {
+  public fun isMouseOverSelection(edges: Boolean): Boolean {
     TransferContext.writeArguments(BOOL to edges)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
         BOOL)
@@ -1039,85 +1134,107 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns `true` if the selection is active.
+   * Returns `true` if the caret is visible on the screen.
    */
-  public open fun isSelectionActive(): Boolean {
+  public fun isCaretVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SELECTION_ACTIVE, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_VISIBLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Triggers a right-click menu action by the specified index. See [enum MenuItems] for a list of available indexes.
+   * Returns the caret pixel draw position.
    */
-  public open fun menuOption(option: Long): Unit {
-    TransferContext.writeArguments(LONG to option)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MENU_OPTION, NIL)
-  }
-
-  /**
-   * Paste the current selection.
-   */
-  public open fun paste(): Unit {
+  public fun getCaretDrawPos(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_DRAW_POS,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Perform redo operation.
-   */
-  public open fun redo(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REDO, NIL)
-  }
-
-  /**
-   * Removes all the breakpoints. This will not fire the [breakpointToggled] signal.
-   */
-  public open fun removeBreakpoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_BREAKPOINTS, NIL)
-  }
-
-  /**
-   * Perform a search inside the text. Search flags can be specified in the [enum SearchFlags] enum.
+   * Moves the caret to the specified `line` index.
    *
-   * Returns an empty `PoolIntArray` if no result was found. Otherwise, the result line and column can be accessed at indices specified in the [enum SearchResult] enum, e.g:
+   * If `adjust_viewport` is `true`, the viewport will center at the caret position after the move occurs.
    *
-   * ```
-   * 				var result = search(key, flags, line, column)
-   * 				if result.size() > 0:
-   * 				    # Result found.
-   * 				    var res_line = result[godot.TextEdit.SEARCH_RESULT_LINE]
-   * 				    var res_column = result[godot.TextEdit.SEARCH_RESULT_COLUMN]
-   * 				```
+   * If `can_be_hidden` is `true`, the specified `line` can be hidden.
    */
-  public open fun search(
-    key: String,
-    flags: Long,
-    fromLine: Long,
-    fromColumn: Long
-  ): PoolIntArray {
-    TransferContext.writeArguments(STRING to key, LONG to flags, LONG to fromLine, LONG to
-        fromColumn)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, POOL_INT_ARRAY)
-    return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
-  }
-
-  /**
-   * Perform selection, from line/column to line/column.
-   *
-   * If [selectingEnabled] is `false`, no selection will occur.
-   */
-  public open fun select(
-    fromLine: Long,
-    fromColumn: Long,
-    toLine: Long,
-    toColumn: Long
+  public fun setCaretLine(
+    line: Long,
+    adjustViewport: Boolean = true,
+    canBeHidden: Boolean = true,
+    wrapIndex: Long = 0
   ): Unit {
-    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to
-        toColumn)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
+    TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL)
+  }
+
+  /**
+   * Returns the line the editing caret is on.
+   */
+  public fun getCaretLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_LINE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Moves the caret to the specified `column` index.
+   *
+   * If `adjust_viewport` is `true`, the viewport will center at the caret position after the move occurs.
+   */
+  public fun setCaretColumn(column: Long, adjustViewport: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to column, BOOL to adjustViewport)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_COLUMN, NIL)
+  }
+
+  /**
+   * Returns the column the editing caret is at.
+   */
+  public fun getCaretColumn(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COLUMN, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the wrap index the editing caret is on.
+   */
+  public fun getCaretWrapIndex(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_WRAP_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns a [godot.String] text with the word under the caret's location.
+   */
+  public fun getWordUnderCaret(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CARET,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets the current selection mode.
+   */
+  public fun setSelectionMode(
+    mode: TextEdit.SelectionMode,
+    line: Long = -1,
+    column: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(LONG to mode.id, LONG to line, LONG to column)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTION_MODE, NIL)
+  }
+
+  /**
+   * Returns the current selection mode.
+   */
+  public fun getSelectionMode(): TextEdit.SelectionMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_MODE, LONG)
+    return TextEdit.SelectionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -1125,86 +1242,639 @@ public open class TextEdit : Control() {
    *
    * If [selectingEnabled] is `false`, no selection will occur.
    */
-  public open fun selectAll(): Unit {
+  public fun selectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_ALL, NIL)
   }
 
   /**
-   * Sets the text for a specific line.
+   * Selects the word under the caret.
    */
-  public open fun setLine(line: Long, newText: String): Unit {
-    TransferContext.writeArguments(LONG to line, STRING to newText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE, NIL)
-  }
-
-  /**
-   * Bookmarks the `line` if `bookmark` is `true`. Deletes the bookmark if `bookmark` is `false`.
-   *
-   * Bookmarks are shown in the [breakpointGutter].
-   */
-  public open fun setLineAsBookmark(line: Long, bookmark: Boolean): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to bookmark)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BOOKMARK, NIL)
-  }
-
-  /**
-   * Adds or removes the breakpoint in `line`. Breakpoints are shown in the [breakpointGutter].
-   */
-  public open fun setLineAsBreakpoint(line: Long, breakpoint: Boolean): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to breakpoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BREAKPOINT,
+  public fun selectWordUnderCaret(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_WORD_UNDER_CARET,
         NIL)
   }
 
   /**
-   * If `true`, hides the line of the specified index.
-   */
-  public open fun setLineAsHidden(line: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_HIDDEN, NIL)
-  }
-
-  /**
-   * If `true`, marks the `line` as safe.
+   * Perform selection, from line/column to line/column.
    *
-   * This will show the line number with the color provided in the `safe_line_number_color` theme property.
+   * If [selectingEnabled] is `false`, no selection will occur.
    */
-  public open fun setLineAsSafe(line: Long, safe: Boolean): Unit {
-    TransferContext.writeArguments(LONG to line, BOOL to safe)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_SAFE, NIL)
+  public fun select(
+    fromLine: Long,
+    fromColumn: Long,
+    toLine: Long,
+    toColumn: Long
+  ): Unit {
+    TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
   }
 
   /**
-   * Toggle the folding of the code block at the given line.
+   * Returns `true` if the user has selected text.
    */
-  public open fun toggleFoldLine(line: Long): Unit {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_TOGGLE_FOLD_LINE, NIL)
-  }
-
-  /**
-   * Perform undo operation.
-   */
-  public open fun undo(): Unit {
+  public fun hasSelection(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNDO, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_SELECTION, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Unfolds the given line, if folded.
+   * Returns the text inside the selection.
    */
-  public open fun unfoldLine(line: Long): Unit {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNFOLD_LINE, NIL)
-  }
-
-  /**
-   * Unhide all lines that were previously set to hidden by [setLineAsHidden].
-   */
-  public open fun unhideAllLines(): Unit {
+  public fun getSelectedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNHIDE_ALL_LINES, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTED_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the original start line of the selection.
+   */
+  public fun getSelectionLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_LINE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the original start column of the selection.
+   */
+  public fun getSelectionColumn(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_COLUMN, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the selection begin line.
+   */
+  public fun getSelectionFromLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the selection begin column.
+   */
+  public fun getSelectionFromColumn(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the selection end line.
+   */
+  public fun getSelectionToLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the selection end column.
+   */
+  public fun getSelectionToColumn(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Deselects the current selection.
+   */
+  public fun deselect(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL)
+  }
+
+  /**
+   * Deletes the selected text.
+   */
+  public fun deleteSelection(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DELETE_SELECTION, NIL)
+  }
+
+  /**
+   * Returns if the given line is wrapped.
+   */
+  public fun isLineWrapped(line: Long): Boolean {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the number of times the given line is wrapped.
+   */
+  public fun getLineWrapCount(line: Long): Long {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the wrap index of the given line column.
+   */
+  public fun getLineWrapIndexAtColumn(line: Long, column: Long): Long {
+    TransferContext.writeArguments(LONG to line, LONG to column)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_INDEX_AT_COLUMN, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns an array of [godot.String]s representing each wrapped index.
+   */
+  public fun getLineWrappedText(line: Long): PackedStringArray {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns the scroll position for `wrap_index` of `line`.
+   */
+  public fun getScrollPosForLine(line: Long, wrapIndex: Long = 0): Double {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_POS_FOR_LINE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Positions the `wrap_index` of `line` at the top of the viewport.
+   */
+  public fun setLineAsFirstVisible(line: Long, wrapIndex: Long = 0): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_FIRST_VISIBLE,
+        NIL)
+  }
+
+  /**
+   * Returns the first visible line.
+   */
+  public fun getFirstVisibleLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_VISIBLE_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Positions the `wrap_index` of `line` at the center of the viewport.
+   */
+  public fun setLineAsCenterVisible(line: Long, wrapIndex: Long = 0): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_CENTER_VISIBLE,
+        NIL)
+  }
+
+  /**
+   * Positions the `wrap_index` of `line` at the bottom of the viewport.
+   */
+  public fun setLineAsLastVisible(line: Long, wrapIndex: Long = 0): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_LAST_VISIBLE,
+        NIL)
+  }
+
+  /**
+   * Returns the last visible line. Use [getLastFullVisibleLineWrapIndex] for the wrap index.
+   */
+  public fun getLastFullVisibleLine(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the last visible wrap index of the last visible line.
+   */
+  public fun getLastFullVisibleLineWrapIndex(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE_WRAP_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the number of visible lines, including wrapped text.
+   */
+  public fun getVisibleLineCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the total number of visible + wrapped lines between the two lines.
+   */
+  public fun getVisibleLineCountInRange(fromLine: Long, toLine: Long): Long {
+    TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT_IN_RANGE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the total amount of lines that could be draw.
+   */
+  public fun getTotalVisibleLineCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_VISIBLE_LINE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Adjust the viewport so the caret is visible.
+   */
+  public fun adjustViewportToCaret(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_VIEWPORT_TO_CARET,
+        NIL)
+  }
+
+  /**
+   * Centers the viewport on the line the editing caret is at. This also resets the [scrollHorizontal] value to `0`.
+   */
+  public fun centerViewportToCaret(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CARET,
+        NIL)
+  }
+
+  /**
+   * Returns the total amount of lines that can be draw on the minimap.
+   */
+  public fun getMinimapVisibleLines(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_VISIBLE_LINES,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Register a new gutter to this [godot.TextEdit]. Use `at` to have a specific gutter order. A value of `-1` appends the gutter to the right.
+   */
+  public fun addGutter(at: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to at)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_GUTTER, NIL)
+  }
+
+  /**
+   * Removes the gutter from this [godot.TextEdit].
+   */
+  public fun removeGutter(gutter: Long): Unit {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_GUTTER, NIL)
+  }
+
+  /**
+   * Returns the total amount of gutters registered.
+   */
+  public fun getGutterCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the name of the gutter.
+   */
+  public fun setGutterName(gutter: Long, name: String): Unit {
+    TransferContext.writeArguments(LONG to gutter, STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_NAME, NIL)
+  }
+
+  /**
+   * Returns the name of the gutter at the given index.
+   */
+  public fun getGutterName(gutter: Long): String {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets the type of gutter.
+   */
+  public fun setGutterType(gutter: Long, type: TextEdit.GutterType): Unit {
+    TransferContext.writeArguments(LONG to gutter, LONG to type.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_TYPE, NIL)
+  }
+
+  /**
+   * Returns the type of the gutter at the given index.
+   */
+  public fun getGutterType(gutter: Long): TextEdit.GutterType {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_TYPE, LONG)
+    return TextEdit.GutterType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Set the width of the gutter.
+   */
+  public fun setGutterWidth(gutter: Long, width: Long): Unit {
+    TransferContext.writeArguments(LONG to gutter, LONG to width)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_WIDTH, NIL)
+  }
+
+  /**
+   * Returns the width of the gutter at the given index.
+   */
+  public fun getGutterWidth(gutter: Long): Long {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_WIDTH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets whether the gutter should be drawn.
+   */
+  public fun setGutterDraw(gutter: Long, draw: Boolean): Unit {
+    TransferContext.writeArguments(LONG to gutter, BOOL to draw)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_DRAW, NIL)
+  }
+
+  /**
+   * Returns whether the gutter is currently drawn.
+   */
+  public fun isGutterDrawn(gutter: Long): Boolean {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_DRAWN, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the gutter as clickable. This will change the mouse cursor to a pointing hand when hovering over the gutter.
+   */
+  public fun setGutterClickable(gutter: Long, clickable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to gutter, BOOL to clickable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CLICKABLE, NIL)
+  }
+
+  /**
+   * Returns whether the gutter is clickable.
+   */
+  public fun isGutterClickable(gutter: Long): Boolean {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_CLICKABLE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the gutter to overwritable. See [mergeGutters].
+   */
+  public fun setGutterOverwritable(gutter: Long, overwritable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to gutter, BOOL to overwritable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_OVERWRITABLE,
+        NIL)
+  }
+
+  /**
+   * Returns whether the gutter is overwritable.
+   */
+  public fun isGutterOverwritable(gutter: Long): Boolean {
+    TransferContext.writeArguments(LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_OVERWRITABLE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Merge the gutters from `from_line` into `to_line`. Only overwritable gutters will be copied.
+   */
+  public fun mergeGutters(fromLine: Long, toLine: Long): Unit {
+    TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MERGE_GUTTERS, NIL)
+  }
+
+  /**
+   * Set a custom draw method for the gutter. The callback method must take the following args: `line: int, gutter: int, Area: Rect2`.
+   */
+  public fun setGutterCustomDraw(column: Long, drawCallback: Callable): Unit {
+    TransferContext.writeArguments(LONG to column, CALLABLE to drawCallback)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CUSTOM_DRAW,
+        NIL)
+  }
+
+  /**
+   * Returns the total width of all gutters and internal padding.
+   */
+  public fun getTotalGutterWidth(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_GUTTER_WIDTH,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the metadata for `gutter` on `line`.
+   */
+  public fun setLineGutterMetadata(
+    line: Long,
+    gutter: Long,
+    metadata: Any
+  ): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to gutter, ANY to metadata)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_METADATA,
+        NIL)
+  }
+
+  /**
+   * Returns the metadata currently in `gutter` at `line`.
+   */
+  public fun getLineGutterMetadata(line: Long, gutter: Long): Any? {
+    TransferContext.writeArguments(LONG to line, LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_METADATA,
+        ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Sets the text for `gutter` on `line`.
+   */
+  public fun setLineGutterText(
+    line: Long,
+    gutter: Long,
+    text: String
+  ): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to gutter, STRING to text)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_TEXT, NIL)
+  }
+
+  /**
+   * Returns the text currently in `gutter` at `line`.
+   */
+  public fun getLineGutterText(line: Long, gutter: Long): String {
+    TransferContext.writeArguments(LONG to line, LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_TEXT,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets the icon for `gutter` on `line`.
+   */
+  public fun setLineGutterIcon(
+    line: Long,
+    gutter: Long,
+    icon: Texture2D
+  ): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to gutter, OBJECT to icon)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ICON, NIL)
+  }
+
+  /**
+   * Returns the icon currently in `gutter` at `line`.
+   */
+  public fun getLineGutterIcon(line: Long, gutter: Long): Texture2D? {
+    TransferContext.writeArguments(LONG to line, LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ICON,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+  }
+
+  /**
+   * Sets the color for `gutter` on `line`.
+   */
+  public fun setLineGutterItemColor(
+    line: Long,
+    gutter: Long,
+    color: Color
+  ): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to gutter, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ITEM_COLOR,
+        NIL)
+  }
+
+  /**
+   * Returns the color currently in `gutter` at `line`.
+   */
+  public fun getLineGutterItemColor(line: Long, gutter: Long): Color {
+    TransferContext.writeArguments(LONG to line, LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ITEM_COLOR,
+        COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Sets the `gutter` on `line` as clickable.
+   */
+  public fun setLineGutterClickable(
+    line: Long,
+    gutter: Long,
+    clickable: Boolean
+  ): Unit {
+    TransferContext.writeArguments(LONG to line, LONG to gutter, BOOL to clickable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_CLICKABLE,
+        NIL)
+  }
+
+  /**
+   * Returns whether the gutter on the given line is clickable.
+   */
+  public fun isLineGutterClickable(line: Long, gutter: Long): Boolean {
+    TransferContext.writeArguments(LONG to line, LONG to gutter)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_GUTTER_CLICKABLE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the current background color of the line. Set to `Color(0, 0, 0, 0)` for no color.
+   */
+  public fun setLineBackgroundColor(line: Long, color: Color): Unit {
+    TransferContext.writeArguments(LONG to line, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_BACKGROUND_COLOR,
+        NIL)
+  }
+
+  /**
+   * Returns the current background color of the line. `Color(0, 0, 0, 0)` is returned if no color is set.
+   */
+  public fun getLineBackgroundColor(line: Long): Color {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_BACKGROUND_COLOR,
+        COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Returns the [godot.PopupMenu] of this [godot.TextEdit]. By default, this menu is displayed when right-clicking on the [godot.TextEdit].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   */
+  public fun getMenu(): PopupMenu? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MENU, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
+
+  /**
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
+   */
+  public fun isMenuVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MENU_VISIBLE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Triggers a right-click menu action by the specified index. See [enum MenuItems] for a list of available indexes.
+   */
+  public fun menuOption(option: Long): Unit {
+    TransferContext.writeArguments(LONG to option)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MENU_OPTION, NIL)
+  }
+
+  public enum class SelectionMode(
+    id: Long
+  ) {
+    /**
+     * Not selecting.
+     */
+    SELECTION_MODE_NONE(0),
+    /**
+     * Select as if `shift` is pressed.
+     */
+    SELECTION_MODE_SHIFT(1),
+    /**
+     * Select single characters as if the user single clicked.
+     */
+    SELECTION_MODE_POINTER(2),
+    /**
+     * Select whole words as if the user double clicked.
+     */
+    SELECTION_MODE_WORD(3),
+    /**
+     * Select whole lines as if the user tripped clicked.
+     */
+    SELECTION_MODE_LINE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class SearchFlags(
@@ -1234,17 +1904,44 @@ public open class TextEdit : Control() {
     }
   }
 
-  public enum class SearchResult(
+  public enum class GutterType(
     id: Long
   ) {
     /**
-     * Used to access the result column from [search].
+     * Draw a string.
      */
-    SEARCH_RESULT_COLUMN(0),
+    GUTTER_TYPE_STRING(0),
     /**
-     * Used to access the result line from [search].
+     * Draw an icon.
      */
-    SEARCH_RESULT_LINE(1),
+    GUTTER_TYPE_ICON(1),
+    /**
+     * Custom draw.
+     */
+    GUTTER_TYPE_CUSTOM(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class LineWrappingMode(
+    id: Long
+  ) {
+    /**
+     * Line wrapping is disabled.
+     */
+    LINE_WRAPPING_NONE(0),
+    /**
+     * Line wrapping occurs at the control boundary, beyond what would normally be visible.
+     */
+    LINE_WRAPPING_BOUNDARY(1),
     ;
 
     public val id: Long
@@ -1289,9 +1986,93 @@ public open class TextEdit : Control() {
      */
     MENU_REDO(6),
     /**
+     * Sets text direction to inherited.
+     */
+    MENU_DIR_INHERITED(7),
+    /**
+     * Sets text direction to automatic.
+     */
+    MENU_DIR_AUTO(8),
+    /**
+     * Sets text direction to left-to-right.
+     */
+    MENU_DIR_LTR(9),
+    /**
+     * Sets text direction to right-to-left.
+     */
+    MENU_DIR_RTL(10),
+    /**
+     * Toggles control character display.
+     */
+    MENU_DISPLAY_UCC(11),
+    /**
+     * Inserts left-to-right mark (LRM) character.
+     */
+    MENU_INSERT_LRM(12),
+    /**
+     * Inserts right-to-left mark (RLM) character.
+     */
+    MENU_INSERT_RLM(13),
+    /**
+     * Inserts start of left-to-right embedding (LRE) character.
+     */
+    MENU_INSERT_LRE(14),
+    /**
+     * Inserts start of right-to-left embedding (RLE) character.
+     */
+    MENU_INSERT_RLE(15),
+    /**
+     * Inserts start of left-to-right override (LRO) character.
+     */
+    MENU_INSERT_LRO(16),
+    /**
+     * Inserts start of right-to-left override (RLO) character.
+     */
+    MENU_INSERT_RLO(17),
+    /**
+     * Inserts pop direction formatting (PDF) character.
+     */
+    MENU_INSERT_PDF(18),
+    /**
+     * Inserts Arabic letter mark (ALM) character.
+     */
+    MENU_INSERT_ALM(19),
+    /**
+     * Inserts left-to-right isolate (LRI) character.
+     */
+    MENU_INSERT_LRI(20),
+    /**
+     * Inserts right-to-left isolate (RLI) character.
+     */
+    MENU_INSERT_RLI(21),
+    /**
+     * Inserts first strong isolate (FSI) character.
+     */
+    MENU_INSERT_FSI(22),
+    /**
+     * Inserts pop direction isolate (PDI) character.
+     */
+    MENU_INSERT_PDI(23),
+    /**
+     * Inserts zero width joiner (ZWJ) character.
+     */
+    MENU_INSERT_ZWJ(24),
+    /**
+     * Inserts zero width non-joiner (ZWNJ) character.
+     */
+    MENU_INSERT_ZWNJ(25),
+    /**
+     * Inserts word joiner (WJ) character.
+     */
+    MENU_INSERT_WJ(26),
+    /**
+     * Inserts soft hyphen (SHY) character.
+     */
+    MENU_INSERT_SHY(27),
+    /**
      * Represents the size of the [enum MenuItems] enum.
      */
-    MENU_MAX(7),
+    MENU_MAX(28),
     ;
 
     public val id: Long
@@ -1304,70 +2085,28 @@ public open class TextEdit : Control() {
     }
   }
 
-  public companion object {
+  public enum class CaretType(
+    id: Long
+  ) {
     /**
-     * Erases the whole [godot.TextEdit] text.
+     * Vertical line caret.
      */
-    public final const val MENU_CLEAR: Long = 3
+    CARET_TYPE_LINE(0),
+    /**
+     * Block caret.
+     */
+    CARET_TYPE_BLOCK(1),
+    ;
 
-    /**
-     * Copies the selected text.
-     */
-    public final const val MENU_COPY: Long = 1
+    public val id: Long
+    init {
+      this.id = id
+    }
 
-    /**
-     * Cuts (copies and clears) the selected text.
-     */
-    public final const val MENU_CUT: Long = 0
-
-    /**
-     * Represents the size of the [enum MenuItems] enum.
-     */
-    public final const val MENU_MAX: Long = 7
-
-    /**
-     * Pastes the clipboard text over the selected text (or at the cursor's position).
-     */
-    public final const val MENU_PASTE: Long = 2
-
-    /**
-     * Redoes the previous action.
-     */
-    public final const val MENU_REDO: Long = 6
-
-    /**
-     * Selects the whole [godot.TextEdit] text.
-     */
-    public final const val MENU_SELECT_ALL: Long = 4
-
-    /**
-     * Undoes the previous action.
-     */
-    public final const val MENU_UNDO: Long = 5
-
-    /**
-     * Search from end to beginning.
-     */
-    public final const val SEARCH_BACKWARDS: Long = 4
-
-    /**
-     * Match case when searching.
-     */
-    public final const val SEARCH_MATCH_CASE: Long = 1
-
-    /**
-     * Used to access the result column from [search].
-     */
-    public final const val SEARCH_RESULT_COLUMN: Long = 0
-
-    /**
-     * Used to access the result line from [search].
-     */
-    public final const val SEARCH_RESULT_LINE: Long = 1
-
-    /**
-     * Match whole words when searching.
-     */
-    public final const val SEARCH_WHOLE_WORDS: Long = 2
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
+
+  public companion object
 }

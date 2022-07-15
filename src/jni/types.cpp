@@ -57,37 +57,37 @@ namespace jni {
         return obj == nullptr;
     }
 
-    JObject JObject::call_object_method(Env &env, MethodId method, jvalue* args) {
+    JObject JObject::call_object_method(Env &env, MethodId method, jvalue* args) const {
         auto ret = env.env->CallObjectMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return JObject(ret);
     }
 
-    jint JObject::call_int_method(Env& env, MethodId method, jvalue* args) {
+    jint JObject::call_int_method(Env& env, MethodId method, jvalue* args) const {
         auto ret = env.env->CallIntMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jdouble JObject::call_double_method(Env& env, MethodId method, jvalue* args) {
+    jdouble JObject::call_double_method(Env& env, MethodId method, jvalue* args) const {
         jdouble ret = env.env->CallDoubleMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jlong JObject::call_long_method(Env& env, MethodId method, jvalue* args) {
+    jlong JObject::call_long_method(Env& env, MethodId method, jvalue* args) const {
         auto ret = env.env->CallLongMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jboolean JObject::call_boolean_method(Env& env, MethodId method, jvalue* args) {
+    jboolean JObject::call_boolean_method(Env& env, MethodId method, jvalue* args) const {
         auto ret = env.env->CallBooleanMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    void JObject::call_void_method(Env& env, MethodId method, jvalue* args) {
+    void JObject::call_void_method(Env& env, MethodId method, jvalue* args) const {
         env.env->CallVoidMethodA((jclass) obj, method, args);
         env.check_exceptions();
     }

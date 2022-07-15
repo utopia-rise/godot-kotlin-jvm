@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -20,7 +21,7 @@ import kotlin.Unit
  * A line is filled with [godot.Control] nodes until no more fit on the same line, similar to text in an autowrapped label.
  */
 @GodotBaseType
-public open class FlowContainer : Container() {
+public open class FlowContainer internal constructor() : Container() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FLOWCONTAINER)
   }
@@ -28,9 +29,11 @@ public open class FlowContainer : Container() {
   /**
    * Returns the current line count.
    */
-  public open fun getLineCount(): Long {
+  public fun getLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FLOWCONTAINER_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
+
+  public companion object
 }

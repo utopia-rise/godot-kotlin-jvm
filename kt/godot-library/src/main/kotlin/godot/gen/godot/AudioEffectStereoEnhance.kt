@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -14,14 +15,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * An audio effect that can be used to adjust the intensity of stereo panning.
  *
+ * An audio effect that can be used to adjust the intensity of stereo panning.
  */
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   *
+   * Values greater than 1.0 increase intensity of any panning on audio passing through this effect, whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix audio to mono.
    */
-  public open var panPullout: Double
+  public var panPullout: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -37,7 +40,23 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
    *
    */
-  public open var surround: Double
+  public var timePulloutMs: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_GET_TIME_PULLOUT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_TIME_PULLOUT, NIL)
+    }
+
+  /**
+   *
+   */
+  public var surround: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -50,23 +69,9 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_SURROUND, NIL)
     }
 
-  /**
-   *
-   */
-  public open var timePulloutMs: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_GET_TIME_PULLOUT_MS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_TIME_PULLOUT_MS, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE)
   }
+
+  public companion object
 }

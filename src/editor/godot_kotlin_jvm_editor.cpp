@@ -5,6 +5,7 @@
 #include <editor/filesystem_dock.h>
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include <core/config/project_settings.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)
         const String& file,
@@ -34,7 +35,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_folder_moved( // NOLINT(readabili
         const String& folder,
         const String& new_folder
 ) {
-    DirAccess* dir_access = DirAccess::create_for_path(new_folder);
+    Ref<DirAccess> dir_access{DirAccess::create_for_path(new_folder)};
     String file_path = dir_access->get_next();
     while (!file_path.is_empty()) {
         if (file_path.ends_with(".kt")) {

@@ -2,13 +2,14 @@
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
 #include <modules/kotlin_jvm/src/jni/jni_constants.h>
+#include <core/config/project_settings.h>
 #include "kotlin_editor_export_plugin.h"
 #include "gd_kotlin.h"
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
 static constexpr const char* configuration_path{"res://godot_kotlin_configuration.json"};
 
-void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool p_debug, const String& p_path,
+void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path,
                                              int p_flags) {
     LOG_INFO("Beginning Godot-Jvm specific exports.");
 
@@ -39,9 +40,8 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
 
         } else {
             if (FileAccess::exists(configuration_path)) {
-                FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
+                Ref<FileAccess> configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
                 GdKotlinConfiguration configuration{GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string())};
-                configuration_access_read->close();
                 jni::Jvm::Type jvm_type{configuration.get_vm_type()};
                 switch (jvm_type) {
                     case jni::Jvm::JVM:
@@ -71,7 +71,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         const Vector<String>& path_split = p_path.split("/");
         String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
         Error error;
-        DirAccess* dir_access{DirAccess::open(export_dir, &error)};
+        Ref<DirAccess> dir_access{DirAccess::open(export_dir, &error)};
         if (error == OK) {
             if (is_osx_export) {
                 bool is_arm64{p_features.has("arm64")};
@@ -94,7 +94,6 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         } else {
             LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
         }
-        memdelete(dir_access);
     }
 
     for (int i = 0; i < files_to_add.size(); ++i) {

@@ -29,7 +29,7 @@ protected:
 
     ~JavaInstanceWrapper();
 
-    jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
+    jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) const;
 
     jni::MethodId get_static_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
 };
@@ -58,7 +58,7 @@ JavaInstanceWrapper<Derived>::~JavaInstanceWrapper() {
 }
 
 template<class Derived>
-jni::MethodId JavaInstanceWrapper<Derived>::get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) {
+jni::MethodId JavaInstanceWrapper<Derived>::get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) const {
     if (unlikely(!method_signature.method_id)) {
         method_signature.init(env, j_class);
     }

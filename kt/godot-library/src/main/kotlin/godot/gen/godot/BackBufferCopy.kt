@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -28,7 +28,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  public open var copyMode: Long
+  public var copyMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
@@ -43,7 +43,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the BackBufferCopy. Only used if [copyMode] is [COPY_MODE_RECT].
    */
-  public open var rect: Rect2
+  public var rect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_RECT, RECT2)
@@ -57,13 +57,6 @@ public open class BackBufferCopy : Node2D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY)
   }
-
-  @CoreTypeHelper
-  public open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
-      schedule(this)
-      rect = this
-  }
-
 
   public enum class CopyMode(
     id: Long
@@ -92,20 +85,5 @@ public open class BackBufferCopy : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Disables the buffering mode. This means the BackBufferCopy node will directly use the portion of screen it covers.
-     */
-    public final const val COPY_MODE_DISABLED: Long = 0
-
-    /**
-     * BackBufferCopy buffers a rectangular region.
-     */
-    public final const val COPY_MODE_RECT: Long = 1
-
-    /**
-     * BackBufferCopy buffers the entire screen.
-     */
-    public final const val COPY_MODE_VIEWPORT: Long = 2
-  }
+  public companion object
 }

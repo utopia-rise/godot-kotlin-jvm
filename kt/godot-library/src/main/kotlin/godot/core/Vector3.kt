@@ -4,6 +4,7 @@ import godot.util.*
 import kotlin.math.*
 
 
+@Suppress("MemberVisibilityCanBePrivate")
 class Vector3(
     var x: RealT,
     var y: RealT,
@@ -11,7 +12,7 @@ class Vector3(
 ) : Comparable<Vector3>, CoreType {
 
     //CONSTANTS
-    enum class Axis(val value: NaturalT) {
+    enum class Axis(val id: NaturalT) {
         X(0),
         Y(1),
         Z(2);
@@ -27,9 +28,9 @@ class Vector3(
     }
 
     companion object {
-        val AXIS_X = Axis.X.value
-        val AXIS_Y = Axis.Y.value
-        val AXIS_Z = Axis.Z.value
+        val AXIS_X = Axis.X.id
+        val AXIS_Y = Axis.Y.id
+        val AXIS_Z = Axis.Z.id
         val ZERO: Vector3
             get() = Vector3(0, 0, 0)
         val ONE: Vector3
@@ -48,6 +49,15 @@ class Vector3(
             get() = Vector3(0, 0, -1)
         val BACK: Vector3
             get() = Vector3(0, 0, 1)
+
+        fun octahedronDecode(uv: Vector2): Vector3 {
+            val f = Vector2(uv.x * 2.0f - 1.0f, uv.y * 2.0f - 1.0f)
+            val n = Vector3(f.x, f.y, 1.0f - abs(f.x) - abs(f.y))
+            val t = -n.z.coerceIn(0.0, 1.0)
+            n.x += if (n.x >= 0) -t else t
+            n.y += if (n.y >= 0) -t else t
+            return n.normalized()
+        }
     }
 
 
@@ -62,6 +72,7 @@ class Vector3(
             this(x.toRealT(), y.toRealT(), z.toRealT())
 
     //API
+
     /**
      * Returns a new vector with all components in absolute values (i.e. positive).
      */
@@ -89,6 +100,16 @@ class Vector3(
     fun ceil(): Vector3 {
         return Vector3(ceil(x), ceil(y), ceil(z))
     }
+
+    /**
+     * Returns a new vector with all components clamped between the components of min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clamp(min: Vector3, max: Vector3) = Vector3(
+        x.coerceIn(min.x, max.x),
+        y.coerceIn(min.y, max.y),
+        z.coerceIn(min.z, max.z)
+    )
 
     /**
      * Returns the cross product with b.
@@ -185,7 +206,7 @@ class Vector3(
      * Returns the vector’s length.
      */
     fun length(): RealT {
-        return sqrt(x * x + y * y + z * z)
+        return sqrt(lengthSquared())
     }
 
     /**
@@ -197,48 +218,61 @@ class Vector3(
     }
 
     /**
-     * Returns the result of the linear interpolation between this vector and b by amount t.
-     * t is in the range of 0.0 - 1.0, representing the amount of interpolation.
+     * Returns the result of the linear interpolation between this vector and to by amount weight. weight is on the
+     * range of 0.0 to 1.0, representing the amount of interpolation.
      */
-    fun linearInterpolate(b: Vector3, t: RealT): Vector3 {
-        return Vector3(x + (t * (b.x - x)), y + (t * (b.y - y)), z + (t * (b.z - z)))
+    fun lerp(to: Vector3, weight: RealT) = Vector3(
+        x + (weight * (to.x - x)),
+        y + (weight * (to.y - y)),
+        z + (weight * (to.z - z))
+    )
+
+    /**
+     * Returns the vector with a maximum length by limiting its length to length.
+     */
+    fun limitLength(length: RealT = 1.0): Vector3 {
+        val l = length()
+        var v = Vector3(this)
+        if (l > 0 && length < l) {
+            v /= l
+            v *= length
+        }
+
+        return v
     }
 
     /**
-     * Returns the axis of the vector’s largest value. See AXIS_* constants.
+     * Returns the axis of the vector's highest value. See AXIS_* constants.
+     * If all components are equal, this method returns AXIS_X.
      */
-    fun maxAxis(): Int {
-        return if (x < y) {
-            if (y < z) {
-                2
-            } else {
-                1
-            }
+    fun maxAxisIndex() = if (x < y) {
+        if (y < z) {
+            AXIS_Z
         } else {
-            if (x < z) {
-                2
-            } else {
-                0
-            }
+            AXIS_Y
+        }
+    } else {
+        if (x < z) {
+            AXIS_Z
+        } else {
+            AXIS_X
         }
     }
 
     /**
      * Returns the axis of the vector’s smallest value. See AXIS_* constants.
      */
-    fun minAxis(): Int {
-        return if (x < y) {
-            if (x < z) {
-                0
-            } else {
-                2
-            }
+    fun minAxisIndex() = if (x < y) {
+        if (x < z) {
+            AXIS_X
         } else {
-            if (y < z) {
-                1
-            } else {
-                2
-            }
+            AXIS_Z
+        }
+    } else {
+        if (y < z) {
+            AXIS_Y
+        } else {
+            AXIS_Z
         }
     }
 
@@ -275,6 +309,22 @@ class Vector3(
             y /= l
             z /= l
         }
+    }
+
+    fun octahedronEncode(): Vector2 {
+        var n = Vector3(this)
+        n /= abs(n.x) + abs(n.y) + abs(n.z)
+        val o = Vector2()
+        if (n.z >= 0.0f) {
+            o.x = n.x
+            o.y = n.y
+        } else {
+            o.x = (1.0f - abs(n.y)) * (if (n.x >= 0.0f) 1.0f else -1.0f)
+            o.y = (1.0f - abs(n.x)) * (if (n.y >= 0.0f) 1.0f else -1.0f)
+        }
+        o.x = o.x * 0.5f + 0.5f
+        o.y = o.y * 0.5f + 0.5f
+        return o
     }
 
     /**
@@ -345,6 +395,17 @@ class Vector3(
      */
     fun sign(): Vector3 {
         return Vector3(sign(x), sign(y), sign(z))
+    }
+
+    /**
+     * Returns the signed angle to the given vector, in radians. The sign of the angle is positive in a
+     * counter-clockwise direction and negative in a clockwise direction when viewed from the side specified by the axis.
+     */
+    fun signedAngleTo(to: Vector3, axis: Vector3): RealT {
+        val crossTo = cross(to)
+        val unsignedAngle = atan2(crossTo.length(), dot(to))
+        val sign = crossTo.dot(axis)
+        return if (sign < 0) -unsignedAngle else unsignedAngle
     }
 
     /**

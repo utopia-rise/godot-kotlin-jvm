@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -21,25 +22,25 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
-   * Extra condition which is applied if [type] is set to [CTYPE_VECTOR].
+   * The type to be used in the comparison. See [enum ComparisonType] for options.
    */
-  public open var condition: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_COMPARISON_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_CONDITION, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_COMPARISON_TYPE, NIL)
     }
 
   /**
    * A comparison function. See [enum Function] for options.
    */
-  public open var function: Long
+  public var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -53,19 +54,19 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   /**
-   * The type to be used in the comparison. See [enum ComparisonType] for options.
+   * Extra condition which is applied if [type] is set to [godot.CTYPE_VECTOR_3D].
    */
-  public open var type: Long
+  public var condition: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_TYPE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_TYPE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_CONDITION, NIL)
     }
 
   public override fun __new(): Unit {
@@ -80,17 +81,29 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     CTYPE_SCALAR(0),
     /**
+     * An integer scalar.
+     */
+    CTYPE_SCALAR_INT(1),
+    /**
+     * A 2D vector type.
+     */
+    CTYPE_VECTOR_2D(2),
+    /**
      * A 3D vector type.
      */
-    CTYPE_VECTOR(1),
+    CTYPE_VECTOR_3D(3),
     /**
      * A boolean type.
      */
-    CTYPE_BOOLEAN(2),
+    CTYPE_BOOLEAN(4),
     /**
      * A transform (`mat4`) type.
      */
-    CTYPE_TRANSFORM(3),
+    CTYPE_TRANSFORM(5),
+    /**
+     * Represents the size of the [enum ComparisonType] enum.
+     */
+    CTYPE_MAX(6),
     ;
 
     public val id: Long
@@ -127,9 +140,13 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     FUNC_LESS_THAN(4),
     /**
-     * Comparison for less than or equal (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
     FUNC_LESS_THAN_EQUAL(5),
+    /**
+     * Represents the size of the [enum Function] enum.
+     */
+    FUNC_MAX(6),
     ;
 
     public val id: Long
@@ -153,6 +170,10 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      * The result will be true if any of component in vector satisfy the comparison condition.
      */
     COND_ANY(1),
+    /**
+     * Represents the size of the [enum Condition] enum.
+     */
+    COND_MAX(2),
     ;
 
     public val id: Long
@@ -165,65 +186,5 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * The result will be true if all of component in vector satisfy the comparison condition.
-     */
-    public final const val COND_ALL: Long = 0
-
-    /**
-     * The result will be true if any of component in vector satisfy the comparison condition.
-     */
-    public final const val COND_ANY: Long = 1
-
-    /**
-     * A boolean type.
-     */
-    public final const val CTYPE_BOOLEAN: Long = 2
-
-    /**
-     * A floating-point scalar.
-     */
-    public final const val CTYPE_SCALAR: Long = 0
-
-    /**
-     * A transform (`mat4`) type.
-     */
-    public final const val CTYPE_TRANSFORM: Long = 3
-
-    /**
-     * A 3D vector type.
-     */
-    public final const val CTYPE_VECTOR: Long = 1
-
-    /**
-     * Comparison for equality (`a == b`).
-     */
-    public final const val FUNC_EQUAL: Long = 0
-
-    /**
-     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
-     */
-    public final const val FUNC_GREATER_THAN: Long = 2
-
-    /**
-     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
-     */
-    public final const val FUNC_GREATER_THAN_EQUAL: Long = 3
-
-    /**
-     * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
-     */
-    public final const val FUNC_LESS_THAN: Long = 4
-
-    /**
-     * Comparison for less than or equal (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
-     */
-    public final const val FUNC_LESS_THAN_EQUAL: Long = 5
-
-    /**
-     * Comparison for inequality (`a != b`).
-     */
-    public final const val FUNC_NOT_EQUAL: Long = 1
-  }
+  public companion object
 }

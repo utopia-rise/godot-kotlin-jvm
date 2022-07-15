@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -17,20 +18,20 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptReturn : VisualScriptNode() {
-  public open var returnEnabled: Boolean
+  public var returnEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRETURN_GET_RETURN_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRETURN_IS_RETURN_VALUE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRETURN_SET_RETURN_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRETURN_SET_ENABLE_RETURN_VALUE, NIL)
     }
 
-  public open var returnType: Long
+  public var returnType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,4 +47,6 @@ public open class VisualScriptReturn : VisualScriptNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTRETURN)
   }
+
+  public companion object
 }

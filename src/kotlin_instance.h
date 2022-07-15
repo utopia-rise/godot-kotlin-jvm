@@ -33,10 +33,8 @@ public:
 
     bool has_method(const StringName& p_method) const override;
 
-    Variant call(const StringName& p_method, VARIANT_ARG_LIST) override;
-
     Variant
-    call(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
+    callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
 
     //TODO/4.0: check if there is any new implementation of these methods
 //    void

@@ -130,7 +130,7 @@ void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
 }
 
 void GDKotlin::init() {
-    if (Main::is_project_manager()) {
+    if (Engine::get_singleton()->is_project_manager_hint()) {
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
 #endif
@@ -382,7 +382,7 @@ void GDKotlin::init() {
 }
 
 void GDKotlin::finish() {
-    if (Main::is_project_manager()) {
+    if (Engine::get_singleton()->is_project_manager_hint()) {
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
 #endif
@@ -454,14 +454,12 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 #ifdef DEBUG_ENABLED
     LOG_INFO("Unloading classes ...");
 #endif
-    Map<StringName, KtClass*>::Element* current = classes.front();
-    while (current != nullptr) {
-        KtClass* kt_class = current->value();
+    for (const KeyValue<StringName, KtClass*>& item : classes) {
+        KtClass* kt_class{item.value};
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class));
 #endif
         delete kt_class;
-        current = current->next();
     }
     classes.clear();
 }
@@ -504,7 +502,7 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #endif
 
         Error err;
-        DirAccess* dir_access{
+        Ref<DirAccess> dir_access{
                 DirAccess::open(libs_res_path, &err)
         };
 
@@ -513,7 +511,6 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #endif
 
         dir_access->copy(jar_res_path, jar_user_path);
-        memdelete(dir_access);
     }
 #endif
 }
@@ -563,10 +560,8 @@ GDKotlin::GDKotlin() :
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {
-    auto* map_entry{classes.front()};
-    while (map_entry) {
-        map_entry->get()->fetch_members();
-        map_entry = map_entry->next();
+    for (const KeyValue<StringName, KtClass*>& item : classes) {
+        item.value->fetch_members();
     }
 }
 

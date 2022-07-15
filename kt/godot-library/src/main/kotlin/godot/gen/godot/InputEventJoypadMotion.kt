@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,9 +27,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {
   /**
-   * Axis identifier. Use one of the [enum JoystickList] axis constants.
+   * Axis identifier. Use one of the [enum JoyAxis] axis constants.
    */
-  public open var axis: Long
+  public var axis: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS,
@@ -44,7 +45,7 @@ public open class InputEventJoypadMotion : InputEvent() {
   /**
    * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A value of `0` means the axis is in its resting position.
    */
-  public open var axisValue: Double
+  public var axisValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -60,4 +61,6 @@ public open class InputEventJoypadMotion : InputEvent() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION)
   }
+
+  public companion object
 }

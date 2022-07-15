@@ -2,6 +2,7 @@
 #ifdef TOOLS_ENABLED
 
 #include <editor/editor_node.h>
+#include <core/config/project_settings.h>
 
 #include "../godot_kotlin_jvm_editor.h"
 #include "build_manager.h"

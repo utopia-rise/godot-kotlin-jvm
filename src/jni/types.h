@@ -53,12 +53,12 @@ namespace jni {
         void delete_global_ref(Env& p_env);
         void delete_local_ref(Env& p_env);
 
-        JObject call_object_method(Env& env, MethodId method, jvalue* args = {});
-        jint call_int_method(Env& env, MethodId method, jvalue* args = {});
-        jlong call_long_method(Env& env, MethodId method, jvalue* args = {});
-        jdouble call_double_method(Env& env, MethodId method, jvalue* args = {});
-        jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {});
-        void call_void_method(Env& env, MethodId method, jvalue* args = {});
+        JObject call_object_method(Env& env, MethodId method, jvalue* args = {}) const;
+        jint call_int_method(Env& env, MethodId method, jvalue* args = {}) const;
+        jlong call_long_method(Env& env, MethodId method, jvalue* args = {}) const;
+        jdouble call_double_method(Env& env, MethodId method, jvalue* args = {}) const;
+        jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {}) const;
+        void call_void_method(Env& env, MethodId method, jvalue* args = {}) const;
 
         bool is_null();
     };

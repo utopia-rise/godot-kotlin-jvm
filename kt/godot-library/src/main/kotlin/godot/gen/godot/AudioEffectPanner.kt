@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +24,7 @@ public open class AudioEffectPanner : AudioEffect() {
   /**
    * Pan position. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public open var pan: Double
+  public var pan: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_GET_PAN, DOUBLE)
@@ -37,4 +38,6 @@ public open class AudioEffectPanner : AudioEffect() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPANNER)
   }
+
+  public companion object
 }
