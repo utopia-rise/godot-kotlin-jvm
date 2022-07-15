@@ -72,7 +72,7 @@ void RidBridge::engine_call_compareTo(JNIEnv* p_raw_env, jobject p_instance, jlo
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{*from_uint_to_ptr<RID>(p_raw_ptr) < args[0].operator RID()};
+    Variant variant{*from_uint_to_ptr<RID>(p_raw_ptr) < args[0].operator ::RID()};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -81,6 +81,6 @@ void RidBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong 
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{*from_uint_to_ptr<RID>(p_raw_ptr) == args[0].operator RID()};
+    Variant variant{*from_uint_to_ptr<RID>(p_raw_ptr) == args[0].operator ::RID()};
     transfer_context->write_return_value(env, variant);
 }

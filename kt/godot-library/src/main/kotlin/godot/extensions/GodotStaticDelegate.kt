@@ -2,8 +2,8 @@
 
 package godot.extensions
 
-import godot.Reference
 import godot.Object
+import godot.RefCounted
 import godot.core.GarbageCollector
 import godot.core.memory.GodotStatic
 import godot.core.variantMapper
@@ -32,7 +32,7 @@ class GodotStaticDelegate<T : Any?>(val factory: () -> T) : GodotStatic, ReadWri
 
         if (v1 != UNINITIALIZED_VALUE && v1 != null) {
             require(v1 is Object)
-            if (v1 !is Reference && GarbageCollector.isInstanceValid(v1)) {
+            if (v1 !is RefCounted && GarbageCollector.isInstanceValid(v1)) {
                 v1.free()
             }
         }

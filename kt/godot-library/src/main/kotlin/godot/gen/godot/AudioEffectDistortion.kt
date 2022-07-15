@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,41 +31,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectDistortion : AudioEffect() {
   /**
-   * Distortion power. Value can range from 0 to 1.
-   */
-  public open var drive: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_DRIVE,
-          NIL)
-    }
-
-  /**
-   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000.
-   */
-  public open var keepHfHz: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_KEEP_HF_HZ, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_KEEP_HF_HZ, NIL)
-    }
-
-  /**
    * Distortion type.
    */
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
@@ -78,25 +47,9 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Increases or decreases the volume after the effect. Value can range from -80 to 24.
-   */
-  public open var postGain: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_POST_GAIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_POST_GAIN, NIL)
-    }
-
-  /**
    * Increases or decreases the volume before the effect. Value can range from -60 to 60.
    */
-  public open var preGain: Double
+  public var preGain: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -107,6 +60,54 @@ public open class AudioEffectDistortion : AudioEffect() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_PRE_GAIN, NIL)
+    }
+
+  /**
+   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000.
+   */
+  public var keepHfHz: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_KEEP_HF_HZ, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_KEEP_HF_HZ, NIL)
+    }
+
+  /**
+   * Distortion power. Value can range from 0 to 1.
+   */
+  public var drive: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_DRIVE,
+          NIL)
+    }
+
+  /**
+   * Increases or decreases the volume after the effect. Value can range from -80 to 24.
+   */
+  public var postGain: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_POST_GAIN, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_POST_GAIN, NIL)
     }
 
   public override fun __new(): Unit {
@@ -148,30 +149,5 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
   }
 
-  public companion object {
-    /**
-     *
-     */
-    public final const val MODE_ATAN: Long = 1
-
-    /**
-     * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
-     */
-    public final const val MODE_CLIP: Long = 0
-
-    /**
-     * Low-resolution digital distortion effect. You can use it to emulate the sound of early digital audio devices.
-     */
-    public final const val MODE_LOFI: Long = 2
-
-    /**
-     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in solid-state musical instrument amplifiers.
-     */
-    public final const val MODE_OVERDRIVE: Long = 3
-
-    /**
-     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive sound.
-     */
-    public final const val MODE_WAVESHAPE: Long = 4
-  }
+  public companion object
 }

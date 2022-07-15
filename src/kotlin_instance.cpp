@@ -65,12 +65,7 @@ bool KotlinInstance::has_method(const StringName& p_method) const {
     return kt_class->get_method(p_method) != nullptr;
 }
 
-Variant
-KotlinInstance::call(const StringName& p_method, VARIANT_ARG_DECLARE) {
-    return ScriptInstance::call(p_method, VARIANT_ARG_PASS);
-}
-
-Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
+Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     jni::LocalFrame local_frame(100);
 
     KtFunction* function { kt_class->get_method(p_method) };

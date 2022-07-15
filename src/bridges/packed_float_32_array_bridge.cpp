@@ -109,7 +109,6 @@ void PackedFloat32ArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobjec
     from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->append_array(args[0].operator PackedFloat32Array());
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedFloat32ArrayBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
@@ -134,7 +133,6 @@ void PackedFloat32ArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_i
     from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->insert(args[0].operator unsigned int(), args[1].operator real_t());
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedFloat32ArrayBridge::engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->reverse();
@@ -148,7 +146,6 @@ void PackedFloat32ArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p
     from_uint_to_ptr<PackedFloat32Array>(p_raw_ptr)->push_back(args[0].operator real_t());
 }
 
-//TODO/4.0: modify naming in jvm code
 void PackedFloat32ArrayBridge::engine_call_remove_at(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     Variant args[1] = {};

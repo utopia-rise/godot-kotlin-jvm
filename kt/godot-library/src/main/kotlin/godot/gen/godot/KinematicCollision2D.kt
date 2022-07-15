@@ -1,178 +1,157 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
-import godot.core.VariantType.ANY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import kotlin.Any
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Collision data for [godot.KinematicBody2D] collisions.
+ * Collision data for [godot.PhysicsBody2D.moveAndCollide] collisions.
  *
- * Contains collision data for [godot.KinematicBody2D] collisions. When a [godot.KinematicBody2D] is moved using [godot.KinematicBody2D.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision2D object is returned.
+ * Contains collision data for [godot.PhysicsBody2D.moveAndCollide] collisions. When a [godot.PhysicsBody2D] is moved using [godot.PhysicsBody2D.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision2D] object is returned.
  *
  * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
  */
 @GodotBaseType
-public open class KinematicCollision2D : Reference() {
-  /**
-   * The colliding body.
-   */
-  public open val collider: Object?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
-    }
-
-  /**
-   * The colliding body's unique instance ID. See [godot.Object.getInstanceId].
-   */
-  public open val colliderId: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_ID, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-
-  /**
-   * The colliding body's metadata. See [godot.Object].
-   */
-  public open val colliderMetadata: Any?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_METADATA, ANY)
-      return TransferContext.readReturnValue(ANY, true) as Any?
-    }
-
-  /**
-   * The colliding body's [RID] used by the [godot.Physics2DServer].
-   */
-  public open val colliderRid: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_RID, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
-    }
-
-  /**
-   * The colliding body's shape.
-   */
-  public open val colliderShape: Object?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
-    }
-
-  /**
-   * The colliding shape's index. See [godot.CollisionObject2D].
-   */
-  public open val colliderShapeIndex: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-
-  /**
-   * The colliding object's velocity.
-   */
-  public open val colliderVelocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_VELOCITY, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The moving object's colliding shape.
-   */
-  public open val localShape: Object?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_LOCAL_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Object?
-    }
-
-  /**
-   * The colliding body's shape's normal at the point of collision.
-   */
-  public open val normal: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_NORMAL,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The point of collision, in global coordinates.
-   */
-  public open val position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_POSITION,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The moving object's remaining movement vector.
-   */
-  public open val remainder: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_REMAINDER, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The distance the moving object traveled before collision.
-   */
-  public open val travel: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_TRAVEL,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
+public open class KinematicCollision2D : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICCOLLISION2D)
   }
 
   /**
-   * The collision angle according to `up_direction`, which is `Vector2.UP` by default. This value is always positive.
+   * Returns the point of collision in global coordinates.
    */
-  public open fun getAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
+  public fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the colliding body's shape's normal at the point of collision.
+   */
+  public fun getNormal(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_NORMAL,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the moving object's travel before collision.
+   */
+  public fun getTravel(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_TRAVEL,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the moving object's remaining movement vector.
+   */
+  public fun getRemainder(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_REMAINDER,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the collision angle according to `up_direction`, which is `Vector2.UP` by default. This value is always positive.
+   */
+  public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Double {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
+
+  /**
+   * Returns the moving object's colliding shape.
+   */
+  public fun getLocalShape(): Object? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_LOCAL_SHAPE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Object?
+  }
+
+  /**
+   * Returns the colliding body's attached [godot.Object].
+   */
+  public fun getCollider(): Object? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Object?
+  }
+
+  /**
+   * Returns the unique instance ID of the colliding body's attached [godot.Object]. See [godot.Object.getInstanceId].
+   */
+  public fun getColliderId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the colliding body's [RID] used by the [godot.PhysicsServer2D].
+   */
+  public fun getColliderRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns the colliding body's shape.
+   */
+  public fun getColliderShape(): Object? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Object?
+  }
+
+  /**
+   * Returns the colliding body's shape index. See [godot.CollisionObject2D].
+   */
+  public fun getColliderShapeIndex(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the colliding body's velocity.
+   */
+  public fun getColliderVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_VELOCITY, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  public companion object
 }

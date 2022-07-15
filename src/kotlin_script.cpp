@@ -159,10 +159,10 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 
     Object* owner{ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
 
-    REF ref;
+    Ref<Resource> ref;
     auto* r{Object::cast_to<RefCounted>(owner)};
     if (r) {
-        ref = REF(r);
+        ref = Ref<Resource>(r);
     }
 
     ScriptInstance* instance{_instance_create(p_args, p_argcount, owner)};
@@ -210,10 +210,9 @@ const Vector<Multiplayer::RPCConfig> KotlinScript::get_rpc_methods() const {
 }
 
 #ifdef TOOLS_ENABLED
-const Vector<DocData::ClassDoc>& KotlinScript::get_documentation() const {
+Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
     //TODO
-    static Vector<DocData::ClassDoc> docs;
-    return docs;
+    return {};
 }
 #endif
 
@@ -237,8 +236,8 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 
 void KotlinScript::update_exports() {
 #ifdef TOOLS_ENABLED
-    for (Set<PlaceHolderScriptInstance*>::Element* E = placeholders.front(); E; E = E->next()) {
-        _update_exports(E->get());
+    for (PlaceHolderScriptInstance* script_instance : placeholders) {
+        _update_exports(script_instance);
     }
 #endif
 }
@@ -246,7 +245,7 @@ void KotlinScript::update_exports() {
 void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) const {
 #ifdef TOOLS_ENABLED
     List<PropertyInfo> properties;
-    Map<StringName, Variant> default_values;
+    HashMap<StringName, Variant> default_values;
     get_script_property_list(&properties);
     for (int i = 0; i < properties.size(); ++i) {
         StringName property_name{properties[i].name};

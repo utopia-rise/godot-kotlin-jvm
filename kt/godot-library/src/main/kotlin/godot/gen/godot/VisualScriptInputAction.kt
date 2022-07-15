@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -17,30 +18,30 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptInputAction : VisualScriptNode() {
-  public open var action: String
+  public var action: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_ACTION, STRING)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_ACTION_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_ACTION, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_ACTION_NAME, NIL)
     }
 
-  public open var mode: Long
+  public var mode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_ACTION_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_ACTION_MODE, NIL)
     }
 
   public override fun __new(): Unit {
@@ -66,13 +67,5 @@ public open class VisualScriptInputAction : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val MODE_JUST_PRESSED: Long = 2
-
-    public final const val MODE_JUST_RELEASED: Long = 3
-
-    public final const val MODE_PRESSED: Long = 0
-
-    public final const val MODE_RELEASED: Long = 1
-  }
+  public companion object
 }

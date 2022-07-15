@@ -1,19 +1,29 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
+import godot.ResourceLoader
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.GodotError
+import godot.core.PackedStringArray
 import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,61 +41,48 @@ import kotlin.Unit
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCELOADER)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCELOADER)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns whether a recognized resource exists for the given `path`.
-   *
-   * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader].
+   * Loads the resource using threads. If `use_sub_threads` is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
    */
-  public fun exists(path: String, typeHint: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_EXISTS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the dependencies for the resource at the given `path`.
-   */
-  public fun getDependencies(path: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_GET_DEPENDENCIES,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns the list of recognized extensions for a resource type.
-   */
-  public fun getRecognizedExtensionsForType(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  public fun loadThreadedRequest(
+    path: String,
+    typeHint: String = "",
+    useSubThreads: Boolean = false
+  ): GodotError {
+    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_REQUEST, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * *Deprecated method.* Use [hasCached] or [exists] instead.
-   */
-  public fun has(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_HAS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns whether a cached resource is available for the given `path`.
+   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the resource at `path`. See [enum ThreadLoadStatus] for possible return values.
    *
-   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] or [loadInteractive] methods will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
+   * An array variable can optionally be passed via `progress`, and will return a one-element array containing the percentage of completion of the threaded loading.
    */
-  public fun hasCached(path: String): Boolean {
+  public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
+      godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
+    TransferContext.writeArguments(STRING to path, ARRAY to progress)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS, LONG)
+    return ResourceLoader.ThreadLoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the resource loaded by [loadThreadedRequest].
+   *
+   * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
+   */
+  public fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_HAS_CACHED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   /**
@@ -95,7 +92,7 @@ public object ResourceLoader : Object() {
    *
    * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    *
-   * If `no_cache` is `true`, the resource cache will be bypassed and the resource will be loaded anew. Otherwise, the cached resource will be returned if it exists.
+   * The `cache_mode` property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
    *
    * Returns an empty resource if no [godot.ResourceFormatLoader] could handle the file.
    *
@@ -104,23 +101,22 @@ public object ResourceLoader : Object() {
   public fun load(
     path: String,
     typeHint: String = "",
-    noCache: Boolean = false
+    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): Resource? {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to noCache)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_LOAD, OBJECT)
+    TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   /**
-   * Starts loading a resource interactively. The returned [godot.ResourceInteractiveLoader] object allows to load with high granularity, calling its [godot.ResourceInteractiveLoader.poll] method successively to load chunks.
-   *
-   * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
+   * Returns the list of recognized extensions for a resource type.
    */
-  public fun loadInteractive(path: String, typeHint: String = ""): ResourceInteractiveLoader? {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_LOAD_INTERACTIVE,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ResourceInteractiveLoader?
+  public fun getRecognizedExtensionsForType(type: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to type)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
@@ -129,6 +125,106 @@ public object ResourceLoader : Object() {
   public fun setAbortOnMissingResources(abort: Boolean): Unit {
     TransferContext.writeArguments(BOOL to abort)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL)
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL)
+  }
+
+  /**
+   * Returns the dependencies for the resource at the given `path`.
+   */
+  public fun getDependencies(path: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_DEPENDENCIES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns whether a cached resource is available for the given `path`.
+   *
+   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] method will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
+   */
+  public fun hasCached(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_HAS_CACHED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns whether a recognized resource exists for the given `path`.
+   *
+   * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
+   */
+  public fun exists(path: String, typeHint: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to path, STRING to typeHint)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_EXISTS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the ID associated with a given resource path, or `-1` when no such ID exists.
+   */
+  public fun getResourceUid(path: String): Long {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RESOURCE_UID,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public enum class ThreadLoadStatus(
+    id: Long
+  ) {
+    /**
+     * The resource is invalid, or has not been loaded with [loadThreadedRequest].
+     */
+    THREAD_LOAD_INVALID_RESOURCE(0),
+    /**
+     * The resource is still being loaded.
+     */
+    THREAD_LOAD_IN_PROGRESS(1),
+    /**
+     * Some error occurred during loading and it failed.
+     */
+    THREAD_LOAD_FAILED(2),
+    /**
+     * The resource was loaded successfully and can be accessed via [loadThreadedGet].
+     */
+    THREAD_LOAD_LOADED(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class CacheMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CACHE_MODE_IGNORE(0),
+    /**
+     *
+     */
+    CACHE_MODE_REUSE(1),
+    /**
+     *
+     */
+    CACHE_MODE_REPLACE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 }

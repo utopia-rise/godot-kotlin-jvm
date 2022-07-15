@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +20,7 @@ import kotlin.Unit
  *
  * [godot.MultiMeshInstance2D] is a specialized node to instance a [godot.MultiMesh] resource in 2D.
  *
- * Usage is the same as [godot.MultiMeshInstance].
+ * Usage is the same as [godot.MultiMeshInstance3D].
  */
 @GodotBaseType
 public open class MultiMeshInstance2D : Node2D() {
@@ -31,7 +32,7 @@ public open class MultiMeshInstance2D : Node2D() {
   /**
    * The [godot.MultiMesh] that will be drawn by the [godot.MultiMeshInstance2D].
    */
-  public open var multimesh: MultiMesh?
+  public var multimesh: MultiMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_MULTIMESH,
@@ -45,32 +46,14 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   /**
-   * The normal map that will be used if using the default [godot.CanvasItemMaterial].
-   *
-   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   * The [godot.Texture2D] that will be used if using the default [godot.CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
    */
-  public open var normalMap: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_NORMAL_MAP, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_SET_NORMAL_MAP, NIL)
-    }
-
-  /**
-   * The [godot.Texture] that will be used if using the default [godot.CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
-   */
-  public open var texture: Texture?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_TEXTURE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -78,7 +61,27 @@ public open class MultiMeshInstance2D : Node2D() {
           NIL)
     }
 
+  /**
+   * The normal map that will be used if using the default [godot.CanvasItemMaterial].
+   *
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   */
+  public var normalMap: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_GET_NORMAL_MAP, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_SET_NORMAL_MAP, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE2D)
   }
+
+  public companion object
 }

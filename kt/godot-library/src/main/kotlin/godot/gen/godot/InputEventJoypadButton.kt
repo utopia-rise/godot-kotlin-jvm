@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -29,9 +30,9 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventJoypadButton : InputEvent() {
   /**
-   * Button identifier. One of the [enum JoystickList] button constants.
+   * Button identifier. One of the [enum JoyButton] button constants.
    */
-  public open var buttonIndex: Long
+  public var buttonIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -45,22 +46,9 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   /**
-   * If `true`, the button's state is pressed. If `false`, the button's state is released.
-   */
-  public open var pressed: Boolean
-    @JvmName("isPressed_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.isPressed()
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSED, NIL)
-    }
-
-  /**
    * Represents the pressure the user puts on the button with their finger, if the controller supports it. Ranges from `0` to `1`.
    */
-  public open var pressure: Double
+  public var pressure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -73,7 +61,22 @@ public open class InputEventJoypadButton : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSURE, NIL)
     }
 
+  /**
+   * If `true`, the button's state is pressed. If `false`, the button's state is released.
+   */
+  public var pressed: Boolean
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSED, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON)
   }
+
+  public companion object
 }

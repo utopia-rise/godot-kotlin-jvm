@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -26,7 +26,7 @@ import kotlin.Unit
 /**
  * 2D sprite node in a 3D world.
  *
- * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
+ * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation. See also [godot.SpriteBase3D] where properties such as the billboard mode are defined.
  */
 @GodotBaseType
 public open class Sprite3D : SpriteBase3D() {
@@ -36,9 +36,56 @@ public open class Sprite3D : SpriteBase3D() {
   public val frameChanged: Signal0 by signal()
 
   /**
+   * Emitted when the [texture] changes.
+   */
+  public val textureChanged: Signal0 by signal()
+
+  /**
+   * [godot.Texture2D] object to draw.
+   */
+  public var texture: Texture?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_TEXTURE, NIL)
+    }
+
+  /**
+   * The number of columns in the sprite sheet.
+   */
+  public var hframes: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_HFRAMES, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_HFRAMES, NIL)
+    }
+
+  /**
+   * The number of rows in the sprite sheet.
+   */
+  public var vframes: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_VFRAMES, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_VFRAMES, NIL)
+    }
+
+  /**
    * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frame: Long
+  public var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_FRAME, LONG)
@@ -52,7 +99,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
-  public open var frameCoords: Vector2
+  public var frameCoords: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_FRAME_COORDS,
@@ -65,26 +112,12 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of columns in the sprite sheet.
+   *
    */
-  public open var hframes: Long
+  public var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_HFRAMES, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_HFRAMES, NIL)
-    }
-
-  /**
-   * If `true`, texture will be cut from a larger atlas texture. See [regionRect].
-   */
-  public open var regionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_REGION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_IS_REGION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -95,7 +128,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
-  public open var regionRect: Rect2
+  public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_REGION_RECT, RECT2)
@@ -106,49 +139,9 @@ public open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_REGION_RECT, NIL)
     }
 
-  /**
-   * [godot.Texture] object to draw. If [godot.GeometryInstance.materialOverride] is used, this will be overridden.
-   */
-  public open var texture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_TEXTURE, NIL)
-    }
-
-  /**
-   * The number of rows in the sprite sheet.
-   */
-  public open var vframes: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_GET_VFRAMES, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_VFRAMES, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPRITE3D)
   }
 
-  @CoreTypeHelper
-  public open fun frameCoords(schedule: Vector2.() -> Unit): Vector2 = frameCoords.apply{
-      schedule(this)
-      frameCoords = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{
-      schedule(this)
-      regionRect = this
-  }
-
+  public companion object
 }

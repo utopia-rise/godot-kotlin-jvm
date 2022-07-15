@@ -1,14 +1,17 @@
 package godot.signals
 
 import godot.Object
+import godot.core.Callable
+import godot.core.StringName
 import godot.core.VariantArray
+import godot.core.asStringName
 import godot.util.camelToSnakeCase
 
 open class Signal(
     private val instance: Object,
     jvmName: String
 ) {
-    val name = jvmName.removePrefix("signal").camelToSnakeCase().removePrefix("_")
+    val name = jvmName.removePrefix("signal").camelToSnakeCase().removePrefix("_").asStringName()
 
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)
@@ -16,11 +19,10 @@ open class Signal(
 
     @PublishedApi
     internal fun connect(
-        target: Object,
-        method: String,
+        callable: Callable,
         binds: VariantArray<Any?>?,
         flags: Long
-    ) = instance.connect(name, target, method, binds ?: VariantArray(), flags)
+    ) = instance.connect(name, callable, binds ?: VariantArray(), flags)
 }
 
 class Signal0(instance: Object, name: String) : Signal(instance, name) {

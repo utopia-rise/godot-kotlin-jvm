@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,47 +27,16 @@ import kotlin.Unit
  * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
  */
 @GodotBaseType
-public open class SplitContainer : Container() {
+public open class SplitContainer internal constructor() : Container() {
   /**
    * Emitted when the dragger is dragged by user.
    */
   public val dragged: Signal1<Long> by signal("offset")
 
   /**
-   * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
-   */
-  public open var collapsed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_COLLAPSED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED, NIL)
-    }
-
-  /**
-   * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
-   */
-  public open var draggerVisibility: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
-    }
-
-  /**
    * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
    */
-  public open var splitOffset: Long
+  public var splitOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
@@ -79,17 +49,44 @@ public open class SplitContainer : Container() {
           NIL)
     }
 
+  /**
+   * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
+   */
+  public var collapsed: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_COLLAPSED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED, NIL)
+    }
+
+  /**
+   * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
+   */
+  public var draggerVisibility: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPLITCONTAINER)
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
   }
 
   /**
    * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum values.
    */
-  public open fun clampSplitOffset(): Unit {
+  public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
         NIL)
@@ -122,20 +119,5 @@ public open class SplitContainer : Container() {
     }
   }
 
-  public companion object {
-    /**
-     * The split dragger is never visible.
-     */
-    public final const val DRAGGER_HIDDEN: Long = 1
-
-    /**
-     * The split dragger is never visible and its space collapsed.
-     */
-    public final const val DRAGGER_HIDDEN_COLLAPSED: Long = 2
-
-    /**
-     * The split dragger is visible when the cursor hovers it.
-     */
-    public final const val DRAGGER_VISIBLE: Long = 0
-  }
+  public companion object
 }

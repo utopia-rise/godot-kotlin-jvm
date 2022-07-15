@@ -45,6 +45,8 @@ namespace jni {
         void* get_direct_buffer_address(const jni::JObject& buffer);
         int get_direct_buffer_capacity(const jni::JObject& buffer);
 
+        bool is_same_object(const jni::JObject& obj_1, const jni::JObject& obj_2);
+
         bool is_valid();
     private:
         JNIEnv* env;

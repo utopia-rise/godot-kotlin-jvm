@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +31,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
    * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but require more memory.
    */
-  public open var bufferLength: Double
+  public var bufferLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -44,25 +45,9 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   /**
-   * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes.
-   */
-  public open var fftSize: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_FFT_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_FFT_SIZE, NIL)
-    }
-
-  /**
    *
    */
-  public open var tapBackPos: Double
+  public var tapBackPos: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -75,11 +60,27 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_TAP_BACK_POS, NIL)
     }
 
+  /**
+   * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes.
+   */
+  public var fftSize: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_FFT_SIZE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_FFT_SIZE, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER)
   }
 
-  public enum class FFT_Size(
+  public enum class FFTSize(
     id: Long
   ) {
     /**
@@ -103,7 +104,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
      */
     FFT_SIZE_4096(4),
     /**
-     * Represents the size of the [enum FFT_Size] enum.
+     * Represents the size of the [enum FFTSize] enum.
      */
     FFT_SIZE_MAX(5),
     ;
@@ -118,35 +119,5 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
   }
 
-  public companion object {
-    /**
-     * Use a buffer of 1024 samples for the Fast Fourier transform. This is a compromise between latency and stability over time.
-     */
-    public final const val FFT_SIZE_1024: Long = 2
-
-    /**
-     * Use a buffer of 2048 samples for the Fast Fourier transform. High latency, but stable over time.
-     */
-    public final const val FFT_SIZE_2048: Long = 3
-
-    /**
-     * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable over time.
-     */
-    public final const val FFT_SIZE_256: Long = 0
-
-    /**
-     * Use a buffer of 4096 samples for the Fast Fourier transform. Highest latency, but most stable over time.
-     */
-    public final const val FFT_SIZE_4096: Long = 4
-
-    /**
-     * Use a buffer of 512 samples for the Fast Fourier transform. Low latency, but less stable over time.
-     */
-    public final const val FFT_SIZE_512: Long = 1
-
-    /**
-     * Represents the size of the [enum FFT_Size] enum.
-     */
-    public final const val FFT_SIZE_MAX: Long = 5
-  }
+  public companion object
 }

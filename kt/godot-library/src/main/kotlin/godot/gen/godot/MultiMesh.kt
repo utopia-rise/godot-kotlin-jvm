@@ -1,29 +1,28 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
-import godot.core.PoolColorArray
-import godot.core.PoolRealArray
-import godot.core.PoolVector2Array
-import godot.core.PoolVector3Array
+import godot.core.PackedFloat32Array
 import godot.core.TransferContext
-import godot.core.Transform
 import godot.core.Transform2D
+import godot.core.Transform3D
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_REAL_ARRAY
-import godot.core.VariantType.TRANSFORM
+import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.TRANSFORM2D
+import godot.core.VariantType.TRANSFORM3D
+import kotlin.Boolean
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -31,10 +30,9 @@ import kotlin.Unit
  * Provides high-performance mesh instancing.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html]($DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html)
  * [$DOCS_URL/tutorials/performance/using_multimesh.html]($DOCS_URL/tutorials/performance/using_multimesh.html)
  *
- * MultiMesh provides low-level mesh instancing. Drawing thousands of [godot.MeshInstance] nodes can be slow, since each object is submitted to the GPU then drawn individually.
+ * MultiMesh provides low-level mesh instancing. Drawing thousands of [godot.MeshInstance3D] nodes can be slow, since each object is submitted to the GPU then drawn individually.
  *
  * MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting in less API overhead.
  *
@@ -45,88 +43,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class MultiMesh : Resource() {
   /**
-   * Format of colors in color array that gets passed to shader.
-   */
-  public open var colorFormat: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_COLOR_FORMAT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_COLOR_FORMAT, NIL)
-    }
-
-  /**
-   * Format of custom data in custom data array that gets passed to shader.
-   */
-  public open var customDataFormat: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_CUSTOM_DATA_FORMAT,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_CUSTOM_DATA_FORMAT,
-          NIL)
-    }
-
-  /**
-   * Number of instances that will get drawn. This clears and (re)sizes the buffers. By default, all instances are drawn but you can limit this with [visibleInstanceCount].
-   */
-  public open var instanceCount: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COUNT, NIL)
-    }
-
-  /**
-   * Mesh to be drawn.
-   */
-  public open var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Mesh?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_MESH, NIL)
-    }
-
-  /**
-   * Choose whether to use an interpolation method that favors speed or quality.
-   *
-   * When using low physics tick rates (typically below 20) or high rates of object rotation, you may get better results from the high quality setting.
-   *
-   * **Note:** Fast quality does not equate to low quality. Except in the special cases mentioned above, the quality should be comparable to high quality.
-   */
-  public open var physicsInterpolationQuality: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_PHYSICS_INTERPOLATION_QUALITY, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_PHYSICS_INTERPOLATION_QUALITY, NIL)
-    }
-
-  /**
    * Format of transform used to transform mesh, either 2D or 3D.
    */
-  public open var transformFormat: Long
+  public var transformFormat: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
@@ -140,9 +59,54 @@ public open class MultiMesh : Resource() {
     }
 
   /**
+   * If `true`, the [godot.MultiMesh] will use color data (see [colorArray]).
+   */
+  public var useColors: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_COLORS, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.MultiMesh] will use custom data (see [customDataArray]).
+   */
+  public var useCustomData: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_CUSTOM_DATA,
+          NIL)
+    }
+
+  /**
+   * Number of instances that will get drawn. This clears and (re)sizes the buffers. By default, all instances are drawn but you can limit this with [visibleInstanceCount].
+   */
+  public var instanceCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COUNT, NIL)
+    }
+
+  /**
    * Limits the number of instances drawn, -1 draws all instances. Changing this does not change the sizes of the buffers.
    */
-  public open var visibleInstanceCount: Long
+  public var visibleInstanceCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -155,149 +119,44 @@ public open class MultiMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT, NIL)
     }
 
+  /**
+   * Mesh to be drawn.
+   */
+  public var mesh: Mesh?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Mesh?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_MESH, NIL)
+    }
+
+  /**
+   *
+   */
+  public var buffer: PackedFloat32Array
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_BUFFER,
+          PACKED_FLOAT_32_ARRAY)
+      return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MULTIMESH)
   }
 
-  public open fun _getColorArray(): PoolColorArray {
-    throw NotImplementedError("_get_color_array is not implemented for MultiMesh")
-  }
-
-  public open fun _getCustomDataArray(): PoolColorArray {
-    throw NotImplementedError("_get_custom_data_array is not implemented for MultiMesh")
-  }
-
-  public open fun _getTransform2dArray(): PoolVector2Array {
-    throw NotImplementedError("_get_transform_2d_array is not implemented for MultiMesh")
-  }
-
-  public open fun _getTransformArray(): PoolVector3Array {
-    throw NotImplementedError("_get_transform_array is not implemented for MultiMesh")
-  }
-
-  public open fun _setColorArray(arg0: PoolColorArray): Unit {
-  }
-
-  public open fun _setCustomDataArray(arg0: PoolColorArray): Unit {
-  }
-
-  public open fun _setTransform2dArray(arg0: PoolVector2Array): Unit {
-  }
-
-  public open fun _setTransformArray(arg0: PoolVector3Array): Unit {
-  }
-
   /**
-   * Returns the visibility axis-aligned bounding box in local space. See also [godot.VisualInstance.getTransformedAabb].
+   * Sets the [godot.Transform3D] for a specific instance.
    */
-  public open fun getAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
-        godot.core.VariantType.AABB)
-    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
-  }
-
-  /**
-   * Gets a specific instance's color.
-   */
-  public open fun getInstanceColor(instance: Long): Color {
-    TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
-  }
-
-  /**
-   * Returns the custom data that has been set for a specific instance.
-   */
-  public open fun getInstanceCustomData(instance: Long): Color {
-    TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
-        COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
-  }
-
-  /**
-   * Returns the [godot.core.Transform] of a specific instance.
-   */
-  public open fun getInstanceTransform(instance: Long): Transform {
-    TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
-        TRANSFORM)
-    return TransferContext.readReturnValue(TRANSFORM, false) as Transform
-  }
-
-  /**
-   * Returns the [godot.core.Transform2D] of a specific instance.
-   */
-  public open fun getInstanceTransform2d(instance: Long): Transform2D {
-    TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
-        TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
-  }
-
-  /**
-   * When using *physics interpolation*, this function allows you to prevent interpolation on an instance in the current physics tick.
-   *
-   * This allows you to move instances instantaneously, and should usually be used when initially placing an instance such as a bullet to prevent graphical glitches.
-   */
-  public open fun resetInstancePhysicsInterpolation(instance: Long): Unit {
-    TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIMESH_RESET_INSTANCE_PHYSICS_INTERPOLATION, NIL)
-  }
-
-  /**
-   * Sets all data related to the instances in one go. This is especially useful when loading the data from disk or preparing the data from GDNative.
-   *
-   * All data is packed in one large float array. An array may look like this: Transform for instance 1, color data for instance 1, custom data for instance 1, transform for instance 2, color data for instance 2, etc...
-   *
-   * [godot.core.Transform] is stored as 12 floats, [godot.core.Transform2D] is stored as 8 floats, `COLOR_8BIT` / `CUSTOM_DATA_8BIT` is stored as 1 float (4 bytes as is) and `COLOR_FLOAT` / `CUSTOM_DATA_FLOAT` is stored as 4 floats.
-   */
-  public open fun setAsBulkArray(array: PoolRealArray): Unit {
-    TransferContext.writeArguments(POOL_REAL_ARRAY to array)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_AS_BULK_ARRAY, NIL)
-  }
-
-  /**
-   * An alternative version of [godot.MultiMesh.setAsBulkArray] which can be used with *physics interpolation*. This method takes two arrays, and can set the data for the current and previous tick in one go. The renderer will automatically interpolate the data at each frame.
-   *
-   * This is useful for situations where the order of instances may change from physics tick to tick, such as particle systems.
-   *
-   * When the order of instances is coherent, the simpler [godot.MultiMesh.setAsBulkArray] can still be used with interpolation.
-   */
-  public open fun setAsBulkArrayInterpolated(arrayCurrent: PoolRealArray,
-      arrayPrevious: PoolRealArray): Unit {
-    TransferContext.writeArguments(POOL_REAL_ARRAY to arrayCurrent, POOL_REAL_ARRAY to
-        arrayPrevious)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_AS_BULK_ARRAY_INTERPOLATED, NIL)
-  }
-
-  /**
-   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors.
-   *
-   * For the color to take effect, ensure that [colorFormat] is non-`null` on the [godot.MultiMesh] and [godot.SpatialMaterial.vertexColorUseAsAlbedo] is `true` on the material.
-   */
-  public open fun setInstanceColor(instance: Long, color: Color): Unit {
-    TransferContext.writeArguments(LONG to instance, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR, NIL)
-  }
-
-  /**
-   * Sets custom data for a specific instance. Although [godot.core.Color] is used, it is just a container for 4 floating point numbers. The format of the number can change depending on the [enum CustomDataFormat] used.
-   */
-  public open fun setInstanceCustomData(instance: Long, customData: Color): Unit {
-    TransferContext.writeArguments(LONG to instance, COLOR to customData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
-        NIL)
-  }
-
-  /**
-   * Sets the [godot.core.Transform] for a specific instance.
-   */
-  public open fun setInstanceTransform(instance: Long, transform: Transform): Unit {
-    TransferContext.writeArguments(LONG to instance, TRANSFORM to transform)
+  public fun setInstanceTransform(instance: Long, transform: Transform3D): Unit {
+    TransferContext.writeArguments(LONG to instance, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM,
         NIL)
   }
@@ -305,33 +164,80 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the [godot.core.Transform2D] for a specific instance.
    */
-  public open fun setInstanceTransform2d(instance: Long, transform: Transform2D): Unit {
+  public fun setInstanceTransform2d(instance: Long, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to instance, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
         NIL)
   }
 
-  public enum class PhysicsInterpolationQuality(
-    id: Long
-  ) {
-    /**
-     * Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
-     */
-    INTERP_QUALITY_FAST(0),
-    /**
-     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
-     */
-    INTERP_QUALITY_HIGH(1),
-    ;
+  /**
+   * Returns the [godot.Transform3D] of a specific instance.
+   */
+  public fun getInstanceTransform(instance: Long): Transform3D {
+    TransferContext.writeArguments(LONG to instance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
+        TRANSFORM3D)
+    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+  }
 
-    public val id: Long
-    init {
-      this.id = id
-    }
+  /**
+   * Returns the [godot.core.Transform2D] of a specific instance.
+   */
+  public fun getInstanceTransform2d(instance: Long): Transform2D {
+    TransferContext.writeArguments(LONG to instance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+  }
 
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  /**
+   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors.
+   *
+   * For the color to take effect, ensure that [useColors] is `true` on the [godot.MultiMesh] and [godot.BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material.
+   */
+  public fun setInstanceColor(instance: Long, color: Color): Unit {
+    TransferContext.writeArguments(LONG to instance, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR, NIL)
+  }
+
+  /**
+   * Gets a specific instance's color.
+   */
+  public fun getInstanceColor(instance: Long): Color {
+    TransferContext.writeArguments(LONG to instance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR, COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Sets custom data for a specific instance. Although [godot.core.Color] is used, it is just a container for 4 floating point numbers.
+   *
+   * For the custom data to be used, ensure that [useCustomData] is `true`.
+   */
+  public fun setInstanceCustomData(instance: Long, customData: Color): Unit {
+    TransferContext.writeArguments(LONG to instance, COLOR to customData)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
+        NIL)
+  }
+
+  /**
+   * Returns the custom data that has been set for a specific instance.
+   */
+  public fun getInstanceCustomData(instance: Long): Color {
+    TransferContext.writeArguments(LONG to instance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
+        COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Returns the visibility axis-aligned bounding box in local space. See also [godot.VisualInstance3D.getTransformedAabb].
+   */
+  public fun getAabb(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
+        godot.core.VariantType.AABB)
+    return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 
   public enum class TransformFormat(
@@ -357,109 +263,5 @@ public open class MultiMesh : Resource() {
     }
   }
 
-  public enum class CustomDataFormat(
-    id: Long
-  ) {
-    /**
-     * Use when you are not using per-instance custom data.
-     */
-    CUSTOM_DATA_NONE(0),
-    /**
-     * Compress custom_data into 8 bits when passing to shader. This uses less memory and can be faster, but loses precision and range. Floats packed into 8 bits can only represent values between 0 and 1, numbers outside that range will be clamped.
-     */
-    CUSTOM_DATA_8BIT(1),
-    /**
-     * The [godot.core.Color] passed into [setInstanceCustomData] will use 4 floats. Use this for highest precision.
-     */
-    CUSTOM_DATA_FLOAT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class ColorFormat(
-    id: Long
-  ) {
-    /**
-     * Use when you are not using per-instance [godot.core.Color]s.
-     */
-    COLOR_NONE(0),
-    /**
-     * Compress [godot.core.Color] data into 8 bits when passing to shader. This uses less memory and can be faster, but the [godot.core.Color] loses precision.
-     */
-    COLOR_8BIT(1),
-    /**
-     * The [godot.core.Color] passed into [setInstanceColor] will use 4 floats. Use this for highest precision [godot.core.Color].
-     */
-    COLOR_FLOAT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public companion object {
-    /**
-     * Compress [godot.core.Color] data into 8 bits when passing to shader. This uses less memory and can be faster, but the [godot.core.Color] loses precision.
-     */
-    public final const val COLOR_8BIT: Long = 1
-
-    /**
-     * The [godot.core.Color] passed into [setInstanceColor] will use 4 floats. Use this for highest precision [godot.core.Color].
-     */
-    public final const val COLOR_FLOAT: Long = 2
-
-    /**
-     * Use when you are not using per-instance [godot.core.Color]s.
-     */
-    public final const val COLOR_NONE: Long = 0
-
-    /**
-     * Compress custom_data into 8 bits when passing to shader. This uses less memory and can be faster, but loses precision and range. Floats packed into 8 bits can only represent values between 0 and 1, numbers outside that range will be clamped.
-     */
-    public final const val CUSTOM_DATA_8BIT: Long = 1
-
-    /**
-     * The [godot.core.Color] passed into [setInstanceCustomData] will use 4 floats. Use this for highest precision.
-     */
-    public final const val CUSTOM_DATA_FLOAT: Long = 2
-
-    /**
-     * Use when you are not using per-instance custom data.
-     */
-    public final const val CUSTOM_DATA_NONE: Long = 0
-
-    /**
-     * Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
-     */
-    public final const val INTERP_QUALITY_FAST: Long = 0
-
-    /**
-     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
-     */
-    public final const val INTERP_QUALITY_HIGH: Long = 1
-
-    /**
-     * Use this when using 2D transforms.
-     */
-    public final const val TRANSFORM_2D: Long = 0
-
-    /**
-     * Use this when using 3D transforms.
-     */
-    public final const val TRANSFORM_3D: Long = 1
-  }
+  public companion object
 }

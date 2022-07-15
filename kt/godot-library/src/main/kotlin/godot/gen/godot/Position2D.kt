@@ -1,13 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Double
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -22,10 +21,5 @@ public open class Position2D : Node2D() {
     callConstructor(ENGINECLASS_POSITION2D)
   }
 
-  public open fun _getGizmoExtents(): Double {
-    throw NotImplementedError("_get_gizmo_extents is not implemented for Position2D")
-  }
-
-  public open fun _setGizmoExtents(extents: Double): Unit {
-  }
+  public companion object
 }

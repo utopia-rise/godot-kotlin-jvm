@@ -1,19 +1,20 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PoolByteArray
+import godot.core.PackedByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -36,22 +37,22 @@ public open class AudioStreamSample : AudioStream() {
    *
    * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.
    */
-  public open var `data`: PoolByteArray
+  public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_DATA,
-          POOL_BYTE_ARRAY)
-      return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
+          PACKED_BYTE_ARRAY)
+      return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_BYTE_ARRAY to value)
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_DATA, NIL)
     }
 
   /**
    * Audio format. See [enum Format] constants for values.
    */
-  public open var format: Long
+  public var format: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_FORMAT,
@@ -64,9 +65,25 @@ public open class AudioStreamSample : AudioStream() {
     }
 
   /**
+   * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
+   */
+  public var loopMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_LOOP_MODE,
+          NIL)
+    }
+
+  /**
    * The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
    */
-  public open var loopBegin: Long
+  public var loopBegin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_BEGIN,
@@ -82,7 +99,7 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
    */
-  public open var loopEnd: Long
+  public var loopEnd: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_END,
@@ -96,29 +113,13 @@ public open class AudioStreamSample : AudioStream() {
     }
 
   /**
-   * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
-   */
-  public open var loopMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_LOOP_MODE,
-          NIL)
-    }
-
-  /**
    * The sample rate for mixing this audio. Higher values require more storage space, but result in better quality.
    *
    * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.
    *
    * According to the [godot.Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
    */
-  public open var mixRate: Long
+  public var mixRate: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_MIX_RATE,
@@ -134,11 +135,10 @@ public open class AudioStreamSample : AudioStream() {
   /**
    * If `true`, audio is stereo.
    */
-  public open var stereo: Boolean
+  public var stereo: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_STEREO,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_IS_STEREO, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -155,7 +155,7 @@ public open class AudioStreamSample : AudioStream() {
    *
    * **Note:** A `.wav` extension is automatically appended to `path` if it is missing.
    */
-  public open fun saveToWav(path: String): GodotError {
+  public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SAVE_TO_WAV, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -175,7 +175,7 @@ public open class AudioStreamSample : AudioStream() {
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
      */
-    LOOP_PING_PONG(2),
+    LOOP_PINGPONG(2),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
      */
@@ -219,40 +219,5 @@ public open class AudioStreamSample : AudioStream() {
     }
   }
 
-  public companion object {
-    /**
-     * 16-bit audio codec.
-     */
-    public final const val FORMAT_16_BITS: Long = 1
-
-    /**
-     * 8-bit audio codec.
-     */
-    public final const val FORMAT_8_BITS: Long = 0
-
-    /**
-     * Audio is compressed using IMA ADPCM.
-     */
-    public final const val FORMAT_IMA_ADPCM: Long = 2
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
-     */
-    public final const val LOOP_BACKWARD: Long = 3
-
-    /**
-     * Audio does not loop.
-     */
-    public final const val LOOP_DISABLED: Long = 0
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing forward only.
-     */
-    public final const val LOOP_FORWARD: Long = 1
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
-     */
-    public final const val LOOP_PING_PONG: Long = 2
-  }
+  public companion object
 }

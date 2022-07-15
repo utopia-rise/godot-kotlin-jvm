@@ -2,7 +2,7 @@ import godot.Spatial
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
-import godot.core.Transform
+import godot.core.Transform3D
 import godot.core.Vector3
 import godot.core.variantArrayOf
 import godot.tests.Invocation
@@ -74,7 +74,7 @@ class CopyModificationCheckTestClass: Spatial() {
         vector--
         println(vector)
 
-        Spatial().transform = Transform().apply {
+        Spatial().transform = Transform3D().apply {
             basis.x = Vector3().apply {
                 x = vector
             }

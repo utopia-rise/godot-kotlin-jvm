@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -15,7 +16,7 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptOperator : VisualScriptNode() {
-  public open var `operator`: Long
+  public var `operator`: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTOPERATOR_GET_OPERATOR,
@@ -28,20 +29,22 @@ public open class VisualScriptOperator : VisualScriptNode() {
           NIL)
     }
 
-  public open var type: Long
+  public var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTOPERATOR_GET_TYPE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTOPERATOR_GET_TYPED,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTOPERATOR_SET_TYPE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTOPERATOR_SET_TYPED,
           NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTOPERATOR)
   }
+
+  public companion object
 }

@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -28,24 +28,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaneMesh : PrimitiveMesh() {
   /**
-   * Offset from the origin of the generated plane. Useful for particles.
-   */
-  public open var centerOffset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_CENTER_OFFSET,
-          VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_CENTER_OFFSET, NIL)
-    }
-
-  /**
    * Size of the generated plane.
    */
-  public open var size: Vector2
+  public var size: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SIZE, VECTOR2)
@@ -57,9 +42,25 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   /**
+   * Number of subdivision along the X axis.
+   */
+  public var subdivideWidth: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_WIDTH,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_SUBDIVIDE_WIDTH,
+          NIL)
+    }
+
+  /**
    * Number of subdivision along the Z axis.
    */
-  public open var subdivideDepth: Long
+  public var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_DEPTH,
@@ -73,36 +74,23 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   /**
-   * Number of subdivision along the X axis.
+   * Offset of the generated plane. Useful for particles.
    */
-  public open var subdivideWidth: Long
+  public var centerOffset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_WIDTH,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_CENTER_OFFSET,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_SUBDIVIDE_WIDTH,
-          NIL)
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_CENTER_OFFSET, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PLANEMESH)
   }
 
-  @CoreTypeHelper
-  public open fun centerOffset(schedule: Vector3.() -> Unit): Vector3 = centerOffset.apply{
-      schedule(this)
-      centerOffset = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
-      schedule(this)
-      size = this
-  }
-
+  public companion object
 }

@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -27,12 +28,27 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionShape2D : Node2D() {
   /**
-   * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
+   * The actual shape owned by this collision shape.
    */
-  public open var disabled: Boolean
+  public var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_DISABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_SHAPE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_SHAPE, NIL)
+    }
+
+  /**
+   * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
+   */
+  public var disabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_IS_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -47,11 +63,11 @@ public open class CollisionShape2D : Node2D() {
    *
    * **Note:** This property has no effect if this [godot.CollisionShape2D] is a child of an [godot.Area2D] node.
    */
-  public open var oneWayCollision: Boolean
+  public var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_ONE_WAY_COLLISION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_IS_ONE_WAY_COLLISION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -63,7 +79,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity.
    */
-  public open var oneWayCollisionMargin: Double
+  public var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,25 +92,9 @@ public open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  /**
-   * The actual shape owned by this collision shape.
-   */
-  public open var shape: Shape2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_SHAPE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_SHAPE, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONSHAPE2D)
   }
 
-  public open fun _shapeChanged(): Unit {
-  }
+  public companion object
 }

@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -24,7 +25,7 @@ public open class Path2D : Node2D() {
   /**
    * A [godot.Curve2D] describing the path.
    */
-  public open var curve: Curve2D?
+  public var curve: Curve2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_GET_CURVE, OBJECT)
@@ -39,6 +40,5 @@ public open class Path2D : Node2D() {
     callConstructor(ENGINECLASS_PATH2D)
   }
 
-  public open fun _curveChanged(): Unit {
-  }
+  public companion object
 }

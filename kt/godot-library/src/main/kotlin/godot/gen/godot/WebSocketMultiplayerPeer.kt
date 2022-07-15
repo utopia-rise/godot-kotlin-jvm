@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,30 +20,31 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
-  public val peerPacket: Signal1<Long> by signal("peer_source")
+public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerPeer() {
+  public val peerPacket: Signal1<Long> by signal("peerSource")
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
   }
 
-  public open fun getPeer(peerId: Long): WebSocketPeer? {
+  public fun setBuffers(
+    inputBufferSizeKb: Long,
+    inputMaxPackets: Long,
+    outputBufferSizeKb: Long,
+    outputMaxPackets: Long
+  ): GodotError {
+    TransferContext.writeArguments(LONG to inputBufferSizeKb, LONG to inputMaxPackets, LONG to outputBufferSizeKb, LONG to outputMaxPackets)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?
   }
 
-  public open fun setBuffers(
-    inputBufferSizeKb: Long,
-    inputMaxPackets: Long,
-    outputBufferSizeKb: Long,
-    outputMaxPackets: Long
-  ): GodotError {
-    TransferContext.writeArguments(LONG to inputBufferSizeKb, LONG to inputMaxPackets, LONG to
-        outputBufferSizeKb, LONG to outputMaxPackets)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
+  public companion object
 }

@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVACLASSWRAPPER)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true

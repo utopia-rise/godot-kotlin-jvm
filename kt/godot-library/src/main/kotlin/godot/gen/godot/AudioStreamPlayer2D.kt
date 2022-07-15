@@ -1,25 +1,25 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -43,90 +43,41 @@ public open class AudioStreamPlayer2D : Node2D() {
   public val finished: Signal0 by signal()
 
   /**
-   * Determines which [godot.Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
+   * The [godot.AudioStream] object to be played.
    */
-  public open var areaMask: Long
+  public var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_AREA_MASK,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_STREAM,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as AudioStream?
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_AREA_MASK,
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_STREAM,
           NIL)
     }
 
   /**
-   * Dampens audio over distance with this as an exponent.
+   * Base volume without dampening.
    */
-  public open var attenuation: Double
+  public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_ATTENUATION, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_VOLUME_DB,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_ATTENUATION, NIL)
-    }
-
-  /**
-   * If `true`, audio plays when added to scene tree.
-   */
-  public open var autoplay: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_AUTOPLAY,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_AUTOPLAY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_VOLUME_DB,
           NIL)
-    }
-
-  /**
-   * Bus on which this audio is playing.
-   *
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
-   */
-  public open var bus: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_BUS,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_BUS, NIL)
-    }
-
-  /**
-   * Maximum distance from which audio is still hearable.
-   */
-  public open var maxDistance: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_MAX_DISTANCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_MAX_DISTANCE, NIL)
     }
 
   /**
    * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
    */
-  public open var pitchScale: Double
+  public var pitchScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -142,34 +93,34 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * If `true`, audio is playing.
    */
-  public open val playing: Boolean
+  public val playing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PLAYING,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_IS_PLAYING,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
   /**
-   * The [godot.AudioStream] object to be played.
+   * If `true`, audio plays when added to scene tree.
    */
-  public open var stream: AudioStream?
+  public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_STREAM,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as AudioStream?
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_IS_AUTOPLAY_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_STREAM,
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_AUTOPLAY,
           NIL)
     }
 
   /**
    * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
    */
-  public open var streamPaused: Boolean
+  public var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -183,18 +134,81 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Base volume without dampening.
+   * Maximum distance from which audio is still hearable.
    */
-  public open var volumeDb: Double
+  public var maxDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_VOLUME_DB,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_MAX_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_VOLUME_DB,
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_MAX_DISTANCE, NIL)
+    }
+
+  /**
+   * Dampens audio over distance with this as an exponent.
+   */
+  public var attenuation: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_ATTENUATION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_ATTENUATION, NIL)
+    }
+
+  /**
+   * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
+   */
+  public var maxPolyphony: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_MAX_POLYPHONY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_MAX_POLYPHONY, NIL)
+    }
+
+  /**
+   * Bus on which this audio is playing.
+   */
+  public var bus: StringName
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_BUS,
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_BUS, NIL)
+    }
+
+  /**
+   * Determines which [godot.Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
+   */
+  public var areaMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_AREA_MASK,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SET_AREA_MASK,
           NIL)
     }
 
@@ -202,20 +216,34 @@ public open class AudioStreamPlayer2D : Node2D() {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER2D)
   }
 
-  public open fun _busLayoutChanged(): Unit {
+  /**
+   * Plays the audio from the given position `from_position`, in seconds.
+   */
+  public fun play(fromPosition: Double = 0.0): Unit {
+    TransferContext.writeArguments(DOUBLE to fromPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_PLAY, NIL)
   }
 
-  public open fun _isActive(): Boolean {
-    throw NotImplementedError("_is_active is not implemented for AudioStreamPlayer2D")
+  /**
+   * Sets the position from which audio will be played, in seconds.
+   */
+  public fun seek(toPosition: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to toPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SEEK, NIL)
   }
 
-  public open fun _setPlaying(enable: Boolean): Unit {
+  /**
+   * Stops the audio.
+   */
+  public fun stop(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_STOP, NIL)
   }
 
   /**
    * Returns the position in the [godot.AudioStream].
    */
-  public open fun getPlaybackPosition(): Double {
+  public fun getPlaybackPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PLAYBACK_POSITION, DOUBLE)
@@ -225,34 +253,12 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer2D].
    */
-  public open fun getStreamPlayback(): AudioStreamPlayback? {
+  public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_STREAM_PLAYBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }
 
-  /**
-   * Plays the audio from the given position `from_position`, in seconds.
-   */
-  public open fun play(fromPosition: Double = 0.0): Unit {
-    TransferContext.writeArguments(DOUBLE to fromPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_PLAY, NIL)
-  }
-
-  /**
-   * Sets the position from which audio will be played, in seconds.
-   */
-  public open fun seek(toPosition: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_SEEK, NIL)
-  }
-
-  /**
-   * Stops the audio.
-   */
-  public open fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_STOP, NIL)
-  }
+  public companion object
 }

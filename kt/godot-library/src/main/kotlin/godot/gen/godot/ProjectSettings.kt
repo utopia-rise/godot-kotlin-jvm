@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -16,8 +17,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -42,16 +41,101 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
-  /**
-   * Objects can use this signal to restrict reading of settings only to situations where a change has been made.
-   */
-  public val projectSettingsChanged: Signal0 by signal()
-
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PROJECTSETTINGS)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_PROJECTSETTINGS)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+
+  /**
+   * Returns `true` if a configuration value is present.
+   */
+  public fun hasSetting(name: String): Boolean {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the value of a setting.
+   *
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * ProjectSettings.set_setting("application/config/name", "Example")
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * ProjectSettings.SetSetting("application/config/name", "Example");
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * This can also be used to erase custom project settings. To do this change the setting value to `null`.
+   */
+  public fun setSetting(name: String, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING to name, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
+  }
+
+  /**
+   * Returns the value of a setting.
+   *
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * print(ProjectSettings.get_setting("application/config/name"))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GD.Print(ProjectSettings.GetSetting("application/config/name"));
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public fun getSetting(name: String): Any? {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Sets the order of a configuration value (influences when saved to the config file).
+   */
+  public fun setOrder(name: String, position: Long): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
+  }
+
+  /**
+   * Returns the order of a configuration value (influences when saved to the config file).
+   */
+  public fun getOrder(name: String): Long {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the specified property's initial value. This is the value the property reverts to.
+   */
+  public fun setInitialValue(name: String, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING to name, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
+        NIL)
+  }
 
   /**
    * Adds a custom property info to a property. The dictionary must contain:
@@ -64,18 +148,59 @@ public object ProjectSettings : Object() {
    *
    * **Example:**
    *
-   * ```
-   * 				ProjectSettings.set("category/property_name", 0)
+   * [codeblocks]
    *
-   * 				var property_info = {
-   * 				    "name": "category/property_name",
-   * 				    "type": TYPE_INT,
-   * 				    "hint": PROPERTY_HINT_ENUM,
-   * 				    "hint_string": "one,two,three"
-   * 				}
+   * [gdscript]
    *
-   * 				ProjectSettings.add_property_info(property_info)
-   * 				```
+   * ProjectSettings.set("category/property_name", 0)
+   *
+   *
+   *
+   * var property_info = {
+   *
+   *     "name": "category/property_name",
+   *
+   *     "type": TYPE_INT,
+   *
+   *     "hint": PROPERTY_HINT_ENUM,
+   *
+   *     "hint_string": "one,two,three"
+   *
+   * }
+   *
+   *
+   *
+   * ProjectSettings.add_property_info(property_info)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * ProjectSettings.Singleton.Set("category/property_name", 0);
+   *
+   *
+   *
+   * var propertyInfo = new Godot.Collections.Dictionary
+   *
+   * {
+   *
+   *     {"name", "category/propertyName"},
+   *
+   *     {"type", Variant.Type.Int},
+   *
+   *     {"hint", PropertyHint.Enum},
+   *
+   *     {"hint_string", "one,two,three"},
+   *
+   * };
+   *
+   *
+   *
+   * ProjectSettings.AddPropertyInfo(propertyInfo);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
@@ -92,27 +217,13 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the order of a configuration value (influences when saved to the config file).
+   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS `path`. See also [globalizePath].
    */
-  public fun getOrder(name: String): Long {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the value of a setting.
-   *
-   * **Example:**
-   *
-   * ```
-   * 				print(ProjectSettings.get_setting("application/config/name"))
-   * 				```
-   */
-  public fun getSetting(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+  public fun localizePath(path: String): String {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -142,12 +253,14 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns `true` if a configuration value is present.
+   * Saves the configuration to the `project.godot` file.
+   *
+   * **Note:** This method is intended to be used by editor plugins, as modified [godot.ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [saveCustom] to save `override.cfg` file.
    */
-  public fun hasSetting(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public fun save(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -166,16 +279,6 @@ public object ProjectSettings : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS `path`. See also [globalizePath].
-   */
-  public fun localizePath(path: String): String {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -199,55 +302,11 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Saves the configuration to the `project.godot` file.
-   *
-   * **Note:** This method is intended to be used by editor plugins, as modified [godot.ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [saveCustom] to save `override.cfg` file.
-   */
-  public fun save(): GodotError {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
    * Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [godot.ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats.
    */
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Sets the specified property's initial value. This is the value the property reverts to.
-   */
-  public fun setInitialValue(name: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
-        NIL)
-  }
-
-  /**
-   * Sets the order of a configuration value (influences when saved to the config file).
-   */
-  public fun setOrder(name: String, position: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
-  }
-
-  /**
-   * Sets the value of a setting.
-   *
-   * **Example:**
-   *
-   * ```
-   * 				ProjectSettings.set_setting("application/config/name", "Example")
-   * 				```
-   *
-   * This can also be used to erase custom project settings. To do this change the setting value to `null`.
-   */
-  public fun setSetting(name: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
   }
 }

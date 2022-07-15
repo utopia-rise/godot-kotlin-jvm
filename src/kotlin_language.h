@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
 #define GODOT_JVM_KOTLIN_LANGUAGE_H
+
 #include <core/object/script_language.h>
 
 class KotlinLanguage : public ScriptLanguage {
 public:
-    KotlinLanguage() = default;
+    KotlinLanguage();
     ~KotlinLanguage() override = default;
     KotlinLanguage(const KotlinLanguage&) = delete;
     void operator=(const KotlinLanguage&) = delete;
@@ -39,7 +40,7 @@ public:
 
     bool validate(const String& p_script, const String& p_path, List<String>* r_functions,
                   List<ScriptLanguage::ScriptError>* r_errors = nullptr, List<ScriptLanguage::Warning>* r_warnings = nullptr,
-                  Set<int>* r_safe_lines = nullptr) const override;
+                  HashSet<int>* r_safe_lines = nullptr) const override;
 
     String validate_path(const String& p_path) const override;
 
@@ -58,7 +59,7 @@ public:
     bool overrides_external_editor() override;
 
     Error complete_code(const String& p_code, const String& p_path, Object* p_owner,
-                        List<ScriptCodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
+                        List<CodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
 
     Error lookup_code(const String& p_code, const String& p_symbol, const String& p_path, Object* p_owner,
                       LookupResult& r_result) override;
@@ -112,6 +113,8 @@ public:
 
     void get_public_constants(List<Pair<String, Variant>>* p_constants) const override;
 
+    void get_public_annotations(List<MethodInfo> *p_annotations) const override;
+
     void profiling_start() override;
 
     void profiling_stop() override;
@@ -133,6 +136,11 @@ public:
     bool handles_global_class_type(const String& p_type) const override;
 
     String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const override;
+
+    const Object* get_custom_callable_middleman() const;
+
+private:
+    Object* kt_custom_callable_middleman;
 };
 
 

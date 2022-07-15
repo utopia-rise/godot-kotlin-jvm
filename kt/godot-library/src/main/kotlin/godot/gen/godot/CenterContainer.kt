@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,10 +27,10 @@ public open class CenterContainer : Container() {
   /**
    * If `true`, centers children relative to the [godot.CenterContainer]'s top left corner.
    */
-  public open var useTopLeft: Boolean
+  public var useTopLeft: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_GET_USE_TOP_LEFT,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_IS_USING_TOP_LEFT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -42,4 +43,6 @@ public open class CenterContainer : Container() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CENTERCONTAINER)
   }
+
+  public companion object
 }

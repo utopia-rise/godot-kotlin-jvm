@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -31,51 +32,120 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextureButton : BaseButton() {
   /**
-   * If `true`, the texture stretches to the edges of the node's bounding rectangle using the [stretchMode]. If `false`, the texture will not scale with the node.
+   * Texture to display by default, when the node is **not** in the disabled, focused, hover or pressed state.
    */
-  public open var expand: Boolean
+  public var textureNormal: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_EXPAND, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_NORMAL_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_NORMAL_TEXTURE,
+          NIL)
+    }
+
+  /**
+   * Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [godot.BaseButton.shortcut] key.
+   */
+  public var texturePressed: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_PRESSED_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_PRESSED_TEXTURE,
+          NIL)
+    }
+
+  /**
+   * Texture to display when the mouse hovers the node.
+   */
+  public var textureHover: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_HOVER_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_HOVER_TEXTURE,
+          NIL)
+    }
+
+  /**
+   * Texture to display when the node is disabled. See [godot.BaseButton.disabled].
+   */
+  public var textureDisabled: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_DISABLED_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_DISABLED_TEXTURE, NIL)
+    }
+
+  /**
+   * Texture to display when the node has mouse or keyboard focus. [textureFocused] is displayed *over* the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons.
+   */
+  public var textureFocused: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FOCUSED_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FOCUSED_TEXTURE,
+          NIL)
+    }
+
+  /**
+   * Pure black and white [godot.BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes.
+   */
+  public var textureClickMask: BitMap?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_CLICK_MASK,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as BitMap?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_CLICK_MASK, NIL)
+    }
+
+  /**
+   * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureButton] can be shrunk down past the texture size.
+   */
+  public var ignoreTextureSize: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_IGNORE_TEXTURE_SIZE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_EXPAND, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_IGNORE_TEXTURE_SIZE, NIL)
     }
 
   /**
-   * If `true`, texture is flipped horizontally.
+   * Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options.
    */
-  public open var flipH: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_H, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_H, NIL)
-    }
-
-  /**
-   * If `true`, texture is flipped vertically.
-   */
-  public open var flipV: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_V, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_V, NIL)
-    }
-
-  /**
-   * Controls the texture's behavior when you resize the node's bounding rectangle, **only if** [expand] is `true`. Set it to one of the [enum StretchMode] constants. See the constants to learn more.
-   */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_STRETCH_MODE,
@@ -89,99 +159,31 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Pure black and white [godot.BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes.
+   * If `true`, texture is flipped horizontally.
    */
-  public open var textureClickMask: BitMap?
+  public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_CLICK_MASK, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as BitMap?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_H, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_CLICK_MASK, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_H, NIL)
     }
 
   /**
-   * Texture to display when the node is disabled. See [godot.BaseButton.disabled].
+   * If `true`, texture is flipped vertically.
    */
-  public open var textureDisabled: Texture?
+  public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_DISABLED, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_V, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_DISABLED, NIL)
-    }
-
-  /**
-   * Texture to display when the node has mouse or keyboard focus.
-   */
-  public open var textureFocused: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_FOCUSED,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_FOCUSED,
-          NIL)
-    }
-
-  /**
-   * Texture to display when the mouse hovers the node.
-   */
-  public open var textureHover: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_HOVER,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_HOVER,
-          NIL)
-    }
-
-  /**
-   * Texture to display by default, when the node is **not** in the disabled, focused, hover or pressed state.
-   */
-  public open var textureNormal: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_NORMAL,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_NORMAL,
-          NIL)
-    }
-
-  /**
-   * Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [godot.BaseButton.shortcut] key.
-   */
-  public open var texturePressed: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_PRESSED,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_PRESSED,
-          NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_V, NIL)
     }
 
   public override fun __new(): Unit {
@@ -231,40 +233,5 @@ public open class TextureButton : BaseButton() {
     }
   }
 
-  public companion object {
-    /**
-     * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
-     */
-    public final const val STRETCH_KEEP: Long = 2
-
-    /**
-     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio.
-     */
-    public final const val STRETCH_KEEP_ASPECT: Long = 4
-
-    /**
-     * Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect ratio.
-     */
-    public final const val STRETCH_KEEP_ASPECT_CENTERED: Long = 5
-
-    /**
-     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits.
-     */
-    public final const val STRETCH_KEEP_ASPECT_COVERED: Long = 6
-
-    /**
-     * The texture keeps its original size and stays centered in the node's bounding rectangle.
-     */
-    public final const val STRETCH_KEEP_CENTERED: Long = 3
-
-    /**
-     * Scale to fit the node's bounding rectangle.
-     */
-    public final const val STRETCH_SCALE: Long = 0
-
-    /**
-     * Tile inside the node's bounding rectangle.
-     */
-    public final const val STRETCH_TILE: Long = 1
-  }
+  public companion object
 }

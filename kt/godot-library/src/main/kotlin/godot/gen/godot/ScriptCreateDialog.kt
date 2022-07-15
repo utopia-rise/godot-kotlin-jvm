@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -13,7 +14,6 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -21,17 +21,46 @@ import kotlin.Unit
 /**
  * The Editor's popup dialog for creating new [godot.Script] files.
  *
- * The [godot.ScriptCreateDialog] creates script files according to a given template for a given scripting language. The standard use is to configure its fields prior to calling one of the [godot.Popup.popup] methods.
+ * The [godot.ScriptCreateDialog] creates script files according to a given template for a given scripting language. The standard use is to configure its fields prior to calling one of the [godot.Window.popup] methods.
  *
- * ```
- * 		func _ready():
- * 		    dialog.config("Node", "res://new_node.gd") # For in-engine types
- * 		    dialog.config("\"res://base_node.gd\"", "res://derived_node.gd") # For script types
- * 		    dialog.popup_centered()
- * 		```
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * func _ready():
+ *
+ *     var dialog = ScriptCreateDialog.new();
+ *
+ *     dialog.config("Node", "res://new_node.gd") # For in-engine types.
+ *
+ *     dialog.config("\"res://base_node.gd\"", "res://derived_node.gd") # For script types.
+ *
+ *     dialog.popup_centered()
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public override void _Ready()
+ *
+ * {
+ *
+ *     var dialog = new ScriptCreateDialog();
+ *
+ *     dialog.Config("Node", "res://NewNode.cs"); // For in-engine types.
+ *
+ *     dialog.Config("\"res://BaseNode.cs\"", "res://DerivedNode.cs"); // For script types.
+ *
+ *     dialog.PopupCentered();
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
-public open class ScriptCreateDialog : ConfirmationDialog() {
+public open class ScriptCreateDialog internal constructor() : ConfirmationDialog() {
   /**
    * Emitted when the user clicks the OK button.
    */
@@ -41,53 +70,18 @@ public open class ScriptCreateDialog : ConfirmationDialog() {
     callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
   }
 
-  public open fun _browseClassInTree(): Unit {
-  }
-
-  public open fun _browsePath(arg0: Boolean, arg1: Boolean): Unit {
-  }
-
-  public open fun _builtInPressed(): Unit {
-  }
-
-  public open fun _classNameChanged(arg0: String): Unit {
-  }
-
-  public open fun _create(): Unit {
-  }
-
-  public open fun _fileSelected(arg0: String): Unit {
-  }
-
-  public open fun _langChanged(arg0: Long): Unit {
-  }
-
-  public open fun _parentNameChanged(arg0: String): Unit {
-  }
-
-  public open fun _pathChanged(arg0: String): Unit {
-  }
-
-  public open fun _pathEntered(arg0: String): Unit {
-  }
-
-  public open fun _pathHboxSorted(): Unit {
-  }
-
-  public open fun _templateChanged(arg0: Long): Unit {
-  }
-
   /**
    * Prefills required fields to configure the ScriptCreateDialog for use.
    */
-  public open fun config(
+  public fun config(
     inherits: String,
     path: String,
     builtInEnabled: Boolean = true,
     loadEnabled: Boolean = true
   ): Unit {
-    TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL
-        to loadEnabled)
+    TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL to loadEnabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)
   }
+
+  public companion object
 }

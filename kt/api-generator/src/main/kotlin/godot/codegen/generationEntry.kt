@@ -2,203 +2,76 @@ package godot.codegen
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.squareup.kotlinpoet.*
-import godot.codegen.utils.convertToSnakeCase
-import godot.codegen.utils.getPackage
-import godot.codegen.utils.jvmVariantTypeValue
-import godot.docgen.ClassDoc
+import com.squareup.kotlinpoet.FileSpec
+import godot.codegen.constants.GENERATED_COMMENT
+import godot.codegen.constants.godotApiPackage
+import godot.codegen.models.ApiDescription
+import godot.codegen.models.enriched.toEnriched
+import godot.codegen.poet.RegistrationFileSpec
+import godot.codegen.repositories.*
+import godot.codegen.repositories.impl.*
+import godot.codegen.services.*
+import godot.codegen.services.impl.*
 import godot.docgen.DocGen
 import java.io.File
 
-const val GENERATED_COMMENT = "THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!"
-
-lateinit var tree: Graph<Class>
-var classDocs: Map<String, ClassDoc> = mapOf()
-
-val jvmMethodToNotGenerate = listOf(
-    "ENGINEMETHOD_ENGINECLASS_OBJECT_FREE",
-    "ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_SET_TARGET"
-)
-
 fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
-    classDocs = docsDir?.let { DocGen.deserializeDoc(it) } ?: mapOf()
-    val classes: List<Class> = ObjectMapper().readValue(jsonSource, object : TypeReference<ArrayList<Class>>() {})
+    val classDocs = docsDir?.let { DocGen.deserializeDoc(it) } ?: mapOf()
+    val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
-    tree = classes.buildTree()
+    val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes.toEnriched())
+    val singletonRepository: SingletonRepository = JsonSingletonRepository(apiDescription.singletons.toEnriched())
+    val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched())
+    val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
+    val docRepository: IDocRepository = DocRepository(classDocs)
+    val nativeStructureRepository = NativeStructureRepository(apiDescription.nativeStructures.toEnriched())
 
-    classes.forEach {
-        it.initClass()
-        it.methods.forEach { method -> method.initEngineIndex(it.engineClassDBIndexName) }
-        it.properties.forEach { property -> property.initEngineIndexNames(it.engineClassDBIndexName) }
-    }
+    val classGraphService: IClassGraphService = ClassGraphService(classRepository)
+    val classService: IClassService = ClassService(
+        classRepository,
+        singletonRepository,
+        classGraphService
+    )
+    val enumService: IEnumService = EnumService(globalEnumRepository, coreTypeEnumRepository, classService)
+    val generationService: IGenerationService = GenerationService(docRepository, classGraphService, enumService, nativeStructureRepository)
 
-    classes.forEach { clazz ->
-        clazz.properties.forEach { property ->
-            fun inferMethodAccessorFromParent(isSetter: Boolean = false) {
-                val methodName = if (isSetter) property.setter else property.getter
-                val returnType = if (isSetter) "void" else property.type
-                val arguments = if (isSetter) listOf(Argument(property.oldName, property.type)) else listOf()
+    classService.findGetSetMethodsAndUpdateProperties()
 
-                val method = Method(
-                    methodName.convertToSnakeCase(),
-                    returnType,
-                    isVirtual = false,
-                    hasVarargs = false,
-                    arguments = arguments
-                )
+    //TODO: generateEngineTypesRegistration
 
-                val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
-                val hasValidAccessor = if (isSetter) property.hasValidSetter else property.hasValidGetter
-                if (parentClassAndMethod != null && !hasValidAccessor) {
-                    if (isSetter) {
-                        property.shouldUseSuperSetter = true
-                    } else {
-                        property.shouldUseSuperGetter = true
-                    }
-                }
-            }
+    val engineIndexFile = FileSpec.builder(godotApiPackage, "EngineIndexes")
+    val registrationFileSpec = RegistrationFileSpec()
 
-            inferMethodAccessorFromParent()
-
-            // It does not seems to have any case where setter should call parent in api. But in case this happen in
-            // future, this is here.
-            inferMethodAccessorFromParent(true)
+    for (enrichedClass in classService.getClasses()) {
+        for (property in enrichedClass.properties) {
+            classService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
         }
+
+        generationService.generateClass(enrichedClass).writeTo(this)
+        generationService.generateEngineIndexesForClass(engineIndexFile, enrichedClass)
+        generationService.generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
     }
 
-    generateEngineIndexesFile(classes).writeTo(this)
+    for (singleton in classService.getSingletons()) {
+        for (property in singleton.properties) {
+            classService.updatePropertyIfShouldUseSuper(singleton.name, property.name)
+        }
 
-    classes.forEach { clazz ->
-        clazz.generate(this)
+        generationService.generateSingleton(singleton).writeTo(this)
+        generationService.generateEngineIndexesForClass(engineIndexFile, singleton)
+        generationService.generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
     }
 
-    this.parentFile.mkdirs()
+    engineIndexFile.build().writeTo(this)
+    registrationFileSpec.build().writeTo(this)
 
-    generateEngineTypesRegistration(classes).writeTo(this)
-}
-
-private fun generateEngineIndexesFile(classes: List<Class>): FileSpec {
-    val fileSpecBuilder = FileSpec.builder("godot", "EngineIndexes")
-    var methodIndex = 0
-    var singletonIndex = 0
-    classes.filter { it.shouldGenerate }.forEachIndexed { classIndex, clazz ->
-        fileSpecBuilder.addProperty(
-            PropertySpec.builder(clazz.engineClassDBIndexName, INT, KModifier.CONST).initializer("%L", classIndex).addModifiers(KModifier.INTERNAL).build()
-        )
-
-        if (clazz.isSingleton) {
-            fileSpecBuilder.addProperty(
-                PropertySpec.builder(clazz.engineSingletonIndexName!!, INT, KModifier.CONST).initializer("%L", singletonIndex).addModifiers(KModifier.INTERNAL).build()
+    for (enum in enumService.getGlobalEnums()) {
+        FileSpec.builder(godotApiPackage, enum.name)
+            .addType(
+                generationService.generateEnum(enum)
             )
-            singletonIndex++
-        }
-
-        clazz.methods.filter { !it.isGetterOrSetter }.forEach { method ->
-            if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(method.engineIndexName, INT, KModifier.CONST)
-                        .initializer("%L", methodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                methodIndex++
-            }
-        }
-        clazz.properties.forEach { property ->
-            if (property.hasValidGetter) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(property.engineGetterIndexName, INT, KModifier.CONST)
-                        .initializer("%L", methodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                methodIndex++
-            }
-
-            if (property.hasValidSetter) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(property.engineSetterIndexName, INT, KModifier.CONST)
-                        .initializer("%L", methodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                methodIndex++
-            }
-        }
+            .addComment(GENERATED_COMMENT)
+            .build()
+            .writeTo(this)
     }
-
-    return fileSpecBuilder.addComment(GENERATED_COMMENT).build()
-}
-
-private fun generateEngineTypesRegistration(classes: List<Class>): FileSpec {
-    val registrationFile = FileSpec.builder("godot", "RegisterEngineTypes")
-
-    val registerTypesFunBuilder = FunSpec.builder("registerEngineTypes")
-
-    val registerMethodsFunBuilder = FunSpec.builder("registerEngineTypeMethods")
-
-    val registerVariantMappingFunBuilder = FunSpec.builder("registerVariantMapping")
-
-    fun addEngineTypeMethod(methodForClass: FunSpec.Builder, classIndexName: String, methodEngineName: String) {
-        methodForClass.addStatement(
-            "%T.engineTypeMethod.add(%M to \"${methodEngineName}\")",
-            ClassName("godot.core", "TypeManager"),
-            MemberName("godot", classIndexName)
-        )
-    }
-
-    fun addVariantMapping(className: String) {
-        registerVariantMappingFunBuilder.addStatement(
-            "%M[%T::class] = %T",
-            MemberName("godot.core", "variantMapper"),
-            ClassName("godot", className),
-            ClassName("godot.core.VariantType", className.jvmVariantTypeValue)
-        )
-    }
-
-    classes.filter { it.shouldGenerate }.forEach { clazz ->
-        if (clazz.isSingleton) {
-            registerTypesFunBuilder.addStatement(
-                "%T.registerEngineType(%S) { %T }",
-                ClassName("godot.core", "TypeManager"),
-                clazz.oldName,
-                ClassName(clazz.newName.getPackage(), clazz.newName)
-            )
-            registerTypesFunBuilder.addStatement(
-                "%T.registerSingleton(%S)",
-                ClassName("godot.core", "TypeManager"),
-                clazz.newName
-            )
-        } else {
-            registerTypesFunBuilder.addStatement(
-                "%T.registerEngineType(%S, ::%T)",
-                ClassName("godot.core", "TypeManager"),
-                clazz.oldName,
-                ClassName(clazz.newName.getPackage(), clazz.newName)
-            )
-        }
-        addVariantMapping(clazz.newName)
-
-        val registerMethodForClassFun = FunSpec.builder("registerEngineTypeMethodFor${clazz.newName}")
-        registerMethodForClassFun.addModifiers(KModifier.PRIVATE)
-        clazz.methods.filter { !it.isGetterOrSetter }.forEach {
-            if (!jvmMethodToNotGenerate.contains(it.engineIndexName)) {
-                addEngineTypeMethod(registerMethodForClassFun, clazz.engineClassDBIndexName, it.oldName)
-            }
-        }
-        clazz.properties.forEach {
-            if (it.hasValidGetter) {
-                addEngineTypeMethod(registerMethodForClassFun, clazz.engineClassDBIndexName, it.validGetter.oldName)
-            }
-            if (it.hasValidSetter) {
-                addEngineTypeMethod(registerMethodForClassFun, clazz.engineClassDBIndexName, it.validSetter.oldName)
-            }
-        }
-        registrationFile.addFunction(registerMethodForClassFun.build())
-        registerMethodsFunBuilder.addStatement("registerEngineTypeMethodFor${clazz.newName}()")
-    }
-    registrationFile.addFunction(
-            registerTypesFunBuilder.build()
-        )
-        .addFunction(
-            registerVariantMappingFunBuilder.build()
-        )
-
-    registrationFile.addFunction(registerMethodsFunBuilder.build())
-
-    return registrationFile.addComment(GENERATED_COMMENT).build()
 }

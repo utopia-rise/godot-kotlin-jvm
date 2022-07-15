@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -23,7 +24,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
    * A function to be applied to the input color. See [enum Function] for options.
    */
-  public open var function: Long
+  public var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -67,6 +68,10 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			```
      */
     FUNC_SEPIA(1),
+    /**
+     * Represents the size of the [enum Function] enum.
+     */
+    FUNC_MAX(2),
     ;
 
     public val id: Long
@@ -79,31 +84,5 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * Converts the color to grayscale using the following formula:
-     *
-     * ```
-     * 			vec3 c = input;
-     * 			float max1 = max(c.r, c.g);
-     * 			float max2 = max(max1, c.b);
-     * 			float max3 = max(max1, max2);
-     * 			return vec3(max3, max3, max3);
-     * 			```
-     */
-    public final const val FUNC_GRAYSCALE: Long = 0
-
-    /**
-     * Applies sepia tone effect using the following formula:
-     *
-     * ```
-     * 			vec3 c = input;
-     * 			float r = (c.r * 0.393) + (c.g * 0.769) + (c.b * 0.189);
-     * 			float g = (c.r * 0.349) + (c.g * 0.686) + (c.b * 0.168);
-     * 			float b = (c.r * 0.272) + (c.g * 0.534) + (c.b * 0.131);
-     * 			return vec3(r, g, b);
-     * 			```
-     */
-    public final const val FUNC_SEPIA: Long = 1
-  }
+  public companion object
 }

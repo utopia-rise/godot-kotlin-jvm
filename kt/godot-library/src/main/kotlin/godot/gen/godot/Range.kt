@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -22,15 +23,10 @@ import kotlin.Unit
 /**
  * Abstract base class for range-based controls.
  *
- * Range is a base class for [godot.Control] nodes that change a floating-point [value] between a [minValue] and [maxValue], using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher level nodes using Range.
+ * Range is a base class for [godot.Control] nodes that change a floating-point *value* between a *minimum* and a *maximum*, using *step* and *page*, for example a [godot.ScrollBar].
  */
 @GodotBaseType
 public open class Range : Control() {
-  /**
-   * Emitted when [minValue], [maxValue], [page], or [step] change.
-   */
-  public val changed: Signal0 by signal()
-
   /**
    * Emitted when [value] changes. When used on a [godot.Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [valueChanged], consider using a *debouncing* [godot.Timer] to call the function less often.
    *
@@ -39,121 +35,42 @@ public open class Range : Control() {
   public val valueChanged: Signal1<Double> by signal("value")
 
   /**
-   * If `true`, [value] may be greater than [maxValue].
+   * Emitted when [minValue], [maxValue], [page], or [step] change.
    */
-  public open var allowGreater: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ALLOW_GREATER, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_GREATER, NIL)
-    }
+  public val changed: Signal0 by signal()
 
   /**
-   * If `true`, [value] may be less than [minValue].
+   * Minimum value. Range is clamped if `value` is less than `min_value`.
    */
-  public open var allowLesser: Boolean
+  public var minValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ALLOW_LESSER, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL)
-    }
-
-  /**
-   * If `true`, and `min_value` is greater than 0, `value` will be represented exponentially rather than linearly.
-   */
-  public open var expEdit: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_EXP_EDIT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_EDIT, NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN, NIL)
     }
 
   /**
    * Maximum value. Range is clamped if `value` is greater than `max_value`.
    */
-  public open var maxValue: Double
+  public var maxValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX_VALUE, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX_VALUE, NIL)
-    }
-
-  /**
-   * Minimum value. Range is clamped if `value` is less than `min_value`.
-   */
-  public open var minValue: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN_VALUE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN_VALUE, NIL)
-    }
-
-  /**
-   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by `page` over the difference between `min_value` and `max_value`.
-   */
-  public open var page: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_PAGE, NIL)
-    }
-
-  /**
-   * The value mapped between 0 and 1.
-   */
-  public open var ratio: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_RATIO, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_RATIO, NIL)
-    }
-
-  /**
-   * If `true`, `value` will always be rounded to the nearest integer.
-   */
-  public open var rounded: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ROUNDED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ROUNDED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX, NIL)
     }
 
   /**
    * If greater than 0, `value` will always be rounded to a multiple of `step`. If `rounded` is also `true`, `value` will first be rounded to a multiple of `step` then rounded to the nearest integer.
    */
-  public open var step: Double
+  public var step: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_STEP, DOUBLE)
@@ -165,9 +82,23 @@ public open class Range : Control() {
     }
 
   /**
+   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by `page` over the difference between `min_value` and `max_value`.
+   */
+  public var page: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_PAGE, NIL)
+    }
+
+  /**
    * Range's current value.
    */
-  public open var `value`: Double
+  public var `value`: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_VALUE, DOUBLE)
@@ -178,14 +109,91 @@ public open class Range : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_VALUE, NIL)
     }
 
+  /**
+   * The value mapped between 0 and 1.
+   */
+  public var ratio: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_AS_RATIO, NIL)
+    }
+
+  /**
+   * If `true`, and `min_value` is greater than 0, `value` will be represented exponentially rather than linearly.
+   */
+  public var expEdit: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_RATIO, NIL)
+    }
+
+  /**
+   * If `true`, `value` will always be rounded to the nearest integer.
+   */
+  public var rounded: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_USE_ROUNDED_VALUES, NIL)
+    }
+
+  /**
+   * If `true`, [value] may be greater than [maxValue].
+   */
+  public var allowGreater: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_GREATER, NIL)
+    }
+
+  /**
+   * If `true`, [value] may be less than [minValue].
+   */
+  public var allowLesser: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RANGE)
   }
 
   /**
+   * Called when the [godot.Range]'s value is changed (following the same conditions as [valueChanged]).
+   */
+  public open fun _valueChanged(newValue: Double): Unit {
+  }
+
+  /**
    * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
    */
-  public open fun share(with: Node): Unit {
+  public fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SHARE, NIL)
   }
@@ -193,8 +201,10 @@ public open class Range : Control() {
   /**
    * Stops the [godot.Range] from sharing its member variables with any other.
    */
-  public open fun unshare(): Unit {
+  public fun unshare(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_UNSHARE, NIL)
   }
+
+  public companion object
 }

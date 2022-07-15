@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -22,11 +22,11 @@ import kotlin.Unit
  * Translated to `vec3 rgb` and `float alpha` in the shader language.
  */
 @GodotBaseType
-public open class VisualShaderNodeColorConstant : VisualShaderNode() {
+public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Color] constant which represents a state of this node.
    */
-  public open var constant: Color
+  public var constant: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -43,10 +43,5 @@ public open class VisualShaderNodeColorConstant : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT)
   }
 
-  @CoreTypeHelper
-  public open fun constant(schedule: Color.() -> Unit): Color = constant.apply{
-      schedule(this)
-      constant = this
-  }
-
+  public companion object
 }

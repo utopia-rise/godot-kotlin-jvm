@@ -1,12 +1,13 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -22,24 +23,9 @@ import kotlin.Unit
  * By default, Godot saves resources as `.tres` (text-based), `.res` (binary) or another built-in format, but you can choose to create your own format by extending this class. Be sure to respect the documented return types and values. You should give it a global class name with `class_name` for it to be registered. Like built-in ResourceFormatSavers, it will be called automatically when saving resources of its recognized type(s). You may also implement a [godot.ResourceFormatLoader].
  */
 @GodotBaseType
-public open class ResourceFormatSaver : Reference() {
+public open class ResourceFormatSaver : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEFORMATSAVER)
-  }
-
-  /**
-   * Returns the list of extensions available for saving the resource object, provided it is recognized (see [recognize]).
-   */
-  public open fun _getRecognizedExtensions(resource: Resource): PoolStringArray {
-    throw
-        NotImplementedError("get_recognized_extensions is not implemented for ResourceFormatSaver")
-  }
-
-  /**
-   * Returns whether the given resource object can be saved by this saver.
-   */
-  public open fun _recognize(resource: Resource): Boolean {
-    throw NotImplementedError("recognize is not implemented for ResourceFormatSaver")
   }
 
   /**
@@ -52,6 +38,22 @@ public open class ResourceFormatSaver : Reference() {
     resource: Resource,
     flags: Long
   ): Long {
-    throw NotImplementedError("save is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_save is not implemented for ResourceFormatSaver")
   }
+
+  /**
+   * Returns whether the given resource object can be saved by this saver.
+   */
+  public open fun _recognize(resource: Resource): Boolean {
+    throw NotImplementedError("_recognize is not implemented for ResourceFormatSaver")
+  }
+
+  /**
+   * Returns the list of extensions available for saving the resource object, provided it is recognized (see [_recognize]).
+   */
+  public open fun _getRecognizedExtensions(resource: Resource): PackedStringArray {
+    throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
+  }
+
+  public companion object
 }

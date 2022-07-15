@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -15,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Performs a texture lookup within the visual shader graph.
+ * Performs a 2D texture lookup within the visual shader graph.
  *
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to choose from.
  */
@@ -24,7 +25,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Determines the source for the lookup. See [enum Source] for options.
    */
-  public open var source: Long
+  public var source: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -40,12 +41,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * The source texture, if needed for the selected [source].
    */
-  public open var texture: Texture?
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -56,7 +57,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
    * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [enum TextureType] for options.
    */
-  public open var textureType: Long
+  public var textureType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -87,7 +88,11 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     /**
      * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
      */
-    TYPE_NORMALMAP(2),
+    TYPE_NORMAL_MAP(2),
+    /**
+     * Represents the size of the [enum TextureType] enum.
+     */
+    TYPE_MAX(3),
     ;
 
     public val id: Long
@@ -112,7 +117,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     SOURCE_SCREEN(1),
     /**
-     * Use the texture from this shader's texture built-in (e.g. a texture of a [godot.Sprite]).
+     * Use the texture from this shader's texture built-in (e.g. a texture of a [godot.Sprite2D]).
      */
     SOURCE_2D_TEXTURE(2),
     /**
@@ -127,6 +132,10 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      * Use the texture provided in the input port for this function.
      */
     SOURCE_PORT(5),
+    /**
+     * Represents the size of the [enum Source] enum.
+     */
+    SOURCE_MAX(6),
     ;
 
     public val id: Long
@@ -139,50 +148,5 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * Use the texture from this shader's normal map built-in.
-     */
-    public final const val SOURCE_2D_NORMAL: Long = 3
-
-    /**
-     * Use the texture from this shader's texture built-in (e.g. a texture of a [godot.Sprite]).
-     */
-    public final const val SOURCE_2D_TEXTURE: Long = 2
-
-    /**
-     * Use the depth texture available for this shader.
-     */
-    public final const val SOURCE_DEPTH: Long = 4
-
-    /**
-     * Use the texture provided in the input port for this function.
-     */
-    public final const val SOURCE_PORT: Long = 5
-
-    /**
-     * Use the current viewport's texture as the source.
-     */
-    public final const val SOURCE_SCREEN: Long = 1
-
-    /**
-     * Use the texture given as an argument for this function.
-     */
-    public final const val SOURCE_TEXTURE: Long = 0
-
-    /**
-     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
-     */
-    public final const val TYPE_COLOR: Long = 1
-
-    /**
-     * No hints are added to the uniform declaration.
-     */
-    public final const val TYPE_DATA: Long = 0
-
-    /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
-     */
-    public final const val TYPE_NORMALMAP: Long = 2
-  }
+  public companion object
 }

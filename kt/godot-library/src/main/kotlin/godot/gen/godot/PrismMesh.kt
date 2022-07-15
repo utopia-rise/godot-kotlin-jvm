@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -28,7 +28,7 @@ public open class PrismMesh : PrimitiveMesh() {
   /**
    * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge.
    */
-  public open var leftToRight: Double
+  public var leftToRight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_LEFT_TO_RIGHT,
@@ -43,7 +43,7 @@ public open class PrismMesh : PrimitiveMesh() {
   /**
    * Size of the prism.
    */
-  public open var size: Vector3
+  public var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SIZE, VECTOR3)
@@ -55,25 +55,25 @@ public open class PrismMesh : PrimitiveMesh() {
     }
 
   /**
-   * Number of added edge loops along the Z axis.
+   * Number of added edge loops along the X axis.
    */
-  public open var subdivideDepth: Long
+  public var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_DEPTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_WIDTH,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_DEPTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_WIDTH,
           NIL)
     }
 
   /**
    * Number of added edge loops along the Y axis.
    */
-  public open var subdivideHeight: Long
+  public var subdivideHeight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_HEIGHT,
@@ -87,18 +87,18 @@ public open class PrismMesh : PrimitiveMesh() {
     }
 
   /**
-   * Number of added edge loops along the X axis.
+   * Number of added edge loops along the Z axis.
    */
-  public open var subdivideWidth: Long
+  public var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_WIDTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_DEPTH,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_WIDTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_DEPTH,
           NIL)
     }
 
@@ -106,10 +106,5 @@ public open class PrismMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_PRISMMESH)
   }
 
-  @CoreTypeHelper
-  public open fun size(schedule: Vector3.() -> Unit): Vector3 = size.apply{
-      schedule(this)
-      size = this
-  }
-
+  public companion object
 }

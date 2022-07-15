@@ -1,18 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -22,14 +23,16 @@ import kotlin.Unit
 /**
  * Defines a 2D collision polygon.
  *
- * Provides a 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices.
+ * Provides a concave or convex 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices. See also [godot.ConvexPolygonShape2D].
+ *
+ * In the editor, a [godot.CollisionPolygon2D] can be generated from a [godot.Sprite2D]'s outline by selecting a [godot.Sprite2D] node, going to the **Sprite2D** menu at the top of the 2D editor viewport then choosing **Create CollisionPolygon2D Sibling**.
  */
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {
   /**
    * Collision build mode. Use one of the [enum BuildMode] constants.
    */
-  public open var buildMode: Long
+  public var buildMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_BUILD_MODE,
@@ -43,12 +46,28 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   /**
-   * If `true`, no collisions will be detected.
+   * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.PackedVector2Array], not a reference.
    */
-  public open var disabled: Boolean
+  public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_DISABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_POLYGON,
+          PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_POLYGON,
+          NIL)
+    }
+
+  /**
+   * If `true`, no collisions will be detected.
+   */
+  public var disabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_IS_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -63,11 +82,11 @@ public open class CollisionPolygon2D : Node2D() {
    *
    * **Note:** This property has no effect if this [godot.CollisionPolygon2D] is a child of an [godot.Area2D] node.
    */
-  public open var oneWayCollision: Boolean
+  public var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_ONE_WAY_COLLISION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_IS_ONE_WAY_COLLISION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -79,7 +98,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity.
    */
-  public open var oneWayCollisionMargin: Double
+  public var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,22 +109,6 @@ public open class CollisionPolygon2D : Node2D() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
-    }
-
-  /**
-   * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.core.PoolVector2Array], not a reference.
-   */
-  public open var polygon: PoolVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_POLYGON,
-          POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-    }
-    set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_POLYGON,
-          NIL)
     }
 
   public override fun __new(): Unit {
@@ -135,15 +138,5 @@ public open class CollisionPolygon2D : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Collisions will only include the polygon edges.
-     */
-    public final const val BUILD_SEGMENTS: Long = 1
-
-    /**
-     * Collisions will include the polygon and its contained area.
-     */
-    public final const val BUILD_SOLIDS: Long = 0
-  }
+  public companion object
 }

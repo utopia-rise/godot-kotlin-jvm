@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -26,41 +27,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class AspectRatioContainer : Container() {
   /**
-   * Specifies the horizontal relative position of child controls.
-   */
-  public open var alignmentHorizontal: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_HORIZONTAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_HORIZONTAL, NIL)
-    }
-
-  /**
-   * Specifies the vertical relative position of child controls.
-   */
-  public open var alignmentVertical: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_VERTICAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_VERTICAL, NIL)
-    }
-
-  /**
    * The aspect ratio to enforce on child controls. This is the width divided by the height. The ratio depends on the [stretchMode].
    */
-  public open var ratio: Double
+  public var ratio: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_RATIO,
@@ -76,7 +45,7 @@ public open class AspectRatioContainer : Container() {
   /**
    * The stretch mode used to align child controls.
    */
-  public open var stretchMode: Long
+  public var stretchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -89,25 +58,57 @@ public open class AspectRatioContainer : Container() {
           ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_STRETCH_MODE, NIL)
     }
 
+  /**
+   * Specifies the horizontal relative position of child controls.
+   */
+  public var alignmentHorizontal: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_HORIZONTAL, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_HORIZONTAL, NIL)
+    }
+
+  /**
+   * Specifies the vertical relative position of child controls.
+   */
+  public var alignmentVertical: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_VERTICAL, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_VERTICAL, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ASPECTRATIOCONTAINER)
   }
 
-  public enum class AlignMode(
+  public enum class AlignmentMode(
     id: Long
   ) {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
      */
-    ALIGN_BEGIN(0),
+    ALIGNMENT_BEGIN(0),
     /**
      * Aligns child controls with the center of the container.
      */
-    ALIGN_CENTER(1),
+    ALIGNMENT_CENTER(1),
     /**
      * Aligns child controls with the end (right or bottom) of the container.
      */
-    ALIGN_END(2),
+    ALIGNMENT_END(2),
     ;
 
     public val id: Long
@@ -138,7 +139,7 @@ public open class AspectRatioContainer : Container() {
     /**
      * The width and height of child controls is automatically adjusted to make their bounding rectangle cover the entire area of the container while keeping the aspect ratio.
      *
-     * When the bounding rectangle of child controls exceed the container's size and [godot.Control.rectClipContent] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
+     * When the bounding rectangle of child controls exceed the container's size and [godot.Control.clipContents] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
      */
     STRETCH_COVER(3),
     ;
@@ -153,42 +154,5 @@ public open class AspectRatioContainer : Container() {
     }
   }
 
-  public companion object {
-    /**
-     * Aligns child controls with the beginning (left or top) of the container.
-     */
-    public final const val ALIGN_BEGIN: Long = 0
-
-    /**
-     * Aligns child controls with the center of the container.
-     */
-    public final const val ALIGN_CENTER: Long = 1
-
-    /**
-     * Aligns child controls with the end (right or bottom) of the container.
-     */
-    public final const val ALIGN_END: Long = 2
-
-    /**
-     * The width and height of child controls is automatically adjusted to make their bounding rectangle cover the entire area of the container while keeping the aspect ratio.
-     *
-     * When the bounding rectangle of child controls exceed the container's size and [godot.Control.rectClipContent] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
-     */
-    public final const val STRETCH_COVER: Long = 3
-
-    /**
-     * The bounding rectangle of child controls is automatically adjusted to fit inside the container while keeping the aspect ratio.
-     */
-    public final const val STRETCH_FIT: Long = 2
-
-    /**
-     * The width of child controls is automatically adjusted based on the height of the container.
-     */
-    public final const val STRETCH_HEIGHT_CONTROLS_WIDTH: Long = 1
-
-    /**
-     * The height of child controls is automatically adjusted based on the width of the container.
-     */
-    public final const val STRETCH_WIDTH_CONTROLS_HEIGHT: Long = 0
-  }
+  public companion object
 }

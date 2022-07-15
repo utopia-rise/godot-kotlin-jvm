@@ -1,7 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
@@ -30,7 +31,7 @@ public open class GridContainer : Container() {
   /**
    * The number of columns in the [godot.GridContainer]. If modified, [godot.GridContainer] reorders its Control-derived children to accommodate the new layout.
    */
-  public open var columns: Long
+  public var columns: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS, LONG)
@@ -44,4 +45,6 @@ public open class GridContainer : Container() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GRIDCONTAINER)
   }
+
+  public companion object
 }

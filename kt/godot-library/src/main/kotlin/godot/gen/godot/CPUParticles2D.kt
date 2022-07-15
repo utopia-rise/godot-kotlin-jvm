@@ -1,15 +1,15 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.PoolColorArray
-import godot.core.PoolVector2Array
+import godot.core.PackedColorArray
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -17,8 +17,8 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_COLOR_ARRAY
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_COLOR_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
@@ -35,18 +35,28 @@ import kotlin.Unit
  *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  *
- * See also [godot.Particles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.
- *
- * **Note:** Unlike [godot.Particles2D], the visibility rect is generated on-the-fly and doesn't need to be configured by the user.
+ * See also [godot.GPUParticles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.
  */
 @GodotBaseType
 public open class CPUParticles2D : Node2D() {
   /**
-   * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
-   *
-   * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
+   * If `true`, particles are being emitted.
    */
-  public open var amount: Long
+  public var emitting: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_IS_EMITTING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMITTING, NIL)
+    }
+
+  /**
+   * Number of particles emitted in one emission cycle.
+   */
+  public var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_AMOUNT, LONG)
@@ -58,307 +68,165 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Initial rotation applied to each particle, in degrees.
+   * Amount of time each particle will exist.
    */
-  public open var angle: Double
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGLE, NIL)
-    }
-
-  /**
-   * Each particle's rotation will be animated along this [godot.Curve].
-   */
-  public open var angleCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGLE_CURVE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGLE_CURVE,
-          NIL)
-    }
-
-  /**
-   * Rotation randomness ratio.
-   */
-  public open var angleRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGLE_RANDOM,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGLE_RANDOM,
-          NIL)
-    }
-
-  /**
-   * Initial angular velocity applied to each particle in *degrees* per second. Sets the speed of rotation of the particle.
-   */
-  public open var angularVelocity: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGULAR_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGULAR_VELOCITY, NIL)
-    }
-
-  /**
-   * Each particle's angular velocity will vary along this [godot.Curve].
-   */
-  public open var angularVelocityCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGULAR_VELOCITY_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGULAR_VELOCITY_CURVE, NIL)
-    }
-
-  /**
-   * Angular velocity randomness ratio.
-   */
-  public open var angularVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANGULAR_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANGULAR_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * Particle animation offset.
-   */
-  public open var animOffset: Double
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_OFFSET,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_OFFSET,
-          NIL)
-    }
-
-  /**
-   * Each particle's animation offset will vary along this [godot.Curve].
-   */
-  public open var animOffsetCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_OFFSET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_OFFSET_CURVE, NIL)
-    }
-
-  /**
-   * Animation offset randomness ratio.
-   */
-  public open var animOffsetRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_OFFSET_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_OFFSET_RANDOM, NIL)
-    }
-
-  /**
-   * Particle animation speed.
-   */
-  public open var animSpeed: Double
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_SPEED,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_SPEED,
-          NIL)
-    }
-
-  /**
-   * Each particle's animation speed will vary along this [godot.Curve].
-   */
-  public open var animSpeedCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_SPEED_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_SPEED_CURVE, NIL)
-    }
-
-  /**
-   * Animation speed randomness ratio.
-   */
-  public open var animSpeedRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ANIM_SPEED_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ANIM_SPEED_RANDOM, NIL)
-    }
-
-  /**
-   * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
-   */
-  public open var color: Color
+  public var lifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LIFETIME,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR, NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LIFETIME, NIL)
     }
 
   /**
-   * Each particle's initial color will vary along this [godot.GradientTexture] (multiplied with [color]).
+   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
-  public open var colorInitialRamp: Gradient?
+  public var oneShot: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ONE_SHOT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ONE_SHOT, NIL)
+    }
+
+  /**
+   * Particle system starts as if it had already run for this many seconds.
+   */
+  public var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_INITIAL_RAMP, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PRE_PROCESS_TIME, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_INITIAL_RAMP, NIL)
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PRE_PROCESS_TIME, NIL)
     }
 
   /**
-   * Each particle's color will vary along this [godot.Gradient] (multiplied with [color]).
+   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  public open var colorRamp: Gradient?
+  public var speedScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_RAMP,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_RAMP,
-          NIL)
-    }
-
-  /**
-   * The rate at which particles lose velocity.
-   */
-  public open var damping: Double
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DAMPING,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPEED_SCALE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_DAMPING, NIL)
-    }
-
-  /**
-   * Damping will vary along this [godot.Curve].
-   */
-  public open var dampingCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DAMPING_CURVE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_DAMPING_CURVE,
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SPEED_SCALE,
           NIL)
     }
 
   /**
-   * Damping randomness ratio.
+   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
-  public open var dampingRandom: Double
+  public var explosiveness: Double
     get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DAMPING_RANDOM,
-          DOUBLE)
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_DAMPING_RANDOM,
-          NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EXPLOSIVENESS_RATIO, NIL)
     }
 
   /**
-   * Unit vector specifying the particles' emission direction.
+   * Emission lifetime randomness ratio.
    */
-  public open var direction: Vector2
+  public var randomness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DIRECTION,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RANDOMNESS_RATIO, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_DIRECTION, NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RANDOMNESS_RATIO, NIL)
+    }
+
+  /**
+   * Particle lifetime randomness ratio.
+   */
+  public var lifetimeRandomness: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LIFETIME_RANDOMNESS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LIFETIME_RANDOMNESS, NIL)
+    }
+
+  /**
+   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   */
+  public var fixedFps: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FIXED_FPS,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FIXED_FPS, NIL)
+    }
+
+  /**
+   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
+   */
+  public var fractDelta: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FRACTIONAL_DELTA, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FRACTIONAL_DELTA, NIL)
+    }
+
+  /**
+   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
+   */
+  public var localCoords: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_USE_LOCAL_COORDINATES, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_USE_LOCAL_COORDINATES, NIL)
     }
 
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  public open var drawOrder: Long
+  public var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DRAW_ORDER,
@@ -372,73 +240,24 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Particle texture. If `null`, particles will be squares.
    */
-  public open var emissionColors: PoolColorArray
+  public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_COLORS, POOL_COLOR_ARRAY)
-      return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PoolColorArray
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TEXTURE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_COLORS, NIL)
-    }
-
-  /**
-   * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
-   */
-  public open var emissionNormals: PoolVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_NORMALS, POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-    }
-    set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_NORMALS, NIL)
-    }
-
-  /**
-   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
-   */
-  public open var emissionPoints: PoolVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_POINTS, POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-    }
-    set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_POINTS, NIL)
-    }
-
-  /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
-   */
-  public open var emissionRectExtents: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_RECT_EXTENTS, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_RECT_EXTENTS, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TEXTURE, NIL)
     }
 
   /**
    * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
    */
-  public open var emissionShape: Long
+  public var emissionShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_SHAPE,
@@ -454,7 +273,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The sphere's radius if [emissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
-  public open var emissionSphereRadius: Double
+  public var emissionSphereRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -468,86 +287,102 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles are being emitted.
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    */
-  public open var emitting: Boolean
+  public var emissionRectExtents: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMITTING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_RECT_EXTENTS, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMITTING, NIL)
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_RECT_EXTENTS, NIL)
     }
 
   /**
-   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public open var explosiveness: Double
+  public var emissionPoints: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EXPLOSIVENESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_POINTS, PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_POINTS, NIL)
+    }
+
+  /**
+   * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  public var emissionNormals: PackedVector2Array
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_NORMALS, PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_NORMALS, NIL)
+    }
+
+  /**
+   * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  public var emissionColors: PackedColorArray
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMISSION_COLORS, PACKED_COLOR_ARRAY)
+      return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EMISSION_COLORS, NIL)
+    }
+
+  /**
+   * Unit vector specifying the particles' emission direction.
+   */
+  public var direction: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_DIRECTION,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_DIRECTION, NIL)
+    }
+
+  /**
+   * Each particle's initial direction range from `+spread` to `-spread` degrees.
+   */
+  public var spread: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPREAD, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EXPLOSIVENESS,
-          NIL)
-    }
-
-  /**
-   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
-   */
-  public open var fixedFps: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FIXED_FPS,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FIXED_FPS, NIL)
-    }
-
-  /**
-   * Align Y axis of particle with the direction of its velocity.
-   */
-  public open var flagAlignY: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FLAG_ALIGN_Y,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FLAG_ALIGN_Y,
-          NIL)
-    }
-
-  /**
-   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
-   */
-  public open var fractDelta: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FRACT_DELTA,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FRACT_DELTA,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SPREAD, NIL)
     }
 
   /**
    * Gravity applied to every particle.
    */
-  public open var gravity: Vector2
+  public var gravity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_GRAVITY,
@@ -560,555 +395,224 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Initial hue variation applied to each particle.
+   *
    */
-  public open var hueVariation: Double
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_HUE_VARIATION,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_HUE_VARIATION,
-          NIL)
-    }
-
-  /**
-   * Each particle's hue will vary along this [godot.Curve].
-   */
-  public open var hueVariationCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_HUE_VARIATION_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_HUE_VARIATION_CURVE, NIL)
-    }
-
-  /**
-   * Hue variation randomness ratio.
-   */
-  public open var hueVariationRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_HUE_VARIATION_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_HUE_VARIATION_RANDOM, NIL)
-    }
-
-  /**
-   * Initial velocity magnitude for each particle. Direction comes from [spread] and the node's orientation.
-   */
-  public open var initialVelocity: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_INITIAL_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_INITIAL_VELOCITY, NIL)
-    }
-
-  /**
-   * Initial velocity randomness ratio.
-   */
-  public open var initialVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_INITIAL_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_INITIAL_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * The amount of time each particle will exist (in seconds).
-   */
-  public open var lifetime: Double
+  public var splitScale: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LIFETIME,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LIFETIME, NIL)
-    }
-
-  /**
-   * Particle lifetime randomness ratio.
-   */
-  public open var lifetimeRandomness: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LIFETIME_RANDOMNESS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LIFETIME_RANDOMNESS, NIL)
-    }
-
-  /**
-   * Linear acceleration applied to each particle in the direction of motion.
-   */
-  public open var linearAccel: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LINEAR_ACCEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LINEAR_ACCEL,
-          NIL)
-    }
-
-  /**
-   * Each particle's linear acceleration will vary along this [godot.Curve].
-   */
-  public open var linearAccelCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LINEAR_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LINEAR_ACCEL_CURVE, NIL)
-    }
-
-  /**
-   * Linear acceleration randomness ratio.
-   */
-  public open var linearAccelRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LINEAR_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LINEAR_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
-   */
-  public open var localCoords: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LOCAL_COORDS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPLIT_SCALE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LOCAL_COORDS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SPLIT_SCALE,
           NIL)
     }
 
   /**
-   * Normal map to be used for the [texture] property.
    *
-   * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
-  public open var normalmap: Texture?
+  public var scaleCurveX: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_NORMALMAP,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_CURVE_X,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_NORMALMAP, NIL)
-    }
-
-  /**
-   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
-   */
-  public open var oneShot: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ONE_SHOT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ONE_SHOT, NIL)
-    }
-
-  /**
-   * Orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
-   */
-  public open var orbitVelocity: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ORBIT_VELOCITY,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ORBIT_VELOCITY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SCALE_CURVE_X,
           NIL)
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [godot.Curve].
+   *
    */
-  public open var orbitVelocityCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ORBIT_VELOCITY_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ORBIT_VELOCITY_CURVE, NIL)
-    }
-
-  /**
-   * Orbital velocity randomness ratio.
-   */
-  public open var orbitVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_ORBIT_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_ORBIT_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * Particle system starts as if it had already run for this many seconds.
-   */
-  public open var preprocess: Double
+  public var scaleCurveY: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PREPROCESS,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PREPROCESS,
-          NIL)
-    }
-
-  /**
-   * Radial acceleration applied to each particle. Makes particle accelerate away from origin.
-   */
-  public open var radialAccel: Double
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RADIAL_ACCEL,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RADIAL_ACCEL,
-          NIL)
-    }
-
-  /**
-   * Each particle's radial acceleration will vary along this [godot.Curve].
-   */
-  public open var radialAccelCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RADIAL_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RADIAL_ACCEL_CURVE, NIL)
-    }
-
-  /**
-   * Radial acceleration randomness ratio.
-   */
-  public open var radialAccelRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RADIAL_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RADIAL_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * Emission lifetime randomness ratio.
-   */
-  public open var randomness: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RANDOMNESS,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RANDOMNESS,
-          NIL)
-    }
-
-  /**
-   * Initial scale applied to each particle.
-   */
-  public open var scaleAmount: Double
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_AMOUNT,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SCALE_AMOUNT,
-          NIL)
-    }
-
-  /**
-   * Each particle's scale will vary along this [godot.Curve].
-   */
-  public open var scaleAmountCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_AMOUNT_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SCALE_AMOUNT_CURVE, NIL)
-    }
-
-  /**
-   * Scale randomness ratio.
-   */
-  public open var scaleAmountRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_AMOUNT_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SCALE_AMOUNT_RANDOM, NIL)
-    }
-
-  /**
-   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
-   */
-  public open var speedScale: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPEED_SCALE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SPEED_SCALE,
-          NIL)
-    }
-
-  /**
-   * Each particle's initial direction range from `+spread` to `-spread` degrees.
-   */
-  public open var spread: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SPREAD, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SPREAD, NIL)
-    }
-
-  /**
-   * Tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
-   */
-  public open var tangentialAccel: Double
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TANGENTIAL_ACCEL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TANGENTIAL_ACCEL, NIL)
-    }
-
-  /**
-   * Each particle's tangential acceleration will vary along this [godot.Curve].
-   */
-  public open var tangentialAccelCurve: Curve?
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TANGENTIAL_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TANGENTIAL_ACCEL_CURVE, NIL)
-    }
-
-  /**
-   * Tangential acceleration randomness ratio.
-   */
-  public open var tangentialAccelRandom: Double
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TANGENTIAL_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TANGENTIAL_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * Particle texture. If `null`, particles will be squares.
-   */
-  public open var texture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_TEXTURE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_SCALE_CURVE_Y,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_SCALE_CURVE_Y,
+          NIL)
+    }
+
+  /**
+   * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
+   */
+  public var color: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR, COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR, NIL)
+    }
+
+  /**
+   * Each particle's color will vary along this [godot.Gradient] (multiplied with [color]).
+   */
+  public var colorRamp: Gradient?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_RAMP,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_RAMP,
+          NIL)
+    }
+
+  /**
+   * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
+   */
+  public var colorInitialRamp: Gradient?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_INITIAL_RAMP, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_INITIAL_RAMP, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CPUPARTICLES2D)
   }
 
-  @CoreTypeHelper
-  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
-      schedule(this)
-      color = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun direction(schedule: Vector2.() -> Unit): Vector2 = direction.apply{
-      schedule(this)
-      direction = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun emissionRectExtents(schedule: Vector2.() -> Unit): Vector2 =
-      emissionRectExtents.apply{
-      schedule(this)
-      emissionRectExtents = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun gravity(schedule: Vector2.() -> Unit): Vector2 = gravity.apply{
-      schedule(this)
-      gravity = this
-  }
-
-
-  public open fun _textureChanged(): Unit {
-  }
-
-  public open fun _updateRenderThread(): Unit {
+  /**
+   * Restarts the particle emitter.
+   */
+  public fun restart(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_RESTART, NIL)
   }
 
   /**
-   * Sets this node's properties to match a given [godot.Particles2D] node with an assigned [godot.ParticlesMaterial].
+   *
    */
-  public open fun convertFromParticles(particles: Node): Unit {
+  public fun setParamMin(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MIN, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun getParamMin(`param`: CPUParticles2D.Parameter): Double {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MIN,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   *
+   */
+  public fun setParamMax(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_MAX, NIL)
+  }
+
+  /**
+   *
+   */
+  public fun getParamMax(`param`: CPUParticles2D.Parameter): Double {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_MAX,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets the [godot.Curve] of the parameter specified by [enum Parameter].
+   */
+  public fun setParamCurve(`param`: CPUParticles2D.Parameter, curve: Curve): Unit {
+    TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARAM_CURVE, NIL)
+  }
+
+  /**
+   * Returns the [godot.Curve] of the parameter specified by [enum Parameter].
+   */
+  public fun getParamCurve(`param`: CPUParticles2D.Parameter): Curve? {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARAM_CURVE,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Curve?
+  }
+
+  /**
+   * Enables or disables the given flag (see [enum ParticleFlags] for options).
+   */
+  public fun setParticleFlag(particleFlag: CPUParticles2D.ParticleFlags, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PARTICLE_FLAG,
+        NIL)
+  }
+
+  /**
+   * Returns the enabled state of the given flag (see [enum ParticleFlags] for options).
+   */
+  public fun getParticleFlag(particleFlag: CPUParticles2D.ParticleFlags): Boolean {
+    TransferContext.writeArguments(LONG to particleFlag.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PARTICLE_FLAG,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets this node's properties to match a given [godot.GPUParticles2D] node with an assigned [godot.ParticlesMaterial].
+   */
+  public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_CONVERT_FROM_PARTICLES, NIL)
   }
 
-  /**
-   * Restarts the particle emitter.
-   */
-  public open fun restart(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_RESTART, NIL)
-  }
-
-  public enum class Flags(
+  public enum class EmissionShape(
     id: Long
   ) {
     /**
-     * Use with [setParticleFlag] to set [flagAlignY].
+     * All particles will be emitted from a single point.
      */
-    FLAG_ALIGN_Y_TO_VELOCITY(0),
+    EMISSION_SHAPE_POINT(0),
     /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
+     * Particles will be emitted in the volume of a sphere flattened to two dimensions.
      */
-    FLAG_ROTATE_Y(1),
+    EMISSION_SHAPE_SPHERE(1),
     /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
+     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
      */
-    FLAG_DISABLE_Z(2),
+    EMISSION_SHAPE_SPHERE_SURFACE(2),
     /**
-     * Represents the size of the [enum Flags] enum.
+     * Particles will be emitted in the area of a rectangle.
      */
-    FLAG_MAX(3),
+    EMISSION_SHAPE_RECTANGLE(3),
+    /**
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
+     */
+    EMISSION_SHAPE_POINTS(4),
+    /**
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
+     */
+    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    /**
+     * Represents the size of the [enum EmissionShape] enum.
+     */
+    EMISSION_SHAPE_MAX(6),
     ;
 
     public val id: Long
@@ -1121,33 +625,25 @@ public open class CPUParticles2D : Node2D() {
     }
   }
 
-  public enum class EmissionShape(
+  public enum class ParticleFlags(
     id: Long
   ) {
     /**
-     * All particles will be emitted from a single point.
+     * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
-    EMISSION_SHAPE_POINT(0),
+    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
     /**
-     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
+     * Present for consistency with 3D particle nodes, not used in 2D.
      */
-    EMISSION_SHAPE_SPHERE(1),
+    PARTICLE_FLAG_ROTATE_Y(1),
     /**
-     * Particles will be emitted in the area of a rectangle.
+     * Present for consistency with 3D particle nodes, not used in 2D.
      */
-    EMISSION_SHAPE_RECTANGLE(2),
+    PARTICLE_FLAG_DISABLE_Z(2),
     /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
+     * Represents the size of the [enum ParticleFlags] enum.
      */
-    EMISSION_SHAPE_POINTS(3),
-    /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
-     */
-    EMISSION_SHAPE_DIRECTED_POINTS(4),
-    /**
-     * Represents the size of the [enum EmissionShape] enum.
-     */
-    EMISSION_SHAPE_MAX(5),
+    PARTICLE_FLAG_MAX(3),
     ;
 
     public val id: Long
@@ -1164,51 +660,51 @@ public open class CPUParticles2D : Node2D() {
     id: Long
   ) {
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set initial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity properties.
      */
     PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set angular velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity properties.
      */
     PARAM_ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set orbital velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity properties.
      */
     PARAM_ORBIT_VELOCITY(2),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set linear acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration properties.
      */
     PARAM_LINEAR_ACCEL(3),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set radial acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration properties.
      */
     PARAM_RADIAL_ACCEL(4),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set tangential acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration properties.
      */
     PARAM_TANGENTIAL_ACCEL(5),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set damping properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set damping properties.
      */
     PARAM_DAMPING(6),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set angle properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angle properties.
      */
     PARAM_ANGLE(7),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set scale properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set scale properties.
      */
     PARAM_SCALE(8),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set hue variation properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set hue variation properties.
      */
     PARAM_HUE_VARIATION(9),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set animation speed properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation speed properties.
      */
     PARAM_ANIM_SPEED(10),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set animation offset properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset properties.
      */
     PARAM_ANIM_OFFSET(11),
     /**
@@ -1250,130 +746,5 @@ public open class CPUParticles2D : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Particles are drawn in the order emitted.
-     */
-    public final const val DRAW_ORDER_INDEX: Long = 0
-
-    /**
-     * Particles are drawn in order of remaining lifetime.
-     */
-    public final const val DRAW_ORDER_LIFETIME: Long = 1
-
-    /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
-     */
-    public final const val EMISSION_SHAPE_DIRECTED_POINTS: Long = 4
-
-    /**
-     * Represents the size of the [enum EmissionShape] enum.
-     */
-    public final const val EMISSION_SHAPE_MAX: Long = 5
-
-    /**
-     * All particles will be emitted from a single point.
-     */
-    public final const val EMISSION_SHAPE_POINT: Long = 0
-
-    /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
-     */
-    public final const val EMISSION_SHAPE_POINTS: Long = 3
-
-    /**
-     * Particles will be emitted in the area of a rectangle.
-     */
-    public final const val EMISSION_SHAPE_RECTANGLE: Long = 2
-
-    /**
-     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
-     */
-    public final const val EMISSION_SHAPE_SPHERE: Long = 1
-
-    /**
-     * Use with [setParticleFlag] to set [flagAlignY].
-     */
-    public final const val FLAG_ALIGN_Y_TO_VELOCITY: Long = 0
-
-    /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
-     */
-    public final const val FLAG_DISABLE_Z: Long = 2
-
-    /**
-     * Represents the size of the [enum Flags] enum.
-     */
-    public final const val FLAG_MAX: Long = 3
-
-    /**
-     * Present for consistency with 3D particle nodes, not used in 2D.
-     */
-    public final const val FLAG_ROTATE_Y: Long = 1
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set angle properties.
-     */
-    public final const val PARAM_ANGLE: Long = 7
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set angular velocity properties.
-     */
-    public final const val PARAM_ANGULAR_VELOCITY: Long = 1
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set animation offset properties.
-     */
-    public final const val PARAM_ANIM_OFFSET: Long = 11
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set animation speed properties.
-     */
-    public final const val PARAM_ANIM_SPEED: Long = 10
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set damping properties.
-     */
-    public final const val PARAM_DAMPING: Long = 6
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set hue variation properties.
-     */
-    public final const val PARAM_HUE_VARIATION: Long = 9
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set initial velocity properties.
-     */
-    public final const val PARAM_INITIAL_LINEAR_VELOCITY: Long = 0
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set linear acceleration properties.
-     */
-    public final const val PARAM_LINEAR_ACCEL: Long = 3
-
-    /**
-     * Represents the size of the [enum Parameter] enum.
-     */
-    public final const val PARAM_MAX: Long = 12
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set orbital velocity properties.
-     */
-    public final const val PARAM_ORBIT_VELOCITY: Long = 2
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set radial acceleration properties.
-     */
-    public final const val PARAM_RADIAL_ACCEL: Long = 4
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set scale properties.
-     */
-    public final const val PARAM_SCALE: Long = 8
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamCurve] to set tangential acceleration properties.
-     */
-    public final const val PARAM_TANGENTIAL_ACCEL: Long = 5
-  }
+  public companion object
 }
