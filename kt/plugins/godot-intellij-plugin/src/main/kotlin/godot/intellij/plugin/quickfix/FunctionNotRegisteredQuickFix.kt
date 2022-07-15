@@ -9,11 +9,13 @@ import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtNamedFunction
 
-class NotificationFunctionNotRegisteredQuickFix : LocalQuickFix {
+class FunctionNotRegisteredQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.function.notificationFunctionNotRegistered.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
-        val ktNamedFunction = descriptor.psiElement as KtNamedFunction
+        val ktNamedFunction = descriptor.psiElement as? KtNamedFunction
+            ?: descriptor.psiElement.parent as? KtNamedFunction
+            ?: return
         ktNamedFunction.addAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
     }
 }

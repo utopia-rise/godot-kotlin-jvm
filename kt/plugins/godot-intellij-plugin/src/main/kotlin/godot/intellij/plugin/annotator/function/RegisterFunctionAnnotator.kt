@@ -1,5 +1,6 @@
 package godot.intellij.plugin.annotator.function
 
+import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
@@ -8,14 +9,16 @@ import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.quickfix.NotificationFunctionNotRegisteredQuickFix
+import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
+import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
+import org.jetbrains.kotlin.idea.hierarchy.overrides.isOverrideHierarchyElement
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
 
 class RegisterFunctionAnnotator : Annotator {
-    private val notificationFunctionNotRegisteredQuickFix by lazy { NotificationFunctionNotRegisteredQuickFix() }
+    private val functionNotRegisteredQuickFix by lazy { FunctionNotRegisteredQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (!element.isInGodotRoot()) return
@@ -29,8 +32,28 @@ class RegisterFunctionAnnotator : Annotator {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.function.notificationFunctionNotRegistered"),
                     element.navigationElement,
-                    notificationFunctionNotRegisteredQuickFix
+                    functionNotRegisteredQuickFix
                 )
+            }
+
+            if (
+                element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
+                element.isOverrideHierarchyElement() &&
+                element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
+            ) {
+                if (
+                    element
+                        .resolveToDescriptorIfAny()
+                        ?.overriddenDescriptors
+                        ?.any { it.annotations.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null } == true
+                ) {
+                    holder.registerProblem(
+                        GodotPluginBundle.message("problem.function.overriddenAbstractFunctionNotRegistered"),
+                        element.nameIdentifier ?: element.navigationElement,
+                        functionNotRegisteredQuickFix,
+                        problemHighlightType = ProblemHighlightType.WEAK_WARNING
+                    )
+                }
             }
         }
     }
