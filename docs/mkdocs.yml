@@ -61,6 +61,7 @@ nav:
     - Versioning: user-guide/versioning.md
     - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
+      - Abstract Classes: user-guide/advanced/abstract_classes.md
       - Custom src dirs: user-guide/advanced/custom-src-dirs.md
       - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
