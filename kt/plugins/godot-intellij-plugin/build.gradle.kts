@@ -1,4 +1,3 @@
-import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.markdownToHTML
 import plugins.intellij.BuildConfig
 import plugins.intellij.VersionRange
@@ -9,24 +8,16 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm")
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.6.5"
+    id("org.jetbrains.intellij") version "1.7.0"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
-    id("org.jetbrains.changelog") version "0.6.2"
+    id("org.jetbrains.changelog") version "1.3.1"
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.16.0"
+    id("io.gitlab.arturbosch.detekt") version "1.20.0"
 }
 
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ211" to BuildConfig(
-        sdk = "211.7442.40",
-        prefix = "IJ2021.1",
-        extraSource = "IJ183",
-        version = VersionRange("211.2", "211.*"),
-        ideVersionsForVerifierTask = listOf("2021.1.1", "2021.1.2", "2021.1.3"),
-        deps = listOf("java", "org.jetbrains.kotlin:211-1.6.21-release-334-IJ7442.40", "gradle")
-    ),
     "IJ212" to BuildConfig(
         sdk = "212.5457.46",
         prefix = "IJ2021.2",
@@ -42,6 +33,14 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         version = VersionRange("213.2", "213.*"),
         ideVersionsForVerifierTask = listOf("2021.3"),
         deps = listOf("java", "org.jetbrains.kotlin:213-1.6.21-release-334-IJ6777.52", "gradle")
+    ),
+    "IJ221" to BuildConfig(
+        sdk = "221.5591.52",
+        prefix = "IJ2022.1",
+        extraSource = "IJ213", // hasn't changed. Thus no need to update
+        version = VersionRange("221.3", "999.*"),
+        ideVersionsForVerifierTask = listOf("2022.1"),
+        deps = listOf("java", "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52", "gradle")
     )
 )
 
@@ -72,19 +71,19 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ213"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ221"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    pluginName = "godot-jvm-idea-plugin"
-    version = settings.sdk
-    type = "IC"
-    downloadSources = true
-    updateSinceUntilBuild = true
+    pluginName.set("godot-jvm-idea-plugin")
+    version.set(settings.sdk)
+    type.set("IC")
+    downloadSources.set(true)
+    updateSinceUntilBuild.set(true)
 
-    setPlugins(*settings.deps.toTypedArray())
+    plugins.set(settings.deps)
 }
 
 kotlin {
@@ -96,7 +95,7 @@ kotlin {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
 }
@@ -118,16 +117,15 @@ tasks {
     patchPluginXml {
         if (isSnapshot) {
             val projectVersion = project.version as String
-            version("${projectVersion.removeSuffix("-SNAPSHOT")}-${settings.prefix}-SNAPSHOT")
+            version.set("${projectVersion.removeSuffix("-SNAPSHOT")}-${settings.prefix}-SNAPSHOT")
         } else {
-            version("${project.version}-${settings.prefix}")
+            version.set("${project.version}-${settings.prefix}")
         }
-        sinceBuild(settings.version.since)
-        untilBuild(settings.version.until)
+        sinceBuild.set(settings.version.since)
+        untilBuild.set(settings.version.until)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription(
-            closure {
+        pluginDescription.set(
                 File("$projectDir/README.md").readText().lines().run {
                     val start = "<!-- Plugin description -->"
                     val end = "<!-- Plugin description end -->"
@@ -137,37 +135,32 @@ tasks {
                     }
                     subList(indexOf(start) + 1, indexOf(end))
                 }.joinToString("\n").run { markdownToHTML(this) }
-            }
         )
 
         // Get the latest available change notes from the changelog file
-        changeNotes(
-            closure {
-                changelog.getLatest().toHTML()
-            }
-        )
+        changeNotes.set(changelog.getLatest().toHTML())
     }
 
     runPluginVerifier {
-        ideVersions(settings.ideVersionsForVerifierTask.joinToString(", "))
+        ideVersions.set(settings.ideVersionsForVerifierTask)
     }
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token(System.getenv("GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH"))
+        token.set(System.getenv("GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH"))
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
         // TODO: change back to commented variant once we're out of alpha/beta
         if (isSnapshot) {
-            channels("alpha")
+            channels.set(listOf("alpha"))
         } else {
-            channels("stable")
+            channels.set(listOf("stable"))
         }
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
         kotlinOptions {
             freeCompilerArgs += "-Xjvm-default=all"
         }
