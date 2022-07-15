@@ -10,7 +10,6 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
-import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.hierarchy.overrides.isOverrideHierarchyElement
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -24,39 +23,31 @@ class RegisterFunctionAnnotator : Annotator {
         if (!element.isInGodotRoot()) return
 
         if (element is KtNamedFunction) {
-            if (
-                element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
-                notificationFunctions.contains(element.name) &&
-                element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
-            ) {
-                holder.registerProblem(
+            when {
+                overriddenNotificationFunctionNotRegistered(element) -> holder.registerProblem(
                     GodotPluginBundle.message("problem.function.notificationFunctionNotRegistered"),
                     element.navigationElement,
                     functionNotRegisteredQuickFix
                 )
-            }
-
-            if (
-                element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
-                element.isOverrideHierarchyElement() &&
-                element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
-            ) {
-                if (
-                    element
-                        .resolveToDescriptorIfAny()
-                        ?.overriddenDescriptors
-                        ?.any { it.annotations.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null } == true
-                ) {
-                    holder.registerProblem(
-                        GodotPluginBundle.message("problem.function.overriddenAbstractFunctionNotRegistered"),
-                        element.nameIdentifier ?: element.navigationElement,
-                        functionNotRegisteredQuickFix,
-                        problemHighlightType = ProblemHighlightType.WEAK_WARNING
-                    )
-                }
+                overriddenRegisteredAbstractFunctionNotRegistered(element) -> holder.registerProblem(
+                    GodotPluginBundle.message("problem.function.overriddenAbstractFunctionNotRegistered"),
+                    element.nameIdentifier ?: element.navigationElement,
+                    functionNotRegisteredQuickFix,
+                    problemHighlightType = ProblemHighlightType.WEAK_WARNING
+                )
             }
         }
     }
+
+    private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction) =
+        element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
+            element.isOverrideHierarchyElement() &&
+            element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
+
+    private fun overriddenNotificationFunctionNotRegistered(element: KtNamedFunction) =
+        element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
+            notificationFunctions.contains(element.name) &&
+            element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
 
     // TODO: find a better way of checking all -> maybe add godot-library as a dependency and query notification functions through reflection or generate during compilation of the plugin
     private val notificationFunctions = listOf(
