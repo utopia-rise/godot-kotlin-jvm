@@ -80,6 +80,10 @@ namespace jni {
         return capacity;
     }
 
+    bool Env::is_same_object(const JObject& obj_1, const JObject& obj_2) {
+        return env->IsSameObject(obj_1.obj, obj_2.obj);
+    }
+
     String Env::from_jstring(jni::JString str) {
         auto jstr = (jstring) str.obj;
         auto utfString = env->GetStringUTFChars(jstr, nullptr);

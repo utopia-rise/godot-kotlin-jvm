@@ -453,14 +453,12 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 #ifdef DEBUG_ENABLED
     LOG_INFO("Unloading classes ...");
 #endif
-    Map<StringName, KtClass*>::Element* current = classes.front();
-    while (current != nullptr) {
-        KtClass* kt_class = current->value();
+    for (const KeyValue<StringName, KtClass*>& item : classes) {
+        KtClass* kt_class{item.value};
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class));
 #endif
         delete kt_class;
-        current = current->next();
     }
     classes.clear();
 }
@@ -561,10 +559,8 @@ GDKotlin::GDKotlin() :
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {
-    auto* map_entry{classes.front()};
-    while (map_entry) {
-        map_entry->get()->fetch_members();
-        map_entry = map_entry->next();
+    for (const KeyValue<StringName, KtClass*>& item : classes) {
+        item.value->fetch_members();
     }
 }
 

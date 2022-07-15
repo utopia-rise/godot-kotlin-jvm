@@ -2,7 +2,6 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
 
 static const String GODOT_ENTRY_PATH{"res://build/generated/ksp"};
 
@@ -16,6 +15,7 @@ String KotlinLanguage::get_name() const {
 }
 
 void KotlinLanguage::init() {
+    kt_custom_callable_middleman = memnew(Object);
     GDKotlin::get_instance().init();
 }
 
@@ -34,6 +34,8 @@ Error KotlinLanguage::execute_file(const String& p_path) {
 
 void KotlinLanguage::finish() {
     GDKotlin::get_instance().finish();
+    memdelete(kt_custom_callable_middleman);
+    kt_custom_callable_middleman = nullptr;
 }
 
 void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
@@ -224,7 +226,7 @@ bool KotlinLanguage::is_using_templates() {
 
 bool KotlinLanguage::validate(const String& p_script, const String& p_path, List<String>* r_functions,
                               List<ScriptLanguage::ScriptError>* r_errors, List<ScriptLanguage::Warning>* r_warnings,
-                              Set<int>* r_safe_lines) const {
+                              HashSet<int>* r_safe_lines) const {
 
     //TODO
     return true;
@@ -377,6 +379,10 @@ void KotlinLanguage::get_public_constants(List<Pair<String, Variant>>* p_constan
 
 }
 
+void KotlinLanguage::get_public_annotations(List<MethodInfo>* p_annotations) const {
+
+}
+
 void KotlinLanguage::profiling_start() {
 
 }
@@ -431,4 +437,12 @@ String KotlinLanguage::get_global_class_name(const String& p_path, String* r_bas
     }
 
     return String();
+}
+
+const Object* KotlinLanguage::get_custom_callable_middleman() const {
+    return kt_custom_callable_middleman;
+}
+
+KotlinLanguage::KotlinLanguage() : kt_custom_callable_middleman(nullptr) {
+
 }

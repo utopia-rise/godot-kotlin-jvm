@@ -60,13 +60,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      * Returns `1/vector`.
      */
     FUNC_RECIPROCAL(3),
-    /**
-     * Converts RGB vector to HSV equivalent.
-     */
     FUNC_RGB2HSV(4),
-    /**
-     * Converts HSV vector to RGB equivalent.
-     */
     FUNC_HSV2RGB(5),
     /**
      * Returns the absolute value of the parameter.

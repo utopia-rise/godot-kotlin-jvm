@@ -25,6 +25,10 @@ public:
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
 
+    uint32_t read_args_size(jni::Env& p_env);
+
+    Variant read_single_arg(jni::Env& p_env);
+
     void read_args(jni::Env& p_env, Variant* args);
 
     static void icall(JNIEnv* rawEnv,

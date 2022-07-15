@@ -25,11 +25,14 @@ internal val variantMapper = mutableMapOf(
     NodePath::class to NODE_PATH,
     Quaternion::class to QUATERNION,
     Rect2::class to RECT2,
+    Rect2i::class to RECT2I,
     RID::class to _RID,
     Transform3D::class to TRANSFORM3D,
     Transform2D::class to TRANSFORM2D,
     Vector2::class to VECTOR2,
+    Vector2i::class to VECTOR2I,
     Vector3::class to VECTOR3,
+    Vector3i::class to VECTOR3I,
     PackedByteArray::class to PACKED_BYTE_ARRAY,
     PackedColorArray::class to PACKED_COLOR_ARRAY,
     PackedInt32Array::class to PACKED_INT_32_ARRAY,
@@ -54,12 +57,27 @@ private var ByteBuffer.vector2: Vector2
         putFloat(value.y.toFloat())
     }
 
+private var ByteBuffer.vector2i: Vector2i
+    get() = Vector2i(int, int)
+    set(value) {
+        putInt(value.x)
+        putInt(value.y)
+    }
+
 private var ByteBuffer.vector3: Vector3
     get() = Vector3(float.toRealT(), float.toRealT(), float.toRealT())
     set(value) {
         putFloat(value.x.toFloat())
         putFloat(value.y.toFloat())
         putFloat(value.z.toFloat())
+    }
+
+private var ByteBuffer.vector3i: Vector3i
+    get() = Vector3i(int, int, int)
+    set(value) {
+        putInt(value.x)
+        putInt(value.y)
+        putInt(value.z)
     }
 
 private var ByteBuffer.basis: Basis
@@ -72,6 +90,30 @@ private var ByteBuffer.basis: Basis
         vector3 = value._x
         vector3 = value._y
         vector3 = value._z
+    }
+
+private var ByteBuffer.obj: KtObject
+    get() {
+        val ptr = long
+        val constructorIndex = int
+        val isRef = bool
+        val id = long
+
+        val existingInstance = if (isRef) {
+            GarbageCollector.getRefInstance(id.toInt())
+        } else {
+            GarbageCollector.getObjectInstance(ptr, id)
+        }
+
+        return existingInstance ?: KtObject.instantiateWith(
+            ptr,
+            id,
+            TypeManager.engineTypesConstructors[constructorIndex]
+        )
+    }
+    set(value) {
+        putLong(value.rawPtr)
+        bool = value.____DO_NOT_TOUCH_THIS_isRef____()
     }
 
 private var ByteBuffer.variantType: Int
@@ -189,10 +231,12 @@ enum class VariantType(
     VECTOR2I(
         6,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            buffer.vector2i
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Vector2i)
+            buffer.variantType = VECTOR2I.ordinal
+            buffer.vector2i = any
         }
     ),
     RECT2(
@@ -213,16 +257,22 @@ enum class VariantType(
     RECT2I(
         8,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            Rect2i(
+                buffer.vector2i,
+                buffer.vector2i
+            )
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Rect2i)
+            buffer.variantType = RECT2I.ordinal
+            buffer.vector2i = any._position
+            buffer.vector2i = any._size
         }
     ),
     VECTOR3(
         9,
         { buffer: ByteBuffer, _: Int ->
-            Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
+            buffer.vector3
         },
         { buffer: ByteBuffer, any: Any ->
             require(any is Vector3)
@@ -233,10 +283,12 @@ enum class VariantType(
     VECTOR3I(
         10,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            buffer.vector3i
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            require(any is Vector3i)
+            buffer.variantType = VECTOR3I.ordinal
+            buffer.vector3i = any
         }
     ),
     TRANSFORM2D(
@@ -346,10 +398,11 @@ enum class VariantType(
     STRING_NAME(
         18,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            val ptr = buffer.long
+            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            STRING_NAME.toGodotNativeCoreType<StringName>(buffer, any)
         }
     ),
     NODE_PATH(
@@ -375,37 +428,30 @@ enum class VariantType(
     OBJECT(
         21,
         { buffer: ByteBuffer, _: Int ->
-            val ptr = buffer.long
-            val constructorIndex = buffer.int
-            val isRef = buffer.bool
-            val id = buffer.long
-
-            val existingInstance = if (isRef) {
-                GarbageCollector.getRefInstance(id.toInt())
-            } else {
-                GarbageCollector.getObjectInstance(ptr, id)
-            }
-
-            existingInstance ?: KtObject.instantiateWith(
-                ptr,
-                id,
-                TypeManager.engineTypesConstructors[constructorIndex]
-            )
+            buffer.obj
         },
         { buffer: ByteBuffer, any: Any ->
             require(any is KtObject)
             buffer.variantType = OBJECT.ordinal
-            buffer.putLong(any.rawPtr)
-            buffer.bool = any.____DO_NOT_TOUCH_THIS_isRef____()
+            buffer.obj = any
         }
     ),
     CALLABLE(
         22,
         { buffer: ByteBuffer, _: Int ->
-            //TODO/4.0: Implement
+            val isCustom = buffer.bool
+            val ptr = buffer.long
+
+            GarbageCollector.getNativeCoreTypeInstance(ptr) ?: if (!isCustom) {
+                val obj = buffer.obj
+                val stringNamePtr = buffer.long
+                Callable(ptr, obj as godot.Object, StringName(stringNamePtr))
+            } else {
+                throw NoSuchElementException("Cannot find managed kotlin callable with ptr: $ptr")
+            }
         },
         { buffer: ByteBuffer, any: Any ->
-            //TODO/4.0: Implement
+            CALLABLE.toGodotNativeCoreType<Callable>(buffer, any)
         }
     ),
     SIGNAL(
@@ -580,8 +626,11 @@ enum class VariantType(
                 is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                 is String -> STRING.toGodotWithoutNullCheck(buffer, any)
                 is Vector2 -> VECTOR2.toGodotWithoutNullCheck(buffer, any)
+                is Vector2i -> VECTOR2I.toGodotWithoutNullCheck(buffer, any)
                 is Rect2 -> RECT2.toGodotWithoutNullCheck(buffer, any)
+                is Rect2i -> RECT2I.toGodotWithoutNullCheck(buffer, any)
                 is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
+                is Vector3i -> VECTOR3I.toGodotWithoutNullCheck(buffer, any)
                 is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
                 is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
                 is Quaternion -> QUATERNION.toGodotWithoutNullCheck(buffer, any)
@@ -589,6 +638,7 @@ enum class VariantType(
                 is Basis -> BASIS.toGodotWithoutNullCheck(buffer, any)
                 is Transform3D -> TRANSFORM3D.toGodotWithoutNullCheck(buffer, any)
                 is Color -> COLOR.toGodotWithoutNullCheck(buffer, any)
+                is StringName -> STRING_NAME.toGodotWithoutNullCheck(buffer, any)
                 is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
                 is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
                 is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)

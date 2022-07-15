@@ -93,11 +93,23 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     buffer->rewind();
 }
 
-void TransferContext::read_args(jni::Env& p_env, Variant* args) {
+uint32_t TransferContext::read_args_size(jni::Env& p_env) {
     SharedBuffer* buffer{get_buffer(p_env)};
     uint32_t size{decode_uint32(buffer->get_cursor())};
     buffer->increment_position(4);
-    for (int i = 0; i < size; ++i) {
+    return size;
+}
+
+Variant TransferContext::read_single_arg(jni::Env& p_env) {
+    SharedBuffer* buffer{get_buffer(p_env)};
+    Variant r_ret;
+    ktvariant::get_variant_from_buffer(buffer, r_ret);
+    return r_ret;
+}
+
+void TransferContext::read_args(jni::Env& p_env, Variant* args) {
+    SharedBuffer* buffer{get_buffer(p_env)};
+    for (int i = 0; i < read_args_size(p_env); ++i) {
         ktvariant::get_variant_from_buffer(buffer, args[i]);
     }
     buffer->rewind();

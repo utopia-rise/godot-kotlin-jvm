@@ -75,7 +75,7 @@ public:
 
 // This concerns placeholders script instances only
 private:
-    Set<PlaceHolderScriptInstance*> placeholders;
+    HashSet<PlaceHolderScriptInstance*> placeholders;
 
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
 

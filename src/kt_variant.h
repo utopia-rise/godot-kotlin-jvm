@@ -11,6 +11,7 @@
 #include "ref_db.h"
 #include "logging.h"
 #include "long_string_queue.h"
+#include "kt_custom_callable.h"
 
 
 //TODO/4.0 implement new types
@@ -76,11 +77,28 @@ namespace ktvariant {
         append_vector2(des, src);
     }
 
+    static inline void append_vector2i(SharedBuffer* des, const Vector2i& from) {
+        des->increment_position(encode_uint32(from.x, des->get_cursor()));
+        des->increment_position(encode_uint32(from.y, des->get_cursor()));
+    }
+
+    static void to_kvariant_fromVECTOR2I(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::VECTOR2I);
+        append_vector2i(des, src);
+    }
+
     static void to_kvariant_fromRECT2(SharedBuffer* des, const Variant& src) {
         Rect2 src_rect2{src};
         set_variant_type(des, Variant::Type::RECT2);
         append_vector2(des, src_rect2.position);
         append_vector2(des, src_rect2.size);
+    }
+
+    static void to_kvariant_fromRECT2I(SharedBuffer* des, const Variant& src) {
+        Rect2i rect2i{src};
+        set_variant_type(des, Variant::Type::RECT2I);
+        append_vector2i(des, rect2i.position);
+        append_vector2i(des, rect2i.size);
     }
 
     static inline void append_vector3(SharedBuffer* des, const Vector3& from) {
@@ -92,6 +110,17 @@ namespace ktvariant {
     static void to_kvariant_fromVECTOR3(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::VECTOR3);
         append_vector3(des, src);
+    }
+
+    static inline void append_vector3i(SharedBuffer* des, const Vector3i& from) {
+        des->increment_position(encode_uint32(from.x, des->get_cursor()));
+        des->increment_position(encode_uint32(from.y, des->get_cursor()));
+        des->increment_position(encode_uint32(from.z, des->get_cursor()));
+    }
+
+    static void to_kvariant_fromVECTOR3I(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::VECTOR3I);
+        append_vector3i(des, src);
     }
 
     static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant& src) {
@@ -152,22 +181,26 @@ namespace ktvariant {
         des->increment_position(encode_float(src_color.a, des->get_cursor()));
     }
 
-    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
-    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, variantType);
+    template<class TNativeCoreType>
+    inline static void append_nativecoretype(SharedBuffer* des, TNativeCoreType native_core_type) {
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType((src.*converter)()))),
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(native_core_type))),
                               des->get_cursor())
         );
     }
 
-    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
+    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, variantType);
+        append_nativecoretype(des, (src.*converter)());
+    }
+
+    static void append_object(SharedBuffer* des, Object* ptr) {
         //TODO/4.0: rework object cpp -> jvm
-        Object* ptr{src};
 
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
         if (!ptr) {
-            to_kvariant_fromNIL(des, src);
+            to_kvariant_fromNIL(des, ptr);
             return;
         }
 
@@ -185,7 +218,7 @@ namespace ktvariant {
             }
         }
 
-        bool is_ref{src.is_ref_counted()};
+        bool is_ref{ptr->is_ref_counted()};
         uint64_t id;
         if (is_ref) {
             auto* ref = reinterpret_cast<RefCounted*>(ptr);
@@ -212,6 +245,23 @@ namespace ktvariant {
                 des->get_cursor()));
     }
 
+    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+        append_object(des, src);
+    }
+
+    static void to_kvariant_from_CALLABLE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::CALLABLE);
+        Callable src_callable{src.operator Callable()};
+
+        bool is_callable_custom{src_callable.is_custom()};
+        des->increment_position(encode_uint32(is_callable_custom, des->get_cursor()));
+        append_nativecoretype(des, src_callable);
+        if (!is_callable_custom) {
+            append_object(des, src_callable.get_object());
+            append_nativecoretype(des, src_callable.get_method());
+        }
+    }
+
     static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
@@ -219,8 +269,11 @@ namespace ktvariant {
         to_kt_array[Variant::FLOAT] = to_kvariant_fromFLOAT;
         to_kt_array[Variant::STRING] = to_kvariant_fromSTRING;
         to_kt_array[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
+        to_kt_array[Variant::VECTOR2I] = to_kvariant_fromVECTOR2I;
         to_kt_array[Variant::RECT2] = to_kvariant_fromRECT2;
+        to_kt_array[Variant::RECT2I] = to_kvariant_fromRECT2I;
         to_kt_array[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
+        to_kt_array[Variant::VECTOR3I] = to_kvariant_fromVECTOR3I;
         to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
         to_kt_array[Variant::PLANE] = to_kvariant_fromPLANE;
         to_kt_array[Variant::QUATERNION] = to_kvariant_fromQUATERNION;
@@ -228,8 +281,10 @@ namespace ktvariant {
         to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
+        to_kt_array[Variant::STRING_NAME] = to_kvariant_from_CALLABLE;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE<Variant::DICTIONARY, Dictionary, &Variant::operator Dictionary>;
         to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::ARRAY, Array, &Variant::operator Array>;
+        to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE<Variant::STRING_NAME, StringName, &Variant::operator StringName>;
         to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE<Variant::NODE_PATH, NodePath, &Variant::operator NodePath>;
         to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE<Variant::RID, RID, &Variant::operator ::RID>;
         to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_BYTE_ARRAY, PackedByteArray, &Variant::operator PackedByteArray>;
@@ -304,11 +359,31 @@ namespace ktvariant {
         return Variant(to_godot_vector2(byte_buffer));
     }
 
+    static inline Vector2i to_godot_vector2i(SharedBuffer* byte_buffer) {
+        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        return {x, y};
+    }
+
+    static Variant from_kvariant_tokVector2iValue(SharedBuffer* byte_buffer) {
+        return Variant(to_godot_vector2i(byte_buffer));
+    }
+
     static Variant from_kvariant_tokRect2Value(SharedBuffer* byte_buffer) {
-        const Vector2& pos{to_godot_vector2(byte_buffer)};
-        const Vector2& size{to_godot_vector2(byte_buffer)};
+        const Vector2 pos{to_godot_vector2(byte_buffer)};
+        const Vector2 size{to_godot_vector2(byte_buffer)};
         return Variant(
                 Rect2(pos, size)
+        );
+    }
+
+    static Variant from_kvariant_tokRect2iValue(SharedBuffer* byte_buffer) {
+        const Vector2i pos{to_godot_vector2i(byte_buffer)};
+        const Vector2i size{to_godot_vector2i(byte_buffer)};
+        return Variant(
+                Rect2i(pos, size)
         );
     }
 
@@ -324,6 +399,20 @@ namespace ktvariant {
 
     static Variant from_kvariant_tokVector3Value(SharedBuffer* byte_buffer) {
         return Variant(to_godot_vector3(byte_buffer));
+    }
+
+    static inline Vector3i to_godot_vector3i(SharedBuffer* byte_buffer) {
+        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto z{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        return {x, y, z};
+    }
+
+    static Variant from_kvariant_tokVector3iValue(SharedBuffer* byte_buffer) {
+        return Variant(to_godot_vector3i(byte_buffer));
     }
 
     static Variant from_kvariant_tokTransform2DValue(SharedBuffer* byte_buffer) {
@@ -425,8 +514,11 @@ namespace ktvariant {
         to_gd_array[Variant::FLOAT] = from_kvariant_tokFloat64Value;
         to_gd_array[Variant::STRING] = from_kvariant_tokStringValue;
         to_gd_array[Variant::VECTOR2] = from_kvariant_tokVector2Value;
+        to_gd_array[Variant::VECTOR2I] = from_kvariant_tokVector2iValue;
         to_gd_array[Variant::RECT2] = from_kvariant_tokRect2Value;
+        to_gd_array[Variant::RECT2I] = from_kvariant_tokRect2iValue;
         to_gd_array[Variant::VECTOR3] = from_kvariant_tokVector3Value;
+        to_gd_array[Variant::VECTOR3I] = from_kvariant_tokVector3iValue;
         to_gd_array[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
         to_gd_array[Variant::PLANE] = from_kvariant_tokPlaneValue;
         to_gd_array[Variant::QUATERNION] = from_kvariant_tokQuaternionValue;
@@ -434,8 +526,10 @@ namespace ktvariant {
         to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
         to_gd_array[Variant::TRANSFORM3D] = from_kvariant_tokTransform3DValue;
         to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
+        to_gd_array[Variant::CALLABLE] = from_kvariant_tokVariantNativeCoreTypeValue<Callable>;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;
+        to_gd_array[Variant::STRING_NAME] = from_kvariant_tokVariantNativeCoreTypeValue<StringName>;
         to_gd_array[Variant::NODE_PATH] = from_kvariant_tokVariantNativeCoreTypeValue<NodePath>;
         to_gd_array[Variant::RID] = from_kvariant_tokVariantNativeCoreTypeValue<RID>;
         to_gd_array[Variant::PACKED_BYTE_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedByteArray>;
