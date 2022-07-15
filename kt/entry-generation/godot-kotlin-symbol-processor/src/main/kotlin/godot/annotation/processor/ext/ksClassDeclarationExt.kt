@@ -3,6 +3,7 @@ package godot.annotation.processor.ext
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
+import com.google.devtools.ksp.isAbstract
 import com.google.devtools.ksp.isPublic
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import godot.annotation.RegisterClass
@@ -13,6 +14,9 @@ import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.RegisteredSignal
 import java.io.File
 
 fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): String = containingFile
@@ -36,7 +40,7 @@ fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): St
             .removePrefix("/")
 
         "res://$srcDir/$relativeFilePath"
-    } ?: throw IllegalStateException("Cannot get res path for declaration: $qualifiedName")
+    } ?: throw IllegalStateException("Cannot get res path for declaration: ${qualifiedName?.asString()}")
 
 fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
@@ -50,28 +54,33 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
         .toList()
 
-    return if (annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName }) {
-        val registeredFunctions = getAllFunctions()
-            .mapNotNull { it.mapToRegisteredFunction() }
-            .toList()
+    val registeredFunctions = getAllFunctions()
+        .mapNotNull { it.mapToRegisteredFunction() }
+        .toList()
 
-        val declaredProperties = getDeclaredProperties()
-        val allProperties = getAllProperties()
-        val registeredProperties = allProperties
-            .filter { property ->
-                property.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } ||
-                    property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
-            }
-            .map {
-                it.mapToRegisteredProperty(declaredProperties.toList())
-            }
-            .toList()
-        val registeredSignals = allProperties
-            .filter { property ->
-                property.annotations.any { it.fqNameUnsafe == RegisterSignal::class.qualifiedName }
-            }
-            .map { it.mapToRegisteredSignal(declaredProperties.toList()) }
-            .toList()
+    val declaredProperties = getDeclaredProperties()
+    val allProperties = getAllProperties()
+    val registeredProperties = allProperties
+        .filter { property ->
+            property.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } ||
+                property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
+        }
+        .map {
+            it.mapToRegisteredProperty(declaredProperties.toList())
+        }
+        .toList()
+    val registeredSignals = allProperties
+        .filter { property ->
+            property.annotations.any { it.fqNameUnsafe == RegisterSignal::class.qualifiedName }
+        }
+        .map { it.mapToRegisteredSignal(declaredProperties.toList()) }
+        .toList()
+
+    val shouldBeRegistered = annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName } ||
+        isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals)
+
+    return if (shouldBeRegistered) {
+
         val registeredConstructors = getConstructors()
             .filter { it.isPublic() }
             .filter { constructor ->
@@ -82,20 +91,29 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
             .toList()
 
         RegisteredClass(
-            fqName,
-            supertypeDeclarations,
-            getResPath(CompilerDataProvider.srcDirs, projectDir),
-            mappedAnnotations,
-            registeredConstructors,
-            registeredFunctions,
-            registeredSignals,
-            registeredProperties
+            fqName = fqName,
+            supertypes = supertypeDeclarations,
+            resPath = getResPath(CompilerDataProvider.srcDirs, projectDir),
+            annotations = mappedAnnotations,
+            constructors = registeredConstructors,
+            functions = registeredFunctions,
+            signals = registeredSignals,
+            properties = registeredProperties,
+            isAbstract = isAbstract()
         )
     } else {
         Clazz(
-            fqName,
-            supertypeDeclarations,
-            mappedAnnotations
+            fqName = fqName,
+            supertypes = supertypeDeclarations,
+            annotations = mappedAnnotations
         )
     }
+}
+
+fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
+    registeredFunctions: List<RegisteredFunction>,
+    registeredProperties: List<RegisteredProperty>,
+    registeredSignals: List<RegisteredSignal>
+): Boolean {
+    return isAbstract() && (registeredFunctions.isNotEmpty() || registeredProperties.isNotEmpty() || registeredSignals.isNotEmpty())
 }

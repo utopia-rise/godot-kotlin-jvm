@@ -19,6 +19,11 @@ class ClassRegistrarFileBuilder(
     private val classRegistrarBuilder = TypeSpec
         .classBuilder("${registeredClass.name}Registrar")
         .addModifiers(KModifier.OPEN)
+        .let { classBuilder ->
+            if (registeredClass.isAbstract) {
+                classBuilder.addKdoc("Registrar for abstract class. Does not register any members as it's only used for default value providing if any properties with default values are provided in the abstract class. Members of this abstract class are registered by the inheriting registrars")
+            } else classBuilder
+        }
 
     private val className = ClassName(registeredClass.containingPackage, registeredClass.name)
 
@@ -27,15 +32,23 @@ class ClassRegistrarFileBuilder(
         .addModifiers(KModifier.OVERRIDE)
         .addParameter("registry", ClassName("godot.registration", "ClassRegistry"))
         .beginControlFlow("with(registry)") //START: with registry
-        .beginControlFlow(
-            "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
-            className,
-            registeredClass.resPath,
-            registeredClass.supertypes.first().fqName,
-            className,
-            registeredClass.godotBaseClass,
-            registeredClass.registeredName
-        ) //START: registerClass
+        .let { funSpecBuilder ->
+            if (!registeredClass.isAbstract) {
+                funSpecBuilder.beginControlFlow(
+                    "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
+                    className,
+                    registeredClass.resPath,
+                    registeredClass.supertypes.first().fqName,
+                    className,
+                    registeredClass.godotBaseClass,
+                    registeredClass.registeredName
+                ) //START: registerClass
+            } else {
+                funSpecBuilder
+                    .addComment("Abstract classes don't need to have any members to be registered")
+            }
+        }
+
 
     fun build(): Pair<String, Array<Any>> {
         if (!registeredClass.directlyInheritsGodotBaseClass) {
@@ -52,14 +65,22 @@ class ClassRegistrarFileBuilder(
             )
         }
 
-        ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-        FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-        SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-        PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow, classRegistrarBuilder)
+        if (!registeredClass.isAbstract) {
+            ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+            FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+            SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+            PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow, classRegistrarBuilder)
+        } else {
+            PropertyRegistrationGenerator.generateForAbstractClass(registeredClass, classRegistrarBuilder)
+        }
 
         classRegistrarBuilder.addFunction(
             registerClassControlFlow
-                .endControlFlow() //END: registerClass
+                .let { funSpecBuilder ->
+                    if (!registeredClass.isAbstract) {
+                        funSpecBuilder.endControlFlow() //END: registerClass
+                    } else funSpecBuilder
+                }
                 .endControlFlow() //END: with registry
                 .build()
         )

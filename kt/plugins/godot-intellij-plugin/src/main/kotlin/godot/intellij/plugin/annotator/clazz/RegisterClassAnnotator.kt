@@ -27,6 +27,7 @@ import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtPackageDirective
 import org.jetbrains.kotlin.psi.allConstructors
+import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
@@ -49,21 +50,21 @@ class RegisterClassAnnotator : Annotator {
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (element.anyPropertyHasAnnotation(REGISTER_PROPERTY_ANNOTATION)) {
+                    if (!element.isAbstract() && element.anyPropertyHasAnnotation(REGISTER_PROPERTY_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
                             errorLocation,
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (element.anyPropertyHasAnnotation(REGISTER_SIGNAL_ANNOTATION)) {
+                    if (!element.isAbstract() && element.anyPropertyHasAnnotation(REGISTER_SIGNAL_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
                             errorLocation,
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (element.anyFunctionHasAnnotation(REGISTER_FUNCTION_ANNOTATION)) {
+                    if (!element.isAbstract() && element.anyFunctionHasAnnotation(REGISTER_FUNCTION_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
                             errorLocation,

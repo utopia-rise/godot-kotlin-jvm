@@ -29,6 +29,7 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import java.awt.Point
 import java.awt.datatransfer.StringSelection
 import java.awt.event.MouseEvent
@@ -88,9 +89,16 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
                         showCodeVision(
                             textOffset = ktClass.textOffset,
                             startOffset = ktClass.startOffset,
-                            convertedName = ktClass.getRegisteredClassName()?.second ?: "<unknown>",
+                            convertedName = if (ktClass.isAbstract()) {
+                                GodotPluginBundle.message(
+                                    "codeVision.registeredName.notRegisteredBecauseIsAbstract.text"
+                                )
+                            } else {
+                                ktClass.getRegisteredClassName()?.second ?: "<unknown>"
+                            },
                             editor = editor,
-                            sink = sink
+                            sink = sink,
+                            shouldCopyOnClick = !ktClass.isAbstract()
                         )
                     }
 
@@ -139,7 +147,8 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
         startOffset: Int,
         convertedName: String,
         editor: Editor,
-        sink: InlayHintsSink
+        sink: InlayHintsSink,
+        shouldCopyOnClick: Boolean = true
     ) {
         val line = editor.document.getLineNumber(startOffset)
         val lineStart = editor.document.getLineStartOffset(line)
@@ -149,27 +158,31 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
             relatesToPrecedingText = false,
             showAbove = true,
             priority = 0,
-            presentation = factory.inset(
-                factory.withTooltip(
-                    GodotPluginBundle.message("codeVision.registeredName.tooltip"),
-                    factory.referenceOnHover(
-                        factory.text(
-                            GodotPluginBundle.message(
-                                "codeVision.registeredName.text",
-                                convertedName
-                            )
-                        ),
-                        // has to be explicit for backwards compatibility with IJ203
-                        @Suppress("ObjectLiteralToLambda")
-                        object : InlayPresentationFactory.ClickListener {
-                            override fun onClick(event: MouseEvent, translated: Point) {
-                                CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
+            presentation = if (shouldCopyOnClick) {
+                factory.inset(
+                    factory.withTooltip(
+                        GodotPluginBundle.message("codeVision.registeredName.tooltip"),
+                        factory.referenceOnHover(
+                            factory.text(
+                                GodotPluginBundle.message(
+                                    "codeVision.registeredName.text",
+                                    convertedName
+                                )
+                            ),
+                            // has to be explicit for backwards compatibility with IJ203
+                            @Suppress("ObjectLiteralToLambda")
+                            object : InlayPresentationFactory.ClickListener {
+                                override fun onClick(event: MouseEvent, translated: Point) {
+                                    CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
+                                }
                             }
-                        }
-                    )
-                ),
-                indent
-            )
+                        )
+                    ),
+                    indent
+                )
+            } else {
+                factory.text(convertedName)
+            }
         )
     }
 }
