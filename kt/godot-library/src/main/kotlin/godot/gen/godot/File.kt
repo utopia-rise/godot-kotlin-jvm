@@ -53,7 +53,7 @@ import kotlin.Unit
  * 		    return content
  * 		```
  *
- * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/3.4/tutorials/io/data_paths.html) documentation.
+ * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths]($DOCS_URL/tutorials/io/data_paths.html) documentation.
  *
  * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of the [godot.File] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
  *

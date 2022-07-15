@@ -157,7 +157,7 @@ public open class RoomManager : Spatial() {
     }
 
   /**
-   * Portal culling normally operates using the current [godot.Camera] / [godot.Camera]s, however for debugging purposes within the editor, you can use this setting to override this behaviour and force it to use a particular camera to get a better idea of what the occlusion culling is doing.
+   * Portal culling normally operates using the current [godot.Camera] / [godot.Camera]s, however for debugging purposes within the editor, you can use this setting to override this behavior and force it to use a particular camera to get a better idea of what the occlusion culling is doing.
    */
   public open var previewCamera: NodePath
     get() {

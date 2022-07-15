@@ -21,20 +21,19 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Sprite node that can use multiple textures for animation.
+ * Sprite node that contains multiple textures as frames to play for animation.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
- * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
+ * [godot.AnimatedSprite] is similar to the [godot.Sprite] node, except it carries multiple textures as animation frames. Animations are created using a [godot.SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [godot.SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
  *
- * **Note:** You can associate a set of normal maps by creating additional [godot.SpriteFrames] resources with a `_normal` suffix. For example, having 2 [godot.SpriteFrames] resources `run` and `run_normal` will make it so the `run` animation uses the normal map.
+ * **Note:** You can associate a set of normal or specular maps by creating additional [godot.SpriteFrames] resources with a `_normal` or `_specular` suffix. For example, having 3 [godot.SpriteFrames] resources `run`, `run_normal`, and `run_specular` will make it so the `run` animation uses normal and specular maps.
  */
 @GodotBaseType
 public open class AnimatedSprite : Node2D() {
@@ -49,7 +48,7 @@ public open class AnimatedSprite : Node2D() {
   public val frameChanged: Signal0 by signal()
 
   /**
-   * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
+   * The current animation from the [frames] resource. If this value changes, the `frame` counter is reset.
    */
   public open var animation: String
     get() {
@@ -120,7 +119,7 @@ public open class AnimatedSprite : Node2D() {
     }
 
   /**
-   * The [godot.SpriteFrames] resource containing the animation(s).
+   * The [godot.SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [godot.SpriteFrames] resource.
    */
   public open var frames: SpriteFrames?
     get() {
@@ -146,6 +145,20 @@ public open class AnimatedSprite : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_OFFSET, NIL)
+    }
+
+  /**
+   * If `true`, the [animation] is currently playing.
+   */
+  public open var playing: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_PLAYING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_PLAYING, NIL)
     }
 
   /**
@@ -175,23 +188,7 @@ public open class AnimatedSprite : Node2D() {
   }
 
 
-  public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AnimatedSprite")
-  }
-
   public open fun _resChanged(): Unit {
-  }
-
-  public open fun _setPlaying(playing: Boolean): Unit {
-  }
-
-  /**
-   * Returns `true` if an animation is currently being played.
-   */
-  public open fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

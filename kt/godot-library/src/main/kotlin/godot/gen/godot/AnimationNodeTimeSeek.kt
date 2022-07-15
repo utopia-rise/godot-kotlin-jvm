@@ -13,7 +13,7 @@ import kotlin.Unit
  * A time-seeking animation node to be used with [godot.AnimationTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * This node can be used to cause a seek command to happen to any sub-children of the animation graph. Use this node type to play an [godot.Animation] from the start or a certain playback position inside the [godot.AnimationNodeBlendTree]. After setting the time and changing the animation playback, the seek node automatically goes into sleep mode on the next process frame by setting its `seek_position` value to `-1.0`.
  *

@@ -51,6 +51,20 @@ public open class TileMap : Node2D() {
   public val settingsChanged: Signal0 by signal()
 
   /**
+   * If `true`, this TileMap bakes a navigation region.
+   */
+  public open var bakeNavigation: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_BAKE_NAVIGATION, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_BAKE_NAVIGATION, NIL)
+    }
+
+  /**
    * If `true`, the cell's UVs will be clipped.
    */
   public open var cellClipUv: Boolean
@@ -204,7 +218,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {
@@ -218,7 +232,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {
@@ -295,6 +309,22 @@ public open class TileMap : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_MODE, NIL)
+    }
+
+  /**
+   * The navigation layers the TileMap generates its navigation regions in.
+   */
+  public open var navigationLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_LAYERS,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_LAYERS,
+          NIL)
     }
 
   /**

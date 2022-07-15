@@ -30,6 +30,8 @@ import kotlin.Unit
  * PopupMenu displays a list of options.
  *
  * [godot.PopupMenu] is a [godot.Control] that displays a list of options. They are popular in toolbars or context menus.
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.Tree], [godot.PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
@@ -475,7 +477,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the tooltip associated with the specified index index `idx`.
+   * Returns the tooltip associated with the specified index `idx`.
    */
   public open fun getItemTooltip(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -563,6 +565,14 @@ public open class PopupMenu : Popup() {
   public open fun removeItem(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_REMOVE_ITEM, NIL)
+  }
+
+  /**
+   * Sets the currently focused item as the given `index`.
+   */
+  public open fun setCurrentIndex(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_CURRENT_INDEX, NIL)
   }
 
   /**

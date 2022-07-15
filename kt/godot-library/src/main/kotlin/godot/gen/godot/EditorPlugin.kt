@@ -28,7 +28,7 @@ import kotlin.Unit
  * Used by the editor to extend its functionality.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html)
+ * [$DOCS_URL/tutorials/plugins/editor/index.html]($DOCS_URL/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
  */
@@ -400,7 +400,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   * Gets the Editor's dialogue used for making scripts.
+   * Gets the Editor's dialog used for making scripts.
    *
    * **Note:** Users can configure it before use.
    *
@@ -414,7 +414,19 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   * Gets the state of your plugin editor. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns).
+   * Override this method to provide a state data you want to be saved, like view position, grid settings, folding, etc. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns). This data is automatically saved for each scene in an `editstate` file in the editor metadata folder. If you want to store global (scene-independent) editor data for your plugin, you can use [getWindowLayout] instead.
+   *
+   * Use [setState] to restore your saved state.
+   *
+   * **Note:** This method should not be used to save important settings that should persist with the project.
+   *
+   * **Note:** You must implement [getPluginName] for the state to be stored and restored correctly.
+   *
+   * ```
+   * 				func get_state():
+   * 				    var state = {"zoom": zoom, "preferred_color": my_color}
+   * 				    return state
+   * 				```
    */
   public open fun _getState(): Dictionary<Any?, Any?> {
     throw NotImplementedError("get_state is not implemented for EditorPlugin")
@@ -430,7 +442,15 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   * Gets the GUI layout of the plugin. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed(For example changing the position of a dock).
+   * Override this method to provide the GUI layout of the plugin or any other data you want to be stored. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed (for example changing the position of a dock). The data is stored in the `editor_layout.cfg` file in the editor metadata directory.
+   *
+   * Use [setWindowLayout] to restore your saved layout.
+   *
+   * ```
+   * 				func get_window_layout(configuration):
+   * 				    configuration.set_value("MyPlugin", "window_position", $Window.position)
+   * 				    configuration.set_value("MyPlugin", "icon_color", $Icon.modulate)
+   * 				```
    */
   public open fun _getWindowLayout(layout: ConfigFile): Unit {
   }
@@ -606,13 +626,27 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   * Restore the state saved by [getState].
+   * Restore the state saved by [getState]. This method is called when the current scene tab is changed in the editor.
+   *
+   * **Note:** Your plugin must implement [getPluginName], otherwise it will not be recognized and this method will not be called.
+   *
+   * ```
+   * 				func set_state(data):
+   * 				    zoom = data.get("zoom", 1.0)
+   * 				    preferred_color = data.get("my_color", Color.white)
+   * 				```
    */
   public open fun _setState(state: Dictionary<Any?, Any?>): Unit {
   }
 
   /**
-   * Restore the plugin GUI layout saved by [getWindowLayout].
+   * Restore the plugin GUI layout and data saved by [getWindowLayout]. This method is called for every plugin on editor startup. Use the provided `configuration` file to read your saved data.
+   *
+   * ```
+   * 				func set_window_layout(configuration):
+   * 				    $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2())
+   * 				    $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.white)
+   * 				```
    */
   public open fun _setWindowLayout(layout: ConfigFile): Unit {
   }

@@ -26,7 +26,7 @@ import kotlin.Unit
  * Used by the editor to define Spatial gizmo types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/spatial_gizmos.html)
+ * [$DOCS_URL/tutorials/plugins/editor/spatial_gizmos.html]($DOCS_URL/tutorials/plugins/editor/spatial_gizmos.html)
  *
  * [godot.EditorSpatialGizmoPlugin] allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorSpatialGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorSpatialGizmo] type. See the tutorial in the documentation for more info.
  *

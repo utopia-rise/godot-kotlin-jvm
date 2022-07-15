@@ -62,6 +62,23 @@ public open class KinematicBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_SET_MOTION_SYNC_TO_PHYSICS, NIL)
     }
 
+  /**
+   * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum MovingPlatformApplyVelocityOnLeave] constants for available behavior.
+   */
+  public open var movingPlatformApplyVelocityOnLeave: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_GET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_SET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICBODY2D)
   }
@@ -253,5 +270,49 @@ public open class KinematicBody2D : PhysicsBody2D() {
     TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to relVec, BOOL to infiniteInertia)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public enum class MovingPlatformApplyVelocityOnLeave(
+    id: Long
+  ) {
+    /**
+     * Add the last platform velocity when you leave a moving platform.
+     */
+    PLATFORM_VEL_ON_LEAVE_ALWAYS(0),
+    /**
+     * Add the last platform velocity when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
+     */
+    PLATFORM_VEL_ON_LEAVE_UPWARD_ONLY(1),
+    /**
+     * Do nothing when leaving a platform.
+     */
+    PLATFORM_VEL_ON_LEAVE_NEVER(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public companion object {
+    /**
+     * Add the last platform velocity when you leave a moving platform.
+     */
+    public final const val PLATFORM_VEL_ON_LEAVE_ALWAYS: Long = 0
+
+    /**
+     * Do nothing when leaving a platform.
+     */
+    public final const val PLATFORM_VEL_ON_LEAVE_NEVER: Long = 2
+
+    /**
+     * Add the last platform velocity when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
+     */
+    public final const val PLATFORM_VEL_ON_LEAVE_UPWARD_ONLY: Long = 1
   }
 }

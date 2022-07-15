@@ -19,14 +19,14 @@ import kotlin.Unit
  * Directional light from a distance, as from the Sun.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/3d/lights_and_shadows.html](https://docs.godotengine.org/en/3.4/tutorials/3d/lights_and_shadows.html)
+ * [$DOCS_URL/tutorials/3d/lights_and_shadows.html]($DOCS_URL/tutorials/3d/lights_and_shadows.html)
  *
  * A directional light is a type of [godot.Light] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene to model sunlight or moonlight. The worldspace location of the DirectionalLight transform (origin) is ignored. Only the basis is used to determine light direction.
  */
 @GodotBaseType
 public open class DirectionalLight : Light() {
   /**
-   * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits.
+   * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits. Enabling shadow blend splitting also has a moderate performance cost. This is ignored when [directionalShadowMode] is [SHADOW_ORTHOGONAL].
    */
   public open var directionalShadowBlendSplits: Boolean
     get() {

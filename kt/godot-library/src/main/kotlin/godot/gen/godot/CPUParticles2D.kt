@@ -31,7 +31,7 @@ import kotlin.Unit
  * CPU-based 2D particle emitter.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/3.4/tutorials/2d/particle_systems_2d.html)
+ * [$DOCS_URL/tutorials/2d/particle_systems_2d.html]($DOCS_URL/tutorials/2d/particle_systems_2d.html)
  *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  *
@@ -259,6 +259,22 @@ public open class CPUParticles2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR, NIL)
+    }
+
+  /**
+   * Each particle's initial color will vary along this [godot.GradientTexture] (multiplied with [color]).
+   */
+  public open var colorInitialRamp: Gradient?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_COLOR_INITIAL_RAMP, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_INITIAL_RAMP, NIL)
     }
 
   /**

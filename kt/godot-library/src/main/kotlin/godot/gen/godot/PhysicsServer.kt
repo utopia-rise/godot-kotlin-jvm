@@ -306,22 +306,22 @@ public object PhysicsServer : Object() {
   public final const val G6DOF_JOINT_ANGULAR_UPPER_LIMIT: Long = 11
 
   /**
-   * If `set` there is rotational motion possible.
+   * If set, rotational motion is possible.
    */
   public final const val G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT: Long = 1
 
   /**
-   * If `set` there is linear motion possible within the given limits.
+   * If set, linear motion is possible within the given limits.
    */
   public final const val G6DOF_JOINT_FLAG_ENABLE_LINEAR_LIMIT: Long = 0
 
   /**
-   * If `set` there is a linear motor on this axis that targets a specific velocity.
+   * If set, there is a linear motor on this axis that targets a specific velocity.
    */
   public final const val G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR: Long = 5
 
   /**
-   * If `set` there is a rotational motor across these axes.
+   * If set, there is a rotational motor across these axes.
    */
   public final const val G6DOF_JOINT_FLAG_ENABLE_MOTOR: Long = 4
 
@@ -2555,19 +2555,19 @@ public object PhysicsServer : Object() {
     id: Long
   ) {
     /**
-     * If `set` there is linear motion possible within the given limits.
+     * If set, linear motion is possible within the given limits.
      */
     G6DOF_JOINT_FLAG_ENABLE_LINEAR_LIMIT(0),
     /**
-     * If `set` there is rotational motion possible.
+     * If set, rotational motion is possible.
      */
     G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT(1),
     /**
-     * If `set` there is a rotational motor across these axes.
+     * If set, there is a rotational motor across these axes.
      */
     G6DOF_JOINT_FLAG_ENABLE_MOTOR(4),
     /**
-     * If `set` there is a linear motor on this axis that targets a specific velocity.
+     * If set, there is a linear motor on this axis that targets a specific velocity.
      */
     G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR(5),
     ;

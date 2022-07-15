@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class CurveTexture : Texture() {
   /**
-   * The `curve` rendered onto the texture.
+   * The [godot.Curve] that is rendered onto the texture.
    */
   public open var curve: Curve?
     get() {
@@ -37,7 +37,7 @@ public open class CurveTexture : Texture() {
     }
 
   /**
-   * The width of the texture.
+   * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
    */
   public open var width: Long
     @JvmName("getWidth_prop")

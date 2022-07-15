@@ -134,6 +134,12 @@ public open class PackedScene : Resource() {
      * **Note:** Only available in editor builds.
      */
     GEN_EDIT_STATE_MAIN(2),
+    /**
+     * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
+     *
+     * **Note:** Only available in editor builds.
+     */
+    GEN_EDIT_STATE_MAIN_INHERITED(3),
     ;
 
     public val id: Long
@@ -165,5 +171,12 @@ public open class PackedScene : Resource() {
      * **Note:** Only available in editor builds.
      */
     public final const val GEN_EDIT_STATE_MAIN: Long = 2
+
+    /**
+     * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
+     *
+     * **Note:** Only available in editor builds.
+     */
+    public final const val GEN_EDIT_STATE_MAIN_INHERITED: Long = 3
   }
 }

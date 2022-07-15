@@ -21,7 +21,7 @@ import kotlin.Unit
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html)
+ * [$DOCS_URL/tutorials/plugins/editor/import_plugins.html]($DOCS_URL/tutorials/plugins/editor/import_plugins.html)
  *
  * [godot.EditorImportPlugin]s provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers.
  *

@@ -99,7 +99,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   public val sleepingStateChanged: Signal0 by signal()
 
   /**
-   * Damps the body's [angularVelocity]. If `-1`, the body will use the **Default Angular Damp** defined in **Project > Project Settings > Physics > 2d**.
+   * Damps the body's [angularVelocity]. If `-1`, the body will use the **Default Angular Damp** defined in **Project > Project Settings > Physics > 2d**. If greater than `-1` it will be added to the default project value.
    *
    * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
@@ -310,7 +310,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Damps the body's [linearVelocity]. If `-1`, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 2d**.
+   * Damps the body's [linearVelocity]. If `-1`, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 2d**. If greater than `-1` it will be added to the default project value.
    *
    * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */

@@ -19,7 +19,7 @@ import kotlin.Unit
  * Adds a filter to the audio bus.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html)
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Allows frequencies other than the [cutoffHz] to pass.
  */

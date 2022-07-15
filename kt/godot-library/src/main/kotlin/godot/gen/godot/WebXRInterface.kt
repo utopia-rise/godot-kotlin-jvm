@@ -5,9 +5,12 @@
 
 package godot
 
+import godot.WebXRInterface
 import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -18,6 +21,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -125,6 +129,19 @@ public open class WebXRInterface : ARVRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
+  public open var xrStandardMapping: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_XR_STANDARD_MAPPING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_XR_STANDARD_MAPPING, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBXRINTERFACE)
   }
@@ -136,9 +153,45 @@ public open class WebXRInterface : ARVRInterface() {
     return TransferContext.readReturnValue(OBJECT, true) as ARVRPositionalTracker?
   }
 
+  public open fun getControllerTargetRayMode(controllerId: Long): WebXRInterface.TargetRayMode {
+    TransferContext.writeArguments(LONG to controllerId)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_CONTROLLER_TARGET_RAY_MODE, LONG)
+    return WebXRInterface.TargetRayMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
   public open fun isSessionSupported(sessionMode: String): Unit {
     TransferContext.writeArguments(STRING to sessionMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_IS_SESSION_SUPPORTED,
         NIL)
+  }
+
+  public enum class TargetRayMode(
+    id: Long
+  ) {
+    TARGET_RAY_MODE_UNKNOWN(0),
+    TARGET_RAY_MODE_GAZE(1),
+    TARGET_RAY_MODE_TRACKED_POINTER(2),
+    TARGET_RAY_MODE_SCREEN(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public companion object {
+    public final const val TARGET_RAY_MODE_GAZE: Long = 1
+
+    public final const val TARGET_RAY_MODE_SCREEN: Long = 3
+
+    public final const val TARGET_RAY_MODE_TRACKED_POINTER: Long = 2
+
+    public final const val TARGET_RAY_MODE_UNKNOWN: Long = 0
   }
 }

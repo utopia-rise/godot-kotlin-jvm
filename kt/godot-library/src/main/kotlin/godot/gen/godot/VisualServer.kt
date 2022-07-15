@@ -63,7 +63,7 @@ import kotlin.Unit
  * Server for anything visible.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html](https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html)
+ * [$DOCS_URL/tutorials/performance/using_servers.html]($DOCS_URL/tutorials/performance/using_servers.html)
  *
  * Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
@@ -336,6 +336,21 @@ public object VisualServer : Object() {
   public final const val CANVAS_OCCLUDER_POLYGON_CULL_DISABLED: Long = 0
 
   /**
+   * Used to query for any changes that request a redraw, whatever the priority.
+   */
+  public final const val CHANGED_PRIORITY_ANY: Long = 0
+
+  /**
+   * Registered changes which can cause a redraw default to high priority.
+   */
+  public final const val CHANGED_PRIORITY_HIGH: Long = 2
+
+  /**
+   * Registered changes which have low priority can be optionally prevented from causing editor redraws. Examples might include dynamic shaders (typically using the `TIME` built-in).
+   */
+  public final const val CHANGED_PRIORITY_LOW: Long = 1
+
+  /**
    * Marks the back side of a cubemap.
    */
   public final const val CUBEMAP_BACK: Long = 5
@@ -451,27 +466,29 @@ public object VisualServer : Object() {
   public final const val ENV_SSAO_QUALITY_MEDIUM: Long = 1
 
   /**
-   * Use the ACES tonemapper.
+   * Use the legacy Godot version of the Academy Color Encoding System tonemapper. Unlike [ENV_TONE_MAPPER_ACES_FITTED], this version of ACES does not handle bright lighting in a physically accurate way. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
+   *
+   * **Note:** This tonemapping operator will be removed in Godot 4.0 in favor of the more accurate [ENV_TONE_MAPPER_ACES_FITTED].
    */
   public final const val ENV_TONE_MAPPER_ACES: Long = 3
 
   /**
-   * Use the ACES Fitted tonemapper.
+   * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
    */
   public final const val ENV_TONE_MAPPER_ACES_FITTED: Long = 4
 
   /**
-   * Use the filmic tonemapper.
+   * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
    */
   public final const val ENV_TONE_MAPPER_FILMIC: Long = 2
 
   /**
-   * Output color as they came in.
+   * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
    */
   public final const val ENV_TONE_MAPPER_LINEAR: Long = 0
 
   /**
-   * Use the Reinhard tonemapper.
+   * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
    */
   public final const val ENV_TONE_MAPPER_REINHARD: Long = 1
 
@@ -508,17 +525,17 @@ public object VisualServer : Object() {
   /**
    * The amount of 2d draw calls in frame.
    */
-  public final const val INFO_2D_DRAW_CALLS_IN_FRAME: Long = 7
+  public final const val INFO_2D_DRAW_CALLS_IN_FRAME: Long = 8
 
   /**
    * The amount of 2d items in the frame.
    */
-  public final const val INFO_2D_ITEMS_IN_FRAME: Long = 6
+  public final const val INFO_2D_ITEMS_IN_FRAME: Long = 7
 
   /**
    * The amount of draw calls in frame.
    */
-  public final const val INFO_DRAW_CALLS_IN_FRAME: Long = 5
+  public final const val INFO_DRAW_CALLS_IN_FRAME: Long = 6
 
   /**
    * The amount of modified materials in the frame.
@@ -536,24 +553,35 @@ public object VisualServer : Object() {
   public final const val INFO_SHADER_CHANGES_IN_FRAME: Long = 3
 
   /**
+   * The peak amount of shaders that have been under compilation in the frame.
+   *
+   * This is useful to know when asynchronous shader compilation has finished for the current shaders on screen.
+   *
+   * **Note:** For complete certainty, only assume there are no outstanding compilations when this value is zero for at least two frames in a row.
+   *
+   * Unimplemented in the GLES2 rendering backend, always returns 0.
+   */
+  public final const val INFO_SHADER_COMPILES_IN_FRAME: Long = 4
+
+  /**
    * The amount of surface changes in the frame.
    */
-  public final const val INFO_SURFACE_CHANGES_IN_FRAME: Long = 4
+  public final const val INFO_SURFACE_CHANGES_IN_FRAME: Long = 5
 
   /**
    * The amount of texture memory used.
    */
-  public final const val INFO_TEXTURE_MEM_USED: Long = 10
+  public final const val INFO_TEXTURE_MEM_USED: Long = 11
 
   /**
    * Unimplemented in the GLES2 and GLES3 rendering backends, always returns 0.
    */
-  public final const val INFO_USAGE_VIDEO_MEM_TOTAL: Long = 8
+  public final const val INFO_USAGE_VIDEO_MEM_TOTAL: Long = 9
 
   /**
    * The amount of vertex memory used.
    */
-  public final const val INFO_VERTEX_MEM_USED: Long = 11
+  public final const val INFO_VERTEX_MEM_USED: Long = 12
 
   /**
    * The amount of vertices in the frame.
@@ -563,7 +591,7 @@ public object VisualServer : Object() {
   /**
    * The amount of video memory used, i.e. texture and vertex memory combined.
    */
-  public final const val INFO_VIDEO_MEM_USED: Long = 9
+  public final const val INFO_VIDEO_MEM_USED: Long = 10
 
   /**
    * When set, manually requests to draw geometry on next frame.
@@ -2753,9 +2781,11 @@ public object VisualServer : Object() {
 
   /**
    * Returns `true` if changes have been made to the VisualServer's data. [draw] is usually called if this happens.
+   *
+   * As changes are registered as either high or low priority (e.g. dynamic shaders), this function takes an optional argument to query either low or high priority changes, or any changes.
    */
-  public fun hasChanged(): Boolean {
-    TransferContext.writeArguments()
+  public fun hasChanged(queriedPriority: Long = 0): Boolean {
+    TransferContext.writeArguments(LONG to queriedPriority)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_HAS_CHANGED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -2993,6 +3023,15 @@ public object VisualServer : Object() {
     TransferContext.writeArguments(_RID to instance, LONG to flag, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_INSTANCE_GEOMETRY_SET_FLAG, NIL)
+  }
+
+  /**
+   * Sets a material that will be rendered for all surfaces on top of active materials for the mesh associated with this instance. Equivalent to [godot.GeometryInstance.materialOverlay].
+   */
+  public fun instanceGeometrySetMaterialOverlay(instance: RID, material: RID): Unit {
+    TransferContext.writeArguments(_RID to instance, _RID to material)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_INSTANCE_GEOMETRY_SET_MATERIAL_OVERLAY, NIL)
   }
 
   /**
@@ -3457,7 +3496,7 @@ public object VisualServer : Object() {
   }
 
   /**
-   * Returns the default value for the param if available. Otherwise returns an empty [Variant].
+   * Returns the default value for the param if available. Returns `null` otherwise.
    */
   public fun materialGetParamDefault(material: RID, parameter: String): Any? {
     TransferContext.writeArguments(_RID to material, STRING to parameter)
@@ -4462,6 +4501,19 @@ public object VisualServer : Object() {
   }
 
   /**
+   * If asynchronous shader compilation is enabled, this controls whether [godot.SpatialMaterial.ASYNC_MODE_HIDDEN] is obeyed.
+   *
+   * For instance, you may want to enable this temporarily before taking a screenshot. This ensures everything is visible even if shaders with async mode *hidden* are not ready yet.
+   *
+   * Reflection probes use this internally to ensure they capture everything regardless the shaders are ready or not.
+   */
+  public fun setShaderAsyncHiddenForbidden(forbidden: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to forbidden)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_SHADER_ASYNC_HIDDEN_FORBIDDEN, NIL)
+  }
+
+  /**
    * Sets the scale to apply to the passage of time for the shaders' `TIME` builtin.
    *
    * The default value is `1.0`, which means `TIME` will count the real time as it goes by, without narrowing or stretching it.
@@ -4862,6 +4914,31 @@ public object VisualServer : Object() {
   }
 
   /**
+   * Creates an update link between two textures, similar to how [godot.ViewportTexture]s operate. When the base texture is the texture of a [godot.Viewport], every time the viewport renders a new frame, the proxy texture automatically receives an update.
+   *
+   * For example, this code links a generic [godot.ImageTexture] to the texture output of the [godot.Viewport] using the VisualServer API:
+   *
+   * ```
+   * 				func _ready():
+   * 				    var viewport_rid = get_viewport().get_viewport_rid()
+   * 				    var viewport_texture_rid = VisualServer.viewport_get_texture(viewport_rid)
+   *
+   * 				    var proxy_texture = ImageTexture.new()
+   * 				    var viewport_texture_image_data = VisualServer.texture_get_data(viewport_texture_rid)
+   *
+   * 				    proxy_texture.create_from_image(viewport_texture_image_data)
+   * 				    var proxy_texture_rid = proxy_texture.get_rid()
+   * 				    VisualServer.texture_set_proxy(proxy_texture_rid, viewport_texture_rid)
+   *
+   * 				    $TextureRect.texture = proxy_texture
+   * 				```
+   */
+  public fun textureSetProxy(proxy: RID, base: RID): Unit {
+    TransferContext.writeArguments(_RID to proxy, _RID to base)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_TEXTURE_SET_PROXY, NIL)
+  }
+
+  /**
    * If `true`, sets internal processes to shrink all image data to half the size.
    */
   public fun textureSetShrinkAllX2OnSetData(shrink: Boolean): Unit {
@@ -4922,7 +4999,7 @@ public object VisualServer : Object() {
    * 				    $Viewport.set_attach_to_screen_rect(Rect2(0, 0, 600, 600))
    * 				```
    *
-   * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For a further optimization see, [viewportSetRenderDirectToScreen].
+   * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [viewportSetRenderDirectToScreen].
    */
   public fun viewportAttachToScreen(
     viewport: RID,
@@ -5384,6 +5461,33 @@ public object VisualServer : Object() {
     }
   }
 
+  public enum class ChangedPriority(
+    id: Long
+  ) {
+    /**
+     * Used to query for any changes that request a redraw, whatever the priority.
+     */
+    CHANGED_PRIORITY_ANY(0),
+    /**
+     * Registered changes which have low priority can be optionally prevented from causing editor redraws. Examples might include dynamic shaders (typically using the `TIME` built-in).
+     */
+    CHANGED_PRIORITY_LOW(1),
+    /**
+     * Registered changes which can cause a redraw default to high priority.
+     */
+    CHANGED_PRIORITY_HIGH(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EnvironmentSSAOQuality(
     id: Long
   ) {
@@ -5458,37 +5562,47 @@ public object VisualServer : Object() {
      */
     INFO_SHADER_CHANGES_IN_FRAME(3),
     /**
+     * The peak amount of shaders that have been under compilation in the frame.
+     *
+     * This is useful to know when asynchronous shader compilation has finished for the current shaders on screen.
+     *
+     * **Note:** For complete certainty, only assume there are no outstanding compilations when this value is zero for at least two frames in a row.
+     *
+     * Unimplemented in the GLES2 rendering backend, always returns 0.
+     */
+    INFO_SHADER_COMPILES_IN_FRAME(4),
+    /**
      * The amount of surface changes in the frame.
      */
-    INFO_SURFACE_CHANGES_IN_FRAME(4),
+    INFO_SURFACE_CHANGES_IN_FRAME(5),
     /**
      * The amount of draw calls in frame.
      */
-    INFO_DRAW_CALLS_IN_FRAME(5),
+    INFO_DRAW_CALLS_IN_FRAME(6),
     /**
      * The amount of 2d items in the frame.
      */
-    INFO_2D_ITEMS_IN_FRAME(6),
+    INFO_2D_ITEMS_IN_FRAME(7),
     /**
      * The amount of 2d draw calls in frame.
      */
-    INFO_2D_DRAW_CALLS_IN_FRAME(7),
+    INFO_2D_DRAW_CALLS_IN_FRAME(8),
     /**
      * Unimplemented in the GLES2 and GLES3 rendering backends, always returns 0.
      */
-    INFO_USAGE_VIDEO_MEM_TOTAL(8),
+    INFO_USAGE_VIDEO_MEM_TOTAL(9),
     /**
      * The amount of video memory used, i.e. texture and vertex memory combined.
      */
-    INFO_VIDEO_MEM_USED(9),
+    INFO_VIDEO_MEM_USED(10),
     /**
      * The amount of texture memory used.
      */
-    INFO_TEXTURE_MEM_USED(10),
+    INFO_TEXTURE_MEM_USED(11),
     /**
      * The amount of vertex memory used.
      */
-    INFO_VERTEX_MEM_USED(11),
+    INFO_VERTEX_MEM_USED(12),
     ;
 
     public val id: Long
@@ -6035,23 +6149,25 @@ public object VisualServer : Object() {
     id: Long
   ) {
     /**
-     * Output color as they came in.
+     * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
      */
     ENV_TONE_MAPPER_LINEAR(0),
     /**
-     * Use the Reinhard tonemapper.
+     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
      */
     ENV_TONE_MAPPER_REINHARD(1),
     /**
-     * Use the filmic tonemapper.
+     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
      */
     ENV_TONE_MAPPER_FILMIC(2),
     /**
-     * Use the ACES tonemapper.
+     * Use the legacy Godot version of the Academy Color Encoding System tonemapper. Unlike [ENV_TONE_MAPPER_ACES_FITTED], this version of ACES does not handle bright lighting in a physically accurate way. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
+     *
+     * **Note:** This tonemapping operator will be removed in Godot 4.0 in favor of the more accurate [ENV_TONE_MAPPER_ACES_FITTED].
      */
     ENV_TONE_MAPPER_ACES(3),
     /**
-     * Use the ACES Fitted tonemapper.
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
      */
     ENV_TONE_MAPPER_ACES_FITTED(4),
     ;

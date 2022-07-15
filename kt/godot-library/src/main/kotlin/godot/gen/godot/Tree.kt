@@ -46,6 +46,8 @@ import kotlin.Unit
  * 		```
  *
  * To iterate over all the [godot.TreeItem] objects in a [godot.Tree] object, use [godot.TreeItem.getNext] and [godot.TreeItem.getChildren] after getting the root through [getRoot]. You can use [godot.Object.free] on a [godot.TreeItem] to remove it from the [godot.Tree].
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.PopupMenu], [godot.Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class Tree : Control() {
@@ -158,6 +160,22 @@ public open class Tree : Control() {
     }
 
   /**
+   * If `true`, column titles are visible.
+   */
+  public open var columnTitlesVisible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLES_VISIBLE,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLES_VISIBLE,
+          NIL)
+    }
+
+  /**
    * The number of columns.
    */
   public open var columns: Long
@@ -255,16 +273,6 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns `true` if the column titles are being shown.
-   */
-  public open fun areColumnTitlesVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ARE_COLUMN_TITLES_VISIBLE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
    * Clears the tree. This removes all items.
    */
   public open fun clear(): Unit {
@@ -304,6 +312,16 @@ public open class Tree : Control() {
   public open fun ensureCursorIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ENSURE_CURSOR_IS_VISIBLE, NIL)
+  }
+
+  /**
+   * Returns the button id at `position`, or -1 if no button is there.
+   */
+  public open fun getButtonIdAtPosition(position: Vector2): Long {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_BUTTON_ID_AT_POSITION,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -361,7 +379,7 @@ public open class Tree : Control() {
    *
    * ```
    * 				func _ready():
-   * 				    $Tree.item_edited.connect(on_Tree_item_edited)
+   * 				    $Tree.connect("item_edited", self, "on_Tree_item_edited")
    *
    * 				func on_Tree_item_edited():
    * 				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
@@ -494,14 +512,6 @@ public open class Tree : Control() {
   public open fun setColumnTitle(column: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE, NIL)
-  }
-
-  /**
-   * If `true`, column titles are visible.
-   */
-  public open fun setColumnTitlesVisible(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLES_VISIBLE, NIL)
   }
 
   public enum class SelectMode(

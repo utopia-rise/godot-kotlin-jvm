@@ -163,6 +163,24 @@ public open class GeometryInstance : VisualInstance() {
     }
 
   /**
+   * The material overlay for the whole geometry.
+   *
+   * If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.
+   */
+  public open var materialOverlay: Material?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_GET_MATERIAL_OVERLAY, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Material?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_MATERIAL_OVERLAY, NIL)
+    }
+
+  /**
    * The material override for the whole geometry.
    *
    * If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.

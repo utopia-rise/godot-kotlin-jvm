@@ -22,6 +22,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -192,7 +193,8 @@ public open class EditorResourcePicker : HBoxContainer() {
   /**
    * This virtual method can be implemented to handle context menu items not handled by default. See [setCreateOptions].
    */
-  public open fun _handleMenuSelected(id: Long): Unit {
+  public open fun _handleMenuSelected(id: Long): Boolean {
+    throw NotImplementedError("handle_menu_selected is not implemented for EditorResourcePicker")
   }
 
   /**

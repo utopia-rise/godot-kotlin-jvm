@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -62,6 +64,24 @@ public open class VisibilityNotifier : CullInstance() {
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_SET_AABB, NIL)
+    }
+
+  /**
+   * In addition to checking whether a node is on screen or within a [godot.Camera]'s view, VisibilityNotifier can also optionally check whether a node is within a specified maximum distance when using a [godot.Camera] with perspective projection. This is useful for throttling the performance requirements of nodes that are far away.
+   *
+   * **Note:** This feature will be disabled if set to 0.0.
+   */
+  public open var maxDistance: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_GET_MAX_DISTANCE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_SET_MAX_DISTANCE, NIL)
     }
 
   public override fun __new(): Unit {

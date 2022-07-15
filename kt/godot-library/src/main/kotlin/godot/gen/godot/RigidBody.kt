@@ -103,7 +103,7 @@ public open class RigidBody : PhysicsBody() {
   public val sleepingStateChanged: Signal0 by signal()
 
   /**
-   * Damps RigidBody's rotational forces.
+   * Damps the body's rotational forces. If this value is different from -1.0 it will be added to any angular damp derived from the world or areas.
    *
    * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
@@ -361,7 +361,7 @@ public open class RigidBody : PhysicsBody() {
     }
 
   /**
-   * The body's linear damp. Cannot be less than -1.0. If this value is different from -1.0, any linear damp derived from the world or areas will be overridden.
+   * The body's linear damp. Cannot be less than -1.0. If this value is different from -1.0 it will be added to any linear damp derived from the world or areas.
    *
    * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */

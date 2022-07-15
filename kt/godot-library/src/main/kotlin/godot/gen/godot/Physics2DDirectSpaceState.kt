@@ -26,7 +26,7 @@ import kotlin.Unit
  * Direct access object to a space in the [godot.Physics2DServer].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html)
+ * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
  * Direct access object to a space in the [godot.Physics2DServer]. It's used mainly to do queries against objects and areas residing in a given space.
  */
@@ -194,9 +194,7 @@ public open class Physics2DDirectSpaceState : Object() {
   }
 
   /**
-   * Checks the intersections of a shape, given through a [godot.Physics2DShapeQueryParameters] object, against the space.
-   *
-   * **Note:** This method does not take into account the `motion` property of the object. The intersected shapes are returned in an array containing dictionaries with the following fields:
+   * Checks the intersections of a shape, given through a [godot.Physics2DShapeQueryParameters] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields:
    *
    * `collider`: The colliding object.
    *

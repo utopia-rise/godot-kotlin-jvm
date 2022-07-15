@@ -32,7 +32,7 @@ import kotlin.Unit
  * Server for AR and VR features.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
  *
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
  */

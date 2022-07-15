@@ -17,7 +17,7 @@ import kotlin.Unit
  * Post-processes scenes after import.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/assets_pipeline/importing_scenes.html#custom-script](https://docs.godotengine.org/en/3.4/tutorials/assets_pipeline/importing_scenes.html#custom-script)
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_scenes.html#custom-script]($DOCS_URL/tutorials/assets_pipeline/importing_scenes.html#custom-script)
  *
  * Imported scenes can be automatically modified right after import by setting their **Custom Script** Import property to a `tool` script that inherits from this class.
  *

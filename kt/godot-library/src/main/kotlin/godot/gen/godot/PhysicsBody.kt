@@ -21,7 +21,7 @@ import kotlin.Unit
  * Base class for all objects affected by physics in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html)
+ * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
  * PhysicsBody is an abstract base class for implementing a physics body. All *Body types inherit from it.
  */

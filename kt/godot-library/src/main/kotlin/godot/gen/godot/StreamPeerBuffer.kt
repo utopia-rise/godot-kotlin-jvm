@@ -17,12 +17,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Data buffer stream peer.
  *
+ * Data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.File] can be used directly.
+ *
+ * A [godot.StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
  */
 @GodotBaseType
 public open class StreamPeerBuffer : StreamPeer() {
   /**
-   *
+   * The underlying data buffer. Setting this value resets the cursor.
    */
   public open var dataArray: PoolByteArray
     get() {
@@ -42,7 +46,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Clears the [dataArray] and resets the cursor.
    */
   public open fun clear(): Unit {
     TransferContext.writeArguments()
@@ -50,7 +54,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Returns a new [godot.StreamPeerBuffer] with the same [dataArray] content.
    */
   public open fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
@@ -59,7 +63,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Returns the current cursor position.
    */
   public open fun getPosition(): Long {
     TransferContext.writeArguments()
@@ -68,7 +72,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Returns the size of [dataArray].
    */
   public open fun getSize(): Long {
     TransferContext.writeArguments()
@@ -77,7 +81,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
   public open fun resize(size: Long): Unit {
     TransferContext.writeArguments(LONG to size)
@@ -85,7 +89,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   *
+   * Moves the cursor to the specified position. `position` must be a valid index of [dataArray].
    */
   public open fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)

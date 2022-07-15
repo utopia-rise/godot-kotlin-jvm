@@ -114,9 +114,9 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Draws this stylebox using a [godot.CanvasItem] with given [RID].
+   * Draws this stylebox using a canvas item identified by the given [RID].
    *
-   * You can get a [RID] value using [godot.Object.getInstanceId] on a [godot.CanvasItem]-derived node.
+   * The [RID] value can either be the result of [godot.CanvasItem.getCanvasItem] called on an existing [godot.CanvasItem]-derived node, or directly from creating a canvas item in the [godot.VisualServer] with [godot.VisualServer.canvasItemCreate].
    */
   public open fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)

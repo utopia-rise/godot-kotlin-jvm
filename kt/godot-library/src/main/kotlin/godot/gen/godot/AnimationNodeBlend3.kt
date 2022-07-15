@@ -17,7 +17,7 @@ import kotlin.Unit
  * Blends two of three animations linearly inside of an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations together linearly out of three based on a value in the `[-1.0, 1.0]` range.
  *

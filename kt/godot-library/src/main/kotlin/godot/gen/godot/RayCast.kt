@@ -88,7 +88,7 @@ public open class RayCast : Spatial() {
     }
 
   /**
-   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {
@@ -207,9 +207,7 @@ public open class RayCast : Spatial() {
   }
 
   /**
-   * Updates the collision information for the ray.
-   *
-   * Use this method to update the collision information immediately instead of waiting for the next `_physics_process` call, for example if the ray or its parent has changed state.
+   * Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next `_physics_process` call, for example if the ray or its parent has changed state.
    *
    * **Note:** `enabled` is not required for this to work.
    */
