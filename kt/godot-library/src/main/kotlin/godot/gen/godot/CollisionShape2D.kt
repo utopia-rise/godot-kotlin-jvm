@@ -44,6 +44,8 @@ public open class CollisionShape2D : Node2D() {
 
   /**
    * Sets whether this collision shape should only detect collision on one side (top or bottom).
+   *
+   * **Note:** This property has no effect if this [godot.CollisionShape2D] is a child of an [godot.Area2D] node.
    */
   public open var oneWayCollision: Boolean
     get() {

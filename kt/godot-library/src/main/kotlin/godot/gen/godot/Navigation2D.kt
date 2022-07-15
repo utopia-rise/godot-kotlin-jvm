@@ -11,6 +11,7 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
@@ -18,6 +19,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,6 +28,8 @@ import kotlin.Unit
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/117](https://godotengine.org/asset-library/asset/117)
+ *
+ * *Deprecated.* [godot.Navigation2D] node and [getSimplePath] are deprecated and will be removed in a future version. Use [godot.Navigation2DServer.mapGetPath] instead.
  *
  * Navigation2D provides navigation and pathfinding within a 2D area, specified as a collection of [godot.NavigationPolygon] resources. By default, these are automatically collected from child [godot.NavigationPolygonInstance] nodes.
  */
@@ -62,6 +66,22 @@ public open class Navigation2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_SET_EDGE_CONNECTION_MARGIN, NIL)
     }
 
+  /**
+   * A bitfield determining all navigation map layers the navigation can use on a [godot.Navigation2D.getSimplePath] path query.
+   */
+  public open var navigationLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_NAVIGATION_LAYERS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_SET_NAVIGATION_LAYERS, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATION2D)
   }
@@ -96,6 +116,8 @@ public open class Navigation2D : Node2D() {
   }
 
   /**
+   * *Deprecated.* [godot.Navigation2D] node and [getSimplePath] are deprecated and will be removed in a future version. Use [godot.Navigation2DServer.mapGetPath] instead.
+   *
    * Returns the path between two given points. Points are in local coordinate space. If `optimize` is `true` (the default), the path is smoothed by merging path segments where possible.
    */
   public open fun getSimplePath(

@@ -229,7 +229,9 @@ public open class Directory : Reference() {
   }
 
   /**
-   * Deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
+   * Permanently deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
+   *
+   * If you don't want to delete the file/directory permanently, use [godot.OS.moveToTrash] instead.
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */

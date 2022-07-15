@@ -43,7 +43,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class BakedLightmap : VisualInstance() {
   /**
-   * When enabled, the lightmapper will merge the textures for all meshes into a single large layered texture. Not supported in GLES2.
+   * If `true`, the lightmapper will merge the textures for all meshes into one or several large layered textures. If `false`, every mesh will get its own lightmap texture, which is less efficient.
+   *
+   * **Note:** Atlas lightmap rendering is only supported in GLES3, *not* GLES2. Non-atlas lightmap rendering is supported by both GLES3 and GLES2. If [godot.ProjectSettings.rendering/quality/driver/fallbackToGles2] is `true`, consider baking lightmaps with [atlasGenerate] set to `false` so that the resulting lightmap is visible in both GLES3 and GLES2.
    */
   public open var atlasGenerate: Boolean
     get() {
@@ -343,7 +345,7 @@ public open class BakedLightmap : VisualInstance() {
     }
 
   /**
-   * Determines the amount of samples per texel used in indrect light baking. The amount of samples for each quality level can be configured in the project settings.
+   * Determines the amount of samples per texel used in indirect light baking. The amount of samples for each quality level can be configured in the project settings.
    */
   public open var quality: Long
     get() {

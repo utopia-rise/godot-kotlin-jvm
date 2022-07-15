@@ -104,6 +104,26 @@ public open class MultiMesh : Resource() {
     }
 
   /**
+   * Choose whether to use an interpolation method that favors speed or quality.
+   *
+   * When using low physics tick rates (typically below 20) or high rates of object rotation, you may get better results from the high quality setting.
+   *
+   * **Note:** Fast quality does not equate to low quality. Except in the special cases mentioned above, the quality should be comparable to high quality.
+   */
+  public open var physicsInterpolationQuality: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_PHYSICS_INTERPOLATION_QUALITY, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_PHYSICS_INTERPOLATION_QUALITY, NIL)
+    }
+
+  /**
    * Format of transform used to transform mesh, either 2D or 3D.
    */
   public open var transformFormat: Long
@@ -217,6 +237,17 @@ public open class MultiMesh : Resource() {
   }
 
   /**
+   * When using *physics interpolation*, this function allows you to prevent interpolation on an instance in the current physics tick.
+   *
+   * This allows you to move instances instantaneously, and should usually be used when initially placing an instance such as a bullet to prevent graphical glitches.
+   */
+  public open fun resetInstancePhysicsInterpolation(instance: Long): Unit {
+    TransferContext.writeArguments(LONG to instance)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIMESH_RESET_INSTANCE_PHYSICS_INTERPOLATION, NIL)
+  }
+
+  /**
    * Sets all data related to the instances in one go. This is especially useful when loading the data from disk or preparing the data from GDNative.
    *
    * All data is packed in one large float array. An array may look like this: Transform for instance 1, color data for instance 1, custom data for instance 1, transform for instance 2, color data for instance 2, etc...
@@ -226,6 +257,21 @@ public open class MultiMesh : Resource() {
   public open fun setAsBulkArray(array: PoolRealArray): Unit {
     TransferContext.writeArguments(POOL_REAL_ARRAY to array)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_AS_BULK_ARRAY, NIL)
+  }
+
+  /**
+   * An alternative version of [godot.MultiMesh.setAsBulkArray] which can be used with *physics interpolation*. This method takes two arrays, and can set the data for the current and previous tick in one go. The renderer will automatically interpolate the data at each frame.
+   *
+   * This is useful for situations where the order of instances may change from physics tick to tick, such as particle systems.
+   *
+   * When the order of instances is coherent, the simpler [godot.MultiMesh.setAsBulkArray] can still be used with interpolation.
+   */
+  public open fun setAsBulkArrayInterpolated(arrayCurrent: PoolRealArray,
+      arrayPrevious: PoolRealArray): Unit {
+    TransferContext.writeArguments(POOL_REAL_ARRAY to arrayCurrent, POOL_REAL_ARRAY to
+        arrayPrevious)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_AS_BULK_ARRAY_INTERPOLATED, NIL)
   }
 
   /**
@@ -263,6 +309,29 @@ public open class MultiMesh : Resource() {
     TransferContext.writeArguments(LONG to instance, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
         NIL)
+  }
+
+  public enum class PhysicsInterpolationQuality(
+    id: Long
+  ) {
+    /**
+     * Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
+     */
+    INTERP_QUALITY_FAST(0),
+    /**
+     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
+     */
+    INTERP_QUALITY_HIGH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class TransformFormat(
@@ -372,6 +441,16 @@ public open class MultiMesh : Resource() {
      * Use when you are not using per-instance custom data.
      */
     public final const val CUSTOM_DATA_NONE: Long = 0
+
+    /**
+     * Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
+     */
+    public final const val INTERP_QUALITY_FAST: Long = 0
+
+    /**
+     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
+     */
+    public final const val INTERP_QUALITY_HIGH: Long = 1
 
     /**
      * Use this when using 2D transforms.

@@ -675,6 +675,22 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
+   * Enables signed distance field rendering shader.
+   */
+  public open var flagsAlbedoTexMsdf: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 19L)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_ALBEDO_TEX_MSDF, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 19L, BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_ALBEDO_TEX_MSDF, NIL)
+    }
+
+  /**
    * If `true`, the object receives no ambient light.
    */
   public open var flagsDisableAmbientLight: Boolean
@@ -821,7 +837,13 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * If `true`, lighting is calculated per vertex rather than per pixel. This may increase performance on low-end devices.
+   * If `true`, lighting is calculated per vertex rather than per pixel. This may increase performance on low-end devices, especially for meshes with a lower polygon count. The downside is that shading becomes much less accurate, with visible linear interpolation between vertices that are joined together. This can be compensated by ensuring meshes have a sufficient level of subdivision (but not too much, to avoid reducing performance). Some material features are also not supported when vertex shading is enabled.
+   *
+   * See also [godot.ProjectSettings.rendering/quality/shading/forceVertexShading] which can globally enable vertex shading on all materials.
+   *
+   * **Note:** By default, vertex shading is enforced on mobile platforms by [godot.ProjectSettings.rendering/quality/shading/forceVertexShading]'s `mobile` override.
+   *
+   * **Note:** [flagsVertexLighting] has no effect if [flagsUnshaded] is `true`.
    */
   public open var flagsVertexLighting: Boolean
     get() {
@@ -2010,9 +2032,13 @@ public open class SpatialMaterial : Material() {
      */
     FLAG_USE_SHADOW_TO_OPACITY(18),
     /**
+     * Enables signed distance field rendering shader.
+     */
+    FLAG_ALBEDO_TEXTURE_SDF(19),
+    /**
      * Represents the size of the [enum Flags] enum.
      */
-    FLAG_MAX(19),
+    FLAG_MAX(20),
     ;
 
     public val id: Long
@@ -2550,6 +2576,11 @@ public open class SpatialMaterial : Material() {
     public final const val FLAG_ALBEDO_TEXTURE_FORCE_SRGB: Long = 14
 
     /**
+     * Enables signed distance field rendering shader.
+     */
+    public final const val FLAG_ALBEDO_TEXTURE_SDF: Long = 19
+
+    /**
      * Use `UV2` coordinates to look up from the [aoTexture].
      */
     public final const val FLAG_AO_ON_UV2: Long = 11
@@ -2592,7 +2623,7 @@ public open class SpatialMaterial : Material() {
     /**
      * Represents the size of the [enum Flags] enum.
      */
-    public final const val FLAG_MAX: Long = 19
+    public final const val FLAG_MAX: Long = 20
 
     /**
      * Vertex color is in sRGB space and needs to be converted to linear. Only applies in the GLES3 renderer.

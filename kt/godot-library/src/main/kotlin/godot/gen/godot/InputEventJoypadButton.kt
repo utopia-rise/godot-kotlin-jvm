@@ -58,7 +58,7 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   /**
-   * Represents the pressure the user puts on the button with his finger, if the controller supports it. Ranges from `0` to `1`.
+   * Represents the pressure the user puts on the button with their finger, if the controller supports it. Ranges from `0` to `1`.
    */
   public open var pressure: Double
     get() {

@@ -211,15 +211,17 @@ public open class EditorVCSInterface : Object() {
   }
 
   /**
-   * Helper function to create a commit [godot.core.Dictionary] item. `msg` is the commit message of the commit. `author` is a human-readable string containing the author's details, e.g. the email and name configured in the VCS. `id` is the identifier of the commit, in whichever format your VCS may provide an identifier to commits. `date` is directly added to the commit item and displayed in the editor, and hence, it shall be a well-formatted, human-readable date string.
+   * Helper function to create a commit [godot.core.Dictionary] item. `msg` is the commit message of the commit. `author` is a single human-readable string containing all the author's details, e.g. the email and name configured in the VCS. `id` is the identifier of the commit, in whichever format your VCS may provide an identifier to commits. `unix_timestamp` is the UTC Unix timestamp of when the commit was created. `offset_minutes` is the timezone offset in minutes, recorded from the system timezone where the commit was created.
    */
   public open fun createCommit(
     msg: String,
     author: String,
     id: String,
-    date: String
+    unixTimestamp: Long,
+    offsetMinutes: Long
   ): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to msg, STRING to author, STRING to id, STRING to date)
+    TransferContext.writeArguments(STRING to msg, STRING to author, STRING to id, LONG to
+        unixTimestamp, LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_COMMIT,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>

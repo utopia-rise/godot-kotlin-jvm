@@ -46,6 +46,15 @@ public open class BitMap : Resource() {
   }
 
   /**
+   * Returns an image of the same size as the bitmap and with a [enum Image.Format] of type `FORMAT_L8`. `true` bits of the bitmap are being converted into white pixels, and `false` bits into black.
+   */
+  public open fun convertToImage(): Image? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CONVERT_TO_IMAGE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Image?
+  }
+
+  /**
    * Creates a bitmap with the specified size, filled with `false`.
    */
   public open fun create(size: Vector2): Unit {
@@ -103,6 +112,14 @@ public open class BitMap : Resource() {
     TransferContext.writeArguments(RECT2 to rect, DOUBLE to epsilon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_OPAQUE_TO_POLYGONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Resizes the image to `new_size`.
+   */
+  public open fun resize(newSize: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to newSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_RESIZE, NIL)
   }
 
   /**

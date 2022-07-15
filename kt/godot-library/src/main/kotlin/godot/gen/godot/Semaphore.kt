@@ -29,7 +29,9 @@ public open class Semaphore : Reference() {
   }
 
   /**
-   * Lowers the [godot.Semaphore], allowing one more thread in. Returns [OK] on success, [ERR_BUSY] otherwise.
+   * Lowers the [godot.Semaphore], allowing one more thread in.
+   *
+   * **Note:** This method internals' can't possibly fail, but an error code is returned for backwards compatibility, which will always be [OK].
    */
   public open fun post(): GodotError {
     TransferContext.writeArguments()
@@ -38,7 +40,18 @@ public open class Semaphore : Reference() {
   }
 
   /**
-   * Tries to wait for the [godot.Semaphore], if its value is zero, blocks until non-zero. Returns [OK] on success, [ERR_BUSY] otherwise.
+   * Like [wait], but won't block, so if the value is zero, fails immediately and returns [ERR_BUSY]. If non-zero, it returns [OK] to report success.
+   */
+  public open fun tryWait(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_TRY_WAIT, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Waits for the [godot.Semaphore], if its value is zero, blocks until non-zero.
+   *
+   * **Note:** This method internals' can't possibly fail, but an error code is returned for backwards compatibility, which will always be [OK].
    */
   public open fun wait(): GodotError {
     TransferContext.writeArguments()

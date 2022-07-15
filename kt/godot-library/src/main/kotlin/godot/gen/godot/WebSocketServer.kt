@@ -151,6 +151,12 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  public open fun setExtraHeaders(headers: PoolStringArray = PoolStringArray()): Unit {
+    TransferContext.writeArguments(POOL_STRING_ARRAY to headers)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_EXTRA_HEADERS,
+        NIL)
+  }
+
   public open fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_STOP, NIL)

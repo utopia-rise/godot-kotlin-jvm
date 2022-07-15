@@ -165,6 +165,9 @@ public open class ScriptEditor : PanelContainer() {
   public open fun _openRecentScript(arg0: Long): Unit {
   }
 
+  public open fun _prepareFileMenu(): Unit {
+  }
+
   public open fun _queueCloseTabs(): Unit {
   }
 

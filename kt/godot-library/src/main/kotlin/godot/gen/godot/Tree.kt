@@ -46,6 +46,8 @@ import kotlin.Unit
  * 		```
  *
  * To iterate over all the [godot.TreeItem] objects in a [godot.Tree] object, use [godot.TreeItem.getNext] and [godot.TreeItem.getChildren] after getting the root through [getRoot]. You can use [godot.Object.free] on a [godot.TreeItem] to remove it from the [godot.Tree].
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.PopupMenu], [godot.Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class Tree : Control() {
@@ -313,6 +315,16 @@ public open class Tree : Control() {
   }
 
   /**
+   * Returns the button id at `position`, or -1 if no button is there.
+   */
+  public open fun getButtonIdAtPosition(position: Vector2): Long {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_BUTTON_ID_AT_POSITION,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the column index at `position`, or -1 if no item is there.
    */
   public open fun getColumnAtPosition(position: Vector2): Long {
@@ -367,7 +379,7 @@ public open class Tree : Control() {
    *
    * ```
    * 				func _ready():
-   * 				    $Tree.item_edited.connect(on_Tree_item_edited)
+   * 				    $Tree.connect("item_edited", self, "on_Tree_item_edited")
    *
    * 				func on_Tree_item_edited():
    * 				    print($Tree.get_edited()) # This item just got edited (e.g. checked).

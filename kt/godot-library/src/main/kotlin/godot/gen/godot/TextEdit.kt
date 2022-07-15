@@ -191,6 +191,38 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * If `true`, the selected text will be deselected when focus is lost.
+   */
+  public open var deselectOnFocusLossEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+    }
+
+  /**
+   * If `true`, allow drag and drop of selected text.
+   */
+  public open var dragAndDropSelectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAG_AND_DROP_SELECTION_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAG_AND_DROP_SELECTION_ENABLED, NIL)
+    }
+
+  /**
    * If `true`, the "space" character will have a visible representation.
    */
   public open var drawSpaces: Boolean
@@ -276,6 +308,24 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
+    }
+
+  /**
+   * If `false`, using middle mouse button to paste clipboard will be disabled.
+   *
+   * **Note:** This method is only implemented on Linux.
+   */
+  public open var middleMousePasteEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MIDDLE_MOUSE_PASTE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL)
     }
 
   /**
@@ -859,6 +909,25 @@ public open class TextEdit : Control() {
   }
 
   /**
+   * Returns the total amount of lines that could be drawn.
+   */
+  public open fun getTotalVisibleRows(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_VISIBLE_ROWS,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the number of visible lines, including wrapped text.
+   */
+  public open fun getVisibleRows(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_ROWS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns a [godot.String] text with the word under the caret (text cursor) location.
    */
   public open fun getWordUnderCursor(): String {
@@ -956,6 +1025,16 @@ public open class TextEdit : Control() {
   public open fun isLineWrapped(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns whether the mouse is over selection. If `edges` is `true`, the edges are considered part of the selection.
+   */
+  public open fun isMouseOverSelection(edges: Boolean): Boolean {
+    TransferContext.writeArguments(BOOL to edges)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
+        BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

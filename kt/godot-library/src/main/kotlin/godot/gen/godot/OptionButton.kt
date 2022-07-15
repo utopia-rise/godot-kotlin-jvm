@@ -164,6 +164,16 @@ public open class OptionButton : Button() {
   }
 
   /**
+   * Returns the tooltip of the item at index `idx`.
+   */
+  public open fun getItemTooltip(idx: Long): String {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TOOLTIP,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the [godot.PopupMenu] contained in this button.
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
@@ -175,7 +185,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the ID of the selected item, or `0` if no item is selected.
+   * Returns the ID of the selected item, or `-1` if no item is selected.
    */
   public open fun getSelectedId(): Long {
     TransferContext.writeArguments()
@@ -212,6 +222,8 @@ public open class OptionButton : Button() {
 
   /**
    * Selects an item by index and makes it the current item. This will work even if the item is disabled.
+   *
+   * Passing `-1` as the index deselects any currently selected item.
    */
   public open fun select(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
@@ -258,5 +270,13 @@ public open class OptionButton : Button() {
   public open fun setItemText(idx: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TEXT, NIL)
+  }
+
+  /**
+   * Sets the tooltip of the item at index `idx`.
+   */
+  public open fun setItemTooltip(idx: Long, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to idx, STRING to tooltip)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TOOLTIP, NIL)
   }
 }

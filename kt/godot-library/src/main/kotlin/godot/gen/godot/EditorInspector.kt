@@ -23,11 +23,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A tab used to edit properties of the selected node.
+ * A control used to edit properties of an object.
  *
- * The editor inspector is by default located on the right-hand side of the editor. It's used to edit the properties of the selected node. For example, you can select a node such as [godot.Sprite] then edit its transform through the inspector tool. The editor inspector is an essential tool in the game development workflow.
+ * This is the control that implements property editing in the editor's Settings dialogs, the Inspector dock, etc. To get the [godot.EditorInspector] used in the editor's Inspector dock, use [godot.EditorInterface.getInspector].
  *
- * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getInspector].
+ * [godot.EditorInspector] will show properties in the same order as the array returned by [godot.Object.getPropertyList].
+ *
+ * If a property's name is path-like (i.e. if it contains forward slashes), [godot.EditorInspector] will create nested sections for "directories" along the path. For example, if a property is named `highlighting/gdscript/node_path_color`, it will be shown as "Node Path Color" inside the "GDScript" section nested inside the "Highlighting" section.
+ *
+ * If a property has [@GlobalScope.PROPERTY_USAGE_GROUP] usage, it will group subsequent properties whose name starts with the property's hint string. The group ends when a property does not start with that hint string or when a new group starts. An empty group name effectively ends the current group. [godot.EditorInspector] will create a top-level section for each group. For example, if a property with group usage is named `Collide With` and its hint string is `collide_with_`, a subsequent `collide_with_area` property will be shown as "Area" inside the "Collide With" section.
+ *
+ * **Note:** Unlike sections created from path-like property names, [godot.EditorInspector] won't capitalize the name for sections created from groups. So properties with group usage usually use capitalized names instead of snake_cased names.
  */
 @GodotBaseType
 public open class EditorInspector : ScrollContainer() {

@@ -29,7 +29,7 @@ import kotlin.Unit
  * 		    print("Timer ended.")
  * 		```
  *
- * The timer will be automatically freed after its time elapses.
+ * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.Reference].
  */
 @GodotBaseType
 public open class SceneTreeTimer : Reference() {

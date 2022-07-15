@@ -610,6 +610,28 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_THEME, NIL)
     }
 
+  /**
+   * The name of a theme type variation used by this [godot.Control] to look up its own theme items. When empty, the class name of the node is used (e.g. `Button` for the [godot.Button] control), as well as the class names of all parent classes (in order of inheritance).
+   *
+   * When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [godot.Theme.setTypeVariation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.
+   *
+   * **Note:** To look up [godot.Control]'s own items use various `get_*` methods without specifying `theme_type`.
+   *
+   * **Note:** Theme items are looked for in the tree order, from branch to root, where each [godot.Control] node is checked for its [theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
+   */
+  public open var themeTypeVariation: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_TYPE_VARIATION,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_THEME_TYPE_VARIATION,
+          NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONTROL)
   }
@@ -910,7 +932,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified `name` and `theme_type`. If `theme_type` is omitted the class name of the current control is used as the type. If the type is a class name its parent classes are also checked, in order of inheritance.
+   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified `name` and `theme_type`. If `theme_type` is omitted the class name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance.
    *
    * For the current control its local overrides are considered first (see [addColorOverride]), then its assigned [theme]. After the current control, each parent control and its assigned [theme] are considered; controls without a [theme] assigned are skipped. If no matching [godot.Theme] is found in the tree, a custom project [godot.Theme] (see [godot.ProjectSettings.gui/theme/custom]) and the default [godot.Theme] are used.
    *
@@ -1260,6 +1282,17 @@ public open class Control : CanvasItem() {
   public open fun hasStyleboxOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_STYLEBOX_OVERRIDE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if a drag operation is successful. Alternative to [godot.Viewport.guiIsDragSuccessful].
+   *
+   * Best used with [godot.Node.NOTIFICATION_DRAG_END].
+   */
+  public open fun isDragSuccessful(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_DRAG_SUCCESSFUL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1653,11 +1686,11 @@ public open class Control : CanvasItem() {
      */
     CURSOR_CROSS(3),
     /**
-     * Show the system's wait mouse cursor, often an hourglass, when the user hovers the node.
+     * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
     CURSOR_WAIT(4),
     /**
-     * Show the system's busy mouse cursor when the user hovers the node. Often an hourglass.
+     * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass.
      */
     CURSOR_BUSY(5),
     /**
@@ -1879,7 +1912,7 @@ public open class Control : CanvasItem() {
     public final const val CURSOR_BDIAGSIZE: Long = 11
 
     /**
-     * Show the system's busy mouse cursor when the user hovers the node. Often an hourglass.
+     * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass.
      */
     public final const val CURSOR_BUSY: Long = 5
 
@@ -1949,7 +1982,7 @@ public open class Control : CanvasItem() {
     public final const val CURSOR_VSPLIT: Long = 14
 
     /**
-     * Show the system's wait mouse cursor, often an hourglass, when the user hovers the node.
+     * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
     public final const val CURSOR_WAIT: Long = 4
 

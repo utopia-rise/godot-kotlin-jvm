@@ -20,7 +20,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Class that has everything pertaining to a world. A physics space, a visual scenario and a sound space. Spatial nodes register their resources into the current world.
+ * Class that has everything pertaining to a world. A physics space, a visual scenario, a navigation map and a sound space. Spatial nodes register their resources into the current world.
  */
 @GodotBaseType
 public open class World : Resource() {
@@ -50,7 +50,7 @@ public open class World : Resource() {
     }
 
   /**
-   * The World's fallback_environment will be used if the World's [godot.Environment] fails or is missing.
+   * The World's fallback environment will be used if [environment] fails or is missing.
    */
   public open var fallbackEnvironment: Environment?
     get() {
@@ -63,6 +63,16 @@ public open class World : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD_SET_FALLBACK_ENVIRONMENT,
           NIL)
+    }
+
+  /**
+   * The [RID] of this world's navigation map. Used by the [godot.NavigationServer].
+   */
+  public open val navigationMap: RID
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD_GET_NAVIGATION_MAP, _RID)
+      return TransferContext.readReturnValue(_RID, false) as RID
     }
 
   /**

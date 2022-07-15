@@ -6,16 +6,22 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
 import godot.core.PoolByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.STRING
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,6 +38,11 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object JavaScript : Object() {
+  /**
+   * Emitted when an update for this progressive web app has been detected but is waiting to be activated because a previous version is active. See [pwaUpdate] to force the update to take place immediately.
+   */
+  public val pwaUpdateAvailable: Signal0 by signal()
+
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVASCRIPT)
   }
@@ -92,5 +103,29 @@ public object JavaScript : Object() {
     TransferContext.writeArguments(STRING to _interface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_GET_INTERFACE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
+  }
+
+  /**
+   * Returns `true` if a new version of the progressive web app is waiting to be activated.
+   *
+   * **Note:** Only relevant when exported as a Progressive Web App.
+   */
+  public fun pwaNeedsUpdate(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_NEEDS_UPDATE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Performs the live update of the progressive web app. Forcing the new version to be installed and the page to be reloaded.
+   *
+   * **Note:** Your application will be **reloaded in all browser tabs**.
+   *
+   * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns `true`.
+   */
+  public fun pwaUpdate(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_UPDATE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 }

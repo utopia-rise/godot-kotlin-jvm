@@ -125,6 +125,22 @@ public open class RichTextLabel : Control() {
     }
 
   /**
+   * If `true`, the selected text will be deselected when focus is lost.
+   */
+  public open var deselectOnFocusLossEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+    }
+
+  /**
    * If `true`, the label's height will be automatically updated to fit its content.
    *
    * **Note:** This property is used as a workaround to fix issues with [godot.RichTextLabel] in [godot.Container]s, but it's unreliable in some cases and will be removed in future versions.
@@ -306,9 +322,10 @@ public open class RichTextLabel : Control() {
   public open fun addImage(
     image: Texture,
     width: Long = 0,
-    height: Long = 0
+    height: Long = 0,
+    align: Long = 2
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height)
+    TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, LONG to align)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL)
   }
 
@@ -321,9 +338,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses `bbcode` and adds tags to the tag stack as needed. Returns the result of the parsing, [OK] if successful.
+   * Parses `bbcode` and adds tags to the tag stack as needed.
    *
    * **Note:** Using this method, you can't close a tag that was opened in a previous [appendBbcode] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [bbcodeText] instead of using [appendBbcode].
+   *
+   * **Note:** This method internals' can't possibly fail, but an error code is returned for backwards compatibility, which will always be [OK].
    */
   public open fun appendBbcode(bbcode: String): GodotError {
     TransferContext.writeArguments(STRING to bbcode)
@@ -337,6 +356,14 @@ public open class RichTextLabel : Control() {
   public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_CLEAR, NIL)
+  }
+
+  /**
+   * Clears the current selection.
+   */
+  public open fun deselect(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_DESELECT, NIL)
   }
 
   /**
@@ -356,6 +383,16 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the current selection text. Does not include BBCodes.
+   */
+  public open fun getSelectedText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTED_TEXT,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -406,7 +443,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * The assignment version of [appendBbcode]. Clears the tag stack and inserts the new content. Returns [OK] if parses `bbcode` successfully.
+   * The assignment version of [appendBbcode]. Clears the tag stack and inserts the new content.
+   *
+   * **Note:** This method internals' can't possibly fail, but an error code is returned for backwards compatibility, which will always be [OK].
    */
   public open fun parseBbcode(bbcode: String): GodotError {
     TransferContext.writeArguments(STRING to bbcode)
@@ -739,6 +778,37 @@ public open class RichTextLabel : Control() {
     }
   }
 
+  public enum class InlineAlign(
+    id: Long
+  ) {
+    /**
+     * Aligns top of the inline image to the top of the text.
+     */
+    INLINE_ALIGN_TOP(0),
+    /**
+     * Aligns center of the inline image to the center of the text.
+     */
+    INLINE_ALIGN_CENTER(1),
+    /**
+     * Aligns bottom of the inline image to the baseline of the text.
+     */
+    INLINE_ALIGN_BASELINE(2),
+    /**
+     * Aligns bottom of the inline image to the bottom of the text.
+     */
+    INLINE_ALIGN_BOTTOM(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public companion object {
     /**
      * Makes text centered.
@@ -759,6 +829,26 @@ public open class RichTextLabel : Control() {
      * Makes text right aligned.
      */
     public final const val ALIGN_RIGHT: Long = 2
+
+    /**
+     * Aligns bottom of the inline image to the baseline of the text.
+     */
+    public final const val INLINE_ALIGN_BASELINE: Long = 2
+
+    /**
+     * Aligns bottom of the inline image to the bottom of the text.
+     */
+    public final const val INLINE_ALIGN_BOTTOM: Long = 3
+
+    /**
+     * Aligns center of the inline image to the center of the text.
+     */
+    public final const val INLINE_ALIGN_CENTER: Long = 1
+
+    /**
+     * Aligns top of the inline image to the top of the text.
+     */
+    public final const val INLINE_ALIGN_TOP: Long = 0
 
     /**
      *

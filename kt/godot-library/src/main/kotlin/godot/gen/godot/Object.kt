@@ -486,7 +486,7 @@ public open class Object : KtObject() {
   /**
    * Connects a `signal` to a `method` on a `target` object. Pass optional `binds` to the call as an [godot.Array] of parameters. These parameters will be passed to the method after any parameter used in the call to [emitSignal]. Use `flags` to set deferred or one-shot connections. See [enum ConnectFlags] constants.
    *
-   * A `signal` can only be connected once to a `method`. It will throw an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
+   * A `signal` can only be connected once to a `method`. It will print an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
    *
    * If the `target` is destroyed in the game's lifecycle, the connection will be lost.
    *
@@ -523,7 +523,7 @@ public open class Object : KtObject() {
   /**
    * Disconnects a `signal` from a `method` on the given `target`.
    *
-   * If you try to disconnect a connection that does not exist, the method will throw an error. Use [isConnected] to ensure that the connection exists.
+   * If you try to disconnect a connection that does not exist, the method will print an error. Use [isConnected] to ensure that the connection exists.
    */
   public open fun disconnect(
     signal: String,
@@ -611,9 +611,11 @@ public open class Object : KtObject() {
 
   /**
    * Returns the object's metadata entry for the given `name`.
+   *
+   * Throws error if the entry does not exist, unless `default` is not `null` (in which case the default value will be returned).
    */
-  public open fun getMeta(name: String): Any? {
-    TransferContext.writeArguments(STRING to name)
+  public open fun getMeta(name: String, default: Any? = null): Any? {
+    TransferContext.writeArguments(STRING to name, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }

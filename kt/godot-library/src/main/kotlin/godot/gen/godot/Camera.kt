@@ -208,7 +208,7 @@ public open class Camera : Spatial() {
     }
 
   /**
-   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal mode. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
+   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal and frustum modes. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
    */
   public open var size: Double
     get() {
@@ -330,7 +330,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -339,7 +339,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)

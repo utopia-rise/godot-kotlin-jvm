@@ -6,11 +6,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType._RID
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
@@ -20,6 +22,8 @@ import kotlin.Unit
  * 2D obstacle used in navigation for collision avoidance.
  *
  * 2D obstacle used in navigation for collision avoidance. The obstacle needs navigation data to work correctly. This can be done by having the obstacle as a child of a [godot.Navigation2D] node, or using [setNavigation]. [godot.NavigationObstacle2D] is physics safe.
+ *
+ * **Note:** Obstacles are intended as a last resort option for constantly moving objects that cannot be (re)baked to a navigation mesh efficiently.
  */
 @GodotBaseType
 public open class NavigationObstacle2D : Node() {
@@ -67,6 +71,15 @@ public open class NavigationObstacle2D : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_NAVIGATION,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Returns the [RID] of this obstacle on the [godot.Navigation2DServer].
+   */
+  public open fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
   /**

@@ -1552,7 +1552,7 @@ public object GlobalConstants : Object() {
   /**
    * Command key mask. On macOS, this is equivalent to [KEY_MASK_META]. On other platforms, this is equivalent to [KEY_MASK_CTRL]. This mask should be preferred to [KEY_MASK_META] or [KEY_MASK_CTRL] for system shortcuts as it handles all platforms correctly.
    */
-  public final const val KEY_MASK_CMD: Long = 268435456
+  public final const val KEY_MASK_CMD: Long = 134217728
 
   /**
    * Ctrl key mask.
@@ -2100,6 +2100,11 @@ public object GlobalConstants : Object() {
   public final const val METHOD_FLAG_REVERSE: Long = 16
 
   /**
+   *
+   */
+  public final const val METHOD_FLAG_VARARG: Long = 128
+
+  /**
    * Flag for a virtual method.
    */
   public final const val METHOD_FLAG_VIRTUAL: Long = 32
@@ -2343,17 +2348,26 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a color property should be edited without changing its alpha component, i.e. only R, G and B channels are edited.
    */
-  public final const val PROPERTY_HINT_COLOR_NO_ALPHA: Long = 20
+  public final const val PROPERTY_HINT_COLOR_NO_ALPHA: Long = 22
 
   /**
    * Hints that a string property is a path to a directory. Editing it will show a file dialog for picking the path.
    */
-  public final const val PROPERTY_HINT_DIR: Long = 14
+  public final const val PROPERTY_HINT_DIR: Long = 16
 
   /**
-   * Hints that an integer, float or string property is an enumerated value to pick in a list specified via a hint string such as `"Hello,Something,Else"`.
+   * Hints that an integer, float or string property is an enumerated value to pick in a list specified via a hint string.
+   *
+   * The hint string is a comma separated list of names such as `"Hello,Something,Else"`. For integer and float properties, the first name in the list has value 0, the next 1, and so on. Explicit values can also be specified by appending `:integer` to the name, e.g. `"Zero,One,Three:3,Four,Six:6"`.
    */
   public final const val PROPERTY_HINT_ENUM: Long = 3
+
+  /**
+   * Hints that a string property can be an enumerated value to pick in a list specified via a hint string such as `"Hello,Something,Else"`.
+   *
+   * Unlike [PROPERTY_HINT_ENUM] a property with this hint still accepts arbitrary values and can be empty. The list of values serves to suggest possible values.
+   */
+  public final const val PROPERTY_HINT_ENUM_SUGGESTION: Long = 39
 
   /**
    * Hints that a float property should be edited via an exponential easing function. The hint string can include `"attenuation"` to flip the curve horizontally and/or `"inout"` to also include in/out easing.
@@ -2368,7 +2382,7 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a string property is a path to a file. Editing it will show a file dialog for picking the path. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`.
    */
-  public final const val PROPERTY_HINT_FILE: Long = 13
+  public final const val PROPERTY_HINT_FILE: Long = 15
 
   /**
    * Hints that an integer property is a bitmask with named bit flags. For example, to allow toggling bits 0, 1, 2 and 4, the hint could be something like `"Bit0,Bit1,Bit2,,Bit4"`.
@@ -2378,27 +2392,32 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a string property is an absolute path to a directory outside the project folder. Editing it will show a file dialog for picking the path.
    */
-  public final const val PROPERTY_HINT_GLOBAL_DIR: Long = 16
+  public final const val PROPERTY_HINT_GLOBAL_DIR: Long = 18
 
   /**
    * Hints that a string property is an absolute path to a file outside the project folder. Editing it will show a file dialog for picking the path. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`.
    */
-  public final const val PROPERTY_HINT_GLOBAL_FILE: Long = 15
+  public final const val PROPERTY_HINT_GLOBAL_FILE: Long = 17
 
   /**
    * Hints that an image is compressed using lossless compression.
    */
-  public final const val PROPERTY_HINT_IMAGE_COMPRESS_LOSSLESS: Long = 22
+  public final const val PROPERTY_HINT_IMAGE_COMPRESS_LOSSLESS: Long = 24
 
   /**
    * Hints that an image is compressed using lossy compression.
    */
-  public final const val PROPERTY_HINT_IMAGE_COMPRESS_LOSSY: Long = 21
+  public final const val PROPERTY_HINT_IMAGE_COMPRESS_LOSSY: Long = 23
 
   /**
    * Deprecated hint, unused.
    */
   public final const val PROPERTY_HINT_KEY_ACCEL: Long = 7
+
+  /**
+   * Hints that an integer property is a bitmask using the optionally named 2D navigation layers.
+   */
+  public final const val PROPERTY_HINT_LAYERS_2D_NAVIGATION: Long = 11
 
   /**
    * Hints that an integer property is a bitmask using the optionally named 2D physics layers.
@@ -2411,14 +2430,19 @@ public object GlobalConstants : Object() {
   public final const val PROPERTY_HINT_LAYERS_2D_RENDER: Long = 9
 
   /**
+   * Hints that an integer property is a bitmask using the optionally named 3D navigation layers.
+   */
+  public final const val PROPERTY_HINT_LAYERS_3D_NAVIGATION: Long = 14
+
+  /**
    * Hints that an integer property is a bitmask using the optionally named 3D physics layers.
    */
-  public final const val PROPERTY_HINT_LAYERS_3D_PHYSICS: Long = 12
+  public final const val PROPERTY_HINT_LAYERS_3D_PHYSICS: Long = 13
 
   /**
    * Hints that an integer property is a bitmask using the optionally named 3D render layers.
    */
-  public final const val PROPERTY_HINT_LAYERS_3D_RENDER: Long = 11
+  public final const val PROPERTY_HINT_LAYERS_3D_RENDER: Long = 12
 
   /**
    * Deprecated hint, unused.
@@ -2428,7 +2452,7 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a string property is text with line breaks. Editing it will show a text input field where line breaks can be typed.
    */
-  public final const val PROPERTY_HINT_MULTILINE_TEXT: Long = 18
+  public final const val PROPERTY_HINT_MULTILINE_TEXT: Long = 20
 
   /**
    * No hint for the edited property.
@@ -2438,7 +2462,7 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a string property should have a placeholder text visible on its input field, whenever the property is empty. The hint string is the placeholder text to use.
    */
-  public final const val PROPERTY_HINT_PLACEHOLDER_TEXT: Long = 19
+  public final const val PROPERTY_HINT_PLACEHOLDER_TEXT: Long = 21
 
   /**
    * Hints that an integer or float property should be within a range specified via the hint string `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or `"or_lesser"` to allow manual input going respectively above the max or below the min values. Example: `"-360,360,1,or_greater,or_lesser"`.
@@ -2448,7 +2472,7 @@ public object GlobalConstants : Object() {
   /**
    * Hints that a property is an instance of a [godot.Resource]-derived type, optionally specified via the hint string (e.g. `"Texture"`). Editing it will show a popup menu of valid resource types to instantiate.
    */
-  public final const val PROPERTY_HINT_RESOURCE_TYPE: Long = 17
+  public final const val PROPERTY_HINT_RESOURCE_TYPE: Long = 19
 
   /**
    * Used to categorize properties together in the editor.
@@ -2486,7 +2510,7 @@ public object GlobalConstants : Object() {
   public final const val PROPERTY_USAGE_EDITOR_HELPER: Long = 8
 
   /**
-   * Used to group properties together in the editor.
+   * Used to group properties together in the editor. See [godot.EditorInspector].
    */
   public final const val PROPERTY_USAGE_GROUP: Long = 128
 

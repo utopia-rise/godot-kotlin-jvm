@@ -19,6 +19,8 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -35,6 +37,11 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CanvasLayer : Node() {
+  /**
+   * Emitted when visibility of the layer is changed. See [visible].
+   */
+  public val visibilityChanged: Signal0 by signal()
+
   /**
    * The custom [godot.Viewport] node assigned to the [godot.CanvasLayer]. If `null`, uses the default viewport instead.
    */
@@ -170,6 +177,22 @@ public open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_TRANSFORM, NIL)
     }
 
+  /**
+   * If `false`, any [godot.CanvasItem] under this [godot.CanvasLayer] will be hidden.
+   *
+   * Unlike [godot.CanvasItem.visible], visibility of a [godot.CanvasLayer] isn't propagated to underlying layers.
+   */
+  public open var visible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_VISIBLE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_VISIBLE, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CANVASLAYER)
   }
@@ -202,5 +225,21 @@ public open class CanvasLayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CANVAS, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Hides any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `false`.
+   */
+  public open fun hide(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_HIDE, NIL)
+  }
+
+  /**
+   * Shows any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `true`.
+   */
+  public open fun show(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SHOW, NIL)
   }
 }

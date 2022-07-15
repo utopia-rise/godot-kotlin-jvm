@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class DirectionalLight : Light() {
   /**
-   * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits.
+   * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits. Enabling shadow blend splitting also has a moderate performance cost. This is ignored when [directionalShadowMode] is [SHADOW_ORTHOGONAL].
    */
   public open var directionalShadowBlendSplits: Boolean
     get() {

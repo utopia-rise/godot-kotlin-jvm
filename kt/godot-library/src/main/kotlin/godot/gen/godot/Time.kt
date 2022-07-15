@@ -185,11 +185,14 @@ public object Time : Object() {
    * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
    *
    * If `weekday` is false, then the `weekday` entry is excluded (the calculation is relatively expensive).
+   *
+   * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
-  public fun getDatetimeDictFromString(datetime: String, weekday: Boolean): Dictionary<Any?, Any?> {
+  public fun getDatetimeDictFromDatetimeString(datetime: String, weekday: Boolean): Dictionary<Any?,
+      Any?> {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_STRING,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_DICT_FROM_DATETIME_STRING, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -224,11 +227,11 @@ public object Time : Object() {
    *
    * If `use_space` is true, use a space instead of the letter T in the middle.
    */
-  public fun getDatetimeStringFromDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
+  public fun getDatetimeStringFromDatetimeDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
       String {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DICT,
-        STRING)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_DATETIME_DICT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -255,6 +258,16 @@ public object Time : Object() {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TIME_GET_DATETIME_STRING_FROM_UNIX_TIME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Converts the given timezone offset in minutes to a timezone offset string. For example, -480 returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00".
+   */
+  public fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
+    TransferContext.writeArguments(LONG to offsetMinutes)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_OFFSET_STRING_FROM_OFFSET_MINUTES, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -356,6 +369,8 @@ public object Time : Object() {
    * Converts the given ISO 8601 date and/or time string to a Unix timestamp. The string can contain a date only, a time only, or both.
    *
    * **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime string.
+   *
+   * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
   public fun getUnixTimeFromDatetimeString(datetime: String): Long {
     TransferContext.writeArguments(STRING to datetime)
@@ -366,6 +381,8 @@ public object Time : Object() {
 
   /**
    * Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC.
+   *
+   * **Note:** Unlike other methods that use integer timestamps, this method returns the timestamp as a [float] for sub-second precision.
    */
   public fun getUnixTimeFromSystem(): Double {
     TransferContext.writeArguments()

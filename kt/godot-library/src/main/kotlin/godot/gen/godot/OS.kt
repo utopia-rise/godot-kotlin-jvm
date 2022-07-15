@@ -865,6 +865,10 @@ public object OS : Object() {
    * 				    if argument.find("=") > -1:
    * 				        var key_value = argument.split("=")
    * 				        arguments[key_value[0].lstrip("--")] = key_value[1]
+   * 				    else:
+   * 				        # Options without an argument will be present in the dictionary,
+   * 				        # with the value set to an empty string.
+   * 				        arguments[argument.lstrip("--")] = ""
    * 				```
    */
   public fun getCmdlineArgs(): PoolStringArray {
@@ -953,6 +957,17 @@ public object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATETIME_FROM_UNIX_TIME,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns an [godot.Array] of [godot.core.Rect2], each of which is the bounding rectangle for a display cutout or notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns an empty array if the device does not have cutouts. See also [getWindowSafeArea].
+   *
+   * **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.
+   */
+  public fun getDisplayCutouts(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DISPLAY_CUTOUTS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -1153,12 +1168,23 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the number of threads available on the host machine.
+   * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
   public fun getProcessorCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESSOR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
+   *
+   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [getProcessorName] returns an empty string.
+   */
+  public fun getProcessorName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESSOR_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -1234,6 +1260,25 @@ public object OS : Object() {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the current refresh rate of the specified screen. If `screen` is `-1` (the default value), the current screen will be used.
+   *
+   * **Note:** Returns `-1.0` if Godot fails to find the refresh rate for the specified screen. On HTML5, [getScreenRefreshRate] will always return `-1.0` as there is no way to retrieve the refresh rate on that platform.
+   *
+   * To fallback to a default refresh rate if the method fails, try:
+   *
+   * ```
+   * 				var refresh_rate = OS.get_screen_refresh_rate()
+   * 				if refresh_rate < 0:
+   * 				    refresh_rate = 60.0
+   * 				```
+   */
+  public fun getScreenRefreshRate(screen: Long = -1): Double {
+    TransferContext.writeArguments(LONG to screen)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_REFRESH_RATE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1534,6 +1579,15 @@ public object OS : Object() {
   }
 
   /**
+   * Returns `true` if there is content on the clipboard.
+   */
+  public fun hasClipboard(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_CLIPBOARD, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns `true` if the environment variable with the name `variable` exists.
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
@@ -1601,6 +1655,19 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_OK_LEFT_AND_CANCEL_RIGHT,
         BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the child process ID (`pid`) is still running or `false` if it has terminated.
+   *
+   * Must be a valid ID generated from [execute].
+   *
+   * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
+   */
+  public fun isProcessRunning(pid: Long): Boolean {
+    TransferContext.writeArguments(LONG to pid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_PROCESS_RUNNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1699,6 +1766,18 @@ public object OS : Object() {
   }
 
   /**
+   * Converts a physical (US QWERTY) `scancode` to one in the active keyboard layout.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  public fun keyboardGetScancodeFromPhysical(scancode: Long): Long {
+    TransferContext.writeArguments(LONG to scancode)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_SCANCODE_FROM_PHYSICAL, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Sets active keyboard layout.
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
@@ -1719,6 +1798,24 @@ public object OS : Object() {
   public fun kill(pid: Long): GodotError {
     TransferContext.writeArguments(LONG to pid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KILL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Moves the file or directory to the system's recycle bin. See also [godot.Directory.remove].
+   *
+   * The method takes only global paths, so you may need to use [godot.ProjectSettings.globalizePath]. Do not use it for files in `res://` as it will not work in exported project.
+   *
+   * **Note:** If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.
+   *
+   * ```
+   * 				var file_to_remove = "user://slot1.sav"
+   * 				OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove))
+   * 				```
+   */
+  public fun moveToTrash(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_MOVE_TO_TRASH, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1996,7 +2093,7 @@ public object OS : Object() {
    *
    * - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official Godot website.
    *
-   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.Customizing `mailto:` Links](https://blog.escapecreative.com/customizing-mailto-links/) for a list of fields that can be added.
+   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.RFC 2368 - The `mailto` URL scheme](https://datatracker.ietf.org/doc/html/rfc2368) for a list of fields that can be added.
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *

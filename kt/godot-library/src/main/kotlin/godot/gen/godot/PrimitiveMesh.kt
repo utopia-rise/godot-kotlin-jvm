@@ -85,6 +85,9 @@ public open class PrimitiveMesh : Mesh() {
   }
 
 
+  public open fun _requestUpdate(): Unit {
+  }
+
   public open fun _update(): Unit {
   }
 

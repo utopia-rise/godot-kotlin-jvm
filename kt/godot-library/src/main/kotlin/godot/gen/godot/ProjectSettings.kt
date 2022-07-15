@@ -16,6 +16,8 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -40,6 +42,11 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
+  /**
+   * Objects can use this signal to restrict reading of settings only to situations where a change has been made.
+   */
+  public val projectSettingsChanged: Signal0 by signal()
+
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PROJECTSETTINGS)
   }

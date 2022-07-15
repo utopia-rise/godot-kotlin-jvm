@@ -495,7 +495,7 @@ public open class ArrayMesh : Mesh() {
     public final const val ARRAY_WEIGHTS_SIZE: Long = 4
 
     /**
-     * Default value used for index_array_len when no indices are present.
+     * Value used internally when no indices are present.
      */
     public final const val NO_INDEX_ARRAY: Long = -1
   }

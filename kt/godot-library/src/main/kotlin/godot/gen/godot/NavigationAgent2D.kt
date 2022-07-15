@@ -7,6 +7,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector2Array
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -15,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.signals.Signal0
@@ -29,7 +31,9 @@ import kotlin.Unit
 /**
  * 2D agent used in navigation for collision avoidance.
  *
- * 2D agent that is used in navigation to reach a location while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO (Reciprocal Velocity Obstacles) collision avoidance. The agent needs navigation data to work correctly. This can be done by having the agent as a child of a [godot.Navigation2D] node, or using [setNavigation]. [godot.NavigationAgent2D] is physics safe.
+ * 2D agent that is used in navigation to reach a location while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO (Reciprocal Velocity Obstacles) collision avoidance. The agent needs navigation data to work correctly. By default this node will register to the default [godot.World2D] navigation map. If this node is a child of a [godot.Navigation2D] node it will register to the navigation map of the navigation node or the function [setNavigation] can be used to set the navigation node directly. [godot.NavigationAgent2D] is physics safe.
+ *
+ * **Note:** After [setTargetLocation] is used it is required to use the [getNextLocation] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
  */
 @GodotBaseType
 public open class NavigationAgent2D : Node() {
@@ -52,6 +56,22 @@ public open class NavigationAgent2D : Node() {
    * Notifies when the collision avoidance velocity is calculated after a call to [setVelocity].
    */
   public val velocityComputed: Signal1<Vector2> by signal("safe_velocity")
+
+  /**
+   * If `true` the agent is registered for an RVO avoidance callback on the [godot.Navigation2DServer]. When [setVelocity] is used and the processing is completed a `safe_velocity` Vector2 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
+   */
+  public open var avoidanceEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_ENABLED, NIL)
+    }
 
   /**
    * The maximum number of neighbors for the agent to consider.
@@ -86,6 +106,22 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
+   * A bitfield determining all navigation map layers the [godot.NavigationAgent2D] belongs to. On path requests the agent will ignore navmeshes without at least one matching layer.
+   */
+  public open var navigationLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_LAYERS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYERS, NIL)
+    }
+
+  /**
    * The distance to search for other agents.
    */
   public open var neighborDist: Double
@@ -99,6 +135,22 @@ public open class NavigationAgent2D : Node() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NEIGHBOR_DIST, NIL)
+    }
+
+  /**
+   * The distance threshold before a path point is considered to be reached. This will allow an agent to not have to hit a path point on the path exactly, but in the area. If this value is set to high the NavigationAgent will skip points on the path which can lead to leaving the navigation mesh. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
+   */
+  public open var pathDesiredDistance: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_DESIRED_DISTANCE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_DESIRED_DISTANCE, NIL)
     }
 
   /**
@@ -118,7 +170,9 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The radius of the agent.
+   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the avoidance maneuver starting radius (which is controlled by [neighborDist]).
+   *
+   * Does not affect normal pathfinding.
    */
   public open var radius: Double
     get() {
@@ -133,7 +187,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The distance threshold before a target is considered to be reached. This will allow an agent to not have to hit a point on the path exactly, but in the area.
+   * The distance threshold before the final target point is considered to be reached. This will allow an agent to not have to hit the point of the final target exactly, but only the area. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
    */
   public open var targetDesiredDistance: Double
     get() {
@@ -149,7 +203,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithim, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but the less freedom in choosing its velocities. Must be positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but the less freedom in choosing its velocities. Must be positive.
    */
   public open var timeHorizon: Double
     get() {
@@ -192,7 +246,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns the path from start to finish in global coordinates.
+   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target location is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextLocation] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
    */
   public open fun getNavPath(): PoolVector2Array {
     TransferContext.writeArguments()
@@ -222,13 +276,32 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns a [godot.core.Vector2] in global coordinates, that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent.
+   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns always the map set on the NavigationAgent node and not the map of the abstract agent on the NavigationServer. If the agent map is changed directly with the NavigationServer API the NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationAgent and also update the agent on the NavigationServer.
+   */
+  public open fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_MAP, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns the next location in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
    */
   public open fun getNextLocation(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NEXT_LOCATION,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the [RID] of this agent on the [godot.Navigation2DServer].
+   */
+  public open fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
   /**
@@ -278,6 +351,15 @@ public open class NavigationAgent2D : Node() {
     TransferContext.writeArguments(OBJECT to navigation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION,
         NIL)
+  }
+
+  /**
+   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the `agent` on the NavigationServer.
+   */
+  public open fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_MAP, NIL)
   }
 
   /**

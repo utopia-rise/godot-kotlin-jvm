@@ -36,7 +36,7 @@ public object IP : Object() {
   /**
    * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if exceeded.
    */
-  public final const val RESOLVER_MAX_QUERIES: Long = 32
+  public final const val RESOLVER_MAX_QUERIES: Long = 256
 
   /**
    * DNS hostname resolver status: Done.

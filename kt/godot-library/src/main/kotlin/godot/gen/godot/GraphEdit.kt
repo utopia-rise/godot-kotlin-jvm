@@ -77,9 +77,9 @@ public open class GraphEdit : Control() {
   public val copyNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit.
+   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
    */
-  public val deleteNodesRequest: Signal0 by signal()
+  public val deleteNodesRequest: Signal1<VariantArray<Any?>> by signal("nodes")
 
   /**
    * Emitted to the GraphEdit when the connection between `from_slot` slot of `from` GraphNode and `to_slot` slot of `to` GraphNode is attempted to be removed.

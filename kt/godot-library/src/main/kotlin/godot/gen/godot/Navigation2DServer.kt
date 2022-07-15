@@ -10,7 +10,9 @@ import godot.core.PoolVector2Array
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform2D
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -22,6 +24,8 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -38,7 +42,13 @@ import kotlin.Unit
  *
  * Navigation2DServer is the server responsible for all 2D navigation. It handles several objects, namely maps, regions and agents.
  *
- * Maps are made up of regions, which are made of navigation polygons. Together, they define the navigable areas in the 2D world. For two regions to be connected to each other, they must share a similar edge. An edge is considered connected to another if both of its two vertices are at a distance less than [godot.Navigation.edgeConnectionMargin] to the respective other edge's vertex.
+ * Maps are made up of regions, which are made of navigation polygons. Together, they define the navigable areas in the 2D world.
+ *
+ * **Note:** Most NavigationServer changes take effect after the next physics frame and not immediately. This includes all changes made to maps, regions or agents by navigation related Nodes in the SceneTree or made through scripts.
+ *
+ * For two regions to be connected to each other, they must share a similar edge. An edge is considered connected to another if both of its two vertices are at a distance less than navigation map `edge_connection_margin` to the respective other edge's vertex.
+ *
+ * You may assign navigation layers to regions with [godot.Navigation2DServer.regionSetNavigationLayers], which then can be checked upon when requesting a path with [godot.Navigation2DServer.mapGetPath]. This allows allowing or forbidding some areas to 2D objects.
  *
  * To use the collision avoidance system, you may use agents. You can set an agent's target velocity, then the servers will emit a callback with a modified velocity.
  *
@@ -48,11 +58,19 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Navigation2DServer : Object() {
+  /**
+   * Emitted when a navigation map is updated, when a region moves or is modified.
+   */
+  public val mapChanged: Signal1<RID> by signal("map")
+
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_NAVIGATION2DSERVER)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+
+  public fun _emitMapChanged(arg0: RID): Unit {
+  }
 
   /**
    * Creates the agent.
@@ -60,6 +78,16 @@ public object Navigation2DServer : Object() {
   public fun agentCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_AGENT_CREATE,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns the navigation map [RID] the requested `agent` is currently assigned to.
+   */
+  public fun agentGetMap(agent: RID): RID {
+    TransferContext.writeArguments(_RID to agent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_AGENT_GET_MAP,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
@@ -75,7 +103,9 @@ public object Navigation2DServer : Object() {
   }
 
   /**
-   * Callback called at the end of the RVO process.
+   * Callback called at the end of the RVO process. If a callback is created manually and the agent is placed on a navigation map it will calculate avoidance for the agent and dispatch the calculated `safe_velocity` to the `receiver` object with a signal to the chosen `method` name.
+   *
+   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with a `null` object as the `receiver`.
    */
   public fun agentSetCallback(
     agent: RID,
@@ -173,9 +203,18 @@ public object Navigation2DServer : Object() {
   /**
    * Destroys the given RID.
    */
-  public fun free(_object: RID): Unit {
-    TransferContext.writeArguments(_RID to _object)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_FREE, NIL)
+  public fun freeRid(rid: RID): Unit {
+    TransferContext.writeArguments(_RID to rid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_FREE_RID, NIL)
+  }
+
+  /**
+   * Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them.
+   */
+  public fun getMaps(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_GET_MAPS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -185,6 +224,41 @@ public object Navigation2DServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_CREATE, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * This function immediately forces synchronization of the specified navigation `map` [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).
+   *
+   * Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.
+   *
+   * Avoidance processing and dispatch of the `safe_velocity` signals is untouched by this function and continues to happen for all maps and agents at the end of the physics frame.
+   *
+   * **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.
+   */
+  public fun mapForceUpdate(map: RID): Unit {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_FORCE_UPDATE,
+        NIL)
+  }
+
+  /**
+   * Returns all navigation agents [RID]s that are currently assigned to the requested navigation `map`.
+   */
+  public fun mapGetAgents(map: RID): VariantArray<Any?> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_GET_AGENTS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns the map cell height. **Note:** Currently not implemented.
+   */
+  public fun mapGetCellHeight(map: RID): Double {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_GET_CELL_HEIGHT, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -228,19 +302,30 @@ public object Navigation2DServer : Object() {
   }
 
   /**
-   * Returns the navigation path to reach the destination from the origin.
+   * Returns the navigation path to reach the destination from the origin. `navigation_layers` is a bitmask of all region layers that are allowed to be in the path.
    */
   public fun mapGetPath(
     map: RID,
     origin: Vector2,
     destination: Vector2,
-    optimize: Boolean
+    optimize: Boolean,
+    navigationLayers: Long = 1
   ): PoolVector2Array {
     TransferContext.writeArguments(_RID to map, VECTOR2 to origin, VECTOR2 to destination, BOOL to
-        optimize)
+        optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_GET_PATH,
         POOL_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
+  }
+
+  /**
+   * Returns all navigation regions [RID]s that are currently assigned to the requested navigation `map`.
+   */
+  public fun mapGetRegions(map: RID): VariantArray<Any?> {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_GET_REGIONS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -260,6 +345,15 @@ public object Navigation2DServer : Object() {
     TransferContext.writeArguments(_RID to map, BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_SET_ACTIVE,
         NIL)
+  }
+
+  /**
+   * Set the map cell height used to weld the navigation mesh polygons. **Note:** Currently not implemented.
+   */
+  public fun mapSetCellHeight(map: RID, cellHeight: Double): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to cellHeight)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_SET_CELL_HEIGHT, NIL)
   }
 
   /**
@@ -291,12 +385,114 @@ public object Navigation2DServer : Object() {
   }
 
   /**
+   * Returns the ending point of a connection door. `connection` is an index between 0 and the return value of [regionGetConnectionsCount].
+   */
+  public fun regionGetConnectionPathwayEnd(region: RID, connection: Long): Vector2 {
+    TransferContext.writeArguments(_RID to region, LONG to connection)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_CONNECTION_PATHWAY_END, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the starting point of a connection door. `connection` is an index between 0 and the return value of [regionGetConnectionsCount].
+   */
+  public fun regionGetConnectionPathwayStart(region: RID, connection: Long): Vector2 {
+    TransferContext.writeArguments(_RID to region, LONG to connection)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_CONNECTION_PATHWAY_START, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns how many connections this `region` has with other regions in the map.
+   */
+  public fun regionGetConnectionsCount(region: RID): Long {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_CONNECTIONS_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the `enter_cost` of this `region`.
+   */
+  public fun regionGetEnterCost(region: RID): Double {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_ENTER_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns the navigation map [RID] the requested `region` is currently assigned to.
+   */
+  public fun regionGetMap(region: RID): RID {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_MAP,
+        _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns the region's navigation layers.
+   */
+  public fun regionGetNavigationLayers(region: RID): Long {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_NAVIGATION_LAYERS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the `travel_cost` of this `region`.
+   */
+  public fun regionGetTravelCost(region: RID): Double {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_GET_TRAVEL_COST, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns `true` if the provided `point` in world space is currently owned by the provided navigation `region`. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.
+   *
+   * If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.
+   *
+   * **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.
+   */
+  public fun regionOwnsPoint(region: RID, point: Vector2): Boolean {
+    TransferContext.writeArguments(_RID to region, VECTOR2 to point)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_OWNS_POINT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the `enter_cost` for this `region`.
+   */
+  public fun regionSetEnterCost(region: RID, enterCost: Double): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to enterCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_SET_ENTER_COST, NIL)
+  }
+
+  /**
    * Sets the map for the region.
    */
   public fun regionSetMap(region: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to region, _RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_SET_MAP,
         NIL)
+  }
+
+  /**
+   * Set the region's navigation layers. This allows selecting regions from a path request (when using [godot.Navigation2DServer.mapGetPath]).
+   */
+  public fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
+    TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_SET_NAVIGATION_LAYERS, NIL)
   }
 
   /**
@@ -315,5 +511,14 @@ public object Navigation2DServer : Object() {
     TransferContext.writeArguments(_RID to region, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_SET_TRANSFORM, NIL)
+  }
+
+  /**
+   * Sets the `travel_cost` for this `region`.
+   */
+  public fun regionSetTravelCost(region: RID, travelCost: Double): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to travelCost)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_REGION_SET_TRAVEL_COST, NIL)
   }
 }

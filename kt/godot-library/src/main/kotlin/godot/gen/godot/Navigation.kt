@@ -12,13 +12,17 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,10 +32,32 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
  *
+ * *Deprecated.* [godot.Navigation] node and [getSimplePath] are deprecated and will be removed in a future version. Use [godot.NavigationServer.mapGetPath] instead.
+ *
  * Provides navigation and pathfinding within a collection of [godot.NavigationMesh]es. By default, these will be automatically collected from child [godot.NavigationMeshInstance] nodes. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
  */
 @GodotBaseType
 public open class Navigation : Spatial() {
+  /**
+   * Emitted when a navigation map is updated, when a region moves or is modified.
+   */
+  public val mapChanged: Signal1<RID> by signal("map")
+
+  /**
+   * The cell height to use for fields.
+   */
+  public open var cellHeight: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_CELL_HEIGHT,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_SET_CELL_HEIGHT, NIL)
+    }
+
   /**
    * The XZ plane cell size to use for fields.
    */
@@ -60,6 +86,22 @@ public open class Navigation : Spatial() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATION_SET_EDGE_CONNECTION_MARGIN, NIL)
+    }
+
+  /**
+   * A bitfield determining all navigation map layers the navigation can use on a [godot.Navigation.getSimplePath] path query.
+   */
+  public open var navigationLayers: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_NAVIGATION_LAYERS,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_SET_NAVIGATION_LAYERS,
+          NIL)
     }
 
   /**
@@ -132,7 +174,7 @@ public open class Navigation : Spatial() {
   }
 
   /**
-   * Returns the object's [RID].
+   * Returns the [RID] of the navigation map on the [godot.NavigationServer].
    */
   public open fun getRid(): RID {
     TransferContext.writeArguments()
@@ -141,6 +183,8 @@ public open class Navigation : Spatial() {
   }
 
   /**
+   * *Deprecated.* [godot.Navigation] node and [getSimplePath] are deprecated and will be removed in a future version. Use [godot.NavigationServer.mapGetPath] instead.
+   *
    * Returns the path between two given points. Points are in local coordinate space. If `optimize` is `true` (the default), the agent properties associated with each [godot.NavigationMesh] (radius, height, etc.) are considered in the path calculation, otherwise they are ignored.
    */
   public open fun getSimplePath(
