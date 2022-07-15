@@ -222,7 +222,7 @@ public open class Label3D : GeometryInstance() {
   /**
    * Sets the render priority for the text outline. Higher priority objects will be sorted in front of lower priority objects.
    *
-   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   * **Node:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
@@ -256,7 +256,7 @@ public open class Label3D : GeometryInstance() {
   /**
    * Sets the render priority for the text. Higher priority objects will be sorted in front of lower priority objects.
    *
-   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   * **Node:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
@@ -426,7 +426,7 @@ public open class Label3D : GeometryInstance() {
      */
     FLAG_SHADED(0),
     /**
-     * If set, text can be seen from the back as well. If not, the text is invisible when looking at it from behind.
+     * If set, text can be seen from the back as well. If not, the texture is invisible when looking at it from behind.
      */
     FLAG_DOUBLE_SIDED(1),
     /**
@@ -565,7 +565,7 @@ public open class Label3D : GeometryInstance() {
     public final const val FLAG_DISABLE_DEPTH_TEST: Long = 2
 
     /**
-     * If set, text can be seen from the back as well. If not, the text is invisible when looking at it from behind.
+     * If set, text can be seen from the back as well. If not, the texture is invisible when looking at it from behind.
      */
     public final const val FLAG_DOUBLE_SIDED: Long = 1
 

@@ -684,15 +684,11 @@ public object Input : Object() {
   }
 
   /**
-   * Vibrate handheld devices.
-   *
-   * **Note:** This method is implemented on Android, iOS, and HTML5.
+   * Vibrate Android and iOS devices.
    *
    * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
    *
    * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
-   *
-   * **Note:** Some web browsers such as Safari and Firefox for Android do not support this method.
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)

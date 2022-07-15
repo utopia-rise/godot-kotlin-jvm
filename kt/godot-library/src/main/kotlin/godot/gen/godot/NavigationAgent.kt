@@ -52,7 +52,7 @@ public open class NavigationAgent : Node() {
   public val targetReached: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated after a call to [setVelocity]. Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the collision avoidance velocity is calculated after a call to [setVelocity].
    */
   public val velocityComputed: Signal1<Vector3> by signal("safe_velocity")
 

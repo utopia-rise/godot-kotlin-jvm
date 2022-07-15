@@ -331,8 +331,8 @@ public object Navigation2DServer : Object() {
   /**
    * Returns `true` if the map is active.
    */
-  public fun mapIsActive(map: RID): Boolean {
-    TransferContext.writeArguments(_RID to map)
+  public fun mapIsActive(nap: RID): Boolean {
+    TransferContext.writeArguments(_RID to nap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2DSERVER_MAP_IS_ACTIVE,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

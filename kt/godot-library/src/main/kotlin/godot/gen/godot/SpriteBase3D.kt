@@ -226,7 +226,7 @@ public open class SpriteBase3D : GeometryInstance() {
   /**
    * Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.
    *
-   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   * **Node:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    *
    * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
