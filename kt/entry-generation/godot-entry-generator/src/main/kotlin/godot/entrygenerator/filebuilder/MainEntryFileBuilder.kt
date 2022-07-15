@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
         .builder("godot", "Entry")
-        .addComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
+        .addFileComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
 
     private val initFunctionSpec = FunSpec
         .builder("init")
