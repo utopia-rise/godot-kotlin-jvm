@@ -61,6 +61,17 @@ object PropertyRegistrationGenerator {
             }
     }
 
+    fun generateForAbstractClass(
+        registeredClass: RegisteredClass,
+        classRegistrarBuilder: TypeSpec.Builder
+    ) {
+        registeredClass
+            .properties
+            .forEach { registeredProperty ->
+                generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+            }
+    }
+
     private fun registerProperty(
         registeredProperty: RegisteredProperty,
         className: ClassName,

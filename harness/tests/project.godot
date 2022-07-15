@@ -60,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://src/main/kotlin/godot/tests/coretypes/Vector3Test.kt"
 }, {
 "base": "Node",
+"class": "godot_tests_inheritance_AbstractClassInheritanceChild",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/inheritance/AbstractClassInheritanceChild.kt"
+}, {
+"base": "Node",
 "class": "godot_tests_inheritance_ClassInheritanceChild",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceChild.kt"
@@ -85,6 +90,7 @@ _global_script_class_icons={
 "godot_tests_coretypes_BasisTest": "",
 "godot_tests_coretypes_StringTest": "",
 "godot_tests_coretypes_Vector3Test": "",
+"godot_tests_inheritance_AbstractClassInheritanceChild": "",
 "godot_tests_inheritance_ClassInheritanceChild": "",
 "godot_tests_inheritance_ClassInheritanceParent": "",
 "godot_tests_subpackage_OtherScript": ""
