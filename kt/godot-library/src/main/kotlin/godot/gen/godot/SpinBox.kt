@@ -74,14 +74,14 @@ public open class SpinBox : Range() {
   public var alignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_HORIZONTAL_ALIGNMENT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_HORIZONTAL_ALIGNMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_HORIZONTAL_ALIGNMENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_HORIZONTAL_ALIGNMENT,
+          NIL.ordinal)
     }
 
   /**
@@ -90,12 +90,12 @@ public open class SpinBox : Range() {
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_IS_EDITABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_IS_EDITABLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_EDITABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_EDITABLE, NIL.ordinal)
     }
 
   /**
@@ -104,14 +104,14 @@ public open class SpinBox : Range() {
   public var updateOnTextChanged: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_UPDATE_ON_TEXT_CHANGED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_UPDATE_ON_TEXT_CHANGED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_UPDATE_ON_TEXT_CHANGED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_UPDATE_ON_TEXT_CHANGED,
+          NIL.ordinal)
     }
 
   /**
@@ -120,12 +120,12 @@ public open class SpinBox : Range() {
   public var prefix: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_PREFIX, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_PREFIX, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_PREFIX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_PREFIX, NIL.ordinal)
     }
 
   /**
@@ -134,12 +134,12 @@ public open class SpinBox : Range() {
   public var suffix: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_SUFFIX, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_SUFFIX, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -151,7 +151,7 @@ public open class SpinBox : Range() {
    */
   public fun apply(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL.ordinal)
   }
 
   /**
@@ -161,7 +161,7 @@ public open class SpinBox : Range() {
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
   }
 

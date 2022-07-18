@@ -27,14 +27,14 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   public var function: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_GET_FUNCTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_GET_FUNCTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_SET_FUNCTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_SET_FUNCTION,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -112,9 +112,6 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      * Finds the nearest integer that is greater than or equal to the parameter. Translates to `ceil(x)` in the Godot Shader Language.
      */
     FUNC_CEIL(16),
-    /**
-     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader Language.
-     */
     FUNC_FRAC(17),
     /**
      * Clamps the value between `0.0` and `1.0` using `min(max(x, 0.0), 1.0)`.

@@ -32,14 +32,14 @@ public open class ViewportTexture : Texture2D() {
   public var viewportPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_GET_VIEWPORT_PATH_IN_SCENE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_GET_VIEWPORT_PATH_IN_SCENE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_SET_VIEWPORT_PATH_IN_SCENE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_SET_VIEWPORT_PATH_IN_SCENE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

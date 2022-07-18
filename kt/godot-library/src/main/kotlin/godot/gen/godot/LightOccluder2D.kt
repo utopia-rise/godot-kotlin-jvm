@@ -33,14 +33,14 @@ public open class LightOccluder2D : Node2D() {
   public var occluder: OccluderPolygon2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_POLYGON, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_POLYGON,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_POLYGON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_POLYGON,
+          NIL.ordinal)
     }
 
   /**
@@ -49,14 +49,14 @@ public open class LightOccluder2D : Node2D() {
   public var sdfCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_IS_SET_AS_SDF_COLLISION, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_IS_SET_AS_SDF_COLLISION, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_AS_SDF_COLLISION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_AS_SDF_COLLISION,
+          NIL.ordinal)
     }
 
   /**
@@ -65,14 +65,14 @@ public open class LightOccluder2D : Node2D() {
   public var occluderLightMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_LIGHT_MASK, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_LIGHT_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_LIGHT_MASK, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_LIGHT_MASK, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

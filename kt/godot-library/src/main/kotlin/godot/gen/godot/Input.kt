@@ -61,7 +61,7 @@ public object Input : Object() {
    */
   public fun isAnythingPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ANYTHING_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ANYTHING_PRESSED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -74,7 +74,7 @@ public object Input : Object() {
    */
   public fun isKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_PRESSED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -87,7 +87,8 @@ public object Input : Object() {
    */
   public fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -96,7 +97,8 @@ public object Input : Object() {
    */
   public fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_MOUSE_BUTTON_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_MOUSE_BUTTON_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -105,7 +107,8 @@ public object Input : Object() {
    */
   public fun isJoyButtonPressed(device: Long, button: JoyButton): Boolean {
     TransferContext.writeArguments(LONG to device, LONG to button.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_BUTTON_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_BUTTON_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -118,7 +121,7 @@ public object Input : Object() {
    */
   public fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -133,7 +136,8 @@ public object Input : Object() {
    */
   public fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -144,7 +148,8 @@ public object Input : Object() {
    */
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -155,7 +160,8 @@ public object Input : Object() {
    */
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -166,8 +172,8 @@ public object Input : Object() {
    */
   public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -178,7 +184,7 @@ public object Input : Object() {
    */
   public fun getAxis(negativeAction: StringName, positiveAction: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to negativeAction, STRING_NAME to positiveAction)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_AXIS, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_AXIS, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -197,7 +203,7 @@ public object Input : Object() {
     deadzone: Double = -1.0
   ): Vector2 {
     TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -206,7 +212,7 @@ public object Input : Object() {
    */
   public fun addJoyMapping(mapping: String, updateExisting: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to mapping, BOOL to updateExisting)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ADD_JOY_MAPPING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ADD_JOY_MAPPING, NIL.ordinal)
   }
 
   /**
@@ -214,7 +220,7 @@ public object Input : Object() {
    */
   public fun removeJoyMapping(guid: String): Unit {
     TransferContext.writeArguments(STRING to guid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_REMOVE_JOY_MAPPING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_REMOVE_JOY_MAPPING, NIL.ordinal)
   }
 
   /**
@@ -222,7 +228,7 @@ public object Input : Object() {
    */
   public fun isJoyKnown(device: Long): Boolean {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_KNOWN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_KNOWN, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -231,7 +237,7 @@ public object Input : Object() {
    */
   public fun getJoyAxis(device: Long, axis: JoyAxis): Double {
     TransferContext.writeArguments(LONG to device, LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -240,7 +246,7 @@ public object Input : Object() {
    */
   public fun getJoyName(device: Long): String {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -249,7 +255,7 @@ public object Input : Object() {
    */
   public fun getJoyGuid(device: Long): String {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_GUID, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_GUID, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -258,7 +264,8 @@ public object Input : Object() {
    */
   public fun getConnectedJoypads(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -267,8 +274,8 @@ public object Input : Object() {
    */
   public fun getJoyVibrationStrength(device: Long): Vector2 {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_STRENGTH,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_STRENGTH,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -277,8 +284,8 @@ public object Input : Object() {
    */
   public fun getJoyVibrationDuration(device: Long): Double {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_DURATION,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_DURATION,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -294,7 +301,7 @@ public object Input : Object() {
     duration: Double = 0.0
   ): Unit {
     TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to strongMagnitude, DOUBLE to duration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL.ordinal)
   }
 
   /**
@@ -302,7 +309,7 @@ public object Input : Object() {
    */
   public fun stopJoyVibration(device: Long): Unit {
     TransferContext.writeArguments(LONG to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_STOP_JOY_VIBRATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_STOP_JOY_VIBRATION, NIL.ordinal)
   }
 
   /**
@@ -314,7 +321,7 @@ public object Input : Object() {
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL.ordinal)
   }
 
   /**
@@ -324,7 +331,7 @@ public object Input : Object() {
    */
   public fun getGravity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GRAVITY, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GRAVITY, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -337,7 +344,7 @@ public object Input : Object() {
    */
   public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACCELEROMETER, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACCELEROMETER, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -348,7 +355,7 @@ public object Input : Object() {
    */
   public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MAGNETOMETER, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MAGNETOMETER, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -359,7 +366,7 @@ public object Input : Object() {
    */
   public fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GYROSCOPE, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GYROSCOPE, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -370,7 +377,7 @@ public object Input : Object() {
    */
   public fun setGravity(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GRAVITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GRAVITY, NIL.ordinal)
   }
 
   /**
@@ -380,7 +387,7 @@ public object Input : Object() {
    */
   public fun setAccelerometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_ACCELEROMETER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_ACCELEROMETER, NIL.ordinal)
   }
 
   /**
@@ -390,7 +397,7 @@ public object Input : Object() {
    */
   public fun setMagnetometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MAGNETOMETER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MAGNETOMETER, NIL.ordinal)
   }
 
   /**
@@ -400,7 +407,7 @@ public object Input : Object() {
    */
   public fun setGyroscope(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GYROSCOPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GYROSCOPE, NIL.ordinal)
   }
 
   /**
@@ -408,8 +415,8 @@ public object Input : Object() {
    */
   public fun getLastMouseVelocity(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_LAST_MOUSE_VELOCITY,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_LAST_MOUSE_VELOCITY,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -418,24 +425,19 @@ public object Input : Object() {
    */
   public fun getMouseButtonMask(): MouseButton {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK,
+        LONG.ordinal)
     return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets the mouse mode. See the constants for more information.
-   */
   public fun setMouseMode(mode: Input.MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL.ordinal)
   }
 
-  /**
-   * Returns the mouse mode. See the constants for more information.
-   */
   public fun getMouseMode(): Input.MouseMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG.ordinal)
     return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -446,7 +448,7 @@ public object Input : Object() {
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE, NIL.ordinal)
   }
 
   /**
@@ -458,7 +460,7 @@ public object Input : Object() {
    */
   public fun actionPress(action: StringName, strength: Double = 1.0): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL.ordinal)
   }
 
   /**
@@ -466,7 +468,7 @@ public object Input : Object() {
    */
   public fun actionRelease(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_RELEASE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_RELEASE, NIL.ordinal)
   }
 
   /**
@@ -479,7 +481,8 @@ public object Input : Object() {
   public fun setDefaultCursorShape(shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW):
       Unit {
     TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -487,8 +490,8 @@ public object Input : Object() {
    */
   public fun getCurrentCursorShape(): Input.CursorShape {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
+        LONG.ordinal)
     return Input.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -509,7 +512,8 @@ public object Input : Object() {
     hotspot: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR,
+        NIL.ordinal)
   }
 
   /**
@@ -547,28 +551,23 @@ public object Input : Object() {
    */
   public fun parseInputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_PARSE_INPUT_EVENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_PARSE_INPUT_EVENT, NIL.ordinal)
   }
 
-  /**
-   * Enables or disables the accumulation of similar input events sent by the operating system. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
-   *
-   * Input accumulation is enabled by default. It can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
-   */
   public fun setUseAccumulatedInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
+        NIL.ordinal)
   }
 
   /**
-   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([setUseAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
+   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([useAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
    *
    * The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.
    */
   public fun flushBufferedEvents(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_FLUSH_BUFFERED_EVENTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_FLUSH_BUFFERED_EVENTS, NIL.ordinal)
   }
 
   public enum class MouseMode(
@@ -628,11 +627,11 @@ public object Input : Object() {
      */
     CURSOR_CROSS(3),
     /**
-     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
+     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
      */
     CURSOR_WAIT(4),
     /**
-     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
+     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
      */
     CURSOR_BUSY(5),
     /**

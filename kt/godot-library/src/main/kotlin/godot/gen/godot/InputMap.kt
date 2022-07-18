@@ -43,7 +43,7 @@ public object InputMap : Object() {
    */
   public fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_HAS_ACTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_HAS_ACTION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -52,7 +52,7 @@ public object InputMap : Object() {
    */
   public fun getActions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_GET_ACTIONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_GET_ACTIONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -63,7 +63,7 @@ public object InputMap : Object() {
    */
   public fun addAction(action: StringName, deadzone: Double = 0.5): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ADD_ACTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ADD_ACTION, NIL.ordinal)
   }
 
   /**
@@ -71,7 +71,7 @@ public object InputMap : Object() {
    */
   public fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ERASE_ACTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ERASE_ACTION, NIL.ordinal)
   }
 
   /**
@@ -79,7 +79,8 @@ public object InputMap : Object() {
    */
   public fun actionSetDeadzone(action: StringName, deadzone: Double): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_SET_DEADZONE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_SET_DEADZONE,
+        NIL.ordinal)
   }
 
   /**
@@ -87,8 +88,8 @@ public object InputMap : Object() {
    */
   public fun actionGetDeadzone(action: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_DEADZONE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_DEADZONE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -97,7 +98,7 @@ public object InputMap : Object() {
    */
   public fun actionAddEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ADD_EVENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ADD_EVENT, NIL.ordinal)
   }
 
   /**
@@ -105,7 +106,7 @@ public object InputMap : Object() {
    */
   public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_HAS_EVENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_HAS_EVENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -114,7 +115,7 @@ public object InputMap : Object() {
    */
   public fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENT, NIL.ordinal)
   }
 
   /**
@@ -122,17 +123,19 @@ public object InputMap : Object() {
    */
   public fun actionEraseEvents(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_ERASE_EVENTS,
+        NIL.ordinal)
   }
 
   /**
    * Returns an array of [godot.InputEvent]s associated with a given action.
    *
-   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input&#47;*` settings from [godot.ProjectSettings].
+   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/ *` settings from [godot.ProjectSettings].
    */
   public fun actionGetEvents(action: StringName): VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_EVENTS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_EVENTS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -147,7 +150,7 @@ public object InputMap : Object() {
     exactMatch: Boolean = false
   ): Boolean {
     TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_EVENT_IS_ACTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_EVENT_IS_ACTION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -156,7 +159,7 @@ public object InputMap : Object() {
    */
   public fun loadFromProjectSettings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_LOAD_FROM_PROJECT_SETTINGS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_LOAD_FROM_PROJECT_SETTINGS,
+        NIL.ordinal)
   }
 }

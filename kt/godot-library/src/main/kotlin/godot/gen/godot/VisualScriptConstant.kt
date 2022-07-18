@@ -21,27 +21,27 @@ public open class VisualScriptConstant : VisualScriptNode() {
   public var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_GET_CONSTANT_TYPE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_GET_CONSTANT_TYPE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_SET_CONSTANT_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_SET_CONSTANT_TYPE,
+          NIL.ordinal)
     }
 
   public var `value`: Any?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_GET_CONSTANT_VALUE, ANY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_GET_CONSTANT_VALUE, ANY.ordinal)
       return TransferContext.readReturnValue(ANY, true) as Any?
     }
     set(`value`) {
       TransferContext.writeArguments(ANY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_SET_CONSTANT_VALUE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTANT_SET_CONSTANT_VALUE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

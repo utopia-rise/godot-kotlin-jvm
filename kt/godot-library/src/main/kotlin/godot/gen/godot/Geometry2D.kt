@@ -51,12 +51,13 @@ public object Geometry2D : Object() {
     circleRadius: Double
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to circleRadius)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_CIRCLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_CIRCLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsSegment(
     fromA: Vector2,
@@ -65,13 +66,13 @@ public object Geometry2D : Object() {
     toB: Vector2
   ): Any? {
     TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to toB)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_SEGMENT_INTERSECTS_SEGMENT, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_SEGMENT_INTERSECTS_SEGMENT,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**
-   * Checks if the two lines (`from_a`, `dir_a`) and (`from_b`, `dir_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two lines (`from_a`, `dir_a`) and (`from_b`, `dir_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    *
    * **Note:** The lines are specified using direction vectors, not end points.
    */
@@ -82,8 +83,8 @@ public object Geometry2D : Object() {
     dirB: Vector2
   ): Any? {
     TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to dirB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_LINE_INTERSECTS_LINE,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_LINE_INTERSECTS_LINE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -97,9 +98,9 @@ public object Geometry2D : Object() {
     q2: Vector2
   ): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to p1, VECTOR2 to q1, VECTOR2 to p2, VECTOR2 to q2)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_GET_CLOSEST_POINTS_BETWEEN_SEGMENTS,
-        PACKED_VECTOR2_ARRAY)
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -112,8 +113,8 @@ public object Geometry2D : Object() {
     s2: Vector2
   ): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_GET_CLOSEST_POINT_TO_SEGMENT,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -126,8 +127,8 @@ public object Geometry2D : Object() {
     s2: Vector2
   ): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -141,8 +142,8 @@ public object Geometry2D : Object() {
     c: Vector2
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to a, VECTOR2 to b, VECTOR2 to c)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_POINT_IS_INSIDE_TRIANGLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_POINT_IS_INSIDE_TRIANGLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -151,8 +152,8 @@ public object Geometry2D : Object() {
    */
   public fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POLYGON_CLOCKWISE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POLYGON_CLOCKWISE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -161,8 +162,8 @@ public object Geometry2D : Object() {
    */
   public fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_POLYGON,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_IS_POINT_IN_POLYGON,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -171,8 +172,8 @@ public object Geometry2D : Object() {
    */
   public fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_POLYGON,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_POLYGON,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -181,8 +182,8 @@ public object Geometry2D : Object() {
    */
   public fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_DELAUNAY,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_TRIANGULATE_DELAUNAY,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -191,8 +192,8 @@ public object Geometry2D : Object() {
    */
   public fun convexHull(points: PackedVector2Array): PackedVector2Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CONVEX_HULL,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CONVEX_HULL,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -204,7 +205,7 @@ public object Geometry2D : Object() {
   public fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MERGE_POLYGONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MERGE_POLYGONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -216,7 +217,7 @@ public object Geometry2D : Object() {
   public fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYGONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYGONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -228,8 +229,8 @@ public object Geometry2D : Object() {
   public fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYGONS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYGONS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -241,7 +242,8 @@ public object Geometry2D : Object() {
   public fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_EXCLUDE_POLYGONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_EXCLUDE_POLYGONS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -251,8 +253,8 @@ public object Geometry2D : Object() {
   public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYLINE_WITH_POLYGON, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_CLIP_POLYLINE_WITH_POLYGON,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -262,8 +264,8 @@ public object Geometry2D : Object() {
   public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYLINE_WITH_POLYGON, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_INTERSECT_POLYLINE_WITH_POLYGON, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -312,7 +314,7 @@ public object Geometry2D : Object() {
     joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
   ): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to joinType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYGON, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -332,7 +334,8 @@ public object Geometry2D : Object() {
     endType: Geometry2D.PolyEndType = Geometry2D.PolyEndType.END_SQUARE
   ): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to joinType.id, LONG to endType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_OFFSET_POLYLINE,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -341,7 +344,8 @@ public object Geometry2D : Object() {
    */
   public fun makeAtlas(sizes: PackedVector2Array): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MAKE_ATLAS, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY2D_MAKE_ATLAS,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 

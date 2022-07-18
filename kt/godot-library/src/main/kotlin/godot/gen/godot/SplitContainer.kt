@@ -39,14 +39,14 @@ public open class SplitContainer internal constructor() : Container() {
   public var splitOffset: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_SPLIT_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_SPLIT_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -55,12 +55,14 @@ public open class SplitContainer internal constructor() : Container() {
   public var collapsed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_COLLAPSED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_COLLAPSED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED,
+          NIL.ordinal)
     }
 
   /**
@@ -69,14 +71,14 @@ public open class SplitContainer internal constructor() : Container() {
   public var draggerVisibility: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -88,8 +90,8 @@ public open class SplitContainer internal constructor() : Container() {
    */
   public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
+        NIL.ordinal)
   }
 
   public enum class DraggerVisibility(

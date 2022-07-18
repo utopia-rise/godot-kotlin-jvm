@@ -43,12 +43,12 @@ public open class Camera2D : Node2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -57,12 +57,12 @@ public open class Camera2D : Node2D() {
   public var anchorMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ANCHOR_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ANCHOR_MODE, NIL.ordinal)
     }
 
   /**
@@ -71,12 +71,12 @@ public open class Camera2D : Node2D() {
   public var rotating: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ROTATING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_ROTATING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATING, NIL.ordinal)
     }
 
   /**
@@ -85,12 +85,12 @@ public open class Camera2D : Node2D() {
   public var current: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_CURRENT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CURRENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CURRENT, NIL.ordinal)
     }
 
   /**
@@ -99,12 +99,12 @@ public open class Camera2D : Node2D() {
   public var zoom: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ZOOM, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ZOOM, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ZOOM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ZOOM, NIL.ordinal)
     }
 
   /**
@@ -113,13 +113,14 @@ public open class Camera2D : Node2D() {
   public var customViewport: Viewport?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CUSTOM_VIEWPORT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CUSTOM_VIEWPORT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Viewport?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CUSTOM_VIEWPORT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CUSTOM_VIEWPORT,
+          NIL.ordinal)
     }
 
   /**
@@ -128,14 +129,14 @@ public open class Camera2D : Node2D() {
   public var processCallback: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_CALLBACK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_PROCESS_CALLBACK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_PROCESS_CALLBACK,
+          NIL.ordinal)
     }
 
   /**
@@ -148,14 +149,14 @@ public open class Camera2D : Node2D() {
   public var limitSmoothed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_LIMIT_SMOOTHING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_LIMIT_SMOOTHING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_SMOOTHING_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_SMOOTHING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -164,14 +165,14 @@ public open class Camera2D : Node2D() {
   public var smoothingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_FOLLOW_SMOOTHING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_FOLLOW_SMOOTHING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ENABLE_FOLLOW_SMOOTHING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ENABLE_FOLLOW_SMOOTHING,
+          NIL.ordinal)
     }
 
   /**
@@ -180,14 +181,14 @@ public open class Camera2D : Node2D() {
   public var smoothingSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_FOLLOW_SMOOTHING,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_FOLLOW_SMOOTHING,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_FOLLOW_SMOOTHING,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_FOLLOW_SMOOTHING,
+          NIL.ordinal)
     }
 
   /**
@@ -196,14 +197,14 @@ public open class Camera2D : Node2D() {
   public var dragHorizontalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_DRAG_HORIZONTAL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_DRAG_HORIZONTAL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_HORIZONTAL_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_HORIZONTAL_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -212,14 +213,14 @@ public open class Camera2D : Node2D() {
   public var dragVerticalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_DRAG_VERTICAL_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_DRAG_VERTICAL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_VERTICAL_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_VERTICAL_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -230,14 +231,14 @@ public open class Camera2D : Node2D() {
   public var dragHorizontalOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_HORIZONTAL_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_HORIZONTAL_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_HORIZONTAL_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_HORIZONTAL_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -248,14 +249,14 @@ public open class Camera2D : Node2D() {
   public var dragVerticalOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_VERTICAL_OFFSET,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_VERTICAL_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_VERTICAL_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_VERTICAL_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -264,14 +265,14 @@ public open class Camera2D : Node2D() {
   public var editorDrawScreen: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_SCREEN_DRAWING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_SCREEN_DRAWING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_SCREEN_DRAWING_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_SCREEN_DRAWING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -280,14 +281,14 @@ public open class Camera2D : Node2D() {
   public var editorDrawLimits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_LIMIT_DRAWING_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_LIMIT_DRAWING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_DRAWING_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_DRAWING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -296,14 +297,14 @@ public open class Camera2D : Node2D() {
   public var editorDrawDragMargin: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_MARGIN_DRAWING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_IS_MARGIN_DRAWING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_MARGIN_DRAWING_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_MARGIN_DRAWING_ENABLED,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -315,7 +316,7 @@ public open class Camera2D : Node2D() {
    */
   public fun setLimit(margin: Side, limit: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to limit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT, NIL.ordinal)
   }
 
   /**
@@ -323,7 +324,7 @@ public open class Camera2D : Node2D() {
    */
   public fun getLimit(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -332,7 +333,7 @@ public open class Camera2D : Node2D() {
    */
   public fun setDragMargin(margin: Side, dragMargin: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN, NIL.ordinal)
   }
 
   /**
@@ -340,7 +341,7 @@ public open class Camera2D : Node2D() {
    */
   public fun getDragMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -351,8 +352,8 @@ public open class Camera2D : Node2D() {
    */
   public fun getCameraPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -363,8 +364,8 @@ public open class Camera2D : Node2D() {
    */
   public fun getCameraScreenCenter(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -373,7 +374,8 @@ public open class Camera2D : Node2D() {
    */
   public fun forceUpdateScroll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_FORCE_UPDATE_SCROLL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_FORCE_UPDATE_SCROLL,
+        NIL.ordinal)
   }
 
   /**
@@ -383,7 +385,7 @@ public open class Camera2D : Node2D() {
    */
   public fun resetSmoothing(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_RESET_SMOOTHING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_RESET_SMOOTHING, NIL.ordinal)
   }
 
   /**
@@ -391,7 +393,7 @@ public open class Camera2D : Node2D() {
    */
   public fun align(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_ALIGN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_ALIGN, NIL.ordinal)
   }
 
   public enum class Camera2DProcessCallback(

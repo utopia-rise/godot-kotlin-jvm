@@ -32,7 +32,8 @@ public open class AudioListener3D : Node3D() {
    */
   public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_MAKE_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_MAKE_CURRENT,
+        NIL.ordinal)
   }
 
   /**
@@ -40,7 +41,8 @@ public open class AudioListener3D : Node3D() {
    */
   public fun clearCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_CLEAR_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_CLEAR_CURRENT,
+        NIL.ordinal)
   }
 
   /**
@@ -50,7 +52,7 @@ public open class AudioListener3D : Node3D() {
    */
   public fun isCurrent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_IS_CURRENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_IS_CURRENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -59,8 +61,8 @@ public open class AudioListener3D : Node3D() {
    */
   public fun getListenerTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_GET_LISTENER_TRANSFORM, TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER3D_GET_LISTENER_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 

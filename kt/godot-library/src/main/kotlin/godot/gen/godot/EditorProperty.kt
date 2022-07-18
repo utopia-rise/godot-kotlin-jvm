@@ -93,12 +93,13 @@ public open class EditorProperty internal constructor() : Container() {
   public var label: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_LABEL, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_LABEL,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_LABEL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_LABEL, NIL.ordinal)
     }
 
   /**
@@ -107,12 +108,14 @@ public open class EditorProperty internal constructor() : Container() {
   public var readOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_READ_ONLY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_READ_ONLY,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_READ_ONLY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_READ_ONLY,
+          NIL.ordinal)
     }
 
   /**
@@ -121,12 +124,14 @@ public open class EditorProperty internal constructor() : Container() {
   public var checkable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -135,12 +140,14 @@ public open class EditorProperty internal constructor() : Container() {
   public var checked: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKED,
+          NIL.ordinal)
     }
 
   /**
@@ -149,14 +156,14 @@ public open class EditorProperty internal constructor() : Container() {
   public var drawWarning: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DRAW_WARNING,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DRAW_WARNING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DRAW_WARNING,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DRAW_WARNING,
+          NIL.ordinal)
     }
 
   /**
@@ -165,12 +172,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var keying: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_KEYING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_KEYING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_KEYING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_KEYING, NIL.ordinal)
     }
 
   /**
@@ -179,12 +186,14 @@ public open class EditorProperty internal constructor() : Container() {
   public var deletable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DELETABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DELETABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DELETABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DELETABLE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -202,8 +211,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun getEditedProperty(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_PROPERTY,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_PROPERTY,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -212,8 +221,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun getEditedObject(): Object? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_OBJECT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_OBJECT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -222,8 +231,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun getTooltipText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_TOOLTIP_TEXT,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_TOOLTIP_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -232,7 +241,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun updateProperty(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_UPDATE_PROPERTY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_UPDATE_PROPERTY,
+        NIL.ordinal)
   }
 
   /**
@@ -240,7 +250,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun addFocusable(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_ADD_FOCUSABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_ADD_FOCUSABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -248,8 +259,8 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun setBottomEditor(editor: Control): Unit {
     TransferContext.writeArguments(OBJECT to editor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_BOTTOM_EDITOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_BOTTOM_EDITOR,
+        NIL.ordinal)
   }
 
   /**
@@ -262,7 +273,7 @@ public open class EditorProperty internal constructor() : Container() {
     changing: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value, STRING_NAME to field, BOOL to changing)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_EMIT_CHANGED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_EMIT_CHANGED, NIL.ordinal)
   }
 
   public companion object

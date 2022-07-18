@@ -44,8 +44,8 @@ public open class ENetConnection : RefCounted() {
     outBandwidth: Long = 0
   ): GodotError {
     TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort, LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST_BOUND,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST_BOUND,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -56,13 +56,13 @@ public open class ENetConnection : RefCounted() {
     outBandwidth: Long = 0
   ): GodotError {
     TransferContext.writeArguments(LONG to maxPeers, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CREATE_HOST, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun destroy(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DESTROY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DESTROY, NIL.ordinal)
   }
 
   public fun connectToHost(
@@ -72,30 +72,32 @@ public open class ENetConnection : RefCounted() {
     `data`: Long = 0
   ): ENetPacketPeer? {
     TransferContext.writeArguments(STRING to address, LONG to port, LONG to channels, LONG to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CONNECT_TO_HOST,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CONNECT_TO_HOST,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?
   }
 
   public fun service(timeout: Long = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SERVICE, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SERVICE, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun flush(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_FLUSH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_FLUSH, NIL.ordinal)
   }
 
   public fun bandwidthLimit(inBandwidth: Long = 0, outBandwidth: Long = 0): Unit {
     TransferContext.writeArguments(LONG to inBandwidth, LONG to outBandwidth)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BANDWIDTH_LIMIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BANDWIDTH_LIMIT,
+        NIL.ordinal)
   }
 
   public fun channelLimit(limit: Long): Unit {
     TransferContext.writeArguments(LONG to limit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CHANNEL_LIMIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_CHANNEL_LIMIT,
+        NIL.ordinal)
   }
 
   public fun broadcast(
@@ -104,18 +106,18 @@ public open class ENetConnection : RefCounted() {
     flags: Long
   ): Unit {
     TransferContext.writeArguments(LONG to channel, PACKED_BYTE_ARRAY to packet, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BROADCAST, NIL.ordinal)
   }
 
   public fun compress(mode: ENetConnection.CompressionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_COMPRESS, NIL.ordinal)
   }
 
   public fun dtlsServerSetup(key: CryptoKey, certificate: X509Certificate): GodotError {
     TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_SERVER_SETUP,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_SERVER_SETUP,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -125,40 +127,41 @@ public open class ENetConnection : RefCounted() {
     verify: Boolean = true
   ): GodotError {
     TransferContext.writeArguments(OBJECT to certificate, STRING to hostname, BOOL to verify)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_CLIENT_SETUP,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_CLIENT_SETUP,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun refuseNewConnections(refuse: Boolean): Unit {
     TransferContext.writeArguments(BOOL to refuse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_REFUSE_NEW_CONNECTIONS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_REFUSE_NEW_CONNECTIONS,
+        NIL.ordinal)
   }
 
   public fun popStatistic(statistic: ENetConnection.HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_POP_STATISTIC,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_POP_STATISTIC,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun getMaxChannels(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_MAX_CHANNELS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_MAX_CHANNELS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_LOCAL_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_LOCAL_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getPeers(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_PEERS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_GET_PEERS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

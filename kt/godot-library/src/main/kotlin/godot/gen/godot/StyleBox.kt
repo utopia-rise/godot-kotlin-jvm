@@ -77,7 +77,7 @@ public open class StyleBox : Resource() {
    */
   public fun testMask(point: Vector2, rect: Rect2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -86,7 +86,7 @@ public open class StyleBox : Resource() {
    */
   public fun setDefaultMargin(margin: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_DEFAULT_MARGIN, NIL.ordinal)
   }
 
   /**
@@ -94,7 +94,8 @@ public open class StyleBox : Resource() {
    */
   public fun getDefaultMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_DEFAULT_MARGIN, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_DEFAULT_MARGIN,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -105,7 +106,7 @@ public open class StyleBox : Resource() {
    */
   public fun getMargin(margin: Side): Double {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MARGIN, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MARGIN, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -114,7 +115,8 @@ public open class StyleBox : Resource() {
    */
   public fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -123,7 +125,8 @@ public open class StyleBox : Resource() {
    */
   public fun getCenterSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CENTER_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CENTER_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -132,7 +135,7 @@ public open class StyleBox : Resource() {
    */
   public fun getOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_OFFSET, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_OFFSET, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -141,19 +144,19 @@ public open class StyleBox : Resource() {
    */
   public fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CURRENT_ITEM_DRAWN,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CURRENT_ITEM_DRAWN,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as CanvasItem?
   }
 
   /**
-   * Draws this stylebox using a [godot.CanvasItem] with given [RID].
+   * Draws this stylebox using a canvas item identified by the given [RID].
    *
-   * You can get a [RID] value using [godot.Object.getInstanceId] on a [godot.CanvasItem]-derived node.
+   * The [RID] value can either be the result of [godot.CanvasItem.getCanvasItem] called on an existing [godot.CanvasItem]-derived node, or directly from creating a canvas item in the [godot.RenderingServer] with [godot.RenderingServer.canvasItemCreate].
    */
   public fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL.ordinal)
   }
 
   public companion object

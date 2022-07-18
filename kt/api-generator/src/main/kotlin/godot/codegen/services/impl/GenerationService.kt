@@ -119,10 +119,6 @@ class GenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
-        if (constantsTypeReceiver != classTypeBuilder) {
-            constantsTypeReceiver.build().let { classTypeBuilder.addType(it) }
-        }
-
         for (signal in enrichedClass.signals) {
             classTypeBuilder.addProperty(generateSignals(signal, name))
         }
@@ -151,8 +147,11 @@ class GenerationService(
         }
 
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
-            //TODO/4.0: Change implementation for static method
             constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method))
+        }
+
+        if (constantsTypeReceiver != classTypeBuilder) {
+            constantsTypeReceiver.build().let { classTypeBuilder.addType(it) }
         }
 
         val generatedClass = classTypeBuilder.build()
@@ -787,7 +786,8 @@ class GenerationService(
         if (!enrichedMethod.internal.isVirtual) {
             generateJvmMethodCall(
                 enrichedMethod,
-                callArgumentsAsString
+                callArgumentsAsString,
+                enrichedMethod.internal.isStatic
             )
         } else if (enrichedMethod.getTypeClassName().typeName != UNIT) {
             addStatement(
@@ -802,6 +802,7 @@ class GenerationService(
     private fun <T : CallableTrait> FunSpec.Builder.generateJvmMethodCall(
         callable: T,
         callArgumentsAsString: String,
+        isStatic: Boolean = false
     ): FunSpec.Builder {
         val ktVariantClassNames = callable.arguments.map {
             it.jvmVariantTypeValue
@@ -826,8 +827,13 @@ class GenerationService(
 
         val returnTypeVariantTypeClass = callable.jvmVariantTypeValue
 
+        val icallTemplate = if (isStatic) {
+            "%T.icallStatic(%M, %T.ordinal)"
+        } else {
+            "%T.icall(rawPtr, %M, %T.ordinal)"
+        }
         addStatement(
-            "%T.callMethod(rawPtr, %M, %T)",
+            icallTemplate,
             TRANSFER_CONTEXT,
             MemberName("godot", callable.engineIndexName),
             returnTypeVariantTypeClass

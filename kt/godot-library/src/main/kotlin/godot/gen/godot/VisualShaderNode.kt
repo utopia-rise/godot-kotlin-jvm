@@ -41,27 +41,27 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public var outputPortForPreview: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_OUTPUT_PORT_FOR_PREVIEW, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_OUTPUT_PORT_FOR_PREVIEW, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL.ordinal)
     }
 
   public var defaultInputValues: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_DEFAULT_INPUT_VALUES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_DEFAULT_INPUT_VALUES, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -77,8 +77,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
     prevValue: Any? = null
   ): Unit {
     TransferContext.writeArguments(LONG to port, ANY to value, ANY to prevValue)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL.ordinal)
   }
 
   /**
@@ -86,8 +86,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun getInputPortDefaultValue(port: Long): Any? {
     TransferContext.writeArguments(LONG to port)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_INPUT_PORT_DEFAULT_VALUE, ANY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_INPUT_PORT_DEFAULT_VALUE, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -96,8 +96,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun removeInputPortDefaultValue(port: Long): Unit {
     TransferContext.writeArguments(LONG to port)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL.ordinal)
   }
 
   /**
@@ -105,8 +105,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun clearDefaultInputValues(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_CLEAR_DEFAULT_INPUT_VALUES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_CLEAR_DEFAULT_INPUT_VALUES, NIL.ordinal)
   }
 
   public enum class PortType(

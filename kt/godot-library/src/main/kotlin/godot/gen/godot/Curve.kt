@@ -41,12 +41,12 @@ public open class Curve : Resource() {
   public var minValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MIN_VALUE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MIN_VALUE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MIN_VALUE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MIN_VALUE, NIL.ordinal)
     }
 
   /**
@@ -55,12 +55,12 @@ public open class Curve : Resource() {
   public var maxValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MAX_VALUE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_MAX_VALUE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MAX_VALUE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MAX_VALUE, NIL.ordinal)
     }
 
   /**
@@ -69,24 +69,22 @@ public open class Curve : Resource() {
   public var bakeResolution: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_BAKE_RESOLUTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_BAKE_RESOLUTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CURVE)
   }
 
-  /**
-   * Returns the number of points describing the curve.
-   */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -101,7 +99,7 @@ public open class Curve : Resource() {
     rightMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE
   ): Long {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to rightTangent, LONG to leftMode.id, LONG to rightMode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_ADD_POINT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -110,7 +108,7 @@ public open class Curve : Resource() {
    */
   public fun removePoint(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_REMOVE_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_REMOVE_POINT, NIL.ordinal)
   }
 
   /**
@@ -118,7 +116,7 @@ public open class Curve : Resource() {
    */
   public fun clearPoints(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_CLEAR_POINTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_CLEAR_POINTS, NIL.ordinal)
   }
 
   /**
@@ -126,7 +124,8 @@ public open class Curve : Resource() {
    */
   public fun getPointPosition(index: Long): Vector2 {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -135,7 +134,7 @@ public open class Curve : Resource() {
    */
   public fun setPointValue(index: Long, y: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_VALUE, NIL.ordinal)
   }
 
   /**
@@ -143,7 +142,7 @@ public open class Curve : Resource() {
    */
   public fun setPointOffset(index: Long, offset: Double): Long {
     TransferContext.writeArguments(LONG to index, DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_OFFSET, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_OFFSET, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -152,7 +151,7 @@ public open class Curve : Resource() {
    */
   public fun interpolate(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -161,7 +160,7 @@ public open class Curve : Resource() {
    */
   public fun interpolateBaked(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE_BAKED, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE_BAKED, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -170,8 +169,8 @@ public open class Curve : Resource() {
    */
   public fun getPointLeftTangent(index: Long): Double {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_TANGENT,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_TANGENT,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -180,8 +179,8 @@ public open class Curve : Resource() {
    */
   public fun getPointRightTangent(index: Long): Double {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_TANGENT,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_TANGENT,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -190,7 +189,7 @@ public open class Curve : Resource() {
    */
   public fun getPointLeftMode(index: Long): Curve.TangentMode {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_LEFT_MODE, LONG.ordinal)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -199,7 +198,7 @@ public open class Curve : Resource() {
    */
   public fun getPointRightMode(index: Long): Curve.TangentMode {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_RIGHT_MODE, LONG.ordinal)
     return Curve.TangentMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -208,7 +207,8 @@ public open class Curve : Resource() {
    */
   public fun setPointLeftTangent(index: Long, tangent: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_TANGENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_TANGENT,
+        NIL.ordinal)
   }
 
   /**
@@ -216,7 +216,8 @@ public open class Curve : Resource() {
    */
   public fun setPointRightTangent(index: Long, tangent: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_TANGENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_TANGENT,
+        NIL.ordinal)
   }
 
   /**
@@ -224,7 +225,7 @@ public open class Curve : Resource() {
    */
   public fun setPointLeftMode(index: Long, mode: Curve.TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_LEFT_MODE, NIL.ordinal)
   }
 
   /**
@@ -232,7 +233,7 @@ public open class Curve : Resource() {
    */
   public fun setPointRightMode(index: Long, mode: Curve.TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_POINT_RIGHT_MODE, NIL.ordinal)
   }
 
   /**
@@ -240,7 +241,7 @@ public open class Curve : Resource() {
    */
   public fun cleanDupes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_CLEAN_DUPES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_CLEAN_DUPES, NIL.ordinal)
   }
 
   /**
@@ -248,7 +249,7 @@ public open class Curve : Resource() {
    */
   public fun bake(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_BAKE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_BAKE, NIL.ordinal)
   }
 
   public enum class TangentMode(

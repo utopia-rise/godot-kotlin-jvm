@@ -27,7 +27,8 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
    */
   public fun size(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

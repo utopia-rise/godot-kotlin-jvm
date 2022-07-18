@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VehicleBody3D : RigidDynamicBody3D() {
   /**
-   * Accelerates the vehicle by applying an engine force. The vehicle is only speed up if the wheels that have [godot.VehicleWheel3D.useAsTraction] set to `true` and are in contact with a surface. The [godot.RigidDynamicBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
+   * Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [godot.VehicleWheel3D.useAsTraction] set to `true` and are in contact with a surface. The [godot.RigidDynamicBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
    *
    * **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
    *
@@ -38,14 +38,14 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
   public var engineForce: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_ENGINE_FORCE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_ENGINE_FORCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_ENGINE_FORCE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_ENGINE_FORCE,
+          NIL.ordinal)
     }
 
   /**
@@ -54,27 +54,29 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
   public var brake: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_BRAKE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_BRAKE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_BRAKE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_BRAKE, NIL.ordinal)
     }
 
   /**
-   * The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
+   * The steering angle for the vehicle, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
    */
   public var steering: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_STEERING,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_STEERING,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

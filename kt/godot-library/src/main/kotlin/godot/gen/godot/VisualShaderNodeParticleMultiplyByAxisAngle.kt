@@ -25,16 +25,16 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   public var degreesMode: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_IS_DEGREES_MODE,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_SET_DEGREES_MODE,
-          NIL)
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

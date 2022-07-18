@@ -36,14 +36,14 @@ public open class SkeletonModificationStack2D : Resource() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -52,14 +52,14 @@ public open class SkeletonModificationStack2D : Resource() {
   public var strength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_STRENGTH, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_STRENGTH, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_STRENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_STRENGTH, NIL.ordinal)
     }
 
   /**
@@ -68,14 +68,14 @@ public open class SkeletonModificationStack2D : Resource() {
   public var modificationCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION_COUNT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION_COUNT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION_COUNT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION_COUNT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -87,8 +87,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun setup(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SETUP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SETUP,
+        NIL.ordinal)
   }
 
   /**
@@ -98,8 +98,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun execute(delta: Double, executionMode: Long): Unit {
     TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_EXECUTE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_EXECUTE,
+        NIL.ordinal)
   }
 
   /**
@@ -107,8 +107,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun enableAllModifications(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_ENABLE_ALL_MODIFICATIONS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_ENABLE_ALL_MODIFICATIONS, NIL.ordinal)
   }
 
   /**
@@ -116,8 +116,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun getModification(modIdx: Long): SkeletonModification2D? {
     TransferContext.writeArguments(LONG to modIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_MODIFICATION, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SkeletonModification2D?
   }
 
@@ -126,8 +126,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun addModification(modification: SkeletonModification2D): Unit {
     TransferContext.writeArguments(OBJECT to modification)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_ADD_MODIFICATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_ADD_MODIFICATION, NIL.ordinal)
   }
 
   /**
@@ -135,8 +135,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun deleteModification(modIdx: Long): Unit {
     TransferContext.writeArguments(LONG to modIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_DELETE_MODIFICATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_DELETE_MODIFICATION, NIL.ordinal)
   }
 
   /**
@@ -144,8 +144,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun setModification(modIdx: Long, modification: SkeletonModification2D): Unit {
     TransferContext.writeArguments(LONG to modIdx, OBJECT to modification)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_SET_MODIFICATION, NIL.ordinal)
   }
 
   /**
@@ -153,8 +153,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_IS_SETUP, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_IS_SETUP,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -163,8 +163,8 @@ public open class SkeletonModificationStack2D : Resource() {
    */
   public fun getSkeleton(): Skeleton2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_SKELETON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATIONSTACK2D_GET_SKELETON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Skeleton2D?
   }
 

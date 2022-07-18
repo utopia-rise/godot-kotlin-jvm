@@ -31,14 +31,14 @@ public open class ConvexPolygonShape2D : Shape2D() {
   public var points: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_GET_POINTS,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_GET_POINTS,
+          PACKED_VECTOR2_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINTS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINTS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -50,8 +50,8 @@ public open class ConvexPolygonShape2D : Shape2D() {
    */
   public fun setPointCloud(pointCloud: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINT_CLOUD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINT_CLOUD,
+        NIL.ordinal)
   }
 
   public companion object

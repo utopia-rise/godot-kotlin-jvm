@@ -29,26 +29,26 @@ public open class VisualScriptLists internal constructor() : VisualScriptNode() 
     index: Long
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to name, LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_ADD_INPUT_DATA_PORT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_ADD_INPUT_DATA_PORT,
+        NIL.ordinal)
   }
 
   public fun setInputDataPortName(index: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_NAME, NIL.ordinal)
   }
 
   public fun setInputDataPortType(index: Long, type: VariantType): Unit {
     TransferContext.writeArguments(LONG to index, LONG to type.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_TYPE, NIL.ordinal)
   }
 
   public fun removeInputDataPort(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_REMOVE_INPUT_DATA_PORT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_REMOVE_INPUT_DATA_PORT,
+        NIL.ordinal)
   }
 
   public fun addOutputDataPort(
@@ -57,26 +57,26 @@ public open class VisualScriptLists internal constructor() : VisualScriptNode() 
     index: Long
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to name, LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_ADD_OUTPUT_DATA_PORT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_ADD_OUTPUT_DATA_PORT,
+        NIL.ordinal)
   }
 
   public fun setOutputDataPortName(index: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_NAME, NIL.ordinal)
   }
 
   public fun setOutputDataPortType(index: Long, type: VariantType): Unit {
     TransferContext.writeArguments(LONG to index, LONG to type.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_TYPE, NIL.ordinal)
   }
 
   public fun removeOutputDataPort(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_REMOVE_OUTPUT_DATA_PORT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_REMOVE_OUTPUT_DATA_PORT, NIL.ordinal)
   }
 
   public companion object

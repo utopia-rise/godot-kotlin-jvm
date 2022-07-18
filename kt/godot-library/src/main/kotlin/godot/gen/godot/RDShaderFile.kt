@@ -30,13 +30,14 @@ public open class RDShaderFile : Resource() {
   public var baseError: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_BASE_ERROR,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_BASE_ERROR,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BASE_ERROR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BASE_ERROR,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -48,7 +49,7 @@ public open class RDShaderFile : Resource() {
    */
   public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BYTECODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BYTECODE, NIL.ordinal)
   }
 
   /**
@@ -56,7 +57,7 @@ public open class RDShaderFile : Resource() {
    */
   public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_SPIRV, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_SPIRV, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?
   }
 
@@ -65,8 +66,8 @@ public open class RDShaderFile : Resource() {
    */
   public fun getVersionList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_VERSION_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_VERSION_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 

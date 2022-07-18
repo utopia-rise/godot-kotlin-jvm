@@ -17,9 +17,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a pitch-shifting audio effect to an Audio bus.
+ * Adds a pitch-shifting audio effect to an audio bus.
  *
  * Raises or lowers the pitch of original sound.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased with minimal effect on transients.
  */
@@ -31,14 +34,14 @@ public open class AudioEffectPitchShift : AudioEffect() {
   public var pitchScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_PITCH_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_PITCH_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_PITCH_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_PITCH_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +50,14 @@ public open class AudioEffectPitchShift : AudioEffect() {
   public var oversampling: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_OVERSAMPLING, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_OVERSAMPLING,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_OVERSAMPLING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_OVERSAMPLING,
+          NIL.ordinal)
     }
 
   /**
@@ -63,14 +66,14 @@ public open class AudioEffectPitchShift : AudioEffect() {
   public var fftSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_FFT_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_GET_FFT_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_FFT_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_FFT_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

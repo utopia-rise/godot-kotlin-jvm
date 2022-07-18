@@ -42,7 +42,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun bind(port: Long, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to host)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -51,14 +51,15 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -67,7 +68,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getStatus(): StreamPeerTCP.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG.ordinal)
     return StreamPeerTCP.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -76,8 +77,8 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getConnectedHost(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -86,8 +87,8 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getConnectedPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -96,7 +97,8 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_LOCAL_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_LOCAL_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -105,8 +107,8 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun disconnectFromHost(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_DISCONNECT_FROM_HOST,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_DISCONNECT_FROM_HOST,
+        NIL.ordinal)
   }
 
   /**
@@ -116,7 +118,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_SET_NO_DELAY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_SET_NO_DELAY, NIL.ordinal)
   }
 
   public enum class Status(

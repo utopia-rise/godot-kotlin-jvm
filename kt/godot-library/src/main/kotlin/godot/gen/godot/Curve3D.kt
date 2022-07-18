@@ -39,12 +39,13 @@ public open class Curve3D : Resource() {
   public var bakeInterval: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKE_INTERVAL, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKE_INTERVAL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_BAKE_INTERVAL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_BAKE_INTERVAL, NIL.ordinal)
     }
 
   /**
@@ -53,26 +54,23 @@ public open class Curve3D : Resource() {
   public var upVectorEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_IS_UP_VECTOR_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_IS_UP_VECTOR_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_UP_VECTOR_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_UP_VECTOR_ENABLED,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CURVE3D)
   }
 
-  /**
-   * Returns the number of points describing the curve.
-   */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -88,7 +86,7 @@ public open class Curve3D : Resource() {
     atPosition: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_ADD_POINT, NIL.ordinal)
   }
 
   /**
@@ -96,7 +94,7 @@ public open class Curve3D : Resource() {
    */
   public fun setPointPosition(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_POSITION, NIL.ordinal)
   }
 
   /**
@@ -104,7 +102,8 @@ public open class Curve3D : Resource() {
    */
   public fun getPointPosition(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_POSITION, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_POSITION,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -115,7 +114,7 @@ public open class Curve3D : Resource() {
    */
   public fun setPointTilt(idx: Long, tilt: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to tilt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_TILT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_TILT, NIL.ordinal)
   }
 
   /**
@@ -123,7 +122,7 @@ public open class Curve3D : Resource() {
    */
   public fun getPointTilt(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_TILT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_TILT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -132,7 +131,7 @@ public open class Curve3D : Resource() {
    */
   public fun setPointIn(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_IN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_IN, NIL.ordinal)
   }
 
   /**
@@ -140,7 +139,7 @@ public open class Curve3D : Resource() {
    */
   public fun getPointIn(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_IN, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_IN, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -149,7 +148,7 @@ public open class Curve3D : Resource() {
    */
   public fun setPointOut(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_OUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_SET_POINT_OUT, NIL.ordinal)
   }
 
   /**
@@ -157,7 +156,7 @@ public open class Curve3D : Resource() {
    */
   public fun getPointOut(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_OUT, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_OUT, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -166,7 +165,7 @@ public open class Curve3D : Resource() {
    */
   public fun removePoint(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_REMOVE_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_REMOVE_POINT, NIL.ordinal)
   }
 
   /**
@@ -174,7 +173,7 @@ public open class Curve3D : Resource() {
    */
   public fun clearPoints(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_CLEAR_POINTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_CLEAR_POINTS, NIL.ordinal)
   }
 
   /**
@@ -184,7 +183,7 @@ public open class Curve3D : Resource() {
    */
   public fun interpolate(idx: Long, t: Double): Vector3 {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -193,7 +192,7 @@ public open class Curve3D : Resource() {
    */
   public fun interpolatef(fofs: Double): Vector3 {
     TransferContext.writeArguments(DOUBLE to fofs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATEF, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATEF, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -202,7 +201,7 @@ public open class Curve3D : Resource() {
    */
   public fun getBakedLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_LENGTH, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -215,7 +214,8 @@ public open class Curve3D : Resource() {
    */
   public fun interpolateBaked(offset: Double, cubic: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -228,8 +228,8 @@ public open class Curve3D : Resource() {
    */
   public fun interpolateBakedUpVector(offset: Double, applyTilt: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to applyTilt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED_UP_VECTOR,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED_UP_VECTOR,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -238,8 +238,8 @@ public open class Curve3D : Resource() {
    */
   public fun getBakedPoints(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_POINTS,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_POINTS,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -248,8 +248,8 @@ public open class Curve3D : Resource() {
    */
   public fun getBakedTilts(): PackedFloat32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_TILTS,
-        PACKED_FLOAT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_TILTS,
+        PACKED_FLOAT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
   }
 
@@ -260,8 +260,8 @@ public open class Curve3D : Resource() {
    */
   public fun getBakedUpVectors(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_UP_VECTORS,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_BAKED_UP_VECTORS,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -272,7 +272,8 @@ public open class Curve3D : Resource() {
    */
   public fun getClosestPoint(toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_POINT, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_POINT,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -283,7 +284,8 @@ public open class Curve3D : Resource() {
    */
   public fun getClosestOffset(toPoint: Vector3): Double {
     TransferContext.writeArguments(VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_OFFSET, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_CLOSEST_OFFSET,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -298,8 +300,8 @@ public open class Curve3D : Resource() {
    */
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector3Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_TESSELLATE,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 

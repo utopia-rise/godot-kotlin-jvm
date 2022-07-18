@@ -35,14 +35,15 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_NODE,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -51,15 +52,16 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public var targetMinimumDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_MINIMUM_DISTANCE,
-          DOUBLE)
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MINIMUM_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MINIMUM_DISTANCE,
+          NIL.ordinal)
     }
 
   /**
@@ -68,15 +70,16 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public var targetMaximumDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_TARGET_MAXIMUM_DISTANCE,
-          DOUBLE)
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MAXIMUM_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_TARGET_MAXIMUM_DISTANCE,
+          NIL.ordinal)
     }
 
   /**
@@ -85,14 +88,16 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public var flipBendDirection: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_FLIP_BEND_DIRECTION, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_FLIP_BEND_DIRECTION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_FLIP_BEND_DIRECTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_FLIP_BEND_DIRECTION,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -104,8 +109,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun setJointOneBone2dNode(bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_ONE_BONE2D_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_ONE_BONE2D_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -113,9 +119,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun getJointOneBone2dNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_ONE_BONE2D_NODE,
-        NODE_PATH)
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -124,8 +130,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun setJointOneBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_ONE_BONE_IDX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_ONE_BONE_IDX,
+        NIL.ordinal)
   }
 
   /**
@@ -133,8 +140,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun getJointOneBoneIdx(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_ONE_BONE_IDX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_ONE_BONE_IDX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -143,8 +151,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun setJointTwoBone2dNode(bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_TWO_BONE2D_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_TWO_BONE2D_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -152,9 +161,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun getJointTwoBone2dNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_TWO_BONE2D_NODE,
-        NODE_PATH)
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -163,8 +172,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun setJointTwoBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_TWO_BONE_IDX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_JOINT_TWO_BONE_IDX,
+        NIL.ordinal)
   }
 
   /**
@@ -172,8 +182,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public fun getJointTwoBoneIdx(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_TWO_BONE_IDX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_GET_JOINT_TWO_BONE_IDX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

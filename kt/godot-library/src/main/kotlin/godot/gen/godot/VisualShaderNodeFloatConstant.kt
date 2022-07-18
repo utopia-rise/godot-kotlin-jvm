@@ -27,14 +27,14 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   public var constant: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT_GET_CONSTANT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT_GET_CONSTANT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT_SET_CONSTANT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT_SET_CONSTANT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

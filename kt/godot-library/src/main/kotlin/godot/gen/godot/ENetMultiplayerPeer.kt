@@ -27,21 +27,21 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   public var serverRelay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_IS_SERVER_RELAY_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_IS_SERVER_RELAY_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY_ENABLED, NIL.ordinal)
     }
 
   public val host: ENetConnection?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_HOST,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_HOST,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as ENetConnection?
     }
 
@@ -57,8 +57,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     outBandwidth: Long = 0
   ): GodotError {
     TransferContext.writeArguments(LONG to port, LONG to maxClients, LONG to maxChannels, LONG to inBandwidth, LONG to outBandwidth)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_SERVER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_SERVER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -71,41 +71,41 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     localPort: Long = 0
   ): GodotError {
     TransferContext.writeArguments(STRING to address, LONG to port, LONG to channelCount, LONG to inBandwidth, LONG to outBandwidth, LONG to localPort)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_CLIENT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_CLIENT,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun createMesh(uniqueId: Long): GodotError {
     TransferContext.writeArguments(LONG to uniqueId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_MESH,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CREATE_MESH,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun addMeshPeer(peerId: Long, host: ENetConnection): GodotError {
     TransferContext.writeArguments(LONG to peerId, OBJECT to host)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_ADD_MESH_PEER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_ADD_MESH_PEER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun closeConnection(waitUsec: Long = 100): Unit {
     TransferContext.writeArguments(LONG to waitUsec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CLOSE_CONNECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_CLOSE_CONNECTION,
+        NIL.ordinal)
   }
 
   public fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_BIND_IP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_BIND_IP,
+        NIL.ordinal)
   }
 
   public fun getPeer(id: Long): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_PEER,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_PEER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?
   }
 

@@ -130,8 +130,8 @@ public open class EditorScenePostImport internal constructor() : RefCounted() {
    */
   public fun getSourceFile(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORT_GET_SOURCE_FILE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORT_GET_SOURCE_FILE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

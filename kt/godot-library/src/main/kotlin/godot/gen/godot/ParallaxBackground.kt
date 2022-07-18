@@ -29,14 +29,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -45,14 +45,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollBaseOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_OFFSET, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -61,14 +61,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollBaseScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_SCALE, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_SCALE, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_SCALE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_SCALE, NIL.ordinal)
     }
 
   /**
@@ -77,14 +77,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollLimitBegin: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_BEGIN, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_BEGIN,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_BEGIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_BEGIN,
+          NIL.ordinal)
     }
 
   /**
@@ -93,14 +93,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_END,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_END,
+          NIL.ordinal)
     }
 
   /**
@@ -109,14 +109,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollIgnoreCameraZoom: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_IS_IGNORE_CAMERA_ZOOM, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_IS_IGNORE_CAMERA_ZOOM, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -50,7 +50,7 @@ public object IP : Object() {
    */
   public fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -60,8 +60,8 @@ public object IP : Object() {
   public fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -70,8 +70,8 @@ public object IP : Object() {
    */
   public fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -80,7 +80,7 @@ public object IP : Object() {
    */
   public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_STATUS, LONG.ordinal)
     return IP.ResolverStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -89,7 +89,8 @@ public object IP : Object() {
    */
   public fun getResolveItemAddress(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -98,8 +99,8 @@ public object IP : Object() {
    */
   public fun getResolveItemAddresses(id: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -108,7 +109,7 @@ public object IP : Object() {
    */
   public fun eraseResolveItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_ERASE_RESOLVE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_ERASE_RESOLVE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -116,7 +117,7 @@ public object IP : Object() {
    */
   public fun getLocalAddresses(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_ADDRESSES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_ADDRESSES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -136,7 +137,7 @@ public object IP : Object() {
    */
   public fun getLocalInterfaces(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_INTERFACES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_LOCAL_INTERFACES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -145,7 +146,7 @@ public object IP : Object() {
    */
   public fun clearCache(hostname: String = ""): Unit {
     TransferContext.writeArguments(STRING to hostname)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_CLEAR_CACHE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_CLEAR_CACHE, NIL.ordinal)
   }
 
   public enum class ResolverStatus(

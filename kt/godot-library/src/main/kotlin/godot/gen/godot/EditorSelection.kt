@@ -41,7 +41,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun addNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_ADD_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_ADD_NODE, NIL.ordinal)
   }
 
   /**
@@ -59,7 +59,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun removeNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL.ordinal)
   }
 
   /**
@@ -67,8 +67,8 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun getSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -77,8 +77,8 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun getTransformableSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

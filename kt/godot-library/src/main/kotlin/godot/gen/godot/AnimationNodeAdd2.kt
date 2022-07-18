@@ -24,20 +24,17 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeAdd2 : AnimationNode() {
-  /**
-   * If `true`, sets the `optimization` to `false` when calling [godot.AnimationNode.blendInput], forcing the blended animations to update every frame.
-   */
   public var sync: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD2_IS_USING_SYNC,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD2_IS_USING_SYNC,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD2_SET_USE_SYNC,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEADD2_SET_USE_SYNC,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

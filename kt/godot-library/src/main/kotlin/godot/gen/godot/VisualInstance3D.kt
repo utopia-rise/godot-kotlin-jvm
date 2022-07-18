@@ -31,18 +31,20 @@ public open class VisualInstance3D : Node3D() {
    * The render layer(s) this [godot.VisualInstance3D] is drawn on.
    *
    * This object will only be visible for [godot.Camera3D]s whose cull mask includes the render object this [godot.VisualInstance3D] is set to.
+   *
+   * For [godot.Light3D]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific light. For [godot.GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [godot.Decal]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific decal.
    */
   public var layers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -61,7 +63,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun setBase(base: RID): Unit {
     TransferContext.writeArguments(_RID to base)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_BASE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_BASE, NIL.ordinal)
   }
 
   /**
@@ -69,7 +71,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getBase(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_BASE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_BASE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -78,7 +80,8 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getInstance(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_INSTANCE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_INSTANCE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -87,8 +90,8 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun setLayerMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -96,8 +99,8 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getLayerMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK_VALUE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -108,8 +111,8 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getTransformedAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_TRANSFORMED_AABB, godot.core.VariantType.AABB)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_TRANSFORMED_AABB,
+        godot.core.VariantType.AABB.ordinal)
     return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 
@@ -118,8 +121,8 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_AABB,
+        godot.core.VariantType.AABB.ordinal)
     return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 

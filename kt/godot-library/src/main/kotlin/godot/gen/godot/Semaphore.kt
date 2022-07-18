@@ -37,7 +37,7 @@ public open class Semaphore : RefCounted() {
   @JvmName("semaphoreWait")
   public fun wait(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_WAIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_WAIT, NIL.ordinal)
   }
 
   /**
@@ -45,7 +45,7 @@ public open class Semaphore : RefCounted() {
    */
   public fun tryWait(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -54,7 +54,7 @@ public open class Semaphore : RefCounted() {
    */
   public fun post(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_POST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_POST, NIL.ordinal)
   }
 
   public companion object

@@ -38,12 +38,12 @@ public open class CameraFeed : RefCounted() {
   public var feedIsActive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_IS_ACTIVE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_IS_ACTIVE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_ACTIVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_ACTIVE, NIL.ordinal)
     }
 
   /**
@@ -52,13 +52,13 @@ public open class CameraFeed : RefCounted() {
   public var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_TRANSFORM,
-          TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_TRANSFORM,
+          TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -70,7 +70,7 @@ public open class CameraFeed : RefCounted() {
    */
   public fun getId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -79,7 +79,7 @@ public open class CameraFeed : RefCounted() {
    */
   public fun getName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -88,7 +88,7 @@ public open class CameraFeed : RefCounted() {
    */
   public fun getPosition(): CameraFeed.FeedPosition {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG.ordinal)
     return CameraFeed.FeedPosition.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -97,7 +97,7 @@ public open class CameraFeed : RefCounted() {
    */
   public fun getDatatype(): CameraFeed.FeedDataType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_DATATYPE, LONG.ordinal)
     return CameraFeed.FeedDataType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

@@ -34,7 +34,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamX(`param`: Generic6DOFJoint3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_X, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_X,
+        NIL.ordinal)
   }
 
   /**
@@ -42,8 +43,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamX(`param`: Generic6DOFJoint3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_X,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_X,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -52,7 +53,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamY(`param`: Generic6DOFJoint3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Y, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Y,
+        NIL.ordinal)
   }
 
   /**
@@ -60,8 +62,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamY(`param`: Generic6DOFJoint3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Y,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Y,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -70,7 +72,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamZ(`param`: Generic6DOFJoint3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Z, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Z,
+        NIL.ordinal)
   }
 
   /**
@@ -78,8 +81,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamZ(`param`: Generic6DOFJoint3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Z,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Z,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -88,7 +91,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagX(flag: Generic6DOFJoint3D.Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_X, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_X,
+        NIL.ordinal)
   }
 
   /**
@@ -96,7 +100,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagX(flag: Generic6DOFJoint3D.Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_X, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_X,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -105,7 +110,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagY(flag: Generic6DOFJoint3D.Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Y, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Y,
+        NIL.ordinal)
   }
 
   /**
@@ -113,7 +119,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagY(flag: Generic6DOFJoint3D.Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Y, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Y,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -122,7 +129,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagZ(flag: Generic6DOFJoint3D.Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Z, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Z,
+        NIL.ordinal)
   }
 
   /**
@@ -130,7 +138,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagZ(flag: Generic6DOFJoint3D.Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Z, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Z,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

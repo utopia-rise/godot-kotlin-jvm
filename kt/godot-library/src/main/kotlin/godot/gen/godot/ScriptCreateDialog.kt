@@ -80,7 +80,7 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
     loadEnabled: Boolean = true
   ): Unit {
     TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL to loadEnabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL.ordinal)
   }
 
   public companion object

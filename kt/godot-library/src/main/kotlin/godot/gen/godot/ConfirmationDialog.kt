@@ -48,8 +48,8 @@ public open class ConfirmationDialog : AcceptDialog() {
    */
   public fun getCancelButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
 

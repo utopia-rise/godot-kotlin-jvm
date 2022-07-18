@@ -34,14 +34,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var rayleighCoefficient: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COEFFICIENT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COEFFICIENT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COEFFICIENT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COEFFICIENT, NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var rayleighColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +66,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieCoefficient: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COEFFICIENT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COEFFICIENT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COEFFICIENT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COEFFICIENT, NIL.ordinal)
     }
 
   /**
@@ -82,14 +82,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieEccentricity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_ECCENTRICITY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_ECCENTRICITY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_ECCENTRICITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_ECCENTRICITY, NIL.ordinal)
     }
 
   /**
@@ -98,14 +98,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -114,14 +114,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var turbidity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_TURBIDITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_TURBIDITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_TURBIDITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_TURBIDITY,
+          NIL.ordinal)
     }
 
   /**
@@ -130,14 +130,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var sunDiskScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_SUN_DISK_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_SUN_DISK_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_SUN_DISK_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_SUN_DISK_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -146,14 +146,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var groundColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_GROUND_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_GROUND_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_GROUND_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_GROUND_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -162,30 +162,27 @@ public open class PhysicalSkyMaterial : Material() {
   public var exposure: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_EXPOSURE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_EXPOSURE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_EXPOSURE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_EXPOSURE,
+          NIL.ordinal)
     }
 
-  /**
-   * The amount of dithering to use. Dithering helps reduce banding that appears from the smooth changes in color in the sky. Use the lowest value possible for your given sky settings, as higher amounts may add fuzziness to the sky.
-   */
   public var ditherStrength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_DITHER_STRENGTH, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_DITHER_STRENGTH, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_DITHER_STRENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_DITHER_STRENGTH, NIL.ordinal)
     }
 
   /**
@@ -194,14 +191,14 @@ public open class PhysicalSkyMaterial : Material() {
   public var nightSky: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_NIGHT_SKY,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_NIGHT_SKY,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_NIGHT_SKY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_NIGHT_SKY,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

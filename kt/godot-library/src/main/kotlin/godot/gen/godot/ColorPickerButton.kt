@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.minimumSize] to a big enough value to give the button enough space.
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.customMinimumSize] to a big enough value to give the button enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {
@@ -55,14 +55,14 @@ public open class ColorPickerButton : Button() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_PICK_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_PICK_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -71,14 +71,14 @@ public open class ColorPickerButton : Button() {
   public var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_IS_EDITING_ALPHA, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_IS_EDITING_ALPHA,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_EDIT_ALPHA,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_EDIT_ALPHA,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -92,8 +92,8 @@ public open class ColorPickerButton : Button() {
    */
   public fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ColorPicker?
   }
 
@@ -104,7 +104,8 @@ public open class ColorPickerButton : Button() {
    */
   public fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?
   }
 

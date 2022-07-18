@@ -15,6 +15,9 @@ import kotlin.Unit
  *
  * Each frequency can be modulated between -60/+24 dB.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
+ *
  * Frequency bands:
  *
  * Band 1: 31 Hz

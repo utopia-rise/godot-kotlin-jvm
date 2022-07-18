@@ -49,8 +49,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_POINT, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_POINT, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -73,8 +73,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public fun intersectRay(parameters: PhysicsRayQueryParameters3D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_RAY, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_RAY,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -96,8 +96,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_SHAPE, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_INTERSECT_SHAPE, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -110,8 +110,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public fun castMotion(parameters: PhysicsShapeQueryParameters3D): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_CAST_MOTION, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_CAST_MOTION,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -125,8 +125,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_COLLIDE_SHAPE, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_COLLIDE_SHAPE,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -151,8 +151,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public fun getRestInfo(parameters: PhysicsShapeQueryParameters3D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_GET_REST_INFO, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE3D_GET_REST_INFO,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 

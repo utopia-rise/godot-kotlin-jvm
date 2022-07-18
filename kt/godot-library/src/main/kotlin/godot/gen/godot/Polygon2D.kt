@@ -47,12 +47,12 @@ public open class Polygon2D : Node2D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_COLOR, NIL.ordinal)
     }
 
   /**
@@ -61,12 +61,12 @@ public open class Polygon2D : Node2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -75,12 +75,13 @@ public open class Polygon2D : Node2D() {
   public var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_ANTIALIASED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_ANTIALIASED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_ANTIALIASED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_ANTIALIASED, NIL.ordinal)
     }
 
   /**
@@ -89,12 +90,12 @@ public open class Polygon2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE, NIL.ordinal)
     }
 
   /**
@@ -103,13 +104,14 @@ public open class Polygon2D : Node2D() {
   public var textureOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_OFFSET,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_OFFSET,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -118,13 +120,14 @@ public open class Polygon2D : Node2D() {
   public var textureScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_SCALE,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_SCALE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -133,14 +136,14 @@ public open class Polygon2D : Node2D() {
   public var textureRotation: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_ROTATION,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_ROTATION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_ROTATION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_ROTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -149,12 +152,13 @@ public open class Polygon2D : Node2D() {
   public var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_SKELETON, NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_SKELETON,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_SKELETON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_SKELETON, NIL.ordinal)
     }
 
   /**
@@ -163,12 +167,12 @@ public open class Polygon2D : Node2D() {
   public var invertEnable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT, NIL.ordinal)
     }
 
   /**
@@ -177,13 +181,14 @@ public open class Polygon2D : Node2D() {
   public var invertBorder: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT_BORDER,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT_BORDER,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_BORDER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_BORDER,
+          NIL.ordinal)
     }
 
   /**
@@ -194,13 +199,13 @@ public open class Polygon2D : Node2D() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGON,
+          PACKED_VECTOR2_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGON, NIL.ordinal)
     }
 
   /**
@@ -209,13 +214,13 @@ public open class Polygon2D : Node2D() {
   public var uv: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_UV,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_UV,
+          PACKED_VECTOR2_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_UV, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_UV, NIL.ordinal)
     }
 
   /**
@@ -224,13 +229,14 @@ public open class Polygon2D : Node2D() {
   public var vertexColors: PackedColorArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_VERTEX_COLORS,
-          PACKED_COLOR_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_VERTEX_COLORS,
+          PACKED_COLOR_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_VERTEX_COLORS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_VERTEX_COLORS,
+          NIL.ordinal)
     }
 
   /**
@@ -239,12 +245,12 @@ public open class Polygon2D : Node2D() {
   public var polygons: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGONS, ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGONS, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGONS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGONS, NIL.ordinal)
     }
 
   /**
@@ -253,14 +259,14 @@ public open class Polygon2D : Node2D() {
   public var internalVertexCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INTERNAL_VERTEX_COUNT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INTERNAL_VERTEX_COUNT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INTERNAL_VERTEX_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INTERNAL_VERTEX_COUNT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -272,7 +278,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ADD_BONE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ADD_BONE, NIL.ordinal)
   }
 
   /**
@@ -280,7 +286,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBoneCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -289,7 +295,8 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBonePath(index: Long): NodePath {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_PATH, NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_PATH,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -298,8 +305,8 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBoneWeights(index: Long): PackedFloat32Array {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_WEIGHTS,
-        PACKED_FLOAT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_WEIGHTS,
+        PACKED_FLOAT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
   }
 
@@ -308,7 +315,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun eraseBone(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ERASE_BONE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ERASE_BONE, NIL.ordinal)
   }
 
   /**
@@ -316,7 +323,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun clearBones(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_CLEAR_BONES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_CLEAR_BONES, NIL.ordinal)
   }
 
   /**
@@ -324,7 +331,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun setBonePath(index: Long, path: NodePath): Unit {
     TransferContext.writeArguments(LONG to index, NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_PATH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_PATH, NIL.ordinal)
   }
 
   /**
@@ -332,7 +339,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun setBoneWeights(index: Long, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(LONG to index, PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_WEIGHTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_WEIGHTS, NIL.ordinal)
   }
 
   public companion object

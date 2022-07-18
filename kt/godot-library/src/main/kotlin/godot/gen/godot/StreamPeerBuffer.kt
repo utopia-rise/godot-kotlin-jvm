@@ -32,14 +32,14 @@ public open class StreamPeerBuffer : StreamPeer() {
   public var dataArray: PackedByteArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_DATA_ARRAY,
-          PACKED_BYTE_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_DATA_ARRAY,
+          PACKED_BYTE_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SET_DATA_ARRAY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SET_DATA_ARRAY,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -51,7 +51,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL.ordinal)
   }
 
   /**
@@ -59,7 +59,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun getSize(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -68,7 +68,8 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun getPosition(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -77,7 +78,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun resize(size: Long): Unit {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL.ordinal)
   }
 
   /**
@@ -85,7 +86,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -93,7 +94,8 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?
   }
 

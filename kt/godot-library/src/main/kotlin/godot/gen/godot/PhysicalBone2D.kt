@@ -36,14 +36,14 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   public var bone2dNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_NODEPATH, NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_NODEPATH,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_BONE2D_NODEPATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_BONE2D_NODEPATH,
+          NIL.ordinal)
     }
 
   /**
@@ -52,14 +52,14 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   public var bone2dIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_INDEX,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_INDEX,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_BONE2D_INDEX,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_BONE2D_INDEX,
+          NIL.ordinal)
     }
 
   /**
@@ -68,14 +68,14 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   public var autoConfigureJoint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_AUTO_CONFIGURE_JOINT, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_AUTO_CONFIGURE_JOINT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_AUTO_CONFIGURE_JOINT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_AUTO_CONFIGURE_JOINT, NIL.ordinal)
     }
 
   /**
@@ -86,14 +86,14 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   public var simulatePhysics: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_SIMULATE_PHYSICS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_SIMULATE_PHYSICS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_SIMULATE_PHYSICS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_SIMULATE_PHYSICS,
+          NIL.ordinal)
     }
 
   /**
@@ -102,14 +102,14 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
   public var followBoneWhenSimulating: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_FOLLOW_BONE_WHEN_SIMULATING, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_FOLLOW_BONE_WHEN_SIMULATING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_FOLLOW_BONE_WHEN_SIMULATING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_FOLLOW_BONE_WHEN_SIMULATING, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -121,7 +121,7 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
    */
   public fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_JOINT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_JOINT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Joint2D?
   }
 
@@ -130,8 +130,8 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
    */
   public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_IS_SIMULATING_PHYSICS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_IS_SIMULATING_PHYSICS,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

@@ -30,12 +30,14 @@ public open class OmniLight3D : Light3D() {
   public var omniShadowMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_GET_SHADOW_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_GET_SHADOW_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_SET_SHADOW_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_SET_SHADOW_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

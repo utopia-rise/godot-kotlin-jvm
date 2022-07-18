@@ -21,7 +21,7 @@ import kotlin.jvm.JvmName
 /**
  * Gradient-filled texture.
  *
- * GradientTexture1D uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]).
+ * GradientTexture1D uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]). See also [godot.GradientTexture2D], [godot.CurveTexture] and [godot.CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture1D : Texture2D() {
@@ -31,14 +31,14 @@ public open class GradientTexture1D : Texture2D() {
   public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_GET_GRADIENT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_GET_GRADIENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Gradient?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_GRADIENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_GRADIENT,
+          NIL.ordinal)
     }
 
   /**
@@ -50,7 +50,8 @@ public open class GradientTexture1D : Texture2D() {
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -59,14 +60,14 @@ public open class GradientTexture1D : Texture2D() {
   public var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_IS_USING_HDR,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_IS_USING_HDR,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_USE_HDR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_USE_HDR,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -41,14 +41,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,16 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var jiggleDataChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_DATA_CHAIN_LENGTH, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_DATA_CHAIN_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_DATA_CHAIN_LENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_DATA_CHAIN_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -73,14 +75,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var stiffness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_STIFFNESS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_STIFFNESS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_STIFFNESS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_STIFFNESS, NIL.ordinal)
     }
 
   /**
@@ -89,14 +91,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var mass: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_MASS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_MASS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_MASS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_MASS,
+          NIL.ordinal)
     }
 
   /**
@@ -105,14 +107,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var damping: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_DAMPING, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_DAMPING, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_DAMPING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_DAMPING, NIL.ordinal)
     }
 
   /**
@@ -121,14 +123,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var useGravity: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_USE_GRAVITY, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_USE_GRAVITY, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_USE_GRAVITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_USE_GRAVITY, NIL.ordinal)
     }
 
   /**
@@ -137,14 +139,14 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_GRAVITY, VECTOR3)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_GRAVITY, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_GRAVITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_GRAVITY, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -156,8 +158,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setUseColliders(useColliders: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useColliders)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_USE_COLLIDERS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_USE_COLLIDERS, NIL.ordinal)
   }
 
   /**
@@ -165,8 +167,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getUseColliders(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_USE_COLLIDERS, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_USE_COLLIDERS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -175,8 +177,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_COLLISION_MASK, NIL.ordinal)
   }
 
   /**
@@ -184,8 +186,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_COLLISION_MASK, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_COLLISION_MASK, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -194,8 +196,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointBoneName(jointIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_BONE_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_BONE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -203,8 +206,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_BONE_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_BONE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -213,8 +217,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_BONE_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_BONE_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -222,8 +227,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_BONE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_BONE_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -232,8 +238,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointOverride(jointIdx: Long, `override`: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to override)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_OVERRIDE,
+        NIL.ordinal)
   }
 
   /**
@@ -241,8 +248,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointOverride(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_OVERRIDE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_OVERRIDE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -251,8 +259,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointStiffness(jointIdx: Long, stiffness: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to stiffness)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_STIFFNESS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_STIFFNESS,
+        NIL.ordinal)
   }
 
   /**
@@ -260,8 +269,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointStiffness(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_STIFFNESS, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_STIFFNESS,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -270,8 +280,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointMass(jointIdx: Long, mass: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to mass)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_MASS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_MASS, NIL.ordinal)
   }
 
   /**
@@ -279,8 +289,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointMass(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_MASS, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_MASS, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -289,8 +299,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointDamping(jointIdx: Long, damping: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to damping)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_DAMPING, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_DAMPING, NIL.ordinal)
   }
 
   /**
@@ -298,8 +308,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointDamping(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_DAMPING, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_DAMPING,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -308,8 +319,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointUseGravity(jointIdx: Long, useGravity: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useGravity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_USE_GRAVITY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_USE_GRAVITY,
+        NIL.ordinal)
   }
 
   /**
@@ -317,8 +329,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointUseGravity(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_USE_GRAVITY, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_USE_GRAVITY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -327,8 +340,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointGravity(jointIdx: Long, gravity: Vector3): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR3 to gravity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_GRAVITY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_GRAVITY, NIL.ordinal)
   }
 
   /**
@@ -336,8 +349,9 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointGravity(jointIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_GRAVITY, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_GRAVITY,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -346,8 +360,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun setJiggleJointRoll(jointIdx: Long, roll: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to roll)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_ROLL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_SET_JIGGLE_JOINT_ROLL, NIL.ordinal)
   }
 
   /**
@@ -355,8 +369,8 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
    */
   public fun getJiggleJointRoll(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_ROLL, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DJIGGLE_GET_JIGGLE_JOINT_ROLL, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

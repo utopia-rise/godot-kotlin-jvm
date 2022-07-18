@@ -131,14 +131,14 @@ public open class ArrayMesh : Mesh() {
   public var blendShapeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -147,13 +147,13 @@ public open class ArrayMesh : Mesh() {
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_CUSTOM_AABB,
-          godot.core.VariantType.AABB)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_CUSTOM_AABB,
+          godot.core.VariantType.AABB.ordinal)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_CUSTOM_AABB, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_CUSTOM_AABB, NIL.ordinal)
     }
 
   /**
@@ -162,12 +162,13 @@ public open class ArrayMesh : Mesh() {
   public var shadowMesh: ArrayMesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_SHADOW_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_SHADOW_MESH,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_SHADOW_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_SHADOW_MESH, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -179,7 +180,7 @@ public open class ArrayMesh : Mesh() {
    */
   public fun addBlendShape(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_BLEND_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_BLEND_SHAPE, NIL.ordinal)
   }
 
   /**
@@ -187,8 +188,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -197,8 +198,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun getBlendShapeName(index: Long): StringName {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_NAME,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_NAME,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -207,7 +208,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun setBlendShapeName(index: Long, name: StringName): Unit {
     TransferContext.writeArguments(LONG to index, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -215,7 +217,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_BLEND_SHAPES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_BLEND_SHAPES,
+        NIL.ordinal)
   }
 
   /**
@@ -233,8 +236,8 @@ public open class ArrayMesh : Mesh() {
     compressFlags: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFlags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
+        NIL.ordinal)
   }
 
   /**
@@ -242,7 +245,7 @@ public open class ArrayMesh : Mesh() {
    */
   public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_SURFACES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_SURFACES, NIL.ordinal)
   }
 
   /**
@@ -254,8 +257,8 @@ public open class ArrayMesh : Mesh() {
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_VERTEX_REGION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_VERTEX_REGION,
+        NIL.ordinal)
   }
 
   /**
@@ -267,8 +270,8 @@ public open class ArrayMesh : Mesh() {
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_ATTRIBUTE_REGION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_ATTRIBUTE_REGION, NIL.ordinal)
   }
 
   /**
@@ -280,8 +283,8 @@ public open class ArrayMesh : Mesh() {
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_SKIN_REGION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_SKIN_REGION,
+        NIL.ordinal)
   }
 
   /**
@@ -289,8 +292,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetArrayLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_LEN,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_LEN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -299,8 +302,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_INDEX_LEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_INDEX_LEN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -309,7 +312,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetFormat(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -318,8 +322,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE,
+        LONG.ordinal)
     return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -328,8 +332,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceFindByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_FIND_BY_NAME,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_FIND_BY_NAME,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -338,7 +342,7 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceSetName(surfIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to surfIdx, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_SET_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_SET_NAME, NIL.ordinal)
   }
 
   /**
@@ -346,7 +350,8 @@ public open class ArrayMesh : Mesh() {
    */
   public fun surfaceGetName(surfIdx: Long): String {
     TransferContext.writeArguments(LONG to surfIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -355,7 +360,7 @@ public open class ArrayMesh : Mesh() {
    */
   public fun regenNormalMaps(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_REGEN_NORMAL_MAPS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_REGEN_NORMAL_MAPS, NIL.ordinal)
   }
 
   /**
@@ -363,7 +368,7 @@ public open class ArrayMesh : Mesh() {
    */
   public fun lightmapUnwrap(transform: Transform3D, texelSize: Double): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

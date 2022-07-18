@@ -34,7 +34,7 @@ public open class Skin : Resource() {
    */
   public fun setBindCount(bindCount: Long): Unit {
     TransferContext.writeArguments(LONG to bindCount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_COUNT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_COUNT, NIL.ordinal)
   }
 
   /**
@@ -42,7 +42,7 @@ public open class Skin : Resource() {
    */
   public fun getBindCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -51,7 +51,7 @@ public open class Skin : Resource() {
    */
   public fun addBind(bone: Long, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bone, TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_BIND, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_BIND, NIL.ordinal)
   }
 
   /**
@@ -59,7 +59,7 @@ public open class Skin : Resource() {
    */
   public fun addNamedBind(name: String, pose: Transform3D): Unit {
     TransferContext.writeArguments(STRING to name, TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_NAMED_BIND, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_NAMED_BIND, NIL.ordinal)
   }
 
   /**
@@ -67,7 +67,7 @@ public open class Skin : Resource() {
    */
   public fun setBindPose(bindIndex: Long, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bindIndex, TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL.ordinal)
   }
 
   /**
@@ -75,7 +75,7 @@ public open class Skin : Resource() {
    */
   public fun getBindPose(bindIndex: Long): Transform3D {
     TransferContext.writeArguments(LONG to bindIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_POSE, TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_POSE, TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -84,7 +84,7 @@ public open class Skin : Resource() {
    */
   public fun setBindName(bindIndex: Long, name: StringName): Unit {
     TransferContext.writeArguments(LONG to bindIndex, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_NAME, NIL.ordinal)
   }
 
   /**
@@ -92,7 +92,7 @@ public open class Skin : Resource() {
    */
   public fun getBindName(bindIndex: Long): StringName {
     TransferContext.writeArguments(LONG to bindIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_NAME, STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_NAME, STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -101,7 +101,7 @@ public open class Skin : Resource() {
    */
   public fun setBindBone(bindIndex: Long, bone: Long): Unit {
     TransferContext.writeArguments(LONG to bindIndex, LONG to bone)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_BONE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_BONE, NIL.ordinal)
   }
 
   /**
@@ -109,7 +109,7 @@ public open class Skin : Resource() {
    */
   public fun getBindBone(bindIndex: Long): Long {
     TransferContext.writeArguments(LONG to bindIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_BONE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_BONE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -118,7 +118,7 @@ public open class Skin : Resource() {
    */
   public fun clearBinds(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_CLEAR_BINDS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_CLEAR_BINDS, NIL.ordinal)
   }
 
   public companion object

@@ -51,8 +51,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_WORLD_BOUNDARY_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_WORLD_BOUNDARY_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -61,8 +61,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SEPARATION_RAY_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SEPARATION_RAY_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -71,8 +71,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun sphereShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPHERE_SHAPE_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPHERE_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -81,8 +81,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun boxShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BOX_SHAPE_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BOX_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -91,8 +91,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CAPSULE_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CAPSULE_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -101,8 +101,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun cylinderShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CYLINDER_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CYLINDER_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -111,8 +111,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONVEX_POLYGON_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONVEX_POLYGON_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -121,8 +121,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONCAVE_POLYGON_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONCAVE_POLYGON_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -131,8 +131,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun heightmapShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HEIGHTMAP_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HEIGHTMAP_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -141,8 +141,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun customShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CUSTOM_SHAPE_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CUSTOM_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -151,7 +151,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun shapeSetData(shape: RID, `data`: Any): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_SET_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_SET_DATA,
+        NIL.ordinal)
   }
 
   /**
@@ -159,8 +160,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun shapeGetType(shape: RID): PhysicsServer3D.ShapeType {
     TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_TYPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_TYPE,
+        LONG.ordinal)
     return PhysicsServer3D.ShapeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -169,7 +170,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun shapeGetData(shape: RID): Any? {
     TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_DATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SHAPE_GET_DATA,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -178,7 +180,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -187,8 +190,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceSetActive(space: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to space, BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_SET_ACTIVE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_SET_ACTIVE,
+        NIL.ordinal)
   }
 
   /**
@@ -196,8 +199,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceIsActive(space: RID): Boolean {
     TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_IS_ACTIVE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_IS_ACTIVE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -210,8 +213,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_SET_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -219,8 +222,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceGetParam(space: RID, `param`: PhysicsServer3D.SpaceParameter): Double {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_GET_PARAM,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -229,8 +232,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_GET_DIRECT_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SPACE_GET_DIRECT_STATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?
   }
 
@@ -239,7 +242,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -248,7 +252,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetSpace(area: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to area, _RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SPACE,
+        NIL.ordinal)
   }
 
   /**
@@ -256,8 +261,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetSpace(area: RID): RID {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SPACE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SPACE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -271,7 +276,8 @@ public object PhysicsServer3D : Object() {
     disabled: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ADD_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ADD_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -283,7 +289,8 @@ public object PhysicsServer3D : Object() {
     shape: RID
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, _RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -295,8 +302,8 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -308,8 +315,8 @@ public object PhysicsServer3D : Object() {
     disabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_SHAPE_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -317,8 +324,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetShapeCount(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -327,8 +334,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetShape(area: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -337,8 +344,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetShapeTransform(area: RID, shapeIdx: Long): Transform3D {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE_TRANSFORM, TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_SHAPE_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -347,8 +354,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaRemoveShape(area: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_REMOVE_SHAPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_REMOVE_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -356,8 +363,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaClearShapes(area: RID): Unit {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_CLEAR_SHAPES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_CLEAR_SHAPES,
+        NIL.ordinal)
   }
 
   /**
@@ -365,8 +372,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to layer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_COLLISION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_COLLISION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -374,8 +381,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_COLLISION_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -387,7 +394,8 @@ public object PhysicsServer3D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -395,8 +403,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetTransform(area: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to area, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_TRANSFORM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -404,7 +412,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetParam(area: RID, `param`: PhysicsServer3D.AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_PARAM, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_PARAM,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -413,8 +422,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetTransform(area: RID): Transform3D {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -423,8 +432,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ATTACH_OBJECT_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_ATTACH_OBJECT_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -432,8 +441,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaGetObjectInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_OBJECT_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_GET_OBJECT_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -452,8 +461,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_MONITOR_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_MONITOR_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -461,8 +470,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_AREA_MONITOR_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_AREA_MONITOR_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -470,8 +479,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_MONITORABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_MONITORABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -479,8 +488,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun areaSetRayPickable(area: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_RAY_PICKABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_RAY_PICKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -488,7 +497,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -497,7 +507,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetSpace(body: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SPACE,
+        NIL.ordinal)
   }
 
   /**
@@ -505,8 +516,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SPACE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SPACE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -515,7 +526,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetMode(body: RID, mode: PhysicsServer3D.BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -523,7 +535,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetMode(body: RID): PhysicsServer3D.BodyMode {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MODE,
+        LONG.ordinal)
     return PhysicsServer3D.BodyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -532,8 +545,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to layer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_COLLISION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_COLLISION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -541,8 +554,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_LAYER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_LAYER,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -551,8 +564,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetCollisionMask(body: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_COLLISION_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -560,8 +573,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_MASK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_COLLISION_MASK,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -575,7 +588,8 @@ public object PhysicsServer3D : Object() {
     disabled: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -587,7 +601,8 @@ public object PhysicsServer3D : Object() {
     shape: RID
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, _RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -599,8 +614,8 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -612,8 +627,8 @@ public object PhysicsServer3D : Object() {
     disabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_SHAPE_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -621,8 +636,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetShapeCount(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -631,8 +646,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetShape(body: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -641,8 +656,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetShapeTransform(body: RID, shapeIdx: Long): Transform3D {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE_TRANSFORM, TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_SHAPE_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -651,8 +666,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyRemoveShape(body: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_REMOVE_SHAPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_REMOVE_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -660,8 +675,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyClearShapes(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_CLEAR_SHAPES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_CLEAR_SHAPES,
+        NIL.ordinal)
   }
 
   /**
@@ -669,8 +684,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ATTACH_OBJECT_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ATTACH_OBJECT_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -678,8 +693,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetObjectInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_OBJECT_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_OBJECT_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -690,9 +705,9 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_ENABLE_CONTINUOUS_COLLISION_DETECTION,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -700,9 +715,9 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_CONTINUOUS_COLLISION_DETECTION_ENABLED,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -715,7 +730,8 @@ public object PhysicsServer3D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -723,7 +739,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetParam(body: RID, `param`: PhysicsServer3D.BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_PARAM, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_PARAM,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -732,8 +749,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyResetMassProperties(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_RESET_MASS_PROPERTIES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_RESET_MASS_PROPERTIES, NIL.ordinal)
   }
 
   /**
@@ -745,7 +762,8 @@ public object PhysicsServer3D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_STATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_STATE,
+        NIL.ordinal)
   }
 
   /**
@@ -753,7 +771,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetState(body: RID, state: PhysicsServer3D.BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_STATE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_STATE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -766,8 +785,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_CENTRAL_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_CENTRAL_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -783,8 +802,8 @@ public object PhysicsServer3D : Object() {
     position: Vector3 = Vector3(0, 0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_IMPULSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -794,8 +813,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_TORQUE_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_TORQUE_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -805,8 +824,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_CENTRAL_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -820,8 +839,8 @@ public object PhysicsServer3D : Object() {
     position: Vector3 = Vector3(0, 0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_FORCE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -829,8 +848,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_TORQUE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -840,8 +859,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_CENTRAL_FORCE, NIL.ordinal)
   }
 
   /**
@@ -855,8 +874,8 @@ public object PhysicsServer3D : Object() {
     position: Vector3 = Vector3(0, 0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -864,8 +883,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_CONSTANT_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -875,8 +894,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetConstantForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_CONSTANT_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -886,8 +905,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetConstantForce(body: RID): Vector3 {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_CONSTANT_FORCE, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_CONSTANT_FORCE,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -898,8 +917,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_CONSTANT_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -909,8 +928,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetConstantTorque(body: RID): Vector3 {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_CONSTANT_TORQUE, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_CONSTANT_TORQUE,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -919,8 +938,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to axisVelocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_AXIS_VELOCITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_AXIS_VELOCITY,
+        NIL.ordinal)
   }
 
   /**
@@ -932,8 +951,8 @@ public object PhysicsServer3D : Object() {
     lock: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to axis.id, BOOL to lock)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_AXIS_LOCK,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_AXIS_LOCK,
+        NIL.ordinal)
   }
 
   /**
@@ -941,8 +960,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyIsAxisLocked(body: RID, axis: PhysicsServer3D.BodyAxis): Boolean {
     TransferContext.writeArguments(_RID to body, LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_AXIS_LOCKED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_AXIS_LOCKED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -951,8 +970,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_COLLISION_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_ADD_COLLISION_EXCEPTION, NIL.ordinal)
   }
 
   /**
@@ -962,8 +981,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_REMOVE_COLLISION_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_REMOVE_COLLISION_EXCEPTION, NIL.ordinal)
   }
 
   /**
@@ -971,8 +990,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_MAX_CONTACTS_REPORTED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_MAX_CONTACTS_REPORTED, NIL.ordinal)
   }
 
   /**
@@ -980,8 +999,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetMaxContactsReported(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MAX_CONTACTS_REPORTED, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_MAX_CONTACTS_REPORTED, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -990,8 +1009,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_OMIT_FORCE_INTEGRATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_OMIT_FORCE_INTEGRATION, NIL.ordinal)
   }
 
   /**
@@ -999,8 +1018,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_OMITTING_FORCE_INTEGRATION, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_IS_OMITTING_FORCE_INTEGRATION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1019,8 +1038,8 @@ public object PhysicsServer3D : Object() {
     userdata: Any? = null
   ): Unit {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_FORCE_INTEGRATION_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_FORCE_INTEGRATION_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -1028,8 +1047,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_RAY_PICKABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_RAY_PICKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1041,8 +1060,8 @@ public object PhysicsServer3D : Object() {
     result: PhysicsTestMotionResult3D? = null
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_TEST_MOTION,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_TEST_MOTION,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1051,8 +1070,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_DIRECT_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_GET_DIRECT_STATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectBodyState3D?
   }
 
@@ -1061,8 +1080,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun softBodyGetBounds(body: RID): AABB {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SOFT_BODY_GET_BOUNDS, godot.core.VariantType.AABB)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SOFT_BODY_GET_BOUNDS,
+        godot.core.VariantType.AABB.ordinal)
     return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 
@@ -1071,7 +1090,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun jointCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -1080,7 +1100,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun jointClear(joint: RID): Unit {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -1094,7 +1114,8 @@ public object PhysicsServer3D : Object() {
     localB: Vector3
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_PIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_PIN,
+        NIL.ordinal)
   }
 
   /**
@@ -1106,8 +1127,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -1115,8 +1136,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointGetParam(joint: RID, `param`: PhysicsServer3D.PinJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_PARAM,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1125,8 +1146,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointSetLocalA(joint: RID, localA: Vector3): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localA)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_LOCAL_A, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_LOCAL_A,
+        NIL.ordinal)
   }
 
   /**
@@ -1134,8 +1155,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointGetLocalA(joint: RID): Vector3 {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_LOCAL_A, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_LOCAL_A,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -1144,8 +1165,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointSetLocalB(joint: RID, localB: Vector3): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localB)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_LOCAL_B, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_SET_LOCAL_B,
+        NIL.ordinal)
   }
 
   /**
@@ -1153,8 +1174,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun pinJointGetLocalB(joint: RID): Vector3 {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_LOCAL_B, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_PIN_JOINT_GET_LOCAL_B,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -1169,8 +1190,8 @@ public object PhysicsServer3D : Object() {
     hingeB: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_HINGE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_HINGE,
+        NIL.ordinal)
   }
 
   /**
@@ -1182,8 +1203,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -1191,8 +1212,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun hingeJointGetParam(joint: RID, `param`: PhysicsServer3D.HingeJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1205,8 +1226,8 @@ public object PhysicsServer3D : Object() {
     enabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_SET_FLAG, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_SET_FLAG,
+        NIL.ordinal)
   }
 
   /**
@@ -1214,8 +1235,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun hingeJointGetFlag(joint: RID, flag: PhysicsServer3D.HingeJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_FLAG, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_HINGE_JOINT_GET_FLAG,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1230,8 +1251,8 @@ public object PhysicsServer3D : Object() {
     localRefB: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_SLIDER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_SLIDER,
+        NIL.ordinal)
   }
 
   /**
@@ -1243,8 +1264,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SLIDER_JOINT_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SLIDER_JOINT_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -1252,8 +1273,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun sliderJointGetParam(joint: RID, `param`: PhysicsServer3D.SliderJointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SLIDER_JOINT_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SLIDER_JOINT_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1268,8 +1289,8 @@ public object PhysicsServer3D : Object() {
     localRefB: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_CONE_TWIST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_CONE_TWIST,
+        NIL.ordinal)
   }
 
   /**
@@ -1281,8 +1302,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONE_TWIST_JOINT_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONE_TWIST_JOINT_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -1291,8 +1312,8 @@ public object PhysicsServer3D : Object() {
   public fun coneTwistJointGetParam(joint: RID, `param`: PhysicsServer3D.ConeTwistJointParam):
       Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONE_TWIST_JOINT_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_CONE_TWIST_JOINT_GET_PARAM, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1301,8 +1322,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun jointGetType(joint: RID): PhysicsServer3D.JointType {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_TYPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_TYPE,
+        LONG.ordinal)
     return PhysicsServer3D.JointType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1311,8 +1332,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun jointSetSolverPriority(joint: RID, priority: Long): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to priority)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_SET_SOLVER_PRIORITY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_SET_SOLVER_PRIORITY, NIL.ordinal)
   }
 
   /**
@@ -1320,8 +1341,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun jointGetSolverPriority(joint: RID): Long {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_SOLVER_PRIORITY, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_GET_SOLVER_PRIORITY, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1336,8 +1357,8 @@ public object PhysicsServer3D : Object() {
     localRefB: Transform3D
   ): Unit {
     TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_GENERIC_6DOF, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_JOINT_MAKE_GENERIC_6DOF,
+        NIL.ordinal)
   }
 
   /**
@@ -1350,8 +1371,8 @@ public object PhysicsServer3D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -1363,8 +1384,8 @@ public object PhysicsServer3D : Object() {
     `param`: PhysicsServer3D.G6DOFJointAxisParam
   ): Double {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_GET_PARAM, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1378,8 +1399,8 @@ public object PhysicsServer3D : Object() {
     enable: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_SET_FLAG, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_SET_FLAG, NIL.ordinal)
   }
 
   /**
@@ -1391,8 +1412,8 @@ public object PhysicsServer3D : Object() {
     flag: PhysicsServer3D.G6DOFJointAxisFlag
   ): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_GET_FLAG, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GENERIC_6DOF_JOINT_GET_FLAG, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1401,7 +1422,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_FREE_RID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_FREE_RID, NIL.ordinal)
   }
 
   /**
@@ -1409,7 +1430,7 @@ public object PhysicsServer3D : Object() {
    */
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SET_ACTIVE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_SET_ACTIVE, NIL.ordinal)
   }
 
   /**
@@ -1417,8 +1438,8 @@ public object PhysicsServer3D : Object() {
    */
   public fun getProcessInfo(processInfo: PhysicsServer3D.ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GET_PROCESS_INFO,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_GET_PROCESS_INFO,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

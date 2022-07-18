@@ -45,12 +45,12 @@ public open class InputEvent internal constructor() : Resource() {
   public var device: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_GET_DEVICE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_GET_DEVICE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_SET_DEVICE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_SET_DEVICE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -64,7 +64,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -81,7 +81,8 @@ public open class InputEvent internal constructor() : Resource() {
     exactMatch: Boolean = false
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -92,7 +93,8 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_RELEASED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_RELEASED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -103,8 +105,8 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_GET_ACTION_STRENGTH,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_GET_ACTION_STRENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -115,7 +117,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_PRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_PRESSED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -124,7 +126,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isEcho(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ECHO, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ECHO, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -133,7 +135,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun asText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_AS_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_AS_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -144,7 +146,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_MATCH, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_MATCH, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -153,7 +155,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun isActionType(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_TYPE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_TYPE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -164,7 +166,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun accumulate(withEvent: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_ACCUMULATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_ACCUMULATE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -173,7 +175,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_XFORMED_BY, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_XFORMED_BY, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as InputEvent?
   }
 

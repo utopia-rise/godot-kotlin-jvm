@@ -99,12 +99,12 @@ public open class TabBar : Control() {
   public var currentTab: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CURRENT_TAB, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CURRENT_TAB, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_CURRENT_TAB, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_CURRENT_TAB, NIL.ordinal)
     }
 
   /**
@@ -113,12 +113,12 @@ public open class TabBar : Control() {
   public var tabAlignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ALIGNMENT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ALIGNMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ALIGNMENT, NIL.ordinal)
     }
 
   /**
@@ -127,12 +127,12 @@ public open class TabBar : Control() {
   public var clipTabs: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CLIP_TABS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_CLIP_TABS, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_CLIP_TABS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_CLIP_TABS, NIL.ordinal)
     }
 
   /**
@@ -141,14 +141,14 @@ public open class TabBar : Control() {
   public var tabCloseDisplayPolicy: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_CLOSE_DISPLAY_POLICY, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_CLOSE_DISPLAY_POLICY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_CLOSE_DISPLAY_POLICY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_CLOSE_DISPLAY_POLICY,
+          NIL.ordinal)
     }
 
   /**
@@ -157,12 +157,12 @@ public open class TabBar : Control() {
   public var maxTabWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_MAX_TAB_WIDTH, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_MAX_TAB_WIDTH, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_MAX_TAB_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_MAX_TAB_WIDTH, NIL.ordinal)
     }
 
   /**
@@ -171,13 +171,14 @@ public open class TabBar : Control() {
   public var scrollingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLLING_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLLING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SCROLLING_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SCROLLING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -186,14 +187,14 @@ public open class TabBar : Control() {
   public var dragToRearrangeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TABBAR_GET_DRAG_TO_REARRANGE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_DRAG_TO_REARRANGE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TABBAR_SET_DRAG_TO_REARRANGE_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_DRAG_TO_REARRANGE_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -204,14 +205,14 @@ public open class TabBar : Control() {
   public var tabsRearrangeGroup: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TABS_REARRANGE_GROUP,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TABS_REARRANGE_GROUP,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TABS_REARRANGE_GROUP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TABS_REARRANGE_GROUP,
+          NIL.ordinal)
     }
 
   /**
@@ -220,14 +221,14 @@ public open class TabBar : Control() {
   public var scrollToSelected: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLL_TO_SELECTED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SCROLL_TO_SELECTED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SCROLL_TO_SELECTED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SCROLL_TO_SELECTED,
+          NIL.ordinal)
     }
 
   /**
@@ -236,12 +237,14 @@ public open class TabBar : Control() {
   public var selectWithRmb: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SELECT_WITH_RMB, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_SELECT_WITH_RMB,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SELECT_WITH_RMB, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SELECT_WITH_RMB,
+          NIL.ordinal)
     }
 
   /**
@@ -250,12 +253,12 @@ public open class TabBar : Control() {
   public var tabCount: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -267,7 +270,7 @@ public open class TabBar : Control() {
    */
   public fun getPreviousTab(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_PREVIOUS_TAB, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_PREVIOUS_TAB, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -276,7 +279,7 @@ public open class TabBar : Control() {
    */
   public fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TITLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TITLE, NIL.ordinal)
   }
 
   /**
@@ -284,7 +287,7 @@ public open class TabBar : Control() {
    */
   public fun getTabTitle(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TITLE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TITLE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -293,7 +296,8 @@ public open class TabBar : Control() {
    */
   public fun setTabTextDirection(tabIdx: Long, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to tabIdx, LONG to direction.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TEXT_DIRECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_TEXT_DIRECTION,
+        NIL.ordinal)
   }
 
   /**
@@ -301,40 +305,32 @@ public open class TabBar : Control() {
    */
   public fun getTabTextDirection(tabIdx: Long): Control.TextDirection {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TEXT_DIRECTION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_TEXT_DIRECTION,
+        LONG.ordinal)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the tab title. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setTabOpentypeFeature(
     tabIdx: Long,
     tag: String,
     values: Long
   ): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to tag, LONG to values)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_OPENTYPE_FEATURE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_OPENTYPE_FEATURE,
+        NIL.ordinal)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the tab title.
-   */
   public fun getTabOpentypeFeature(tabIdx: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to tabIdx, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OPENTYPE_FEATURE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features from the tab title.
-   */
   public fun clearTabOpentypeFeatures(tabIdx: Long): Unit {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_CLEAR_TAB_OPENTYPE_FEATURES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_CLEAR_TAB_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -342,7 +338,7 @@ public open class TabBar : Control() {
    */
   public fun setTabLanguage(tabIdx: Long, language: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_LANGUAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_LANGUAGE, NIL.ordinal)
   }
 
   /**
@@ -350,7 +346,7 @@ public open class TabBar : Control() {
    */
   public fun getTabLanguage(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_LANGUAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_LANGUAGE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -359,7 +355,7 @@ public open class TabBar : Control() {
    */
   public fun setTabIcon(tabIdx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_ICON, NIL.ordinal)
   }
 
   /**
@@ -367,7 +363,7 @@ public open class TabBar : Control() {
    */
   public fun getTabIcon(tabIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_ICON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -376,7 +372,7 @@ public open class TabBar : Control() {
    */
   public fun setTabButtonIcon(tabIdx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_BUTTON_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_BUTTON_ICON, NIL.ordinal)
   }
 
   /**
@@ -384,7 +380,8 @@ public open class TabBar : Control() {
    */
   public fun getTabButtonIcon(tabIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_BUTTON_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_BUTTON_ICON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -393,7 +390,7 @@ public open class TabBar : Control() {
    */
   public fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_DISABLED, NIL.ordinal)
   }
 
   /**
@@ -401,7 +398,7 @@ public open class TabBar : Control() {
    */
   public fun isTabDisabled(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -410,7 +407,7 @@ public open class TabBar : Control() {
    */
   public fun setTabHidden(tabIdx: Long, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to hidden)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_HIDDEN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_HIDDEN, NIL.ordinal)
   }
 
   /**
@@ -418,7 +415,7 @@ public open class TabBar : Control() {
    */
   public fun isTabHidden(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_HIDDEN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_IS_TAB_HIDDEN, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -427,7 +424,7 @@ public open class TabBar : Control() {
    */
   public fun removeTab(tabIdx: Long): Unit {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_REMOVE_TAB, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_REMOVE_TAB, NIL.ordinal)
   }
 
   /**
@@ -435,7 +432,7 @@ public open class TabBar : Control() {
    */
   public fun addTab(title: String = "", icon: Texture2D? = null): Unit {
     TransferContext.writeArguments(STRING to title, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ADD_TAB, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ADD_TAB, NIL.ordinal)
   }
 
   /**
@@ -443,7 +440,8 @@ public open class TabBar : Control() {
    */
   public fun getTabIdxAtPoint(point: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_IDX_AT_POINT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_IDX_AT_POINT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -452,7 +450,7 @@ public open class TabBar : Control() {
    */
   public fun getTabOffset(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OFFSET, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OFFSET, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -461,8 +459,8 @@ public open class TabBar : Control() {
    */
   public fun getOffsetButtonsVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_OFFSET_BUTTONS_VISIBLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_OFFSET_BUTTONS_VISIBLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -471,7 +469,7 @@ public open class TabBar : Control() {
    */
   public fun ensureTabVisible(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ENSURE_TAB_VISIBLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_ENSURE_TAB_VISIBLE, NIL.ordinal)
   }
 
   /**
@@ -479,7 +477,7 @@ public open class TabBar : Control() {
    */
   public fun getTabRect(tabIdx: Long): Rect2 {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_RECT, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_RECT, RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -488,7 +486,7 @@ public open class TabBar : Control() {
    */
   public fun moveTab(from: Long, to: Long): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_MOVE_TAB, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_MOVE_TAB, NIL.ordinal)
   }
 
   public enum class AlignmentMode(

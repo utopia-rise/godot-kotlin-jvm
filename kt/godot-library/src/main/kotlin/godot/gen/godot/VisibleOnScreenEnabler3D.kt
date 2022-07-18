@@ -35,14 +35,14 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   public var enableMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_MODE, NIL.ordinal)
     }
 
   /**
@@ -51,14 +51,14 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   public var enableNodePath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_NODE_PATH, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_GET_ENABLE_NODE_PATH, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_NODE_PATH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_NODE_PATH, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

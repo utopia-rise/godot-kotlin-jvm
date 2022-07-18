@@ -39,27 +39,17 @@ public open class Slider internal constructor() : Range() {
   public val dragEnded: Signal1<Boolean> by signal("valueChanged")
 
   /**
-   * Emitted when dragging stops. If `value_changed` is true, [godot.Range.value] is different from the value when you started the dragging.
-   */
-  public val dragEnded: Signal1<Boolean> by signal("value_changed")
-
-  /**
-   * Emitted when dragging is started.
-   */
-  public val dragStarted: Signal0 by signal()
-
-  /**
    * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
    */
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_EDITABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_EDITABLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_EDITABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_EDITABLE, NIL.ordinal)
     }
 
   /**
@@ -68,12 +58,12 @@ public open class Slider internal constructor() : Range() {
   public var scrollable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_SCROLLABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_IS_SCROLLABLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_SCROLLABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_SCROLLABLE, NIL.ordinal)
     }
 
   /**
@@ -82,12 +72,12 @@ public open class Slider internal constructor() : Range() {
   public var tickCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICKS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICKS, NIL.ordinal)
     }
 
   /**
@@ -96,12 +86,14 @@ public open class Slider internal constructor() : Range() {
   public var ticksOnBorders: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS_ON_BORDERS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_GET_TICKS_ON_BORDERS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICKS_ON_BORDERS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICKS_ON_BORDERS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

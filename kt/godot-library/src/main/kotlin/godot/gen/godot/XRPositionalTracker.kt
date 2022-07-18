@@ -82,14 +82,14 @@ public open class XRPositionalTracker : RefCounted() {
   public var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_TYPE,
+          NIL.ordinal)
     }
 
   /**
@@ -102,14 +102,14 @@ public open class XRPositionalTracker : RefCounted() {
   public var name: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_NAME,
+          NIL.ordinal)
     }
 
   /**
@@ -118,14 +118,14 @@ public open class XRPositionalTracker : RefCounted() {
   public var description: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_DESC, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_DESC,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_DESC, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_DESC,
+          NIL.ordinal)
     }
 
   /**
@@ -134,14 +134,14 @@ public open class XRPositionalTracker : RefCounted() {
   public var profile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_PROFILE, STRING)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_PROFILE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_PROFILE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_PROFILE, NIL.ordinal)
     }
 
   /**
@@ -150,14 +150,14 @@ public open class XRPositionalTracker : RefCounted() {
   public var hand: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_HAND, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_HAND,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -169,7 +169,8 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_HAS_POSE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_HAS_POSE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -178,8 +179,8 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_POSE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_POSE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRPose?
   }
 
@@ -188,8 +189,8 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_INVALIDATE_POSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_INVALIDATE_POSE,
+        NIL.ordinal)
   }
 
   /**
@@ -203,7 +204,8 @@ public open class XRPositionalTracker : RefCounted() {
     trackingConfidence: XRPose.TrackingConfidence
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_POSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_POSE,
+        NIL.ordinal)
   }
 
   /**
@@ -211,7 +213,8 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_INPUT, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_INPUT,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -220,7 +223,8 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun setInput(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_INPUT,
+        NIL.ordinal)
   }
 
   public enum class TrackerHand(

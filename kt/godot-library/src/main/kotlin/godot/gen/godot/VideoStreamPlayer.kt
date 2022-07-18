@@ -49,14 +49,14 @@ public open class VideoStreamPlayer : Control() {
   public var audioTrack: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_AUDIO_TRACK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_AUDIO_TRACK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUDIO_TRACK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUDIO_TRACK,
+          NIL.ordinal)
     }
 
   /**
@@ -65,13 +65,14 @@ public open class VideoStreamPlayer : Control() {
   public var stream: VideoStream?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as VideoStream?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM,
+          NIL.ordinal)
     }
 
   /**
@@ -80,14 +81,14 @@ public open class VideoStreamPlayer : Control() {
   public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME_DB,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME_DB,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME_DB,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME_DB,
+          NIL.ordinal)
     }
 
   /**
@@ -96,13 +97,14 @@ public open class VideoStreamPlayer : Control() {
   public var volume: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME,
+          NIL.ordinal)
     }
 
   /**
@@ -111,14 +113,14 @@ public open class VideoStreamPlayer : Control() {
   public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_AUTOPLAY,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_AUTOPLAY,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUTOPLAY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUTOPLAY,
+          NIL.ordinal)
     }
 
   /**
@@ -127,12 +129,14 @@ public open class VideoStreamPlayer : Control() {
   public var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PAUSED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PAUSED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_PAUSED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_PAUSED,
+          NIL.ordinal)
     }
 
   /**
@@ -141,13 +145,14 @@ public open class VideoStreamPlayer : Control() {
   public var expand: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_EXPAND,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_EXPAND,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_EXPAND, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_EXPAND,
+          NIL.ordinal)
     }
 
   /**
@@ -156,14 +161,14 @@ public open class VideoStreamPlayer : Control() {
   public var bufferingMsec: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUFFERING_MSEC, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUFFERING_MSEC,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUFFERING_MSEC, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUFFERING_MSEC,
+          NIL.ordinal)
     }
 
   /**
@@ -174,14 +179,14 @@ public open class VideoStreamPlayer : Control() {
   public var streamPosition: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_POSITION, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_POSITION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM_POSITION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM_POSITION,
+          NIL.ordinal)
     }
 
   /**
@@ -190,13 +195,13 @@ public open class VideoStreamPlayer : Control() {
   public var bus: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUS,
-          STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUS,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -208,7 +213,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun play(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_PLAY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_PLAY, NIL.ordinal)
   }
 
   /**
@@ -218,7 +223,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_STOP, NIL.ordinal)
   }
 
   /**
@@ -228,7 +233,8 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PLAYING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PLAYING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -237,8 +243,8 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun getStreamName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -247,8 +253,8 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VIDEO_TEXTURE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VIDEO_TEXTURE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 

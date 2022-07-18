@@ -39,7 +39,7 @@ public object ResourceUID : Object() {
    */
   public fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ID_TO_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ID_TO_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -48,7 +48,7 @@ public object ResourceUID : Object() {
    */
   public fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_TEXT_TO_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_TEXT_TO_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -57,7 +57,7 @@ public object ResourceUID : Object() {
    */
   public fun createId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_CREATE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_CREATE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -66,7 +66,7 @@ public object ResourceUID : Object() {
    */
   public fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_HAS_ID, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_HAS_ID, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -75,7 +75,7 @@ public object ResourceUID : Object() {
    */
   public fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ADD_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ADD_ID, NIL.ordinal)
   }
 
   /**
@@ -83,7 +83,7 @@ public object ResourceUID : Object() {
    */
   public fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_SET_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_SET_ID, NIL.ordinal)
   }
 
   /**
@@ -91,7 +91,7 @@ public object ResourceUID : Object() {
    */
   public fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_GET_ID_PATH, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_GET_ID_PATH, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -100,6 +100,6 @@ public object ResourceUID : Object() {
    */
   public fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_REMOVE_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_REMOVE_ID, NIL.ordinal)
   }
 }

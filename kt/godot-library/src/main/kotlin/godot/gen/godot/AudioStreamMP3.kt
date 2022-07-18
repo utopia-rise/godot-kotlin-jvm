@@ -23,37 +23,37 @@ public open class AudioStreamMP3 : AudioStream() {
   public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_DATA,
-          PACKED_BYTE_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_DATA,
+          PACKED_BYTE_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_DATA, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_DATA, NIL.ordinal)
     }
 
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_HAS_LOOP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_HAS_LOOP, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_LOOP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_LOOP, NIL.ordinal)
     }
 
   public var loopOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_LOOP_OFFSET,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_LOOP_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_LOOP_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_LOOP_OFFSET,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

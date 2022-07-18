@@ -26,14 +26,14 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   public var texture: CurveTexture?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_GET_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_GET_TEXTURE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as CurveTexture?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_SET_TEXTURE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_SET_TEXTURE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -35,8 +35,8 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public fun createFromImages(images: VariantArray<Any?>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -45,8 +45,8 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public fun updateLayer(image: Image, layer: Long): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_UPDATE_LAYER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_UPDATE_LAYER,
+        NIL.ordinal)
   }
 
   public companion object

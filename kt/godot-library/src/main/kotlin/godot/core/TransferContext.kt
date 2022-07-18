@@ -48,14 +48,6 @@ internal object TransferContext {
         return ret
     }
 
-    fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
-        icall(
-            ptr,
-            methodIndex,
-            expectedReturnType.ordinal
-        )
-    }
-
     fun freeObject(obj: KtObject) {
         freeObject(obj.rawPtr)
     }
@@ -65,5 +57,6 @@ internal object TransferContext {
     external fun getSingleton(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)
+    external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)
+    external fun icallStatic(methodIndex: Int, expectedReturnType: Int)
 }

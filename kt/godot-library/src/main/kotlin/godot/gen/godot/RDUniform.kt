@@ -30,12 +30,14 @@ public open class RDUniform : RefCounted() {
   public var uniformType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_UNIFORM_TYPE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_UNIFORM_TYPE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_UNIFORM_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_UNIFORM_TYPE,
+          NIL.ordinal)
     }
 
   /**
@@ -44,12 +46,12 @@ public open class RDUniform : RefCounted() {
   public var binding: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_BINDING, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_BINDING, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_BINDING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_BINDING, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -61,7 +63,7 @@ public open class RDUniform : RefCounted() {
    */
   public fun addId(id: RID): Unit {
     TransferContext.writeArguments(_RID to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_ADD_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_ADD_ID, NIL.ordinal)
   }
 
   /**
@@ -69,7 +71,7 @@ public open class RDUniform : RefCounted() {
    */
   public fun clearIds(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_CLEAR_IDS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_CLEAR_IDS, NIL.ordinal)
   }
 
   /**
@@ -77,7 +79,7 @@ public open class RDUniform : RefCounted() {
    */
   public fun getIds(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_IDS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_IDS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

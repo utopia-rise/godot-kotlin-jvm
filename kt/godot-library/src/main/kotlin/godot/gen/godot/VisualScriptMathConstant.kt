@@ -19,14 +19,14 @@ public open class VisualScriptMathConstant : VisualScriptNode() {
   public var constant: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_GET_MATH_CONSTANT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_GET_MATH_CONSTANT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_SET_MATH_CONSTANT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_SET_MATH_CONSTANT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

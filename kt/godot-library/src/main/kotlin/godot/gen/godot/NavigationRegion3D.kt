@@ -25,6 +25,14 @@ import kotlin.Unit
  * A region of the navigation map. It tells the [godot.NavigationServer3D] what can be navigated and what cannot, based on its [godot.NavigationMesh] resource.
  *
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer3D.mapSetEdgeConnectionMargin].
+ *
+ * **Note:** Overlapping two regions' navmeshes is not enough for connecting two regions. They must share a similar edge.
+ *
+ * The cost of entering this region from another region can be controlled with the [enterCost] value.
+ *
+ * **Note**: This value is not added to the path cost when the start position is already inside this region.
+ *
+ * The cost of traveling distances inside this region can be controlled with the [travelCost] multiplier.
  */
 @GodotBaseType
 public open class NavigationRegion3D : Node3D() {
@@ -44,14 +52,14 @@ public open class NavigationRegion3D : Node3D() {
   public var navmesh: NavigationMesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_MESH,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_MESH,
+          NIL.ordinal)
     }
 
   /**
@@ -60,30 +68,27 @@ public open class NavigationRegion3D : Node3D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_IS_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_IS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_ENABLED,
+          NIL.ordinal)
     }
 
-  /**
-   * A bitfield determining all layers the region belongs to. These layers can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath].
-   */
   public var layers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_LAYERS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_LAYERS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_LAYERS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_LAYERS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -91,12 +96,12 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
-   * Bakes the [godot.NavigationMesh]. If `on_thread` is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [godot.NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization.
+   * Bakes the [godot.NavigationMesh]. If `on_thread` is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [godot.NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization. Also, please note that baking on a separate thread is automatically disabled on operating systems that cannot use threads (such as HTML5 with threads disabled).
    */
   public fun bakeNavigationMesh(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_BAKE_NAVIGATION_MESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_BAKE_NAVIGATION_MESH,
+        NIL.ordinal)
   }
 
   public companion object

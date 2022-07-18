@@ -27,14 +27,14 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   public var constant: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_GET_CONSTANT, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_GET_CONSTANT, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_SET_CONSTANT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_SET_CONSTANT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

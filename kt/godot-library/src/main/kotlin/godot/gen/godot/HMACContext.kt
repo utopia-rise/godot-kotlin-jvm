@@ -111,8 +111,6 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
@@ -125,7 +123,7 @@ public open class HMACContext : RefCounted() {
    */
   public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -134,7 +132,7 @@ public open class HMACContext : RefCounted() {
    */
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -143,8 +141,8 @@ public open class HMACContext : RefCounted() {
    */
   public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_FINISH,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_FINISH,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 

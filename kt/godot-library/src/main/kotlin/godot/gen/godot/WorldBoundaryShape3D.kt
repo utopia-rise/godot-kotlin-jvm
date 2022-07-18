@@ -29,14 +29,14 @@ public open class WorldBoundaryShape3D : Shape3D() {
   public var plane: Plane
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_GET_PLANE,
-          PLANE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_GET_PLANE,
+          PLANE.ordinal)
       return TransferContext.readReturnValue(PLANE, false) as Plane
     }
     set(`value`) {
       TransferContext.writeArguments(PLANE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_SET_PLANE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_SET_PLANE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

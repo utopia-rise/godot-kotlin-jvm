@@ -30,14 +30,14 @@ public open class CanvasTexture : Texture2D() {
   public var diffuseTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_DIFFUSE_TEXTURE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_DIFFUSE_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_DIFFUSE_TEXTURE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_DIFFUSE_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -46,14 +46,14 @@ public open class CanvasTexture : Texture2D() {
   public var normalTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_NORMAL_TEXTURE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_NORMAL_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_NORMAL_TEXTURE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_NORMAL_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -62,14 +62,14 @@ public open class CanvasTexture : Texture2D() {
   public var specularTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -78,14 +78,14 @@ public open class CanvasTexture : Texture2D() {
   public var specularColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -94,14 +94,14 @@ public open class CanvasTexture : Texture2D() {
   public var specularShininess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_SHININESS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_SHININESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_SHININESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_SHININESS,
+          NIL.ordinal)
     }
 
   /**
@@ -110,14 +110,14 @@ public open class CanvasTexture : Texture2D() {
   public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_FILTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_FILTER,
+          NIL.ordinal)
     }
 
   /**
@@ -126,14 +126,14 @@ public open class CanvasTexture : Texture2D() {
   public var textureRepeat: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_REPEAT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_REPEAT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

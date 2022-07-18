@@ -77,8 +77,8 @@ public open class SyntaxHighlighter : Resource() {
    */
   public fun getLineSyntaxHighlighting(line: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_LINE_SYNTAX_HIGHLIGHTING, DICTIONARY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_LINE_SYNTAX_HIGHLIGHTING, DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -89,7 +89,8 @@ public open class SyntaxHighlighter : Resource() {
    */
   public fun updateCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_UPDATE_CACHE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_UPDATE_CACHE,
+        NIL.ordinal)
   }
 
   /**
@@ -99,8 +100,8 @@ public open class SyntaxHighlighter : Resource() {
    */
   public fun clearHighlightingCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_CLEAR_HIGHLIGHTING_CACHE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_CLEAR_HIGHLIGHTING_CACHE, NIL.ordinal)
   }
 
   /**
@@ -108,8 +109,8 @@ public open class SyntaxHighlighter : Resource() {
    */
   public fun getTextEdit(): TextEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_TEXT_EDIT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SYNTAXHIGHLIGHTER_GET_TEXT_EDIT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TextEdit?
   }
 

@@ -11,10 +11,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- *
+ * Physically based rendering (PBR) material that can be applied to 3D objects.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/3d/standard_material_3d.html]($DOCS_URL/tutorials/3d/standard_material_3d.html)
+ *
+ * StandardMaterial3D's properties are inherited from [godot.BaseMaterial3D].
  */
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {

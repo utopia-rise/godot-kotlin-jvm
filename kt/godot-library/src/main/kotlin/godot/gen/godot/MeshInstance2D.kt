@@ -21,7 +21,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/2d_meshes.html]($DOCS_URL/tutorials/2d/2d_meshes.html)
  *
- * Node used for displaying a [godot.Mesh] in 2D. Can be constructed from an existing [godot.Sprite2D] via a tool in the editor toolbar. Select "Sprite2D" then "Convert to Mesh2D", select settings in popup and press "Create Mesh2D".
+ * Node used for displaying a [godot.Mesh] in 2D. A [godot.MeshInstance2D] can be automatically created from an existing [godot.Sprite2D] via a tool in the editor toolbar. Select the [godot.Sprite2D] node, then choose **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
  */
 @GodotBaseType
 public open class MeshInstance2D : Node2D() {
@@ -36,12 +36,13 @@ public open class MeshInstance2D : Node2D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_MESH,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_MESH, NIL.ordinal)
     }
 
   /**
@@ -50,13 +51,14 @@ public open class MeshInstance2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -67,14 +69,14 @@ public open class MeshInstance2D : Node2D() {
   public var normalMap: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_NORMAL_MAP,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_NORMAL_MAP,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_NORMAL_MAP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_NORMAL_MAP,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

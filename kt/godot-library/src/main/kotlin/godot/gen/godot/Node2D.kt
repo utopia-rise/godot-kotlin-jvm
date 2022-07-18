@@ -40,12 +40,12 @@ public open class Node2D : CanvasItem() {
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_POSITION, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_POSITION, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_POSITION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_POSITION, NIL.ordinal)
     }
 
   /**
@@ -54,26 +54,28 @@ public open class Node2D : CanvasItem() {
   public var rotation: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ROTATION, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ROTATION, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_ROTATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_ROTATION, NIL.ordinal)
     }
 
   /**
    * The node's scale. Unscaled value: `(1, 1)`.
+   *
+   * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    */
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SCALE, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SCALE, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SCALE, NIL.ordinal)
     }
 
   /**
@@ -82,12 +84,12 @@ public open class Node2D : CanvasItem() {
   public var skew: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SKEW, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SKEW, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SKEW, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SKEW, NIL.ordinal)
     }
 
   /**
@@ -99,7 +101,7 @@ public open class Node2D : CanvasItem() {
     get() = super.getTransform()
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_TRANSFORM, NIL.ordinal)
     }
 
   /**
@@ -108,13 +110,14 @@ public open class Node2D : CanvasItem() {
   public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_POSITION,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_POSITION,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_POSITION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_POSITION,
+          NIL.ordinal)
     }
 
   /**
@@ -123,13 +126,14 @@ public open class Node2D : CanvasItem() {
   public var globalRotation: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_ROTATION,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_ROTATION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_ROTATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_ROTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -138,12 +142,13 @@ public open class Node2D : CanvasItem() {
   public var globalScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_SCALE, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_SCALE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_SCALE, NIL.ordinal)
     }
 
   /**
@@ -155,7 +160,8 @@ public open class Node2D : CanvasItem() {
     get() = super.getGlobalTransform()
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_TRANSFORM,
+          NIL.ordinal)
     }
 
   /**
@@ -164,12 +170,12 @@ public open class Node2D : CanvasItem() {
   public var zIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_Z_INDEX, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_Z_INDEX, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_INDEX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_INDEX, NIL.ordinal)
     }
 
   /**
@@ -178,12 +184,12 @@ public open class Node2D : CanvasItem() {
   public var zAsRelative: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_IS_Z_RELATIVE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_IS_Z_RELATIVE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_AS_RELATIVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_AS_RELATIVE, NIL.ordinal)
     }
 
   /**
@@ -194,12 +200,12 @@ public open class Node2D : CanvasItem() {
   public var ySortEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_IS_Y_SORT_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_IS_Y_SORT_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Y_SORT_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Y_SORT_ENABLED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -211,7 +217,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun rotate(radians: Double): Unit {
     TransferContext.writeArguments(DOUBLE to radians)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_ROTATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_ROTATE, NIL.ordinal)
   }
 
   /**
@@ -219,7 +225,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun moveLocalX(delta: Double, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta, BOOL to scaled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_X, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_X, NIL.ordinal)
   }
 
   /**
@@ -227,7 +233,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun moveLocalY(delta: Double, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta, BOOL to scaled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_Y, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_MOVE_LOCAL_Y, NIL.ordinal)
   }
 
   /**
@@ -235,7 +241,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun translate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TRANSLATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TRANSLATE, NIL.ordinal)
   }
 
   /**
@@ -243,7 +249,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun globalTranslate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GLOBAL_TRANSLATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GLOBAL_TRANSLATE, NIL.ordinal)
   }
 
   /**
@@ -251,7 +257,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun applyScale(ratio: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to ratio)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_APPLY_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_APPLY_SCALE, NIL.ordinal)
   }
 
   /**
@@ -259,7 +265,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun lookAt(point: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_LOOK_AT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_LOOK_AT, NIL.ordinal)
   }
 
   /**
@@ -269,7 +275,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun getAngleTo(point: Vector2): Double {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ANGLE_TO, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ANGLE_TO, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -278,7 +284,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun toLocal(globalPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to globalPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_LOCAL, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_LOCAL, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -287,7 +293,7 @@ public open class Node2D : CanvasItem() {
    */
   public fun toGlobal(localPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_GLOBAL, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_GLOBAL, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -296,8 +302,8 @@ public open class Node2D : CanvasItem() {
    */
   public fun getRelativeTransformToParent(parent: Node): Transform2D {
     TransferContext.writeArguments(OBJECT to parent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE2D_GET_RELATIVE_TRANSFORM_TO_PARENT, TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_RELATIVE_TRANSFORM_TO_PARENT,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 

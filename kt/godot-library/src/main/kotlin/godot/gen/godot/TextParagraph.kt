@@ -52,12 +52,14 @@ public open class TextParagraph : RefCounted() {
   public var direction: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DIRECTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DIRECTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DIRECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DIRECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +68,14 @@ public open class TextParagraph : RefCounted() {
   public var customPunctuation: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_CUSTOM_PUNCTUATION, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_CUSTOM_PUNCTUATION,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_CUSTOM_PUNCTUATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_CUSTOM_PUNCTUATION,
+          NIL.ordinal)
     }
 
   /**
@@ -82,14 +84,14 @@ public open class TextParagraph : RefCounted() {
   public var orientation: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ORIENTATION,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ORIENTATION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ORIENTATION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ORIENTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -98,14 +100,14 @@ public open class TextParagraph : RefCounted() {
   public var preserveInvalid: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_INVALID, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_INVALID,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_PRESERVE_INVALID, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_PRESERVE_INVALID,
+          NIL.ordinal)
     }
 
   /**
@@ -114,14 +116,14 @@ public open class TextParagraph : RefCounted() {
   public var preserveControl: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_CONTROL, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_PRESERVE_CONTROL,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_PRESERVE_CONTROL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_PRESERVE_CONTROL,
+          NIL.ordinal)
     }
 
   /**
@@ -130,42 +132,41 @@ public open class TextParagraph : RefCounted() {
   public var alignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ALIGNMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_ALIGNMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ALIGNMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ALIGNMENT,
+          NIL.ordinal)
     }
 
-  /**
-   * Line breaking and alignment rules. For more info see [godot.TextServer].
-   */
   public var flags: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_FLAGS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_FLAGS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_FLAGS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_FLAGS, NIL.ordinal)
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_TEXT_OVERRUN_BEHAVIOR, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_TEXT_OVERRUN_BEHAVIOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_TEXT_OVERRUN_BEHAVIOR, NIL.ordinal)
     }
 
   /**
@@ -174,12 +175,13 @@ public open class TextParagraph : RefCounted() {
   public var width: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_WIDTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_WIDTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_WIDTH, NIL.ordinal)
     }
 
   /**
@@ -188,14 +190,14 @@ public open class TextParagraph : RefCounted() {
   public var maxLinesVisible: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_MAX_LINES_VISIBLE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_MAX_LINES_VISIBLE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_MAX_LINES_VISIBLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_MAX_LINES_VISIBLE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -207,7 +209,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -217,8 +219,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_BIDI_OVERRIDE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_BIDI_OVERRIDE,
+        NIL.ordinal)
   }
 
   /**
@@ -233,7 +235,7 @@ public open class TextParagraph : RefCounted() {
     language: String = ""
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, RECT2 to dropcapMargins, DICTIONARY to opentypeFeatures, STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DROPCAP, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_DROPCAP, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -242,7 +244,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun clearDropcap(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_CLEAR_DROPCAP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_CLEAR_DROPCAP, NIL.ordinal)
   }
 
   /**
@@ -257,7 +259,7 @@ public open class TextParagraph : RefCounted() {
     meta: Any? = null
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_STRING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_STRING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -271,7 +273,7 @@ public open class TextParagraph : RefCounted() {
     length: Long = 1
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_ADD_OBJECT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -284,7 +286,8 @@ public open class TextParagraph : RefCounted() {
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_RESIZE_OBJECT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -293,7 +296,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun tabAlign(tabStops: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_TAB_ALIGN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_TAB_ALIGN, NIL.ordinal)
   }
 
   /**
@@ -301,8 +304,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getNonWrappedSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_NON_WRAPPED_SIZE,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_NON_WRAPPED_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -311,7 +314,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -320,7 +323,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -329,7 +332,7 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineRid(line: Long): RID {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -338,7 +341,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getDropcapRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_RID,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -347,7 +351,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -356,8 +361,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineObjects(line: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECTS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECTS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -366,8 +371,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineObjectRect(line: Long, key: Any): Rect2 {
     TransferContext.writeArguments(LONG to line, ANY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECT_RECT,
-        RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_OBJECT_RECT,
+        RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -376,8 +381,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineSize(line: Long): Vector2 {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_SIZE,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -386,8 +391,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineRange(line: Long): Vector2i {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RANGE,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_RANGE,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -396,8 +401,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineAscent(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_ASCENT,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_ASCENT,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -406,8 +411,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineDescent(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_DESCENT,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_DESCENT,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -416,8 +421,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineWidth(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_WIDTH,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_WIDTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -426,8 +431,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineUnderlinePosition(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_POSITION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_POSITION, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -436,27 +441,22 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getLineUnderlineThickness(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_THICKNESS, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_LINE_UNDERLINE_THICKNESS, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Returns extra spacing at the top of the line. See [godot.Font.spacingTop].
-   */
   public fun getSpacingTop(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_TOP, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_TOP,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns extra spacing at the bottom of the line. See [godot.Font.spacingBottom].
-   */
   public fun getSpacingBottom(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_BOTTOM,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_BOTTOM,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -465,8 +465,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getDropcapSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_SIZE,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -475,8 +475,8 @@ public open class TextParagraph : RefCounted() {
    */
   public fun getDropcapLines(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_LINES,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_DROPCAP_LINES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -490,7 +490,7 @@ public open class TextParagraph : RefCounted() {
     dcColor: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW, NIL.ordinal)
   }
 
   /**
@@ -504,7 +504,7 @@ public open class TextParagraph : RefCounted() {
     dcColor: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color, COLOR to dcColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_OUTLINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_OUTLINE, NIL.ordinal)
   }
 
   /**
@@ -517,7 +517,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE, NIL.ordinal)
   }
 
   /**
@@ -531,8 +531,8 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line, LONG to outlineSize, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE_OUTLINE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_LINE_OUTLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -544,7 +544,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP, NIL.ordinal)
   }
 
   /**
@@ -557,8 +557,8 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP_OUTLINE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_DRAW_DROPCAP_OUTLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -566,32 +566,17 @@ public open class TextParagraph : RefCounted() {
    */
   public fun hitTest(coords: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_HIT_TEST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_HIT_TEST, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public enum class OverrunBehavior(
     id: Long
   ) {
-    /**
-     * No text trimming is performed.
-     */
     OVERRUN_NO_TRIMMING(0),
-    /**
-     * Trims the text per character.
-     */
     OVERRUN_TRIM_CHAR(1),
-    /**
-     * Trims the text per word.
-     */
     OVERRUN_TRIM_WORD(2),
-    /**
-     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_ELLIPSIS(3),
-    /**
-     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_WORD_ELLIPSIS(4),
     ;
 

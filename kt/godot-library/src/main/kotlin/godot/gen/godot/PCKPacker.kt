@@ -71,7 +71,7 @@ public open class PCKPacker : RefCounted() {
     encryptDirectory: Boolean = false
   ): GodotError {
     TransferContext.writeArguments(STRING to pckName, LONG to alignment, STRING to key, BOOL to encryptDirectory)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_PCK_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_PCK_START, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -84,7 +84,7 @@ public open class PCKPacker : RefCounted() {
     encrypt: Boolean = false
   ): GodotError {
     TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_ADD_FILE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_ADD_FILE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -93,7 +93,7 @@ public open class PCKPacker : RefCounted() {
    */
   public fun flush(verbose: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to verbose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_FLUSH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PCKPACKER_FLUSH, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

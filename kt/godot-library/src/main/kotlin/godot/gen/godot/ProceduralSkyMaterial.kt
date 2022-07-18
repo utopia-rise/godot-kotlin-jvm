@@ -34,14 +34,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyTopColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_TOP_COLOR, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_TOP_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_TOP_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_TOP_COLOR, NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyHorizonColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_HORIZON_COLOR, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_HORIZON_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_HORIZON_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_HORIZON_COLOR, NIL.ordinal)
     }
 
   /**
@@ -66,14 +66,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyCurve: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_CURVE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_CURVE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_CURVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_CURVE,
+          NIL.ordinal)
     }
 
   /**
@@ -82,14 +82,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_ENERGY,
+          NIL.ordinal)
     }
 
   /**
@@ -98,14 +98,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyCover: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER,
+          NIL.ordinal)
     }
 
   /**
@@ -114,14 +114,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var skyCoverModulate: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER_MODULATE, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER_MODULATE, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER_MODULATE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER_MODULATE, NIL.ordinal)
     }
 
   /**
@@ -130,14 +130,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var groundBottomColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_BOTTOM_COLOR, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_BOTTOM_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_BOTTOM_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_BOTTOM_COLOR, NIL.ordinal)
     }
 
   /**
@@ -146,14 +146,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var groundHorizonColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_HORIZON_COLOR, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_HORIZON_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_HORIZON_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_HORIZON_COLOR, NIL.ordinal)
     }
 
   /**
@@ -162,14 +162,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var groundCurve: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_CURVE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_CURVE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_CURVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_CURVE,
+          NIL.ordinal)
     }
 
   /**
@@ -178,14 +178,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var groundEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_GROUND_ENERGY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_ENERGY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -194,14 +194,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var sunAngleMax: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_ANGLE_MAX, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_ANGLE_MAX, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_ANGLE_MAX, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_ANGLE_MAX, NIL.ordinal)
     }
 
   /**
@@ -210,14 +210,14 @@ public open class ProceduralSkyMaterial : Material() {
   public var sunCurve: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_CURVE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SUN_CURVE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_CURVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_CURVE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

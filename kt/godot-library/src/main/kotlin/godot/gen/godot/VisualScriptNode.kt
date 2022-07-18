@@ -29,28 +29,28 @@ public open class VisualScriptNode internal constructor() : Resource() {
 
   public fun getVisualScript(): VisualScript? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_VISUAL_SCRIPT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_VISUAL_SCRIPT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as VisualScript?
   }
 
   public fun setDefaultInputValue(portIdx: Long, `value`: Any): Unit {
     TransferContext.writeArguments(LONG to portIdx, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE,
+        NIL.ordinal)
   }
 
   public fun getDefaultInputValue(portIdx: Long): Any? {
     TransferContext.writeArguments(LONG to portIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_DEFAULT_INPUT_VALUE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_DEFAULT_INPUT_VALUE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   public fun portsChangedNotify(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_PORTS_CHANGED_NOTIFY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_PORTS_CHANGED_NOTIFY,
+        NIL.ordinal)
   }
 
   public companion object

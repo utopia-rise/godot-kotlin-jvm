@@ -76,13 +76,13 @@ public object XRServer : Object() {
 
   public fun getWorldScale(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_SCALE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_SCALE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun setWorldScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_SCALE, NIL.ordinal)
   }
 
   /**
@@ -90,8 +90,8 @@ public object XRServer : Object() {
    */
   public fun getReferenceFrame(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_REFERENCE_FRAME,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_REFERENCE_FRAME,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -110,7 +110,7 @@ public object XRServer : Object() {
    */
   public fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL.ordinal)
   }
 
   /**
@@ -118,8 +118,8 @@ public object XRServer : Object() {
    */
   public fun getHmdTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_HMD_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_HMD_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -128,7 +128,7 @@ public object XRServer : Object() {
    */
   public fun addInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_INTERFACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_INTERFACE, NIL.ordinal)
   }
 
   /**
@@ -136,7 +136,8 @@ public object XRServer : Object() {
    */
   public fun getInterfaceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -145,7 +146,7 @@ public object XRServer : Object() {
    */
   public fun removeInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_INTERFACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_INTERFACE, NIL.ordinal)
   }
 
   /**
@@ -153,7 +154,7 @@ public object XRServer : Object() {
    */
   public fun getInterface(idx: Long): XRInterface? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
   }
 
@@ -162,7 +163,7 @@ public object XRServer : Object() {
    */
   public fun getInterfaces(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -171,7 +172,7 @@ public object XRServer : Object() {
    */
   public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_FIND_INTERFACE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_FIND_INTERFACE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
   }
 
@@ -180,7 +181,7 @@ public object XRServer : Object() {
    */
   public fun addTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_TRACKER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_TRACKER, NIL.ordinal)
   }
 
   /**
@@ -188,7 +189,7 @@ public object XRServer : Object() {
    */
   public fun removeTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_TRACKER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_TRACKER, NIL.ordinal)
   }
 
   /**
@@ -196,7 +197,8 @@ public object XRServer : Object() {
    */
   public fun getTrackers(trackerTypes: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKERS, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKERS,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -205,20 +207,21 @@ public object XRServer : Object() {
    */
   public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKER, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?
   }
 
   public fun getPrimaryInterface(): XRInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_PRIMARY_INTERFACE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_PRIMARY_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRInterface?
   }
 
   public fun setPrimaryInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_PRIMARY_INTERFACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_PRIMARY_INTERFACE,
+        NIL.ordinal)
   }
 
   public enum class RotationMode(

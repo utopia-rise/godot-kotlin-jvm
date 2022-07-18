@@ -83,14 +83,14 @@ public open class MultiplayerAPI : RefCounted() {
   public var allowObjectDecoding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_OBJECT_DECODING_ALLOWED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_OBJECT_DECODING_ALLOWED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ALLOW_OBJECT_DECODING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ALLOW_OBJECT_DECODING, NIL.ordinal)
     }
 
   /**
@@ -99,14 +99,14 @@ public open class MultiplayerAPI : RefCounted() {
   public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_REFUSING_NEW_CONNECTIONS, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_REFUSING_NEW_CONNECTIONS, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_REFUSE_NEW_CONNECTIONS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_REFUSE_NEW_CONNECTIONS, NIL.ordinal)
     }
 
   /**
@@ -115,14 +115,14 @@ public open class MultiplayerAPI : RefCounted() {
   public var multiplayerPeer: MultiplayerPeer?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_MULTIPLAYER_PEER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_MULTIPLAYER_PEER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_MULTIPLAYER_PEER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_MULTIPLAYER_PEER,
+          NIL.ordinal)
     }
 
   /**
@@ -133,13 +133,14 @@ public open class MultiplayerAPI : RefCounted() {
   public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ROOT_PATH,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ROOT_PATH,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_PATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_PATH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -156,7 +157,7 @@ public open class MultiplayerAPI : RefCounted() {
     channel: Long = 0
   ): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id, LONG to mode.id, LONG to channel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SEND_BYTES, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SEND_BYTES, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -165,8 +166,8 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun hasMultiplayerPeer(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_HAS_MULTIPLAYER_PEER,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_HAS_MULTIPLAYER_PEER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -175,7 +176,8 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun getUniqueId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_UNIQUE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_UNIQUE_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -184,7 +186,7 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun isServer(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_SERVER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_SERVER, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -195,8 +197,8 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun getRemoteSenderId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_REMOTE_SENDER_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_REMOTE_SENDER_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -207,7 +209,7 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, NIL.ordinal)
   }
 
   /**
@@ -215,7 +217,7 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -223,8 +225,8 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public fun getPeers(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_PEERS,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_PEERS,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 

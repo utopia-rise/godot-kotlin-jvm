@@ -27,14 +27,14 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   public var function: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORFUNC_GET_FUNCTION, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORFUNC_GET_FUNCTION, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORFUNC_SET_FUNCTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTORFUNC_SET_FUNCTION, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -118,9 +118,6 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      * Finds the nearest integer less than or equal to the parameter.
      */
     FUNC_FLOOR(19),
-    /**
-     * Computes the fractional part of the argument.
-     */
     FUNC_FRAC(20),
     /**
      * Returns the inverse of the square root of the parameter.

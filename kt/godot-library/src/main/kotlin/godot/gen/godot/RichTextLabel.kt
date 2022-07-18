@@ -76,13 +76,14 @@ public open class RichTextLabel : Control() {
   public var bbcodeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_USING_BBCODE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_USING_BBCODE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_USE_BBCODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_USE_BBCODE,
+          NIL.ordinal)
     }
 
   /**
@@ -91,12 +92,14 @@ public open class RichTextLabel : Control() {
   public var tabSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TAB_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TAB_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TAB_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TAB_SIZE,
+          NIL.ordinal)
     }
 
   /**
@@ -107,12 +110,12 @@ public open class RichTextLabel : Control() {
   public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TEXT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TEXT, NIL.ordinal)
     }
 
   /**
@@ -123,14 +126,14 @@ public open class RichTextLabel : Control() {
   public var fitContentHeight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_FIT_CONTENT_HEIGHT_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_FIT_CONTENT_HEIGHT_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_FIT_CONTENT_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_FIT_CONTENT_HEIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -139,14 +142,14 @@ public open class RichTextLabel : Control() {
   public var scrollActive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_ACTIVE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_ACTIVE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_ACTIVE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_ACTIVE,
+          NIL.ordinal)
     }
 
   /**
@@ -155,14 +158,14 @@ public open class RichTextLabel : Control() {
   public var scrollFollowing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_FOLLOWING,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_FOLLOWING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_FOLLOW,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_FOLLOW,
+          NIL.ordinal)
     }
 
   /**
@@ -171,14 +174,14 @@ public open class RichTextLabel : Control() {
   public var selectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SELECTION_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SELECTION_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SELECTION_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SELECTION_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -187,14 +190,14 @@ public open class RichTextLabel : Control() {
   public var overrideSelectedFontColor: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL.ordinal)
     }
 
   /**
@@ -203,14 +206,14 @@ public open class RichTextLabel : Control() {
   public var deselectOnFocusLossEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -221,12 +224,13 @@ public open class RichTextLabel : Control() {
   public var customEffects: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_EFFECTS, ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_EFFECTS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_EFFECTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_EFFECTS, NIL.ordinal)
     }
 
   /**
@@ -235,14 +239,14 @@ public open class RichTextLabel : Control() {
   public var metaUnderlined: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_META_UNDERLINED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_META_UNDERLINED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_META_UNDERLINE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_META_UNDERLINE,
+          NIL.ordinal)
     }
 
   /**
@@ -251,30 +255,30 @@ public open class RichTextLabel : Control() {
   public var hintUnderlined: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_HINT_UNDERLINED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_HINT_UNDERLINED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_HINT_UNDERLINE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_HINT_UNDERLINE,
+          NIL.ordinal)
     }
 
   /**
-   * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum AutowrapMode].
+   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
   public var autowrapMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -285,30 +289,30 @@ public open class RichTextLabel : Control() {
   public var visibleCharacters: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS,
+          NIL.ordinal)
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL.ordinal)
     }
 
   /**
@@ -319,14 +323,14 @@ public open class RichTextLabel : Control() {
   public var percentVisible: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PERCENT_VISIBLE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PERCENT_VISIBLE,
+          NIL.ordinal)
     }
 
   /**
@@ -335,14 +339,14 @@ public open class RichTextLabel : Control() {
   public var textDirection: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT_DIRECTION,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TEXT_DIRECTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TEXT_DIRECTION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TEXT_DIRECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -351,13 +355,14 @@ public open class RichTextLabel : Control() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LANGUAGE,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LANGUAGE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_LANGUAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_LANGUAGE,
+          NIL.ordinal)
     }
 
   /**
@@ -366,14 +371,14 @@ public open class RichTextLabel : Control() {
   public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -382,14 +387,16 @@ public open class RichTextLabel : Control() {
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -401,8 +408,8 @@ public open class RichTextLabel : Control() {
    */
   public fun getParsedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARSED_TEXT,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARSED_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -411,7 +418,7 @@ public open class RichTextLabel : Control() {
    */
   public fun addText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_TEXT, NIL.ordinal)
   }
 
   /**
@@ -427,7 +434,7 @@ public open class RichTextLabel : Control() {
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to width, LONG to height, COLOR to color, LONG to inlineAlign.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_ADD_IMAGE, NIL.ordinal)
   }
 
   /**
@@ -435,7 +442,7 @@ public open class RichTextLabel : Control() {
    */
   public fun newline(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_NEWLINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_NEWLINE, NIL.ordinal)
   }
 
   /**
@@ -445,7 +452,7 @@ public open class RichTextLabel : Control() {
    */
   public fun removeLine(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_REMOVE_LINE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_REMOVE_LINE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -454,24 +461,22 @@ public open class RichTextLabel : Control() {
    */
   public fun pushFont(font: Font): Unit {
     TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT, NIL.ordinal)
   }
 
   /**
-   * Adds a `[font_size]` tag to the tag stack. Overrides default font size for its duration.
+   *
    */
   public fun pushFontSize(fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to fontSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_SIZE,
+        NIL.ordinal)
   }
 
-  /**
-   * Adds a `[ot_feature]` tag to the tag stack. Overrides default OpenType font feature for its duration.
-   */
   public fun pushFontFeatures(opentypeFeatures: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to opentypeFeatures)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_FEATURES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -479,7 +484,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushNormal(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_NORMAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_NORMAL, NIL.ordinal)
   }
 
   /**
@@ -487,7 +492,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushBold(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD, NIL.ordinal)
   }
 
   /**
@@ -495,8 +500,8 @@ public open class RichTextLabel : Control() {
    */
   public fun pushBoldItalics(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD_ITALICS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BOLD_ITALICS,
+        NIL.ordinal)
   }
 
   /**
@@ -504,7 +509,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushItalics(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_ITALICS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_ITALICS, NIL.ordinal)
   }
 
   /**
@@ -512,7 +517,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushMono(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_MONO, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_MONO, NIL.ordinal)
   }
 
   /**
@@ -520,7 +525,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_COLOR, NIL.ordinal)
   }
 
   /**
@@ -528,8 +533,8 @@ public open class RichTextLabel : Control() {
    */
   public fun pushOutlineSize(outlineSize: Long): Unit {
     TransferContext.writeArguments(LONG to outlineSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_SIZE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_SIZE,
+        NIL.ordinal)
   }
 
   /**
@@ -537,8 +542,8 @@ public open class RichTextLabel : Control() {
    */
   public fun pushOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_OUTLINE_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -551,7 +556,8 @@ public open class RichTextLabel : Control() {
     stParser: Control.StructuredTextParser = Control.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_PARAGRAPH,
+        NIL.ordinal)
   }
 
   /**
@@ -559,7 +565,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushIndent(level: Long): Unit {
     TransferContext.writeArguments(LONG to level)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_INDENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_INDENT, NIL.ordinal)
   }
 
   /**
@@ -571,7 +577,7 @@ public open class RichTextLabel : Control() {
     capitalize: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to level, LONG to type.id, BOOL to capitalize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_LIST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_LIST, NIL.ordinal)
   }
 
   /**
@@ -579,7 +585,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushMeta(`data`: Any): Unit {
     TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL.ordinal)
   }
 
   /**
@@ -587,7 +593,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushHint(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_HINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_HINT, NIL.ordinal)
   }
 
   /**
@@ -595,7 +601,8 @@ public open class RichTextLabel : Control() {
    */
   public fun pushUnderline(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_UNDERLINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_UNDERLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -603,8 +610,8 @@ public open class RichTextLabel : Control() {
    */
   public fun pushStrikethrough(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_STRIKETHROUGH,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_STRIKETHROUGH,
+        NIL.ordinal)
   }
 
   /**
@@ -613,7 +620,7 @@ public open class RichTextLabel : Control() {
   public fun pushTable(columns: Long, inlineAlign: InlineAlignment =
       InlineAlignment.INLINE_ALIGNMENT_TOP_TO): Unit {
     TransferContext.writeArguments(LONG to columns, LONG to inlineAlign.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_TABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_TABLE, NIL.ordinal)
   }
 
   /**
@@ -629,7 +636,7 @@ public open class RichTextLabel : Control() {
     outlineColor: Color = Color(Color(0, 0, 0, 0))
   ): Unit {
     TransferContext.writeArguments(STRING to string, OBJECT to font, LONG to size, RECT2 to dropcapMargins, COLOR to color, LONG to outlineSize, COLOR to outlineColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_DROPCAP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_DROPCAP, NIL.ordinal)
   }
 
   /**
@@ -645,8 +652,8 @@ public open class RichTextLabel : Control() {
     ratio: Long
   ): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand, LONG to ratio)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TABLE_COLUMN_EXPAND, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_TABLE_COLUMN_EXPAND,
+        NIL.ordinal)
   }
 
   /**
@@ -654,8 +661,8 @@ public open class RichTextLabel : Control() {
    */
   public fun setCellRowBackgroundColor(oddRowBg: Color, evenRowBg: Color): Unit {
     TransferContext.writeArguments(COLOR to oddRowBg, COLOR to evenRowBg)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_ROW_BACKGROUND_COLOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_ROW_BACKGROUND_COLOR, NIL.ordinal)
   }
 
   /**
@@ -663,8 +670,8 @@ public open class RichTextLabel : Control() {
    */
   public fun setCellBorderColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_BORDER_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_BORDER_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -672,8 +679,8 @@ public open class RichTextLabel : Control() {
    */
   public fun setCellSizeOverride(minSize: Vector2, maxSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to minSize, VECTOR2 to maxSize)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_SIZE_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_SIZE_OVERRIDE,
+        NIL.ordinal)
   }
 
   /**
@@ -681,7 +688,8 @@ public open class RichTextLabel : Control() {
    */
   public fun setCellPadding(padding: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to padding)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_PADDING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CELL_PADDING,
+        NIL.ordinal)
   }
 
   /**
@@ -689,7 +697,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushCell(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_CELL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_CELL, NIL.ordinal)
   }
 
   /**
@@ -697,7 +705,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushFgcolor(fgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to fgcolor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FGCOLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FGCOLOR, NIL.ordinal)
   }
 
   /**
@@ -705,7 +713,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BGCOLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_BGCOLOR, NIL.ordinal)
   }
 
   /**
@@ -713,7 +721,7 @@ public open class RichTextLabel : Control() {
    */
   public fun pop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_POP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_POP, NIL.ordinal)
   }
 
   /**
@@ -721,7 +729,7 @@ public open class RichTextLabel : Control() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -731,8 +739,8 @@ public open class RichTextLabel : Control() {
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_V_SCROLL_BAR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_V_SCROLL_BAR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
 
@@ -741,7 +749,8 @@ public open class RichTextLabel : Control() {
    */
   public fun scrollToLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_LINE,
+        NIL.ordinal)
   }
 
   /**
@@ -749,8 +758,8 @@ public open class RichTextLabel : Control() {
    */
   public fun scrollToParagraph(paragraph: Long): Unit {
     TransferContext.writeArguments(LONG to paragraph)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_PARAGRAPH,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SCROLL_TO_PARAGRAPH,
+        NIL.ordinal)
   }
 
   /**
@@ -758,8 +767,8 @@ public open class RichTextLabel : Control() {
    */
   public fun getSelectionFrom(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_FROM,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_FROM,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -768,8 +777,8 @@ public open class RichTextLabel : Control() {
    */
   public fun getSelectionTo(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_TO,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_TO,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -778,8 +787,8 @@ public open class RichTextLabel : Control() {
    */
   public fun getSelectedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTED_TEXT,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTED_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -788,7 +797,7 @@ public open class RichTextLabel : Control() {
    */
   public fun parseBbcode(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_BBCODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_BBCODE, NIL.ordinal)
   }
 
   /**
@@ -798,26 +807,30 @@ public open class RichTextLabel : Control() {
    */
   public fun appendText(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_APPEND_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_APPEND_TEXT, NIL.ordinal)
   }
 
   /**
    * Returns the line number of the character position provided.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getCharacterLine(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the paragraph number of the character position provided.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getCharacterParagraph(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_PARAGRAPH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_PARAGRAPH,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -826,27 +839,32 @@ public open class RichTextLabel : Control() {
    */
   public fun getTotalCharacterCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TOTAL_CHARACTER_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_TOTAL_CHARACTER_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the number of visible lines.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getVisibleLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_LINE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_LINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -855,58 +873,68 @@ public open class RichTextLabel : Control() {
    */
   public fun getParagraphCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getVisibleParagraphCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_PARAGRAPH_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_PARAGRAPH_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the height of the content.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getContentHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_HEIGHT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_HEIGHT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the width of the content.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getContentWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_WIDTH,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_WIDTH,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the vertical offset of the line found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getLineOffset(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_OFFSET,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_OFFSET,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getParagraphOffset(paragraph: Long): Double {
     TransferContext.writeArguments(LONG to paragraph)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_OFFSET,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_OFFSET,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -915,8 +943,8 @@ public open class RichTextLabel : Control() {
    */
   public fun parseExpressionsForValues(expressions: PackedStringArray): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_EXPRESSIONS_FOR_VALUES, DICTIONARY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PARSE_EXPRESSIONS_FOR_VALUES, DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -925,31 +953,17 @@ public open class RichTextLabel : Control() {
    */
   public fun installEffect(effect: Any): Unit {
     TransferContext.writeArguments(ANY to effect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT,
+        NIL.ordinal)
   }
 
   public enum class VisibleCharactersBehavior(
     id: Long
   ) {
-    /**
-     * Trims text before the shaping. e.g, increasing [visibleCharacters] value is visually identical to typing the text.
-     */
     VC_CHARS_BEFORE_SHAPING(0),
-    /**
-     * Displays glyphs that are mapped to the first [visibleCharacters] characters from the beginning of the text.
-     */
     VC_CHARS_AFTER_SHAPING(1),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left or from the right, depending on [godot.Control.layoutDirection] value.
-     */
     VC_GLYPHS_AUTO(2),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left.
-     */
     VC_GLYPHS_LTR(3),
-    /**
-     * Displays [percentVisible] glyphs, starting from the right.
-     */
     VC_GLYPHS_RTL(4),
     ;
 
@@ -997,21 +1011,9 @@ public open class RichTextLabel : Control() {
   public enum class AutowrapMode(
     id: Long
   ) {
-    /**
-     * Autowrap is disabled.
-     */
     AUTOWRAP_OFF(0),
-    /**
-     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available.
-     */
     AUTOWRAP_ARBITRARY(1),
-    /**
-     * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
-     */
     AUTOWRAP_WORD(2),
-    /**
-     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line.
-     */
     AUTOWRAP_WORD_SMART(3),
     ;
 

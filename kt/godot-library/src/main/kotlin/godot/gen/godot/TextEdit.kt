@@ -95,12 +95,12 @@ public open class TextEdit : Control() {
   public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT, NIL.ordinal)
     }
 
   /**
@@ -109,12 +109,13 @@ public open class TextEdit : Control() {
   public var placeholderText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_PLACEHOLDER, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_PLACEHOLDER,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_PLACEHOLDER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_PLACEHOLDER, NIL.ordinal)
     }
 
   /**
@@ -123,12 +124,14 @@ public open class TextEdit : Control() {
   public var textDirection: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TEXT_DIRECTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT_DIRECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TEXT_DIRECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -137,12 +140,12 @@ public open class TextEdit : Control() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LANGUAGE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LANGUAGE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LANGUAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LANGUAGE, NIL.ordinal)
     }
 
   /**
@@ -151,12 +154,12 @@ public open class TextEdit : Control() {
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_EDITABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_EDITABLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_EDITABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_EDITABLE, NIL.ordinal)
     }
 
   /**
@@ -165,14 +168,14 @@ public open class TextEdit : Control() {
   public var contextMenuEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CONTEXT_MENU_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CONTEXT_MENU_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CONTEXT_MENU_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CONTEXT_MENU_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -181,14 +184,14 @@ public open class TextEdit : Control() {
   public var shortcutKeysEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SHORTCUT_KEYS_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SHORTCUT_KEYS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SHORTCUT_KEYS_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SHORTCUT_KEYS_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -199,14 +202,14 @@ public open class TextEdit : Control() {
   public var selectingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SELECTING_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SELECTING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTING_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -215,14 +218,14 @@ public open class TextEdit : Control() {
   public var deselectOnFocusLossEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -231,14 +234,14 @@ public open class TextEdit : Control() {
   public var virtualKeyboardEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_VIRTUAL_KEYBOARD_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_VIRTUAL_KEYBOARD_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_VIRTUAL_KEYBOARD_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -249,14 +252,14 @@ public open class TextEdit : Control() {
   public var middleMousePasteEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MIDDLE_MOUSE_PASTE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MIDDLE_MOUSE_PASTE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -265,14 +268,14 @@ public open class TextEdit : Control() {
   public var wrapMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPING_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_WRAPPING_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_WRAPPING_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -281,14 +284,14 @@ public open class TextEdit : Control() {
   public var overrideSelectedFontColor: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERRIDE_SELECTED_FONT_COLOR, NIL.ordinal)
     }
 
   /**
@@ -297,14 +300,14 @@ public open class TextEdit : Control() {
   public var highlightAllOccurrences: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_ALL_OCCURRENCES_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_ALL_OCCURRENCES_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES,
+          NIL.ordinal)
     }
 
   /**
@@ -313,14 +316,14 @@ public open class TextEdit : Control() {
   public var highlightCurrentLine: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_CURRENT_LINE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_CURRENT_LINE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE,
+          NIL.ordinal)
     }
 
   /**
@@ -329,14 +332,14 @@ public open class TextEdit : Control() {
   public var drawControlChars: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_CONTROL_CHARS,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_CONTROL_CHARS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CONTROL_CHARS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CONTROL_CHARS,
+          NIL.ordinal)
     }
 
   /**
@@ -345,12 +348,12 @@ public open class TextEdit : Control() {
   public var drawTabs: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_TABS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_TABS, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL.ordinal)
     }
 
   /**
@@ -359,12 +362,13 @@ public open class TextEdit : Control() {
   public var drawSpaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_SPACES, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_SPACES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL.ordinal)
     }
 
   /**
@@ -373,14 +377,14 @@ public open class TextEdit : Control() {
   public var syntaxHighlighter: SyntaxHighlighter?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTER,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTER,
+          NIL.ordinal)
     }
 
   /**
@@ -389,14 +393,14 @@ public open class TextEdit : Control() {
   public var scrollSmooth: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SMOOTH_SCROLL_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SMOOTH_SCROLL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLL_ENABLE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SMOOTH_SCROLL_ENABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -405,13 +409,14 @@ public open class TextEdit : Control() {
   public var scrollVScrollSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL_SPEED,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL_SPEED,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL_SPEED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL_SPEED,
+          NIL.ordinal)
     }
 
   /**
@@ -420,14 +425,14 @@ public open class TextEdit : Control() {
   public var scrollPastEndOfFile: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SCROLL_PAST_END_OF_FILE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_SCROLL_PAST_END_OF_FILE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SCROLL_PAST_END_OF_FILE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SCROLL_PAST_END_OF_FILE_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -436,12 +441,12 @@ public open class TextEdit : Control() {
   public var scrollVertical: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_V_SCROLL, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_V_SCROLL, NIL.ordinal)
     }
 
   /**
@@ -450,12 +455,12 @@ public open class TextEdit : Control() {
   public var scrollHorizontal: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_H_SCROLL, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_H_SCROLL, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_H_SCROLL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_H_SCROLL, NIL.ordinal)
     }
 
   /**
@@ -464,12 +469,13 @@ public open class TextEdit : Control() {
   public var minimapDraw: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_MINIMAP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_MINIMAP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_MINIMAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_MINIMAP, NIL.ordinal)
     }
 
   /**
@@ -478,12 +484,14 @@ public open class TextEdit : Control() {
   public var minimapWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_WIDTH, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_WIDTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MINIMAP_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MINIMAP_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -492,12 +500,12 @@ public open class TextEdit : Control() {
   public var caretType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_TYPE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_TYPE, NIL.ordinal)
     }
 
   /**
@@ -506,14 +514,14 @@ public open class TextEdit : Control() {
   public var caretBlink: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_BLINK_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_BLINK_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -522,14 +530,14 @@ public open class TextEdit : Control() {
   public var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK_SPEED,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_BLINK_SPEED,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_SPEED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_BLINK_SPEED,
+          NIL.ordinal)
     }
 
   /**
@@ -540,14 +548,14 @@ public open class TextEdit : Control() {
   public var caretMoveOnRightClick: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MOVE_CARET_ON_RIGHT_CLICK_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -558,14 +566,14 @@ public open class TextEdit : Control() {
   public var caretMidGrapheme: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_MID_GRAPHEME_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_MID_GRAPHEME_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -574,14 +582,14 @@ public open class TextEdit : Control() {
   public var structuredTextBidiOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -590,14 +598,15 @@ public open class TextEdit : Control() {
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -647,34 +656,27 @@ public open class TextEdit : Control() {
    */
   public fun hasImeText(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_IME_TEXT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_IME_TEXT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OPENTYPE_FEATURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OPENTYPE_FEATURE,
+        NIL.ordinal)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OPENTYPE_FEATURE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_OPENTYPE_FEATURES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -682,7 +684,7 @@ public open class TextEdit : Control() {
    */
   public fun setTabSize(size: Long): Unit {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TAB_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TAB_SIZE, NIL.ordinal)
   }
 
   /**
@@ -690,7 +692,7 @@ public open class TextEdit : Control() {
    */
   public fun getTabSize(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TAB_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TAB_SIZE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -699,8 +701,8 @@ public open class TextEdit : Control() {
    */
   public fun setOvertypeModeEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERTYPE_MODE_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OVERTYPE_MODE_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -708,8 +710,8 @@ public open class TextEdit : Control() {
    */
   public fun isOvertypeModeEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERTYPE_MODE_ENABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_OVERTYPE_MODE_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -718,7 +720,7 @@ public open class TextEdit : Control() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -726,7 +728,7 @@ public open class TextEdit : Control() {
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -735,7 +737,7 @@ public open class TextEdit : Control() {
    */
   public fun setLine(line: Long, newText: String): Unit {
     TransferContext.writeArguments(LONG to line, STRING to newText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE, NIL.ordinal)
   }
 
   /**
@@ -743,7 +745,7 @@ public open class TextEdit : Control() {
    */
   public fun getLine(line: Long): String {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -752,7 +754,7 @@ public open class TextEdit : Control() {
    */
   public fun getLineWidth(line: Long, wrapIndex: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -761,7 +763,7 @@ public open class TextEdit : Control() {
    */
   public fun getLineHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_HEIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_HEIGHT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -770,7 +772,7 @@ public open class TextEdit : Control() {
    */
   public fun getIndentLevel(line: Long): Long {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_INDENT_LEVEL, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_INDENT_LEVEL, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -779,8 +781,8 @@ public open class TextEdit : Control() {
    */
   public fun getFirstNonWhitespaceColumn(line: Long): Long {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_NON_WHITESPACE_COLUMN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_NON_WHITESPACE_COLUMN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -789,7 +791,7 @@ public open class TextEdit : Control() {
    */
   public fun swapLines(fromLine: Long, toLine: Long): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SWAP_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SWAP_LINES, NIL.ordinal)
   }
 
   /**
@@ -797,7 +799,7 @@ public open class TextEdit : Control() {
    */
   public fun insertLineAt(line: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to line, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_LINE_AT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_LINE_AT, NIL.ordinal)
   }
 
   /**
@@ -805,7 +807,8 @@ public open class TextEdit : Control() {
    */
   public fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CARET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_INSERT_TEXT_AT_CARET,
+        NIL.ordinal)
   }
 
   /**
@@ -820,7 +823,7 @@ public open class TextEdit : Control() {
     toColumn: Long
   ): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_TEXT, NIL.ordinal)
   }
 
   /**
@@ -828,8 +831,8 @@ public open class TextEdit : Control() {
    */
   public fun getLastUnhiddenLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_UNHIDDEN_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_UNHIDDEN_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -838,8 +841,8 @@ public open class TextEdit : Control() {
    */
   public fun getNextVisibleLineOffsetFrom(line: Long, visibleAmount: Long): Long {
     TransferContext.writeArguments(LONG to line, LONG to visibleAmount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_OFFSET_FROM, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_OFFSET_FROM, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -852,8 +855,8 @@ public open class TextEdit : Control() {
     visibleAmount: Long
   ): Vector2i {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex, LONG to visibleAmount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_INDEX_OFFSET_FROM, VECTOR2I)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_NEXT_VISIBLE_LINE_INDEX_OFFSET_FROM, VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -862,7 +865,7 @@ public open class TextEdit : Control() {
    */
   public fun backspace(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BACKSPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BACKSPACE, NIL.ordinal)
   }
 
   /**
@@ -870,7 +873,7 @@ public open class TextEdit : Control() {
    */
   public fun cut(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CUT, NIL.ordinal)
   }
 
   /**
@@ -878,7 +881,7 @@ public open class TextEdit : Control() {
    */
   public fun copy(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_COPY, NIL.ordinal)
   }
 
   /**
@@ -886,7 +889,7 @@ public open class TextEdit : Control() {
    */
   public fun paste(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_PASTE, NIL.ordinal)
   }
 
   /**
@@ -894,8 +897,8 @@ public open class TextEdit : Control() {
    */
   public fun beginComplexOperation(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BEGIN_COMPLEX_OPERATION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_BEGIN_COMPLEX_OPERATION,
+        NIL.ordinal)
   }
 
   /**
@@ -903,7 +906,8 @@ public open class TextEdit : Control() {
    */
   public fun endComplexOperation(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_END_COMPLEX_OPERATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_END_COMPLEX_OPERATION,
+        NIL.ordinal)
   }
 
   /**
@@ -911,7 +915,7 @@ public open class TextEdit : Control() {
    */
   public fun hasUndo(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_UNDO, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_UNDO, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -920,7 +924,7 @@ public open class TextEdit : Control() {
    */
   public fun hasRedo(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_REDO, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_REDO, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -929,7 +933,7 @@ public open class TextEdit : Control() {
    */
   public fun undo(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNDO, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_UNDO, NIL.ordinal)
   }
 
   /**
@@ -937,7 +941,7 @@ public open class TextEdit : Control() {
    */
   public fun redo(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REDO, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REDO, NIL.ordinal)
   }
 
   /**
@@ -945,7 +949,7 @@ public open class TextEdit : Control() {
    */
   public fun clearUndoHistory(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_UNDO_HISTORY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_UNDO_HISTORY, NIL.ordinal)
   }
 
   /**
@@ -953,7 +957,7 @@ public open class TextEdit : Control() {
    */
   public fun tagSavedVersion(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_TAG_SAVED_VERSION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_TAG_SAVED_VERSION, NIL.ordinal)
   }
 
   /**
@@ -961,7 +965,7 @@ public open class TextEdit : Control() {
    */
   public fun getVersion(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VERSION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VERSION, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -970,7 +974,7 @@ public open class TextEdit : Control() {
    */
   public fun getSavedVersion(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SAVED_VERSION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SAVED_VERSION, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -979,7 +983,7 @@ public open class TextEdit : Control() {
    */
   public fun setSearchText(searchText: String): Unit {
     TransferContext.writeArguments(STRING to searchText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_TEXT, NIL.ordinal)
   }
 
   /**
@@ -987,7 +991,7 @@ public open class TextEdit : Control() {
    */
   public fun setSearchFlags(flags: Long): Unit {
     TransferContext.writeArguments(LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_FLAGS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SEARCH_FLAGS, NIL.ordinal)
   }
 
   /**
@@ -1038,7 +1042,7 @@ public open class TextEdit : Control() {
     fromColum: Long
   ): Vector2i {
     TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine, LONG to fromColum)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SEARCH, VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -1047,8 +1051,8 @@ public open class TextEdit : Control() {
    */
   public fun setTooltipRequestFunc(callback: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TOOLTIP_REQUEST_FUNC,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TOOLTIP_REQUEST_FUNC,
+        NIL.ordinal)
   }
 
   /**
@@ -1056,8 +1060,8 @@ public open class TextEdit : Control() {
    */
   public fun getLocalMousePos(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LOCAL_MOUSE_POS,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LOCAL_MOUSE_POS,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -1066,7 +1070,7 @@ public open class TextEdit : Control() {
    */
   public fun getWordAtPos(position: Vector2): String {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_AT_POS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_AT_POS, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1075,8 +1079,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
     TransferContext.writeArguments(VECTOR2I to position, BOOL to allowOutOfBounds)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -1087,8 +1091,8 @@ public open class TextEdit : Control() {
    */
   public fun getPosAtLineColumn(line: Long, column: Long): Vector2i {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_POS_AT_LINE_COLUMN,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_POS_AT_LINE_COLUMN,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -1099,8 +1103,8 @@ public open class TextEdit : Control() {
    */
   public fun getRectAtLineColumn(line: Long, column: Long): Rect2i {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_RECT_AT_LINE_COLUMN,
-        RECT2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_RECT_AT_LINE_COLUMN,
+        RECT2I.ordinal)
     return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
@@ -1109,8 +1113,8 @@ public open class TextEdit : Control() {
    */
   public fun getMinimapLineAtPos(position: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_LINE_AT_POS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_LINE_AT_POS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1119,7 +1123,8 @@ public open class TextEdit : Control() {
    */
   public fun isDraggingCursor(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAGGING_CURSOR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAGGING_CURSOR,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1128,8 +1133,8 @@ public open class TextEdit : Control() {
    */
   public fun isMouseOverSelection(edges: Boolean): Boolean {
     TransferContext.writeArguments(BOOL to edges)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MOUSE_OVER_SELECTION,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1138,7 +1143,7 @@ public open class TextEdit : Control() {
    */
   public fun isCaretVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_VISIBLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_CARET_VISIBLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1147,8 +1152,8 @@ public open class TextEdit : Control() {
    */
   public fun getCaretDrawPos(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_DRAW_POS,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_DRAW_POS,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -1166,7 +1171,7 @@ public open class TextEdit : Control() {
     wrapIndex: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to adjustViewport, BOOL to canBeHidden, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_LINE, NIL.ordinal)
   }
 
   /**
@@ -1174,7 +1179,7 @@ public open class TextEdit : Control() {
    */
   public fun getCaretLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_LINE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_LINE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1185,7 +1190,7 @@ public open class TextEdit : Control() {
    */
   public fun setCaretColumn(column: Long, adjustViewport: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to adjustViewport)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_COLUMN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_CARET_COLUMN, NIL.ordinal)
   }
 
   /**
@@ -1193,7 +1198,7 @@ public open class TextEdit : Control() {
    */
   public fun getCaretColumn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COLUMN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_COLUMN, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1202,7 +1207,8 @@ public open class TextEdit : Control() {
    */
   public fun getCaretWrapIndex(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_WRAP_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_CARET_WRAP_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1211,8 +1217,8 @@ public open class TextEdit : Control() {
    */
   public fun getWordUnderCaret(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CARET,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_WORD_UNDER_CARET,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1225,7 +1231,7 @@ public open class TextEdit : Control() {
     column: Long = -1
   ): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTION_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SELECTION_MODE, NIL.ordinal)
   }
 
   /**
@@ -1233,7 +1239,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionMode(): TextEdit.SelectionMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_MODE,
+        LONG.ordinal)
     return TextEdit.SelectionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1244,7 +1251,7 @@ public open class TextEdit : Control() {
    */
   public fun selectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_ALL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_ALL, NIL.ordinal)
   }
 
   /**
@@ -1252,8 +1259,8 @@ public open class TextEdit : Control() {
    */
   public fun selectWordUnderCaret(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_WORD_UNDER_CARET,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT_WORD_UNDER_CARET,
+        NIL.ordinal)
   }
 
   /**
@@ -1268,7 +1275,7 @@ public open class TextEdit : Control() {
     toColumn: Long
   ): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to fromColumn, LONG to toLine, LONG to toColumn)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SELECT, NIL.ordinal)
   }
 
   /**
@@ -1276,7 +1283,7 @@ public open class TextEdit : Control() {
    */
   public fun hasSelection(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_SELECTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_SELECTION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1285,7 +1292,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTED_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTED_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1294,7 +1302,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_LINE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1303,7 +1312,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionColumn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_COLUMN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_COLUMN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1312,8 +1322,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionFromLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1322,8 +1332,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionFromColumn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_FROM_COLUMN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1332,8 +1342,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionToLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1342,8 +1352,8 @@ public open class TextEdit : Control() {
    */
   public fun getSelectionToColumn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_COLUMN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1352,7 +1362,7 @@ public open class TextEdit : Control() {
    */
   public fun deselect(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DESELECT, NIL.ordinal)
   }
 
   /**
@@ -1360,7 +1370,7 @@ public open class TextEdit : Control() {
    */
   public fun deleteSelection(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DELETE_SELECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_DELETE_SELECTION, NIL.ordinal)
   }
 
   /**
@@ -1368,7 +1378,7 @@ public open class TextEdit : Control() {
    */
   public fun isLineWrapped(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1377,7 +1387,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineWrapCount(line: Long): Long {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1386,8 +1397,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineWrapIndexAtColumn(line: Long, column: Long): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_INDEX_AT_COLUMN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_INDEX_AT_COLUMN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1396,8 +1407,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineWrappedText(line: Long): PackedStringArray {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -1406,8 +1417,8 @@ public open class TextEdit : Control() {
    */
   public fun getScrollPosForLine(line: Long, wrapIndex: Long = 0): Double {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_POS_FOR_LINE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SCROLL_POS_FOR_LINE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1416,8 +1427,8 @@ public open class TextEdit : Control() {
    */
   public fun setLineAsFirstVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_FIRST_VISIBLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_FIRST_VISIBLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1425,8 +1436,8 @@ public open class TextEdit : Control() {
    */
   public fun getFirstVisibleLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_VISIBLE_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_FIRST_VISIBLE_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1435,8 +1446,8 @@ public open class TextEdit : Control() {
    */
   public fun setLineAsCenterVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_CENTER_VISIBLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_CENTER_VISIBLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1444,8 +1455,8 @@ public open class TextEdit : Control() {
    */
   public fun setLineAsLastVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_LAST_VISIBLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_LAST_VISIBLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1453,8 +1464,8 @@ public open class TextEdit : Control() {
    */
   public fun getLastFullVisibleLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1463,8 +1474,8 @@ public open class TextEdit : Control() {
    */
   public fun getLastFullVisibleLineWrapIndex(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE_WRAP_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LAST_FULL_VISIBLE_LINE_WRAP_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1473,8 +1484,8 @@ public open class TextEdit : Control() {
    */
   public fun getVisibleLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1483,8 +1494,8 @@ public open class TextEdit : Control() {
    */
   public fun getVisibleLineCountInRange(fromLine: Long, toLine: Long): Long {
     TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT_IN_RANGE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VISIBLE_LINE_COUNT_IN_RANGE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1493,8 +1504,8 @@ public open class TextEdit : Control() {
    */
   public fun getTotalVisibleLineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_VISIBLE_LINE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_VISIBLE_LINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1503,8 +1514,8 @@ public open class TextEdit : Control() {
    */
   public fun adjustViewportToCaret(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_VIEWPORT_TO_CARET,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADJUST_VIEWPORT_TO_CARET,
+        NIL.ordinal)
   }
 
   /**
@@ -1512,8 +1523,8 @@ public open class TextEdit : Control() {
    */
   public fun centerViewportToCaret(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CARET,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CENTER_VIEWPORT_TO_CARET,
+        NIL.ordinal)
   }
 
   /**
@@ -1521,8 +1532,8 @@ public open class TextEdit : Control() {
    */
   public fun getMinimapVisibleLines(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_VISIBLE_LINES,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MINIMAP_VISIBLE_LINES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1531,7 +1542,7 @@ public open class TextEdit : Control() {
    */
   public fun addGutter(at: Long = -1): Unit {
     TransferContext.writeArguments(LONG to at)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_GUTTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_ADD_GUTTER, NIL.ordinal)
   }
 
   /**
@@ -1539,7 +1550,7 @@ public open class TextEdit : Control() {
    */
   public fun removeGutter(gutter: Long): Unit {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_GUTTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_REMOVE_GUTTER, NIL.ordinal)
   }
 
   /**
@@ -1547,7 +1558,7 @@ public open class TextEdit : Control() {
    */
   public fun getGutterCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1556,7 +1567,7 @@ public open class TextEdit : Control() {
    */
   public fun setGutterName(gutter: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to gutter, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_NAME, NIL.ordinal)
   }
 
   /**
@@ -1564,7 +1575,7 @@ public open class TextEdit : Control() {
    */
   public fun getGutterName(gutter: Long): String {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1573,7 +1584,7 @@ public open class TextEdit : Control() {
    */
   public fun setGutterType(gutter: Long, type: TextEdit.GutterType): Unit {
     TransferContext.writeArguments(LONG to gutter, LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_TYPE, NIL.ordinal)
   }
 
   /**
@@ -1581,7 +1592,7 @@ public open class TextEdit : Control() {
    */
   public fun getGutterType(gutter: Long): TextEdit.GutterType {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_TYPE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_TYPE, LONG.ordinal)
     return TextEdit.GutterType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1590,7 +1601,7 @@ public open class TextEdit : Control() {
    */
   public fun setGutterWidth(gutter: Long, width: Long): Unit {
     TransferContext.writeArguments(LONG to gutter, LONG to width)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_WIDTH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_WIDTH, NIL.ordinal)
   }
 
   /**
@@ -1598,7 +1609,7 @@ public open class TextEdit : Control() {
    */
   public fun getGutterWidth(gutter: Long): Long {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_GUTTER_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1607,7 +1618,7 @@ public open class TextEdit : Control() {
    */
   public fun setGutterDraw(gutter: Long, draw: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter, BOOL to draw)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_DRAW, NIL.ordinal)
   }
 
   /**
@@ -1615,7 +1626,7 @@ public open class TextEdit : Control() {
    */
   public fun isGutterDrawn(gutter: Long): Boolean {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_DRAWN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_DRAWN, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1624,7 +1635,8 @@ public open class TextEdit : Control() {
    */
   public fun setGutterClickable(gutter: Long, clickable: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter, BOOL to clickable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CLICKABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CLICKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1632,7 +1644,8 @@ public open class TextEdit : Control() {
    */
   public fun isGutterClickable(gutter: Long): Boolean {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_CLICKABLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_CLICKABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1641,8 +1654,8 @@ public open class TextEdit : Control() {
    */
   public fun setGutterOverwritable(gutter: Long, overwritable: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter, BOOL to overwritable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_OVERWRITABLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_OVERWRITABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1650,8 +1663,8 @@ public open class TextEdit : Control() {
    */
   public fun isGutterOverwritable(gutter: Long): Boolean {
     TransferContext.writeArguments(LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_OVERWRITABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_GUTTER_OVERWRITABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1660,7 +1673,7 @@ public open class TextEdit : Control() {
    */
   public fun mergeGutters(fromLine: Long, toLine: Long): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MERGE_GUTTERS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MERGE_GUTTERS, NIL.ordinal)
   }
 
   /**
@@ -1668,8 +1681,8 @@ public open class TextEdit : Control() {
    */
   public fun setGutterCustomDraw(column: Long, drawCallback: Callable): Unit {
     TransferContext.writeArguments(LONG to column, CALLABLE to drawCallback)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CUSTOM_DRAW,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CUSTOM_DRAW,
+        NIL.ordinal)
   }
 
   /**
@@ -1677,8 +1690,8 @@ public open class TextEdit : Control() {
    */
   public fun getTotalGutterWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_GUTTER_WIDTH,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_GUTTER_WIDTH,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1691,8 +1704,8 @@ public open class TextEdit : Control() {
     metadata: Any
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, ANY to metadata)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_METADATA,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_METADATA,
+        NIL.ordinal)
   }
 
   /**
@@ -1700,8 +1713,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineGutterMetadata(line: Long, gutter: Long): Any? {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_METADATA,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_METADATA,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -1714,7 +1727,8 @@ public open class TextEdit : Control() {
     text: String
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_TEXT,
+        NIL.ordinal)
   }
 
   /**
@@ -1722,8 +1736,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineGutterText(line: Long, gutter: Long): String {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_TEXT,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1736,7 +1750,8 @@ public open class TextEdit : Control() {
     icon: Texture2D
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ICON,
+        NIL.ordinal)
   }
 
   /**
@@ -1744,8 +1759,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineGutterIcon(line: Long, gutter: Long): Texture2D? {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ICON,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ICON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -1758,8 +1773,8 @@ public open class TextEdit : Control() {
     color: Color
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ITEM_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_ITEM_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -1767,8 +1782,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineGutterItemColor(line: Long, gutter: Long): Color {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ITEM_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_GUTTER_ITEM_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -1781,8 +1796,8 @@ public open class TextEdit : Control() {
     clickable: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to line, LONG to gutter, BOOL to clickable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_CLICKABLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_GUTTER_CLICKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -1790,8 +1805,8 @@ public open class TextEdit : Control() {
    */
   public fun isLineGutterClickable(line: Long, gutter: Long): Boolean {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_GUTTER_CLICKABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_GUTTER_CLICKABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1800,8 +1815,8 @@ public open class TextEdit : Control() {
    */
   public fun setLineBackgroundColor(line: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to line, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_BACKGROUND_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_BACKGROUND_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -1809,8 +1824,8 @@ public open class TextEdit : Control() {
    */
   public fun getLineBackgroundColor(line: Long): Color {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_BACKGROUND_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_BACKGROUND_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -1821,7 +1836,7 @@ public open class TextEdit : Control() {
    */
   public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MENU, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MENU, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
   }
 
@@ -1830,7 +1845,7 @@ public open class TextEdit : Control() {
    */
   public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MENU_VISIBLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_MENU_VISIBLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1839,7 +1854,7 @@ public open class TextEdit : Control() {
    */
   public fun menuOption(option: Long): Unit {
     TransferContext.writeArguments(LONG to option)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MENU_OPTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_MENU_OPTION, NIL.ordinal)
   }
 
   public enum class SelectionMode(

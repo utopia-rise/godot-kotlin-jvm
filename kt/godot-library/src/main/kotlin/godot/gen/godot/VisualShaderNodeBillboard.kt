@@ -29,14 +29,14 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   public var billboardType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_GET_BILLBOARD_TYPE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_GET_BILLBOARD_TYPE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_BILLBOARD_TYPE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_BILLBOARD_TYPE, NIL.ordinal)
     }
 
   /**
@@ -45,14 +45,14 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   public var keepScale: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_IS_KEEP_SCALE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_IS_KEEP_SCALE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_KEEP_SCALE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_KEEP_SCALE_ENABLED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

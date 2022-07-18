@@ -30,13 +30,14 @@ public open class GLTFDocument : Resource() {
   public var extensions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_EXTENSIONS,
-          ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_EXTENSIONS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_EXTENSIONS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_EXTENSIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -51,7 +52,8 @@ public open class GLTFDocument : Resource() {
     basePath: String = ""
   ): GodotError {
     TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, LONG to bakeFps, STRING to basePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_FILE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_FILE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -63,8 +65,8 @@ public open class GLTFDocument : Resource() {
     bakeFps: Long = 30
   ): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags, LONG to bakeFps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_BUFFER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_BUFFER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -75,28 +77,29 @@ public open class GLTFDocument : Resource() {
     bakeFps: Long = 30
   ): GodotError {
     TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags, LONG to bakeFps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_SCENE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_SCENE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun generateScene(state: GLTFState, bakeFps: Long = 30): Node? {
     TransferContext.writeArguments(OBJECT to state, LONG to bakeFps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_SCENE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
   public fun generateBuffer(state: GLTFState): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_BUFFER,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GENERATE_BUFFER,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
   public fun writeToFilesystem(state: GLTFState, path: String): GodotError {
     TransferContext.writeArguments(OBJECT to state, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_WRITE_TO_FILESYSTEM,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_WRITE_TO_FILESYSTEM,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

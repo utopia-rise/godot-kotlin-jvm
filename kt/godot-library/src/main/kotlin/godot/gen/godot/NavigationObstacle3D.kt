@@ -20,6 +20,8 @@ import kotlin.Unit
  * 3D Obstacle used in navigation for collision avoidance.
  *
  * 3D Obstacle used in navigation for collision avoidance. The obstacle needs navigation data to work correctly. [godot.NavigationObstacle3D] is physics safe.
+ *
+ * **Note:** Obstacles are intended as a last resort option for constantly moving objects that cannot be (re)baked to a navigation mesh efficiently.
  */
 @GodotBaseType
 public open class NavigationObstacle3D : Node() {
@@ -29,14 +31,14 @@ public open class NavigationObstacle3D : Node() {
   public var estimateRadius: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_IS_RADIUS_ESTIMATED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_IS_RADIUS_ESTIMATED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_ESTIMATE_RADIUS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_ESTIMATE_RADIUS, NIL.ordinal)
     }
 
   /**
@@ -45,14 +47,14 @@ public open class NavigationObstacle3D : Node() {
   public var radius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_RADIUS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_RADIUS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_RADIUS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_RADIUS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

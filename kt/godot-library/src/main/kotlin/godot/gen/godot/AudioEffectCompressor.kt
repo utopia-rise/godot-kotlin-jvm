@@ -21,6 +21,9 @@ import kotlin.Unit
  *
  * Reduces sounds that exceed a certain threshold level, smooths out the dynamics and increases the overall volume.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
+ *
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain threshold in Decibels. One of the main uses of a compressor is to increase the dynamic range by clipping as little as possible (when sound goes over 0dB).
  *
  * Compressor has many uses in the mix:
@@ -41,14 +44,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var threshold: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_THRESHOLD, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_THRESHOLD,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_THRESHOLD, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_THRESHOLD,
+          NIL.ordinal)
     }
 
   /**
@@ -57,14 +60,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var ratio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_RATIO,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_RATIO,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_RATIO,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_RATIO,
+          NIL.ordinal)
     }
 
   /**
@@ -73,14 +76,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var gain: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_GAIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_GAIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_GAIN,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_GAIN,
+          NIL.ordinal)
     }
 
   /**
@@ -89,14 +92,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var attackUs: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_ATTACK_US, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_ATTACK_US,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_ATTACK_US, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_ATTACK_US,
+          NIL.ordinal)
     }
 
   /**
@@ -105,14 +108,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var releaseMs: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_RELEASE_MS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_RELEASE_MS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_RELEASE_MS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_RELEASE_MS,
+          NIL.ordinal)
     }
 
   /**
@@ -121,14 +124,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var mix: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_MIX,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_MIX,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_MIX,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_MIX,
+          NIL.ordinal)
     }
 
   /**
@@ -137,14 +140,14 @@ public open class AudioEffectCompressor : AudioEffect() {
   public var sidechain: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_SIDECHAIN, STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_GET_SIDECHAIN,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_SIDECHAIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_SIDECHAIN,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

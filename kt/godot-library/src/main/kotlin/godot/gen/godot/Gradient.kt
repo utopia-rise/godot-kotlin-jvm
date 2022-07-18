@@ -35,14 +35,14 @@ public open class Gradient : Resource() {
   public var interpolationMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_INTERPOLATION_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_INTERPOLATION_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -51,13 +51,13 @@ public open class Gradient : Resource() {
   public var offsets: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSETS,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSETS,
+          PACKED_FLOAT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSETS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSETS, NIL.ordinal)
     }
 
   /**
@@ -66,13 +66,13 @@ public open class Gradient : Resource() {
   public var colors: PackedColorArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLORS,
-          PACKED_COLOR_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLORS,
+          PACKED_COLOR_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLORS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLORS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -84,7 +84,7 @@ public open class Gradient : Resource() {
    */
   public fun addPoint(offset: Double, color: Color): Unit {
     TransferContext.writeArguments(DOUBLE to offset, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_ADD_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_ADD_POINT, NIL.ordinal)
   }
 
   /**
@@ -92,7 +92,7 @@ public open class Gradient : Resource() {
    */
   public fun removePoint(point: Long): Unit {
     TransferContext.writeArguments(LONG to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REMOVE_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REMOVE_POINT, NIL.ordinal)
   }
 
   /**
@@ -100,7 +100,7 @@ public open class Gradient : Resource() {
    */
   public fun setOffset(point: Long, offset: Double): Unit {
     TransferContext.writeArguments(LONG to point, DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL.ordinal)
   }
 
   /**
@@ -108,7 +108,7 @@ public open class Gradient : Resource() {
    */
   public fun getOffset(point: Long): Double {
     TransferContext.writeArguments(LONG to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSET, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSET, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -117,7 +117,7 @@ public open class Gradient : Resource() {
    */
   public fun reverse(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REVERSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REVERSE, NIL.ordinal)
   }
 
   /**
@@ -125,7 +125,7 @@ public open class Gradient : Resource() {
    */
   public fun setColor(point: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to point, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLOR, NIL.ordinal)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class Gradient : Resource() {
    */
   public fun getColor(point: Long): Color {
     TransferContext.writeArguments(LONG to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLOR, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -142,7 +142,7 @@ public open class Gradient : Resource() {
    */
   public fun interpolate(offset: Double): Color {
     TransferContext.writeArguments(DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_INTERPOLATE, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_INTERPOLATE, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -151,7 +151,7 @@ public open class Gradient : Resource() {
    */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_POINT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_POINT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

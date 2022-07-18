@@ -50,8 +50,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_WORLD_BOUNDARY_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_WORLD_BOUNDARY_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -60,8 +60,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEPARATION_RAY_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEPARATION_RAY_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -70,8 +70,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun segmentShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEGMENT_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SEGMENT_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -80,8 +80,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun circleShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CIRCLE_SHAPE_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CIRCLE_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -90,8 +90,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun rectangleShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_RECTANGLE_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_RECTANGLE_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -100,8 +100,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CAPSULE_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CAPSULE_SHAPE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -110,8 +110,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONVEX_POLYGON_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONVEX_POLYGON_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -120,8 +120,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONCAVE_POLYGON_SHAPE_CREATE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_CONCAVE_POLYGON_SHAPE_CREATE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -130,7 +130,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun shapeSetData(shape: RID, `data`: Any): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_SET_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_SET_DATA,
+        NIL.ordinal)
   }
 
   /**
@@ -138,8 +139,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun shapeGetType(shape: RID): PhysicsServer2D.ShapeType {
     TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_TYPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_TYPE,
+        LONG.ordinal)
     return PhysicsServer2D.ShapeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -148,7 +149,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun shapeGetData(shape: RID): Any? {
     TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_DATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SHAPE_GET_DATA,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -157,7 +159,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -166,8 +169,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceSetActive(space: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to space, BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_ACTIVE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_ACTIVE,
+        NIL.ordinal)
   }
 
   /**
@@ -175,8 +178,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceIsActive(space: RID): Boolean {
     TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_IS_ACTIVE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_IS_ACTIVE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -189,8 +192,8 @@ public object PhysicsServer2D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -198,8 +201,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceGetParam(space: RID, `param`: PhysicsServer2D.SpaceParameter): Double {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_PARAM,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -208,8 +211,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_DIRECT_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SPACE_GET_DIRECT_STATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
   }
 
@@ -218,7 +221,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -227,7 +231,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetSpace(area: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to area, _RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SPACE,
+        NIL.ordinal)
   }
 
   /**
@@ -235,8 +240,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetSpace(area: RID): RID {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SPACE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SPACE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -250,7 +255,8 @@ public object PhysicsServer2D : Object() {
     disabled: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ADD_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ADD_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -262,7 +268,8 @@ public object PhysicsServer2D : Object() {
     shape: RID
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, _RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -274,8 +281,8 @@ public object PhysicsServer2D : Object() {
     transform: Transform2D
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -287,8 +294,8 @@ public object PhysicsServer2D : Object() {
     disabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_SHAPE_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -296,8 +303,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetShapeCount(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -306,8 +313,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetShape(area: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -316,8 +323,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetShapeTransform(area: RID, shapeIdx: Long): Transform2D {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_TRANSFORM, TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_SHAPE_TRANSFORM,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -326,8 +333,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaRemoveShape(area: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_REMOVE_SHAPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_REMOVE_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -335,8 +342,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaClearShapes(area: RID): Unit {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CLEAR_SHAPES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_CLEAR_SHAPES,
+        NIL.ordinal)
   }
 
   /**
@@ -344,8 +351,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to layer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -353,8 +360,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_COLLISION_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -366,7 +373,8 @@ public object PhysicsServer2D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -374,8 +382,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetTransform(area: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to area, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_TRANSFORM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -383,7 +391,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetParam(area: RID, `param`: PhysicsServer2D.AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_PARAM, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_PARAM,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -392,8 +401,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetTransform(area: RID): Transform2D {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_TRANSFORM,
-        TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_TRANSFORM,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -402,8 +411,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_OBJECT_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_OBJECT_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -411,8 +420,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetObjectInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_OBJECT_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_OBJECT_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -421,8 +430,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaAttachCanvasInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_CANVAS_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_ATTACH_CANVAS_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -430,8 +439,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaGetCanvasInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_CANVAS_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_GET_CANVAS_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -450,8 +459,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITOR_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITOR_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -459,8 +468,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_AREA_MONITOR_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_AREA_MONITOR_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -468,8 +477,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITORABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_AREA_SET_MONITORABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -477,7 +486,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -486,7 +496,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetSpace(body: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to space)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SPACE,
+        NIL.ordinal)
   }
 
   /**
@@ -494,8 +505,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SPACE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SPACE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -504,7 +515,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetMode(body: RID, mode: PhysicsServer2D.BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -512,7 +524,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetMode(body: RID): PhysicsServer2D.BodyMode {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MODE,
+        LONG.ordinal)
     return PhysicsServer2D.BodyMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -526,7 +539,8 @@ public object PhysicsServer2D : Object() {
     disabled: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM2D to transform, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -538,7 +552,8 @@ public object PhysicsServer2D : Object() {
     shape: RID
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, _RID to shape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -550,8 +565,8 @@ public object PhysicsServer2D : Object() {
     transform: Transform2D
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -559,8 +574,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetShapeCount(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -569,8 +584,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetShape(body: RID, shapeIdx: Long): RID {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -579,8 +594,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetShapeTransform(body: RID, shapeIdx: Long): Transform2D {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_TRANSFORM, TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_SHAPE_TRANSFORM,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -589,8 +604,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyRemoveShape(body: RID, shapeIdx: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_SHAPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -598,8 +613,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyClearShapes(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CLEAR_SHAPES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_CLEAR_SHAPES,
+        NIL.ordinal)
   }
 
   /**
@@ -611,8 +626,8 @@ public object PhysicsServer2D : Object() {
     disabled: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -625,8 +640,8 @@ public object PhysicsServer2D : Object() {
     margin: Double
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, BOOL to enable, DOUBLE to margin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_AS_ONE_WAY_COLLISION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_SHAPE_AS_ONE_WAY_COLLISION, NIL.ordinal)
   }
 
   /**
@@ -634,8 +649,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_OBJECT_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_OBJECT_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -643,8 +658,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetObjectInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_OBJECT_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_OBJECT_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -653,8 +668,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyAttachCanvasInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_CANVAS_INSTANCE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ATTACH_CANVAS_INSTANCE_ID, NIL.ordinal)
   }
 
   /**
@@ -662,8 +677,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetCanvasInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CANVAS_INSTANCE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CANVAS_INSTANCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -675,8 +690,9 @@ public object PhysicsServer2D : Object() {
   public fun bodySetContinuousCollisionDetectionMode(body: RID, mode: PhysicsServer2D.CCDMode):
       Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONTINUOUS_COLLISION_DETECTION_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -684,8 +700,9 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetContinuousCollisionDetectionMode(body: RID): PhysicsServer2D.CCDMode {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONTINUOUS_COLLISION_DETECTION_MODE,
+        LONG.ordinal)
     return PhysicsServer2D.CCDMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -694,8 +711,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to layer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -703,8 +720,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_LAYER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_LAYER,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -713,8 +730,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetCollisionMask(body: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_COLLISION_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -722,8 +739,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_MASK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_COLLISION_MASK,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -736,7 +753,8 @@ public object PhysicsServer2D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -744,7 +762,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetParam(body: RID, `param`: PhysicsServer2D.BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_PARAM, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_PARAM,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -753,8 +772,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyResetMassProperties(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_RESET_MASS_PROPERTIES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_RESET_MASS_PROPERTIES, NIL.ordinal)
   }
 
   /**
@@ -768,7 +787,8 @@ public object PhysicsServer2D : Object() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_STATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_STATE,
+        NIL.ordinal)
   }
 
   /**
@@ -776,7 +796,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetState(body: RID, state: PhysicsServer2D.BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_STATE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_STATE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -789,8 +810,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyApplyCentralImpulse(body: RID, impulse: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -800,8 +821,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyApplyTorqueImpulse(body: RID, impulse: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -817,8 +838,8 @@ public object PhysicsServer2D : Object() {
     position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to impulse, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_IMPULSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -828,8 +849,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyApplyCentralForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_CENTRAL_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -843,8 +864,8 @@ public object PhysicsServer2D : Object() {
     position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_FORCE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -852,8 +873,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyApplyTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_APPLY_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -863,8 +884,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyAddConstantCentralForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_CENTRAL_FORCE, NIL.ordinal)
   }
 
   /**
@@ -878,8 +899,8 @@ public object PhysicsServer2D : Object() {
     position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -887,8 +908,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyAddConstantTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_CONSTANT_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -898,8 +919,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetConstantForce(body: RID, force: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -909,8 +930,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetConstantForce(body: RID): Vector2 {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_FORCE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_FORCE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -921,8 +942,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetConstantTorque(body: RID, torque: Double): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_CONSTANT_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -932,8 +953,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetConstantTorque(body: RID): Double {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_TORQUE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_CONSTANT_TORQUE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -942,8 +963,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetAxisVelocity(body: RID, axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR2 to axisVelocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_AXIS_VELOCITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_AXIS_VELOCITY,
+        NIL.ordinal)
   }
 
   /**
@@ -951,8 +972,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_COLLISION_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_ADD_COLLISION_EXCEPTION, NIL.ordinal)
   }
 
   /**
@@ -960,8 +981,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_COLLISION_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_REMOVE_COLLISION_EXCEPTION, NIL.ordinal)
   }
 
   /**
@@ -969,8 +990,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MAX_CONTACTS_REPORTED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_MAX_CONTACTS_REPORTED, NIL.ordinal)
   }
 
   /**
@@ -978,8 +999,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetMaxContactsReported(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MAX_CONTACTS_REPORTED, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_MAX_CONTACTS_REPORTED, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -988,8 +1009,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_OMIT_FORCE_INTEGRATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_OMIT_FORCE_INTEGRATION, NIL.ordinal)
   }
 
   /**
@@ -997,8 +1018,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_IS_OMITTING_FORCE_INTEGRATION, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_IS_OMITTING_FORCE_INTEGRATION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1017,8 +1038,8 @@ public object PhysicsServer2D : Object() {
     userdata: Any? = null
   ): Unit {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_FORCE_INTEGRATION_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_SET_FORCE_INTEGRATION_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -1030,8 +1051,8 @@ public object PhysicsServer2D : Object() {
     result: PhysicsTestMotionResult2D? = null
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_TEST_MOTION,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_TEST_MOTION,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1040,8 +1061,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState2D? {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_DIRECT_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_BODY_GET_DIRECT_STATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectBodyState2D?
   }
 
@@ -1050,7 +1071,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun jointCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -1059,7 +1081,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun jointClear(joint: RID): Unit {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -1071,8 +1093,8 @@ public object PhysicsServer2D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_SET_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_SET_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -1080,8 +1102,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun jointGetParam(joint: RID, `param`: PhysicsServer2D.JointParam): Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_PARAM,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1095,7 +1117,8 @@ public object PhysicsServer2D : Object() {
     bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchor, _RID to bodyA, _RID to bodyB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_PIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_PIN,
+        NIL.ordinal)
   }
 
   /**
@@ -1110,8 +1133,8 @@ public object PhysicsServer2D : Object() {
     bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to groove1A, VECTOR2 to groove2A, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_GROOVE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_GROOVE,
+        NIL.ordinal)
   }
 
   /**
@@ -1125,8 +1148,8 @@ public object PhysicsServer2D : Object() {
     bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_DAMPED_SPRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_DAMPED_SPRING,
+        NIL.ordinal)
   }
 
   /**
@@ -1138,8 +1161,8 @@ public object PhysicsServer2D : Object() {
     `value`: Double
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_DAMPED_SPRING_JOINT_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_DAMPED_SPRING_JOINT_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -1148,8 +1171,8 @@ public object PhysicsServer2D : Object() {
   public fun dampedSpringJointGetParam(joint: RID, `param`: PhysicsServer2D.DampedSpringParam):
       Double {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_DAMPED_SPRING_JOINT_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_DAMPED_SPRING_JOINT_GET_PARAM, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1158,8 +1181,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun jointGetType(joint: RID): PhysicsServer2D.JointType {
     TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_TYPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_GET_TYPE,
+        LONG.ordinal)
     return PhysicsServer2D.JointType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -1168,7 +1191,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_FREE_RID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_FREE_RID, NIL.ordinal)
   }
 
   /**
@@ -1176,7 +1199,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SET_ACTIVE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_SET_ACTIVE, NIL.ordinal)
   }
 
   /**
@@ -1184,8 +1207,8 @@ public object PhysicsServer2D : Object() {
    */
   public fun getProcessInfo(processInfo: PhysicsServer2D.ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_GET_PROCESS_INFO,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_GET_PROCESS_INFO,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

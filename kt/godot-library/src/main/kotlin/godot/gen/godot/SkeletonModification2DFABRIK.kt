@@ -41,14 +41,14 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,16 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   public var fabrikDataChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_DATA_CHAIN_LENGTH, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_DATA_CHAIN_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_DATA_CHAIN_LENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_DATA_CHAIN_LENGTH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -76,8 +78,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun setFabrikJointBone2dNode(jointIdx: Long, bone2dNodepath: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to bone2dNodepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_BONE2D_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_BONE2D_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -85,9 +88,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun getFabrikJointBone2dNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_JOINT_BONE2D_NODE,
-        NODE_PATH)
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -96,8 +99,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun setFabrikJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_BONE_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_BONE_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -105,8 +109,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun getFabrikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_JOINT_BONE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_JOINT_BONE_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -115,8 +120,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun setFabrikJointMagnetPosition(jointIdx: Long, magnetPosition: Vector2): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR2 to magnetPosition)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_MAGNET_POSITION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_MAGNET_POSITION,
+        NIL.ordinal)
   }
 
   /**
@@ -124,9 +130,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun getFabrikJointMagnetPosition(jointIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_JOINT_MAGNET_POSITION,
-        VECTOR2)
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -137,9 +143,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun setFabrikJointUseTargetRotation(jointIdx: Long, useTargetRotation: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useTargetRotation)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_SET_FABRIK_JOINT_USE_TARGET_ROTATION,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -147,9 +153,9 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public fun getFabrikJointUseTargetRotation(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DFABRIK_GET_FABRIK_JOINT_USE_TARGET_ROTATION,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

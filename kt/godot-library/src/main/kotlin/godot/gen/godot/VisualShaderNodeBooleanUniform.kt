@@ -27,14 +27,16 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_IS_DEFAULT_VALUE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -43,14 +45,14 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
   public var defaultValue: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_GET_DEFAULT_VALUE, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_GET_DEFAULT_VALUE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

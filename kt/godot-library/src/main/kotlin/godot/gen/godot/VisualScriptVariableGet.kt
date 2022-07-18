@@ -19,14 +19,14 @@ public open class VisualScriptVariableGet : VisualScriptNode() {
   public var varName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTVARIABLEGET_GET_VARIABLE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTVARIABLEGET_GET_VARIABLE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTVARIABLEGET_SET_VARIABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTVARIABLEGET_SET_VARIABLE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

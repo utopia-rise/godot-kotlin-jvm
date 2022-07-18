@@ -105,38 +105,50 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Set to [godot.SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
    *
+   * By default, only 4 bone influences are used ([godot.SKIN_4_WEIGHTS])
+   *
+   * **Note:** This function takes an enum, not the exact number of weights.
    */
   public fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
+        NIL.ordinal)
   }
 
   /**
+   * By default, returns [godot.SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
    *
+   * Returns [godot.SKIN_8_WEIGHTS] if up to 8 influences are used.
+   *
+   * **Note:** This function returns an enum, not the exact number of weights.
    */
   public fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
+        LONG.ordinal)
     return SurfaceTool.SkinWeightCount.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
+   * Sets the color format for this custom `channel_index`. Use [CUSTOM_MAX] to disable.
    *
+   * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
   public fun setCustomFormat(index: Long, format: SurfaceTool.CustomFormat): Unit {
     TransferContext.writeArguments(LONG to index, LONG to format.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT,
+        NIL.ordinal)
   }
 
   /**
-   *
+   * Returns the format for custom `channel_index` (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
   public fun getCustomFormat(index: Long): SurfaceTool.CustomFormat {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT,
+        LONG.ordinal)
     return SurfaceTool.CustomFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -145,7 +157,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun begin(primitive: Mesh.PrimitiveType): Unit {
     TransferContext.writeArguments(LONG to primitive.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_BEGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_BEGIN, NIL.ordinal)
   }
 
   /**
@@ -153,7 +165,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_VERTEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_VERTEX, NIL.ordinal)
   }
 
   /**
@@ -163,7 +175,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_COLOR, NIL.ordinal)
   }
 
   /**
@@ -171,7 +183,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_NORMAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_NORMAL, NIL.ordinal)
   }
 
   /**
@@ -179,7 +191,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_TANGENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_TANGENT, NIL.ordinal)
   }
 
   /**
@@ -187,7 +199,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV, NIL.ordinal)
   }
 
   /**
@@ -195,7 +207,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV2, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV2, NIL.ordinal)
   }
 
   /**
@@ -203,7 +215,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setBones(bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_BONES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_BONES, NIL.ordinal)
   }
 
   /**
@@ -211,15 +223,17 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_WEIGHTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_WEIGHTS, NIL.ordinal)
   }
 
   /**
+   * Sets the custom value on this vertex for `channel_index`.
    *
+   * [setCustomFormat] must be called first for this `channel_index`. Formats which are not RGBA will ignore other color channels.
    */
   public fun setCustom(index: Long, custom: Color): Unit {
     TransferContext.writeArguments(LONG to index, COLOR to custom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL.ordinal)
   }
 
   /**
@@ -227,7 +241,8 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP,
+        NIL.ordinal)
   }
 
   /**
@@ -244,15 +259,16 @@ public open class SurfaceTool : RefCounted() {
     tangents: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals, ARRAY to tangents)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN,
+        NIL.ordinal)
   }
 
   /**
-   * Adds an index to index array if you are using indexed vertices. Does not need to be called before adding vertices.
+   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
   public fun addIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL.ordinal)
   }
 
   /**
@@ -260,7 +276,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun index(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_INDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_INDEX, NIL.ordinal)
   }
 
   /**
@@ -268,7 +284,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun deindex(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_DEINDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_DEINDEX, NIL.ordinal)
   }
 
   /**
@@ -278,7 +294,8 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS,
+        NIL.ordinal)
   }
 
   /**
@@ -286,35 +303,35 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun generateTangents(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_TANGENTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_TANGENTS,
+        NIL.ordinal)
   }
 
   /**
-   *
+   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
   public fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE,
+        NIL.ordinal)
   }
 
-  /**
-   *
-   */
   public fun getMaxAxisLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_MAX_AXIS_LENGTH,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_MAX_AXIS_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
+   * Generates a LOD for a given `nd_threshold` in linear units (square root of quadric error metric), using at most `target_index_count` indices.
    *
+   * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
   public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -323,15 +340,12 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL.ordinal)
   }
 
-  /**
-   *
-   */
   public fun getPrimitive(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE, LONG.ordinal)
     return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -340,7 +354,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -348,7 +362,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun createFrom(existing: Mesh, surface: Long): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL.ordinal)
   }
 
   /**
@@ -360,8 +374,8 @@ public open class SurfaceTool : RefCounted() {
     blendShape: String
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, STRING to blendShape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -373,7 +387,7 @@ public open class SurfaceTool : RefCounted() {
     transform: Transform3D
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL.ordinal)
   }
 
   /**
@@ -383,7 +397,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
   }
 
@@ -392,7 +406,8 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -400,39 +415,39 @@ public open class SurfaceTool : RefCounted() {
     id: Long
   ) {
     /**
-     *
+     * Limits range of data passed to `set_custom` to unsigned normalized 0 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
     CUSTOM_RGBA8_UNORM(0),
     /**
-     *
+     * Limits range of data passed to `set_custom` to signed normalized -1 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
     CUSTOM_RGBA8_SNORM(1),
     /**
-     *
+     * Stores data passed to `set_custom` as half precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_HALF].
      */
     CUSTOM_RG_HALF(2),
     /**
-     *
+     * Stores data passed to `set_custom` as half precision floats and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
     CUSTOM_RGBA_HALF(3),
     /**
-     *
+     * Stores data passed to `set_custom` as full precision floats, and uses only red color channel. See [godot.Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
     CUSTOM_R_FLOAT(4),
     /**
-     *
+     * Stores data passed to `set_custom` as full precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
     CUSTOM_RG_FLOAT(5),
     /**
-     *
+     * Stores data passed to `set_custom` as full precision floats, and uses only red, green and blue color channels. See [godot.Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
     CUSTOM_RGB_FLOAT(6),
     /**
-     *
+     * Stores data passed to `set_custom` as full precision floats, and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
     CUSTOM_RGBA_FLOAT(7),
     /**
-     *
+     * Used to indicate a disabled custom channel.
      */
     CUSTOM_MAX(8),
     ;
@@ -451,11 +466,11 @@ public open class SurfaceTool : RefCounted() {
     id: Long
   ) {
     /**
-     *
+     * Each individual vertex can be influenced by only 4 bone weights.
      */
     SKIN_4_WEIGHTS(0),
     /**
-     *
+     * Each individual vertex can be influenced by up to 8 bone weights.
      */
     SKIN_8_WEIGHTS(1),
     ;

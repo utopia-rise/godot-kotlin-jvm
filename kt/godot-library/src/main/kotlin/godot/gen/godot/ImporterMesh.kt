@@ -51,7 +51,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun addBlendShape(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_BLEND_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_BLEND_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -59,8 +60,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -69,8 +70,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getBlendShapeName(blendShapeIdx: Long): String {
     TransferContext.writeArguments(LONG to blendShapeIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -79,8 +80,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_BLEND_SHAPE_MODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_BLEND_SHAPE_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -88,8 +89,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getBlendShapeMode(): Mesh.BlendShapeMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_MODE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_BLEND_SHAPE_MODE,
+        LONG.ordinal)
     return Mesh.BlendShapeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -110,7 +111,7 @@ public open class ImporterMesh : Resource() {
     flags: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_SURFACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_ADD_SURFACE, NIL.ordinal)
   }
 
   /**
@@ -118,8 +119,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -128,8 +129,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfacePrimitiveType(surfaceIdx: Long): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_PRIMITIVE_TYPE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_PRIMITIVE_TYPE,
+        LONG.ordinal)
     return Mesh.PrimitiveType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -138,8 +139,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceName(surfaceIdx: Long): String {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -148,8 +149,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceArrays(surfaceIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_ARRAYS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_ARRAYS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -158,8 +159,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceBlendShapeArrays(surfaceIdx: Long, blendShapeIdx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to blendShapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_BLEND_SHAPE_ARRAYS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_BLEND_SHAPE_ARRAYS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -168,8 +169,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceLodCount(surfaceIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -178,8 +179,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceLodSize(surfaceIdx: Long, lodIdx: Long): Double {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_SIZE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_SIZE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -188,8 +189,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceLodIndices(surfaceIdx: Long, lodIdx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to surfaceIdx, LONG to lodIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_INDICES, PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_LOD_INDICES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -198,8 +199,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceMaterial(surfaceIdx: Long): Material? {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_MATERIAL,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_MATERIAL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
@@ -208,8 +209,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getSurfaceFormat(surfaceIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfaceIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_FORMAT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_SURFACE_FORMAT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -218,7 +219,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun setSurfaceName(surfaceIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -226,8 +228,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun setSurfaceMaterial(surfaceIdx: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx, OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_MATERIAL,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_SURFACE_MATERIAL,
+        NIL.ordinal)
   }
 
   /**
@@ -239,7 +241,7 @@ public open class ImporterMesh : Resource() {
    */
   public fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_MESH, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_MESH, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
   }
 
@@ -248,7 +250,7 @@ public open class ImporterMesh : Resource() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -256,8 +258,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun setLightmapSizeHint(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_LIGHTMAP_SIZE_HINT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_SET_LIGHTMAP_SIZE_HINT,
+        NIL.ordinal)
   }
 
   /**
@@ -265,8 +267,8 @@ public open class ImporterMesh : Resource() {
    */
   public fun getLightmapSizeHint(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_LIGHTMAP_SIZE_HINT,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESH_GET_LIGHTMAP_SIZE_HINT,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 

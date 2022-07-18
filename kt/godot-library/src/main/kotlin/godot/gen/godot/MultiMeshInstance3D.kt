@@ -31,14 +31,14 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
   public var multimesh: MultiMesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_GET_MULTIMESH,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_GET_MULTIMESH,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as MultiMesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_SET_MULTIMESH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_SET_MULTIMESH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

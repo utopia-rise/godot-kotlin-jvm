@@ -36,7 +36,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public fun setParam(`param`: ConeTwistJoint3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -44,7 +44,8 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public fun getParam(`param`: ConeTwistJoint3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT3D_GET_PARAM,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

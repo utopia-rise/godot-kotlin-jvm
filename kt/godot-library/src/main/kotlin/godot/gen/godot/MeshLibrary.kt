@@ -45,7 +45,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun createItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CREATE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CREATE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -55,7 +55,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAME, NIL.ordinal)
   }
 
   /**
@@ -63,7 +63,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemMesh(id: Long, mesh: Mesh): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH, NIL.ordinal)
   }
 
   /**
@@ -71,8 +71,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemMeshTransform(id: Long, meshTransform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to id, TRANSFORM3D to meshTransform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH_TRANSFORM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -80,7 +80,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemNavmesh(id: Long, navmesh: NavigationMesh): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to navmesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH,
+        NIL.ordinal)
   }
 
   /**
@@ -88,8 +89,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemNavmeshTransform(id: Long, navmesh: Transform3D): Unit {
     TransferContext.writeArguments(LONG to id, TRANSFORM3D to navmesh)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -99,7 +100,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemShapes(id: Long, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id, ARRAY to shapes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_SHAPES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_SHAPES, NIL.ordinal)
   }
 
   /**
@@ -107,7 +108,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun setItemPreview(id: Long, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_PREVIEW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_PREVIEW,
+        NIL.ordinal)
   }
 
   /**
@@ -115,7 +117,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemName(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -124,7 +127,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemMesh(id: Long): Mesh? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Mesh?
   }
 
@@ -133,8 +137,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemMeshTransform(id: Long): Transform3D {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -143,8 +147,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemNavmesh(id: Long): NavigationMesh? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
   }
 
@@ -153,8 +157,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemNavmeshTransform(id: Long): Transform3D {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH_TRANSFORM, TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -165,7 +169,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemShapes(id: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_SHAPES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_SHAPES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -174,8 +179,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemPreview(id: Long): Texture2D? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_PREVIEW,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_PREVIEW,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -184,7 +189,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun removeItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_REMOVE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_REMOVE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -192,7 +197,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun findItemByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_FIND_ITEM_BY_NAME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_FIND_ITEM_BY_NAME,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -201,7 +207,7 @@ public open class MeshLibrary : Resource() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -209,8 +215,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getItemList(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_LIST,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_LIST,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -219,8 +225,8 @@ public open class MeshLibrary : Resource() {
    */
   public fun getLastUnusedItemId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_LAST_UNUSED_ITEM_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_LAST_UNUSED_ITEM_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

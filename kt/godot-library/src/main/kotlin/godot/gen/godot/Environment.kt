@@ -47,12 +47,14 @@ public open class Environment : Resource() {
   public var backgroundMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND,
+          NIL.ordinal)
     }
 
   /**
@@ -61,12 +63,13 @@ public open class Environment : Resource() {
   public var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL.ordinal)
     }
 
   /**
@@ -75,12 +78,13 @@ public open class Environment : Resource() {
   public var backgroundEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -89,14 +93,14 @@ public open class Environment : Resource() {
   public var backgroundCanvasMaxLayer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CANVAS_MAX_LAYER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CANVAS_MAX_LAYER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CANVAS_MAX_LAYER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CANVAS_MAX_LAYER,
+          NIL.ordinal)
     }
 
   /**
@@ -105,14 +109,14 @@ public open class Environment : Resource() {
   public var backgroundCameraFeedId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CAMERA_FEED_ID,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CAMERA_FEED_ID,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CAMERA_FEED_ID,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CAMERA_FEED_ID,
+          NIL.ordinal)
     }
 
   /**
@@ -121,12 +125,12 @@ public open class Environment : Resource() {
   public var sky: Sky?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Sky?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY, NIL.ordinal)
     }
 
   /**
@@ -135,14 +139,14 @@ public open class Environment : Resource() {
   public var skyCustomFov: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_CUSTOM_FOV,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_CUSTOM_FOV,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_CUSTOM_FOV,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_CUSTOM_FOV,
+          NIL.ordinal)
     }
 
   /**
@@ -151,13 +155,14 @@ public open class Environment : Resource() {
   public var skyRotation: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_ROTATION,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_ROTATION,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_ROTATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_ROTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -166,14 +171,14 @@ public open class Environment : Resource() {
   public var ambientLightSource: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_SOURCE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_SOURCE,
+          NIL.ordinal)
     }
 
   /**
@@ -182,14 +187,14 @@ public open class Environment : Resource() {
   public var ambientLightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -200,14 +205,14 @@ public open class Environment : Resource() {
   public var ambientLightSkyContribution: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_SKY_CONTRIBUTION, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_SKY_CONTRIBUTION, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_SKY_CONTRIBUTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_SKY_CONTRIBUTION, NIL.ordinal)
     }
 
   /**
@@ -216,14 +221,14 @@ public open class Environment : Resource() {
   public var ambientLightEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_ENERGY,
+          NIL.ordinal)
     }
 
   /**
@@ -232,14 +237,14 @@ public open class Environment : Resource() {
   public var reflectedLightSource: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_REFLECTION_SOURCE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_REFLECTION_SOURCE,
+          NIL.ordinal)
     }
 
   /**
@@ -248,12 +253,14 @@ public open class Environment : Resource() {
   public var tonemapMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAPPER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAPPER,
+          NIL.ordinal)
     }
 
   /**
@@ -262,14 +269,14 @@ public open class Environment : Resource() {
   public var tonemapExposure: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_EXPOSURE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_EXPOSURE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_EXPOSURE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_EXPOSURE,
+          NIL.ordinal)
     }
 
   /**
@@ -278,14 +285,14 @@ public open class Environment : Resource() {
   public var tonemapWhite: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_WHITE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_WHITE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_WHITE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_WHITE,
+          NIL.ordinal)
     }
 
   /**
@@ -294,14 +301,14 @@ public open class Environment : Resource() {
   public var autoExposureEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_TONEMAP_AUTO_EXPOSURE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_TONEMAP_AUTO_EXPOSURE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -310,14 +317,14 @@ public open class Environment : Resource() {
   public var autoExposureScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_GREY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_GREY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_GREY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_GREY, NIL.ordinal)
     }
 
   /**
@@ -326,14 +333,14 @@ public open class Environment : Resource() {
   public var autoExposureMinLuma: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MIN, NIL.ordinal)
     }
 
   /**
@@ -342,14 +349,14 @@ public open class Environment : Resource() {
   public var autoExposureMaxLuma: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MAX, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MAX, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MAX, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MAX, NIL.ordinal)
     }
 
   /**
@@ -358,14 +365,14 @@ public open class Environment : Resource() {
   public var autoExposureSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_SPEED, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_SPEED, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_SPEED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_SPEED, NIL.ordinal)
     }
 
   /**
@@ -374,12 +381,14 @@ public open class Environment : Resource() {
   public var ssrEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSR_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSR_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -388,14 +397,14 @@ public open class Environment : Resource() {
   public var ssrMaxSteps: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_MAX_STEPS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_MAX_STEPS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_MAX_STEPS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_MAX_STEPS,
+          NIL.ordinal)
     }
 
   /**
@@ -404,13 +413,14 @@ public open class Environment : Resource() {
   public var ssrFadeIn: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_IN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_IN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_IN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_IN,
+          NIL.ordinal)
     }
 
   /**
@@ -419,13 +429,14 @@ public open class Environment : Resource() {
   public var ssrFadeOut: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_OUT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_OUT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_OUT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_OUT,
+          NIL.ordinal)
     }
 
   /**
@@ -434,14 +445,14 @@ public open class Environment : Resource() {
   public var ssrDepthTolerance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_DEPTH_TOLERANCE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_DEPTH_TOLERANCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_DEPTH_TOLERANCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_DEPTH_TOLERANCE,
+          NIL.ordinal)
     }
 
   /**
@@ -450,12 +461,14 @@ public open class Environment : Resource() {
   public var ssaoEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSAO_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSAO_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -464,13 +477,14 @@ public open class Environment : Resource() {
   public var ssaoRadius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_RADIUS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_RADIUS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_RADIUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_RADIUS,
+          NIL.ordinal)
     }
 
   /**
@@ -479,14 +493,14 @@ public open class Environment : Resource() {
   public var ssaoIntensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_INTENSITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_INTENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_INTENSITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_INTENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -495,13 +509,14 @@ public open class Environment : Resource() {
   public var ssaoPower: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_POWER,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_POWER,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_POWER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_POWER,
+          NIL.ordinal)
     }
 
   /**
@@ -510,13 +525,14 @@ public open class Environment : Resource() {
   public var ssaoDetail: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DETAIL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DETAIL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DETAIL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DETAIL,
+          NIL.ordinal)
     }
 
   /**
@@ -525,13 +541,14 @@ public open class Environment : Resource() {
   public var ssaoHorizon: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_HORIZON,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_HORIZON,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_HORIZON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_HORIZON,
+          NIL.ordinal)
     }
 
   /**
@@ -540,14 +557,14 @@ public open class Environment : Resource() {
   public var ssaoSharpness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_SHARPNESS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_SHARPNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_SHARPNESS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_SHARPNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -556,14 +573,14 @@ public open class Environment : Resource() {
   public var ssaoLightAffect: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DIRECT_LIGHT_AFFECT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DIRECT_LIGHT_AFFECT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DIRECT_LIGHT_AFFECT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DIRECT_LIGHT_AFFECT, NIL.ordinal)
     }
 
   /**
@@ -572,14 +589,14 @@ public open class Environment : Resource() {
   public var ssaoAoChannelAffect: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_AO_CHANNEL_AFFECT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_AO_CHANNEL_AFFECT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_AO_CHANNEL_AFFECT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_AO_CHANNEL_AFFECT,
+          NIL.ordinal)
     }
 
   /**
@@ -588,12 +605,14 @@ public open class Environment : Resource() {
   public var ssilEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSIL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSIL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -602,13 +621,14 @@ public open class Environment : Resource() {
   public var ssilRadius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_RADIUS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_RADIUS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_RADIUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_RADIUS,
+          NIL.ordinal)
     }
 
   /**
@@ -617,14 +637,14 @@ public open class Environment : Resource() {
   public var ssilIntensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_INTENSITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_INTENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_INTENSITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_INTENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -633,14 +653,14 @@ public open class Environment : Resource() {
   public var ssilSharpness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_SHARPNESS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_SHARPNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_SHARPNESS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_SHARPNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -649,14 +669,14 @@ public open class Environment : Resource() {
   public var ssilNormalRejection: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_NORMAL_REJECTION, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_NORMAL_REJECTION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_NORMAL_REJECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_NORMAL_REJECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -669,14 +689,14 @@ public open class Environment : Resource() {
   public var sdfgiEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -685,14 +705,14 @@ public open class Environment : Resource() {
   public var sdfgiUseOcclusion: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_USING_OCCLUSION, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_USING_OCCLUSION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_USE_OCCLUSION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_USE_OCCLUSION,
+          NIL.ordinal)
     }
 
   /**
@@ -701,14 +721,14 @@ public open class Environment : Resource() {
   public var sdfgiReadSkyLight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_READING_SKY_LIGHT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_READING_SKY_LIGHT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_READ_SKY_LIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_READ_SKY_LIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -721,14 +741,14 @@ public open class Environment : Resource() {
   public var sdfgiBounceFeedback: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_BOUNCE_FEEDBACK, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_BOUNCE_FEEDBACK,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_BOUNCE_FEEDBACK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_BOUNCE_FEEDBACK,
+          NIL.ordinal)
     }
 
   /**
@@ -737,14 +757,14 @@ public open class Environment : Resource() {
   public var sdfgiCascades: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADES,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADES,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADES,
+          NIL.ordinal)
     }
 
   /**
@@ -755,14 +775,14 @@ public open class Environment : Resource() {
   public var sdfgiMinCellSize: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MIN_CELL_SIZE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MIN_CELL_SIZE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MIN_CELL_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MIN_CELL_SIZE,
+          NIL.ordinal)
     }
 
   /**
@@ -771,14 +791,14 @@ public open class Environment : Resource() {
   public var sdfgiCascade0Distance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADE0_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADE0_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADE0_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADE0_DISTANCE, NIL.ordinal)
     }
 
   /**
@@ -789,14 +809,14 @@ public open class Environment : Resource() {
   public var sdfgiMaxDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MAX_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MAX_DISTANCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MAX_DISTANCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MAX_DISTANCE,
+          NIL.ordinal)
     }
 
   /**
@@ -805,14 +825,14 @@ public open class Environment : Resource() {
   public var sdfgiYScale: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_Y_SCALE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_Y_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -821,13 +841,14 @@ public open class Environment : Resource() {
   public var sdfgiEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_ENERGY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENERGY,
+          NIL.ordinal)
     }
 
   /**
@@ -836,14 +857,14 @@ public open class Environment : Resource() {
   public var sdfgiNormalBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_NORMAL_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_NORMAL_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_NORMAL_BIAS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_NORMAL_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -852,14 +873,14 @@ public open class Environment : Resource() {
   public var sdfgiProbeBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_PROBE_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_PROBE_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_PROBE_BIAS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_PROBE_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -868,12 +889,14 @@ public open class Environment : Resource() {
   public var glowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -882,8 +905,8 @@ public open class Environment : Resource() {
   public val glowLevels_1: Double
     get() {
       TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -893,8 +916,8 @@ public open class Environment : Resource() {
   public val glowLevels_2: Double
     get() {
       TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -904,8 +927,8 @@ public open class Environment : Resource() {
   public val glowLevels_3: Double
     get() {
       TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -915,8 +938,8 @@ public open class Environment : Resource() {
   public val glowLevels_4: Double
     get() {
       TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -926,8 +949,8 @@ public open class Environment : Resource() {
   public val glowLevels_5: Double
     get() {
       TransferContext.writeArguments(LONG to 4)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -937,8 +960,8 @@ public open class Environment : Resource() {
   public val glowLevels_6: Double
     get() {
       TransferContext.writeArguments(LONG to 5)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -948,8 +971,8 @@ public open class Environment : Resource() {
   public val glowLevels_7: Double
     get() {
       TransferContext.writeArguments(LONG to 6)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -959,14 +982,14 @@ public open class Environment : Resource() {
   public var glowNormalized: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_NORMALIZED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_NORMALIZED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_NORMALIZED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_NORMALIZED,
+          NIL.ordinal)
     }
 
   /**
@@ -975,14 +998,14 @@ public open class Environment : Resource() {
   public var glowIntensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_INTENSITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_INTENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_INTENSITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_INTENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -991,14 +1014,14 @@ public open class Environment : Resource() {
   public var glowStrength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_STRENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_STRENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_STRENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_STRENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -1007,12 +1030,13 @@ public open class Environment : Resource() {
   public var glowMix: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MIX, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MIX,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MIX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MIX, NIL.ordinal)
     }
 
   /**
@@ -1021,13 +1045,14 @@ public open class Environment : Resource() {
   public var glowBloom: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLOOM,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLOOM,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLOOM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLOOM,
+          NIL.ordinal)
     }
 
   /**
@@ -1036,14 +1061,14 @@ public open class Environment : Resource() {
   public var glowBlendMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLEND_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLEND_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -1052,14 +1077,14 @@ public open class Environment : Resource() {
   public var glowHdrThreshold: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_THRESHOLD, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_THRESHOLD, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_THRESHOLD, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_THRESHOLD, NIL.ordinal)
     }
 
   /**
@@ -1068,14 +1093,14 @@ public open class Environment : Resource() {
   public var glowHdrScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -1084,14 +1109,14 @@ public open class Environment : Resource() {
   public var glowHdrLuminanceCap: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_LUMINANCE_CAP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_LUMINANCE_CAP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_LUMINANCE_CAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_LUMINANCE_CAP,
+          NIL.ordinal)
     }
 
   /**
@@ -1100,14 +1125,14 @@ public open class Environment : Resource() {
   public var glowMapStrength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP_STRENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP_STRENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP_STRENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP_STRENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -1118,12 +1143,13 @@ public open class Environment : Resource() {
   public var glowMap: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP, NIL.ordinal)
     }
 
   /**
@@ -1132,12 +1158,14 @@ public open class Environment : Resource() {
   public var fogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_FOG_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_FOG_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -1146,14 +1174,14 @@ public open class Environment : Resource() {
   public var fogLightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -1162,14 +1190,14 @@ public open class Environment : Resource() {
   public var fogLightEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_ENERGY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_ENERGY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_ENERGY,
+          NIL.ordinal)
     }
 
   /**
@@ -1178,14 +1206,14 @@ public open class Environment : Resource() {
   public var fogSunScatter: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SUN_SCATTER,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SUN_SCATTER,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_SUN_SCATTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_SUN_SCATTER,
+          NIL.ordinal)
     }
 
   /**
@@ -1194,13 +1222,14 @@ public open class Environment : Resource() {
   public var fogDensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_DENSITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_DENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_DENSITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_DENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -1211,14 +1240,14 @@ public open class Environment : Resource() {
   public var fogAerialPerspective: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_AERIAL_PERSPECTIVE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_AERIAL_PERSPECTIVE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_AERIAL_PERSPECTIVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_AERIAL_PERSPECTIVE,
+          NIL.ordinal)
     }
 
   /**
@@ -1227,13 +1256,14 @@ public open class Environment : Resource() {
   public var fogHeight: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -1242,14 +1272,14 @@ public open class Environment : Resource() {
   public var fogHeightDensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT_DENSITY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT_DENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT_DENSITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT_DENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -1258,14 +1288,14 @@ public open class Environment : Resource() {
   public var volumetricFogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -1274,14 +1304,14 @@ public open class Environment : Resource() {
   public var volumetricFogDensity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DENSITY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DENSITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DENSITY,
+          NIL.ordinal)
     }
 
   /**
@@ -1290,14 +1320,14 @@ public open class Environment : Resource() {
   public var volumetricFogAlbedo: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ALBEDO, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ALBEDO,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ALBEDO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ALBEDO,
+          NIL.ordinal)
     }
 
   /**
@@ -1306,14 +1336,14 @@ public open class Environment : Resource() {
   public var volumetricFogEmission: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION, NIL.ordinal)
     }
 
   /**
@@ -1322,14 +1352,14 @@ public open class Environment : Resource() {
   public var volumetricFogEmissionEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION_ENERGY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION_ENERGY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -1338,14 +1368,14 @@ public open class Environment : Resource() {
   public var volumetricFogGiInject: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_GI_INJECT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_GI_INJECT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_GI_INJECT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_GI_INJECT, NIL.ordinal)
     }
 
   /**
@@ -1354,14 +1384,14 @@ public open class Environment : Resource() {
   public var volumetricFogAnisotropy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ANISOTROPY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ANISOTROPY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ANISOTROPY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ANISOTROPY, NIL.ordinal)
     }
 
   /**
@@ -1370,14 +1400,14 @@ public open class Environment : Resource() {
   public var volumetricFogLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_LENGTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_LENGTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -1386,14 +1416,14 @@ public open class Environment : Resource() {
   public var volumetricFogDetailSpread: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DETAIL_SPREAD, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DETAIL_SPREAD, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DETAIL_SPREAD, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DETAIL_SPREAD, NIL.ordinal)
     }
 
   /**
@@ -1402,14 +1432,14 @@ public open class Environment : Resource() {
   public var volumetricFogAmbientInject: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_AMBIENT_INJECT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_AMBIENT_INJECT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_AMBIENT_INJECT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_AMBIENT_INJECT, NIL.ordinal)
     }
 
   /**
@@ -1418,16 +1448,16 @@ public open class Environment : Resource() {
   public var volumetricFogTemporalReprojectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
-          NIL)
+          NIL.ordinal)
     }
 
   /**
@@ -1436,15 +1466,16 @@ public open class Environment : Resource() {
   public var volumetricFogTemporalReprojectionAmount: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_AMOUNT,
-          DOUBLE)
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_AMOUNT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_AMOUNT,
+          NIL.ordinal)
     }
 
   /**
@@ -1453,14 +1484,14 @@ public open class Environment : Resource() {
   public var adjustmentEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_ADJUSTMENT_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_ADJUSTMENT_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -1469,14 +1500,14 @@ public open class Environment : Resource() {
   public var adjustmentBrightness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_BRIGHTNESS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_BRIGHTNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_BRIGHTNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_BRIGHTNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -1485,14 +1516,14 @@ public open class Environment : Resource() {
   public var adjustmentContrast: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_CONTRAST, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_CONTRAST,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_CONTRAST, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_CONTRAST,
+          NIL.ordinal)
     }
 
   /**
@@ -1501,14 +1532,14 @@ public open class Environment : Resource() {
   public var adjustmentSaturation: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_SATURATION, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_SATURATION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_SATURATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_SATURATION,
+          NIL.ordinal)
     }
 
   /**
@@ -1517,14 +1548,14 @@ public open class Environment : Resource() {
   public var adjustmentColorCorrection: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_COLOR_CORRECTION, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_COLOR_CORRECTION, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_COLOR_CORRECTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_COLOR_CORRECTION, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -1536,7 +1567,7 @@ public open class Environment : Resource() {
    */
   public fun setGlowLevel(idx: Long, intensity: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to intensity)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_LEVEL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_LEVEL, NIL.ordinal)
   }
 
   public enum class GlowBlendMode(

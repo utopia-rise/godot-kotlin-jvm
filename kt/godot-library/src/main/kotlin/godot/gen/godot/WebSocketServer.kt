@@ -44,64 +44,66 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
   public var bindIp: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_BIND_IP,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_BIND_IP,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_BIND_IP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_BIND_IP,
+          NIL.ordinal)
     }
 
   public var privateKey: CryptoKey?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PRIVATE_KEY,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PRIVATE_KEY,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as CryptoKey?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_PRIVATE_KEY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_PRIVATE_KEY,
+          NIL.ordinal)
     }
 
   public var sslCertificate: X509Certificate?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_SSL_CERTIFICATE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_SSL_CERTIFICATE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_SSL_CERTIFICATE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_SSL_CERTIFICATE,
+          NIL.ordinal)
     }
 
   public var caChain: X509Certificate?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_CA_CHAIN,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_CA_CHAIN,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_CA_CHAIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_CA_CHAIN,
+          NIL.ordinal)
     }
 
   public var handshakeTimeout: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_HANDSHAKE_TIMEOUT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_HANDSHAKE_TIMEOUT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_HANDSHAKE_TIMEOUT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_HANDSHAKE_TIMEOUT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -110,7 +112,8 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
 
   public fun isListening(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_IS_LISTENING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_IS_LISTENING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -120,31 +123,32 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     gdMpApi: Boolean = false
   ): GodotError {
     TransferContext.writeArguments(LONG to port, PACKED_STRING_ARRAY to protocols, BOOL to gdMpApi)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_LISTEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_LISTEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_STOP, NIL.ordinal)
   }
 
   public fun hasPeer(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_HAS_PEER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_HAS_PEER, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun getPeerAddress(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_ADDRESS,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_ADDRESS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun getPeerPort(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_PEER_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -154,8 +158,8 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     reason: String = ""
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to code, STRING to reason)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_DISCONNECT_PEER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_DISCONNECT_PEER,
+        NIL.ordinal)
   }
 
   public companion object

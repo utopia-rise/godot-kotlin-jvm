@@ -120,8 +120,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getAvailablePointId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_AVAILABLE_POINT_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_AVAILABLE_POINT_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -158,7 +158,7 @@ public open class AStar3D : RefCounted() {
     weightScale: Double = 1.0
   ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position, DOUBLE to weightScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ADD_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ADD_POINT, NIL.ordinal)
   }
 
   /**
@@ -166,7 +166,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointPosition(id: Long): Vector3 {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_POSITION, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_POSITION,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -175,7 +176,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun setPointPosition(id: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_POSITION, NIL.ordinal)
   }
 
   /**
@@ -183,8 +184,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointWeightScale(id: Long): Double {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_WEIGHT_SCALE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_WEIGHT_SCALE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -193,7 +194,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun setPointWeightScale(id: Long, weightScale: Double): Unit {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_WEIGHT_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_WEIGHT_SCALE,
+        NIL.ordinal)
   }
 
   /**
@@ -201,7 +203,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun removePoint(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_REMOVE_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_REMOVE_POINT, NIL.ordinal)
   }
 
   /**
@@ -209,7 +211,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_HAS_POINT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_HAS_POINT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -268,8 +270,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointConnections(id: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CONNECTIONS,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CONNECTIONS,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -278,7 +280,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointIds(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_IDS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_IDS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -287,7 +289,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_DISABLED, NIL.ordinal)
   }
 
   /**
@@ -295,7 +297,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_IS_POINT_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_IS_POINT_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -336,7 +338,7 @@ public open class AStar3D : RefCounted() {
     bidirectional: Boolean = true
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CONNECT_POINTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CONNECT_POINTS, NIL.ordinal)
   }
 
   /**
@@ -348,7 +350,7 @@ public open class AStar3D : RefCounted() {
     bidirectional: Boolean = true
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_DISCONNECT_POINTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_DISCONNECT_POINTS, NIL.ordinal)
   }
 
   /**
@@ -360,7 +362,8 @@ public open class AStar3D : RefCounted() {
     bidirectional: Boolean = true
   ): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ARE_POINTS_CONNECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ARE_POINTS_CONNECTED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -369,7 +372,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -378,7 +381,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointCapacity(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CAPACITY, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CAPACITY, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -387,7 +390,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_RESERVE_SPACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_RESERVE_SPACE, NIL.ordinal)
   }
 
   /**
@@ -395,7 +398,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -405,7 +408,7 @@ public open class AStar3D : RefCounted() {
    */
   public fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POINT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POINT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -448,8 +451,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getClosestPositionInSegment(toPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPosition)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POSITION_IN_SEGMENT, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POSITION_IN_SEGMENT,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -460,8 +463,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getPointPath(fromId: Long, toId: Long): PackedVector3Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_PATH,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_PATH,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -528,8 +531,8 @@ public open class AStar3D : RefCounted() {
    */
   public fun getIdPath(fromId: Long, toId: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_ID_PATH,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_ID_PATH,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 

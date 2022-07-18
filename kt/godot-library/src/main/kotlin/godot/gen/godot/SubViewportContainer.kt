@@ -33,14 +33,14 @@ public open class SubViewportContainer : Container() {
   public var stretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_IS_STRETCH_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_IS_STRETCH_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH,
+          NIL.ordinal)
     }
 
   /**
@@ -53,14 +53,14 @@ public open class SubViewportContainer : Container() {
   public var stretchShrink: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_GET_STRETCH_SHRINK, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_GET_STRETCH_SHRINK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH_SHRINK, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH_SHRINK, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

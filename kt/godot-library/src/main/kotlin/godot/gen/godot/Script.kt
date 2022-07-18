@@ -49,12 +49,12 @@ public open class Script internal constructor() : Resource() {
   public var sourceCode: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SOURCE_CODE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SOURCE_CODE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_SET_SOURCE_CODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_SET_SOURCE_CODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -66,7 +66,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_CAN_INSTANTIATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_CAN_INSTANTIATE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -75,7 +75,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun instanceHas(baseObject: Object): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_INSTANCE_HAS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_INSTANCE_HAS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -84,7 +84,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun hasSourceCode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SOURCE_CODE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SOURCE_CODE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -93,7 +93,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun reload(keepState: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to keepState)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -102,7 +102,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getBaseScript(): Script? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_BASE_SCRIPT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_BASE_SCRIPT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Script?
   }
 
@@ -111,8 +111,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getInstanceBaseType(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_INSTANCE_BASE_TYPE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_INSTANCE_BASE_TYPE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -121,7 +121,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun hasScriptSignal(signalName: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signalName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SCRIPT_SIGNAL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_HAS_SCRIPT_SIGNAL, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -130,8 +130,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getScriptPropertyList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_PROPERTY_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_PROPERTY_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -140,8 +140,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getScriptMethodList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_METHOD_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_METHOD_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -150,8 +150,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getScriptSignalList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_SIGNAL_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_SIGNAL_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -160,8 +160,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getScriptConstantMap(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_CONSTANT_MAP,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_SCRIPT_CONSTANT_MAP,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -170,8 +170,8 @@ public open class Script internal constructor() : Resource() {
    */
   public fun getPropertyDefaultValue(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_PROPERTY_DEFAULT_VALUE,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_GET_PROPERTY_DEFAULT_VALUE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -180,7 +180,7 @@ public open class Script internal constructor() : Resource() {
    */
   public fun isTool(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_IS_TOOL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_IS_TOOL, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

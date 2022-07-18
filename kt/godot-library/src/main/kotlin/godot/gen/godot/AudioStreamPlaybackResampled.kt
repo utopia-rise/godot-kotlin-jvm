@@ -35,8 +35,8 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
    */
   public fun beginResample(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED_BEGIN_RESAMPLE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED_BEGIN_RESAMPLE, NIL.ordinal)
   }
 
   public companion object

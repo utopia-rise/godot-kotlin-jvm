@@ -41,14 +41,14 @@ public open class StreamPeerSSL : StreamPeer() {
   public var blockingHandshake: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_IS_BLOCKING_HANDSHAKE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_IS_BLOCKING_HANDSHAKE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -60,7 +60,7 @@ public open class StreamPeerSSL : StreamPeer() {
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL.ordinal)
   }
 
   /**
@@ -73,7 +73,8 @@ public open class StreamPeerSSL : StreamPeer() {
     chain: X509Certificate? = null
   ): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to privateKey, OBJECT to certificate, OBJECT to chain)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_ACCEPT_STREAM, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_ACCEPT_STREAM,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -89,8 +90,8 @@ public open class StreamPeerSSL : StreamPeer() {
     validCertificate: X509Certificate? = null
   ): GodotError {
     TransferContext.writeArguments(OBJECT to stream, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_CONNECT_TO_STREAM,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_CONNECT_TO_STREAM,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -99,7 +100,7 @@ public open class StreamPeerSSL : StreamPeer() {
    */
   public fun getStatus(): StreamPeerSSL.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_STATUS, LONG.ordinal)
     return StreamPeerSSL.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -108,8 +109,8 @@ public open class StreamPeerSSL : StreamPeer() {
    */
   public fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM,
+        NIL.ordinal)
   }
 
   public enum class Status(

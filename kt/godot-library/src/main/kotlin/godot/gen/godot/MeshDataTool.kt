@@ -132,7 +132,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -142,8 +142,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun createFromSurface(mesh: ArrayMesh, surface: Long): GodotError {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CREATE_FROM_SURFACE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_CREATE_FROM_SURFACE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -152,8 +152,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun commitToSurface(mesh: ArrayMesh): GodotError {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_COMMIT_TO_SURFACE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_COMMIT_TO_SURFACE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -164,7 +164,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFormat(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FORMAT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -173,7 +173,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -182,7 +183,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getEdgeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -191,7 +193,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFaceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -200,7 +203,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertex(idx: Long, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX, NIL.ordinal)
   }
 
   /**
@@ -208,7 +211,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertex(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -217,7 +220,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexNormal(idx: Long, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_NORMAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_NORMAL,
+        NIL.ordinal)
   }
 
   /**
@@ -225,8 +229,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexNormal(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -235,8 +239,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexTangent(idx: Long, tangent: Plane): Unit {
     TransferContext.writeArguments(LONG to idx, PLANE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_TANGENT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_TANGENT,
+        NIL.ordinal)
   }
 
   /**
@@ -244,8 +248,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexTangent(idx: Long): Plane {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_TANGENT,
-        PLANE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_TANGENT,
+        PLANE.ordinal)
     return TransferContext.readReturnValue(PLANE, false) as Plane
   }
 
@@ -254,7 +258,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexUv(idx: Long, uv: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to uv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_UV, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_UV, NIL.ordinal)
   }
 
   /**
@@ -262,7 +266,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexUv(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_UV, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_UV,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -271,7 +276,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexUv2(idx: Long, uv2: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to uv2)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_UV2, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_UV2, NIL.ordinal)
   }
 
   /**
@@ -279,8 +284,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexUv2(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_UV2,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_UV2,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -289,7 +294,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexColor(idx: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -297,8 +303,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -307,7 +313,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexBones(idx: Long, bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(LONG to idx, PACKED_INT_32_ARRAY to bones)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_BONES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_BONES,
+        NIL.ordinal)
   }
 
   /**
@@ -315,8 +322,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexBones(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_BONES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_BONES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -325,8 +332,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexWeights(idx: Long, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(LONG to idx, PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_WEIGHTS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_WEIGHTS,
+        NIL.ordinal)
   }
 
   /**
@@ -334,8 +341,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexWeights(idx: Long): PackedFloat32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_WEIGHTS,
-        PACKED_FLOAT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_WEIGHTS,
+        PACKED_FLOAT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
   }
 
@@ -344,7 +351,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setVertexMeta(idx: Long, meta: Any): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_META, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_META,
+        NIL.ordinal)
   }
 
   /**
@@ -352,7 +360,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexMeta(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_META, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_META,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -361,8 +370,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexEdges(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_EDGES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_EDGES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -371,8 +380,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getVertexFaces(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_FACES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_VERTEX_FACES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -383,7 +392,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getEdgeVertex(idx: Long, vertex: Long): Long {
     TransferContext.writeArguments(LONG to idx, LONG to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_VERTEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_VERTEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -392,8 +402,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getEdgeFaces(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_FACES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_FACES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -402,7 +412,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setEdgeMeta(idx: Long, meta: Any): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_EDGE_META, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_EDGE_META, NIL.ordinal)
   }
 
   /**
@@ -410,7 +420,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getEdgeMeta(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_META, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_EDGE_META, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -421,7 +431,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFaceVertex(idx: Long, vertex: Long): Long {
     TransferContext.writeArguments(LONG to idx, LONG to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_VERTEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_VERTEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -432,7 +443,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFaceEdge(idx: Long, edge: Long): Long {
     TransferContext.writeArguments(LONG to idx, LONG to edge)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_EDGE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_EDGE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -441,7 +452,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setFaceMeta(idx: Long, meta: Any): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_FACE_META, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_FACE_META, NIL.ordinal)
   }
 
   /**
@@ -449,7 +460,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFaceMeta(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_META, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_META, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -458,8 +469,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getFaceNormal(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_FACE_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -468,7 +479,7 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_MATERIAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_MATERIAL, NIL.ordinal)
   }
 
   /**
@@ -476,7 +487,8 @@ public open class MeshDataTool : RefCounted() {
    */
   public fun getMaterial(): Material? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_MATERIAL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_GET_MATERIAL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 

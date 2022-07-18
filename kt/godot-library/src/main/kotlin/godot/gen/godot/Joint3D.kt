@@ -34,12 +34,12 @@ public open class Joint3D internal constructor() : Node3D() {
   public var nodes_nodeA: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL.ordinal)
     }
 
   /**
@@ -48,12 +48,12 @@ public open class Joint3D internal constructor() : Node3D() {
   public var nodes_nodeB: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL.ordinal)
     }
 
   /**
@@ -62,12 +62,14 @@ public open class Joint3D internal constructor() : Node3D() {
   public var solver_priority: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_SOLVER_PRIORITY, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_SOLVER_PRIORITY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY,
+          NIL.ordinal)
     }
 
   /**
@@ -76,14 +78,14 @@ public open class Joint3D internal constructor() : Node3D() {
   public var collision_excludeNodes: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_EXCLUDE_NODES_FROM_COLLISION, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_EXCLUDE_NODES_FROM_COLLISION, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -37,12 +37,12 @@ public open class Translation : Resource() {
   public var locale: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_LOCALE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_LOCALE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_SET_LOCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_SET_LOCALE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -79,7 +79,7 @@ public open class Translation : Resource() {
     context: StringName = StringName("")
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_MESSAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_MESSAGE, NIL.ordinal)
   }
 
   /**
@@ -93,7 +93,8 @@ public open class Translation : Resource() {
     context: StringName = StringName("")
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_PLURAL_MESSAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_PLURAL_MESSAGE,
+        NIL.ordinal)
   }
 
   /**
@@ -101,8 +102,8 @@ public open class Translation : Resource() {
    */
   public fun getMessage(srcMessage: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -118,8 +119,8 @@ public open class Translation : Resource() {
     context: StringName = StringName("")
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_PLURAL_MESSAGE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_PLURAL_MESSAGE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -128,7 +129,7 @@ public open class Translation : Resource() {
    */
   public fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL.ordinal)
   }
 
   /**
@@ -136,8 +137,8 @@ public open class Translation : Resource() {
    */
   public fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -146,7 +147,8 @@ public open class Translation : Resource() {
    */
   public fun getMessageCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

@@ -40,7 +40,7 @@ public open class PropertyTweener : Tweener() {
    */
   public fun from(`value`: Any): PropertyTweener? {
     TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_FROM, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_FROM, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 
@@ -54,8 +54,8 @@ public open class PropertyTweener : Tweener() {
    */
   public fun fromCurrent(): PropertyTweener? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_FROM_CURRENT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_FROM_CURRENT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 
@@ -69,7 +69,8 @@ public open class PropertyTweener : Tweener() {
    */
   public fun asRelative(): PropertyTweener? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_AS_RELATIVE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_AS_RELATIVE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 
@@ -78,7 +79,8 @@ public open class PropertyTweener : Tweener() {
    */
   public fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
     TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_TRANS, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_TRANS,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 
@@ -87,7 +89,7 @@ public open class PropertyTweener : Tweener() {
    */
   public fun setEase(ease: Tween.EaseType): PropertyTweener? {
     TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_EASE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_EASE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 
@@ -96,7 +98,8 @@ public open class PropertyTweener : Tweener() {
    */
   public fun setDelay(delay: Double): PropertyTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_DELAY, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROPERTYTWEENER_SET_DELAY,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
   }
 

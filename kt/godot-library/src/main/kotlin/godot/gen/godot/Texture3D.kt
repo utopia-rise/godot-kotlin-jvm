@@ -78,7 +78,7 @@ public open class Texture3D : Texture() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_FORMAT, LONG.ordinal)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -87,7 +87,7 @@ public open class Texture3D : Texture() {
    */
   public fun getWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -96,7 +96,7 @@ public open class Texture3D : Texture() {
    */
   public fun getHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_HEIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_HEIGHT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -105,7 +105,7 @@ public open class Texture3D : Texture() {
    */
   public fun getDepth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DEPTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DEPTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -114,7 +114,7 @@ public open class Texture3D : Texture() {
    */
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_HAS_MIPMAPS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_HAS_MIPMAPS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -123,7 +123,7 @@ public open class Texture3D : Texture() {
    */
   public fun getData(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

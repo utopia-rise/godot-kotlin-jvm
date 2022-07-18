@@ -310,7 +310,7 @@ public open class DTLSServer : RefCounted() {
     chain: X509Certificate? = null
   ): GodotError {
     TransferContext.writeArguments(OBJECT to key, OBJECT to certificate, OBJECT to chain)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -321,7 +321,8 @@ public open class DTLSServer : RefCounted() {
    */
   public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?
   }
 

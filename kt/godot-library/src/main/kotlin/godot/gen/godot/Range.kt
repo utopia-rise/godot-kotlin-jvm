@@ -23,7 +23,7 @@ import kotlin.Unit
 /**
  * Abstract base class for range-based controls.
  *
- * Range is a base class for [godot.Control] nodes that change a floating-point *value* between a *minimum* and a *maximum*, using *step* and *page*, for example a [godot.ScrollBar].
+ * Range is a base class for [godot.Control] nodes that change a floating-point [value] between a [minValue] and [maxValue], using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher level nodes using Range.
  */
 @GodotBaseType
 public open class Range : Control() {
@@ -45,12 +45,12 @@ public open class Range : Control() {
   public var minValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN, NIL.ordinal)
     }
 
   /**
@@ -59,12 +59,12 @@ public open class Range : Control() {
   public var maxValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX, NIL.ordinal)
     }
 
   /**
@@ -73,12 +73,12 @@ public open class Range : Control() {
   public var step: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_STEP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_STEP, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_STEP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_STEP, NIL.ordinal)
     }
 
   /**
@@ -87,12 +87,12 @@ public open class Range : Control() {
   public var page: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_PAGE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_PAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_PAGE, NIL.ordinal)
     }
 
   /**
@@ -101,12 +101,12 @@ public open class Range : Control() {
   public var `value`: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_VALUE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_VALUE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_VALUE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_VALUE, NIL.ordinal)
     }
 
   /**
@@ -115,12 +115,12 @@ public open class Range : Control() {
   public var ratio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_AS_RATIO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_AS_RATIO, NIL.ordinal)
     }
 
   /**
@@ -129,12 +129,12 @@ public open class Range : Control() {
   public var expEdit: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_RATIO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_RATIO, NIL.ordinal)
     }
 
   /**
@@ -143,13 +143,14 @@ public open class Range : Control() {
   public var rounded: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_USE_ROUNDED_VALUES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_USE_ROUNDED_VALUES,
+          NIL.ordinal)
     }
 
   /**
@@ -158,12 +159,12 @@ public open class Range : Control() {
   public var allowGreater: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_GREATER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_GREATER, NIL.ordinal)
     }
 
   /**
@@ -172,12 +173,12 @@ public open class Range : Control() {
   public var allowLesser: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -195,7 +196,7 @@ public open class Range : Control() {
    */
   public fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SHARE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SHARE, NIL.ordinal)
   }
 
   /**
@@ -203,7 +204,7 @@ public open class Range : Control() {
    */
   public fun unshare(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_UNSHARE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_UNSHARE, NIL.ordinal)
   }
 
   public companion object

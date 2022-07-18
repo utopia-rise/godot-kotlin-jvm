@@ -18,6 +18,12 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             (void*) TransferContext::icall
     };
 
+    jni::JNativeMethod icall_static_method{
+        "icallStatic",
+        "(II)V",
+        (void*) TransferContext::icall_static
+    };
+
     jni::JNativeMethod invoke_ctor_method{
             "invokeConstructor",
             "(I)V",
@@ -45,6 +51,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
+    methods.push_back(icall_static_method);
     methods.push_back(invoke_ctor_method);
     methods.push_back(get_singleton_method);
     methods.push_back(set_script_method);
@@ -115,51 +122,17 @@ void TransferContext::read_args(jni::Env& p_env, Variant* args) {
     buffer->rewind();
 }
 
-
 void TransferContext::icall(
         JNIEnv* rawEnv,
         jobject instance,
         jlong j_ptr,
         jint p_method_index,
         jint expectedReturnType) {
-    if (unlikely(!icall_args_init)) {
-        for (int i = 0; i < MAX_ARGS_SIZE; i++) {
-            variant_args_ptr[i] = &variant_args[i];
-        }
-        icall_args_init = true;
-    }
+    _icall<false>(rawEnv, instance, j_ptr, p_method_index, expectedReturnType);
+}
 
-    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
-    jni::Env env{rawEnv};
-
-    SharedBuffer* buffer{transfer_context->get_buffer(env)};
-    uint32_t args_size{read_args_size(env, buffer)};
-
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > MAX_ARGS_SIZE,
-                       vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE));
-#endif
-
-    read_args_to_array(buffer, variant_args, args_size);
-
-    auto* ptr{reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
-
-    int method_index{static_cast<int>(p_method_index)};
-    MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
-
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
-#endif
-
-    Callable::CallError r_error{Callable::CallError::CALL_OK};
-    const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
-
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK,
-                       vformat("Call to method with id %s failed.", method_index));
-#endif
-
-    write_return_value(buffer, ret_value);
+void TransferContext::icall_static(JNIEnv* rawEnv, jobject instance, jint p_method_index, jint expectedReturnType) {
+    _icall<true>(rawEnv, instance, 0, p_method_index, expectedReturnType);
 }
 
 void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
@@ -222,4 +195,52 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
     write_return_value(get_buffer(p_env), variant);
+}
+
+template<bool is_static>
+void
+TransferContext::_icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
+    if (unlikely(!icall_args_init)) {
+        for (int i = 0; i < MAX_ARGS_SIZE; i++) {
+            variant_args_ptr[i] = &variant_args[i];
+        }
+        icall_args_init = true;
+    }
+
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    jni::Env env{rawEnv};
+
+    SharedBuffer* buffer{transfer_context->get_buffer(env)};
+    uint32_t args_size{read_args_size(env, buffer)};
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(args_size > MAX_ARGS_SIZE,
+                       vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE));
+#endif
+
+    read_args_to_array(buffer, variant_args, args_size);
+
+    Object* ptr{nullptr};
+    if (!is_static) {
+        ptr = reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr));
+    }
+
+    int method_index{static_cast<int>(p_method_index)};
+    MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
+#endif
+
+    Callable::CallError r_error{Callable::CallError::CALL_OK};
+
+    //TODO/4.0: Investigate ptr_call
+    const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK,
+                       vformat("Call to method with id %s failed.", method_index));
+#endif
+
+    write_return_value(buffer, ret_value);
 }

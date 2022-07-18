@@ -35,8 +35,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setInputs(inputs: String): Unit {
     TransferContext.writeArguments(STRING to inputs)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUTS,
+        NIL.ordinal)
   }
 
   /**
@@ -44,8 +44,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getInputs(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUTS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUTS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -54,8 +54,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setOutputs(outputs: String): Unit {
     TransferContext.writeArguments(STRING to outputs)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUTS,
+        NIL.ordinal)
   }
 
   /**
@@ -63,8 +63,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getOutputs(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUTS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUTS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -73,8 +73,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_IS_VALID_PORT_NAME, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_IS_VALID_PORT_NAME, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -87,8 +87,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     name: String
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_INPUT_PORT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_INPUT_PORT,
+        NIL.ordinal)
   }
 
   /**
@@ -96,8 +96,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun removeInputPort(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_INPUT_PORT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_INPUT_PORT, NIL.ordinal)
   }
 
   /**
@@ -105,8 +105,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getInputPortCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUT_PORT_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_INPUT_PORT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -115,8 +115,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun hasInputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_INPUT_PORT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_INPUT_PORT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -125,8 +125,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun clearInputPorts(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_INPUT_PORTS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_INPUT_PORTS, NIL.ordinal)
   }
 
   /**
@@ -138,8 +138,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     name: String
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_OUTPUT_PORT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_OUTPUT_PORT, NIL.ordinal)
   }
 
   /**
@@ -147,8 +147,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun removeOutputPort(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_OUTPUT_PORT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_OUTPUT_PORT, NIL.ordinal)
   }
 
   /**
@@ -156,8 +156,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getOutputPortCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUT_PORT_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_OUTPUT_PORT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -166,8 +166,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun hasOutputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_OUTPUT_PORT, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_HAS_OUTPUT_PORT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -176,8 +176,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun clearOutputPorts(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_OUTPUT_PORTS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_OUTPUT_PORTS, NIL.ordinal)
   }
 
   /**
@@ -185,8 +185,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setInputPortName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_NAME, NIL.ordinal)
   }
 
   /**
@@ -194,8 +194,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setInputPortType(id: Long, type: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_TYPE, NIL.ordinal)
   }
 
   /**
@@ -203,8 +203,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setOutputPortName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_NAME, NIL.ordinal)
   }
 
   /**
@@ -212,8 +212,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun setOutputPortType(id: Long, type: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_TYPE, NIL.ordinal)
   }
 
   /**
@@ -221,8 +221,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getFreeInputPortId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_INPUT_PORT_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_INPUT_PORT_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -231,8 +231,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    */
   public fun getFreeOutputPortId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_OUTPUT_PORT_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_GET_FREE_OUTPUT_PORT_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

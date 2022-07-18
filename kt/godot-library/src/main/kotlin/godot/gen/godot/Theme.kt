@@ -51,13 +51,14 @@ public open class Theme : Resource() {
   public var defaultBaseScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_BASE_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_BASE_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_BASE_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_BASE_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -68,12 +69,12 @@ public open class Theme : Resource() {
   public var defaultFont: Font?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Font?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT, NIL.ordinal)
     }
 
   /**
@@ -84,12 +85,14 @@ public open class Theme : Resource() {
   public var defaultFontSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_DEFAULT_FONT_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -105,7 +108,7 @@ public open class Theme : Resource() {
     texture: Texture2D
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL.ordinal)
   }
 
   /**
@@ -115,7 +118,7 @@ public open class Theme : Resource() {
    */
   public fun getIcon(name: StringName, themeType: StringName): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -126,7 +129,7 @@ public open class Theme : Resource() {
    */
   public fun hasIcon(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_ICON, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_ICON, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -141,7 +144,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_ICON, NIL.ordinal)
   }
 
   /**
@@ -151,7 +154,7 @@ public open class Theme : Resource() {
    */
   public fun clearIcon(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_ICON, NIL.ordinal)
   }
 
   /**
@@ -159,8 +162,8 @@ public open class Theme : Resource() {
    */
   public fun getIconList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -169,8 +172,8 @@ public open class Theme : Resource() {
    */
   public fun getIconTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -183,7 +186,7 @@ public open class Theme : Resource() {
     texture: StyleBox
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL.ordinal)
   }
 
   /**
@@ -193,7 +196,7 @@ public open class Theme : Resource() {
    */
   public fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
   }
 
@@ -204,7 +207,7 @@ public open class Theme : Resource() {
    */
   public fun hasStylebox(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_STYLEBOX, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_STYLEBOX, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -219,7 +222,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_STYLEBOX, NIL.ordinal)
   }
 
   /**
@@ -229,7 +232,7 @@ public open class Theme : Resource() {
    */
   public fun clearStylebox(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_STYLEBOX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_STYLEBOX, NIL.ordinal)
   }
 
   /**
@@ -237,8 +240,8 @@ public open class Theme : Resource() {
    */
   public fun getStyleboxList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -247,8 +250,8 @@ public open class Theme : Resource() {
    */
   public fun getStyleboxTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -261,7 +264,7 @@ public open class Theme : Resource() {
     font: Font
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to font)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL.ordinal)
   }
 
   /**
@@ -273,7 +276,7 @@ public open class Theme : Resource() {
    */
   public fun getFont(name: StringName, themeType: StringName): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
 
@@ -284,7 +287,7 @@ public open class Theme : Resource() {
    */
   public fun hasFont(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -299,7 +302,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT, NIL.ordinal)
   }
 
   /**
@@ -309,7 +312,7 @@ public open class Theme : Resource() {
    */
   public fun clearFont(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT, NIL.ordinal)
   }
 
   /**
@@ -317,8 +320,8 @@ public open class Theme : Resource() {
    */
   public fun getFontList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -327,13 +330,15 @@ public open class Theme : Resource() {
    */
   public fun getFontTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
   /**
-   * Creates or changes the value of the font size property defined by `name` and `theme_type`. Use [clearFontSize] to remove the property.
+   * Renames the font size property defined by `old_name` and `theme_type` to `name`, if it exists.
+   *
+   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
    */
   public fun setFontSize(
     name: StringName,
@@ -341,7 +346,7 @@ public open class Theme : Resource() {
     fontSize: Long
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to fontSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT_SIZE, NIL.ordinal)
   }
 
   /**
@@ -353,8 +358,19 @@ public open class Theme : Resource() {
    */
   public fun getFontSize(name: StringName, themeType: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if [defaultFontSize] has a valid value.
+   *
+   * Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
+   */
+  public fun hasFontSize(name: StringName, themeType: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT_SIZE, BOOL.ordinal)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -362,24 +378,13 @@ public open class Theme : Resource() {
    *
    * Returns `false` if neither exist. Use [setFontSize] to define the property.
    */
-  public fun hasFontSize(name: StringName, themeType: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT_SIZE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Renames the font size property defined by `old_name` and `theme_type` to `name`, if it exists.
-   *
-   * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
-   */
   public fun renameFontSize(
     oldName: StringName,
     name: StringName,
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_FONT_SIZE, NIL.ordinal)
   }
 
   /**
@@ -389,7 +394,7 @@ public open class Theme : Resource() {
    */
   public fun clearFontSize(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT_SIZE, NIL.ordinal)
   }
 
   /**
@@ -397,8 +402,8 @@ public open class Theme : Resource() {
    */
   public fun getFontSizeList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -407,8 +412,8 @@ public open class Theme : Resource() {
    */
   public fun getFontSizeTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_SIZE_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -421,7 +426,7 @@ public open class Theme : Resource() {
     color: Color
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL.ordinal)
   }
 
   /**
@@ -431,7 +436,7 @@ public open class Theme : Resource() {
    */
   public fun getColor(name: StringName, themeType: StringName): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -442,7 +447,7 @@ public open class Theme : Resource() {
    */
   public fun hasColor(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_COLOR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_COLOR, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -457,7 +462,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_COLOR, NIL.ordinal)
   }
 
   /**
@@ -467,7 +472,7 @@ public open class Theme : Resource() {
    */
   public fun clearColor(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_COLOR, NIL.ordinal)
   }
 
   /**
@@ -475,8 +480,8 @@ public open class Theme : Resource() {
    */
   public fun getColorList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -485,8 +490,8 @@ public open class Theme : Resource() {
    */
   public fun getColorTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -499,7 +504,7 @@ public open class Theme : Resource() {
     constant: Long
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, LONG to constant)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL.ordinal)
   }
 
   /**
@@ -509,7 +514,7 @@ public open class Theme : Resource() {
    */
   public fun getConstant(name: StringName, themeType: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -520,7 +525,7 @@ public open class Theme : Resource() {
    */
   public fun hasConstant(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_CONSTANT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_CONSTANT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -535,7 +540,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_CONSTANT, NIL.ordinal)
   }
 
   /**
@@ -545,7 +550,7 @@ public open class Theme : Resource() {
    */
   public fun clearConstant(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_CONSTANT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_CONSTANT, NIL.ordinal)
   }
 
   /**
@@ -553,8 +558,8 @@ public open class Theme : Resource() {
    */
   public fun getConstantList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -563,8 +568,8 @@ public open class Theme : Resource() {
    */
   public fun getConstantTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -575,7 +580,8 @@ public open class Theme : Resource() {
    */
   public fun hasDefaultBaseScale(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_BASE_SCALE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_BASE_SCALE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -586,7 +592,7 @@ public open class Theme : Resource() {
    */
   public fun hasDefaultFont(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -597,7 +603,8 @@ public open class Theme : Resource() {
    */
   public fun hasDefaultFontSize(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT_SIZE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_DEFAULT_FONT_SIZE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -615,7 +622,7 @@ public open class Theme : Resource() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_THEME_ITEM, NIL.ordinal)
   }
 
   /**
@@ -631,7 +638,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Any? {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -648,7 +655,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Boolean {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_THEME_ITEM, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_THEME_ITEM, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -666,7 +673,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_THEME_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_RENAME_THEME_ITEM, NIL.ordinal)
   }
 
   /**
@@ -682,7 +689,7 @@ public open class Theme : Resource() {
     themeType: StringName
   ): Unit {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_THEME_ITEM, NIL.ordinal)
   }
 
   /**
@@ -692,8 +699,8 @@ public open class Theme : Resource() {
    */
   public fun getThemeItemList(dataType: Theme.DataType, themeType: String): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -704,8 +711,8 @@ public open class Theme : Resource() {
    */
   public fun getThemeItemTypeList(dataType: Theme.DataType): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_THEME_ITEM_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -720,7 +727,7 @@ public open class Theme : Resource() {
    */
   public fun setTypeVariation(themeType: StringName, baseType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_TYPE_VARIATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_TYPE_VARIATION, NIL.ordinal)
   }
 
   /**
@@ -728,7 +735,7 @@ public open class Theme : Resource() {
    */
   public fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_IS_TYPE_VARIATION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_IS_TYPE_VARIATION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -737,7 +744,7 @@ public open class Theme : Resource() {
    */
   public fun clearTypeVariation(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_TYPE_VARIATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_TYPE_VARIATION, NIL.ordinal)
   }
 
   /**
@@ -745,8 +752,8 @@ public open class Theme : Resource() {
    */
   public fun getTypeVariationBase(themeType: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_BASE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_BASE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -755,8 +762,8 @@ public open class Theme : Resource() {
    */
   public fun getTypeVariationList(baseType: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to baseType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_VARIATION_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -767,7 +774,7 @@ public open class Theme : Resource() {
    */
   public fun addType(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_ADD_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_ADD_TYPE, NIL.ordinal)
   }
 
   /**
@@ -775,7 +782,7 @@ public open class Theme : Resource() {
    */
   public fun removeType(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_REMOVE_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_REMOVE_TYPE, NIL.ordinal)
   }
 
   /**
@@ -783,8 +790,8 @@ public open class Theme : Resource() {
    */
   public fun getTypeList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -795,7 +802,7 @@ public open class Theme : Resource() {
    */
   public fun mergeWith(other: Theme): Unit {
     TransferContext.writeArguments(OBJECT to other)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_MERGE_WITH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_MERGE_WITH, NIL.ordinal)
   }
 
   /**
@@ -803,7 +810,7 @@ public open class Theme : Resource() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR, NIL.ordinal)
   }
 
   public enum class DataType(

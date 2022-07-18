@@ -29,14 +29,14 @@ public open class RDSamplerState : RefCounted() {
   public var magFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAG_FILTER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAG_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MAG_FILTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MAG_FILTER,
+          NIL.ordinal)
     }
 
   /**
@@ -45,14 +45,14 @@ public open class RDSamplerState : RefCounted() {
   public var minFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_FILTER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIN_FILTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIN_FILTER,
+          NIL.ordinal)
     }
 
   /**
@@ -61,14 +61,14 @@ public open class RDSamplerState : RefCounted() {
   public var mipFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIP_FILTER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIP_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIP_FILTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIP_FILTER,
+          NIL.ordinal)
     }
 
   /**
@@ -77,12 +77,14 @@ public open class RDSamplerState : RefCounted() {
   public var repeatU: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_U, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_U,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_U, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_U,
+          NIL.ordinal)
     }
 
   /**
@@ -91,12 +93,14 @@ public open class RDSamplerState : RefCounted() {
   public var repeatV: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_V, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_V,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_V, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_V,
+          NIL.ordinal)
     }
 
   /**
@@ -105,12 +109,14 @@ public open class RDSamplerState : RefCounted() {
   public var repeatW: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_W, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_REPEAT_W,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_W, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_REPEAT_W,
+          NIL.ordinal)
     }
 
   /**
@@ -119,13 +125,14 @@ public open class RDSamplerState : RefCounted() {
   public var lodBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_LOD_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_LOD_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_LOD_BIAS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_LOD_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -134,14 +141,14 @@ public open class RDSamplerState : RefCounted() {
   public var useAnisotropy: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_USE_ANISOTROPY,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_USE_ANISOTROPY,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_USE_ANISOTROPY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_USE_ANISOTROPY,
+          NIL.ordinal)
     }
 
   /**
@@ -150,14 +157,14 @@ public open class RDSamplerState : RefCounted() {
   public var anisotropyMax: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ANISOTROPY_MAX,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ANISOTROPY_MAX,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_ANISOTROPY_MAX,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_ANISOTROPY_MAX,
+          NIL.ordinal)
     }
 
   /**
@@ -166,14 +173,14 @@ public open class RDSamplerState : RefCounted() {
   public var enableCompare: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ENABLE_COMPARE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_ENABLE_COMPARE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_ENABLE_COMPARE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_ENABLE_COMPARE,
+          NIL.ordinal)
     }
 
   /**
@@ -182,14 +189,14 @@ public open class RDSamplerState : RefCounted() {
   public var compareOp: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_COMPARE_OP,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_COMPARE_OP,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_COMPARE_OP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_COMPARE_OP,
+          NIL.ordinal)
     }
 
   /**
@@ -198,13 +205,14 @@ public open class RDSamplerState : RefCounted() {
   public var minLod: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_LOD,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MIN_LOD,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIN_LOD, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MIN_LOD,
+          NIL.ordinal)
     }
 
   /**
@@ -213,13 +221,14 @@ public open class RDSamplerState : RefCounted() {
   public var maxLod: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAX_LOD,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_MAX_LOD,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MAX_LOD, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_MAX_LOD,
+          NIL.ordinal)
     }
 
   /**
@@ -228,14 +237,14 @@ public open class RDSamplerState : RefCounted() {
   public var borderColor: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_BORDER_COLOR,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_BORDER_COLOR,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_BORDER_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_BORDER_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -244,14 +253,14 @@ public open class RDSamplerState : RefCounted() {
   public var unnormalizedUvw: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_UNNORMALIZED_UVW, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_GET_UNNORMALIZED_UVW,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_UNNORMALIZED_UVW, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_UNNORMALIZED_UVW,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

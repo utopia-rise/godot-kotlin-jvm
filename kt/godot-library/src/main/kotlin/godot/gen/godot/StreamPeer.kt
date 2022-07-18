@@ -44,13 +44,13 @@ public open class StreamPeer internal constructor() : RefCounted() {
   public var bigEndian: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_IS_BIG_ENDIAN_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_IS_BIG_ENDIAN_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_SET_BIG_ENDIAN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_SET_BIG_ENDIAN, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -62,7 +62,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putData(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DATA, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DATA, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -71,7 +71,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_PARTIAL_DATA, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_PARTIAL_DATA,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -80,7 +81,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DATA, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DATA, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -89,7 +90,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getPartialData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_PARTIAL_DATA, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_PARTIAL_DATA,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -98,8 +100,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getAvailableBytes(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_AVAILABLE_BYTES,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_AVAILABLE_BYTES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -108,7 +110,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun put8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_8, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_8, NIL.ordinal)
   }
 
   /**
@@ -116,7 +118,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putU8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U8, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U8, NIL.ordinal)
   }
 
   /**
@@ -124,7 +126,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun put16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_16, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_16, NIL.ordinal)
   }
 
   /**
@@ -132,7 +134,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putU16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U16, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U16, NIL.ordinal)
   }
 
   /**
@@ -140,7 +142,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun put32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_32, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_32, NIL.ordinal)
   }
 
   /**
@@ -148,7 +150,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putU32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U32, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U32, NIL.ordinal)
   }
 
   /**
@@ -156,7 +158,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun put64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_64, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_64, NIL.ordinal)
   }
 
   /**
@@ -164,7 +166,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putU64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U64, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_U64, NIL.ordinal)
   }
 
   /**
@@ -172,7 +174,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putFloat(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_FLOAT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_FLOAT, NIL.ordinal)
   }
 
   /**
@@ -180,7 +182,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DOUBLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_DOUBLE, NIL.ordinal)
   }
 
   /**
@@ -206,7 +208,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putString(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_STRING, NIL.ordinal)
   }
 
   /**
@@ -232,7 +234,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putUtf8String(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_UTF8_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_UTF8_STRING, NIL.ordinal)
   }
 
   /**
@@ -240,7 +242,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL.ordinal)
   }
 
   /**
@@ -248,7 +250,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun get8(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_8, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_8, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -257,7 +259,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getU8(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U8, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U8, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -266,7 +268,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun get16(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_16, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_16, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -275,7 +277,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getU16(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U16, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U16, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -284,7 +286,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun get32(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_32, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_32, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -293,7 +295,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getU32(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U32, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U32, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -302,7 +304,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun get64(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_64, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_64, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -311,7 +313,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getU64(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U64, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_U64, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -320,7 +322,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getFloat(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_FLOAT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_FLOAT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -329,7 +331,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getDouble(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DOUBLE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_DOUBLE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -338,7 +340,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getString(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -347,7 +349,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getUtf8String(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_UTF8_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_UTF8_STRING,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -358,7 +361,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    */
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_VAR, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_GET_VAR, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

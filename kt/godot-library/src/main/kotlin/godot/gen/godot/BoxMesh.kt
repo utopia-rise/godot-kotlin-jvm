@@ -33,12 +33,12 @@ public open class BoxMesh : PrimitiveMesh() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SIZE, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SIZE, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SIZE, NIL.ordinal)
     }
 
   /**
@@ -47,12 +47,14 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_WIDTH, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_WIDTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -61,13 +63,14 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideHeight: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_HEIGHT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_HEIGHT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_HEIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -76,12 +79,14 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_DEPTH, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_DEPTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_DEPTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_DEPTH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

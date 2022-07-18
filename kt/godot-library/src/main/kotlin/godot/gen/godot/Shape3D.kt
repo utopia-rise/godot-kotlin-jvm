@@ -33,14 +33,14 @@ public open class Shape3D internal constructor() : Resource() {
   public var customSolverBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_CUSTOM_SOLVER_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_CUSTOM_SOLVER_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_CUSTOM_SOLVER_BIAS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_CUSTOM_SOLVER_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -51,12 +51,12 @@ public open class Shape3D internal constructor() : Resource() {
   public var margin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_MARGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_MARGIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_MARGIN, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -68,7 +68,7 @@ public open class Shape3D internal constructor() : Resource() {
    */
   public fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_DEBUG_MESH, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_DEBUG_MESH, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
   }
 

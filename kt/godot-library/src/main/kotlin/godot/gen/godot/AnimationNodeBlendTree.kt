@@ -39,14 +39,14 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_GRAPH_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_GRAPH_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_GRAPH_OFFSET, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_GRAPH_OFFSET, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -62,8 +62,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     position: Vector2 = Vector2(0, 0)
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_ADD_NODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_ADD_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -71,8 +71,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AnimationNode?
   }
 
@@ -81,8 +81,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_REMOVE_NODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_REMOVE_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -90,8 +90,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_RENAME_NODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_RENAME_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -99,8 +99,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_HAS_NODE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_HAS_NODE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -113,8 +113,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     outputNode: StringName
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex, STRING_NAME to outputNode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -122,8 +122,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun disconnectNode(inputNode: StringName, inputIndex: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_DISCONNECT_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_DISCONNECT_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -131,8 +131,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_NODE_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_NODE_POSITION,
+        NIL.ordinal)
   }
 
   /**
@@ -140,8 +140,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 

@@ -33,13 +33,14 @@ public open class CollisionPolygon3D : Node3D() {
   public var depth: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_DEPTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_DEPTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DEPTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DEPTH,
+          NIL.ordinal)
     }
 
   /**
@@ -48,14 +49,14 @@ public open class CollisionPolygon3D : Node3D() {
   public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_IS_DISABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_IS_DISABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DISABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DISABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +67,14 @@ public open class CollisionPolygon3D : Node3D() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_POLYGON,
+          PACKED_VECTOR2_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_POLYGON,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_POLYGON,
+          NIL.ordinal)
     }
 
   /**
@@ -82,14 +83,14 @@ public open class CollisionPolygon3D : Node3D() {
   public var margin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_MARGIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_MARGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_MARGIN,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_MARGIN,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

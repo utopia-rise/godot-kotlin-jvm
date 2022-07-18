@@ -32,7 +32,7 @@ public open class PackedDataContainer : Resource() {
    */
   public fun pack(`value`: Any): GodotError {
     TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -41,7 +41,7 @@ public open class PackedDataContainer : Resource() {
    */
   public fun size(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_SIZE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

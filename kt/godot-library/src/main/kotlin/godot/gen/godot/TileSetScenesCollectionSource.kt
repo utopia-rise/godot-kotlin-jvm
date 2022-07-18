@@ -35,8 +35,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun getSceneTilesCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILES_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILES_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -45,8 +45,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun getSceneTileId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -55,8 +55,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun hasSceneTileId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_HAS_SCENE_TILE_ID, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_HAS_SCENE_TILE_ID, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -67,8 +67,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun createSceneTile(packedScene: PackedScene, idOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_CREATE_SCENE_TILE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_CREATE_SCENE_TILE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -77,8 +77,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun setSceneTileId(id: Long, newId: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to newId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_ID, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_ID, NIL.ordinal)
   }
 
   /**
@@ -86,8 +86,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun setSceneTileScene(id: Long, packedScene: PackedScene): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to packedScene)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_SCENE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_SCENE, NIL.ordinal)
   }
 
   /**
@@ -95,8 +95,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun getSceneTileScene(id: Long): PackedScene? {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_SCENE, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_SCENE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PackedScene?
   }
 
@@ -105,9 +105,9 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun setSceneTileDisplayPlaceholder(id: Long, displayPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to displayPlaceholder)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_SET_SCENE_TILE_DISPLAY_PLACEHOLDER,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -115,9 +115,9 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun getSceneTileDisplayPlaceholder(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_SCENE_TILE_DISPLAY_PLACEHOLDER,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -126,8 +126,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun removeSceneTile(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_REMOVE_SCENE_TILE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_REMOVE_SCENE_TILE, NIL.ordinal)
   }
 
   /**
@@ -135,8 +135,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   public fun getNextSceneTileId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_NEXT_SCENE_TILE_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE_GET_NEXT_SCENE_TILE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

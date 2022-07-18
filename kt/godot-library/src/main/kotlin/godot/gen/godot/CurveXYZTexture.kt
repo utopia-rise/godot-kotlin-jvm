@@ -17,12 +17,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
+ * A texture that shows 3 different curves (stored on the red, green and blue color channels).
  *
+ * Renders 3 given [godot.Curve]s provided to it, on the red, green and blue channels respectively. Compared to using separate [godot.CurveTexture]s, this further simplifies the task of drawing curves and/or saving them as image files.
+ *
+ * If you only need to store one curve within a single texture, use [godot.CurveTexture] instead. See also [godot.GradientTexture1D] and [godot.GradientTexture2D].
  */
 @GodotBaseType
 public open class CurveXYZTexture : Texture2D() {
   /**
-   *
+   * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
    */
   public var width: Long
     @JvmName("getWidth_prop")
@@ -30,52 +34,55 @@ public open class CurveXYZTexture : Texture2D() {
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_WIDTH, NIL.ordinal)
     }
 
   /**
-   *
+   * The [godot.Curve] that is rendered onto the texture's red channel.
    */
   public var curveX: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_X,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_X,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_X, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_X,
+          NIL.ordinal)
     }
 
   /**
-   *
+   * The [godot.Curve] that is rendered onto the texture's green channel.
    */
   public var curveY: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Y,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Y,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_Y, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_Y,
+          NIL.ordinal)
     }
 
   /**
-   *
+   * The [godot.Curve] that is rendered onto the texture's blue channel.
    */
   public var curveZ: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Z,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_GET_CURVE_Z,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_Z, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_Z,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

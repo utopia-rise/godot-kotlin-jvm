@@ -150,8 +150,6 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class Crypto : RefCounted() {
@@ -164,8 +162,8 @@ public open class Crypto : RefCounted() {
    */
   public fun generateRandomBytes(size: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RANDOM_BYTES,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RANDOM_BYTES,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -174,7 +172,7 @@ public open class Crypto : RefCounted() {
    */
   public fun generateRsa(size: Long): CryptoKey? {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RSA, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RSA, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as CryptoKey?
   }
 
@@ -222,8 +220,8 @@ public open class Crypto : RefCounted() {
     notAfter: String = "20340101000000"
   ): X509Certificate? {
     TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_SELF_SIGNED_CERTIFICATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_SELF_SIGNED_CERTIFICATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
   }
 
@@ -236,7 +234,7 @@ public open class Crypto : RefCounted() {
     key: CryptoKey
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_SIGN, PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_SIGN, PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -250,7 +248,7 @@ public open class Crypto : RefCounted() {
     key: CryptoKey
   ): Boolean {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_VERIFY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_VERIFY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -261,7 +259,8 @@ public open class Crypto : RefCounted() {
    */
   public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_ENCRYPT, PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_ENCRYPT,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -272,7 +271,8 @@ public open class Crypto : RefCounted() {
    */
   public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_DECRYPT, PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_DECRYPT,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -287,8 +287,8 @@ public open class Crypto : RefCounted() {
     msg: PackedByteArray
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_HMAC_DIGEST,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_HMAC_DIGEST,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -299,7 +299,8 @@ public open class Crypto : RefCounted() {
    */
   public fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray): Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_CONSTANT_TIME_COMPARE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_CONSTANT_TIME_COMPARE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

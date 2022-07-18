@@ -41,14 +41,14 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,14 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   public var tipNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TIP_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TIP_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TIP_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TIP_NODE, NIL.ordinal)
     }
 
   /**
@@ -73,14 +73,16 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   public var highQualitySolve: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_USE_HIGH_QUALITY_SOLVE, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_USE_HIGH_QUALITY_SOLVE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_USE_HIGH_QUALITY_SOLVE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_USE_HIGH_QUALITY_SOLVE,
+          NIL.ordinal)
     }
 
   /**
@@ -89,14 +91,16 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   public var ccdikDataChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_DATA_CHAIN_LENGTH, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_DATA_CHAIN_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_DATA_CHAIN_LENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_DATA_CHAIN_LENGTH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -108,8 +112,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_BONE_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_BONE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -118,8 +123,8 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointBoneName(jointIdx: Long, boneName: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to boneName)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_BONE_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_BONE_NAME, NIL.ordinal)
   }
 
   /**
@@ -127,8 +132,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_BONE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_BONE_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -137,8 +143,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointBoneIndex(jointIdx: Long, boneIndex: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_BONE_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_BONE_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -146,8 +153,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointCcdikAxis(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_CCDIK_AXIS, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_CCDIK_AXIS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -156,8 +164,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointCcdikAxis(jointIdx: Long, axis: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to axis)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CCDIK_AXIS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CCDIK_AXIS,
+        NIL.ordinal)
   }
 
   /**
@@ -165,9 +174,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointEnableJointConstraint(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_ENABLE_JOINT_CONSTRAINT,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -176,9 +185,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointEnableJointConstraint(jointIdx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_ENABLE_JOINT_CONSTRAINT,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -186,9 +195,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointConstraintAngleMin(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_ANGLE_MIN,
-        DOUBLE)
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -197,9 +206,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointConstraintAngleMin(jointIdx: Long, minAngle: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to minAngle)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_ANGLE_MIN,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -207,9 +216,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointConstraintAngleMax(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_ANGLE_MAX,
-        DOUBLE)
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -218,9 +227,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointConstraintAngleMax(jointIdx: Long, maxAngle: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to maxAngle)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_ANGLE_MAX,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -228,9 +237,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun getCcdikJointConstraintInvert(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_INVERT,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -241,8 +250,9 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
    */
   public fun setCcdikJointConstraintInvert(jointIdx: Long, invert: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to invert)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_INVERT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_INVERT,
+        NIL.ordinal)
   }
 
   public companion object

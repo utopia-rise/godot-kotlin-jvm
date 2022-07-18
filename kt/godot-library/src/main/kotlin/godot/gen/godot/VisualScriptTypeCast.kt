@@ -19,27 +19,27 @@ public open class VisualScriptTypeCast : VisualScriptNode() {
   public var baseType: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_GET_BASE_TYPE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_GET_BASE_TYPE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_SET_BASE_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_SET_BASE_TYPE,
+          NIL.ordinal)
     }
 
   public var baseScript: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_GET_BASE_SCRIPT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_GET_BASE_SCRIPT,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_SET_BASE_SCRIPT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTTYPECAST_SET_BASE_SCRIPT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

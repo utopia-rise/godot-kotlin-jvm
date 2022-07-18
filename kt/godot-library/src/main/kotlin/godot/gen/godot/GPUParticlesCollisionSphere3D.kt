@@ -15,24 +15,30 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Sphere-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
+ * Sphere-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
+ *
+ * **Note:** [godot.ParticlesMaterial.collisionEnabled] must be `true` on the [godot.GPUParticles3D]'s process material for collision to work.
+ *
+ * **Note:** Particle collision only affects [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
   /**
-   *
+   * The collision sphere's radius in 3D units.
    */
   public var radius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D_GET_RADIUS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D_GET_RADIUS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D_SET_RADIUS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D_SET_RADIUS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

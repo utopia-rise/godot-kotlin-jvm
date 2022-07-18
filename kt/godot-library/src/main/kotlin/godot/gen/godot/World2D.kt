@@ -30,7 +30,7 @@ public open class World2D : Resource() {
   public val canvas: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_CANVAS, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_CANVAS, _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -40,7 +40,7 @@ public open class World2D : Resource() {
   public val space: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_SPACE, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_SPACE, _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -50,7 +50,8 @@ public open class World2D : Resource() {
   public val navigationMap: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_NAVIGATION_MAP, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_NAVIGATION_MAP,
+          _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -60,8 +61,8 @@ public open class World2D : Resource() {
   public val directSpaceState: PhysicsDirectSpaceState2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_DIRECT_SPACE_STATE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_DIRECT_SPACE_STATE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
     }
 

@@ -38,7 +38,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PRESSED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PRESSED, NIL.ordinal)
     }
 
   /**
@@ -49,12 +49,13 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var keycode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEYCODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEYCODE, NIL.ordinal)
     }
 
   /**
@@ -65,14 +66,14 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var physicalKeycode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PHYSICAL_KEYCODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PHYSICAL_KEYCODE,
+          NIL.ordinal)
     }
 
   /**
@@ -81,12 +82,13 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var unicode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_UNICODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_UNICODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_UNICODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_UNICODE, NIL.ordinal)
     }
 
   /**
@@ -98,7 +100,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() = super.isEcho()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_ECHO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_ECHO, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -112,8 +114,8 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun getKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE_WITH_MODIFIERS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE_WITH_MODIFIERS,
+        LONG.ordinal)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -124,8 +126,8 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun getPhysicalKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG.ordinal)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

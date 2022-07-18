@@ -84,9 +84,6 @@ public open class Node : Object() {
    */
   public val renamed: Signal0 by signal()
 
-  /**
-   * Emitted when a child node exits the scene tree, either because it exited on its own or because this node exited.
-   */
   public val childExitedTree: Signal1<Node> by signal("node")
 
   /**
@@ -96,16 +93,22 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node enters the tree.
+   *
+   * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
   public val treeEntered: Signal0 by signal()
 
   /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for de-initialization (or a "destructor", if you will).
+   *
+   * This signal is emitted *before* the related [NOTIFICATION_EXIT_TREE] notification.
    */
   public val treeExiting: Signal0 by signal()
 
   /**
    * Emitted when a child node enters the scene tree, either because it entered on its own or because this node entered with it.
+   *
+   * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [treeEntered].
    */
   public val childEnteredTree: Signal1<Node> by signal("node")
 
@@ -122,12 +125,12 @@ public open class Node : Object() {
   public var name: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NAME, STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NAME, STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL.ordinal)
     }
 
   /**
@@ -136,12 +139,13 @@ public open class Node : Object() {
   public var sceneFilePath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_FILE_PATH, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_FILE_PATH,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_FILE_PATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_FILE_PATH, NIL.ordinal)
     }
 
   /**
@@ -152,12 +156,12 @@ public open class Node : Object() {
   public var owner: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_OWNER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_OWNER, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_OWNER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_OWNER, NIL.ordinal)
     }
 
   /**
@@ -166,20 +170,21 @@ public open class Node : Object() {
   public val multiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
 
   public var customMultiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER,
+          NIL.ordinal)
     }
 
   /**
@@ -188,12 +193,12 @@ public open class Node : Object() {
   public var processMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_MODE, NIL.ordinal)
     }
 
   /**
@@ -202,12 +207,13 @@ public open class Node : Object() {
   public var processPriority: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_PRIORITY, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_PRIORITY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL.ordinal)
     }
 
   /**
@@ -216,13 +222,14 @@ public open class Node : Object() {
   public var editorDescription: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_EDITOR_DESCRIPTION,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_EDITOR_DESCRIPTION,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITOR_DESCRIPTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITOR_DESCRIPTION,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -572,7 +579,7 @@ public open class Node : Object() {
    */
   public fun addSibling(sibling: Node, legibleUniqueName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sibling, BOOL to legibleUniqueName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_SIBLING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_SIBLING, NIL.ordinal)
   }
 
   /**
@@ -626,7 +633,7 @@ public open class Node : Object() {
     `internal`: Node.InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName, LONG to internal.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL.ordinal)
   }
 
   /**
@@ -636,7 +643,7 @@ public open class Node : Object() {
    */
   public fun removeChild(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_CHILD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_CHILD, NIL.ordinal)
   }
 
   /**
@@ -646,7 +653,7 @@ public open class Node : Object() {
    */
   public fun getChildCount(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -657,7 +664,7 @@ public open class Node : Object() {
    */
   public fun getChildren(includeInternal: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to includeInternal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -672,7 +679,7 @@ public open class Node : Object() {
    */
   public fun getChild(idx: Long, includeInternal: Boolean = false): Node? {
     TransferContext.writeArguments(LONG to idx, BOOL to includeInternal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -681,7 +688,7 @@ public open class Node : Object() {
    */
   public fun hasNode(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -735,7 +742,7 @@ public open class Node : Object() {
    */
   public fun getNode(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -744,7 +751,7 @@ public open class Node : Object() {
    */
   public fun getNodeOrNull(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_OR_NULL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_OR_NULL, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -753,7 +760,7 @@ public open class Node : Object() {
    */
   public fun getParent(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PARENT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PARENT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -764,7 +771,7 @@ public open class Node : Object() {
     owned: Boolean = true
   ): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to mask, STRING to type, BOOL to recursive, BOOL to owned)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_NODES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_NODES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -777,7 +784,7 @@ public open class Node : Object() {
    */
   public fun findParent(mask: String): Node? {
     TransferContext.writeArguments(STRING to mask)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_PARENT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_PARENT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -786,7 +793,7 @@ public open class Node : Object() {
    */
   public fun hasNodeAndResource(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE_AND_RESOURCE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE_AND_RESOURCE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -823,7 +830,8 @@ public open class Node : Object() {
    */
   public fun getNodeAndResource(path: NodePath): VariantArray<Any?> {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_AND_RESOURCE, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_AND_RESOURCE,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -832,7 +840,7 @@ public open class Node : Object() {
    */
   public fun isInsideTree(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_INSIDE_TREE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_INSIDE_TREE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -841,7 +849,7 @@ public open class Node : Object() {
    */
   public fun isAncestorOf(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_ANCESTOR_OF, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_ANCESTOR_OF, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -850,7 +858,7 @@ public open class Node : Object() {
    */
   public fun isGreaterThan(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_GREATER_THAN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_GREATER_THAN, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -859,7 +867,7 @@ public open class Node : Object() {
    */
   public fun getPath(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH, NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH, NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -868,7 +876,7 @@ public open class Node : Object() {
    */
   public fun getPathTo(node: Node): NodePath {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -881,7 +889,7 @@ public open class Node : Object() {
    */
   public fun addToGroup(group: StringName, persistent: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to group, BOOL to persistent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL.ordinal)
   }
 
   /**
@@ -889,7 +897,7 @@ public open class Node : Object() {
    */
   public fun removeFromGroup(group: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_FROM_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_FROM_GROUP, NIL.ordinal)
   }
 
   /**
@@ -897,7 +905,7 @@ public open class Node : Object() {
    */
   public fun isInGroup(group: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_IN_GROUP, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_IN_GROUP, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -908,7 +916,7 @@ public open class Node : Object() {
    */
   public fun moveChild(childNode: Node, toPosition: Long): Unit {
     TransferContext.writeArguments(OBJECT to childNode, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL.ordinal)
   }
 
   /**
@@ -928,7 +936,7 @@ public open class Node : Object() {
    */
   public fun getGroups(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_GROUPS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_GROUPS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -937,7 +945,7 @@ public open class Node : Object() {
    */
   public fun raise(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL.ordinal)
   }
 
   /**
@@ -945,7 +953,7 @@ public open class Node : Object() {
    */
   public fun removeAndSkip(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL.ordinal)
   }
 
   /**
@@ -955,7 +963,7 @@ public open class Node : Object() {
    */
   public fun getIndex(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -975,7 +983,7 @@ public open class Node : Object() {
    */
   public fun printTree(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE, NIL.ordinal)
   }
 
   /**
@@ -994,7 +1002,7 @@ public open class Node : Object() {
    */
   public fun printTreePretty(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE_PRETTY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE_PRETTY, NIL.ordinal)
   }
 
   /**
@@ -1002,7 +1010,7 @@ public open class Node : Object() {
    */
   public fun propagateNotification(what: Long): Unit {
     TransferContext.writeArguments(LONG to what)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_NOTIFICATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_NOTIFICATION, NIL.ordinal)
   }
 
   /**
@@ -1014,7 +1022,7 @@ public open class Node : Object() {
     parentFirst: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to args, BOOL to parentFirst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL.ordinal)
   }
 
   /**
@@ -1022,7 +1030,7 @@ public open class Node : Object() {
    */
   public fun setPhysicsProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS, NIL.ordinal)
   }
 
   /**
@@ -1030,8 +1038,8 @@ public open class Node : Object() {
    */
   public fun getPhysicsProcessDeltaTime(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_DELTA_TIME,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_DELTA_TIME,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1040,7 +1048,7 @@ public open class Node : Object() {
    */
   public fun isPhysicsProcessing(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1049,7 +1057,8 @@ public open class Node : Object() {
    */
   public fun getProcessDeltaTime(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_DELTA_TIME, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_DELTA_TIME,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -1058,7 +1067,7 @@ public open class Node : Object() {
    */
   public fun setProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS, NIL.ordinal)
   }
 
   /**
@@ -1066,7 +1075,7 @@ public open class Node : Object() {
    */
   public fun isProcessing(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1075,7 +1084,7 @@ public open class Node : Object() {
    */
   public fun setProcessInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INPUT, NIL.ordinal)
   }
 
   /**
@@ -1083,7 +1092,7 @@ public open class Node : Object() {
    */
   public fun isProcessingInput(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INPUT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INPUT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1092,8 +1101,8 @@ public open class Node : Object() {
    */
   public fun setProcessUnhandledInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_INPUT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_INPUT,
+        NIL.ordinal)
   }
 
   /**
@@ -1101,8 +1110,8 @@ public open class Node : Object() {
    */
   public fun isProcessingUnhandledInput(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_INPUT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_INPUT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1111,8 +1120,8 @@ public open class Node : Object() {
    */
   public fun setProcessUnhandledKeyInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_KEY_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_KEY_INPUT,
+        NIL.ordinal)
   }
 
   /**
@@ -1120,8 +1129,8 @@ public open class Node : Object() {
    */
   public fun isProcessingUnhandledKeyInput(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_KEY_INPUT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_KEY_INPUT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1130,13 +1139,13 @@ public open class Node : Object() {
    */
   public fun canProcess(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun printStrayNodes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL.ordinal)
   }
 
   /**
@@ -1144,7 +1153,7 @@ public open class Node : Object() {
    */
   public fun setDisplayFolded(fold: Boolean): Unit {
     TransferContext.writeArguments(BOOL to fold)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_DISPLAY_FOLDED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_DISPLAY_FOLDED, NIL.ordinal)
   }
 
   /**
@@ -1152,7 +1161,7 @@ public open class Node : Object() {
    */
   public fun isDisplayedFolded(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_DISPLAYED_FOLDED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_DISPLAYED_FOLDED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1163,7 +1172,7 @@ public open class Node : Object() {
    */
   public fun setProcessInternal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INTERNAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INTERNAL, NIL.ordinal)
   }
 
   /**
@@ -1171,7 +1180,8 @@ public open class Node : Object() {
    */
   public fun isProcessingInternal(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INTERNAL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INTERNAL,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1182,8 +1192,8 @@ public open class Node : Object() {
    */
   public fun setPhysicsProcessInternal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS_INTERNAL,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS_INTERNAL,
+        NIL.ordinal)
   }
 
   /**
@@ -1191,8 +1201,8 @@ public open class Node : Object() {
    */
   public fun isPhysicsProcessingInternal(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1201,7 +1211,7 @@ public open class Node : Object() {
    */
   public fun getTree(): SceneTree? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SceneTree?
   }
 
@@ -1214,7 +1224,7 @@ public open class Node : Object() {
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CREATE_TWEEN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CREATE_TWEEN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
   }
 
@@ -1227,7 +1237,7 @@ public open class Node : Object() {
    */
   public fun duplicate(flags: Long = 15): Node? {
     TransferContext.writeArguments(LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -1242,7 +1252,7 @@ public open class Node : Object() {
    */
   public fun replaceBy(node: Node, keepGroups: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepGroups)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL.ordinal)
   }
 
   /**
@@ -1250,8 +1260,8 @@ public open class Node : Object() {
    */
   public fun setSceneInstanceLoadPlaceholder(loadPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loadPlaceholder)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_INSTANCE_LOAD_PLACEHOLDER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_INSTANCE_LOAD_PLACEHOLDER,
+        NIL.ordinal)
   }
 
   /**
@@ -1259,8 +1269,8 @@ public open class Node : Object() {
    */
   public fun getSceneInstanceLoadPlaceholder(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_INSTANCE_LOAD_PLACEHOLDER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_INSTANCE_LOAD_PLACEHOLDER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1269,7 +1279,7 @@ public open class Node : Object() {
    */
   public fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITABLE_INSTANCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITABLE_INSTANCE, NIL.ordinal)
   }
 
   /**
@@ -1277,7 +1287,7 @@ public open class Node : Object() {
    */
   public fun isEditableInstance(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_EDITABLE_INSTANCE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_EDITABLE_INSTANCE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1286,7 +1296,7 @@ public open class Node : Object() {
    */
   public fun getViewport(): Viewport? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_VIEWPORT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_VIEWPORT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Viewport?
   }
 
@@ -1295,7 +1305,7 @@ public open class Node : Object() {
    */
   public fun queueFree(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_QUEUE_FREE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_QUEUE_FREE, NIL.ordinal)
   }
 
   /**
@@ -1303,7 +1313,7 @@ public open class Node : Object() {
    */
   public fun requestReady(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REQUEST_READY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REQUEST_READY, NIL.ordinal)
   }
 
   /**
@@ -1311,7 +1321,8 @@ public open class Node : Object() {
    */
   public fun setMultiplayerAuthority(id: Long, recursive: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to recursive)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_MULTIPLAYER_AUTHORITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_MULTIPLAYER_AUTHORITY,
+        NIL.ordinal)
   }
 
   /**
@@ -1319,8 +1330,8 @@ public open class Node : Object() {
    */
   public fun getMultiplayerAuthority(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER_AUTHORITY,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER_AUTHORITY,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -1329,12 +1340,13 @@ public open class Node : Object() {
    */
   public fun isMultiplayerAuthority(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_MULTIPLAYER_AUTHORITY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_MULTIPLAYER_AUTHORITY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Changes the RPC mode for the given `method` to the given `rpc_mode`, optionally specifying the `transfer_mode` and `channel` (on supported peers). See [enum RPCMode] and [enum TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(auth)`). By default, methods are not exposed to networking (and RPCs).
+   * Changes the RPC mode for the given `method` to the given `rpc_mode`, optionally specifying the `transfer_mode` and `channel` (on supported peers). See [enum RPCMode] and [enum TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(authority)`). By default, methods are not exposed to networking (and RPCs).
    */
   public fun rpcConfig(
     method: StringName,
@@ -1344,22 +1356,22 @@ public open class Node : Object() {
     channel: Long = 0
   ): Long {
     TransferContext.writeArguments(STRING_NAME to method, LONG to rpcMode.id, BOOL to callLocal, LONG to transferMode.id, LONG to channel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns an empty [Variant].
+   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns `null`.
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
   public fun rpc(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, NIL.ordinal)
   }
 
   /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.MultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
+   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.MultiplayerPeer.setTargetPeer]). Returns `null`.
    */
   public fun rpcId(
     peerId: Long,
@@ -1367,7 +1379,7 @@ public open class Node : Object() {
     vararg __var_args: Any?
   ): Unit {
     TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, NIL.ordinal)
   }
 
   /**
@@ -1377,8 +1389,8 @@ public open class Node : Object() {
    */
   public fun updateConfigurationWarnings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_UPDATE_CONFIGURATION_WARNINGS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_UPDATE_CONFIGURATION_WARNINGS,
+        NIL.ordinal)
   }
 
   public enum class ProcessMode(
@@ -1479,11 +1491,15 @@ public open class Node : Object() {
   public companion object {
     /**
      * Notification received when the node enters a [godot.SceneTree].
+     *
+     * This notification is emitted *before* the related [treeEntered].
      */
     public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
      * Notification received when the node is about to exit a [godot.SceneTree].
+     *
+     * This notification is emitted *after* the related [treeExiting].
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 

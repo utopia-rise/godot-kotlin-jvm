@@ -46,7 +46,7 @@ public open class TCPServer : RefCounted() {
    */
   public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -55,8 +55,8 @@ public open class TCPServer : RefCounted() {
    */
   public fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_CONNECTION_AVAILABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_CONNECTION_AVAILABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -65,7 +65,7 @@ public open class TCPServer : RefCounted() {
    */
   public fun isListening(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_LISTENING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_IS_LISTENING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -74,7 +74,7 @@ public open class TCPServer : RefCounted() {
    */
   public fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_GET_LOCAL_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_GET_LOCAL_PORT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -83,7 +83,8 @@ public open class TCPServer : RefCounted() {
    */
   public fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_TAKE_CONNECTION, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_TAKE_CONNECTION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?
   }
 
@@ -92,7 +93,7 @@ public open class TCPServer : RefCounted() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_STOP, NIL.ordinal)
   }
 
   public companion object

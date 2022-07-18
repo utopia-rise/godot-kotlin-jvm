@@ -36,8 +36,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getSubdirCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_SUBDIR_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_SUBDIR_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -46,8 +46,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getSubdir(idx: Long): EditorFileSystemDirectory? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_SUBDIR, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_SUBDIR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
   }
 
@@ -56,8 +56,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFileCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -66,8 +66,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFile(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -76,8 +76,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFilePath(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_PATH, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -86,8 +86,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFileType(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_TYPE, STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_TYPE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -96,8 +96,9 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFileScriptClassName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_SCRIPT_CLASS_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_SCRIPT_CLASS_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -106,8 +107,9 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFileScriptClassExtends(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_SCRIPT_CLASS_EXTENDS, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_SCRIPT_CLASS_EXTENDS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -116,8 +118,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getFileImportIsValid(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_IMPORT_IS_VALID, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_FILE_IMPORT_IS_VALID, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -126,8 +128,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -136,8 +138,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_PATH,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -146,8 +148,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun getParent(): EditorFileSystemDirectory? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_PARENT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_PARENT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
   }
 
@@ -156,8 +158,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun findFileIndex(name: String): Long {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_FIND_FILE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_FIND_FILE_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -166,8 +168,8 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
    */
   public fun findDirIndex(name: String): Long {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_FIND_DIR_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_FIND_DIR_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

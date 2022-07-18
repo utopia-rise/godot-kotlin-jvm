@@ -42,7 +42,7 @@ public open class RefCounted : Object() {
    */
   public fun initRef(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_INIT_REF, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_INIT_REF, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -53,7 +53,7 @@ public open class RefCounted : Object() {
    */
   public fun reference(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_REFERENCE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_REFERENCE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -64,7 +64,7 @@ public open class RefCounted : Object() {
    */
   public fun unreference(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_UNREFERENCE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REFCOUNTED_UNREFERENCE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

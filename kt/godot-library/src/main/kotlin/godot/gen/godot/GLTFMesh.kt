@@ -23,37 +23,38 @@ public open class GLTFMesh : Resource() {
   public var mesh: Object?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_MESH, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_MESH, NIL.ordinal)
     }
 
   public var blendWeights: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_BLEND_WEIGHTS,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_BLEND_WEIGHTS,
+          PACKED_FLOAT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_BLEND_WEIGHTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_BLEND_WEIGHTS,
+          NIL.ordinal)
     }
 
   public var instanceMaterials: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_INSTANCE_MATERIALS,
-          ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_GET_INSTANCE_MATERIALS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_INSTANCE_MATERIALS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_INSTANCE_MATERIALS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

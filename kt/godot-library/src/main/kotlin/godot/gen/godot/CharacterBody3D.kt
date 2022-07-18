@@ -41,14 +41,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var motionMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOTION_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOTION_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOTION_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOTION_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var upDirection: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_UP_DIRECTION,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_UP_DIRECTION,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_UP_DIRECTION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_UP_DIRECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -73,14 +73,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var slideOnCeiling: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_SLIDE_ON_CEILING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_SLIDE_ON_CEILING_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SLIDE_ON_CEILING_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SLIDE_ON_CEILING_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -89,13 +89,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var velocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_VELOCITY,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_VELOCITY,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -104,14 +105,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var maxSlides: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MAX_SLIDES,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MAX_SLIDES,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MAX_SLIDES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MAX_SLIDES,
+          NIL.ordinal)
     }
 
   /**
@@ -120,14 +121,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var wallMinSlideAngle: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_MIN_SLIDE_ANGLE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_MIN_SLIDE_ANGLE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_WALL_MIN_SLIDE_ANGLE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_WALL_MIN_SLIDE_ANGLE, NIL.ordinal)
     }
 
   /**
@@ -138,14 +139,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var floorStopOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_STOP_ON_SLOPE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_STOP_ON_SLOPE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_STOP_ON_SLOPE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_STOP_ON_SLOPE_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -156,14 +157,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var floorConstantSpeed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_CONSTANT_SPEED_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_CONSTANT_SPEED_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_CONSTANT_SPEED_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_CONSTANT_SPEED_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -172,14 +173,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var floorBlockOnWall: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_BLOCK_ON_WALL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_BLOCK_ON_WALL_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_BLOCK_ON_WALL_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_BLOCK_ON_WALL_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -188,14 +189,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var floorMaxAngle: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_MAX_ANGLE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_MAX_ANGLE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_MAX_ANGLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_MAX_ANGLE,
+          NIL.ordinal)
     }
 
   /**
@@ -206,14 +207,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var floorSnapLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_SNAP_LENGTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_SNAP_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_SNAP_LENGTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_SNAP_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -222,15 +223,16 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var movingPlatformApplyVelocityOnLeave: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE,
-          LONG)
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE,
+          NIL.ordinal)
     }
 
   /**
@@ -239,14 +241,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var movingPlatformFloorLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_FLOOR_LAYERS, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_FLOOR_LAYERS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_FLOOR_LAYERS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_FLOOR_LAYERS, NIL.ordinal)
     }
 
   /**
@@ -255,14 +257,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var movingPlatformWallLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_WALL_LAYERS, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOVING_PLATFORM_WALL_LAYERS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_WALL_LAYERS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_WALL_LAYERS, NIL.ordinal)
     }
 
   /**
@@ -277,14 +279,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SAFE_MARGIN,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SAFE_MARGIN,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -302,8 +304,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun moveAndSlide(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_MOVE_AND_SLIDE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_MOVE_AND_SLIDE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -312,7 +314,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -321,8 +324,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnFloorOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR_ONLY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_FLOOR_ONLY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -331,7 +334,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -340,8 +344,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnCeilingOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING_ONLY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_CEILING_ONLY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -350,7 +354,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnWall(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -359,8 +363,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun isOnWallOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL_ONLY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_ON_WALL_ONLY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -369,8 +373,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getFloorNormal(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -379,8 +383,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getWallNormal(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_WALL_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -389,8 +393,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getLastMotion(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_MOTION,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_MOTION,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -399,8 +403,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getPositionDelta(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_POSITION_DELTA,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_POSITION_DELTA,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -409,8 +413,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getRealVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_REAL_VELOCITY,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_REAL_VELOCITY,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -419,8 +423,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Double {
     TransferContext.writeArguments(VECTOR3 to upDirection)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_ANGLE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_ANGLE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -429,8 +433,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getPlatformVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_VELOCITY, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_PLATFORM_VELOCITY,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -439,8 +443,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getSlideCollisionCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -449,8 +453,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getSlideCollision(slideIdx: Long): KinematicCollision3D? {
     TransferContext.writeArguments(LONG to slideIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_COLLISION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
   }
 
@@ -459,8 +463,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   public fun getLastSlideCollision(): KinematicCollision3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_SLIDE_COLLISION, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_LAST_SLIDE_COLLISION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
   }
 

@@ -132,12 +132,12 @@ public open class Area3D : CollisionObject3D() {
   public var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_MONITORING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_MONITORING, NIL.ordinal)
     }
 
   /**
@@ -146,12 +146,12 @@ public open class Area3D : CollisionObject3D() {
   public var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORABLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORABLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_MONITORABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_MONITORABLE, NIL.ordinal)
     }
 
   /**
@@ -160,12 +160,12 @@ public open class Area3D : CollisionObject3D() {
   public var priority: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_PRIORITY, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_PRIORITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_PRIORITY, NIL.ordinal)
     }
 
   /**
@@ -174,14 +174,14 @@ public open class Area3D : CollisionObject3D() {
   public var gravitySpaceOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_SPACE_OVERRIDE_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -190,12 +190,14 @@ public open class Area3D : CollisionObject3D() {
   public var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_GRAVITY_A_POINT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_GRAVITY_A_POINT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_IS_POINT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_IS_POINT,
+          NIL.ordinal)
     }
 
   /**
@@ -204,14 +206,14 @@ public open class Area3D : CollisionObject3D() {
   public var gravityPointDistanceScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_DISTANCE_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_DISTANCE_SCALE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_DISTANCE_SCALE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_DISTANCE_SCALE, NIL.ordinal)
     }
 
   /**
@@ -220,14 +222,14 @@ public open class Area3D : CollisionObject3D() {
   public var gravityPointCenter: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_CENTER,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT_CENTER,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_CENTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT_CENTER,
+          NIL.ordinal)
     }
 
   /**
@@ -236,13 +238,14 @@ public open class Area3D : CollisionObject3D() {
   public var gravityDirection: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_DIRECTION,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_DIRECTION,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_DIRECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_DIRECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -251,12 +254,12 @@ public open class Area3D : CollisionObject3D() {
   public var gravity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY, NIL.ordinal)
     }
 
   /**
@@ -265,14 +268,14 @@ public open class Area3D : CollisionObject3D() {
   public var linearDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, NIL.ordinal)
     }
 
   /**
@@ -283,12 +286,12 @@ public open class Area3D : CollisionObject3D() {
   public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP, NIL.ordinal)
     }
 
   /**
@@ -297,14 +300,14 @@ public open class Area3D : CollisionObject3D() {
   public var angularDampSpaceOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, NIL.ordinal)
     }
 
   /**
@@ -315,12 +318,13 @@ public open class Area3D : CollisionObject3D() {
   public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP, NIL.ordinal)
     }
 
   /**
@@ -329,14 +333,14 @@ public open class Area3D : CollisionObject3D() {
   public var windForceMagnitude: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_FORCE_MAGNITUDE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_FORCE_MAGNITUDE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_FORCE_MAGNITUDE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_FORCE_MAGNITUDE,
+          NIL.ordinal)
     }
 
   /**
@@ -345,14 +349,14 @@ public open class Area3D : CollisionObject3D() {
   public var windAttenuationFactor: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_ATTENUATION_FACTOR, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_ATTENUATION_FACTOR,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_ATTENUATION_FACTOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_ATTENUATION_FACTOR,
+          NIL.ordinal)
     }
 
   /**
@@ -361,13 +365,14 @@ public open class Area3D : CollisionObject3D() {
   public var windSourcePath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_SOURCE_PATH,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_WIND_SOURCE_PATH,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_SOURCE_PATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_WIND_SOURCE_PATH,
+          NIL.ordinal)
     }
 
   /**
@@ -376,14 +381,14 @@ public open class Area3D : CollisionObject3D() {
   public var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_OVERRIDING_AUDIO_BUS,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_OVERRIDING_AUDIO_BUS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_OVERRIDE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_OVERRIDE,
+          NIL.ordinal)
     }
 
   /**
@@ -392,13 +397,13 @@ public open class Area3D : CollisionObject3D() {
   public var audioBusName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_AUDIO_BUS_NAME,
-          STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_AUDIO_BUS_NAME,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_NAME, NIL.ordinal)
     }
 
   /**
@@ -407,12 +412,13 @@ public open class Area3D : CollisionObject3D() {
   public var reverbBusEnable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_USING_REVERB_BUS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_USING_REVERB_BUS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_USE_REVERB_BUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_USE_REVERB_BUS, NIL.ordinal)
     }
 
   /**
@@ -421,13 +427,13 @@ public open class Area3D : CollisionObject3D() {
   public var reverbBusName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS,
-          STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS, NIL.ordinal)
     }
 
   /**
@@ -436,12 +442,13 @@ public open class Area3D : CollisionObject3D() {
   public var reverbBusAmount: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_AMOUNT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_AMOUNT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_AMOUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_AMOUNT, NIL.ordinal)
     }
 
   /**
@@ -450,13 +457,14 @@ public open class Area3D : CollisionObject3D() {
   public var reverbBusUniformity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_UNIFORMITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_UNIFORMITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_UNIFORMITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_UNIFORMITY,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -470,8 +478,8 @@ public open class Area3D : CollisionObject3D() {
    */
   public fun getOverlappingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_BODIES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_BODIES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -482,7 +490,8 @@ public open class Area3D : CollisionObject3D() {
    */
   public fun getOverlappingAreas(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_AREAS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_OVERLAPPING_AREAS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -495,7 +504,7 @@ public open class Area3D : CollisionObject3D() {
    */
   public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_BODY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_BODY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -506,7 +515,7 @@ public open class Area3D : CollisionObject3D() {
    */
   public fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_AREA, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_OVERLAPS_AREA, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

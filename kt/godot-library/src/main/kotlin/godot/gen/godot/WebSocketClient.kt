@@ -43,27 +43,27 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
   public var verifySsl: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_IS_VERIFY_SSL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_IS_VERIFY_SSL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL_ENABLED,
+          NIL.ordinal)
     }
 
   public var trustedSslCertificate: X509Certificate?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_TRUSTED_SSL_CERTIFICATE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_TRUSTED_SSL_CERTIFICATE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_TRUSTED_SSL_CERTIFICATE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_TRUSTED_SSL_CERTIFICATE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -77,28 +77,28 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
     customHeaders: PackedStringArray = PackedStringArray()
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to protocols, BOOL to gdMpApi, PACKED_STRING_ARRAY to customHeaders)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_CONNECT_TO_URL,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_CONNECT_TO_URL,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun disconnectFromHost(code: Long = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code, STRING to reason)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_DISCONNECT_FROM_HOST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_DISCONNECT_FROM_HOST,
+        NIL.ordinal)
   }
 
   public fun getConnectedHost(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_HOST,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_HOST,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun getConnectedPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_PORT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

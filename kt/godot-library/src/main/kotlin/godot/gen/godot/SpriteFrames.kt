@@ -41,7 +41,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun addAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_ANIMATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_ANIMATION, NIL.ordinal)
   }
 
   /**
@@ -49,7 +49,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_HAS_ANIMATION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_HAS_ANIMATION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -58,7 +58,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun removeAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_ANIMATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_ANIMATION,
+        NIL.ordinal)
   }
 
   /**
@@ -66,7 +67,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun renameAnimation(anim: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_RENAME_ANIMATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_RENAME_ANIMATION,
+        NIL.ordinal)
   }
 
   /**
@@ -74,8 +76,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun getAnimationNames(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_NAMES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_NAMES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -84,8 +86,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun setAnimationSpeed(anim: StringName, speed: Double): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, DOUBLE to speed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_SPEED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_SPEED,
+        NIL.ordinal)
   }
 
   /**
@@ -93,8 +95,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun getAnimationSpeed(anim: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_SPEED,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_SPEED,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -103,8 +105,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to loop)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_LOOP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_ANIMATION_LOOP,
+        NIL.ordinal)
   }
 
   /**
@@ -112,8 +114,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun getAnimationLoop(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_LOOP,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_ANIMATION_LOOP,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -126,7 +128,7 @@ public open class SpriteFrames : Resource() {
     atPosition: Long = -1
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, OBJECT to frame, LONG to atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_FRAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_ADD_FRAME, NIL.ordinal)
   }
 
   /**
@@ -134,7 +136,8 @@ public open class SpriteFrames : Resource() {
    */
   public fun getFrameCount(anim: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -143,7 +146,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun getFrame(anim: StringName, idx: Long): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_GET_FRAME, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -156,7 +159,7 @@ public open class SpriteFrames : Resource() {
     txt: Texture2D
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx, OBJECT to txt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL.ordinal)
   }
 
   /**
@@ -164,7 +167,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun removeFrame(anim: StringName, idx: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_REMOVE_FRAME, NIL.ordinal)
   }
 
   /**
@@ -172,7 +175,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun clear(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -180,7 +183,7 @@ public open class SpriteFrames : Resource() {
    */
   public fun clearAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR_ALL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_CLEAR_ALL, NIL.ordinal)
   }
 
   public companion object

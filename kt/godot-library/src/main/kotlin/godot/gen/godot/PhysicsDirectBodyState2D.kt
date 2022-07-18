@@ -41,8 +41,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val step: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_STEP,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_STEP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -52,8 +52,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val inverseMass: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_INVERSE_MASS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_INVERSE_MASS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -63,8 +63,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val inverseInertia: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_INVERSE_INERTIA, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_INVERSE_INERTIA, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -74,8 +74,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val totalAngularDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_ANGULAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_ANGULAR_DAMP, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -85,8 +85,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val totalLinearDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_LINEAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_LINEAR_DAMP, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -96,8 +96,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val totalGravity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_GRAVITY, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TOTAL_GRAVITY, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
@@ -107,8 +107,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CENTER_OF_MASS, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CENTER_OF_MASS, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
@@ -118,8 +118,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public val centerOfMassLocal: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CENTER_OF_MASS_LOCAL, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CENTER_OF_MASS_LOCAL,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
@@ -129,14 +130,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public var angularVelocity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_ANGULAR_VELOCITY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_ANGULAR_VELOCITY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_ANGULAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_ANGULAR_VELOCITY, NIL.ordinal)
     }
 
   /**
@@ -145,14 +146,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_LINEAR_VELOCITY, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_LINEAR_VELOCITY, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_LINEAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_LINEAR_VELOCITY, NIL.ordinal)
     }
 
   /**
@@ -161,14 +162,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_IS_SLEEPING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_IS_SLEEPING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_SLEEP_STATE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_SLEEP_STATE, NIL.ordinal)
     }
 
   /**
@@ -177,14 +178,14 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TRANSFORM, TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_TRANSFORM,
+          TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_TRANSFORM,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -196,8 +197,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPosition)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_VELOCITY_AT_LOCAL_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_VELOCITY_AT_LOCAL_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -210,8 +212,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyCentralImpulse(impulse: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_CENTRAL_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_CENTRAL_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -221,8 +223,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyTorqueImpulse(impulse: Double): Unit {
     TransferContext.writeArguments(DOUBLE to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_TORQUE_IMPULSE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_TORQUE_IMPULSE, NIL.ordinal)
   }
 
   /**
@@ -234,8 +236,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_IMPULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -245,8 +247,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_CENTRAL_FORCE, NIL.ordinal)
   }
 
   /**
@@ -256,8 +258,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -265,8 +267,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun applyTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -276,8 +278,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun addConstantCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_CENTRAL_FORCE, NIL.ordinal)
   }
 
   /**
@@ -287,8 +289,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_FORCE, NIL.ordinal)
   }
 
   /**
@@ -296,8 +298,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun addConstantTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_TORQUE, NIL.ordinal)
   }
 
   /**
@@ -307,8 +309,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun setConstantForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_CONSTANT_FORCE, NIL.ordinal)
   }
 
   /**
@@ -318,8 +320,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getConstantForce(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONSTANT_FORCE, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONSTANT_FORCE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -330,8 +332,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun setConstantTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_CONSTANT_TORQUE, NIL.ordinal)
   }
 
   /**
@@ -341,8 +343,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getConstantTorque(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONSTANT_TORQUE, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONSTANT_TORQUE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -353,8 +355,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -363,8 +365,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactLocalPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -373,8 +376,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactLocalNormal(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_NORMAL, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_NORMAL, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -383,8 +386,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactLocalShape(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_SHAPE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_LOCAL_SHAPE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -393,8 +396,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactCollider(contactIdx: Long): RID {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -403,8 +406,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactColliderPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -413,8 +417,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactColliderId(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -423,8 +427,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactColliderObject(contactIdx: Long): Object? {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_OBJECT, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_OBJECT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -433,8 +438,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactColliderShape(contactIdx: Long): Long {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_SHAPE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_SHAPE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -443,9 +448,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getContactColliderVelocityAtPosition(contactIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_CONTACT_COLLIDER_VELOCITY_AT_POSITION,
-        VECTOR2)
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -454,8 +459,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun integrateForces(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_INTEGRATE_FORCES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_INTEGRATE_FORCES, NIL.ordinal)
   }
 
   /**
@@ -463,8 +468,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    */
   public fun getSpaceState(): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_SPACE_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_SPACE_STATE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
   }
 

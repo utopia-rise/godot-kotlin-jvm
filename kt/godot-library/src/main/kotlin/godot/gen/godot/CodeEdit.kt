@@ -73,14 +73,14 @@ public open class CodeEdit : TextEdit() {
   public var symbolLookupOnClick: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_SYMBOL_LOOKUP_ON_CLICK_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_SYMBOL_LOOKUP_ON_CLICK_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_SYMBOL_LOOKUP_ON_CLICK_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_SYMBOL_LOOKUP_ON_CLICK_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -89,14 +89,14 @@ public open class CodeEdit : TextEdit() {
   public var lineFolding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDING_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDING_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_FOLDING_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_FOLDING_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -105,14 +105,14 @@ public open class CodeEdit : TextEdit() {
   public var lineLengthGuidelines: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_LINE_LENGTH_GUIDELINES, PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_LINE_LENGTH_GUIDELINES,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_LENGTH_GUIDELINES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_LENGTH_GUIDELINES,
+          NIL.ordinal)
     }
 
   /**
@@ -121,14 +121,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersDrawBreakpointsGutter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_BREAKPOINTS_GUTTER, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_BREAKPOINTS_GUTTER,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_BREAKPOINTS_GUTTER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_BREAKPOINTS_GUTTER,
+          NIL.ordinal)
     }
 
   /**
@@ -137,14 +137,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersDrawBookmarks: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_BOOKMARKS_GUTTER, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_BOOKMARKS_GUTTER,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_BOOKMARKS_GUTTER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_BOOKMARKS_GUTTER,
+          NIL.ordinal)
     }
 
   /**
@@ -153,14 +153,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersDrawExecutingLines: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_EXECUTING_LINES_GUTTER, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_EXECUTING_LINES_GUTTER, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_EXECUTING_LINES_GUTTER, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_EXECUTING_LINES_GUTTER, NIL.ordinal)
     }
 
   /**
@@ -169,14 +169,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersDrawLineNumbers: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAW_LINE_NUMBERS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAW_LINE_NUMBERS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_LINE_NUMBERS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_LINE_NUMBERS,
+          NIL.ordinal)
     }
 
   /**
@@ -185,14 +185,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersZeroPadLineNumbers: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_NUMBERS_ZERO_PADDED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_NUMBERS_ZERO_PADDED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_NUMBERS_ZERO_PADDED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_NUMBERS_ZERO_PADDED,
+          NIL.ordinal)
     }
 
   /**
@@ -201,14 +201,14 @@ public open class CodeEdit : TextEdit() {
   public var guttersDrawFoldGutter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_FOLD_GUTTER,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_DRAWING_FOLD_GUTTER,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_FOLD_GUTTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_DRAW_FOLD_GUTTER,
+          NIL.ordinal)
     }
 
   /**
@@ -217,14 +217,14 @@ public open class CodeEdit : TextEdit() {
   public var delimiterStrings: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_STRING_DELIMITERS,
-          PACKED_STRING_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_STRING_DELIMITERS,
+          PACKED_STRING_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_STRING_DELIMITERS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_STRING_DELIMITERS,
+          NIL.ordinal)
     }
 
   /**
@@ -233,14 +233,14 @@ public open class CodeEdit : TextEdit() {
   public var delimiterComments: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_COMMENT_DELIMITERS,
-          PACKED_STRING_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_COMMENT_DELIMITERS,
+          PACKED_STRING_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_COMMENT_DELIMITERS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_COMMENT_DELIMITERS,
+          NIL.ordinal)
     }
 
   /**
@@ -249,14 +249,14 @@ public open class CodeEdit : TextEdit() {
   public var codeCompletionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_CODE_COMPLETION_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_CODE_COMPLETION_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -265,14 +265,14 @@ public open class CodeEdit : TextEdit() {
   public var codeCompletionPrefixes: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMLETION_PREFIXES, PACKED_STRING_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMLETION_PREFIXES,
+          PACKED_STRING_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_PREFIXES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_PREFIXES,
+          NIL.ordinal)
     }
 
   /**
@@ -281,12 +281,12 @@ public open class CodeEdit : TextEdit() {
   public var indentSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_INDENT_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_INDENT_SIZE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_INDENT_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_INDENT_SIZE, NIL.ordinal)
     }
 
   /**
@@ -295,14 +295,14 @@ public open class CodeEdit : TextEdit() {
   public var indentUseSpaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_INDENT_USING_SPACES,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_INDENT_USING_SPACES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_INDENT_USING_SPACES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_INDENT_USING_SPACES,
+          NIL.ordinal)
     }
 
   /**
@@ -311,14 +311,14 @@ public open class CodeEdit : TextEdit() {
   public var indentAutomatic: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_AUTO_INDENT_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_AUTO_INDENT_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_INDENT_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_INDENT_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -327,14 +327,14 @@ public open class CodeEdit : TextEdit() {
   public var indentAutomaticPrefixes: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_INDENT_PREFIXES,
-          PACKED_STRING_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_INDENT_PREFIXES,
+          PACKED_STRING_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_INDENT_PREFIXES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_INDENT_PREFIXES,
+          NIL.ordinal)
     }
 
   /**
@@ -343,14 +343,14 @@ public open class CodeEdit : TextEdit() {
   public var autoBraceCompletionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_AUTO_BRACE_COMPLETION_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_AUTO_BRACE_COMPLETION_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -359,14 +359,14 @@ public open class CodeEdit : TextEdit() {
   public var autoBraceCompletionHighlightMatching: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_HIGHLIGHT_MATCHING_BRACES_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_HIGHLIGHT_MATCHING_BRACES_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_HIGHLIGHT_MATCHING_BRACES_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_HIGHLIGHT_MATCHING_BRACES_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -375,14 +375,14 @@ public open class CodeEdit : TextEdit() {
   public var autoBraceCompletionPairs: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_BRACE_COMPLETION_PAIRS, DICTIONARY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_BRACE_COMPLETION_PAIRS, DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_PAIRS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_PAIRS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -416,7 +416,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun doIndent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_INDENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_INDENT, NIL.ordinal)
   }
 
   /**
@@ -424,7 +424,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun doUnindent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_UNINDENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DO_UNINDENT, NIL.ordinal)
   }
 
   /**
@@ -432,7 +432,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun indentLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_INDENT_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_INDENT_LINES, NIL.ordinal)
   }
 
   /**
@@ -440,7 +440,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun unindentLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNINDENT_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNINDENT_LINES, NIL.ordinal)
   }
 
   /**
@@ -450,8 +450,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun addAutoBraceCompletionPair(startKey: String, endKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_AUTO_BRACE_COMPLETION_PAIR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_AUTO_BRACE_COMPLETION_PAIR,
+        NIL.ordinal)
   }
 
   /**
@@ -459,8 +459,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_OPEN_KEY, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_OPEN_KEY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -469,8 +469,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_CLOSE_KEY, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_AUTO_BRACE_COMPLETION_CLOSE_KEY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -479,8 +479,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_BRACE_COMPLETION_CLOSE_KEY, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_AUTO_BRACE_COMPLETION_CLOSE_KEY, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -489,8 +489,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setLineAsBreakpoint(line: Long, breakpointed: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to breakpointed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BREAKPOINT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BREAKPOINT,
+        NIL.ordinal)
   }
 
   /**
@@ -498,7 +498,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineBreakpointed(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BREAKPOINTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BREAKPOINTED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -507,8 +508,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun clearBreakpointedLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BREAKPOINTED_LINES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BREAKPOINTED_LINES,
+        NIL.ordinal)
   }
 
   /**
@@ -516,8 +517,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getBreakpointedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BREAKPOINTED_LINES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BREAKPOINTED_LINES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -526,8 +527,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setLineAsBookmarked(line: Long, bookmarked: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to bookmarked)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BOOKMARKED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_BOOKMARKED,
+        NIL.ordinal)
   }
 
   /**
@@ -535,7 +536,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineBookmarked(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BOOKMARKED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_BOOKMARKED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -544,8 +546,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun clearBookmarkedLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BOOKMARKED_LINES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_BOOKMARKED_LINES,
+        NIL.ordinal)
   }
 
   /**
@@ -553,8 +555,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getBookmarkedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BOOKMARKED_LINES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_BOOKMARKED_LINES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -563,7 +565,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setLineAsExecuting(line: Long, executing: Boolean): Unit {
     TransferContext.writeArguments(LONG to line, BOOL to executing)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_EXECUTING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_LINE_AS_EXECUTING,
+        NIL.ordinal)
   }
 
   /**
@@ -571,7 +574,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineExecuting(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_EXECUTING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_EXECUTING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -580,7 +583,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun clearExecutingLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_EXECUTING_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_EXECUTING_LINES,
+        NIL.ordinal)
   }
 
   /**
@@ -588,7 +592,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getExecutingLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_EXECUTING_LINES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_EXECUTING_LINES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -597,7 +602,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun canFoldLine(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CAN_FOLD_LINE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CAN_FOLD_LINE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -606,7 +611,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun foldLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_LINE, NIL.ordinal)
   }
 
   /**
@@ -614,7 +619,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun unfoldLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_LINE, NIL.ordinal)
   }
 
   /**
@@ -622,7 +627,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun foldAllLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_ALL_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_FOLD_ALL_LINES, NIL.ordinal)
   }
 
   /**
@@ -630,7 +635,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun unfoldAllLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_ALL_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UNFOLD_ALL_LINES, NIL.ordinal)
   }
 
   /**
@@ -638,7 +643,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun toggleFoldableLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_TOGGLE_FOLDABLE_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_TOGGLE_FOLDABLE_LINE,
+        NIL.ordinal)
   }
 
   /**
@@ -646,7 +652,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineFolded(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_FOLDED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -655,7 +661,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getFoldedLines(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_FOLDED_LINES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_FOLDED_LINES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -672,7 +678,8 @@ public open class CodeEdit : TextEdit() {
     lineOnly: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, BOOL to lineOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_STRING_DELIMITER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_STRING_DELIMITER,
+        NIL.ordinal)
   }
 
   /**
@@ -680,8 +687,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun removeStringDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_STRING_DELIMITER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_STRING_DELIMITER,
+        NIL.ordinal)
   }
 
   /**
@@ -689,7 +696,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_STRING_DELIMITER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_STRING_DELIMITER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -698,8 +706,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun clearStringDelimiters(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_STRING_DELIMITERS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_STRING_DELIMITERS,
+        NIL.ordinal)
   }
 
   /**
@@ -707,7 +715,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isInString(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_STRING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_STRING, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -724,7 +732,8 @@ public open class CodeEdit : TextEdit() {
     lineOnly: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, BOOL to lineOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_COMMENT_DELIMITER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_COMMENT_DELIMITER,
+        NIL.ordinal)
   }
 
   /**
@@ -732,8 +741,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun removeCommentDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_COMMENT_DELIMITER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REMOVE_COMMENT_DELIMITER,
+        NIL.ordinal)
   }
 
   /**
@@ -741,8 +750,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_COMMENT_DELIMITER,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_HAS_COMMENT_DELIMITER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -751,8 +760,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun clearCommentDelimiters(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_COMMENT_DELIMITERS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CLEAR_COMMENT_DELIMITERS,
+        NIL.ordinal)
   }
 
   /**
@@ -760,7 +769,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isInComment(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_COMMENT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_COMMENT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -769,8 +778,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getDelimiterStartKey(delimiterIndex: Long): String {
     TransferContext.writeArguments(LONG to delimiterIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_KEY,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_KEY,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -779,8 +788,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getDelimiterEndKey(delimiterIndex: Long): String {
     TransferContext.writeArguments(LONG to delimiterIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_KEY,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_KEY,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -789,8 +798,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getDelimiterStartPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_START_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -799,8 +808,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getDelimiterEndPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_POSITION,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_DELIMITER_END_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -809,7 +818,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setCodeHint(codeHint: String): Unit {
     TransferContext.writeArguments(STRING to codeHint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT, NIL.ordinal)
   }
 
   /**
@@ -817,8 +826,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setCodeHintDrawBelow(drawBelow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawBelow)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT_DRAW_BELOW,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_HINT_DRAW_BELOW,
+        NIL.ordinal)
   }
 
   /**
@@ -826,8 +835,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getTextForCodeCompletion(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_CODE_COMPLETION, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_CODE_COMPLETION,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -836,8 +845,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun requestCodeCompletion(force: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to force)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REQUEST_CODE_COMPLETION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REQUEST_CODE_COMPLETION,
+        NIL.ordinal)
   }
 
   /**
@@ -854,8 +863,8 @@ public open class CodeEdit : TextEdit() {
     `value`: Any = 0
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_CODE_COMPLETION_OPTION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_ADD_CODE_COMPLETION_OPTION,
+        NIL.ordinal)
   }
 
   /**
@@ -865,8 +874,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun updateCodeCompletionOptions(force: Boolean): Unit {
     TransferContext.writeArguments(BOOL to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_UPDATE_CODE_COMPLETION_OPTIONS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_UPDATE_CODE_COMPLETION_OPTIONS,
+        NIL.ordinal)
   }
 
   /**
@@ -874,8 +883,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getCodeCompletionOptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTIONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTIONS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -896,8 +905,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getCodeCompletionOption(index: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTION,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_OPTION,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -906,8 +915,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getCodeCompletionSelectedIndex(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_SELECTED_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_COMPLETION_SELECTED_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -916,8 +925,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setCodeCompletionSelectedIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_SELECTED_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_COMPLETION_SELECTED_INDEX, NIL.ordinal)
   }
 
   /**
@@ -925,8 +934,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to replace)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONFIRM_CODE_COMPLETION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONFIRM_CODE_COMPLETION,
+        NIL.ordinal)
   }
 
   /**
@@ -934,8 +943,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun cancelCodeCompletion(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CANCEL_CODE_COMPLETION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CANCEL_CODE_COMPLETION,
+        NIL.ordinal)
   }
 
   /**
@@ -943,8 +952,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getTextForSymbolLookup(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_SYMBOL_LOOKUP,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_FOR_SYMBOL_LOOKUP,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -953,8 +962,8 @@ public open class CodeEdit : TextEdit() {
    */
   public fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_SYMBOL_LOOKUP_WORD_AS_VALID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_SYMBOL_LOOKUP_WORD_AS_VALID,
+        NIL.ordinal)
   }
 
   public enum class CodeCompletionKind(

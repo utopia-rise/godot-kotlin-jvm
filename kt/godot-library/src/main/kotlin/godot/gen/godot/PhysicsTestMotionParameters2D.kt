@@ -36,14 +36,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var from: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_FROM, TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_FROM,
+          TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_FROM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_FROM,
+          NIL.ordinal)
     }
 
   /**
@@ -52,14 +52,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var motion: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_MOTION, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_MOTION, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_MOTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_MOTION, NIL.ordinal)
     }
 
   /**
@@ -68,14 +68,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var margin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_MARGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_MARGIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_MARGIN, NIL.ordinal)
     }
 
   /**
@@ -86,16 +86,16 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var collideSeparationRay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_IS_COLLIDE_SEPARATION_RAY_ENABLED,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_COLLIDE_SEPARATION_RAY_ENABLED,
-          NIL)
+          NIL.ordinal)
     }
 
   /**
@@ -104,14 +104,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var excludeBodies: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_BODIES, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_BODIES, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_BODIES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_BODIES, NIL.ordinal)
     }
 
   /**
@@ -120,14 +120,14 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public var excludeObjects: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_OBJECTS, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_GET_EXCLUDE_OBJECTS, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_OBJECTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_OBJECTS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

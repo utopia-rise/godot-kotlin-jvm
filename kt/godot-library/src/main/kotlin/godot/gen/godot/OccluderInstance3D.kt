@@ -44,14 +44,14 @@ public open class OccluderInstance3D : Node3D() {
   public var occluder: Occluder3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_OCCLUDER,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_OCCLUDER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Occluder3D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_OCCLUDER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_OCCLUDER,
+          NIL.ordinal)
     }
 
   /**
@@ -62,14 +62,14 @@ public open class OccluderInstance3D : Node3D() {
   public var bakeMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -84,14 +84,15 @@ public open class OccluderInstance3D : Node3D() {
   public var bakeSimplificationDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_SIMPLIFICATION_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_SIMPLIFICATION_DISTANCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_SIMPLIFICATION_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_SIMPLIFICATION_DISTANCE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -103,8 +104,8 @@ public open class OccluderInstance3D : Node3D() {
    */
   public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_MASK_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -112,8 +113,8 @@ public open class OccluderInstance3D : Node3D() {
    */
   public fun getBakeMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_GET_BAKE_MASK_VALUE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

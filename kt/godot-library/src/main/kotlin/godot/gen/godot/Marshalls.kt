@@ -37,7 +37,8 @@ public object Marshalls : Object() {
    */
   public fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_VARIANT_TO_BASE64, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_VARIANT_TO_BASE64,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -48,7 +49,7 @@ public object Marshalls : Object() {
    */
   public fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_VARIANT, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_VARIANT, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -57,7 +58,7 @@ public object Marshalls : Object() {
    */
   public fun rawToBase64(array: PackedByteArray): String {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_RAW_TO_BASE64, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_RAW_TO_BASE64, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -66,8 +67,8 @@ public object Marshalls : Object() {
    */
   public fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_RAW,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_RAW,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -76,7 +77,7 @@ public object Marshalls : Object() {
    */
   public fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_UTF8_TO_BASE64, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_UTF8_TO_BASE64, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -85,7 +86,7 @@ public object Marshalls : Object() {
    */
   public fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_UTF8, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MARSHALLS_BASE64_TO_UTF8, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 }

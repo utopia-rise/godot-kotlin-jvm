@@ -45,26 +45,27 @@ public object Engine : Object() {
 
   public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Long): Unit {
     TransferContext.writeArguments(LONG to physicsTicksPerSecond)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_TICKS_PER_SECOND,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_TICKS_PER_SECOND,
+        NIL.ordinal)
   }
 
   public fun getPhysicsTicksPerSecond(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_TICKS_PER_SECOND,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_TICKS_PER_SECOND,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
     TransferContext.writeArguments(DOUBLE to physicsJitterFix)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_JITTER_FIX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_JITTER_FIX,
+        NIL.ordinal)
   }
 
   public fun getPhysicsJitterFix(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_JITTER_FIX,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_JITTER_FIX,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -73,30 +74,30 @@ public object Engine : Object() {
    */
   public fun getPhysicsInterpolationFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_INTERPOLATION_FRACTION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_INTERPOLATION_FRACTION, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun setTargetFps(targetFps: Long): Unit {
     TransferContext.writeArguments(LONG to targetFps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TARGET_FPS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TARGET_FPS, NIL.ordinal)
   }
 
   public fun getTargetFps(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TARGET_FPS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TARGET_FPS, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun setTimeScale(timeScale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timeScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TIME_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TIME_SCALE, NIL.ordinal)
   }
 
   public fun getTimeScale(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TIME_SCALE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TIME_SCALE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -105,7 +106,7 @@ public object Engine : Object() {
    */
   public fun getFramesDrawn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_DRAWN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_DRAWN, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -114,8 +115,8 @@ public object Engine : Object() {
    */
   public fun getFramesPerSecond(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_PER_SECOND,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_PER_SECOND,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -132,7 +133,7 @@ public object Engine : Object() {
    */
   public fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_FRAMES, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_FRAMES, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -149,7 +150,7 @@ public object Engine : Object() {
    */
   public fun getProcessFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PROCESS_FRAMES, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PROCESS_FRAMES, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -158,7 +159,7 @@ public object Engine : Object() {
    */
   public fun getMainLoop(): MainLoop? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAIN_LOOP, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAIN_LOOP, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as MainLoop?
   }
 
@@ -223,7 +224,8 @@ public object Engine : Object() {
    */
   public fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_VERSION_INFO, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_VERSION_INFO,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -240,7 +242,8 @@ public object Engine : Object() {
    */
   public fun getAuthorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_AUTHOR_INFO, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_AUTHOR_INFO,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -253,7 +256,7 @@ public object Engine : Object() {
    */
   public fun getCopyrightInfo(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_COPYRIGHT_INFO, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_COPYRIGHT_INFO, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -264,7 +267,8 @@ public object Engine : Object() {
    */
   public fun getDonorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_DONOR_INFO, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_DONOR_INFO,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -273,7 +277,8 @@ public object Engine : Object() {
    */
   public fun getLicenseInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_INFO, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_INFO,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -282,7 +287,7 @@ public object Engine : Object() {
    */
   public fun getLicenseText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -291,7 +296,7 @@ public object Engine : Object() {
    */
   public fun isInPhysicsFrame(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_IN_PHYSICS_FRAME, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_IN_PHYSICS_FRAME, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -300,7 +305,7 @@ public object Engine : Object() {
    */
   public fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_HAS_SINGLETON, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_HAS_SINGLETON, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -309,7 +314,7 @@ public object Engine : Object() {
    */
   public fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -318,7 +323,7 @@ public object Engine : Object() {
    */
   public fun registerSingleton(name: StringName, instance: Object): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SINGLETON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SINGLETON, NIL.ordinal)
   }
 
   /**
@@ -326,7 +331,7 @@ public object Engine : Object() {
    */
   public fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SINGLETON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SINGLETON, NIL.ordinal)
   }
 
   /**
@@ -334,8 +339,8 @@ public object Engine : Object() {
    */
   public fun getSingletonList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -344,8 +349,8 @@ public object Engine : Object() {
    */
   public fun registerScriptLanguage(language: ScriptLanguage): Unit {
     TransferContext.writeArguments(OBJECT to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
+        NIL.ordinal)
   }
 
   /**
@@ -353,8 +358,8 @@ public object Engine : Object() {
    */
   public fun getScriptLanguageCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -363,7 +368,8 @@ public object Engine : Object() {
    */
   public fun getScriptLanguage(index: Long): ScriptLanguage? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ScriptLanguage?
   }
 
@@ -383,20 +389,20 @@ public object Engine : Object() {
    */
   public fun isEditorHint(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_EDITOR_HINT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_EDITOR_HINT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun setPrintErrorMessages(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PRINT_ERROR_MESSAGES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PRINT_ERROR_MESSAGES,
+        NIL.ordinal)
   }
 
   public fun isPrintingErrorMessages(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_PRINTING_ERROR_MESSAGES,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_PRINTING_ERROR_MESSAGES,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 }

@@ -37,12 +37,13 @@ public open class ShaderMaterial : Material() {
   public var shader: Shader?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Shader?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -56,8 +57,8 @@ public open class ShaderMaterial : Material() {
    */
   public fun setShaderParam(`param`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -65,8 +66,8 @@ public open class ShaderMaterial : Material() {
    */
   public fun getShaderParam(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -75,8 +76,8 @@ public open class ShaderMaterial : Material() {
    */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -85,8 +86,8 @@ public open class ShaderMaterial : Material() {
    */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

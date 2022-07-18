@@ -126,8 +126,6 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class HashingContext : RefCounted() {
@@ -140,7 +138,7 @@ public open class HashingContext : RefCounted() {
    */
   public fun start(type: HashingContext.HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -149,7 +147,7 @@ public open class HashingContext : RefCounted() {
    */
   public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -158,8 +156,8 @@ public open class HashingContext : RefCounted() {
    */
   public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_FINISH,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_FINISH,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 

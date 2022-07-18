@@ -31,13 +31,14 @@ public open class CollisionShape3D : Node3D() {
   public var shape: Shape3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_SHAPE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_SHAPE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_SHAPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_SHAPE,
+          NIL.ordinal)
     }
 
   /**
@@ -46,14 +47,14 @@ public open class CollisionShape3D : Node3D() {
   public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_DISABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_DISABLED,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -65,8 +66,8 @@ public open class CollisionShape3D : Node3D() {
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_RESOURCE_CHANGED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_RESOURCE_CHANGED,
+        NIL.ordinal)
   }
 
   /**
@@ -74,8 +75,8 @@ public open class CollisionShape3D : Node3D() {
    */
   public fun makeConvexFromSiblings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_MAKE_CONVEX_FROM_SIBLINGS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_MAKE_CONVEX_FROM_SIBLINGS, NIL.ordinal)
   }
 
   public companion object

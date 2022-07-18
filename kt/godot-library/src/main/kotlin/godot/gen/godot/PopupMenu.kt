@@ -38,6 +38,8 @@ import kotlin.Unit
  * If no maximum size is set, or if it is set to 0, the [godot.PopupMenu] height will be limited by its parent rect.
  *
  * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.Tree], [godot.PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
@@ -62,14 +64,14 @@ public open class PopupMenu : Popup() {
   public var hideOnItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_ITEM_SELECTION, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_ITEM_SELECTION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_ITEM_SELECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_ITEM_SELECTION,
+          NIL.ordinal)
     }
 
   /**
@@ -78,14 +80,14 @@ public open class PopupMenu : Popup() {
   public var hideOnCheckableItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_CHECKABLE_ITEM_SELECTION, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_CHECKABLE_ITEM_SELECTION, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_CHECKABLE_ITEM_SELECTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_CHECKABLE_ITEM_SELECTION, NIL.ordinal)
     }
 
   /**
@@ -94,14 +96,14 @@ public open class PopupMenu : Popup() {
   public var hideOnStateItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_STATE_ITEM_SELECTION, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_STATE_ITEM_SELECTION, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_STATE_ITEM_SELECTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_STATE_ITEM_SELECTION, NIL.ordinal)
     }
 
   /**
@@ -110,14 +112,14 @@ public open class PopupMenu : Popup() {
   public var submenuPopupDelay: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_SUBMENU_POPUP_DELAY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_SUBMENU_POPUP_DELAY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_SUBMENU_POPUP_DELAY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_SUBMENU_POPUP_DELAY,
+          NIL.ordinal)
     }
 
   /**
@@ -126,12 +128,14 @@ public open class PopupMenu : Popup() {
   public var allowSearch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ALLOW_SEARCH, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ALLOW_SEARCH,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ALLOW_SEARCH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ALLOW_SEARCH,
+          NIL.ordinal)
     }
 
   /**
@@ -140,12 +144,13 @@ public open class PopupMenu : Popup() {
   public var itemCount: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_COUNT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_COUNT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_COUNT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -165,7 +170,7 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ITEM, NIL.ordinal)
   }
 
   /**
@@ -180,7 +185,7 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_ITEM, NIL.ordinal)
   }
 
   /**
@@ -196,7 +201,7 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_ITEM, NIL.ordinal)
   }
 
   /**
@@ -213,7 +218,8 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -229,7 +235,8 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -242,8 +249,8 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_ITEM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -261,7 +268,8 @@ public open class PopupMenu : Popup() {
     accel: Key = Key.KEY_NONE
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to maxStates, LONG to defaultState, LONG to id, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_MULTISTATE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_MULTISTATE_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -275,7 +283,7 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SHORTCUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SHORTCUT, NIL.ordinal)
   }
 
   /**
@@ -290,7 +298,7 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_SHORTCUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_SHORTCUT, NIL.ordinal)
   }
 
   /**
@@ -306,7 +314,8 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_SHORTCUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_SHORTCUT,
+        NIL.ordinal)
   }
 
   /**
@@ -323,8 +332,8 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_SHORTCUT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_SHORTCUT,
+        NIL.ordinal)
   }
 
   /**
@@ -340,8 +349,8 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_SHORTCUT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_SHORTCUT,
+        NIL.ordinal)
   }
 
   /**
@@ -354,8 +363,8 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to global)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_SHORTCUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_SHORTCUT,
+        NIL.ordinal)
   }
 
   /**
@@ -369,7 +378,7 @@ public open class PopupMenu : Popup() {
     id: Long = -1
   ): Unit {
     TransferContext.writeArguments(STRING to label, STRING to submenu, LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SUBMENU_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SUBMENU_ITEM, NIL.ordinal)
   }
 
   /**
@@ -377,7 +386,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemText(index: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TEXT, NIL.ordinal)
   }
 
   /**
@@ -385,21 +394,18 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemTextDirection(index: Long, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to index, LONG to direction.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TEXT_DIRECTION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TEXT_DIRECTION,
+        NIL.ordinal)
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setItemOpentypeFeature(
     index: Long,
     tag: String,
     `value`: Long
   ): Unit {
     TransferContext.writeArguments(LONG to index, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_OPENTYPE_FEATURE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_OPENTYPE_FEATURE,
+        NIL.ordinal)
   }
 
   /**
@@ -407,7 +413,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemLanguage(index: Long, language: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_LANGUAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_LANGUAGE, NIL.ordinal)
   }
 
   /**
@@ -415,7 +421,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemIcon(index: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON, NIL.ordinal)
   }
 
   /**
@@ -423,7 +429,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemChecked(index: Long, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to checked)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_CHECKED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_CHECKED, NIL.ordinal)
   }
 
   /**
@@ -433,7 +439,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemId(index: Long, id: Long): Unit {
     TransferContext.writeArguments(LONG to index, LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ID, NIL.ordinal)
   }
 
   /**
@@ -441,7 +447,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemAccelerator(index: Long, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index, LONG to accel.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ACCELERATOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ACCELERATOR,
+        NIL.ordinal)
   }
 
   /**
@@ -449,7 +456,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemMetadata(index: Long, metadata: Any): Unit {
     TransferContext.writeArguments(LONG to index, ANY to metadata)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_METADATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_METADATA, NIL.ordinal)
   }
 
   /**
@@ -457,7 +464,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemDisabled(index: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_DISABLED, NIL.ordinal)
   }
 
   /**
@@ -465,7 +472,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemSubmenu(index: Long, submenu: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to submenu)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SUBMENU, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SUBMENU, NIL.ordinal)
   }
 
   /**
@@ -473,8 +480,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemAsSeparator(index: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_SEPARATOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_SEPARATOR,
+        NIL.ordinal)
   }
 
   /**
@@ -484,8 +491,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemAsCheckable(index: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_CHECKABLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_CHECKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -493,8 +500,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemAsRadioCheckable(index: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_RADIO_CHECKABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_RADIO_CHECKABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -502,7 +509,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemTooltip(index: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TOOLTIP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TOOLTIP, NIL.ordinal)
   }
 
   /**
@@ -514,7 +521,7 @@ public open class PopupMenu : Popup() {
     global: Boolean = false
   ): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to shortcut, BOOL to global)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT, NIL.ordinal)
   }
 
   /**
@@ -522,7 +529,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemMultistate(index: Long, state: Long): Unit {
     TransferContext.writeArguments(LONG to index, LONG to state)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_MULTISTATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_MULTISTATE,
+        NIL.ordinal)
   }
 
   /**
@@ -530,8 +538,8 @@ public open class PopupMenu : Popup() {
    */
   public fun setItemShortcutDisabled(index: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -539,7 +547,8 @@ public open class PopupMenu : Popup() {
    */
   public fun toggleItemChecked(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_CHECKED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_CHECKED,
+        NIL.ordinal)
   }
 
   /**
@@ -547,8 +556,8 @@ public open class PopupMenu : Popup() {
    */
   public fun toggleItemMultistate(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_MULTISTATE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_MULTISTATE,
+        NIL.ordinal)
   }
 
   /**
@@ -556,7 +565,7 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemText(index: Long): String {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -565,28 +574,22 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemTextDirection(index: Long): Control.TextDirection {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT_DIRECTION,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT_DIRECTION,
+        LONG.ordinal)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getItemOpentypeFeature(index: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to index, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_OPENTYPE_FEATURE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features form the item's text.
-   */
   public fun clearItemOpentypeFeatures(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR_ITEM_OPENTYPE_FEATURES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR_ITEM_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -594,7 +597,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemLanguage(index: Long): String {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_LANGUAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_LANGUAGE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -603,7 +607,7 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemIcon(index: Long): Texture2D? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ICON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -612,7 +616,7 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemChecked(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -621,7 +625,7 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -630,7 +634,7 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemIndex(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -639,8 +643,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemAccelerator(index: Long): Key {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ACCELERATOR,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ACCELERATOR,
+        LONG.ordinal)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -649,7 +653,7 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemMetadata(index: Long): Any? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_METADATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_METADATA, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -660,7 +664,7 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemDisabled(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -669,7 +673,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemSubmenu(index: Long): String {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SUBMENU, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SUBMENU,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -678,7 +683,8 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemSeparator(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SEPARATOR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SEPARATOR,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -689,7 +695,8 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemCheckable(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKABLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -700,8 +707,8 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemRadioCheckable(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_RADIO_CHECKABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_RADIO_CHECKABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -710,8 +717,8 @@ public open class PopupMenu : Popup() {
    */
   public fun isItemShortcutDisabled(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SHORTCUT_DISABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SHORTCUT_DISABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -720,7 +727,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemTooltip(index: Long): String {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TOOLTIP, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TOOLTIP,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -729,7 +737,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getItemShortcut(index: Long): Shortcut? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SHORTCUT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SHORTCUT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
   }
 
@@ -738,7 +747,7 @@ public open class PopupMenu : Popup() {
    */
   public fun setCurrentIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_CURRENT_INDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_CURRENT_INDEX, NIL.ordinal)
   }
 
   /**
@@ -746,7 +755,8 @@ public open class PopupMenu : Popup() {
    */
   public fun getCurrentIndex(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_CURRENT_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_CURRENT_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -755,7 +765,7 @@ public open class PopupMenu : Popup() {
    */
   public fun scrollToItem(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SCROLL_TO_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SCROLL_TO_ITEM, NIL.ordinal)
   }
 
   /**
@@ -765,7 +775,7 @@ public open class PopupMenu : Popup() {
    */
   public fun removeItem(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_REMOVE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_REMOVE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -775,7 +785,7 @@ public open class PopupMenu : Popup() {
    */
   public fun addSeparator(label: String = "", id: Long = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL.ordinal)
   }
 
   /**
@@ -783,7 +793,7 @@ public open class PopupMenu : Popup() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR, NIL.ordinal)
   }
 
   public companion object

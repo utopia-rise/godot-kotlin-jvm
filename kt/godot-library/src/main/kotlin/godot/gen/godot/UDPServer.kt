@@ -263,14 +263,14 @@ public open class UDPServer : RefCounted() {
   public var maxPendingConnections: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_MAX_PENDING_CONNECTIONS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_MAX_PENDING_CONNECTIONS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -282,7 +282,7 @@ public open class UDPServer : RefCounted() {
    */
   public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -291,7 +291,7 @@ public open class UDPServer : RefCounted() {
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_POLL, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_POLL, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -300,8 +300,8 @@ public open class UDPServer : RefCounted() {
    */
   public fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_CONNECTION_AVAILABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_CONNECTION_AVAILABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -310,7 +310,7 @@ public open class UDPServer : RefCounted() {
    */
   public fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_LOCAL_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_LOCAL_PORT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -319,7 +319,7 @@ public open class UDPServer : RefCounted() {
    */
   public fun isListening(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_LISTENING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_LISTENING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -328,7 +328,8 @@ public open class UDPServer : RefCounted() {
    */
   public fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_TAKE_CONNECTION, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_TAKE_CONNECTION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?
   }
 
@@ -337,7 +338,7 @@ public open class UDPServer : RefCounted() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_STOP, NIL.ordinal)
   }
 
   public companion object

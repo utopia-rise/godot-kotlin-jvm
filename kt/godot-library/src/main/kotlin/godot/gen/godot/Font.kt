@@ -33,205 +33,70 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Font class is set of font data sources used to draw text.
+ * Base class for fonts and font variations.
  *
- * Font contains a set of glyphs to represent Unicode characters, as well as the ability to draw it with variable width, ascent, descent and kerning.
- *
- * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
- *
- * **Note:** A glyph is a bitmap or shape used to draw a one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
- *
- * **Note:** If a non of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * var font = Font.new()
- *
- * font.add_data(load("res://BarlowCondensed-Bold.ttf"))
- *
- * $"Label".set("custom_fonts/font", font)
- *
- * $"Label".set("custom_fonts/font_size", 64)
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * var font = new Font();
- *
- * font.AddData(ResourceLoader.Load<FontData>("res://BarlowCondensed-Bold.ttf"));
- *
- * GetNode("Label").Set("custom_fonts/font", font);
- *
- * GetNode("Label").Set("custom_font_sizes/font_size", 64);
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * To control font substitution priority use [godot.FontData] language and script support.
- *
- * Use language overrides to use same [godot.Font] stack for multiple languages:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * # Use Naskh font for Persian and Nastaʼlīq font for Urdu text.
- *
- * var font_data_fa = load("res://NotoNaskhArabicUI_Regular.ttf");
- *
- * font_data_fa.set_language_support_override("fa", true);
- *
- * font_data_fa.set_language_support_override("ur", false);
- *
- *
- *
- * var font_data_ur = load("res://NotoNastaliqUrdu_Regular.ttf");
- *
- * font_data_ur.set_language_support_override("fa", false);
- *
- * font_data_ur.set_language_support_override("ur", true);
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * // Use Naskh font for Persian and Nastaʼlīq font for Urdu text.
- *
- * var fontDataFA = ResourceLoader.Load<FontData>("res://NotoNaskhArabicUI_Regular.ttf");
- *
- * fontDataFA.SetLanguageSupportOverride("fa", true);
- *
- * fontDataFA.SetLanguageSupportOverride("ur", false);
- *
- *
- *
- * var fontDataUR = ResourceLoader.Load<FontData>("res://NotoNastaliqUrdu_Regular.ttf");
- *
- * fontDataUR.SetLanguageSupportOverride("fa", false);
- *
- * fontDataUR.SetLanguageSupportOverride("ur", true);
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * Use script overrides to specify supported scripts for bitmap font or for less common scripts not directly supported by TrueType format:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * # Use specified font for Egyptian hieroglyphs.
- *
- * var font_data = load("res://unifont.ttf");
- *
- * font_data.set_script_support_override("Egyp", true);
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * // Use specified font for Egyptian hieroglyphs.
- *
- * var fontData = ResourceLoader.Load<FontData>("res://unifont.ttf");
- *
- * fontData.SetScriptSupportOverride("Egyp", true);
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * Font is the abstract base class for font, so it shouldn't be used directly. Other types of fonts inherit from it.
  */
 @GodotBaseType
 public open class Font : Resource() {
-  /**
-   * Default font [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
-   */
   public var variationCoordinates: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_VARIATION_COORDINATES,
-          DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_VARIATION_COORDINATES,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_VARIATION_COORDINATES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_VARIATION_COORDINATES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FONT)
   }
 
-  /**
-   * Add font data source to the set.
-   */
   public fun addData(`data`: FontData): Unit {
     TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_ADD_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_ADD_DATA, NIL.ordinal)
   }
 
-  /**
-   * Sets the font data source at index `idx`. If the index does not exist, nothing happens.
-   */
   public fun setData(idx: Long, `data`: FontData): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_DATA, NIL.ordinal)
   }
 
-  /**
-   * Returns the number of font data sources.
-   */
   public fun getDataCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns the font data source at index `idx`. If the index does not exist, returns `null`.
-   */
   public fun getData(idx: Long): FontData? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as FontData?
   }
 
-  /**
-   * Returns TextServer RID of the font data resources.
-   */
   public fun getDataRid(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  /**
-   * Removes all font data sourcers for the set.
-   */
   public fun clearData(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_CLEAR_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_CLEAR_DATA, NIL.ordinal)
   }
 
-  /**
-   * Removes the font data source at index `idx`. If the index does not exist, nothing happens.
-   */
   public fun removeData(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_REMOVE_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_REMOVE_DATA, NIL.ordinal)
   }
 
-  /**
-   * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to `value` in pixels (not relative to the font size).
-   */
   public fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_SPACING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_SPACING, NIL.ordinal)
   }
 
   /**
@@ -239,7 +104,7 @@ public open class Font : Resource() {
    */
   public fun getSpacing(spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to spacing.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SPACING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SPACING, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -250,7 +115,7 @@ public open class Font : Resource() {
    */
   public fun getHeight(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -261,7 +126,7 @@ public open class Font : Resource() {
    */
   public fun getAscent(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -272,7 +137,7 @@ public open class Font : Resource() {
    */
   public fun getDescent(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -283,7 +148,8 @@ public open class Font : Resource() {
    */
   public fun getUnderlinePosition(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_POSITION,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -294,8 +160,8 @@ public open class Font : Resource() {
    */
   public fun getUnderlineThickness(size: Long = 16): Double {
     TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_UNDERLINE_THICKNESS,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -314,7 +180,7 @@ public open class Font : Resource() {
     flags: Long = 3
   ): Vector2 {
     TransferContext.writeArguments(STRING to text, LONG to size, LONG to alignment.id, DOUBLE to width, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -330,8 +196,8 @@ public open class Font : Resource() {
     flags: Long = 96
   ): Vector2 {
     TransferContext.writeArguments(STRING to text, DOUBLE to width, LONG to size, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_MULTILINE_STRING_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -353,7 +219,7 @@ public open class Font : Resource() {
     flags: Long = 3
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_STRING, NIL.ordinal)
   }
 
   /**
@@ -375,7 +241,7 @@ public open class Font : Resource() {
     flags: Long = 99
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width, LONG to maxLines, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_MULTILINE_STRING, NIL.ordinal)
   }
 
   /**
@@ -389,12 +255,12 @@ public open class Font : Resource() {
     size: Long = 16
   ): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to next, LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Draw a single Unicode character `char` into a canvas item using the font, at a given position, with `modulate` color, and optionally kerning if `next` is passed. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw a single Unicode character `char` into a canvas item using the font, at a given position, with `modulate` color. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
    */
@@ -409,7 +275,7 @@ public open class Font : Resource() {
     outlineModulate: Color = Color(Color(1, 1, 1, 0))
   ): Double {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to next, LONG to size, COLOR to modulate, LONG to outlineSize, COLOR to outlineModulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW_CHAR, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -418,7 +284,7 @@ public open class Font : Resource() {
    */
   public fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_HAS_CHAR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_HAS_CHAR, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -429,24 +295,21 @@ public open class Font : Resource() {
    */
   public fun getSupportedChars(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SUPPORTED_CHARS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_SUPPORTED_CHARS, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * After editing a font (changing data sources, etc.). Call this function to propagate changes to controls that might use it.
-   */
   public fun updateChanges(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL.ordinal)
   }
 
   /**
-   * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passed to the [godot.TextServer] methods.
+   * Returns [godot.Array] of valid [godot.Font] [RID]s, which can be passed to the [godot.TextServer] methods.
    */
   public fun getRids(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

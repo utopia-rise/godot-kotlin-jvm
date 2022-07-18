@@ -32,14 +32,14 @@ public open class DirectionalLight3D : Light3D() {
   public var directionalShadowMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SHADOW_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SHADOW_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -48,14 +48,14 @@ public open class DirectionalLight3D : Light3D() {
   public var directionalShadowBlendSplits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_IS_BLEND_SPLITS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_IS_BLEND_SPLITS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_BLEND_SPLITS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_BLEND_SPLITS,
+          NIL.ordinal)
     }
 
   /**
@@ -64,14 +64,14 @@ public open class DirectionalLight3D : Light3D() {
   public var skyMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SKY_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SKY_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -28,14 +28,14 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_MESH, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_MESH, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_MESH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_MESH, NIL.ordinal)
     }
 
   /**
@@ -44,14 +44,16 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var useAllSurfaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_IS_USE_ALL_SURFACES, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_IS_USE_ALL_SURFACES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_USE_ALL_SURFACES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_USE_ALL_SURFACES,
+          NIL.ordinal)
     }
 
   /**
@@ -60,14 +62,16 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var surfaceIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_SURFACE_INDEX, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_SURFACE_INDEX,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_SURFACE_INDEX, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_SURFACE_INDEX,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

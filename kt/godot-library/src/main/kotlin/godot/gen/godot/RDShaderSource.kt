@@ -27,12 +27,14 @@ public open class RDShaderSource : RefCounted() {
   public var language: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_LANGUAGE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_LANGUAGE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_LANGUAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_LANGUAGE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -44,8 +46,8 @@ public open class RDShaderSource : RefCounted() {
    */
   public fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_STAGE_SOURCE,
+        NIL.ordinal)
   }
 
   /**
@@ -53,8 +55,8 @@ public open class RDShaderSource : RefCounted() {
    */
   public fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_GET_STAGE_SOURCE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

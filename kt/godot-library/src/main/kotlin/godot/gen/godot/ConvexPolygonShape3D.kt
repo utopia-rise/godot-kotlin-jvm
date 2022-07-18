@@ -35,14 +35,14 @@ public open class ConvexPolygonShape3D : Shape3D() {
   public var points: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_GET_POINTS,
-          ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_GET_POINTS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_SET_POINTS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_SET_POINTS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

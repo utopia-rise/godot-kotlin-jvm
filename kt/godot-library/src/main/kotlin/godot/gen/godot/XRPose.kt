@@ -35,13 +35,14 @@ public open class XRPose : RefCounted() {
   public var hasTrackingData: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_HAS_TRACKING_DATA,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_HAS_TRACKING_DATA,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_HAS_TRACKING_DATA, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_HAS_TRACKING_DATA,
+          NIL.ordinal)
     }
 
   /**
@@ -58,12 +59,12 @@ public open class XRPose : RefCounted() {
   public var name: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_NAME, NIL.ordinal)
     }
 
   /**
@@ -72,12 +73,12 @@ public open class XRPose : RefCounted() {
   public var transform: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRANSFORM, NIL.ordinal)
     }
 
   /**
@@ -86,13 +87,14 @@ public open class XRPose : RefCounted() {
   public var linearVelocity: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_LINEAR_VELOCITY,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_LINEAR_VELOCITY,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_LINEAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_LINEAR_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -101,13 +103,14 @@ public open class XRPose : RefCounted() {
   public var angularVelocity: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ANGULAR_VELOCITY,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ANGULAR_VELOCITY,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_ANGULAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_ANGULAR_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -116,14 +119,14 @@ public open class XRPose : RefCounted() {
   public var trackingConfidence: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRACKING_CONFIDENCE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRACKING_CONFIDENCE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -135,8 +138,8 @@ public open class XRPose : RefCounted() {
    */
   public fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ADJUSTED_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ADJUSTED_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 

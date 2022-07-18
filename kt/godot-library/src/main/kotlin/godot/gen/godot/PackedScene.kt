@@ -170,7 +170,7 @@ public open class PackedScene : Resource() {
    */
   public fun pack(path: Node): GodotError {
     TransferContext.writeArguments(OBJECT to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_PACK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_PACK, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -180,7 +180,7 @@ public open class PackedScene : Resource() {
   public fun instantiate(editState: PackedScene.GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANTIATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANTIATE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -189,7 +189,8 @@ public open class PackedScene : Resource() {
    */
   public fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_CAN_INSTANTIATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_CAN_INSTANTIATE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -198,7 +199,7 @@ public open class PackedScene : Resource() {
    */
   public fun getState(): SceneState? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_GET_STATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_GET_STATE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SceneState?
   }
 

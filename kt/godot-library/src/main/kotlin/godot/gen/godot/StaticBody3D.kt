@@ -41,14 +41,14 @@ public open class StaticBody3D : PhysicsBody3D() {
   public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,14 @@ public open class StaticBody3D : PhysicsBody3D() {
   public var constantLinearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR3)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_LINEAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_LINEAR_VELOCITY, NIL.ordinal)
     }
 
   /**
@@ -73,14 +73,14 @@ public open class StaticBody3D : PhysicsBody3D() {
   public var constantAngularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_ANGULAR_VELOCITY, VECTOR3)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_ANGULAR_VELOCITY, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_ANGULAR_VELOCITY, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

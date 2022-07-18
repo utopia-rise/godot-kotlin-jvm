@@ -27,14 +27,14 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
   public var size: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODERESIZABLEBASE_GET_SIZE, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODERESIZABLEBASE_GET_SIZE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODERESIZABLEBASE_SET_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODERESIZABLEBASE_SET_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

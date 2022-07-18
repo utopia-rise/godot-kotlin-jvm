@@ -11,17 +11,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a high-pass filter to the audio bus.
+ * Horizontal flow container.
  *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Cuts frequencies lower than the [godot.AudioEffectFilter.cutoffHz] and allows higher frequencies to pass.
+ * Horizontal version of [godot.FlowContainer].
  */
 @GodotBaseType
-public open class AudioEffectHighPassFilter : AudioEffectFilter() {
+public open class HFlowContainer : FlowContainer() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER)
+    callConstructor(ENGINECLASS_HFLOWCONTAINER)
   }
 
   public companion object

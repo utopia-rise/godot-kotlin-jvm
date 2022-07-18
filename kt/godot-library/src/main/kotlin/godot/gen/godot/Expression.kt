@@ -129,7 +129,7 @@ public open class Expression : RefCounted() {
   public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_PARSE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_PARSE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -144,7 +144,7 @@ public open class Expression : RefCounted() {
     showError: Boolean = true
   ): Any? {
     TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_EXECUTE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_EXECUTE, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -153,7 +153,8 @@ public open class Expression : RefCounted() {
    */
   public fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_HAS_EXECUTE_FAILED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_HAS_EXECUTE_FAILED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -162,7 +163,8 @@ public open class Expression : RefCounted() {
    */
   public fun getErrorText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_GET_ERROR_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_GET_ERROR_TEXT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

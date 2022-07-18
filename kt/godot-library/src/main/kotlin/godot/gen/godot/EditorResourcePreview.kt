@@ -51,8 +51,8 @@ public open class EditorResourcePreview internal constructor() : Node() {
     userdata: Any
   ): Unit {
     TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_RESOURCE_PREVIEW, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_RESOURCE_PREVIEW, NIL.ordinal)
   }
 
   /**
@@ -67,8 +67,8 @@ public open class EditorResourcePreview internal constructor() : Node() {
     userdata: Any
   ): Unit {
     TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_EDITED_RESOURCE_PREVIEW, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_EDITED_RESOURCE_PREVIEW, NIL.ordinal)
   }
 
   /**
@@ -76,8 +76,8 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun addPreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL.ordinal)
   }
 
   /**
@@ -85,8 +85,8 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun removePreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL.ordinal)
   }
 
   /**
@@ -94,8 +94,8 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun checkForInvalidation(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL.ordinal)
   }
 
   public companion object

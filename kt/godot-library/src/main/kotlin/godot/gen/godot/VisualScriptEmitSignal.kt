@@ -19,14 +19,14 @@ public open class VisualScriptEmitSignal : VisualScriptNode() {
   public var signal: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTEMITSIGNAL_GET_SIGNAL,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTEMITSIGNAL_GET_SIGNAL,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTEMITSIGNAL_SET_SIGNAL,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTEMITSIGNAL_SET_SIGNAL,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

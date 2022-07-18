@@ -37,14 +37,14 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   public var boneName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_BONE_NAME, STRING_NAME)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_BONE_NAME, STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_BONE_NAME, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_BONE_NAME, NIL.ordinal)
     }
 
   /**
@@ -55,14 +55,14 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   public var boneIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_BONE_INDEX, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_BONE_INDEX, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_BONE_INDEX, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_BONE_INDEX, NIL.ordinal)
     }
 
   /**
@@ -71,14 +71,14 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_TARGET_NODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -90,8 +90,8 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun setAdditionalRotation(additionalRotation: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to additionalRotation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_ADDITIONAL_ROTATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_ADDITIONAL_ROTATION, NIL.ordinal)
   }
 
   /**
@@ -99,8 +99,9 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun getAdditionalRotation(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_ADDITIONAL_ROTATION, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_ADDITIONAL_ROTATION,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -109,8 +110,9 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun setLockRotationToPlane(lockToPlane: Boolean): Unit {
     TransferContext.writeArguments(BOOL to lockToPlane)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_TO_PLANE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_TO_PLANE,
+        NIL.ordinal)
   }
 
   /**
@@ -118,8 +120,9 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun getLockRotationToPlane(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_TO_PLANE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_TO_PLANE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -128,8 +131,8 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun setLockRotationPlane(plane: Long): Unit {
     TransferContext.writeArguments(LONG to plane)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_PLANE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_LOCK_ROTATION_PLANE, NIL.ordinal)
   }
 
   /**
@@ -137,8 +140,8 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
    */
   public fun getLockRotationPlane(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_PLANE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_GET_LOCK_ROTATION_PLANE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

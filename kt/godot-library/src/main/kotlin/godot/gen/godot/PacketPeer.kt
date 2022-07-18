@@ -40,14 +40,14 @@ public open class PacketPeer internal constructor() : RefCounted() {
   public var encodeBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_ENCODE_BUFFER_MAX_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_ENCODE_BUFFER_MAX_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEER_SET_ENCODE_BUFFER_MAX_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_SET_ENCODE_BUFFER_MAX_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -61,7 +61,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_VAR, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_VAR, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -70,7 +70,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -79,8 +79,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun getPacket(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -89,7 +89,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun putPacket(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_PACKET, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_PACKET, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -98,7 +98,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun getPacketError(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET_ERROR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_PACKET_ERROR,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -107,8 +108,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   public fun getAvailablePacketCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_AVAILABLE_PACKET_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_GET_AVAILABLE_PACKET_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

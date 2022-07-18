@@ -32,14 +32,14 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var sampleCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_COUNT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_COUNT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_COUNT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_COUNT, NIL.ordinal)
     }
 
   /**
@@ -48,14 +48,16 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableSampleShading: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_SAMPLE_SHADING, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_SAMPLE_SHADING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_SAMPLE_SHADING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_SAMPLE_SHADING,
+          NIL.ordinal)
     }
 
   /**
@@ -64,14 +66,15 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var minSampleShading: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_MIN_SAMPLE_SHADING, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_MIN_SAMPLE_SHADING,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_MIN_SAMPLE_SHADING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_MIN_SAMPLE_SHADING, NIL.ordinal)
     }
 
   /**
@@ -80,14 +83,16 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableAlphaToCoverage: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_COVERAGE, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_COVERAGE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_COVERAGE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_COVERAGE,
+          NIL.ordinal)
     }
 
   /**
@@ -96,14 +101,14 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableAlphaToOne: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_ONE, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_ONE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_ONE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_ONE, NIL.ordinal)
     }
 
   /**
@@ -112,14 +117,14 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var sampleMasks: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_MASKS, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_MASKS, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_MASKS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_MASKS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

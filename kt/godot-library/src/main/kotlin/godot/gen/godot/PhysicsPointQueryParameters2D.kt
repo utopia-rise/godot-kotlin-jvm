@@ -34,14 +34,14 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_POSITION, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_POSITION, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_POSITION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_POSITION, NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,16 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var canvasInstanceId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_CANVAS_INSTANCE_ID, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_CANVAS_INSTANCE_ID,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_CANVAS_INSTANCE_ID, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_CANVAS_INSTANCE_ID,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +68,14 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL.ordinal)
     }
 
   /**
@@ -82,14 +84,14 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_EXCLUDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_EXCLUDE, NIL.ordinal)
     }
 
   /**
@@ -98,15 +100,16 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_BODIES_ENABLED,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_BODIES,
+          NIL.ordinal)
     }
 
   /**
@@ -115,15 +118,16 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_AREAS_ENABLED,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

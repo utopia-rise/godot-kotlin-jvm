@@ -34,12 +34,12 @@ public open class XRNode3D internal constructor() : Node3D() {
   public var tracker: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_TRACKER, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_TRACKER, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_TRACKER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_TRACKER, NIL.ordinal)
     }
 
   /**
@@ -50,12 +50,12 @@ public open class XRNode3D internal constructor() : Node3D() {
   public var pose: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE_NAME, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE_NAME, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_POSE_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_SET_POSE_NAME, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -67,7 +67,7 @@ public open class XRNode3D internal constructor() : Node3D() {
    */
   public fun getIsActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_IS_ACTIVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_IS_ACTIVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -76,8 +76,8 @@ public open class XRNode3D internal constructor() : Node3D() {
    */
   public fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_HAS_TRACKING_DATA,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_HAS_TRACKING_DATA,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -86,7 +86,7 @@ public open class XRNode3D internal constructor() : Node3D() {
    */
   public fun getPose(): XRPose? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_GET_POSE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as XRPose?
   }
 
@@ -103,7 +103,8 @@ public open class XRNode3D internal constructor() : Node3D() {
     delaySec: Double
   ): Unit {
     TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_TRIGGER_HAPTIC_PULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRNODE3D_TRIGGER_HAPTIC_PULSE,
+        NIL.ordinal)
   }
 
   public companion object

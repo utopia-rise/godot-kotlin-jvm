@@ -24,39 +24,40 @@ public open class OpenXRAction : Resource() {
   public var localizedName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_LOCALIZED_NAME,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_LOCALIZED_NAME,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_LOCALIZED_NAME,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_LOCALIZED_NAME,
+          NIL.ordinal)
     }
 
   public var actionType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_ACTION_TYPE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_ACTION_TYPE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_ACTION_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_ACTION_TYPE,
+          NIL.ordinal)
     }
 
   public var toplevelPaths: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_TOPLEVEL_PATHS,
-          ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_TOPLEVEL_PATHS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_TOPLEVEL_PATHS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_SET_TOPLEVEL_PATHS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

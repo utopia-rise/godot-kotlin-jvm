@@ -31,8 +31,9 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_SET_HELD_MODIFICATION_STACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_SET_HELD_MODIFICATION_STACK,
+        NIL.ordinal)
   }
 
   /**
@@ -40,9 +41,9 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_GET_HELD_MODIFICATION_STACK,
-        OBJECT)
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?
   }
 

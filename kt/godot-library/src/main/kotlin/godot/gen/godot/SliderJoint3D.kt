@@ -32,7 +32,7 @@ public open class SliderJoint3D : Joint3D() {
    */
   public fun setParam(`param`: SliderJoint3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -40,7 +40,7 @@ public open class SliderJoint3D : Joint3D() {
    */
   public fun getParam(`param`: SliderJoint3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_GET_PARAM, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

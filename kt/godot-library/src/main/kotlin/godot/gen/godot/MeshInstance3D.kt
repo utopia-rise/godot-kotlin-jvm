@@ -39,12 +39,13 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_MESH,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_MESH, NIL.ordinal)
     }
 
   /**
@@ -53,12 +54,13 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public var skin: Skin?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKIN, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKIN,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Skin?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKIN, NIL.ordinal)
     }
 
   /**
@@ -67,14 +69,14 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON_PATH,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON_PATH,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKELETON_PATH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKELETON_PATH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -86,8 +88,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun getSurfaceOverrideMaterialCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -96,8 +98,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun setSurfaceOverrideMaterial(surface: Long, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface, OBJECT to material)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SURFACE_OVERRIDE_MATERIAL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SURFACE_OVERRIDE_MATERIAL, NIL.ordinal)
   }
 
   /**
@@ -105,8 +107,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun getSurfaceOverrideMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SURFACE_OVERRIDE_MATERIAL, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
@@ -115,8 +117,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun getActiveMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_ACTIVE_MATERIAL,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_ACTIVE_MATERIAL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
@@ -125,8 +127,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun createTrimeshCollision(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_TRIMESH_COLLISION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_TRIMESH_COLLISION,
+        NIL.ordinal)
   }
 
   /**
@@ -138,8 +140,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_CONVEX_COLLISION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_CONVEX_COLLISION,
+        NIL.ordinal)
   }
 
   /**
@@ -147,8 +149,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun createMultipleConvexCollisions(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_MULTIPLE_CONVEX_COLLISIONS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_MULTIPLE_CONVEX_COLLISIONS, NIL.ordinal)
   }
 
   /**
@@ -156,8 +158,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -166,8 +168,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun findBlendShapeByName(name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_FIND_BLEND_SHAPE_BY_NAME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_FIND_BLEND_SHAPE_BY_NAME,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -176,8 +178,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun getBlendShapeValue(blendShapeIdx: Long): Double {
     TransferContext.writeArguments(LONG to blendShapeIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_VALUE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_BLEND_SHAPE_VALUE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -186,8 +188,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun setBlendShapeValue(blendShapeIdx: Long, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx, DOUBLE to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_BLEND_SHAPE_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_BLEND_SHAPE_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -195,8 +197,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   public fun createDebugTangents(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_DEBUG_TANGENTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_CREATE_DEBUG_TANGENTS,
+        NIL.ordinal)
   }
 
   public companion object

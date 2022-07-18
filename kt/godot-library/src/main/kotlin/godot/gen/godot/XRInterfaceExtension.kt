@@ -254,7 +254,8 @@ public open class XRInterfaceExtension : XRInterface() {
     aspectRatio: Double
   ): Unit {
     TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_ADD_BLIT,
+        NIL.ordinal)
   }
 
   /**
@@ -262,8 +263,8 @@ public open class XRInterfaceExtension : XRInterface() {
    */
   public fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_RENDER_TARGET_TEXTURE, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_XRINTERFACEEXTENSION_GET_RENDER_TARGET_TEXTURE, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 

@@ -39,12 +39,12 @@ public open class Bone2D : Node2D() {
   public var rest: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_REST, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_REST, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -56,7 +56,7 @@ public open class Bone2D : Node2D() {
    */
   public fun applyRest(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL.ordinal)
   }
 
   /**
@@ -64,8 +64,8 @@ public open class Bone2D : Node2D() {
    */
   public fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
-        TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -74,7 +74,8 @@ public open class Bone2D : Node2D() {
    */
   public fun getIndexInSkeleton(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -83,7 +84,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setDefaultLength(defaultLength: Double): Unit {
     TransferContext.writeArguments(DOUBLE to defaultLength)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL.ordinal)
   }
 
   /**
@@ -91,7 +92,8 @@ public open class Bone2D : Node2D() {
    */
   public fun getDefaultLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_DEFAULT_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_DEFAULT_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -100,8 +102,8 @@ public open class Bone2D : Node2D() {
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONE2D_SET_AUTOCALCULATE_LENGTH_AND_ANGLE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_BONE2D_SET_AUTOCALCULATE_LENGTH_AND_ANGLE, NIL.ordinal)
   }
 
   /**
@@ -109,8 +111,8 @@ public open class Bone2D : Node2D() {
    */
   public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -119,7 +121,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setLength(length: Double): Unit {
     TransferContext.writeArguments(DOUBLE to length)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL.ordinal)
   }
 
   /**
@@ -127,7 +129,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -138,7 +140,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setBoneAngle(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL.ordinal)
   }
 
   /**
@@ -148,7 +150,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getBoneAngle(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

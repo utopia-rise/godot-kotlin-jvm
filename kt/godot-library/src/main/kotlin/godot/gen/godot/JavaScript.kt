@@ -59,7 +59,7 @@ public object JavaScript : Object() {
    */
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_EVAL, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_EVAL, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -68,7 +68,7 @@ public object JavaScript : Object() {
    */
   public fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_GET_INTERFACE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_GET_INTERFACE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
   }
 
@@ -77,7 +77,8 @@ public object JavaScript : Object() {
    */
   public fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_CALLBACK, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_CALLBACK,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
   }
 
@@ -86,7 +87,7 @@ public object JavaScript : Object() {
    */
   public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_OBJECT, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_OBJECT, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -105,7 +106,7 @@ public object JavaScript : Object() {
     mime: String = "application/octet-stream"
   ): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, STRING to name, STRING to mime)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_DOWNLOAD_BUFFER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_DOWNLOAD_BUFFER, NIL.ordinal)
   }
 
   /**
@@ -115,7 +116,8 @@ public object JavaScript : Object() {
    */
   public fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_NEEDS_UPDATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_NEEDS_UPDATE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -128,7 +130,7 @@ public object JavaScript : Object() {
    */
   public fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_UPDATE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_PWA_UPDATE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 }

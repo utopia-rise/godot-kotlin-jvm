@@ -31,28 +31,29 @@ public open class World3D : Resource() {
   public var environment: Environment?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_ENVIRONMENT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_ENVIRONMENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_ENVIRONMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_ENVIRONMENT, NIL.ordinal)
     }
 
   /**
-   * The World3D's fallback_environment will be used if the World3D's [godot.Environment] fails or is missing.
+   * The World3D's fallback environment will be used if [environment] fails or is missing.
    */
   public var fallbackEnvironment: Environment?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_FALLBACK_ENVIRONMENT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_FALLBACK_ENVIRONMENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_FALLBACK_ENVIRONMENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_FALLBACK_ENVIRONMENT,
+          NIL.ordinal)
     }
 
   /**
@@ -61,13 +62,14 @@ public open class World3D : Resource() {
   public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_EFFECTS,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_EFFECTS,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_CAMERA_EFFECTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_CAMERA_EFFECTS,
+          NIL.ordinal)
     }
 
   /**
@@ -76,7 +78,7 @@ public open class World3D : Resource() {
   public val space: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SPACE, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SPACE, _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -86,7 +88,8 @@ public open class World3D : Resource() {
   public val navigationMap: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_NAVIGATION_MAP, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_NAVIGATION_MAP,
+          _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -96,7 +99,7 @@ public open class World3D : Resource() {
   public val scenario: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SCENARIO, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SCENARIO, _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
@@ -106,8 +109,8 @@ public open class World3D : Resource() {
   public val directSpaceState: PhysicsDirectSpaceState3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_DIRECT_SPACE_STATE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_DIRECT_SPACE_STATE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?
     }
 

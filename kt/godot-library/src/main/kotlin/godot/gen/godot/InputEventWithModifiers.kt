@@ -32,14 +32,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var storeCommand: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_STORING_COMMAND, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_STORING_COMMAND, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_STORE_COMMAND, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_STORE_COMMAND, NIL.ordinal)
     }
 
   /**
@@ -48,14 +48,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var altPressed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_ALT_PRESSED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_ALT_PRESSED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_ALT_PRESSED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_ALT_PRESSED, NIL.ordinal)
     }
 
   /**
@@ -64,14 +64,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var shiftPressed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_SHIFT_PRESSED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_SHIFT_PRESSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_SHIFT_PRESSED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_SHIFT_PRESSED, NIL.ordinal)
     }
 
   /**
@@ -80,14 +80,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var ctrlPressed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_CTRL_PRESSED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_CTRL_PRESSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_CTRL_PRESSED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_CTRL_PRESSED, NIL.ordinal)
     }
 
   /**
@@ -96,14 +96,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var metaPressed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_META_PRESSED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_META_PRESSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_META_PRESSED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_META_PRESSED, NIL.ordinal)
     }
 
   /**
@@ -112,14 +112,14 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public var commandPressed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_PRESSED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_PRESSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND_PRESSED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND_PRESSED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

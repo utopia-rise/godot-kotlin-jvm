@@ -18,14 +18,14 @@ public open class VisualScriptPreload : VisualScriptNode() {
   public var resource: Resource?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPRELOAD_GET_PRELOAD,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPRELOAD_GET_PRELOAD,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Resource?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPRELOAD_SET_PRELOAD,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPRELOAD_SET_PRELOAD,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

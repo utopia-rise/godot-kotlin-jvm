@@ -58,7 +58,7 @@ import kotlin.Unit
  *
  *     add_child(http_request)
  *
- *     http_request.connect("request_completed", self, "_http_request_completed")
+ *     http_request.request_completed.connect(self._http_request_completed)
  *
  *
  *
@@ -78,7 +78,7 @@ import kotlin.Unit
  *
  *     # The snippet below is provided for reference only.
  *
- *     var body = {"name": "Godette"}
+ *     var body = JSON.new().stringify({"name": "Godette"})
  *
  *     error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
  *
@@ -94,7 +94,11 @@ import kotlin.Unit
  *
  * func _http_request_completed(result, response_code, headers, body):
  *
- *     var response = parse_json(body.get_string_from_utf8())
+ *     var json = JSON.new()
+ *
+ *     json.parse(body.get_string_from_utf8())
+ *
+ *     var response = json.get_data()
  *
  *
  *
@@ -116,7 +120,7 @@ import kotlin.Unit
  *
  *     AddChild(httpRequest);
  *
- *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *     httpRequest.RequestCompleted += HttpRequestCompleted;
  *
  *
  *
@@ -140,11 +144,15 @@ import kotlin.Unit
  *
  *     // The snippet below is provided for reference only.
  *
- *     string[] body = { "name", "Godette" };
+ *     string body = new JSON().Stringify(new Godot.Collections.Dictionary
  *
- *     // GDScript to_json is non existent, so we use JSON.Print() here.
+ *     {
  *
- *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, JSON.Print(body));
+ *         { "name", "Godette" }
+ *
+ *     });
+ *
+ *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, body);
  *
  *     if (error != Error.Ok)
  *
@@ -158,17 +166,19 @@ import kotlin.Unit
  *
  *
  *
- *
- *
  * // Called when the HTTP request is completed.
  *
  * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
  *
  * {
  *
- *     // GDScript parse_json is non existent so we have to use JSON.parse, which has a slightly different syntax.
+ *     var json = new JSON();
  *
- *     var response = JSON.Parse(body.GetStringFromUTF8()).Result as Godot.Collections.Dictionary;
+ *     json.Parse(body.GetStringFromUTF8());
+ *
+ *     var response = json.GetData() as Godot.Collections.Dictionary;
+ *
+ *
  *
  *     // Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
  *
@@ -194,7 +204,7 @@ import kotlin.Unit
  *
  *     add_child(http_request)
  *
- *     http_request.connect("request_completed", self, "_http_request_completed")
+ *     http_request.request_completed.connect(self._http_request_completed)
  *
  *
  *
@@ -230,9 +240,7 @@ import kotlin.Unit
  *
  *
  *
- *     var texture = ImageTexture.new()
- *
- *     texture.create_from_image(image)
+ *     var texture = ImageTexture.create_from_image(image)
  *
  *
  *
@@ -258,7 +266,7 @@ import kotlin.Unit
  *
  *     AddChild(httpRequest);
  *
- *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *     httpRequest.RequestCompleted += HttpRequestCompleted;
  *
  *
  *
@@ -275,8 +283,6 @@ import kotlin.Unit
  *     }
  *
  * }
- *
- *
  *
  *
  *
@@ -344,14 +350,14 @@ public open class HTTPRequest : Node() {
   public var downloadFile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
+          NIL.ordinal)
     }
 
   /**
@@ -362,14 +368,14 @@ public open class HTTPRequest : Node() {
   public var downloadChunkSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_CHUNK_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_CHUNK_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE,
+          NIL.ordinal)
     }
 
   /**
@@ -378,13 +384,14 @@ public open class HTTPRequest : Node() {
   public var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS,
+          NIL.ordinal)
     }
 
   /**
@@ -399,13 +406,14 @@ public open class HTTPRequest : Node() {
   public var acceptGzip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_ACCEPT_GZIP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_ACCEPT_GZIP,
+          NIL.ordinal)
     }
 
   /**
@@ -414,14 +422,14 @@ public open class HTTPRequest : Node() {
   public var bodySizeLimit: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
+          NIL.ordinal)
     }
 
   /**
@@ -430,28 +438,29 @@ public open class HTTPRequest : Node() {
   public var maxRedirects: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_MAX_REDIRECTS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_MAX_REDIRECTS,
+          NIL.ordinal)
     }
 
   /**
-   *
+   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
    */
   public var timeout: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -475,7 +484,7 @@ public open class HTTPRequest : Node() {
     requestData: String = ""
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, STRING to requestData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -492,7 +501,7 @@ public open class HTTPRequest : Node() {
     requestDataRaw: PackedByteArray = PackedByteArray()
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to sslValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -501,7 +510,7 @@ public open class HTTPRequest : Node() {
    */
   public fun cancelRequest(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL.ordinal)
   }
 
   /**
@@ -509,8 +518,8 @@ public open class HTTPRequest : Node() {
    */
   public fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
+        LONG.ordinal)
     return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -519,8 +528,8 @@ public open class HTTPRequest : Node() {
    */
   public fun getDownloadedBytes(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -531,7 +540,7 @@ public open class HTTPRequest : Node() {
    */
   public fun getBodySize(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -542,7 +551,7 @@ public open class HTTPRequest : Node() {
    */
   public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL.ordinal)
   }
 
   /**
@@ -552,7 +561,7 @@ public open class HTTPRequest : Node() {
    */
   public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL.ordinal)
   }
 
   public enum class Result(

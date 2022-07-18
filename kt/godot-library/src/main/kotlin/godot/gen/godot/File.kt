@@ -125,12 +125,12 @@ public open class File : RefCounted() {
   public var bigEndian: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_BIG_ENDIAN, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_BIG_ENDIAN, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SET_BIG_ENDIAN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SET_BIG_ENDIAN, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -148,7 +148,7 @@ public open class File : RefCounted() {
     key: PackedByteArray
   ): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_ENCRYPTED, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_ENCRYPTED, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -161,7 +161,8 @@ public open class File : RefCounted() {
     pass: String
   ): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_ENCRYPTED_WITH_PASS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_ENCRYPTED_WITH_PASS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -176,7 +177,7 @@ public open class File : RefCounted() {
     compressionMode: File.CompressionMode = File.CompressionMode.COMPRESSION_FASTLZ
   ): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_COMPRESSED, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_COMPRESSED, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -185,7 +186,7 @@ public open class File : RefCounted() {
    */
   public fun `open`(path: String, flags: File.ModeFlags): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to flags.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -196,7 +197,7 @@ public open class File : RefCounted() {
    */
   public fun flush(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_FLUSH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_FLUSH, NIL.ordinal)
   }
 
   /**
@@ -204,7 +205,7 @@ public open class File : RefCounted() {
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_CLOSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_CLOSE, NIL.ordinal)
   }
 
   /**
@@ -212,7 +213,7 @@ public open class File : RefCounted() {
    */
   public fun getPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -221,7 +222,7 @@ public open class File : RefCounted() {
    */
   public fun getPathAbsolute(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH_ABSOLUTE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PATH_ABSOLUTE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -230,7 +231,7 @@ public open class File : RefCounted() {
    */
   public fun isOpen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_OPEN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_OPEN, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -239,7 +240,7 @@ public open class File : RefCounted() {
    */
   public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK, NIL.ordinal)
   }
 
   /**
@@ -249,7 +250,7 @@ public open class File : RefCounted() {
    */
   public fun seekEnd(position: Long = 0): Unit {
     TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK_END, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SEEK_END, NIL.ordinal)
   }
 
   /**
@@ -257,7 +258,7 @@ public open class File : RefCounted() {
    */
   public fun getPosition(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_POSITION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_POSITION, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -266,7 +267,7 @@ public open class File : RefCounted() {
    */
   public fun getLength(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LENGTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LENGTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -301,7 +302,7 @@ public open class File : RefCounted() {
    */
   public fun eofReached(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_EOF_REACHED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_EOF_REACHED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -310,7 +311,7 @@ public open class File : RefCounted() {
    */
   public fun get8(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_8, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_8, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -319,7 +320,7 @@ public open class File : RefCounted() {
    */
   public fun get16(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_16, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_16, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -328,7 +329,7 @@ public open class File : RefCounted() {
    */
   public fun get32(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_32, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_32, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -337,7 +338,7 @@ public open class File : RefCounted() {
    */
   public fun get64(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_64, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_64, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -346,7 +347,7 @@ public open class File : RefCounted() {
    */
   public fun getFloat(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_FLOAT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_FLOAT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -355,7 +356,7 @@ public open class File : RefCounted() {
    */
   public fun getDouble(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_DOUBLE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_DOUBLE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -364,7 +365,7 @@ public open class File : RefCounted() {
    */
   public fun getReal(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_REAL, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_REAL, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -373,7 +374,8 @@ public open class File : RefCounted() {
    */
   public fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_BUFFER, PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_BUFFER,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -384,7 +386,7 @@ public open class File : RefCounted() {
    */
   public fun getLine(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LINE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_LINE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -405,8 +407,8 @@ public open class File : RefCounted() {
    */
   public fun getCsvLine(delim: String = ","): PackedStringArray {
     TransferContext.writeArguments(STRING to delim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_CSV_LINE,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_CSV_LINE,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -417,7 +419,7 @@ public open class File : RefCounted() {
    */
   public fun getAsText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_AS_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_AS_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -426,7 +428,7 @@ public open class File : RefCounted() {
    */
   public fun getMd5(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MD5, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MD5, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -435,7 +437,7 @@ public open class File : RefCounted() {
    */
   public fun getSha256(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_SHA256, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_SHA256, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -444,7 +446,7 @@ public open class File : RefCounted() {
    */
   public fun getError(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_ERROR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_ERROR, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -455,7 +457,7 @@ public open class File : RefCounted() {
    */
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_VAR, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_VAR, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -468,7 +470,7 @@ public open class File : RefCounted() {
    */
   public fun store8(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_8, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_8, NIL.ordinal)
   }
 
   /**
@@ -548,7 +550,7 @@ public open class File : RefCounted() {
    */
   public fun store16(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_16, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_16, NIL.ordinal)
   }
 
   /**
@@ -560,7 +562,7 @@ public open class File : RefCounted() {
    */
   public fun store32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_32, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_32, NIL.ordinal)
   }
 
   /**
@@ -570,7 +572,7 @@ public open class File : RefCounted() {
    */
   public fun store64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_64, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_64, NIL.ordinal)
   }
 
   /**
@@ -578,7 +580,7 @@ public open class File : RefCounted() {
    */
   public fun storeFloat(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_FLOAT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_FLOAT, NIL.ordinal)
   }
 
   /**
@@ -586,7 +588,7 @@ public open class File : RefCounted() {
    */
   public fun storeDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_DOUBLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_DOUBLE, NIL.ordinal)
   }
 
   /**
@@ -594,7 +596,7 @@ public open class File : RefCounted() {
    */
   public fun storeReal(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_REAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_REAL, NIL.ordinal)
   }
 
   /**
@@ -602,7 +604,7 @@ public open class File : RefCounted() {
    */
   public fun storeBuffer(buffer: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_BUFFER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_BUFFER, NIL.ordinal)
   }
 
   /**
@@ -610,7 +612,7 @@ public open class File : RefCounted() {
    */
   public fun storeLine(line: String): Unit {
     TransferContext.writeArguments(STRING to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_LINE, NIL.ordinal)
   }
 
   /**
@@ -620,7 +622,7 @@ public open class File : RefCounted() {
    */
   public fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_CSV_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_CSV_LINE, NIL.ordinal)
   }
 
   /**
@@ -630,7 +632,7 @@ public open class File : RefCounted() {
    */
   public fun storeString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_STRING, NIL.ordinal)
   }
 
   /**
@@ -640,7 +642,7 @@ public open class File : RefCounted() {
    */
   public fun storeVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_VAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_VAR, NIL.ordinal)
   }
 
   /**
@@ -650,7 +652,7 @@ public open class File : RefCounted() {
    */
   public fun storePascalString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_PASCAL_STRING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_STORE_PASCAL_STRING, NIL.ordinal)
   }
 
   /**
@@ -660,7 +662,7 @@ public open class File : RefCounted() {
    */
   public fun getPascalString(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PASCAL_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PASCAL_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -669,7 +671,7 @@ public open class File : RefCounted() {
    */
   public fun getModifiedTime(`file`: String): Long {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MODIFIED_TIME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_MODIFIED_TIME, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -735,5 +737,16 @@ public open class File : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Returns `true` if the file exists in the given path.
+     *
+     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [godot.ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+     */
+    public fun fileExists(path: String): Boolean {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.icallStatic(ENGINEMETHOD_ENGINECLASS_FILE_FILE_EXISTS, BOOL.ordinal)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+  }
 }

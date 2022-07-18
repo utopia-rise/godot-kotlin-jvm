@@ -57,14 +57,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public var disableMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_DISABLE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_DISABLE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_DISABLE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_DISABLE_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -75,14 +75,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_LAYER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_LAYER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_LAYER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_LAYER,
+          NIL.ordinal)
     }
 
   /**
@@ -93,14 +93,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -109,14 +109,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public var inputRayPickable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_RAY_PICKABLE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_RAY_PICKABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_RAY_PICKABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_RAY_PICKABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -125,14 +125,14 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public var inputCaptureOnDrag: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_CAPTURE_INPUT_ON_DRAG, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_CAPTURE_INPUT_ON_DRAG, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_CAPTURE_INPUT_ON_DRAG, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_CAPTURE_INPUT_ON_DRAG, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -156,8 +156,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_LAYER_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_LAYER_VALUE, NIL.ordinal)
   }
 
   /**
@@ -165,8 +165,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_LAYER_VALUE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_LAYER_VALUE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -175,8 +175,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_COLLISION_MASK_VALUE, NIL.ordinal)
   }
 
   /**
@@ -184,8 +184,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_COLLISION_MASK_VALUE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -194,7 +194,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -203,8 +203,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun createShapeOwner(owner: Object): Long {
     TransferContext.writeArguments(OBJECT to owner)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_CREATE_SHAPE_OWNER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_CREATE_SHAPE_OWNER,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -213,8 +213,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun removeShapeOwner(ownerId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_REMOVE_SHAPE_OWNER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_REMOVE_SHAPE_OWNER,
+        NIL.ordinal)
   }
 
   /**
@@ -222,8 +222,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun getShapeOwners(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_SHAPE_OWNERS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_SHAPE_OWNERS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -232,8 +232,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerSetTransform(ownerId: Long, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to ownerId, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_TRANSFORM, NIL.ordinal)
   }
 
   /**
@@ -241,8 +241,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerGetTransform(ownerId: Long): Transform3D {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_TRANSFORM, TRANSFORM3D)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_TRANSFORM, TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -251,8 +251,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerGetOwner(ownerId: Long): Object? {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_OWNER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_OWNER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -261,8 +261,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to ownerId, BOOL to disabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_DISABLED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_SET_DISABLED, NIL.ordinal)
   }
 
   /**
@@ -270,8 +270,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun isShapeOwnerDisabled(ownerId: Long): Boolean {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_SHAPE_OWNER_DISABLED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_SHAPE_OWNER_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -280,8 +280,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerAddShape(ownerId: Long, shape: Shape3D): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_ADD_SHAPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_ADD_SHAPE,
+        NIL.ordinal)
   }
 
   /**
@@ -289,8 +289,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerGetShapeCount(ownerId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -299,8 +299,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape3D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
   }
 
@@ -309,8 +309,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_GET_SHAPE_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -319,8 +319,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_REMOVE_SHAPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_REMOVE_SHAPE, NIL.ordinal)
   }
 
   /**
@@ -328,8 +328,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeOwnerClearShapes(ownerId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_CLEAR_SHAPES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_OWNER_CLEAR_SHAPES, NIL.ordinal)
   }
 
   /**
@@ -337,8 +337,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    */
   public fun shapeFindOwner(shapeIndex: Long): Long {
     TransferContext.writeArguments(LONG to shapeIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_FIND_OWNER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SHAPE_FIND_OWNER,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

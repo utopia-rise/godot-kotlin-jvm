@@ -24,37 +24,38 @@ public open class UPNP : RefCounted() {
   public var discoverMulticastIf: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_MULTICAST_IF,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_MULTICAST_IF,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_MULTICAST_IF,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_MULTICAST_IF,
+          NIL.ordinal)
     }
 
   public var discoverLocalPort: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_LOCAL_PORT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_LOCAL_PORT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_LOCAL_PORT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_LOCAL_PORT,
+          NIL.ordinal)
     }
 
   public var discoverIpv6: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_IS_DISCOVER_IPV6, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_IS_DISCOVER_IPV6, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_IPV6, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_IPV6, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -63,39 +64,39 @@ public open class UPNP : RefCounted() {
 
   public fun getDeviceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getDevice(index: Long): UPNPDevice? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?
   }
 
   public fun addDevice(device: UPNPDevice): Unit {
     TransferContext.writeArguments(OBJECT to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_DEVICE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_DEVICE, NIL.ordinal)
   }
 
   public fun setDevice(index: Long, device: UPNPDevice): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DEVICE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DEVICE, NIL.ordinal)
   }
 
   public fun removeDevice(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_REMOVE_DEVICE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_REMOVE_DEVICE, NIL.ordinal)
   }
 
   public fun clearDevices(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_CLEAR_DEVICES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_CLEAR_DEVICES, NIL.ordinal)
   }
 
   public fun getGateway(): UPNPDevice? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_GATEWAY, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_GATEWAY, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?
   }
 
@@ -105,13 +106,14 @@ public open class UPNP : RefCounted() {
     deviceFilter: String = "InternetGatewayDevice"
   ): Long {
     TransferContext.writeArguments(LONG to timeout, LONG to ttl, STRING to deviceFilter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DISCOVER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DISCOVER, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun queryExternalAddress(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_QUERY_EXTERNAL_ADDRESS, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_QUERY_EXTERNAL_ADDRESS,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -123,13 +125,13 @@ public open class UPNP : RefCounted() {
     duration: Long = 0
   ): Long {
     TransferContext.writeArguments(LONG to port, LONG to portInternal, STRING to desc, STRING to proto, LONG to duration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_PORT_MAPPING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_PORT_MAPPING, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun deletePortMapping(port: Long, proto: String = "UDP"): Long {
     TransferContext.writeArguments(LONG to port, STRING to proto)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DELETE_PORT_MAPPING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DELETE_PORT_MAPPING, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

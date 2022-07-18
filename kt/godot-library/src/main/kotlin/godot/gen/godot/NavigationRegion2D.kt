@@ -25,6 +25,12 @@ import kotlin.Unit
  * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer2D.mapSetEdgeConnectionMargin].
  *
  * **Note:** Overlapping two regions' polygons is not enough for connecting two regions. They must share a similar edge.
+ *
+ * The pathfinding cost of entering this region from another region can be controlled with the [enterCost] value.
+ *
+ * **Note**: This value is not added to the path cost when the start position is already inside this region.
+ *
+ * The pathfinding cost of traveling distances inside this region can be controlled with the [travelCost] multiplier.
  */
 @GodotBaseType
 public open class NavigationRegion2D : Node2D() {
@@ -34,14 +40,14 @@ public open class NavigationRegion2D : Node2D() {
   public var navpoly: NavigationPolygon?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_NAVIGATION_POLYGON, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_NAVIGATION_POLYGON, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_NAVIGATION_POLYGON, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_NAVIGATION_POLYGON, NIL.ordinal)
     }
 
   /**
@@ -50,30 +56,27 @@ public open class NavigationRegion2D : Node2D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_IS_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_IS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_ENABLED,
+          NIL.ordinal)
     }
 
-  /**
-   * A bitfield determining all layers the region belongs to. These layers can be checked upon when requesting a path with [godot.NavigationServer2D.mapGetPath].
-   */
   public var layers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_LAYERS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_LAYERS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_LAYERS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_LAYERS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

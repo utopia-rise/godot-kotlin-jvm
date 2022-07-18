@@ -51,7 +51,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBoneCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -60,7 +60,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBone(idx: Long): Bone2D? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Bone2D?
   }
 
@@ -69,7 +69,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getSkeleton(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -78,8 +78,8 @@ public open class Skeleton2D : Node2D() {
    */
   public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_MODIFICATION_STACK,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_MODIFICATION_STACK,
+        NIL.ordinal)
   }
 
   /**
@@ -87,8 +87,8 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_MODIFICATION_STACK,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_MODIFICATION_STACK,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?
   }
 
@@ -97,8 +97,8 @@ public open class Skeleton2D : Node2D() {
    */
   public fun executeModifications(delta: Double, executionMode: Long): Unit {
     TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_EXECUTE_MODIFICATIONS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_EXECUTE_MODIFICATIONS,
+        NIL.ordinal)
   }
 
   /**
@@ -115,8 +115,8 @@ public open class Skeleton2D : Node2D() {
     persistent: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to boneIdx, TRANSFORM2D to overridePose, DOUBLE to strength, BOOL to persistent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_BONE_LOCAL_POSE_OVERRIDE,
+        NIL.ordinal)
   }
 
   /**
@@ -124,8 +124,8 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBoneLocalPoseOverride(boneIdx: Long): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_LOCAL_POSE_OVERRIDE, TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_LOCAL_POSE_OVERRIDE,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 

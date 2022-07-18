@@ -49,7 +49,7 @@ public object ResourceSaver : Object() {
     flags: Long = 0
   ): GodotError {
     TransferContext.writeArguments(STRING to path, OBJECT to resource, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -58,8 +58,8 @@ public object ResourceSaver : Object() {
    */
   public fun getRecognizedExtensions(type: Resource): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS, PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 

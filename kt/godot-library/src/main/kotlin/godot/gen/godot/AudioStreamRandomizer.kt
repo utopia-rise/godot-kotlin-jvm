@@ -30,14 +30,14 @@ public open class AudioStreamRandomizer : AudioStream() {
   public var streamsCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL.ordinal)
     }
 
   /**
@@ -46,14 +46,14 @@ public open class AudioStreamRandomizer : AudioStream() {
   public var playbackMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_PLAYBACK_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_PLAYBACK_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_PLAYBACK_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_PLAYBACK_MODE, NIL.ordinal)
     }
 
   /**
@@ -62,14 +62,14 @@ public open class AudioStreamRandomizer : AudioStream() {
   public var randomPitch: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_PITCH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_PITCH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_PITCH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_PITCH,
+          NIL.ordinal)
     }
 
   /**
@@ -78,14 +78,15 @@ public open class AudioStreamRandomizer : AudioStream() {
   public var randomVolumeOffsetDb: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_VOLUME_OFFSET_DB, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_RANDOM_VOLUME_OFFSET_DB,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_VOLUME_OFFSET_DB, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_VOLUME_OFFSET_DB, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -97,8 +98,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun addStream(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_ADD_STREAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_ADD_STREAM,
+        NIL.ordinal)
   }
 
   /**
@@ -106,8 +107,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun moveStream(indexFrom: Long, indexTo: Long): Unit {
     TransferContext.writeArguments(LONG to indexFrom, LONG to indexTo)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_MOVE_STREAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_MOVE_STREAM,
+        NIL.ordinal)
   }
 
   /**
@@ -115,8 +116,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun removeStream(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_REMOVE_STREAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_REMOVE_STREAM,
+        NIL.ordinal)
   }
 
   /**
@@ -124,8 +125,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun setStream(index: Long, stream: AudioStream): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to stream)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM,
+        NIL.ordinal)
   }
 
   /**
@@ -133,8 +134,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun getStream(index: Long): AudioStream? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AudioStream?
   }
 
@@ -143,8 +144,8 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun setStreamProbabilityWeight(index: Long, weight: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to weight)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM_PROBABILITY_WEIGHT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAM_PROBABILITY_WEIGHT, NIL.ordinal)
   }
 
   /**
@@ -152,8 +153,9 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public fun getStreamProbabilityWeight(index: Long): Double {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM_PROBABILITY_WEIGHT, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAM_PROBABILITY_WEIGHT,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

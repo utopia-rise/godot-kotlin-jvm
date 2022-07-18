@@ -62,12 +62,13 @@ public open class Node3D : Node() {
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_TRANSFORM, TRANSFORM3D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_TRANSFORM,
+          TRANSFORM3D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_TRANSFORM, NIL.ordinal)
     }
 
   /**
@@ -76,13 +77,14 @@ public open class Node3D : Node() {
   public var globalTransform: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_TRANSFORM,
-          TRANSFORM3D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_TRANSFORM,
+          TRANSFORM3D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_TRANSFORM,
+          NIL.ordinal)
     }
 
   /**
@@ -91,12 +93,12 @@ public open class Node3D : Node() {
   public var position: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_POSITION, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_POSITION, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_POSITION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_POSITION, NIL.ordinal)
     }
 
   /**
@@ -107,12 +109,12 @@ public open class Node3D : Node() {
   public var rotation: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION, NIL.ordinal)
     }
 
   /**
@@ -121,12 +123,13 @@ public open class Node3D : Node() {
   public var quaternion: Quaternion
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_QUATERNION, QUATERNION)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_QUATERNION,
+          QUATERNION.ordinal)
       return TransferContext.readReturnValue(QUATERNION, false) as Quaternion
     }
     set(`value`) {
       TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_QUATERNION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_QUATERNION, NIL.ordinal)
     }
 
   /**
@@ -135,26 +138,28 @@ public open class Node3D : Node() {
   public var basis: Basis
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_BASIS, BASIS)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_BASIS, BASIS.ordinal)
       return TransferContext.readReturnValue(BASIS, false) as Basis
     }
     set(`value`) {
       TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_BASIS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_BASIS, NIL.ordinal)
     }
 
   /**
    * Scale part of the local transformation.
+   *
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
    */
   public var scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_SCALE, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_SCALE, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_SCALE, NIL.ordinal)
     }
 
   /**
@@ -163,14 +168,14 @@ public open class Node3D : Node() {
   public var rotationEditMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_EDIT_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_EDIT_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_EDIT_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -179,12 +184,13 @@ public open class Node3D : Node() {
   public var rotationOrder: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_ORDER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_ROTATION_ORDER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_ORDER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_ROTATION_ORDER, NIL.ordinal)
     }
 
   /**
@@ -193,12 +199,13 @@ public open class Node3D : Node() {
   public var topLevel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SET_AS_TOP_LEVEL, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SET_AS_TOP_LEVEL,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_AS_TOP_LEVEL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_AS_TOP_LEVEL, NIL.ordinal)
     }
 
   /**
@@ -207,12 +214,12 @@ public open class Node3D : Node() {
   public var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_VISIBLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_VISIBLE, NIL.ordinal)
     }
 
   /**
@@ -221,13 +228,14 @@ public open class Node3D : Node() {
   public var visibilityParent: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_VISIBILITY_PARENT,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_VISIBILITY_PARENT,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_VISIBILITY_PARENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_VISIBILITY_PARENT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -239,7 +247,8 @@ public open class Node3D : Node() {
    */
   public fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_PARENT_NODE_3D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_PARENT_NODE_3D,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node3D?
   }
 
@@ -248,8 +257,8 @@ public open class Node3D : Node() {
    */
   public fun setIgnoreTransformNotification(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IGNORE_TRANSFORM_NOTIFICATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IGNORE_TRANSFORM_NOTIFICATION,
+        NIL.ordinal)
   }
 
   /**
@@ -257,7 +266,7 @@ public open class Node3D : Node() {
    */
   public fun setDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_DISABLE_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_DISABLE_SCALE, NIL.ordinal)
   }
 
   /**
@@ -265,7 +274,7 @@ public open class Node3D : Node() {
    */
   public fun isScaleDisabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SCALE_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_SCALE_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -274,7 +283,7 @@ public open class Node3D : Node() {
    */
   public fun getWorld3d(): World3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_WORLD_3D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_WORLD_3D, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as World3D?
   }
 
@@ -283,7 +292,8 @@ public open class Node3D : Node() {
    */
   public fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_FORCE_UPDATE_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_FORCE_UPDATE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -291,7 +301,7 @@ public open class Node3D : Node() {
    */
   public fun updateGizmos(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_UPDATE_GIZMOS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_UPDATE_GIZMOS, NIL.ordinal)
   }
 
   /**
@@ -299,7 +309,7 @@ public open class Node3D : Node() {
    */
   public fun addGizmo(gizmo: Node3DGizmo): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ADD_GIZMO, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ADD_GIZMO, NIL.ordinal)
   }
 
   /**
@@ -307,7 +317,7 @@ public open class Node3D : Node() {
    */
   public fun getGizmos(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GIZMOS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GIZMOS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -316,7 +326,7 @@ public open class Node3D : Node() {
    */
   public fun clearGizmos(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_GIZMOS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_GIZMOS, NIL.ordinal)
   }
 
   /**
@@ -328,7 +338,8 @@ public open class Node3D : Node() {
     transform: Transform3D
   ): Unit {
     TransferContext.writeArguments(OBJECT to gizmo, LONG to id, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_SUBGIZMO_SELECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_SUBGIZMO_SELECTION,
+        NIL.ordinal)
   }
 
   /**
@@ -336,8 +347,8 @@ public open class Node3D : Node() {
    */
   public fun clearSubgizmoSelection(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_SUBGIZMO_SELECTION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_CLEAR_SUBGIZMO_SELECTION,
+        NIL.ordinal)
   }
 
   /**
@@ -345,7 +356,7 @@ public open class Node3D : Node() {
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE_IN_TREE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_VISIBLE_IN_TREE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -354,7 +365,7 @@ public open class Node3D : Node() {
    */
   public fun show(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SHOW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SHOW, NIL.ordinal)
   }
 
   /**
@@ -362,7 +373,7 @@ public open class Node3D : Node() {
    */
   public fun hide(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_HIDE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_HIDE, NIL.ordinal)
   }
 
   /**
@@ -370,8 +381,8 @@ public open class Node3D : Node() {
    */
   public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_LOCAL_TRANSFORM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_LOCAL_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -379,8 +390,8 @@ public open class Node3D : Node() {
    */
   public fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE3D_IS_LOCAL_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE3D_IS_LOCAL_TRANSFORM_NOTIFICATION_ENABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -389,7 +400,7 @@ public open class Node3D : Node() {
    */
   public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_NOTIFY_TRANSFORM, NIL.ordinal)
   }
 
   /**
@@ -397,8 +408,8 @@ public open class Node3D : Node() {
    */
   public fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE3D_IS_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_IS_TRANSFORM_NOTIFICATION_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -407,7 +418,7 @@ public open class Node3D : Node() {
    */
   public fun rotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE, NIL.ordinal)
   }
 
   /**
@@ -415,7 +426,7 @@ public open class Node3D : Node() {
    */
   public fun globalRotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_ROTATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_ROTATE, NIL.ordinal)
   }
 
   /**
@@ -423,7 +434,7 @@ public open class Node3D : Node() {
    */
   public fun globalScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_SCALE, NIL.ordinal)
   }
 
   /**
@@ -431,7 +442,7 @@ public open class Node3D : Node() {
    */
   public fun globalTranslate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_TRANSLATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GLOBAL_TRANSLATE, NIL.ordinal)
   }
 
   /**
@@ -439,7 +450,7 @@ public open class Node3D : Node() {
    */
   public fun rotateObjectLocal(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_OBJECT_LOCAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_OBJECT_LOCAL, NIL.ordinal)
   }
 
   /**
@@ -447,7 +458,7 @@ public open class Node3D : Node() {
    */
   public fun scaleObjectLocal(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SCALE_OBJECT_LOCAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SCALE_OBJECT_LOCAL, NIL.ordinal)
   }
 
   /**
@@ -455,7 +466,8 @@ public open class Node3D : Node() {
    */
   public fun translateObjectLocal(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE_OBJECT_LOCAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE_OBJECT_LOCAL,
+        NIL.ordinal)
   }
 
   /**
@@ -463,7 +475,7 @@ public open class Node3D : Node() {
    */
   public fun rotateX(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_X, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_X, NIL.ordinal)
   }
 
   /**
@@ -471,7 +483,7 @@ public open class Node3D : Node() {
    */
   public fun rotateY(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Y, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Y, NIL.ordinal)
   }
 
   /**
@@ -479,7 +491,7 @@ public open class Node3D : Node() {
    */
   public fun rotateZ(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Z, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ROTATE_Z, NIL.ordinal)
   }
 
   /**
@@ -489,7 +501,7 @@ public open class Node3D : Node() {
    */
   public fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TRANSLATE, NIL.ordinal)
   }
 
   /**
@@ -497,7 +509,7 @@ public open class Node3D : Node() {
    */
   public fun orthonormalize(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ORTHONORMALIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_ORTHONORMALIZE, NIL.ordinal)
   }
 
   /**
@@ -505,7 +517,7 @@ public open class Node3D : Node() {
    */
   public fun setIdentity(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IDENTITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_IDENTITY, NIL.ordinal)
   }
 
   /**
@@ -519,7 +531,7 @@ public open class Node3D : Node() {
    */
   public fun lookAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT, NIL.ordinal)
   }
 
   /**
@@ -531,7 +543,8 @@ public open class Node3D : Node() {
     up: Vector3 = Vector3(0, 1, 0)
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT_FROM_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT_FROM_POSITION,
+        NIL.ordinal)
   }
 
   /**
@@ -539,7 +552,7 @@ public open class Node3D : Node() {
    */
   public fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_LOCAL, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_LOCAL, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -548,7 +561,7 @@ public open class Node3D : Node() {
    */
   public fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_GLOBAL, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_TO_GLOBAL, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -557,7 +570,7 @@ public open class Node3D : Node() {
    */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_CAN_REVERT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_CAN_REVERT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -566,7 +579,7 @@ public open class Node3D : Node() {
    */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_GET_REVERT, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_GET_REVERT, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

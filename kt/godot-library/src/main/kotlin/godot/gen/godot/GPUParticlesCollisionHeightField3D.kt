@@ -21,88 +21,101 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
  *
+ * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ *
+ * Heightmap shapes allow for efficiently representing collisions for convex and concave objects with a single "floor" (such as terrain). This is less flexible than [godot.GPUParticlesCollisionSDF3D], but it doesn't require a baking step.
+ *
+ * [godot.GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when the camera moves, or even continuously. This makes [godot.GPUParticlesCollisionHeightField3D] a good choice for weather effects such as rain and snow and games with highly dynamic geometry. However, since heightmaps cannot represent overhangs, [godot.GPUParticlesCollisionHeightField3D] is not suited for indoor particle collision.
+ *
+ * **Note:** [godot.ParticlesMaterial.collisionEnabled] must be `true` on the [godot.GPUParticles3D]'s process material for collision to work.
+ *
+ * **Note:** Particle collision only affects [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D() {
   /**
-   *
+   * The collision heightmap's extents in 3D units. To improve heightmap quality, [extents] should be set as small as possible while covering the parts of the scene you need.
    */
   public var extents: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_EXTENTS, VECTOR3)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_EXTENTS, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_EXTENTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_EXTENTS, NIL.ordinal)
     }
 
   /**
-   *
+   * Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution possible.
    */
   public var resolution: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_RESOLUTION, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_RESOLUTION, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_RESOLUTION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_RESOLUTION, NIL.ordinal)
     }
 
   /**
-   *
+   * The update policy to use for the generated heightmap.
    */
   public var updateMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_UPDATE_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_UPDATE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_UPDATE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_UPDATE_MODE, NIL.ordinal)
     }
 
   /**
+   * If `true`, the [godot.GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [godot.GPUParticlesCollisionHeightField3D] does not need to be a child of the [godot.Camera3D] node for this to work.
    *
+   * Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled] is `true`.
    */
   public var followCameraEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_IS_FOLLOW_CAMERA_MODE_ENABLED,
-          BOOL)
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_MODE,
+          NIL.ordinal)
     }
 
   public var followCameraPushRatio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_FOLLOW_CAMERA_PUSH_RATIO,
-          DOUBLE)
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_PUSH_RATIO,
-          NIL)
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -113,31 +126,31 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long
   ) {
     /**
-     *
+     * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles.
      */
     RESOLUTION_256(0),
     /**
-     *
+     * Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles.
      */
     RESOLUTION_512(1),
     /**
-     *
+     * Generate a 1024×1024 heightmap. Intended for large scenes with distant particles.
      */
     RESOLUTION_1024(2),
     /**
-     *
+     * Generate a 2048×2048 heightmap. Intended for very large scenes with distant particles.
      */
     RESOLUTION_2048(3),
     /**
-     *
+     * Generate a 4096×4096 heightmap. Intended for huge scenes with distant particles.
      */
     RESOLUTION_4096(4),
     /**
-     *
+     * Generate a 8192×8192 heightmap. Intended for gigantic scenes with distant particles.
      */
     RESOLUTION_8192(5),
     /**
-     *
+     * Represents the size of the [enum Resolution] enum.
      */
     RESOLUTION_MAX(6),
     ;
@@ -156,11 +169,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long
   ) {
     /**
-     *
+     * Only update the heightmap when the [godot.GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [godot.GPUParticlesCollisionHeightField3D] in any direction.
      */
     UPDATE_MODE_WHEN_MOVED(0),
     /**
-     *
+     * Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay.
      */
     UPDATE_MODE_ALWAYS(1),
     ;

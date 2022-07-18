@@ -49,14 +49,14 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   public var baseType: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_BASE_TYPE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_BASE_TYPE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_BASE_TYPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_BASE_TYPE,
+          NIL.ordinal)
     }
 
   /**
@@ -65,14 +65,14 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   public var editedResource: Resource?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_EDITED_RESOURCE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_EDITED_RESOURCE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Resource?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_EDITED_RESOURCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_EDITED_RESOURCE, NIL.ordinal)
     }
 
   /**
@@ -81,14 +81,14 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_EDITABLE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_EDITABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_EDITABLE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_EDITABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -97,14 +97,14 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   public var toggleMode: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_TOGGLE_MODE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_TOGGLE_MODE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -131,8 +131,8 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
    */
   public fun getAllowedTypes(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_ALLOWED_TYPES, PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_ALLOWED_TYPES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -141,8 +141,8 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
    */
   public fun setTogglePressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_PRESSED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_PRESSED,
+        NIL.ordinal)
   }
 
   public companion object

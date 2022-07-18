@@ -179,7 +179,7 @@ public open class AESContext : RefCounted() {
     iv: PackedByteArray = PackedByteArray()
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -190,8 +190,8 @@ public open class AESContext : RefCounted() {
    */
   public fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -202,8 +202,8 @@ public open class AESContext : RefCounted() {
    */
   public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -212,7 +212,7 @@ public open class AESContext : RefCounted() {
    */
   public fun finish(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL.ordinal)
   }
 
   public enum class Mode(

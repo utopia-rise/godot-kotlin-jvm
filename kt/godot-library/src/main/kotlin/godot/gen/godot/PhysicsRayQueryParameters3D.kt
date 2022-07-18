@@ -34,14 +34,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var from: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_FROM, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_FROM,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_FROM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_FROM,
+          NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var to: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_TO, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_TO,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_TO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_TO,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +66,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_COLLISION_MASK, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_COLLISION_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLISION_MASK, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLISION_MASK, NIL.ordinal)
     }
 
   /**
@@ -82,14 +82,14 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_GET_EXCLUDE, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_EXCLUDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_EXCLUDE, NIL.ordinal)
     }
 
   /**
@@ -98,14 +98,15 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_COLLIDE_WITH_BODIES_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLIDE_WITH_BODIES, NIL.ordinal)
     }
 
   /**
@@ -114,14 +115,15 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_COLLIDE_WITH_AREAS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_COLLIDE_WITH_AREAS, NIL.ordinal)
     }
 
   /**
@@ -130,14 +132,15 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var hitFromInside: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_HIT_FROM_INSIDE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_HIT_FROM_INSIDE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_FROM_INSIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_FROM_INSIDE, NIL.ordinal)
     }
 
   /**
@@ -146,14 +149,15 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public var hitBackFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_HIT_BACK_FACES_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_IS_HIT_BACK_FACES_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_BACK_FACES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_BACK_FACES, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

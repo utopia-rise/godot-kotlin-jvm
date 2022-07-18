@@ -68,8 +68,8 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public fun navigateToPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
+        NIL.ordinal)
   }
 
   public companion object

@@ -29,7 +29,8 @@ public open class OptimizedTranslation : Translation() {
    */
   public fun generate(from: Translation): Unit {
     TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIMIZEDTRANSLATION_GENERATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIMIZEDTRANSLATION_GENERATE,
+        NIL.ordinal)
   }
 
   public companion object

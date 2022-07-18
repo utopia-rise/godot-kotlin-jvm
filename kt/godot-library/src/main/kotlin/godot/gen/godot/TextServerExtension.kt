@@ -444,9 +444,6 @@ public open class TextServerExtension : TextServer() {
     throw NotImplementedError("font_get_scale is not implemented for TextServerExtension")
   }
 
-  /**
-   * Sets extra spacing added between glyphs in pixels.
-   */
   public open fun _fontSetSpacing(
     fontRid: RID,
     size: Long,
@@ -455,9 +452,6 @@ public open class TextServerExtension : TextServer() {
   ): Unit {
   }
 
-  /**
-   * Returns extra spacing added between glyphs in pixels.
-   */
   public open fun _fontGetSpacing(
     fontRid: RID,
     size: Long,
@@ -480,7 +474,7 @@ public open class TextServerExtension : TextServer() {
   }
 
   /**
-   * Removes specified texture from font cache entry.
+   * Removes specified texture from the cache entry.
    */
   public open fun _fontRemoveTexture(
     fontRid: RID,

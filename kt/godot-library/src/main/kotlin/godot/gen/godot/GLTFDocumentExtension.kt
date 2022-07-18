@@ -31,69 +31,69 @@ public open class GLTFDocumentExtension : Resource() {
 
   public fun getImportSettingKeys(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING_KEYS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING_KEYS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun importPreflight(document: GLTFDocument): GodotError {
     TransferContext.writeArguments(OBJECT to document)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_PREFLIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_PREFLIGHT,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun getImportSetting(key: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to key)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_IMPORT_SETTING,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   public fun setImportSetting(key: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to key, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_IMPORT_SETTING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_IMPORT_SETTING,
+        NIL.ordinal)
   }
 
   public fun importPost(document: GLTFDocument, node: Node): GodotError {
     TransferContext.writeArguments(OBJECT to document, OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_POST,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_IMPORT_POST,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun getExportSettingKeys(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING_KEYS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING_KEYS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun getExportSetting(key: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to key)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_GET_EXPORT_SETTING,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   public fun setExportSetting(key: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to key, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_EXPORT_SETTING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_SET_EXPORT_SETTING,
+        NIL.ordinal)
   }
 
   public fun exportPreflight(document: GLTFDocument, node: Node): GodotError {
     TransferContext.writeArguments(OBJECT to document, OBJECT to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_PREFLIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_PREFLIGHT,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun exportPost(document: GLTFDocument): GodotError {
     TransferContext.writeArguments(OBJECT to document)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_POST,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENTEXTENSION_EXPORT_POST,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

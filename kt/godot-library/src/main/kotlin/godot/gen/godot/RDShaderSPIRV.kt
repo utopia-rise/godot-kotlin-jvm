@@ -31,8 +31,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): Unit {
     TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_BYTECODE,
+        NIL.ordinal)
   }
 
   /**
@@ -40,8 +40,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -50,8 +50,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_SET_STAGE_COMPILE_ERROR,
+        NIL.ordinal)
   }
 
   /**
@@ -59,8 +59,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

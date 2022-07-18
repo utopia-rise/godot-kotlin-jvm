@@ -34,7 +34,8 @@ public open class AudioListener2D : Node2D() {
    */
   public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_MAKE_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_MAKE_CURRENT,
+        NIL.ordinal)
   }
 
   /**
@@ -42,7 +43,8 @@ public open class AudioListener2D : Node2D() {
    */
   public fun clearCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_CLEAR_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_CLEAR_CURRENT,
+        NIL.ordinal)
   }
 
   /**
@@ -50,7 +52,7 @@ public open class AudioListener2D : Node2D() {
    */
   public fun isCurrent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_IS_CURRENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_IS_CURRENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

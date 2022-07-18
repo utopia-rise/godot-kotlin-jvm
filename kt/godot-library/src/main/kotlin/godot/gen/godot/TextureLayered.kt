@@ -86,7 +86,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_FORMAT, LONG.ordinal)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -95,8 +95,8 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayeredType(): TextureLayered.LayeredType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERED_TYPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERED_TYPE,
+        LONG.ordinal)
     return TextureLayered.LayeredType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -105,7 +105,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -114,7 +114,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_HEIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_HEIGHT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -123,7 +123,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayers(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERS, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -132,7 +132,7 @@ public open class TextureLayered : Texture() {
    */
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_HAS_MIPMAPS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_HAS_MIPMAPS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -141,8 +141,8 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayerData(layer: Long): Image? {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYER_DATA,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYER_DATA,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 

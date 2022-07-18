@@ -75,8 +75,8 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
    */
   public fun getBaseEditor(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_GET_BASE_EDITOR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_GET_BASE_EDITOR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
@@ -85,8 +85,8 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
    */
   public fun addSyntaxHighlighter(highlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to highlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_ADD_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_ADD_SYNTAX_HIGHLIGHTER,
+        NIL.ordinal)
   }
 
   public companion object

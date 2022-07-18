@@ -36,14 +36,14 @@ public open class TextureProgressBar : Range() {
   public var fillMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -52,14 +52,14 @@ public open class TextureProgressBar : Range() {
   public var ninePatchStretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_NINE_PATCH_STRETCH, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_NINE_PATCH_STRETCH, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_NINE_PATCH_STRETCH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_NINE_PATCH_STRETCH, NIL.ordinal)
     }
 
   /**
@@ -68,14 +68,14 @@ public open class TextureProgressBar : Range() {
   public var textureUnder: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_UNDER_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_UNDER_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_UNDER_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_UNDER_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -84,14 +84,14 @@ public open class TextureProgressBar : Range() {
   public var textureOver: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_OVER_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_OVER_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_OVER_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_OVER_TEXTURE,
+          NIL.ordinal)
     }
 
   /**
@@ -102,14 +102,14 @@ public open class TextureProgressBar : Range() {
   public var textureProgress: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_PROGRESS_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_PROGRESS_TEXTURE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_PROGRESS_TEXTURE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_PROGRESS_TEXTURE, NIL.ordinal)
     }
 
   /**
@@ -118,14 +118,14 @@ public open class TextureProgressBar : Range() {
   public var textureProgressOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TEXTURE_PROGRESS_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TEXTURE_PROGRESS_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_PROGRESS_OFFSET, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_PROGRESS_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -134,14 +134,14 @@ public open class TextureProgressBar : Range() {
   public var tintUnder: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_UNDER,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_UNDER,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_UNDER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_UNDER,
+          NIL.ordinal)
     }
 
   /**
@@ -150,14 +150,14 @@ public open class TextureProgressBar : Range() {
   public var tintOver: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_OVER,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_OVER,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_OVER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_OVER,
+          NIL.ordinal)
     }
 
   /**
@@ -166,14 +166,14 @@ public open class TextureProgressBar : Range() {
   public var tintProgress: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_PROGRESS, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TINT_PROGRESS,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_PROGRESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TINT_PROGRESS,
+          NIL.ordinal)
     }
 
   /**
@@ -182,14 +182,14 @@ public open class TextureProgressBar : Range() {
   public var radialInitialAngle: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_RADIAL_INITIAL_ANGLE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_RADIAL_INITIAL_ANGLE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_INITIAL_ANGLE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_INITIAL_ANGLE, NIL.ordinal)
     }
 
   /**
@@ -200,14 +200,14 @@ public open class TextureProgressBar : Range() {
   public var radialFillDegrees: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_DEGREES, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_DEGREES,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_DEGREES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_DEGREES,
+          NIL.ordinal)
     }
 
   /**
@@ -216,14 +216,14 @@ public open class TextureProgressBar : Range() {
   public var radialCenterOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_RADIAL_CENTER_OFFSET, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_RADIAL_CENTER_OFFSET, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -235,8 +235,8 @@ public open class TextureProgressBar : Range() {
    */
   public fun setStretchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_STRETCH_MARGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -244,8 +244,8 @@ public open class TextureProgressBar : Range() {
    */
   public fun getStretchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_STRETCH_MARGIN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

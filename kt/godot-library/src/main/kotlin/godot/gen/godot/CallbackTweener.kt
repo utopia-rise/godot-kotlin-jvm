@@ -37,7 +37,8 @@ public open class CallbackTweener : Tweener() {
    */
   public fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CALLBACKTWEENER_SET_DELAY, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CALLBACKTWEENER_SET_DELAY,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?
   }
 

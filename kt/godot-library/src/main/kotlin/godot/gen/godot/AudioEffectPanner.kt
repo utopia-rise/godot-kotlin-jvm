@@ -15,7 +15,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a panner audio effect to an Audio bus. Pans sound left or right.
+ * Adds a panner audio effect to an audio bus. Pans sound left or right.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Determines how much of an audio signal is sent to the left and right buses.
  */
@@ -27,12 +30,13 @@ public open class AudioEffectPanner : AudioEffect() {
   public var pan: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_GET_PAN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_GET_PAN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_SET_PAN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_SET_PAN, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

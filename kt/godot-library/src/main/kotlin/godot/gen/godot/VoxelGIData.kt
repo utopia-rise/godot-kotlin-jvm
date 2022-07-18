@@ -43,14 +43,14 @@ public open class VoxelGIData : Resource() {
   public var dynamicRange: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DYNAMIC_RANGE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DYNAMIC_RANGE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_DYNAMIC_RANGE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_DYNAMIC_RANGE,
+          NIL.ordinal)
     }
 
   /**
@@ -59,12 +59,12 @@ public open class VoxelGIData : Resource() {
   public var energy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_ENERGY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -73,12 +73,12 @@ public open class VoxelGIData : Resource() {
   public var bias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BIAS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BIAS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_BIAS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_BIAS, NIL.ordinal)
     }
 
   /**
@@ -87,13 +87,14 @@ public open class VoxelGIData : Resource() {
   public var normalBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_NORMAL_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_NORMAL_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_NORMAL_BIAS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_NORMAL_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -102,13 +103,14 @@ public open class VoxelGIData : Resource() {
   public var propagation: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_PROPAGATION,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_PROPAGATION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_PROPAGATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_PROPAGATION,
+          NIL.ordinal)
     }
 
   /**
@@ -117,14 +119,14 @@ public open class VoxelGIData : Resource() {
   public var useTwoBounces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_USING_TWO_BOUNCES,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_USING_TWO_BOUNCES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_USE_TWO_BOUNCES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_USE_TWO_BOUNCES,
+          NIL.ordinal)
     }
 
   /**
@@ -133,12 +135,12 @@ public open class VoxelGIData : Resource() {
   public var interior: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_INTERIOR, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_INTERIOR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_INTERIOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_INTERIOR, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -158,7 +160,7 @@ public open class VoxelGIData : Resource() {
     levelCounts: PackedInt32Array
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantType.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_ALLOCATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_ALLOCATE, NIL.ordinal)
   }
 
   /**
@@ -168,8 +170,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getBounds(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BOUNDS,
-        godot.core.VariantType.AABB)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_BOUNDS,
+        godot.core.VariantType.AABB.ordinal)
     return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 
@@ -178,8 +180,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getOctreeSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_SIZE,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_SIZE,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -188,8 +190,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getToCellXform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_TO_CELL_XFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_TO_CELL_XFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -198,8 +200,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getOctreeCells(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_CELLS,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_OCTREE_CELLS,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -208,8 +210,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getDataCells(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DATA_CELLS,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_DATA_CELLS,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -218,8 +220,8 @@ public open class VoxelGIData : Resource() {
    */
   public fun getLevelCounts(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_LEVEL_COUNTS,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_LEVEL_COUNTS,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 

@@ -49,7 +49,8 @@ public object TranslationServer : Object() {
    */
   public fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_SET_LOCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_SET_LOCALE,
+        NIL.ordinal)
   }
 
   /**
@@ -59,8 +60,8 @@ public object TranslationServer : Object() {
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -71,8 +72,8 @@ public object TranslationServer : Object() {
    */
   public fun getToolLocale(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_TOOL_LOCALE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_TOOL_LOCALE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -81,8 +82,8 @@ public object TranslationServer : Object() {
    */
   public fun compareLocales(localeA: String, localeB: String): Long {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_COMPARE_LOCALES,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_COMPARE_LOCALES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -91,8 +92,8 @@ public object TranslationServer : Object() {
    */
   public fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_STANDARDIZE_LOCALE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_STANDARDIZE_LOCALE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -101,8 +102,8 @@ public object TranslationServer : Object() {
    */
   public fun getAllLanguages(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_LANGUAGES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_LANGUAGES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -111,8 +112,8 @@ public object TranslationServer : Object() {
    */
   public fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LANGUAGE_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LANGUAGE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -121,8 +122,8 @@ public object TranslationServer : Object() {
    */
   public fun getAllScripts(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_SCRIPTS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_SCRIPTS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -131,8 +132,8 @@ public object TranslationServer : Object() {
    */
   public fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_SCRIPT_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_SCRIPT_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -141,8 +142,8 @@ public object TranslationServer : Object() {
    */
   public fun getAllCountries(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_COUNTRIES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_ALL_COUNTRIES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -151,8 +152,8 @@ public object TranslationServer : Object() {
    */
   public fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_COUNTRY_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_COUNTRY_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -161,8 +162,8 @@ public object TranslationServer : Object() {
    */
   public fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -171,8 +172,8 @@ public object TranslationServer : Object() {
    */
   public fun translate(message: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -188,8 +189,8 @@ public object TranslationServer : Object() {
     context: StringName = StringName("")
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE_PLURAL,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE_PLURAL,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -198,8 +199,8 @@ public object TranslationServer : Object() {
    */
   public fun addTranslation(translation: Translation): Unit {
     TransferContext.writeArguments(OBJECT to translation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_ADD_TRANSLATION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_ADD_TRANSLATION,
+        NIL.ordinal)
   }
 
   /**
@@ -207,8 +208,8 @@ public object TranslationServer : Object() {
    */
   public fun removeTranslation(translation: Translation): Unit {
     TransferContext.writeArguments(OBJECT to translation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_REMOVE_TRANSLATION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_REMOVE_TRANSLATION,
+        NIL.ordinal)
   }
 
   /**
@@ -218,8 +219,8 @@ public object TranslationServer : Object() {
    */
   public fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_TRANSLATION_OBJECT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_TRANSLATION_OBJECT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Translation?
   }
 
@@ -228,7 +229,7 @@ public object TranslationServer : Object() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -236,22 +237,22 @@ public object TranslationServer : Object() {
    */
   public fun getLoadedLocales(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOADED_LOCALES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOADED_LOCALES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun isPseudolocalizationEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_IS_PSEUDOLOCALIZATION_ENABLED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_IS_PSEUDOLOCALIZATION_ENABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_SET_PSEUDOLOCALIZATION_ENABLED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_SET_PSEUDOLOCALIZATION_ENABLED, NIL.ordinal)
   }
 
   /**
@@ -259,8 +260,8 @@ public object TranslationServer : Object() {
    */
   public fun reloadPseudolocalization(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_RELOAD_PSEUDOLOCALIZATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_RELOAD_PSEUDOLOCALIZATION, NIL.ordinal)
   }
 
   /**
@@ -268,8 +269,8 @@ public object TranslationServer : Object() {
    */
   public fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_PSEUDOLOCALIZE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_PSEUDOLOCALIZE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 }

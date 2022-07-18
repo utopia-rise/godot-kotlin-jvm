@@ -29,12 +29,13 @@ public open class BoxOccluder3D : Occluder3D() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_GET_SIZE, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_GET_SIZE,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_SET_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_SET_SIZE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

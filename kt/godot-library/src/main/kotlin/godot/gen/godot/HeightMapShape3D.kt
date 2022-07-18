@@ -31,14 +31,14 @@ public open class HeightMapShape3D : Shape3D() {
   public var mapWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_WIDTH,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_WIDTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_WIDTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +47,14 @@ public open class HeightMapShape3D : Shape3D() {
   public var mapDepth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DEPTH,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DEPTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_DEPTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_DEPTH,
+          NIL.ordinal)
     }
 
   /**
@@ -63,14 +63,14 @@ public open class HeightMapShape3D : Shape3D() {
   public var mapData: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DATA,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_GET_MAP_DATA,
+          PACKED_FLOAT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_DATA,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE3D_SET_MAP_DATA,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

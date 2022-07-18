@@ -43,7 +43,7 @@ public open class ImageTexture3D : Texture3D() {
     `data`: VariantArray<Any?>
   ): GodotError {
     TransferContext.writeArguments(LONG to format.id, LONG to width, LONG to height, LONG to depth, BOOL to useMipmaps, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -52,7 +52,7 @@ public open class ImageTexture3D : Texture3D() {
    */
   public fun update(`data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_UPDATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_UPDATE, NIL.ordinal)
   }
 
   public companion object

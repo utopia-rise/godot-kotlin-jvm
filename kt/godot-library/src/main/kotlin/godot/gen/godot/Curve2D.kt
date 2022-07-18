@@ -37,24 +37,22 @@ public open class Curve2D : Resource() {
   public var bakeInterval: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKE_INTERVAL, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKE_INTERVAL,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_BAKE_INTERVAL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_BAKE_INTERVAL, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CURVE2D)
   }
 
-  /**
-   * Returns the number of points describing the curve.
-   */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -70,7 +68,7 @@ public open class Curve2D : Resource() {
     atPosition: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL.ordinal)
   }
 
   /**
@@ -78,7 +76,7 @@ public open class Curve2D : Resource() {
    */
   public fun setPointPosition(idx: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_POSITION, NIL.ordinal)
   }
 
   /**
@@ -86,7 +84,8 @@ public open class Curve2D : Resource() {
    */
   public fun getPointPosition(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_POSITION, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -95,7 +94,7 @@ public open class Curve2D : Resource() {
    */
   public fun setPointIn(idx: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_IN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_IN, NIL.ordinal)
   }
 
   /**
@@ -103,7 +102,7 @@ public open class Curve2D : Resource() {
    */
   public fun getPointIn(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_IN, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_IN, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -112,7 +111,7 @@ public open class Curve2D : Resource() {
    */
   public fun setPointOut(idx: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_OUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_OUT, NIL.ordinal)
   }
 
   /**
@@ -120,7 +119,7 @@ public open class Curve2D : Resource() {
    */
   public fun getPointOut(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_OUT, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_OUT, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -129,7 +128,7 @@ public open class Curve2D : Resource() {
    */
   public fun removePoint(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_REMOVE_POINT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_REMOVE_POINT, NIL.ordinal)
   }
 
   /**
@@ -137,7 +136,7 @@ public open class Curve2D : Resource() {
    */
   public fun clearPoints(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_CLEAR_POINTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_CLEAR_POINTS, NIL.ordinal)
   }
 
   /**
@@ -147,7 +146,7 @@ public open class Curve2D : Resource() {
    */
   public fun interpolate(idx: Long, t: Double): Vector2 {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -156,7 +155,7 @@ public open class Curve2D : Resource() {
    */
   public fun interpolatef(fofs: Double): Vector2 {
     TransferContext.writeArguments(DOUBLE to fofs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATEF, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATEF, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -165,7 +164,7 @@ public open class Curve2D : Resource() {
    */
   public fun getBakedLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_LENGTH, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -178,7 +177,8 @@ public open class Curve2D : Resource() {
    */
   public fun interpolateBaked(offset: Double, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE_BAKED, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE_BAKED,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -187,8 +187,8 @@ public open class Curve2D : Resource() {
    */
   public fun getBakedPoints(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_POINTS,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_POINTS,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -199,7 +199,8 @@ public open class Curve2D : Resource() {
    */
   public fun getClosestPoint(toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_POINT, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_POINT,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -210,7 +211,8 @@ public open class Curve2D : Resource() {
    */
   public fun getClosestOffset(toPoint: Vector2): Double {
     TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_OFFSET, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_OFFSET,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -225,8 +227,8 @@ public open class Curve2D : Resource() {
    */
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 

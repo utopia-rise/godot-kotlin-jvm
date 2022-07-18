@@ -19,12 +19,13 @@ public open class GLTFTexture : Resource() {
   public var srcImage: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_GET_SRC_IMAGE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_GET_SRC_IMAGE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_SET_SRC_IMAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_SET_SRC_IMAGE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

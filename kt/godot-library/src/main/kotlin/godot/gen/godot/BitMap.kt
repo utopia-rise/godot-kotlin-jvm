@@ -42,7 +42,7 @@ public open class BitMap : Resource() {
    */
   public fun create(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE, NIL.ordinal)
   }
 
   /**
@@ -50,7 +50,8 @@ public open class BitMap : Resource() {
    */
   public fun createFromImageAlpha(image: Image, threshold: Double = 0.1): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE_FROM_IMAGE_ALPHA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE_FROM_IMAGE_ALPHA,
+        NIL.ordinal)
   }
 
   /**
@@ -58,7 +59,7 @@ public open class BitMap : Resource() {
    */
   public fun setBit(position: Vector2, bit: Boolean): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to bit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT, NIL.ordinal)
   }
 
   /**
@@ -66,7 +67,7 @@ public open class BitMap : Resource() {
    */
   public fun getBit(position: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_BIT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_BIT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -75,7 +76,7 @@ public open class BitMap : Resource() {
    */
   public fun setBitRect(rect: Rect2, bit: Boolean): Unit {
     TransferContext.writeArguments(RECT2 to rect, BOOL to bit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT_RECT, NIL.ordinal)
   }
 
   /**
@@ -83,7 +84,7 @@ public open class BitMap : Resource() {
    */
   public fun getTrueBitCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_TRUE_BIT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_TRUE_BIT_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -92,7 +93,7 @@ public open class BitMap : Resource() {
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GET_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -101,7 +102,7 @@ public open class BitMap : Resource() {
    */
   public fun resize(newSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to newSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_RESIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_RESIZE, NIL.ordinal)
   }
 
   /**
@@ -109,7 +110,7 @@ public open class BitMap : Resource() {
    */
   public fun growMask(pixels: Long, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to pixels, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GROW_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_GROW_MASK, NIL.ordinal)
   }
 
   /**
@@ -117,7 +118,7 @@ public open class BitMap : Resource() {
    */
   public fun convertToImage(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CONVERT_TO_IMAGE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CONVERT_TO_IMAGE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -134,7 +135,7 @@ public open class BitMap : Resource() {
    */
   public fun opaqueToPolygons(rect: Rect2, epsilon: Double = 2.0): VariantArray<Any?> {
     TransferContext.writeArguments(RECT2 to rect, DOUBLE to epsilon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_OPAQUE_TO_POLYGONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_OPAQUE_TO_POLYGONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

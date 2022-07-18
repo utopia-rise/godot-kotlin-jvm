@@ -41,7 +41,8 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun getTilesCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILES_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILES_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -50,7 +51,8 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun getTileId(index: Long): Vector2i {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILE_ID, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_TILE_ID,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -59,7 +61,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun hasTile(atlasCoords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_TILE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_TILE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -72,8 +74,8 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun getAlternativeTilesCount(atlasCoords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILES_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILES_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -82,8 +84,8 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun getAlternativeTileId(atlasCoords: Vector2i, index: Long): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_GET_ALTERNATIVE_TILE_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -92,8 +94,8 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_ALTERNATIVE_TILE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETSOURCE_HAS_ALTERNATIVE_TILE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

@@ -31,14 +31,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurFarEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_FAR_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_FAR_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +47,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurFarDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_FAR_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_FAR_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_DISTANCE, NIL.ordinal)
     }
 
   /**
@@ -63,14 +63,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurFarTransition: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_FAR_TRANSITION, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_FAR_TRANSITION, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_TRANSITION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_TRANSITION, NIL.ordinal)
     }
 
   /**
@@ -79,14 +79,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurNearEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_NEAR_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_NEAR_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -95,14 +95,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurNearDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_NEAR_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_NEAR_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_DISTANCE, NIL.ordinal)
     }
 
   /**
@@ -111,14 +111,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurNearTransition: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_NEAR_TRANSITION, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_NEAR_TRANSITION, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_TRANSITION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_TRANSITION, NIL.ordinal)
     }
 
   /**
@@ -127,14 +127,14 @@ public open class CameraEffects : Resource() {
   public var dofBlurAmount: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_AMOUNT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_AMOUNT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_AMOUNT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_AMOUNT,
+          NIL.ordinal)
     }
 
   /**
@@ -143,14 +143,14 @@ public open class CameraEffects : Resource() {
   public var overrideExposureEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_OVERRIDE_EXPOSURE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_OVERRIDE_EXPOSURE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -159,14 +159,14 @@ public open class CameraEffects : Resource() {
   public var overrideExposure: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_OVERRIDE_EXPOSURE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_OVERRIDE_EXPOSURE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

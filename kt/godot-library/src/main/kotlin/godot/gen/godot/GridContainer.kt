@@ -34,12 +34,13 @@ public open class GridContainer : Container() {
   public var columns: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

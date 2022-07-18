@@ -33,30 +33,30 @@ public open class WorldEnvironment : Node() {
   public var environment: Environment?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_ENVIRONMENT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_ENVIRONMENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_ENVIRONMENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_ENVIRONMENT,
+          NIL.ordinal)
     }
 
   /**
-   *
+   * The [godot.CameraEffects] resource used by this [godot.WorldEnvironment], defining the default properties. This [godot.CameraEffects] resource will be used by all [godot.Camera3D]s that do not define their own [godot.CameraEffects].
    */
   public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_CAMERA_EFFECTS, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_CAMERA_EFFECTS,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_EFFECTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_EFFECTS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

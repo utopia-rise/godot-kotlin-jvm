@@ -19,14 +19,14 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
   public var invertFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_IS_INVERTING_FACES,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_IS_INVERTING_FACES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_SET_INVERT_FACES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_SET_INVERT_FACES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -34,15 +34,15 @@ public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerP
     outputMaxPackets: Long
   ): GodotError {
     TransferContext.writeArguments(LONG to inputBufferSizeKb, LONG to inputMaxPackets, LONG to outputBufferSizeKb, LONG to outputMaxPackets)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?
   }
 

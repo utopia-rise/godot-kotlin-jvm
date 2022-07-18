@@ -57,12 +57,12 @@ public open class TileSet : Resource() {
   public var tileShape: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SHAPE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_SHAPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_SHAPE, NIL.ordinal)
     }
 
   /**
@@ -71,12 +71,12 @@ public open class TileSet : Resource() {
   public var tileLayout: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_LAYOUT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_LAYOUT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_LAYOUT, NIL.ordinal)
     }
 
   /**
@@ -85,13 +85,14 @@ public open class TileSet : Resource() {
   public var tileOffsetAxis: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_OFFSET_AXIS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_OFFSET_AXIS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_OFFSET_AXIS,
+          NIL.ordinal)
     }
 
   /**
@@ -100,12 +101,13 @@ public open class TileSet : Resource() {
   public var tileSize: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SIZE, VECTOR2I)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILE_SIZE,
+          VECTOR2I.ordinal)
       return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TILE_SIZE, NIL.ordinal)
     }
 
   /**
@@ -114,12 +116,12 @@ public open class TileSet : Resource() {
   public var uvClipping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_IS_UV_CLIPPING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_IS_UV_CLIPPING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_UV_CLIPPING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_UV_CLIPPING, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -131,7 +133,7 @@ public open class TileSet : Resource() {
    */
   public fun getNextSourceId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NEXT_SOURCE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NEXT_SOURCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -142,7 +144,7 @@ public open class TileSet : Resource() {
    */
   public fun addSource(source: TileSetSource, atlasSourceIdOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_SOURCE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_SOURCE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -151,7 +153,7 @@ public open class TileSet : Resource() {
    */
   public fun removeSource(sourceId: Long): Unit {
     TransferContext.writeArguments(LONG to sourceId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE, NIL.ordinal)
   }
 
   /**
@@ -159,7 +161,7 @@ public open class TileSet : Resource() {
    */
   public fun setSourceId(sourceId: Long, newSourceId: Long): Unit {
     TransferContext.writeArguments(LONG to sourceId, LONG to newSourceId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_ID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_ID, NIL.ordinal)
   }
 
   /**
@@ -167,7 +169,7 @@ public open class TileSet : Resource() {
    */
   public fun getSourceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -176,7 +178,7 @@ public open class TileSet : Resource() {
    */
   public fun getSourceId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -185,7 +187,7 @@ public open class TileSet : Resource() {
    */
   public fun hasSource(sourceId: Long): Boolean {
     TransferContext.writeArguments(LONG to sourceId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -194,7 +196,7 @@ public open class TileSet : Resource() {
    */
   public fun getSource(sourceId: Long): TileSetSource? {
     TransferContext.writeArguments(LONG to sourceId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TileSetSource?
   }
 
@@ -203,8 +205,8 @@ public open class TileSet : Resource() {
    */
   public fun getOcclusionLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYERS_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYERS_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -215,7 +217,7 @@ public open class TileSet : Resource() {
    */
   public fun addOcclusionLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_OCCLUSION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_OCCLUSION_LAYER, NIL.ordinal)
   }
 
   /**
@@ -223,7 +225,8 @@ public open class TileSet : Resource() {
    */
   public fun moveOcclusionLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_OCCLUSION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_OCCLUSION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -231,7 +234,8 @@ public open class TileSet : Resource() {
    */
   public fun removeOcclusionLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_OCCLUSION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_OCCLUSION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -239,8 +243,8 @@ public open class TileSet : Resource() {
    */
   public fun setOcclusionLayerLightMask(layerIndex: Long, lightMask: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to lightMask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_LIGHT_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_LIGHT_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -248,8 +252,8 @@ public open class TileSet : Resource() {
    */
   public fun getOcclusionLayerLightMask(layerIndex: Long): Long {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_LIGHT_MASK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_LIGHT_MASK,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -258,8 +262,8 @@ public open class TileSet : Resource() {
    */
   public fun setOcclusionLayerSdfCollision(layerIndex: Long, sdfCollision: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerIndex, BOOL to sdfCollision)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_SDF_COLLISION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_SET_OCCLUSION_LAYER_SDF_COLLISION, NIL.ordinal)
   }
 
   /**
@@ -267,8 +271,8 @@ public open class TileSet : Resource() {
    */
   public fun getOcclusionLayerSdfCollision(layerIndex: Long): Boolean {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_SDF_COLLISION, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_GET_OCCLUSION_LAYER_SDF_COLLISION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -277,8 +281,8 @@ public open class TileSet : Resource() {
    */
   public fun getPhysicsLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYERS_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYERS_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -289,7 +293,7 @@ public open class TileSet : Resource() {
    */
   public fun addPhysicsLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PHYSICS_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PHYSICS_LAYER, NIL.ordinal)
   }
 
   /**
@@ -297,7 +301,7 @@ public open class TileSet : Resource() {
    */
   public fun movePhysicsLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_PHYSICS_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_PHYSICS_LAYER, NIL.ordinal)
   }
 
   /**
@@ -305,7 +309,8 @@ public open class TileSet : Resource() {
    */
   public fun removePhysicsLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PHYSICS_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PHYSICS_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -313,8 +318,8 @@ public open class TileSet : Resource() {
    */
   public fun setPhysicsLayerCollisionLayer(layerIndex: Long, layer: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to layer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_LAYER, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_LAYER, NIL.ordinal)
   }
 
   /**
@@ -322,8 +327,8 @@ public open class TileSet : Resource() {
    */
   public fun getPhysicsLayerCollisionLayer(layerIndex: Long): Long {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_LAYER, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_LAYER, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -332,8 +337,8 @@ public open class TileSet : Resource() {
    */
   public fun setPhysicsLayerCollisionMask(layerIndex: Long, mask: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to mask)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_COLLISION_MASK,
+        NIL.ordinal)
   }
 
   /**
@@ -341,8 +346,8 @@ public open class TileSet : Resource() {
    */
   public fun getPhysicsLayerCollisionMask(layerIndex: Long): Long {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_MASK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_COLLISION_MASK,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -352,8 +357,8 @@ public open class TileSet : Resource() {
   public fun setPhysicsLayerPhysicsMaterial(layerIndex: Long, physicsMaterial: PhysicsMaterial):
       Unit {
     TransferContext.writeArguments(LONG to layerIndex, OBJECT to physicsMaterial)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_PHYSICS_MATERIAL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_SET_PHYSICS_LAYER_PHYSICS_MATERIAL, NIL.ordinal)
   }
 
   /**
@@ -361,8 +366,8 @@ public open class TileSet : Resource() {
    */
   public fun getPhysicsLayerPhysicsMaterial(layerIndex: Long): PhysicsMaterial? {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_PHYSICS_MATERIAL, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_GET_PHYSICS_LAYER_PHYSICS_MATERIAL, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
   }
 
@@ -371,8 +376,8 @@ public open class TileSet : Resource() {
    */
   public fun getTerrainSetsCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SETS_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SETS_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -381,7 +386,7 @@ public open class TileSet : Resource() {
    */
   public fun addTerrainSet(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN_SET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN_SET, NIL.ordinal)
   }
 
   /**
@@ -389,7 +394,7 @@ public open class TileSet : Resource() {
    */
   public fun moveTerrainSet(terrainSet: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN_SET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN_SET, NIL.ordinal)
   }
 
   /**
@@ -397,7 +402,7 @@ public open class TileSet : Resource() {
    */
   public fun removeTerrainSet(terrainSet: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN_SET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN_SET, NIL.ordinal)
   }
 
   /**
@@ -405,7 +410,8 @@ public open class TileSet : Resource() {
    */
   public fun setTerrainSetMode(terrainSet: Long, mode: TileSet.TerrainMode): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_SET_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_SET_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -413,7 +419,8 @@ public open class TileSet : Resource() {
    */
   public fun getTerrainSetMode(terrainSet: Long): TileSet.TerrainMode {
     TransferContext.writeArguments(LONG to terrainSet)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_SET_MODE,
+        LONG.ordinal)
     return TileSet.TerrainMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -422,7 +429,7 @@ public open class TileSet : Resource() {
    */
   public fun getTerrainsCount(terrainSet: Long): Long {
     TransferContext.writeArguments(LONG to terrainSet)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAINS_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAINS_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -431,7 +438,7 @@ public open class TileSet : Resource() {
    */
   public fun addTerrain(terrainSet: Long, toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN, NIL.ordinal)
   }
 
   /**
@@ -443,7 +450,7 @@ public open class TileSet : Resource() {
     toPosition: Long
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_TERRAIN, NIL.ordinal)
   }
 
   /**
@@ -451,7 +458,7 @@ public open class TileSet : Resource() {
    */
   public fun removeTerrain(terrainSet: Long, terrainIndex: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TERRAIN, NIL.ordinal)
   }
 
   /**
@@ -463,7 +470,7 @@ public open class TileSet : Resource() {
     name: String
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_NAME, NIL.ordinal)
   }
 
   /**
@@ -471,7 +478,7 @@ public open class TileSet : Resource() {
    */
   public fun getTerrainName(terrainSet: Long, terrainIndex: Long): String {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -484,7 +491,7 @@ public open class TileSet : Resource() {
     color: Color
   ): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_TERRAIN_COLOR, NIL.ordinal)
   }
 
   /**
@@ -492,7 +499,7 @@ public open class TileSet : Resource() {
    */
   public fun getTerrainColor(terrainSet: Long, terrainIndex: Long): Color {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TERRAIN_COLOR, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -501,8 +508,8 @@ public open class TileSet : Resource() {
    */
   public fun getNavigationLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYERS_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYERS_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -513,7 +520,8 @@ public open class TileSet : Resource() {
    */
   public fun addNavigationLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_NAVIGATION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_NAVIGATION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -521,7 +529,8 @@ public open class TileSet : Resource() {
    */
   public fun moveNavigationLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_NAVIGATION_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_NAVIGATION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -529,8 +538,8 @@ public open class TileSet : Resource() {
    */
   public fun removeNavigationLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_NAVIGATION_LAYER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_NAVIGATION_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -538,8 +547,8 @@ public open class TileSet : Resource() {
    */
   public fun setNavigationLayerLayers(layerIndex: Long, layers: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to layers)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYERS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_NAVIGATION_LAYER_LAYERS,
+        NIL.ordinal)
   }
 
   /**
@@ -547,8 +556,8 @@ public open class TileSet : Resource() {
    */
   public fun getNavigationLayerLayers(layerIndex: Long): Long {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYERS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_NAVIGATION_LAYER_LAYERS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -557,8 +566,8 @@ public open class TileSet : Resource() {
    */
   public fun getCustomDataLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYERS_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_CUSTOM_DATA_LAYERS_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -569,7 +578,8 @@ public open class TileSet : Resource() {
    */
   public fun addCustomDataLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_CUSTOM_DATA_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_CUSTOM_DATA_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -577,7 +587,8 @@ public open class TileSet : Resource() {
    */
   public fun moveCustomDataLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_CUSTOM_DATA_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MOVE_CUSTOM_DATA_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -585,8 +596,8 @@ public open class TileSet : Resource() {
    */
   public fun removeCustomDataLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_CUSTOM_DATA_LAYER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_CUSTOM_DATA_LAYER,
+        NIL.ordinal)
   }
 
   /**
@@ -598,8 +609,8 @@ public open class TileSet : Resource() {
    */
   public fun setSourceLevelTileProxy(sourceFrom: Long, sourceTo: Long): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, LONG to sourceTo)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_LEVEL_TILE_PROXY,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_SOURCE_LEVEL_TILE_PROXY,
+        NIL.ordinal)
   }
 
   /**
@@ -609,8 +620,8 @@ public open class TileSet : Resource() {
    */
   public fun getSourceLevelTileProxy(sourceFrom: Long): Long {
     TransferContext.writeArguments(LONG to sourceFrom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_LEVEL_TILE_PROXY,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_SOURCE_LEVEL_TILE_PROXY,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -619,8 +630,8 @@ public open class TileSet : Resource() {
    */
   public fun hasSourceLevelTileProxy(sourceFrom: Long): Boolean {
     TransferContext.writeArguments(LONG to sourceFrom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE_LEVEL_TILE_PROXY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_SOURCE_LEVEL_TILE_PROXY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -629,8 +640,8 @@ public open class TileSet : Resource() {
    */
   public fun removeSourceLevelTileProxy(sourceFrom: Long): Unit {
     TransferContext.writeArguments(LONG to sourceFrom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE_LEVEL_TILE_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_SOURCE_LEVEL_TILE_PROXY,
+        NIL.ordinal)
   }
 
   /**
@@ -647,8 +658,8 @@ public open class TileSet : Resource() {
     coordsTo: Vector2i
   ): Unit {
     TransferContext.writeArguments(LONG to pSourceFrom, VECTOR2I to coordsFrom, LONG to sourceTo, VECTOR2I to coordsTo)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_COORDS_LEVEL_TILE_PROXY,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_COORDS_LEVEL_TILE_PROXY,
+        NIL.ordinal)
   }
 
   /**
@@ -658,8 +669,8 @@ public open class TileSet : Resource() {
    */
   public fun getCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_COORDS_LEVEL_TILE_PROXY,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_COORDS_LEVEL_TILE_PROXY,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -668,8 +679,8 @@ public open class TileSet : Resource() {
    */
   public fun hasCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): Boolean {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_COORDS_LEVEL_TILE_PROXY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_COORDS_LEVEL_TILE_PROXY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -678,8 +689,8 @@ public open class TileSet : Resource() {
    */
   public fun removeCoordsLevelTileProxy(sourceFrom: Long, coordsFrom: Vector2i): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_COORDS_LEVEL_TILE_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_COORDS_LEVEL_TILE_PROXY,
+        NIL.ordinal)
   }
 
   /**
@@ -698,8 +709,8 @@ public open class TileSet : Resource() {
     alternativeTo: Long
   ): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom, LONG to sourceTo, VECTOR2I to coordsTo, LONG to alternativeTo)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_SET_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_SET_ALTERNATIVE_LEVEL_TILE_PROXY,
+        NIL.ordinal)
   }
 
   /**
@@ -713,8 +724,8 @@ public open class TileSet : Resource() {
     alternativeFrom: Long
   ): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_GET_ALTERNATIVE_LEVEL_TILE_PROXY, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_ALTERNATIVE_LEVEL_TILE_PROXY,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -727,8 +738,8 @@ public open class TileSet : Resource() {
     alternativeFrom: Long
   ): Boolean {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_HAS_ALTERNATIVE_LEVEL_TILE_PROXY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_HAS_ALTERNATIVE_LEVEL_TILE_PROXY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -741,8 +752,8 @@ public open class TileSet : Resource() {
     alternativeFrom: Long
   ): Unit {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_ALTERNATIVE_LEVEL_TILE_PROXY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_ALTERNATIVE_LEVEL_TILE_PROXY, NIL.ordinal)
   }
 
   /**
@@ -758,7 +769,7 @@ public open class TileSet : Resource() {
     alternativeFrom: Long
   ): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to sourceFrom, VECTOR2I to coordsFrom, LONG to alternativeFrom)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MAP_TILE_PROXY, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_MAP_TILE_PROXY, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -767,8 +778,8 @@ public open class TileSet : Resource() {
    */
   public fun cleanupInvalidTileProxies(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILESET_CLEANUP_INVALID_TILE_PROXIES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_CLEANUP_INVALID_TILE_PROXIES,
+        NIL.ordinal)
   }
 
   /**
@@ -776,7 +787,7 @@ public open class TileSet : Resource() {
    */
   public fun clearTileProxies(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_CLEAR_TILE_PROXIES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_CLEAR_TILE_PROXIES, NIL.ordinal)
   }
 
   /**
@@ -784,7 +795,7 @@ public open class TileSet : Resource() {
    */
   public fun addPattern(pattern: TileMapPattern, index: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to pattern, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PATTERN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PATTERN, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -793,7 +804,7 @@ public open class TileSet : Resource() {
    */
   public fun getPattern(index: Long = -1): TileMapPattern? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
   }
 
@@ -802,7 +813,7 @@ public open class TileSet : Resource() {
    */
   public fun removePattern(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PATTERN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_PATTERN, NIL.ordinal)
   }
 
   /**
@@ -810,7 +821,7 @@ public open class TileSet : Resource() {
    */
   public fun getPatternsCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERNS_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERNS_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

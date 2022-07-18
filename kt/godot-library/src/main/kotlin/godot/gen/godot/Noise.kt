@@ -30,19 +30,19 @@ public open class Noise internal constructor() : Resource() {
 
   public fun getNoise1d(x: Double): Double {
     TransferContext.writeArguments(DOUBLE to x)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_1D, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_1D, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun getNoise2d(x: Double, y: Double): Double {
     TransferContext.writeArguments(DOUBLE to x, DOUBLE to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2D, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2D, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun getNoise2dv(v: Vector2): Double {
     TransferContext.writeArguments(VECTOR2 to v)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2DV, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_2DV, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -52,13 +52,13 @@ public open class Noise internal constructor() : Resource() {
     z: Double
   ): Double {
     TransferContext.writeArguments(DOUBLE to x, DOUBLE to y, DOUBLE to z)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3D, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3D, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun getNoise3dv(v: Vector3): Double {
     TransferContext.writeArguments(VECTOR3 to v)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3DV, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_NOISE_3DV, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -68,7 +68,7 @@ public open class Noise internal constructor() : Resource() {
     invert: Boolean = false
   ): Image? {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_IMAGE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -79,7 +79,7 @@ public open class Noise internal constructor() : Resource() {
     skirt: Double = 0.1
   ): Image? {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to invert, DOUBLE to skirt)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISE_GET_SEAMLESS_IMAGE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 

@@ -23,14 +23,14 @@ public open class GDScript : Script() {
 
   public fun new(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_NEW, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_NEW, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   public fun getAsByteCode(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_GET_AS_BYTE_CODE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_GET_AS_BYTE_CODE,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 

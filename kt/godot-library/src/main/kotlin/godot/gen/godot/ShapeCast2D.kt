@@ -42,12 +42,12 @@ public open class ShapeCast2D : Node2D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -56,12 +56,12 @@ public open class ShapeCast2D : Node2D() {
   public var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_SHAPE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_SHAPE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_SHAPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_SHAPE, NIL.ordinal)
     }
 
   /**
@@ -70,14 +70,14 @@ public open class ShapeCast2D : Node2D() {
   public var excludeParent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_EXCLUDE_PARENT_BODY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_EXCLUDE_PARENT_BODY,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_EXCLUDE_PARENT_BODY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_EXCLUDE_PARENT_BODY,
+          NIL.ordinal)
     }
 
   /**
@@ -86,14 +86,14 @@ public open class ShapeCast2D : Node2D() {
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_TARGET_POSITION,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_TARGET_POSITION,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_TARGET_POSITION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_TARGET_POSITION,
+          NIL.ordinal)
     }
 
   /**
@@ -102,12 +102,12 @@ public open class ShapeCast2D : Node2D() {
   public var margin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MARGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MARGIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MARGIN, NIL.ordinal)
     }
 
   /**
@@ -116,12 +116,14 @@ public open class ShapeCast2D : Node2D() {
   public var maxResults: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MAX_RESULTS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_MAX_RESULTS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MAX_RESULTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_MAX_RESULTS,
+          NIL.ordinal)
     }
 
   /**
@@ -130,14 +132,14 @@ public open class ShapeCast2D : Node2D() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -146,14 +148,14 @@ public open class ShapeCast2D : Node2D() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLIDE_WITH_AREAS,
+          NIL.ordinal)
     }
 
   /**
@@ -162,14 +164,14 @@ public open class ShapeCast2D : Node2D() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLIDE_WITH_BODIES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -181,7 +183,7 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun isColliding(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -190,8 +192,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getCollisionCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -202,8 +204,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun forceShapecastUpdate(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_FORCE_SHAPECAST_UPDATE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_FORCE_SHAPECAST_UPDATE,
+        NIL.ordinal)
   }
 
   /**
@@ -211,7 +213,7 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getCollider(index: Long): Object? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -220,8 +222,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getColliderShape(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER_SHAPE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDER_SHAPE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -232,8 +234,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getCollisionPoint(index: Long): Vector2 {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_POINT,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_POINT,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -242,8 +244,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getCollisionNormal(index: Long): Vector2 {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_NORMAL,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_NORMAL,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -252,8 +254,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getClosestCollisionSafeFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_SAFE_FRACTION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_SAFE_FRACTION, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -262,8 +264,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getClosestCollisionUnsafeFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_UNSAFE_FRACTION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_CLOSEST_COLLISION_UNSAFE_FRACTION, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -272,7 +274,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_ADD_EXCEPTION_RID, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_ADD_EXCEPTION_RID,
+        NIL.ordinal)
   }
 
   /**
@@ -280,7 +283,7 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun addException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_ADD_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_ADD_EXCEPTION, NIL.ordinal)
   }
 
   /**
@@ -288,8 +291,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_REMOVE_EXCEPTION_RID,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_REMOVE_EXCEPTION_RID,
+        NIL.ordinal)
   }
 
   /**
@@ -297,7 +300,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun removeException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_REMOVE_EXCEPTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_REMOVE_EXCEPTION,
+        NIL.ordinal)
   }
 
   /**
@@ -305,7 +309,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun clearExceptions(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_CLEAR_EXCEPTIONS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_CLEAR_EXCEPTIONS,
+        NIL.ordinal)
   }
 
   /**
@@ -313,8 +318,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_COLLISION_MASK_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -322,8 +327,8 @@ public open class ShapeCast2D : Node2D() {
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLISION_MASK_VALUE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

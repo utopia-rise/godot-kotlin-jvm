@@ -26,21 +26,22 @@ public open class RegExMatch : RefCounted() {
   public val subject: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_SUBJECT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_SUBJECT, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
   public val names: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_NAMES, DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_NAMES,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
 
   public val strings: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRINGS, ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRINGS, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
 
@@ -50,25 +51,25 @@ public open class RegExMatch : RefCounted() {
 
   public fun getGroupCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_GROUP_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_GROUP_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getString(name: Any = 0): String {
     TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun getStart(name: Any = 0): Long {
     TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_START, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getEnd(name: Any = 0): Long {
     TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_END, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_END, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

@@ -27,14 +27,14 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   public var function: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_GET_FUNCTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_GET_FUNCTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_SET_FUNCTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_SET_FUNCTION,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

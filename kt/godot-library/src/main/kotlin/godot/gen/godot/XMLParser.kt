@@ -40,7 +40,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun read(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_READ, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_READ, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -49,7 +49,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNodeType(): XMLParser.NodeType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_TYPE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_TYPE, LONG.ordinal)
     return XMLParser.NodeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -58,7 +58,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNodeName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -67,7 +67,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNodeData(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_DATA, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_DATA, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -76,7 +76,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNodeOffset(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_OFFSET, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NODE_OFFSET, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -85,7 +85,8 @@ public open class XMLParser : RefCounted() {
    */
   public fun getAttributeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -94,8 +95,8 @@ public open class XMLParser : RefCounted() {
    */
   public fun getAttributeName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -104,8 +105,8 @@ public open class XMLParser : RefCounted() {
    */
   public fun getAttributeValue(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_VALUE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_ATTRIBUTE_VALUE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -114,7 +115,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun hasAttribute(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_HAS_ATTRIBUTE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_HAS_ATTRIBUTE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -123,8 +124,8 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -133,8 +134,8 @@ public open class XMLParser : RefCounted() {
    */
   public fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE_SAFE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_NAMED_ATTRIBUTE_VALUE_SAFE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -143,16 +144,16 @@ public open class XMLParser : RefCounted() {
    */
   public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_IS_EMPTY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_IS_EMPTY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Gets the current line in the parsed file (currently not implemented).
+   * Gets the current line in the parsed file, counting from 0.
    */
   public fun getCurrentLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_CURRENT_LINE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_GET_CURRENT_LINE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -161,7 +162,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun skipSection(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SKIP_SECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SKIP_SECTION, NIL.ordinal)
   }
 
   /**
@@ -169,7 +170,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun seek(position: Long): GodotError {
     TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SEEK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_SEEK, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -178,7 +179,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -187,7 +188,7 @@ public open class XMLParser : RefCounted() {
    */
   public fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XMLPARSER_OPEN_BUFFER, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

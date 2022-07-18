@@ -26,14 +26,14 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   public var textureArray: Texture2DArray?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_GET_TEXTURE_ARRAY, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_GET_TEXTURE_ARRAY, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_SET_TEXTURE_ARRAY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_SET_TEXTURE_ARRAY, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

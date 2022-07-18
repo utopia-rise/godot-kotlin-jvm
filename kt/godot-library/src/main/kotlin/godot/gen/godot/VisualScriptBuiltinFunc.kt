@@ -19,14 +19,14 @@ public open class VisualScriptBuiltinFunc : VisualScriptNode() {
   public var function: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTBUILTINFUNC_GET_FUNC,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTBUILTINFUNC_GET_FUNC,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTBUILTINFUNC_SET_FUNC,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTBUILTINFUNC_SET_FUNC,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

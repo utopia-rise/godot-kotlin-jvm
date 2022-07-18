@@ -28,12 +28,12 @@ public open class Path2D : Node2D() {
   public var curve: Curve2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_GET_CURVE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_GET_CURVE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Curve2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_SET_CURVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_SET_CURVE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

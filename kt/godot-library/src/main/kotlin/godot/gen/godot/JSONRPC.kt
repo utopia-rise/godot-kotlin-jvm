@@ -39,7 +39,7 @@ public open class JSONRPC : Object() {
    */
   public fun setScope(scope: String, target: Object): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL.ordinal)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class JSONRPC : Object() {
    */
   public fun processAction(action: Any, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -60,7 +60,7 @@ public open class JSONRPC : Object() {
    */
   public fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -79,7 +79,7 @@ public open class JSONRPC : Object() {
     id: Any
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -92,7 +92,8 @@ public open class JSONRPC : Object() {
    */
   public fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -105,8 +106,8 @@ public open class JSONRPC : Object() {
    */
   public fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -125,8 +126,8 @@ public open class JSONRPC : Object() {
     id: Any? = null
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to code, STRING to message, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE_ERROR,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE_ERROR,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 

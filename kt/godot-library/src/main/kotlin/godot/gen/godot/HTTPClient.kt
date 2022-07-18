@@ -62,13 +62,14 @@ public open class HTTPClient : RefCounted() {
   public var blockingModeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_BLOCKING_MODE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_BLOCKING_MODE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_BLOCKING_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_BLOCKING_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -77,12 +78,13 @@ public open class HTTPClient : RefCounted() {
   public var connection: StreamPeer?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_CONNECTION, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_CONNECTION,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as StreamPeer?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_CONNECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_CONNECTION, NIL.ordinal)
     }
 
   /**
@@ -91,14 +93,14 @@ public open class HTTPClient : RefCounted() {
   public var readChunkSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_READ_CHUNK_SIZE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_READ_CHUNK_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_READ_CHUNK_SIZE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_READ_CHUNK_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -121,7 +123,7 @@ public open class HTTPClient : RefCounted() {
     verifyHost: Boolean = true
   ): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port, BOOL to useSsl, BOOL to verifyHost)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -141,7 +143,7 @@ public open class HTTPClient : RefCounted() {
     body: PackedByteArray
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -191,7 +193,7 @@ public open class HTTPClient : RefCounted() {
     body: String = ""
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -200,7 +202,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CLOSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CLOSE, NIL.ordinal)
   }
 
   /**
@@ -208,7 +210,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun hasResponse(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_HAS_RESPONSE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_HAS_RESPONSE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -217,8 +219,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun isResponseChunked(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_RESPONSE_CHUNKED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_RESPONSE_CHUNKED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -227,7 +229,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseCode(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_CODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_CODE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -236,8 +239,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseHeaders(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -255,8 +258,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS_AS_DICTIONARY, DICTIONARY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS_AS_DICTIONARY, DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -267,8 +270,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_BODY_LENGTH,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_BODY_LENGTH,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -277,8 +280,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun readResponseBodyChunk(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_READ_RESPONSE_BODY_CHUNK,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_READ_RESPONSE_BODY_CHUNK,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -287,7 +290,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG.ordinal)
     return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -296,7 +299,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -307,7 +310,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL.ordinal)
   }
 
   /**
@@ -317,7 +320,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL.ordinal)
   }
 
   /**
@@ -375,8 +378,8 @@ public open class HTTPClient : RefCounted() {
    */
   public fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
     TransferContext.writeArguments(DICTIONARY to fields)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_QUERY_STRING_FROM_DICT,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_QUERY_STRING_FROM_DICT,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

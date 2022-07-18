@@ -102,13 +102,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var mass: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MASS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MASS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_MASS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_MASS,
+          NIL.ordinal)
     }
 
   /**
@@ -119,14 +120,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var inertia: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_INERTIA,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_INERTIA,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_INERTIA,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_INERTIA,
+          NIL.ordinal)
     }
 
   /**
@@ -135,14 +136,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var centerOfMassMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CENTER_OF_MASS_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CENTER_OF_MASS_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CENTER_OF_MASS_MODE, NIL.ordinal)
     }
 
   /**
@@ -153,14 +154,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var centerOfMass: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CENTER_OF_MASS, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CENTER_OF_MASS,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CENTER_OF_MASS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CENTER_OF_MASS,
+          NIL.ordinal)
     }
 
   /**
@@ -171,14 +172,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -187,14 +188,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var gravityScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_GRAVITY_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_GRAVITY_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_GRAVITY_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_GRAVITY_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -203,14 +204,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL.ordinal)
     }
 
   /**
@@ -221,14 +222,16 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var continuousCd: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -239,14 +242,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var contactsReported: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MAX_CONTACTS_REPORTED, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MAX_CONTACTS_REPORTED, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_MAX_CONTACTS_REPORTED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_MAX_CONTACTS_REPORTED, NIL.ordinal)
     }
 
   /**
@@ -255,14 +258,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var contactMonitor: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTACT_MONITOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTACT_MONITOR,
+          NIL.ordinal)
     }
 
   /**
@@ -271,14 +274,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_SLEEPING,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_SLEEPING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_SLEEPING,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_SLEEPING,
+          NIL.ordinal)
     }
 
   /**
@@ -287,14 +290,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_ABLE_TO_SLEEP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_ABLE_TO_SLEEP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CAN_SLEEP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CAN_SLEEP,
+          NIL.ordinal)
     }
 
   /**
@@ -303,14 +306,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var lockRotation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_LOCK_ROTATION_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_LOCK_ROTATION_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LOCK_ROTATION_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LOCK_ROTATION_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -323,14 +326,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var freeze: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_FREEZE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_FREEZE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -341,14 +344,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var freezeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_FREEZE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_FREEZE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -357,14 +360,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_VELOCITY, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_VELOCITY,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -373,14 +376,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var linearDampMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_DAMP_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_DAMP_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_DAMP_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_DAMP_MODE, NIL.ordinal)
     }
 
   /**
@@ -391,14 +394,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LINEAR_DAMP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_DAMP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LINEAR_DAMP,
+          NIL.ordinal)
     }
 
   /**
@@ -407,14 +410,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var angularVelocity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_VELOCITY, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_VELOCITY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_VELOCITY, NIL.ordinal)
     }
 
   /**
@@ -423,14 +426,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var angularDampMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_DAMP_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_DAMP_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_DAMP_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_DAMP_MODE, NIL.ordinal)
     }
 
   /**
@@ -441,14 +444,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_DAMP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_ANGULAR_DAMP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_DAMP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_ANGULAR_DAMP,
+          NIL.ordinal)
     }
 
   /**
@@ -459,14 +462,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var constantForce: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONSTANT_FORCE, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONSTANT_FORCE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONSTANT_FORCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONSTANT_FORCE,
+          NIL.ordinal)
     }
 
   /**
@@ -477,14 +480,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public var constantTorque: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONSTANT_TORQUE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONSTANT_TORQUE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONSTANT_TORQUE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONSTANT_TORQUE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -502,8 +505,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun setAxisVelocity(axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to axisVelocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_AXIS_VELOCITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_AXIS_VELOCITY,
+        NIL.ordinal)
   }
 
   /**
@@ -515,8 +518,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_IMPULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -528,8 +531,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_IMPULSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -539,8 +542,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyTorqueImpulse(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE_IMPULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -550,8 +553,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -561,7 +564,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -569,8 +573,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun applyTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -580,8 +584,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun addConstantCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_CENTRAL_FORCE, NIL.ordinal)
   }
 
   /**
@@ -591,8 +595,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_FORCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_FORCE,
+        NIL.ordinal)
   }
 
   /**
@@ -600,8 +604,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun addConstantTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_TORQUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_TORQUE,
+        NIL.ordinal)
   }
 
   /**
@@ -611,8 +615,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    */
   public fun getCollidingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_COLLIDING_BODIES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_COLLIDING_BODIES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

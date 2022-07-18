@@ -48,14 +48,14 @@ public open class MultiMesh : Resource() {
   public var transformFormat: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_TRANSFORM_FORMAT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_TRANSFORM_FORMAT,
+          NIL.ordinal)
     }
 
   /**
@@ -64,12 +64,13 @@ public open class MultiMesh : Resource() {
   public var useColors: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_COLORS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_COLORS, NIL.ordinal)
     }
 
   /**
@@ -78,14 +79,14 @@ public open class MultiMesh : Resource() {
   public var useCustomData: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_CUSTOM_DATA,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_CUSTOM_DATA,
+          NIL.ordinal)
     }
 
   /**
@@ -94,13 +95,14 @@ public open class MultiMesh : Resource() {
   public var instanceCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COUNT,
+          NIL.ordinal)
     }
 
   /**
@@ -109,14 +111,14 @@ public open class MultiMesh : Resource() {
   public var visibleInstanceCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_VISIBLE_INSTANCE_COUNT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_VISIBLE_INSTANCE_COUNT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT,
+          NIL.ordinal)
     }
 
   /**
@@ -125,12 +127,12 @@ public open class MultiMesh : Resource() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_MESH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_MESH, NIL.ordinal)
     }
 
   /**
@@ -139,13 +141,13 @@ public open class MultiMesh : Resource() {
   public var buffer: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_BUFFER,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_BUFFER,
+          PACKED_FLOAT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -157,8 +159,8 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceTransform(instance: Long, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to instance, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -166,8 +168,8 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceTransform2d(instance: Long, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to instance, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
+        NIL.ordinal)
   }
 
   /**
@@ -175,8 +177,8 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceTransform(instance: Long): Transform3D {
     TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -185,8 +187,8 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceTransform2d(instance: Long): Transform2D {
     TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
-        TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -197,7 +199,8 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceColor(instance: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -205,7 +208,8 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceColor(instance: Long): Color {
     TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -216,8 +220,8 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceCustomData(instance: Long, customData: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to customData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
+        NIL.ordinal)
   }
 
   /**
@@ -225,8 +229,8 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceCustomData(instance: Long): Color {
     TransferContext.writeArguments(LONG to instance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -235,8 +239,8 @@ public open class MultiMesh : Resource() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
+        godot.core.VariantType.AABB.ordinal)
     return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
   }
 

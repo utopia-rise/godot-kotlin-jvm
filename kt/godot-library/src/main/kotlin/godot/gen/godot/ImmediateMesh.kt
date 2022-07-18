@@ -38,7 +38,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_BEGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_BEGIN, NIL.ordinal)
   }
 
   /**
@@ -46,8 +46,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -55,8 +55,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_NORMAL,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_NORMAL,
+        NIL.ordinal)
   }
 
   /**
@@ -64,8 +64,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_TANGENT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_TANGENT,
+        NIL.ordinal)
   }
 
   /**
@@ -73,7 +73,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV,
+        NIL.ordinal)
   }
 
   /**
@@ -81,7 +82,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV2, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV2,
+        NIL.ordinal)
   }
 
   /**
@@ -89,8 +91,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceAddVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX,
+        NIL.ordinal)
   }
 
   /**
@@ -98,8 +100,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceAddVertex2d(vertex: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX_2D,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX_2D,
+        NIL.ordinal)
   }
 
   /**
@@ -107,7 +109,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_END, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_END, NIL.ordinal)
   }
 
   /**
@@ -115,7 +117,8 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_CLEAR_SURFACES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_CLEAR_SURFACES,
+        NIL.ordinal)
   }
 
   public companion object

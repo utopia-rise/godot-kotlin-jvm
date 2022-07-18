@@ -41,7 +41,11 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Starts a new [godot.Thread] that calls `callable` with `userdata` passed as an argument. Even if no userdata is passed, `callable` must accept one argument and it will be null. The `priority` of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
+   * Starts a new [godot.Thread] that calls `callable`.
+   *
+   * If the method takes some arguments, you can pass them using [godot.Callable.bind].
+   *
+   * The `priority` of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
@@ -51,7 +55,7 @@ public open class Thread : RefCounted() {
     priority: Thread.Priority = Thread.Priority.PRIORITY_NORMAL
   ): GodotError {
     TransferContext.writeArguments(CALLABLE to callable, ANY to userdata, LONG to priority.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -60,7 +64,7 @@ public open class Thread : RefCounted() {
    */
   public fun getId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -69,7 +73,7 @@ public open class Thread : RefCounted() {
    */
   public fun isStarted(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -80,7 +84,7 @@ public open class Thread : RefCounted() {
    */
   public fun isAlive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -95,7 +99,7 @@ public open class Thread : RefCounted() {
    */
   public fun waitToFinish(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

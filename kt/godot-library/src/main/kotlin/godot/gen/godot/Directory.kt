@@ -135,14 +135,14 @@ public open class Directory : RefCounted() {
   public var includeNavigational: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_NAVIGATIONAL, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_NAVIGATIONAL,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_NAVIGATIONAL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_NAVIGATIONAL,
+          NIL.ordinal)
     }
 
   /**
@@ -153,13 +153,14 @@ public open class Directory : RefCounted() {
   public var includeHidden: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_HIDDEN,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_HIDDEN,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_HIDDEN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_HIDDEN,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -173,7 +174,7 @@ public open class Directory : RefCounted() {
    */
   public fun `open`(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_OPEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_OPEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -186,7 +187,7 @@ public open class Directory : RefCounted() {
    */
   public fun listDirBegin(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_BEGIN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_BEGIN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -197,7 +198,7 @@ public open class Directory : RefCounted() {
    */
   public fun getNext(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_NEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_NEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -206,7 +207,7 @@ public open class Directory : RefCounted() {
    */
   public fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CURRENT_IS_DIR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CURRENT_IS_DIR, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -215,7 +216,7 @@ public open class Directory : RefCounted() {
    */
   public fun listDirEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_END, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_END, NIL.ordinal)
   }
 
   /**
@@ -225,8 +226,8 @@ public open class Directory : RefCounted() {
    */
   public fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_FILES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_FILES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -237,8 +238,8 @@ public open class Directory : RefCounted() {
    */
   public fun getDirectories(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DIRECTORIES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DIRECTORIES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -253,7 +254,7 @@ public open class Directory : RefCounted() {
    */
   public fun getDriveCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -268,7 +269,7 @@ public open class Directory : RefCounted() {
    */
   public fun getDrive(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -277,7 +278,8 @@ public open class Directory : RefCounted() {
    */
   public fun getCurrentDrive(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DRIVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DRIVE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -288,7 +290,7 @@ public open class Directory : RefCounted() {
    */
   public fun changeDir(todir: String): GodotError {
     TransferContext.writeArguments(STRING to todir)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CHANGE_DIR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CHANGE_DIR, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -297,7 +299,8 @@ public open class Directory : RefCounted() {
    */
   public fun getCurrentDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DIR,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -308,7 +311,7 @@ public open class Directory : RefCounted() {
    */
   public fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -319,7 +322,8 @@ public open class Directory : RefCounted() {
    */
   public fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR_RECURSIVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR_RECURSIVE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -330,7 +334,7 @@ public open class Directory : RefCounted() {
    */
   public fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_FILE_EXISTS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_FILE_EXISTS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -341,7 +345,7 @@ public open class Directory : RefCounted() {
    */
   public fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_DIR_EXISTS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_DIR_EXISTS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -350,7 +354,7 @@ public open class Directory : RefCounted() {
    */
   public fun getSpaceLeft(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_SPACE_LEFT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_SPACE_LEFT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -361,7 +365,7 @@ public open class Directory : RefCounted() {
    */
   public fun copy(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_COPY, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_COPY, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -372,7 +376,7 @@ public open class Directory : RefCounted() {
    */
   public fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_RENAME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_RENAME, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -385,7 +389,7 @@ public open class Directory : RefCounted() {
    */
   public fun remove(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_REMOVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_REMOVE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

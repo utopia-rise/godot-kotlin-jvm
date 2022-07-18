@@ -31,14 +31,14 @@ public open class WorldBoundaryShape2D : Shape2D() {
   public var normal: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_NORMAL,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_NORMAL,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_NORMAL,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_NORMAL,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +47,14 @@ public open class WorldBoundaryShape2D : Shape2D() {
   public var distance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_DISTANCE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_DISTANCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_DISTANCE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_DISTANCE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

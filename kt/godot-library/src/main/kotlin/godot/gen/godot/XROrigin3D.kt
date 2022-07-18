@@ -38,13 +38,14 @@ public open class XROrigin3D : Node3D() {
   public var worldScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_GET_WORLD_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_GET_WORLD_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_WORLD_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_WORLD_SCALE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

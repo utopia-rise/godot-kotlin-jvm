@@ -61,8 +61,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun travel(toNode: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL,
+        NIL.ordinal)
   }
 
   /**
@@ -70,8 +70,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun start(node: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START,
+        NIL.ordinal)
   }
 
   /**
@@ -79,8 +79,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP,
+        NIL.ordinal)
   }
 
   /**
@@ -88,8 +88,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -98,8 +98,9 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING_NAME)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -108,9 +109,9 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentPlayPosition(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
-        DOUBLE)
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -119,8 +120,9 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -129,9 +131,9 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getTravelPath(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,
-        PACKED_STRING_ARRAY)
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 

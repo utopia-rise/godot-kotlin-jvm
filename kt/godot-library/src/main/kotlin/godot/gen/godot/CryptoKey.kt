@@ -39,7 +39,7 @@ public open class CryptoKey : Resource() {
    */
   public fun save(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -50,7 +50,7 @@ public open class CryptoKey : Resource() {
    */
   public fun load(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -59,7 +59,7 @@ public open class CryptoKey : Resource() {
    */
   public fun isPublicOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_IS_PUBLIC_ONLY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_IS_PUBLIC_ONLY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -68,7 +68,7 @@ public open class CryptoKey : Resource() {
    */
   public fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE_TO_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE_TO_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -77,7 +77,7 @@ public open class CryptoKey : Resource() {
    */
   public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD_FROM_STRING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD_FROM_STRING, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

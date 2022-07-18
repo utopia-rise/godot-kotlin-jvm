@@ -98,8 +98,8 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    */
   public fun addCustomControl(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_CUSTOM_CONTROL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_CUSTOM_CONTROL,
+        NIL.ordinal)
   }
 
   /**
@@ -107,8 +107,8 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    */
   public fun addPropertyEditor(`property`: String, editor: Control): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR, NIL.ordinal)
   }
 
   /**
@@ -120,9 +120,9 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     editor: Control
   ): Unit {
     TransferContext.writeArguments(STRING to label, PACKED_STRING_ARRAY to properties, OBJECT to editor)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR_FOR_MULTIPLE_PROPERTIES,
-        NIL)
+        NIL.ordinal)
   }
 
   public companion object

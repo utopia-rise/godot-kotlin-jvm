@@ -34,14 +34,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var numberColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_NUMBER_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_NUMBER_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_NUMBER_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_NUMBER_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var symbolColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_SYMBOL_COLOR,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_SYMBOL_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_SYMBOL_COLOR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_SYMBOL_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +66,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var functionColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_FUNCTION_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_FUNCTION_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_FUNCTION_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_FUNCTION_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -82,14 +82,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var memberVariableColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_VARIABLE_COLOR, COLOR)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_VARIABLE_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_MEMBER_VARIABLE_COLOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_MEMBER_VARIABLE_COLOR, NIL.ordinal)
     }
 
   /**
@@ -98,14 +98,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var keywordColors: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLORS, DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLORS,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_KEYWORD_COLORS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_KEYWORD_COLORS,
+          NIL.ordinal)
     }
 
   /**
@@ -114,14 +114,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var memberKeywordColors: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLORS, DICTIONARY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLORS, DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_MEMBER_KEYWORD_COLORS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_MEMBER_KEYWORD_COLORS, NIL.ordinal)
     }
 
   /**
@@ -130,14 +130,14 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   public var colorRegions: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_COLOR_REGIONS,
-          DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_COLOR_REGIONS,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_COLOR_REGIONS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_SET_COLOR_REGIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -151,8 +151,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun addKeywordColor(keyword: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to keyword, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_KEYWORD_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_KEYWORD_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -160,8 +160,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun removeKeywordColor(keyword: String): Unit {
     TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_KEYWORD_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_KEYWORD_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -169,8 +169,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun hasKeywordColor(keyword: String): Boolean {
     TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_KEYWORD_COLOR,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_KEYWORD_COLOR,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -179,8 +179,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun getKeywordColor(keyword: String): Color {
     TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_KEYWORD_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -189,8 +189,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun clearKeywordColors(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_KEYWORD_COLORS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_KEYWORD_COLORS,
+        NIL.ordinal)
   }
 
   /**
@@ -202,8 +202,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to memberKeyword, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_MEMBER_KEYWORD_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_MEMBER_KEYWORD_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -211,8 +211,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun removeMemberKeywordColor(memberKeyword: String): Unit {
     TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_MEMBER_KEYWORD_COLOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_MEMBER_KEYWORD_COLOR, NIL.ordinal)
   }
 
   /**
@@ -220,8 +220,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun hasMemberKeywordColor(memberKeyword: String): Boolean {
     TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_MEMBER_KEYWORD_COLOR, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_MEMBER_KEYWORD_COLOR,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -230,8 +230,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun getMemberKeywordColor(memberKeyword: String): Color {
     TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_GET_MEMBER_KEYWORD_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -240,8 +240,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun clearMemberKeywordColors(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_MEMBER_KEYWORD_COLORS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_MEMBER_KEYWORD_COLORS, NIL.ordinal)
   }
 
   /**
@@ -258,8 +258,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     lineOnly: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING to startKey, STRING to endKey, COLOR to color, BOOL to lineOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_COLOR_REGION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_ADD_COLOR_REGION,
+        NIL.ordinal)
   }
 
   /**
@@ -267,8 +267,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun removeColorRegion(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_COLOR_REGION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_REMOVE_COLOR_REGION,
+        NIL.ordinal)
   }
 
   /**
@@ -276,8 +276,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun hasColorRegion(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_COLOR_REGION,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_HAS_COLOR_REGION,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -286,8 +286,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   public fun clearColorRegions(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_COLOR_REGIONS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEHIGHLIGHTER_CLEAR_COLOR_REGIONS,
+        NIL.ordinal)
   }
 
   public companion object

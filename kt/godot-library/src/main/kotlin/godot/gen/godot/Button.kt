@@ -95,12 +95,12 @@ public open class Button : BaseButton() {
   public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT, NIL.ordinal)
     }
 
   /**
@@ -109,12 +109,13 @@ public open class Button : BaseButton() {
   public var textDirection: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_DIRECTION,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_DIRECTION, NIL.ordinal)
     }
 
   /**
@@ -123,12 +124,12 @@ public open class Button : BaseButton() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_LANGUAGE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_LANGUAGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_LANGUAGE, NIL.ordinal)
     }
 
   /**
@@ -139,12 +140,12 @@ public open class Button : BaseButton() {
   public var icon: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_BUTTON_ICON, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_BUTTON_ICON, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_BUTTON_ICON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_BUTTON_ICON, NIL.ordinal)
     }
 
   /**
@@ -153,12 +154,12 @@ public open class Button : BaseButton() {
   public var flat: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_FLAT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_FLAT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL.ordinal)
     }
 
   /**
@@ -167,12 +168,12 @@ public open class Button : BaseButton() {
   public var clipText: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_CLIP_TEXT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_CLIP_TEXT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_CLIP_TEXT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_CLIP_TEXT, NIL.ordinal)
     }
 
   /**
@@ -181,12 +182,13 @@ public open class Button : BaseButton() {
   public var alignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_ALIGNMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT_ALIGNMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_ALIGNMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT_ALIGNMENT, NIL.ordinal)
     }
 
   /**
@@ -195,12 +197,13 @@ public open class Button : BaseButton() {
   public var iconAlignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGNMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON_ALIGNMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGNMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON_ALIGNMENT, NIL.ordinal)
     }
 
   /**
@@ -209,41 +212,34 @@ public open class Button : BaseButton() {
   public var expandIcon: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_EXPAND_ICON, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_IS_EXPAND_ICON, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTON)
   }
 
-  /**
-   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL.ordinal)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   public companion object

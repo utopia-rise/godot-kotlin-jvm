@@ -51,14 +51,14 @@ public open class FileDialog : ConfirmationDialog() {
   public var modeOverridesTitle: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_MODE_OVERRIDING_TITLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_MODE_OVERRIDING_TITLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_MODE_OVERRIDES_TITLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_MODE_OVERRIDES_TITLE,
+          NIL.ordinal)
     }
 
   /**
@@ -67,12 +67,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var fileMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILE_MODE, NIL.ordinal)
     }
 
   /**
@@ -83,12 +83,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var access: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ACCESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ACCESS, NIL.ordinal)
     }
 
   /**
@@ -97,13 +97,13 @@ public open class FileDialog : ConfirmationDialog() {
   public var filters: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILTERS,
-          PACKED_STRING_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILTERS,
+          PACKED_STRING_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILTERS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILTERS, NIL.ordinal)
     }
 
   /**
@@ -112,14 +112,14 @@ public open class FileDialog : ConfirmationDialog() {
   public var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_SHOWING_HIDDEN_FILES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_SHOW_HIDDEN_FILES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_SHOW_HIDDEN_FILES,
+          NIL.ordinal)
     }
 
   /**
@@ -128,13 +128,14 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentDir: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_DIR,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_DIR,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_DIR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_DIR,
+          NIL.ordinal)
     }
 
   /**
@@ -143,13 +144,14 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentFile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_FILE,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_FILE,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_FILE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_FILE,
+          NIL.ordinal)
     }
 
   /**
@@ -158,13 +160,14 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_PATH,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_PATH,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_PATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_PATH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -176,19 +179,19 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun clearFilters(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_CLEAR_FILTERS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_CLEAR_FILTERS, NIL.ordinal)
   }
 
   /**
-   * Adds `filter` to the list of filters, which restricts what files can be picked.
+   * Adds a comma-delimited file name `filter` option to the [godot.FileDialog] with an optional `description`, which restricts what files can be picked.
    *
-   * A `filter` should be of the form `"filename.extension ; Description"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   * A `filter` should be of the form `"filename.extension"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
    *
-   * Example filters: `"*.png ; PNG Images"`, `"project.godot ; Godot Project"`.
+   * For example, a `filter` of `"*.png, *.jpg"` and a `description` of `"Images"` results in filter text "Images (*.png, *.jpg)".
    */
   public fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL.ordinal)
   }
 
   /**
@@ -198,7 +201,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
   }
 
@@ -209,7 +212,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
   }
 
@@ -218,7 +221,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_DESELECT_ALL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_DESELECT_ALL, NIL.ordinal)
   }
 
   /**
@@ -226,7 +229,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun invalidate(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_INVALIDATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_INVALIDATE, NIL.ordinal)
   }
 
   public enum class FileMode(

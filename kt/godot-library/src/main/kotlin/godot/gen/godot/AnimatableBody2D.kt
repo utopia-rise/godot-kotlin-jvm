@@ -31,14 +31,14 @@ public open class AnimatableBody2D : StaticBody2D() {
   public var syncToPhysics: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_IS_SYNC_TO_PHYSICS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_IS_SYNC_TO_PHYSICS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_SET_SYNC_TO_PHYSICS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_SET_SYNC_TO_PHYSICS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

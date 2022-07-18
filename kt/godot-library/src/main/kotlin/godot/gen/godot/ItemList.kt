@@ -48,6 +48,8 @@ import kotlin.Unit
  * Item text only supports single-line strings, newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
  *
  * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ *
+ * **Incremental search:** Like [godot.PopupMenu] and [godot.Tree], [godot.ItemList] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class ItemList : Control() {
@@ -80,12 +82,12 @@ public open class ItemList : Control() {
   public var selectMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SELECT_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SELECT_MODE, NIL.ordinal)
     }
 
   /**
@@ -94,12 +96,14 @@ public open class ItemList : Control() {
   public var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RESELECT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RESELECT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RESELECT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RESELECT,
+          NIL.ordinal)
     }
 
   /**
@@ -108,14 +112,14 @@ public open class ItemList : Control() {
   public var allowRmbSelect: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RMB_SELECT,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RMB_SELECT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RMB_SELECT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RMB_SELECT,
+          NIL.ordinal)
     }
 
   /**
@@ -126,12 +130,14 @@ public open class ItemList : Control() {
   public var maxTextLines: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_TEXT_LINES, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_TEXT_LINES,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_TEXT_LINES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_TEXT_LINES,
+          NIL.ordinal)
     }
 
   /**
@@ -140,28 +146,28 @@ public open class ItemList : Control() {
   public var autoHeight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_HAS_AUTO_HEIGHT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_HAS_AUTO_HEIGHT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_AUTO_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_AUTO_HEIGHT, NIL.ordinal)
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextParagraph.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_TEXT_OVERRUN_BEHAVIOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_TEXT_OVERRUN_BEHAVIOR,
+          NIL.ordinal)
     }
 
   /**
@@ -170,12 +176,13 @@ public open class ItemList : Control() {
   public var itemCount: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_COUNT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_COUNT, NIL.ordinal)
     }
 
   /**
@@ -188,12 +195,12 @@ public open class ItemList : Control() {
   public var maxColumns: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_COLUMNS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_COLUMNS, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_COLUMNS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_COLUMNS, NIL.ordinal)
     }
 
   /**
@@ -204,14 +211,14 @@ public open class ItemList : Control() {
   public var sameColumnWidth: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SAME_COLUMN_WIDTH,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SAME_COLUMN_WIDTH,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SAME_COLUMN_WIDTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SAME_COLUMN_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -222,14 +229,14 @@ public open class ItemList : Control() {
   public var fixedColumnWidth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_COLUMN_WIDTH,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_COLUMN_WIDTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_COLUMN_WIDTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_COLUMN_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -238,12 +245,12 @@ public open class ItemList : Control() {
   public var iconMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_MODE, NIL.ordinal)
     }
 
   /**
@@ -252,12 +259,13 @@ public open class ItemList : Control() {
   public var iconScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_SCALE, NIL.ordinal)
     }
 
   /**
@@ -268,13 +276,14 @@ public open class ItemList : Control() {
   public var fixedIconSize: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_ICON_SIZE,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_ICON_SIZE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -294,7 +303,7 @@ public open class ItemList : Control() {
     selectable: Boolean = true
   ): Long {
     TransferContext.writeArguments(STRING to text, OBJECT to icon, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ITEM, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ITEM, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -303,7 +312,7 @@ public open class ItemList : Control() {
    */
   public fun addIconItem(icon: Texture2D, selectable: Boolean = true): Long {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ICON_ITEM, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ICON_ITEM, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -312,7 +321,7 @@ public open class ItemList : Control() {
    */
   public fun setItemText(idx: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT, NIL.ordinal)
   }
 
   /**
@@ -320,7 +329,7 @@ public open class ItemList : Control() {
    */
   public fun getItemText(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -329,7 +338,7 @@ public open class ItemList : Control() {
    */
   public fun setItemIcon(idx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON, NIL.ordinal)
   }
 
   /**
@@ -337,7 +346,7 @@ public open class ItemList : Control() {
    */
   public fun getItemIcon(idx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -346,8 +355,8 @@ public open class ItemList : Control() {
    */
   public fun setItemTextDirection(idx: Long, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to direction.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT_DIRECTION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT_DIRECTION,
+        NIL.ordinal)
   }
 
   /**
@@ -355,41 +364,32 @@ public open class ItemList : Control() {
    */
   public fun getItemTextDirection(idx: Long): Control.TextDirection {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
+        LONG.ordinal)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setItemOpentypeFeature(
     idx: Long,
     tag: String,
     `value`: Long
   ): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_OPENTYPE_FEATURE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_OPENTYPE_FEATURE,
+        NIL.ordinal)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getItemOpentypeFeature(idx: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to idx, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_OPENTYPE_FEATURE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features from the item's text.
-   */
   public fun clearItemOpentypeFeatures(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR_ITEM_OPENTYPE_FEATURES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR_ITEM_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -397,7 +397,7 @@ public open class ItemList : Control() {
    */
   public fun setItemLanguage(idx: Long, language: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_LANGUAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_LANGUAGE, NIL.ordinal)
   }
 
   /**
@@ -405,7 +405,8 @@ public open class ItemList : Control() {
    */
   public fun getItemLanguage(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_LANGUAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_LANGUAGE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -414,8 +415,8 @@ public open class ItemList : Control() {
    */
   public fun setItemIconTransposed(idx: Long, transposed: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to transposed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_TRANSPOSED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_TRANSPOSED,
+        NIL.ordinal)
   }
 
   /**
@@ -423,8 +424,8 @@ public open class ItemList : Control() {
    */
   public fun isItemIconTransposed(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_ICON_TRANSPOSED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_ICON_TRANSPOSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -433,7 +434,8 @@ public open class ItemList : Control() {
    */
   public fun setItemIconRegion(idx: Long, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to idx, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_REGION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_REGION,
+        NIL.ordinal)
   }
 
   /**
@@ -441,8 +443,8 @@ public open class ItemList : Control() {
    */
   public fun getItemIconRegion(idx: Long): Rect2 {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_REGION,
-        RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_REGION,
+        RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -451,8 +453,8 @@ public open class ItemList : Control() {
    */
   public fun setItemIconModulate(idx: Long, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_MODULATE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_MODULATE,
+        NIL.ordinal)
   }
 
   /**
@@ -460,8 +462,8 @@ public open class ItemList : Control() {
    */
   public fun getItemIconModulate(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_MODULATE,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_MODULATE,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -470,7 +472,8 @@ public open class ItemList : Control() {
    */
   public fun setItemSelectable(idx: Long, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_SELECTABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_SELECTABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -478,7 +481,8 @@ public open class ItemList : Control() {
    */
   public fun isItemSelectable(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_SELECTABLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_SELECTABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -489,7 +493,7 @@ public open class ItemList : Control() {
    */
   public fun setItemDisabled(idx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_DISABLED, NIL.ordinal)
   }
 
   /**
@@ -497,7 +501,7 @@ public open class ItemList : Control() {
    */
   public fun isItemDisabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -506,7 +510,7 @@ public open class ItemList : Control() {
    */
   public fun setItemMetadata(idx: Long, metadata: Any): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to metadata)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL.ordinal)
   }
 
   /**
@@ -514,7 +518,7 @@ public open class ItemList : Control() {
    */
   public fun getItemMetadata(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_METADATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_METADATA, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -523,8 +527,8 @@ public open class ItemList : Control() {
    */
   public fun setItemCustomBgColor(idx: Long, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customBgColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_BG_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_BG_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -532,8 +536,8 @@ public open class ItemList : Control() {
    */
   public fun getItemCustomBgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_BG_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_BG_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -542,8 +546,8 @@ public open class ItemList : Control() {
    */
   public fun setItemCustomFgColor(idx: Long, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customFgColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_FG_COLOR,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_FG_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -551,8 +555,8 @@ public open class ItemList : Control() {
    */
   public fun getItemCustomFgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_FG_COLOR,
-        COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_FG_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -561,8 +565,8 @@ public open class ItemList : Control() {
    */
   public fun setItemTooltipEnabled(idx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -570,8 +574,8 @@ public open class ItemList : Control() {
    */
   public fun isItemTooltipEnabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_TOOLTIP_ENABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_TOOLTIP_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -580,7 +584,7 @@ public open class ItemList : Control() {
    */
   public fun setItemTooltip(idx: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP, NIL.ordinal)
   }
 
   /**
@@ -588,7 +592,8 @@ public open class ItemList : Control() {
    */
   public fun getItemTooltip(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TOOLTIP, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TOOLTIP,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -599,7 +604,7 @@ public open class ItemList : Control() {
    */
   public fun select(idx: Long, single: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to single)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SELECT, NIL.ordinal)
   }
 
   /**
@@ -607,7 +612,7 @@ public open class ItemList : Control() {
    */
   public fun deselect(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT, NIL.ordinal)
   }
 
   /**
@@ -615,7 +620,7 @@ public open class ItemList : Control() {
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT_ALL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT_ALL, NIL.ordinal)
   }
 
   /**
@@ -623,7 +628,7 @@ public open class ItemList : Control() {
    */
   public fun isSelected(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SELECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SELECTED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -632,8 +637,8 @@ public open class ItemList : Control() {
    */
   public fun getSelectedItems(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECTED_ITEMS,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECTED_ITEMS,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -642,7 +647,7 @@ public open class ItemList : Control() {
    */
   public fun moveItem(fromIdx: Long, toIdx: Long): Unit {
     TransferContext.writeArguments(LONG to fromIdx, LONG to toIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_MOVE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_MOVE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -650,7 +655,7 @@ public open class ItemList : Control() {
    */
   public fun removeItem(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_REMOVE_ITEM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_REMOVE_ITEM, NIL.ordinal)
   }
 
   /**
@@ -658,7 +663,7 @@ public open class ItemList : Control() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -666,7 +671,7 @@ public open class ItemList : Control() {
    */
   public fun sortItemsByText(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SORT_ITEMS_BY_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SORT_ITEMS_BY_TEXT, NIL.ordinal)
   }
 
   /**
@@ -674,7 +679,8 @@ public open class ItemList : Control() {
    */
   public fun isAnythingSelected(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ANYTHING_SELECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ANYTHING_SELECTED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -685,7 +691,8 @@ public open class ItemList : Control() {
    */
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_AT_POSITION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_AT_POSITION,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -694,8 +701,8 @@ public open class ItemList : Control() {
    */
   public fun ensureCurrentIsVisible(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ENSURE_CURRENT_IS_VISIBLE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ENSURE_CURRENT_IS_VISIBLE,
+        NIL.ordinal)
   }
 
   /**
@@ -705,7 +712,8 @@ public open class ItemList : Control() {
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_V_SCROLL_BAR, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_V_SCROLL_BAR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
 

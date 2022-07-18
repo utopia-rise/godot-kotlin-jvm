@@ -32,34 +32,36 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   public fun peerDisconnect(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT,
+        NIL.ordinal)
   }
 
   public fun peerDisconnectLater(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_LATER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_LATER,
+        NIL.ordinal)
   }
 
   public fun peerDisconnectNow(`data`: Long = 0): Unit {
     TransferContext.writeArguments(LONG to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_NOW,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PEER_DISCONNECT_NOW,
+        NIL.ordinal)
   }
 
   public fun ping(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING, NIL.ordinal)
   }
 
   public fun pingInterval(pingInterval: Long): Unit {
     TransferContext.writeArguments(LONG to pingInterval)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING_INTERVAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_PING_INTERVAL,
+        NIL.ordinal)
   }
 
   public fun reset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_RESET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_RESET, NIL.ordinal)
   }
 
   public fun send(
@@ -68,7 +70,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     flags: Long
   ): GodotError {
     TransferContext.writeArguments(LONG to channel, PACKED_BYTE_ARRAY to packet, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SEND, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SEND, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -78,8 +80,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     deceleration: Long
   ): Unit {
     TransferContext.writeArguments(LONG to interval, LONG to acceleration, LONG to deceleration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_THROTTLE_CONFIGURE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_THROTTLE_CONFIGURE,
+        NIL.ordinal)
   }
 
   public fun setTimeout(
@@ -88,31 +90,32 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     timeoutMax: Long
   ): Unit {
     TransferContext.writeArguments(LONG to timeout, LONG to timeoutMin, LONG to timeoutMax)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_SET_TIMEOUT, NIL.ordinal)
   }
 
   public fun getStatistic(statistic: ENetPacketPeer.PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATISTIC,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun getState(): ENetPacketPeer.PeerState {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_STATE, LONG.ordinal)
     return ENetPacketPeer.PeerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun getChannels(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_CHANNELS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_GET_CHANNELS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun isActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_IS_ACTIVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETPACKETPEER_IS_ACTIVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

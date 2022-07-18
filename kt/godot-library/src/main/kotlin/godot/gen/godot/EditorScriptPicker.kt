@@ -28,14 +28,14 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
   public var scriptOwner: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_GET_SCRIPT_OWNER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_GET_SCRIPT_OWNER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_SET_SCRIPT_OWNER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_SET_SCRIPT_OWNER,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

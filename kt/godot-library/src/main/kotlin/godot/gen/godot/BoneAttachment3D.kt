@@ -35,14 +35,14 @@ public open class BoneAttachment3D : Node3D() {
   public var boneName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_NAME,
-          STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_NAME,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_BONE_NAME,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_BONE_NAME,
+          NIL.ordinal)
     }
 
   /**
@@ -51,14 +51,14 @@ public open class BoneAttachment3D : Node3D() {
   public var boneIdx: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_IDX,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_BONE_IDX,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_BONE_IDX,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_BONE_IDX,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -70,8 +70,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun onBonePoseUpdate(boneIndex: Long): Unit {
     TransferContext.writeArguments(LONG to boneIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_ON_BONE_POSE_UPDATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_ON_BONE_POSE_UPDATE,
+        NIL.ordinal)
   }
 
   /**
@@ -79,8 +79,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun setOverridePose(overridePose: Boolean): Unit {
     TransferContext.writeArguments(BOOL to overridePose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_POSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_POSE,
+        NIL.ordinal)
   }
 
   /**
@@ -88,8 +88,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun getOverridePose(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_POSE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_POSE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -98,8 +98,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun setOverrideMode(overrideMode: Long): Unit {
     TransferContext.writeArguments(LONG to overrideMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_MODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_OVERRIDE_MODE,
+        NIL.ordinal)
   }
 
   /**
@@ -107,8 +107,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun getOverrideMode(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_MODE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_OVERRIDE_MODE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -117,8 +117,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useExternalSkeleton)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_USE_EXTERNAL_SKELETON, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_USE_EXTERNAL_SKELETON, NIL.ordinal)
   }
 
   /**
@@ -126,8 +126,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun getUseExternalSkeleton(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_USE_EXTERNAL_SKELETON, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_USE_EXTERNAL_SKELETON, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -136,8 +136,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to externalSkeleton)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_EXTERNAL_SKELETON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_SET_EXTERNAL_SKELETON,
+        NIL.ordinal)
   }
 
   /**
@@ -145,8 +145,8 @@ public open class BoneAttachment3D : Node3D() {
    */
   public fun getExternalSkeleton(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_EXTERNAL_SKELETON, NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEATTACHMENT3D_GET_EXTERNAL_SKELETON,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 

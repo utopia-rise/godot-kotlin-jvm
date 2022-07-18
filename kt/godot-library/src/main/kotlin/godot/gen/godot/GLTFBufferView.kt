@@ -21,62 +21,65 @@ public open class GLTFBufferView : Resource() {
   public var buffer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BUFFER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BUFFER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BUFFER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BUFFER, NIL.ordinal)
     }
 
   public var byteOffset: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_OFFSET,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_OFFSET,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_OFFSET,
+          NIL.ordinal)
     }
 
   public var byteLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_LENGTH,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_LENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_LENGTH,
+          NIL.ordinal)
     }
 
   public var byteStride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_STRIDE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_STRIDE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_STRIDE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_STRIDE,
+          NIL.ordinal)
     }
 
   public var indices: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_INDICES, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_INDICES,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_INDICES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_INDICES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -24,14 +24,14 @@ public open class InputEventShortcut : InputEvent() {
   public var shortcut: Shortcut?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSHORTCUT_GET_SHORTCUT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSHORTCUT_GET_SHORTCUT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSHORTCUT_SET_SHORTCUT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSHORTCUT_SET_SHORTCUT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

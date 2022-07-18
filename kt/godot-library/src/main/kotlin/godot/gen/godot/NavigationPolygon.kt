@@ -103,14 +103,14 @@ public open class NavigationPolygon : Resource() {
   public var vertices: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_VERTICES,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_VERTICES,
+          PACKED_VECTOR2_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_VERTICES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_VERTICES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -122,7 +122,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addPolygon(polygon: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_POLYGON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_POLYGON,
+        NIL.ordinal)
   }
 
   /**
@@ -130,8 +131,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getPolygonCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -140,8 +141,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getPolygon(idx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
@@ -150,8 +151,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun clearPolygons(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
+        NIL.ordinal)
   }
 
   /**
@@ -159,7 +160,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addOutline(outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -167,8 +169,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addOutlineAtIndex(outline: PackedVector2Array, index: Long): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE_AT_INDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE_AT_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -176,8 +178,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getOutlineCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -186,7 +188,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun setOutline(idx: Long, outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(LONG to idx, PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -194,8 +197,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getOutline(idx: Long): PackedVector2Array {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -204,8 +207,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun removeOutline(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_REMOVE_OUTLINE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_REMOVE_OUTLINE,
+        NIL.ordinal)
   }
 
   /**
@@ -213,8 +216,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun clearOutlines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_OUTLINES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_OUTLINES,
+        NIL.ordinal)
   }
 
   /**
@@ -222,8 +225,8 @@ public open class NavigationPolygon : Resource() {
    */
   public fun makePolygonsFromOutlines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_MAKE_POLYGONS_FROM_OUTLINES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_MAKE_POLYGONS_FROM_OUTLINES, NIL.ordinal)
   }
 
   public companion object

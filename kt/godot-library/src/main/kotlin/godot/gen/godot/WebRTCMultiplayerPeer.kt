@@ -37,8 +37,8 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()
   ): GodotError {
     TransferContext.writeArguments(LONG to peerId, BOOL to serverCompatibility, ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_INITIALIZE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_INITIALIZE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -48,41 +48,41 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     unreliableLifetime: Long = 1
   ): GodotError {
     TransferContext.writeArguments(OBJECT to peer, LONG to peerId, LONG to unreliableLifetime)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_ADD_PEER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_ADD_PEER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun removePeer(peerId: Long): Unit {
     TransferContext.writeArguments(LONG to peerId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_REMOVE_PEER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_REMOVE_PEER,
+        NIL.ordinal)
   }
 
   public fun hasPeer(peerId: Long): Boolean {
     TransferContext.writeArguments(LONG to peerId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_HAS_PEER,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_HAS_PEER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun getPeer(peerId: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to peerId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_GET_PEER,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_GET_PEER,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   public fun getPeers(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_GET_PEERS,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_GET_PEERS,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   public fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CLOSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYERPEER_CLOSE, NIL.ordinal)
   }
 
   public companion object

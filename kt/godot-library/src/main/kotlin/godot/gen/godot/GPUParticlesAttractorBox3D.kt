@@ -15,24 +15,28 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Box-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
  *
+ * Box-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ *
+ * **Note:** Particle attractors only affect [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
   /**
-   *
+   * The attractor box's extents in 3D units.
    */
   public var extents: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_GET_EXTENTS, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_GET_EXTENTS,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_SET_EXTENTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORBOX3D_SET_EXTENTS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

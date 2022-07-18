@@ -27,14 +27,14 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   public var varyingName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_NAME, STRING_NAME)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_NAME, STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_SET_VARYING_NAME, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_SET_VARYING_NAME, NIL.ordinal)
     }
 
   /**
@@ -43,14 +43,14 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   public var varyingType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_TYPE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_GET_VARYING_TYPE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_SET_VARYING_TYPE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVARYING_SET_VARYING_TYPE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

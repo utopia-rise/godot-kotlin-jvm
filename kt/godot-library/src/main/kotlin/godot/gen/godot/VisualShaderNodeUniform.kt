@@ -29,14 +29,14 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
   public var uniformName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_GET_UNIFORM_NAME, STRING_NAME)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_GET_UNIFORM_NAME, STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_SET_UNIFORM_NAME, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_SET_UNIFORM_NAME, NIL.ordinal)
     }
 
   /**
@@ -45,14 +45,14 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
   public var qualifier: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_GET_QUALIFIER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_GET_QUALIFIER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_SET_QUALIFIER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_SET_QUALIFIER,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

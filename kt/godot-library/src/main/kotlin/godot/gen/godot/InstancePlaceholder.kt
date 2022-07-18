@@ -37,8 +37,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -47,8 +47,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -57,8 +57,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   public fun getInstancePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_INSTANCE_PATH, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_INSTANCE_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

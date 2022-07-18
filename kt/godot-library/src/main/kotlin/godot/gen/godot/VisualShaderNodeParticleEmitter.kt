@@ -25,14 +25,14 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
   public var mode2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_IS_MODE_2D, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_IS_MODE_2D, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_SET_MODE_2D, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_SET_MODE_2D, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

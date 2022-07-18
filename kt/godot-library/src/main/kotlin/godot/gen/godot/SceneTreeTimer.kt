@@ -55,7 +55,7 @@ import kotlin.Unit
  *
  * [/codeblocks]
  *
- * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.Reference].
+ * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.RefCounted].
  */
 @GodotBaseType
 public open class SceneTreeTimer internal constructor() : RefCounted() {
@@ -70,13 +70,14 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   public var timeLeft: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_GET_TIME_LEFT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_GET_TIME_LEFT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_SET_TIME_LEFT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_SET_TIME_LEFT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -33,14 +33,14 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public var `data`: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_FACES,
-          PACKED_VECTOR3_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_FACES,
+          PACKED_VECTOR3_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_FACES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_FACES,
+          NIL.ordinal)
     }
 
   /**
@@ -49,14 +49,16 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public var backfaceCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_IS_BACKFACE_COLLISION_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_IS_BACKFACE_COLLISION_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

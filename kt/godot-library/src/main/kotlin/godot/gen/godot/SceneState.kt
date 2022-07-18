@@ -48,7 +48,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -57,8 +57,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeType(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_TYPE,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_TYPE,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -67,8 +67,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeName(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_NAME,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_NAME,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -79,7 +79,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodePath(idx: Long, forParent: Boolean = false): NodePath {
     TransferContext.writeArguments(LONG to idx, BOOL to forParent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PATH, NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PATH,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -88,8 +89,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeOwnerPath(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_OWNER_PATH,
-        NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_OWNER_PATH,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -98,8 +99,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun isNodeInstancePlaceholder(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENESTATE_IS_NODE_INSTANCE_PLACEHOLDER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_IS_NODE_INSTANCE_PLACEHOLDER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -108,8 +109,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeInstancePlaceholder(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INSTANCE_PLACEHOLDER, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INSTANCE_PLACEHOLDER,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -118,8 +119,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeInstance(idx: Long): PackedScene? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INSTANCE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INSTANCE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as PackedScene?
   }
 
@@ -128,8 +129,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeGroups(idx: Long): PackedStringArray {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_GROUPS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_GROUPS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -138,7 +139,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodeIndex(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -149,8 +150,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodePropertyCount(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -159,8 +160,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodePropertyName(idx: Long, propIdx: Long): StringName {
     TransferContext.writeArguments(LONG to idx, LONG to propIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_NAME,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_NAME,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -169,8 +170,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getNodePropertyValue(idx: Long, propIdx: Long): Any? {
     TransferContext.writeArguments(LONG to idx, LONG to propIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_VALUE,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PROPERTY_VALUE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -181,8 +182,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -191,8 +192,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionSource(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_SOURCE,
-        NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_SOURCE,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -201,8 +202,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionSignal(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_SIGNAL,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_SIGNAL,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -211,8 +212,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionTarget(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_TARGET,
-        NODE_PATH)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_TARGET,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -221,8 +222,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionMethod(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_METHOD,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_METHOD,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -231,8 +232,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionFlags(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_FLAGS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_FLAGS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -241,8 +242,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionBinds(idx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_BINDS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_BINDS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -251,8 +252,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public fun getConnectionUnbinds(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_UNBINDS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_CONNECTION_UNBINDS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

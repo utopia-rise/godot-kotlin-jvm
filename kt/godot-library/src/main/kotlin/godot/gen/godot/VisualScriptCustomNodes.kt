@@ -33,13 +33,13 @@ public object VisualScriptCustomNodes : Object() {
     script: Script
   ): Unit {
     TransferContext.writeArguments(STRING to name, STRING to category, OBJECT to script)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_ADD_CUSTOM_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_ADD_CUSTOM_NODE,
+        NIL.ordinal)
   }
 
   public fun removeCustomNode(name: String, category: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to category)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_REMOVE_CUSTOM_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCUSTOMNODES_REMOVE_CUSTOM_NODE, NIL.ordinal)
   }
 }

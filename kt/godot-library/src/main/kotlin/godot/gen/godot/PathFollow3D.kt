@@ -33,12 +33,13 @@ public open class PathFollow3D : Node3D() {
   public var offset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -47,13 +48,14 @@ public open class PathFollow3D : Node3D() {
   public var unitOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_UNIT_OFFSET,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_UNIT_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_UNIT_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_UNIT_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -62,12 +64,13 @@ public open class PathFollow3D : Node3D() {
   public var hOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_H_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_H_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_H_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_H_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -76,12 +79,13 @@ public open class PathFollow3D : Node3D() {
   public var vOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_V_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_V_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_V_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_V_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -90,14 +94,14 @@ public open class PathFollow3D : Node3D() {
   public var rotationMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_ROTATION_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_ROTATION_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_ROTATION_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_ROTATION_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -110,14 +114,14 @@ public open class PathFollow3D : Node3D() {
   public var cubicInterp: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_CUBIC_INTERPOLATION, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_CUBIC_INTERPOLATION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_CUBIC_INTERPOLATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_CUBIC_INTERPOLATION,
+          NIL.ordinal)
     }
 
   /**
@@ -126,12 +130,12 @@ public open class PathFollow3D : Node3D() {
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_HAS_LOOP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_HAS_LOOP, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_LOOP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_LOOP, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

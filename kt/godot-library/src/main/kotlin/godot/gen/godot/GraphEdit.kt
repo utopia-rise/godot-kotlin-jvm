@@ -54,7 +54,7 @@ public open class GraphEdit : Control() {
       "isOutput")
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit.
+   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
    */
   public val deleteNodesRequest: Signal0 by signal()
 
@@ -138,14 +138,14 @@ public open class GraphEdit : Control() {
   public var rightDisconnects: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_RIGHT_DISCONNECTS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_RIGHT_DISCONNECTS,
+          NIL.ordinal)
     }
 
   /**
@@ -154,12 +154,13 @@ public open class GraphEdit : Control() {
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS, VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SCROLL_OFS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SCROLL_OFS, NIL.ordinal)
     }
 
   /**
@@ -168,12 +169,12 @@ public open class GraphEdit : Control() {
   public var snapDistance: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAP, NIL.ordinal)
     }
 
   /**
@@ -182,12 +183,12 @@ public open class GraphEdit : Control() {
   public var useSnap: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_USE_SNAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_USE_SNAP, NIL.ordinal)
     }
 
   /**
@@ -196,13 +197,14 @@ public open class GraphEdit : Control() {
   public var panningScheme: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME,
+          NIL.ordinal)
     }
 
   /**
@@ -211,14 +213,14 @@ public open class GraphEdit : Control() {
   public var connectionLinesThickness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_THICKNESS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_THICKNESS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_THICKNESS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_THICKNESS, NIL.ordinal)
     }
 
   /**
@@ -227,14 +229,14 @@ public open class GraphEdit : Control() {
   public var connectionLinesAntialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_CONNECTION_LINES_ANTIALIASED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_CONNECTION_LINES_ANTIALIASED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_ANTIALIASED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_ANTIALIASED, NIL.ordinal)
     }
 
   /**
@@ -243,12 +245,12 @@ public open class GraphEdit : Control() {
   public var zoom: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM, NIL.ordinal)
     }
 
   /**
@@ -257,12 +259,12 @@ public open class GraphEdit : Control() {
   public var zoomMin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MIN, NIL.ordinal)
     }
 
   /**
@@ -271,12 +273,12 @@ public open class GraphEdit : Control() {
   public var zoomMax: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MAX, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MAX, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MAX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MAX, NIL.ordinal)
     }
 
   /**
@@ -285,12 +287,13 @@ public open class GraphEdit : Control() {
   public var zoomStep: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_STEP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_STEP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_STEP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_STEP, NIL.ordinal)
     }
 
   /**
@@ -299,14 +302,14 @@ public open class GraphEdit : Control() {
   public var showZoomLabel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_LABEL,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_LABEL,
+          NIL.ordinal)
     }
 
   /**
@@ -315,14 +318,14 @@ public open class GraphEdit : Control() {
   public var minimapEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_MINIMAP_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_MINIMAP_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -331,13 +334,14 @@ public open class GraphEdit : Control() {
   public var minimapSize: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_SIZE,
+          NIL.ordinal)
     }
 
   /**
@@ -346,14 +350,14 @@ public open class GraphEdit : Control() {
   public var minimapOpacity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -423,7 +427,7 @@ public open class GraphEdit : Control() {
     toPort: Long
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -437,7 +441,8 @@ public open class GraphEdit : Control() {
     toPort: Long
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -451,7 +456,7 @@ public open class GraphEdit : Control() {
     toPort: Long
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL.ordinal)
   }
 
   /**
@@ -465,8 +470,8 @@ public open class GraphEdit : Control() {
     amount: Double
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to from, LONG to fromPort, STRING_NAME to to, LONG to toPort, DOUBLE to amount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
+        NIL.ordinal)
   }
 
   /**
@@ -474,8 +479,8 @@ public open class GraphEdit : Control() {
    */
   public fun getConnectionList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -484,7 +489,7 @@ public open class GraphEdit : Control() {
    */
   public fun clearConnections(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CLEAR_CONNECTIONS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CLEAR_CONNECTIONS, NIL.ordinal)
   }
 
   /**
@@ -496,8 +501,8 @@ public open class GraphEdit : Control() {
    */
   public fun forceConnectionDragEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_FORCE_CONNECTION_DRAG_END,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_FORCE_CONNECTION_DRAG_END,
+        NIL.ordinal)
   }
 
   /**
@@ -505,8 +510,8 @@ public open class GraphEdit : Control() {
    */
   public fun addValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_RIGHT_DISCONNECT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_RIGHT_DISCONNECT_TYPE, NIL.ordinal)
   }
 
   /**
@@ -514,8 +519,8 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_RIGHT_DISCONNECT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_RIGHT_DISCONNECT_TYPE, NIL.ordinal)
   }
 
   /**
@@ -523,8 +528,8 @@ public open class GraphEdit : Control() {
    */
   public fun addValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_LEFT_DISCONNECT_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_LEFT_DISCONNECT_TYPE,
+        NIL.ordinal)
   }
 
   /**
@@ -532,8 +537,8 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_LEFT_DISCONNECT_TYPE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_LEFT_DISCONNECT_TYPE, NIL.ordinal)
   }
 
   /**
@@ -541,8 +546,8 @@ public open class GraphEdit : Control() {
    */
   public fun addValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_CONNECTION_TYPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_CONNECTION_TYPE,
+        NIL.ordinal)
   }
 
   /**
@@ -550,8 +555,8 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_CONNECTION_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_CONNECTION_TYPE,
+        NIL.ordinal)
   }
 
   /**
@@ -559,8 +564,8 @@ public open class GraphEdit : Control() {
    */
   public fun isValidConnectionType(fromType: Long, toType: Long): Boolean {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_VALID_CONNECTION_TYPE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_VALID_CONNECTION_TYPE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -569,8 +574,8 @@ public open class GraphEdit : Control() {
    */
   public fun getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -581,7 +586,7 @@ public open class GraphEdit : Control() {
    */
   public fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?
   }
 
@@ -590,7 +595,7 @@ public open class GraphEdit : Control() {
    */
   public fun arrangeNodes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ARRANGE_NODES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ARRANGE_NODES, NIL.ordinal)
   }
 
   /**
@@ -598,7 +603,7 @@ public open class GraphEdit : Control() {
    */
   public fun setSelected(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SELECTED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SELECTED, NIL.ordinal)
   }
 
   public enum class PanningScheme(

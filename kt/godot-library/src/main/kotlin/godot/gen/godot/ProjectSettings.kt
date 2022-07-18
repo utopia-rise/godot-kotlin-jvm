@@ -52,7 +52,8 @@ public object ProjectSettings : Object() {
    */
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -81,7 +82,7 @@ public object ProjectSettings : Object() {
    */
   public fun setSetting(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL.ordinal)
   }
 
   /**
@@ -107,7 +108,7 @@ public object ProjectSettings : Object() {
    */
   public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -116,7 +117,7 @@ public object ProjectSettings : Object() {
    */
   public fun setOrder(name: String, position: Long): Unit {
     TransferContext.writeArguments(STRING to name, LONG to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL.ordinal)
   }
 
   /**
@@ -124,7 +125,7 @@ public object ProjectSettings : Object() {
    */
   public fun getOrder(name: String): Long {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -133,8 +134,8 @@ public object ProjectSettings : Object() {
    */
   public fun setInitialValue(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -204,8 +205,8 @@ public object ProjectSettings : Object() {
    */
   public fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_ADD_PROPERTY_INFO,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_ADD_PROPERTY_INFO,
+        NIL.ordinal)
   }
 
   /**
@@ -213,7 +214,7 @@ public object ProjectSettings : Object() {
    */
   public fun clear(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -221,8 +222,8 @@ public object ProjectSettings : Object() {
    */
   public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -247,8 +248,8 @@ public object ProjectSettings : Object() {
    */
   public fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -259,7 +260,7 @@ public object ProjectSettings : Object() {
    */
   public fun save(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -276,8 +277,8 @@ public object ProjectSettings : Object() {
     offset: Long = 0
   ): Boolean {
     TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -286,8 +287,8 @@ public object ProjectSettings : Object() {
    */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_CAN_REVERT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_CAN_REVERT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -296,8 +297,8 @@ public object ProjectSettings : Object() {
    */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_GET_REVERT,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_GET_REVERT,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -306,7 +307,8 @@ public object ProjectSettings : Object() {
    */
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 }

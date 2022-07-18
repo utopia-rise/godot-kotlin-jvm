@@ -94,8 +94,8 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    */
   public fun getOptionValue(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_GET_OPTION_VALUE, ANY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_GET_OPTION_VALUE, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -104,8 +104,8 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    */
   public fun addImportOption(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION, NIL.ordinal)
   }
 
   /**
@@ -120,8 +120,9 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     usageFlags: Long = 7
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to hint.id, STRING to hintString, LONG to usageFlags)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION_ADVANCED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION_ADVANCED,
+        NIL.ordinal)
   }
 
   public enum class InternalImportCategory(

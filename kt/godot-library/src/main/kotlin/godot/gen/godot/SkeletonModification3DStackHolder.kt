@@ -31,8 +31,9 @@ public open class SkeletonModification3DStackHolder : SkeletonModification3D() {
    */
   public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack3D): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DSTACKHOLDER_SET_HELD_MODIFICATION_STACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DSTACKHOLDER_SET_HELD_MODIFICATION_STACK,
+        NIL.ordinal)
   }
 
   /**
@@ -40,9 +41,9 @@ public open class SkeletonModification3DStackHolder : SkeletonModification3D() {
    */
   public fun getHeldModificationStack(): SkeletonModificationStack3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DSTACKHOLDER_GET_HELD_MODIFICATION_STACK,
-        OBJECT)
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack3D?
   }
 

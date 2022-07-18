@@ -39,14 +39,14 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -55,14 +55,14 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   public var tipNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_TIP_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_TIP_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_TIP_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_TIP_NODE, NIL.ordinal)
     }
 
   /**
@@ -71,14 +71,16 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   public var ccdikDataChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_DATA_CHAIN_LENGTH, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_DATA_CHAIN_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_DATA_CHAIN_LENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_DATA_CHAIN_LENGTH,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -90,8 +92,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointBone2dNode(jointIdx: Long, bone2dNodepath: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to bone2dNodepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_BONE2D_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_BONE2D_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -99,8 +102,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointBone2dNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_BONE2D_NODE, NODE_PATH)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_BONE2D_NODE,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -109,8 +113,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_BONE_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_BONE_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -118,8 +123,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_BONE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_BONE_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -128,8 +134,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointRotateFromJoint(jointIdx: Long, rotateFromJoint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to rotateFromJoint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_ROTATE_FROM_JOINT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_ROTATE_FROM_JOINT,
+        NIL.ordinal)
   }
 
   /**
@@ -137,9 +144,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointRotateFromJoint(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_ROTATE_FROM_JOINT,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -148,8 +155,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointEnableConstraint(jointIdx: Long, enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to enableConstraint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_ENABLE_CONSTRAINT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_ENABLE_CONSTRAINT,
+        NIL.ordinal)
   }
 
   /**
@@ -157,9 +165,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointEnableConstraint(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_ENABLE_CONSTRAINT,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -168,9 +176,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointConstraintAngleMin(jointIdx: Long, angleMin: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to angleMin)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_ANGLE_MIN,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -178,9 +186,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointConstraintAngleMin(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_ANGLE_MIN,
-        DOUBLE)
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -189,9 +197,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointConstraintAngleMax(jointIdx: Long, angleMax: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to angleMax)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_ANGLE_MAX,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -199,9 +207,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointConstraintAngleMax(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_ANGLE_MAX,
-        DOUBLE)
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -212,9 +220,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun setCcdikJointConstraintAngleInvert(jointIdx: Long, invert: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to invert)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_SET_CCDIK_JOINT_CONSTRAINT_ANGLE_INVERT,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -222,9 +230,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    */
   public fun getCcdikJointConstraintAngleInvert(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DCCDIK_GET_CCDIK_JOINT_CONSTRAINT_ANGLE_INVERT,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

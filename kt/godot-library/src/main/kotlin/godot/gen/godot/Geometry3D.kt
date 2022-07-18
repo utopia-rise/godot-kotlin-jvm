@@ -43,7 +43,8 @@ public object Geometry3D : Object() {
    */
   public fun buildBoxPlanes(extents: Vector3): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_BOX_PLANES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_BOX_PLANES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -57,8 +58,8 @@ public object Geometry3D : Object() {
     axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CYLINDER_PLANES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -73,8 +74,8 @@ public object Geometry3D : Object() {
     axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats, LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_BUILD_CAPSULE_PLANES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -88,9 +89,9 @@ public object Geometry3D : Object() {
     q2: Vector3
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to p1, VECTOR3 to p2, VECTOR3 to q1, VECTOR3 to q2)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINTS_BETWEEN_SEGMENTS,
-        PACKED_VECTOR3_ARRAY)
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -103,8 +104,8 @@ public object Geometry3D : Object() {
     s2: Vector3
   ): Vector3 {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -117,13 +118,13 @@ public object Geometry3D : Object() {
     s2: Vector3
   ): Vector3 {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**
-   * Tests if the 3D ray starting at `from` with the direction of `dir` intersects the triangle specified by `a`, `b` and `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
+   * Tests if the 3D ray starting at `from` with the direction of `dir` intersects the triangle specified by `a`, `b` and `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, returns `null`.
    */
   public fun rayIntersectsTriangle(
     from: Vector3,
@@ -133,13 +134,13 @@ public object Geometry3D : Object() {
     c: Vector3
   ): Any? {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_RAY_INTERSECTS_TRIANGLE,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_RAY_INTERSECTS_TRIANGLE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**
-   * Tests if the segment (`from`, `to`) intersects the triangle `a`, `b`, `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
+   * Tests if the segment (`from`, `to`) intersects the triangle `a`, `b`, `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsTriangle(
     from: Vector3,
@@ -149,8 +150,8 @@ public object Geometry3D : Object() {
     c: Vector3
   ): Any? {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_TRIANGLE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_TRIANGLE,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -164,8 +165,8 @@ public object Geometry3D : Object() {
     sphereRadius: Double
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_SPHERE, PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_SPHERE,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -179,8 +180,8 @@ public object Geometry3D : Object() {
     radius: Double
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height, DOUBLE to radius)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CYLINDER, PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CYLINDER,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -193,8 +194,8 @@ public object Geometry3D : Object() {
     planes: VariantArray<Any?>
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CONVEX, PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_SEGMENT_INTERSECTS_CONVEX,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -203,8 +204,8 @@ public object Geometry3D : Object() {
    */
   public fun clipPolygon(points: PackedVector3Array, plane: Plane): PackedVector3Array {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_CLIP_POLYGON,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_CLIP_POLYGON,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 }

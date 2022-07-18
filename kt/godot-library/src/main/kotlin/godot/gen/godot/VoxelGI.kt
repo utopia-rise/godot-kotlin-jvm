@@ -41,26 +41,28 @@ public open class VoxelGI : VisualInstance3D() {
   public var subdiv: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SUBDIV, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SUBDIV, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_SUBDIV, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_SUBDIV, NIL.ordinal)
     }
 
   /**
    * The size of the area covered by the [godot.VoxelGI]. If you make the extents larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
+   *
+   * **Note:** Extents are clamped to 1.0 unit or more on each axis.
    */
   public var extents: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_EXTENTS, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_EXTENTS, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_EXTENTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_EXTENTS, NIL.ordinal)
     }
 
   /**
@@ -69,12 +71,12 @@ public open class VoxelGI : VisualInstance3D() {
   public var `data`: VoxelGIData?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_PROBE_DATA, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_PROBE_DATA, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_PROBE_DATA, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_PROBE_DATA, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -90,7 +92,7 @@ public open class VoxelGI : VisualInstance3D() {
    */
   public fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_BAKE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_BAKE, NIL.ordinal)
   }
 
   /**
@@ -98,7 +100,7 @@ public open class VoxelGI : VisualInstance3D() {
    */
   public fun debugBake(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_DEBUG_BAKE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_DEBUG_BAKE, NIL.ordinal)
   }
 
   public enum class Subdiv(

@@ -40,12 +40,12 @@ public open class Shader : Resource() {
   public var code: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -57,7 +57,7 @@ public open class Shader : Resource() {
    */
   public fun getMode(): Shader.Mode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG.ordinal)
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -74,8 +74,8 @@ public open class Shader : Resource() {
     index: Long = 0
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to param, OBJECT to texture, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
+        NIL.ordinal)
   }
 
   /**
@@ -87,8 +87,8 @@ public open class Shader : Resource() {
    */
   public fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to param, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -99,7 +99,7 @@ public open class Shader : Resource() {
    */
   public fun hasParam(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

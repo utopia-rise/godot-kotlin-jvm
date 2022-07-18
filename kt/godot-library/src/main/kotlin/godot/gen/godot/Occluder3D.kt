@@ -33,8 +33,8 @@ public open class Occluder3D internal constructor() : Resource() {
    */
   public fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_VERTICES,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_VERTICES,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -43,8 +43,8 @@ public open class Occluder3D internal constructor() : Resource() {
    */
   public fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_INDICES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_INDICES,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 

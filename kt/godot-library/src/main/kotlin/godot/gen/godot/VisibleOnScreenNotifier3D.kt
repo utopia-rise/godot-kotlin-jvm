@@ -48,8 +48,8 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     get() = super.getAabb()
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_SET_AABB, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_SET_AABB,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -63,8 +63,8 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    */
   public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_IS_ON_SCREEN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_IS_ON_SCREEN,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

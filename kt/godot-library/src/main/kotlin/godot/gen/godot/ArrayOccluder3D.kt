@@ -35,7 +35,8 @@ public open class ArrayOccluder3D : Occluder3D() {
     get() = super.getVertices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_VERTICES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_VERTICES,
+          NIL.ordinal)
     }
 
   /**
@@ -47,7 +48,8 @@ public open class ArrayOccluder3D : Occluder3D() {
     get() = super.getIndices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_INDICES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_INDICES,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -59,7 +61,7 @@ public open class ArrayOccluder3D : Occluder3D() {
    */
   public fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_ARRAYS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_ARRAYS, NIL.ordinal)
   }
 
   public companion object

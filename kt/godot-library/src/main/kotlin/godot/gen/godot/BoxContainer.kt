@@ -33,12 +33,14 @@ public open class BoxContainer internal constructor() : Container() {
   public var alignment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_ALIGNMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_ALIGNMENT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -50,7 +52,7 @@ public open class BoxContainer internal constructor() : Container() {
    */
   public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_ADD_SPACER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_ADD_SPACER, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 

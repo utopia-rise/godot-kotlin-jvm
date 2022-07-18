@@ -29,7 +29,7 @@ public open class WeakRef : RefCounted() {
    */
   public fun getRef(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEAKREF_GET_REF, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_WEAKREF_GET_REF, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

@@ -30,12 +30,13 @@ public open class FogMaterial : Material() {
   public var density: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_DENSITY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_DENSITY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_DENSITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_DENSITY, NIL.ordinal)
     }
 
   /**
@@ -44,12 +45,12 @@ public open class FogMaterial : Material() {
   public var albedo: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_ALBEDO, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_ALBEDO, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_ALBEDO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_ALBEDO, NIL.ordinal)
     }
 
   /**
@@ -58,12 +59,13 @@ public open class FogMaterial : Material() {
   public var emission: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_EMISSION, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_EMISSION,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_EMISSION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_EMISSION, NIL.ordinal)
     }
 
   /**
@@ -72,14 +74,14 @@ public open class FogMaterial : Material() {
   public var heightFalloff: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_HEIGHT_FALLOFF,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_HEIGHT_FALLOFF,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_HEIGHT_FALLOFF,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_HEIGHT_FALLOFF,
+          NIL.ordinal)
     }
 
   /**
@@ -88,12 +90,13 @@ public open class FogMaterial : Material() {
   public var edgeFade: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_EDGE_FADE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_EDGE_FADE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_EDGE_FADE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_EDGE_FADE, NIL.ordinal)
     }
 
   /**
@@ -102,14 +105,14 @@ public open class FogMaterial : Material() {
   public var densityTexture: Texture3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_DENSITY_TEXTURE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_GET_DENSITY_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture3D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_DENSITY_TEXTURE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGMATERIAL_SET_DENSITY_TEXTURE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -65,7 +65,7 @@ public open class AudioStream : Resource() {
    */
   public fun getLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -74,7 +74,7 @@ public open class AudioStream : Resource() {
    */
   public fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -83,8 +83,8 @@ public open class AudioStream : Resource() {
    */
   public fun instancePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }
 

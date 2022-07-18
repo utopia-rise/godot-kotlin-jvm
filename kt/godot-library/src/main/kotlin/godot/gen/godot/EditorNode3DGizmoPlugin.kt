@@ -226,8 +226,8 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     useVertexColor: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color, BOOL to billboard, BOOL to onTop, BOOL to useVertexColor)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_MATERIAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_MATERIAL,
+        NIL.ordinal)
   }
 
   /**
@@ -240,8 +240,8 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     color: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to texture, BOOL to onTop, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_ICON_MATERIAL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_ICON_MATERIAL, NIL.ordinal)
   }
 
   /**
@@ -255,8 +255,8 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
     texture: Texture2D? = null
   ): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to billboard, OBJECT to texture)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_HANDLE_MATERIAL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_CREATE_HANDLE_MATERIAL, NIL.ordinal)
   }
 
   /**
@@ -264,8 +264,8 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public fun addMaterial(name: String, material: StandardMaterial3D): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to material)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_ADD_MATERIAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_ADD_MATERIAL,
+        NIL.ordinal)
   }
 
   /**
@@ -273,8 +273,8 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    */
   public fun getMaterial(name: String, gizmo: EditorNode3DGizmo? = null): StandardMaterial3D? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_GET_MATERIAL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMOPLUGIN_GET_MATERIAL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as StandardMaterial3D?
   }
 

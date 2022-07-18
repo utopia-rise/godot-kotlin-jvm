@@ -46,14 +46,14 @@ public open class Camera3D : Node3D() {
   public var keepAspect: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_KEEP_ASPECT_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_KEEP_ASPECT_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -62,12 +62,12 @@ public open class Camera3D : Node3D() {
   public var cullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK, NIL.ordinal)
     }
 
   /**
@@ -76,12 +76,13 @@ public open class Camera3D : Node3D() {
   public var environment: Environment?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ENVIRONMENT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ENVIRONMENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ENVIRONMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ENVIRONMENT, NIL.ordinal)
     }
 
   /**
@@ -90,12 +91,12 @@ public open class Camera3D : Node3D() {
   public var effects: CameraEffects?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_EFFECTS, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_EFFECTS, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as CameraEffects?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_EFFECTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_EFFECTS, NIL.ordinal)
     }
 
   /**
@@ -104,12 +105,12 @@ public open class Camera3D : Node3D() {
   public var hOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_H_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_H_OFFSET, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_H_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_H_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -118,12 +119,12 @@ public open class Camera3D : Node3D() {
   public var vOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_V_OFFSET, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_V_OFFSET, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_V_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_V_OFFSET, NIL.ordinal)
     }
 
   /**
@@ -132,14 +133,14 @@ public open class Camera3D : Node3D() {
   public var dopplerTracking: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_DOPPLER_TRACKING,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_DOPPLER_TRACKING,
+          NIL.ordinal)
     }
 
   /**
@@ -148,26 +149,28 @@ public open class Camera3D : Node3D() {
   public var projection: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PROJECTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PROJECTION, NIL.ordinal)
     }
 
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
+   *
+   * If multiple cameras are in the scene, one will always be made current. For example, if two [godot.Camera3D] nodes are present in the scene and only one is current, setting one camera's [current] to `false` will cause the other camera to be made current.
    */
   public var current: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_CURRENT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_CURRENT, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CURRENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CURRENT, NIL.ordinal)
     }
 
   /**
@@ -186,12 +189,12 @@ public open class Camera3D : Node3D() {
   public var fov: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FOV, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FOV, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FOV, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FOV, NIL.ordinal)
     }
 
   /**
@@ -200,12 +203,12 @@ public open class Camera3D : Node3D() {
   public var size: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_SIZE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_SIZE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_SIZE, NIL.ordinal)
     }
 
   /**
@@ -214,13 +217,14 @@ public open class Camera3D : Node3D() {
   public var frustumOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM_OFFSET,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM_OFFSET,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -229,12 +233,12 @@ public open class Camera3D : Node3D() {
   public var near: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_NEAR, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_NEAR, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_NEAR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_NEAR, NIL.ordinal)
     }
 
   /**
@@ -243,12 +247,12 @@ public open class Camera3D : Node3D() {
   public var far: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FAR, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FAR, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FAR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FAR, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -256,12 +260,12 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -270,18 +274,18 @@ public open class Camera3D : Node3D() {
    */
   public fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_LOCAL_RAY_NORMAL,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_LOCAL_RAY_NORMAL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**
-   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_ORIGIN,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_ORIGIN,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -299,8 +303,8 @@ public open class Camera3D : Node3D() {
    */
   public fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_UNPROJECT_POSITION,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_UNPROJECT_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -311,7 +315,8 @@ public open class Camera3D : Node3D() {
    */
   public fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_BEHIND, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_BEHIND,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -320,7 +325,8 @@ public open class Camera3D : Node3D() {
    */
   public fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_POSITION, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_POSITION,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -333,7 +339,7 @@ public open class Camera3D : Node3D() {
     zFar: Double
   ): Unit {
     TransferContext.writeArguments(DOUBLE to fov, DOUBLE to zNear, DOUBLE to zFar)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PERSPECTIVE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PERSPECTIVE, NIL.ordinal)
   }
 
   /**
@@ -345,7 +351,7 @@ public open class Camera3D : Node3D() {
     zFar: Double
   ): Unit {
     TransferContext.writeArguments(DOUBLE to size, DOUBLE to zNear, DOUBLE to zFar)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ORTHOGONAL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ORTHOGONAL, NIL.ordinal)
   }
 
   /**
@@ -358,7 +364,7 @@ public open class Camera3D : Node3D() {
     zFar: Double
   ): Unit {
     TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to zFar)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM, NIL.ordinal)
   }
 
   /**
@@ -366,7 +372,7 @@ public open class Camera3D : Node3D() {
    */
   public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_MAKE_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_MAKE_CURRENT, NIL.ordinal)
   }
 
   /**
@@ -374,7 +380,7 @@ public open class Camera3D : Node3D() {
    */
   public fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_CLEAR_CURRENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_CLEAR_CURRENT, NIL.ordinal)
   }
 
   /**
@@ -382,8 +388,8 @@ public open class Camera3D : Node3D() {
    */
   public fun getCameraTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_TRANSFORM,
+        TRANSFORM3D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
   }
 
@@ -392,7 +398,7 @@ public open class Camera3D : Node3D() {
    */
   public fun getFrustum(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -401,8 +407,8 @@ public open class Camera3D : Node3D() {
    */
   public fun isPositionInFrustum(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_IN_FRUSTUM,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_IN_FRUSTUM,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -411,7 +417,7 @@ public open class Camera3D : Node3D() {
    */
   public fun getCameraRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -420,8 +426,8 @@ public open class Camera3D : Node3D() {
    */
   public fun getPyramidShapeRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PYRAMID_SHAPE_RID,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PYRAMID_SHAPE_RID,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -430,7 +436,8 @@ public open class Camera3D : Node3D() {
    */
   public fun setCullMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -438,7 +445,8 @@ public open class Camera3D : Node3D() {
    */
   public fun getCullMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK_VALUE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

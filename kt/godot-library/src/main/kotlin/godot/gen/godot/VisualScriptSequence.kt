@@ -19,14 +19,14 @@ public open class VisualScriptSequence : VisualScriptNode() {
   public var steps: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSEQUENCE_GET_STEPS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSEQUENCE_GET_STEPS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSEQUENCE_SET_STEPS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSEQUENCE_SET_STEPS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

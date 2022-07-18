@@ -46,14 +46,14 @@ public open class Shape2D internal constructor() : Resource() {
   public var customSolverBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_GET_CUSTOM_SOLVER_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_GET_CUSTOM_SOLVER_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_SET_CUSTOM_SOLVER_BIAS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_SET_CUSTOM_SOLVER_BIAS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -71,7 +71,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -88,7 +88,8 @@ public open class Shape2D internal constructor() : Resource() {
     shapeMotion: Vector2
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -107,8 +108,8 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D
   ): VariantArray<Any?> {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_AND_GET_CONTACTS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_AND_GET_CONTACTS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -129,8 +130,8 @@ public open class Shape2D internal constructor() : Resource() {
     shapeMotion: Vector2
   ): VariantArray<Any?> {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION_AND_GET_CONTACTS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION_AND_GET_CONTACTS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -139,7 +140,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_DRAW, NIL.ordinal)
   }
 
   public companion object

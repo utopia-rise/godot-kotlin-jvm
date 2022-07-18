@@ -37,12 +37,12 @@ public open class Shortcut : Resource() {
   public var events: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_EVENTS, ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_EVENTS, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_SET_EVENTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_SET_EVENTS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -54,7 +54,7 @@ public open class Shortcut : Resource() {
    */
   public fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_HAS_VALID_EVENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_HAS_VALID_EVENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -63,7 +63,7 @@ public open class Shortcut : Resource() {
    */
   public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_MATCHES_EVENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_MATCHES_EVENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -72,7 +72,7 @@ public open class Shortcut : Resource() {
    */
   public fun getAsText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_AS_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_AS_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

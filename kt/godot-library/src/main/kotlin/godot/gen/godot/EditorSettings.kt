@@ -92,7 +92,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_HAS_SETTING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_HAS_SETTING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -101,7 +101,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setSetting(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL.ordinal)
   }
 
   /**
@@ -109,7 +109,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTING, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTING, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -118,7 +118,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun erase(`property`: String): Unit {
     TransferContext.writeArguments(STRING to property)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ERASE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ERASE, NIL.ordinal)
   }
 
   /**
@@ -130,8 +130,8 @@ public open class EditorSettings internal constructor() : Resource() {
     updateCurrent: Boolean
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value, BOOL to updateCurrent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_INITIAL_VALUE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_INITIAL_VALUE,
+        NIL.ordinal)
   }
 
   /**
@@ -139,8 +139,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -149,8 +149,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -225,8 +225,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun addPropertyInfo(info: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to info)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ADD_PROPERTY_INFO,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ADD_PROPERTY_INFO,
+        NIL.ordinal)
   }
 
   /**
@@ -234,8 +234,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getProjectSettingsDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_SETTINGS_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_SETTINGS_DIR,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -248,8 +248,8 @@ public open class EditorSettings internal constructor() : Resource() {
     `data`: Any
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
+        NIL.ordinal)
   }
 
   /**
@@ -261,8 +261,8 @@ public open class EditorSettings internal constructor() : Resource() {
     default: Any? = null
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_METADATA,
-        ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_METADATA,
+        ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -271,7 +271,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setFavorites(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_FAVORITES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_FAVORITES,
+        NIL.ordinal)
   }
 
   /**
@@ -279,8 +280,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getFavorites(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_FAVORITES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_FAVORITES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -289,7 +290,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setRecentDirs(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS,
+        NIL.ordinal)
   }
 
   /**
@@ -297,8 +299,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getRecentDirs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_RECENT_DIRS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_RECENT_DIRS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -307,8 +309,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to name, ARRAY to actionsList)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL.ordinal)
   }
 
   /**
@@ -316,8 +318,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
     TransferContext.writeArguments(STRING to settingPrefix)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_CHECK_CHANGED_SETTINGS_IN_GROUP, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_CHECK_CHANGED_SETTINGS_IN_GROUP, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -326,8 +328,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getChangedSettings(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -336,8 +338,8 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun markSettingChanged(setting: String): Unit {
     TransferContext.writeArguments(STRING to setting)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_MARK_SETTING_CHANGED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_MARK_SETTING_CHANGED,
+        NIL.ordinal)
   }
 
   public companion object {

@@ -42,7 +42,7 @@ public object EngineDebugger : Object() {
    */
   public fun isActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_ACTIVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_ACTIVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -51,8 +51,8 @@ public object EngineDebugger : Object() {
    */
   public fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_PROFILER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_PROFILER,
+        NIL.ordinal)
   }
 
   /**
@@ -60,8 +60,8 @@ public object EngineDebugger : Object() {
    */
   public fun unregisterProfiler(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_PROFILER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_PROFILER,
+        NIL.ordinal)
   }
 
   /**
@@ -69,7 +69,8 @@ public object EngineDebugger : Object() {
    */
   public fun isProfiling(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_PROFILING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_IS_PROFILING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -78,7 +79,8 @@ public object EngineDebugger : Object() {
    */
   public fun hasProfiler(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_PROFILER, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_PROFILER,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -87,8 +89,8 @@ public object EngineDebugger : Object() {
    */
   public fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ADD_FRAME_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ADD_FRAME_DATA,
+        NIL.ordinal)
   }
 
   /**
@@ -100,7 +102,8 @@ public object EngineDebugger : Object() {
     arguments: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, BOOL to enable, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ENABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ENABLE,
+        NIL.ordinal)
   }
 
   /**
@@ -110,8 +113,8 @@ public object EngineDebugger : Object() {
    */
   public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_MESSAGE_CAPTURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_MESSAGE_CAPTURE,
+        NIL.ordinal)
   }
 
   /**
@@ -119,8 +122,8 @@ public object EngineDebugger : Object() {
    */
   public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_MESSAGE_CAPTURE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_UNREGISTER_MESSAGE_CAPTURE, NIL.ordinal)
   }
 
   /**
@@ -128,7 +131,7 @@ public object EngineDebugger : Object() {
    */
   public fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_CAPTURE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_HAS_CAPTURE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -137,6 +140,6 @@ public object EngineDebugger : Object() {
    */
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_SEND_MESSAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_SEND_MESSAGE, NIL.ordinal)
   }
 }

@@ -72,8 +72,8 @@ public open class XRController3D : XRNode3D() {
    */
   public fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_IS_BUTTON_PRESSED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_IS_BUTTON_PRESSED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -82,7 +82,7 @@ public open class XRController3D : XRNode3D() {
    */
   public fun getValue(name: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VALUE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_VALUE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -91,7 +91,7 @@ public open class XRController3D : XRNode3D() {
    */
   public fun getAxis(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_AXIS, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_AXIS, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -100,8 +100,8 @@ public open class XRController3D : XRNode3D() {
    */
   public fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_TRACKER_HAND,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_TRACKER_HAND,
+        LONG.ordinal)
     return XRPositionalTracker.TrackerHand.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

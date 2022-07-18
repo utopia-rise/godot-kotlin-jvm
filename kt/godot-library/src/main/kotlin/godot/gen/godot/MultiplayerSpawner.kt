@@ -41,20 +41,17 @@ public open class MultiplayerSpawner : Node() {
    */
   public val spawned: Signal2<Long, Node> by signal("sceneId", "node")
 
-  /**
-   *
-   */
   public var replication: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENES, ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENES, ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWNABLE_SCENES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWNABLE_SCENES, NIL.ordinal)
     }
 
   /**
@@ -63,14 +60,14 @@ public open class MultiplayerSpawner : Node() {
   public var spawnPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_PATH,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_PATH,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_PATH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_PATH,
+          NIL.ordinal)
     }
 
   /**
@@ -79,14 +76,14 @@ public open class MultiplayerSpawner : Node() {
   public var spawnLimit: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_LIMIT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_LIMIT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT,
+          NIL.ordinal)
     }
 
   /**
@@ -95,14 +92,14 @@ public open class MultiplayerSpawner : Node() {
   public var autoSpawn: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_IS_AUTO_SPAWNING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_IS_AUTO_SPAWNING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -121,7 +118,7 @@ public open class MultiplayerSpawner : Node() {
    */
   public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 

@@ -27,14 +27,14 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
   public var constant: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTCONSTANT_GET_CONSTANT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTCONSTANT_GET_CONSTANT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTCONSTANT_SET_CONSTANT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTCONSTANT_SET_CONSTANT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

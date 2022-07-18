@@ -45,14 +45,14 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_TARGET_NODE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   /**
@@ -61,14 +61,16 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   public var fabrikDataChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_DATA_CHAIN_LENGTH, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_DATA_CHAIN_LENGTH,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_DATA_CHAIN_LENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_DATA_CHAIN_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -77,14 +79,14 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   public var chainTolerance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_CHAIN_TOLERANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_CHAIN_TOLERANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_CHAIN_TOLERANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_CHAIN_TOLERANCE, NIL.ordinal)
     }
 
   /**
@@ -93,14 +95,16 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
   public var chainMaxIterations: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_CHAIN_MAX_ITERATIONS, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_CHAIN_MAX_ITERATIONS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_CHAIN_MAX_ITERATIONS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_CHAIN_MAX_ITERATIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -112,8 +116,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -122,8 +127,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointBoneName(jointIdx: Long, boneName: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to boneName)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -131,8 +137,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_INDEX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_BONE_INDEX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -141,8 +148,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointBoneIndex(jointIdx: Long, boneIndex: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_INDEX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_BONE_INDEX,
+        NIL.ordinal)
   }
 
   /**
@@ -150,8 +158,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointLength(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -160,8 +169,8 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointLength(jointIdx: Long, length: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to length)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_LENGTH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_LENGTH, NIL.ordinal)
   }
 
   /**
@@ -169,8 +178,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointMagnet(jointIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_MAGNET, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_MAGNET,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -179,8 +189,8 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointMagnet(jointIdx: Long, magnetPosition: Vector3): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR3 to magnetPosition)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_MAGNET, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_MAGNET, NIL.ordinal)
   }
 
   /**
@@ -188,9 +198,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointAutoCalculateLength(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -199,9 +209,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointAutoCalculateLength(jointIdx: Long, autoCalculateLength: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to autoCalculateLength)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -209,9 +219,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun fabrikJointAutoCalculateLength(jointIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_FABRIK_JOINT_AUTO_CALCULATE_LENGTH,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -219,8 +229,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointUseTipNode(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_USE_TIP_NODE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_USE_TIP_NODE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -229,8 +240,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointUseTipNode(jointIdx: Long, useTipNode: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useTipNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_USE_TIP_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_USE_TIP_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -238,8 +250,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointTipNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_TIP_NODE, NODE_PATH)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_TIP_NODE,
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -250,8 +263,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointTipNode(jointIdx: Long, tipNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to tipNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_TIP_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_TIP_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -261,9 +275,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun getFabrikJointUseTargetBasis(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_FABRIK_JOINT_USE_TARGET_BASIS,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -274,9 +288,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
    */
   public fun setFabrikJointUseTargetBasis(jointIdx: Long, useTargetBasis: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useTargetBasis)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_FABRIK_JOINT_USE_TARGET_BASIS,
-        NIL)
+        NIL.ordinal)
   }
 
   public companion object

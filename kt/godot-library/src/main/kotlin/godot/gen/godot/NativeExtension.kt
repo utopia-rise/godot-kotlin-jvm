@@ -36,7 +36,8 @@ public open class NativeExtension : Resource() {
    */
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_OPEN_LIBRARY, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_OPEN_LIBRARY,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -45,7 +46,8 @@ public open class NativeExtension : Resource() {
    */
   public fun closeLibrary(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_CLOSE_LIBRARY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_CLOSE_LIBRARY,
+        NIL.ordinal)
   }
 
   /**
@@ -53,8 +55,8 @@ public open class NativeExtension : Resource() {
    */
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_IS_LIBRARY_OPEN,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_IS_LIBRARY_OPEN,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -63,8 +65,9 @@ public open class NativeExtension : Resource() {
    */
   public fun getMinimumLibraryInitializationLevel(): NativeExtension.InitializationLevel {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL,
+        LONG.ordinal)
     return NativeExtension.InitializationLevel.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -73,8 +76,8 @@ public open class NativeExtension : Resource() {
    */
   public fun initializeLibrary(level: NativeExtension.InitializationLevel): Unit {
     TransferContext.writeArguments(LONG to level.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_INITIALIZE_LIBRARY,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSION_INITIALIZE_LIBRARY,
+        NIL.ordinal)
   }
 
   public enum class InitializationLevel(

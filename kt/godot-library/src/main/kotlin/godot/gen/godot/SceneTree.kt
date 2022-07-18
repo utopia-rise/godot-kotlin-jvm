@@ -93,14 +93,14 @@ public open class SceneTree : MainLoop() {
   public var debugCollisionsHint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_COLLISIONS_HINT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_COLLISIONS_HINT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_COLLISIONS_HINT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_COLLISIONS_HINT,
+          NIL.ordinal)
     }
 
   /**
@@ -109,14 +109,14 @@ public open class SceneTree : MainLoop() {
   public var debugNavigationHint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_NAVIGATION_HINT, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_NAVIGATION_HINT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_NAVIGATION_HINT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_DEBUG_NAVIGATION_HINT,
+          NIL.ordinal)
     }
 
   /**
@@ -129,12 +129,12 @@ public open class SceneTree : MainLoop() {
   public var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_PAUSED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_PAUSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PAUSE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PAUSE, NIL.ordinal)
     }
 
   /**
@@ -143,14 +143,14 @@ public open class SceneTree : MainLoop() {
   public var editedSceneRoot: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_EDITED_SCENE_ROOT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_EDITED_SCENE_ROOT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_EDITED_SCENE_ROOT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_EDITED_SCENE_ROOT,
+          NIL.ordinal)
     }
 
   /**
@@ -159,13 +159,14 @@ public open class SceneTree : MainLoop() {
   public var currentScene: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_CURRENT_SCENE,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_CURRENT_SCENE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_CURRENT_SCENE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_CURRENT_SCENE,
+          NIL.ordinal)
     }
 
   /**
@@ -174,19 +175,20 @@ public open class SceneTree : MainLoop() {
   public val root: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_ROOT, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_ROOT, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
 
   public var multiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER, NIL.ordinal)
     }
 
   /**
@@ -197,14 +199,14 @@ public open class SceneTree : MainLoop() {
   public var multiplayerPoll: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_MULTIPLAYER_POLL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_MULTIPLAYER_POLL_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER_POLL_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER_POLL_ENABLED,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -216,28 +218,20 @@ public open class SceneTree : MainLoop() {
    */
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_HAS_GROUP, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_HAS_GROUP, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * If `true`, the application automatically accepts quitting. Enabled by default.
-   *
-   * For mobile platforms, see [setQuitOnGoBack].
-   */
   public fun setAutoAcceptQuit(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT,
+        NIL.ordinal)
   }
 
-  /**
-   * If `true`, the application quits automatically on going back (e.g. on Android). Enabled by default.
-   *
-   * To handle 'Go Back' button when this option is disabled, use [godot.DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
-   */
   public fun setQuitOnGoBack(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK,
+        NIL.ordinal)
   }
 
   /**
@@ -281,7 +275,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun createTimer(timeSec: Double, processAlways: Boolean = true): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?
   }
 
@@ -290,7 +284,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TWEEN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TWEEN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Tween?
   }
 
@@ -299,8 +293,8 @@ public open class SceneTree : MainLoop() {
    */
   public fun getProcessedTweens(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -309,7 +303,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun getNodeCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODE_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -318,7 +312,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun getFrame(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FRAME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FRAME, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -333,7 +327,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun quit(exitCode: Long = 0): Unit {
     TransferContext.writeArguments(LONG to exitCode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUIT, NIL.ordinal)
   }
 
   /**
@@ -341,7 +335,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun queueDelete(obj: Object): Unit {
     TransferContext.writeArguments(OBJECT to obj)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUEUE_DELETE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUEUE_DELETE, NIL.ordinal)
   }
 
   /**
@@ -363,7 +357,7 @@ public open class SceneTree : MainLoop() {
     vararg __var_args: Any?
   ): Unit {
     TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, NIL.ordinal)
   }
 
   /**
@@ -377,7 +371,8 @@ public open class SceneTree : MainLoop() {
     notification: Long
   ): Unit {
     TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS,
+        NIL.ordinal)
   }
 
   /**
@@ -392,7 +387,7 @@ public open class SceneTree : MainLoop() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL.ordinal)
   }
 
   /**
@@ -408,7 +403,7 @@ public open class SceneTree : MainLoop() {
     vararg __var_args: Any?
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, NIL.ordinal)
   }
 
   /**
@@ -418,7 +413,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun notifyGroup(group: StringName, notification: Long): Unit {
     TransferContext.writeArguments(STRING_NAME to group, LONG to notification)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP, NIL.ordinal)
   }
 
   /**
@@ -432,7 +427,7 @@ public open class SceneTree : MainLoop() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to group, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP, NIL.ordinal)
   }
 
   /**
@@ -440,7 +435,8 @@ public open class SceneTree : MainLoop() {
    */
   public fun getNodesInGroup(group: StringName): VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -449,8 +445,8 @@ public open class SceneTree : MainLoop() {
    */
   public fun getFirstNodeInGroup(group: StringName): Node? {
     TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FIRST_NODE_IN_GROUP,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FIRST_NODE_IN_GROUP,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -463,7 +459,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun changeScene(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -476,7 +472,7 @@ public open class SceneTree : MainLoop() {
    */
   public fun changeSceneTo(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -487,8 +483,8 @@ public open class SceneTree : MainLoop() {
    */
   public fun reloadCurrentScene(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_RELOAD_CURRENT_SCENE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_RELOAD_CURRENT_SCENE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

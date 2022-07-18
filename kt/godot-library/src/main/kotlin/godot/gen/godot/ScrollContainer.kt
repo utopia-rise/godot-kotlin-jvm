@@ -27,7 +27,7 @@ import kotlin.Unit
  *
  * A ScrollContainer node meant to contain a [godot.Control] child.
  *
- * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.minimumSize] of the Control relative to the ScrollContainer.
+ * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
  *
  * Works great with a [godot.Panel] control. You can set `EXPAND` on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
  */
@@ -49,14 +49,14 @@ public open class ScrollContainer : Container() {
   public var followFocus: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_IS_FOLLOWING_FOCUS, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_IS_FOLLOWING_FOCUS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_FOLLOW_FOCUS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_FOLLOW_FOCUS,
+          NIL.ordinal)
     }
 
   /**
@@ -65,13 +65,14 @@ public open class ScrollContainer : Container() {
   public var scrollHorizontal: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_H_SCROLL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_H_SCROLL,
+          NIL.ordinal)
     }
 
   /**
@@ -80,13 +81,14 @@ public open class ScrollContainer : Container() {
   public var scrollVertical: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_V_SCROLL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_V_SCROLL,
+          NIL.ordinal)
     }
 
   /**
@@ -95,14 +97,14 @@ public open class ScrollContainer : Container() {
   public var horizontalScrollMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_SCROLL_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_SCROLL_MODE, NIL.ordinal)
     }
 
   /**
@@ -111,14 +113,14 @@ public open class ScrollContainer : Container() {
   public var verticalScrollMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_SCROLL_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_SCROLL_MODE, NIL.ordinal)
     }
 
   /**
@@ -127,13 +129,14 @@ public open class ScrollContainer : Container() {
   public var scrollDeadzone: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_DEADZONE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_DEADZONE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_DEADZONE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_DEADZONE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -147,8 +150,8 @@ public open class ScrollContainer : Container() {
    */
   public fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as HScrollBar?
   }
 
@@ -159,8 +162,8 @@ public open class ScrollContainer : Container() {
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
 
@@ -177,8 +180,8 @@ public open class ScrollContainer : Container() {
    */
   public fun ensureControlVisible(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE,
+        NIL.ordinal)
   }
 
   public enum class ScrollMode(

@@ -40,7 +40,7 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL.ordinal)
   }
 
   /**
@@ -48,8 +48,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_FIND_PATH,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_FIND_PATH,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -58,8 +58,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_INTERSECTIONS,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_INTERSECTIONS,
+        PACKED_VECTOR2_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
 
@@ -68,8 +68,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_CLOSEST_POINT,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_CLOSEST_POINT,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -78,8 +78,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_IS_POINT_INSIDE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_IS_POINT_INSIDE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -88,8 +88,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun setPointPenalty(idx: Long, penalty: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to penalty)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SET_POINT_PENALTY,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SET_POINT_PENALTY,
+        NIL.ordinal)
   }
 
   /**
@@ -97,8 +97,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun getPointPenalty(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_POINT_PENALTY,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_POINT_PENALTY,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -107,7 +107,8 @@ public open class PolygonPathFinder : Resource() {
    */
   public fun getBounds(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_BOUNDS, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_BOUNDS,
+        RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 

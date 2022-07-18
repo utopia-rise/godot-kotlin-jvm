@@ -34,14 +34,14 @@ public open class SkeletonModification3D : Resource() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -50,14 +50,14 @@ public open class SkeletonModification3D : Resource() {
   public var executionMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_EXECUTION_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_EXECUTION_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_EXECUTION_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_EXECUTION_MODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -83,8 +83,8 @@ public open class SkeletonModification3D : Resource() {
    */
   public fun getModificationStack(): SkeletonModificationStack3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_MODIFICATION_STACK, OBJECT)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_MODIFICATION_STACK, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack3D?
   }
 
@@ -93,8 +93,8 @@ public open class SkeletonModification3D : Resource() {
    */
   public fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_IS_SETUP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_SET_IS_SETUP,
+        NIL.ordinal)
   }
 
   /**
@@ -102,8 +102,8 @@ public open class SkeletonModification3D : Resource() {
    */
   public fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_IS_SETUP,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_GET_IS_SETUP,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -117,8 +117,8 @@ public open class SkeletonModification3D : Resource() {
     invert: Boolean
   ): Double {
     TransferContext.writeArguments(DOUBLE to angle, DOUBLE to min, DOUBLE to max, BOOL to invert)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_CLAMP_ANGLE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3D_CLAMP_ANGLE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

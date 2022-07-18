@@ -30,7 +30,7 @@ public object JavaClassWrapper : Object() {
    */
   public fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVACLASSWRAPPER_WRAP, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVACLASSWRAPPER_WRAP, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as JavaClass?
   }
 }

@@ -33,14 +33,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var jointType: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_TYPE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_TYPE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_TYPE,
+          NIL.ordinal)
     }
 
   /**
@@ -49,14 +49,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var jointOffset: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_OFFSET,
-          TRANSFORM3D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_OFFSET,
+          TRANSFORM3D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -65,14 +65,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var jointRotation: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_ROTATION,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_JOINT_ROTATION,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_ROTATION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_JOINT_ROTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -81,14 +81,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var bodyOffset: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BODY_OFFSET,
-          TRANSFORM3D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BODY_OFFSET,
+          TRANSFORM3D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_BODY_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_BODY_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -97,12 +97,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var mass: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_MASS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_MASS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_MASS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_MASS, NIL.ordinal)
     }
 
   /**
@@ -111,13 +112,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var friction: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_FRICTION,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_FRICTION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_FRICTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_FRICTION,
+          NIL.ordinal)
     }
 
   /**
@@ -126,12 +128,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var bounce: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BOUNCE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BOUNCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_BOUNCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_BOUNCE, NIL.ordinal)
     }
 
   /**
@@ -140,14 +143,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var gravityScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_GRAVITY_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_GRAVITY_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_GRAVITY_SCALE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_GRAVITY_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -156,14 +159,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_USING_CUSTOM_INTEGRATOR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_USE_CUSTOM_INTEGRATOR, NIL.ordinal)
     }
 
   /**
@@ -172,14 +175,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var linearDampMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_DAMP_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_DAMP_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -190,14 +193,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var linearDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_DAMP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_DAMP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_DAMP,
+          NIL.ordinal)
     }
 
   /**
@@ -206,14 +209,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var angularDampMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_DAMP_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_DAMP_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -224,14 +227,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var angularDamp: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_DAMP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_DAMP,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_DAMP,
+          NIL.ordinal)
     }
 
   /**
@@ -240,14 +243,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_VELOCITY, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_VELOCITY,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -256,14 +259,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_VELOCITY, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_VELOCITY,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_VELOCITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_VELOCITY,
+          NIL.ordinal)
     }
 
   /**
@@ -272,13 +275,14 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_ABLE_TO_SLEEP,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_ABLE_TO_SLEEP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_CAN_SLEEP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_CAN_SLEEP,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -296,8 +300,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   public fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_CENTRAL_IMPULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_CENTRAL_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -305,7 +309,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_IMPULSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_APPLY_IMPULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -313,8 +318,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   public fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_SIMULATE_PHYSICS,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_SIMULATE_PHYSICS,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -323,8 +328,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_SIMULATING_PHYSICS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_SIMULATING_PHYSICS,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -333,7 +338,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   public fun getBoneId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BONE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_BONE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

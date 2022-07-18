@@ -22,38 +22,40 @@ public open class OpenXRActionSet : Resource() {
   public var localizedName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_LOCALIZED_NAME, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_LOCALIZED_NAME,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_LOCALIZED_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_LOCALIZED_NAME,
+          NIL.ordinal)
     }
 
   public var priority: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_PRIORITY,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_PRIORITY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_PRIORITY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_PRIORITY,
+          NIL.ordinal)
     }
 
   public var actions: OpenXRAction?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTIONS,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTIONS,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_ACTIONS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_ACTIONS,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -62,12 +64,13 @@ public open class OpenXRActionSet : Resource() {
 
   public fun addAction(action: OpenXRAction): Unit {
     TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_ADD_ACTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_ADD_ACTION, NIL.ordinal)
   }
 
   public fun removeAction(action: OpenXRAction): Unit {
     TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_REMOVE_ACTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_REMOVE_ACTION,
+        NIL.ordinal)
   }
 
   public companion object

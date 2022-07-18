@@ -27,51 +27,51 @@ public open class GLTFSkeleton : Resource() {
   public var joints: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_JOINTS,
-          PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_JOINTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_JOINTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_JOINTS, NIL.ordinal)
     }
 
   public var roots: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_ROOTS,
-          PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_ROOTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_ROOTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_ROOTS, NIL.ordinal)
     }
 
   public var uniqueNames: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_UNIQUE_NAMES,
-          ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_UNIQUE_NAMES,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_UNIQUE_NAMES,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_UNIQUE_NAMES,
+          NIL.ordinal)
     }
 
   public var godotBoneNode: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_BONE_NODE,
-          DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_BONE_NODE,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_GODOT_BONE_NODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_GODOT_BONE_NODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -80,22 +80,22 @@ public open class GLTFSkeleton : Resource() {
 
   public fun getGodotSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_SKELETON,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_SKELETON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?
   }
 
   public fun getBoneAttachmentCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getBoneAttachment(idx: Long): BoneAttachment3D? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?
   }
 

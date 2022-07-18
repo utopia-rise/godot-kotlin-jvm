@@ -54,12 +54,12 @@ public object AudioServer : Object() {
 
   public fun setBusCount(amount: Long): Unit {
     TransferContext.writeArguments(LONG to amount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_COUNT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_COUNT, NIL.ordinal)
   }
 
   public fun getBusCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -68,7 +68,7 @@ public object AudioServer : Object() {
    */
   public fun removeBus(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_REMOVE_BUS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_REMOVE_BUS, NIL.ordinal)
   }
 
   /**
@@ -76,7 +76,7 @@ public object AudioServer : Object() {
    */
   public fun addBus(atPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS, NIL.ordinal)
   }
 
   /**
@@ -84,7 +84,7 @@ public object AudioServer : Object() {
    */
   public fun moveBus(index: Long, toIndex: Long): Unit {
     TransferContext.writeArguments(LONG to index, LONG to toIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_MOVE_BUS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_MOVE_BUS, NIL.ordinal)
   }
 
   /**
@@ -92,7 +92,7 @@ public object AudioServer : Object() {
    */
   public fun setBusName(busIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to busIdx, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_NAME, NIL.ordinal)
   }
 
   /**
@@ -100,7 +100,7 @@ public object AudioServer : Object() {
    */
   public fun getBusName(busIdx: Long): String {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -109,7 +109,7 @@ public object AudioServer : Object() {
    */
   public fun getBusIndex(busName: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to busName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -118,7 +118,8 @@ public object AudioServer : Object() {
    */
   public fun getBusChannels(busIdx: Long): Long {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_CHANNELS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_CHANNELS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -127,7 +128,8 @@ public object AudioServer : Object() {
    */
   public fun setBusVolumeDb(busIdx: Long, volumeDb: Double): Unit {
     TransferContext.writeArguments(LONG to busIdx, DOUBLE to volumeDb)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_VOLUME_DB, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_VOLUME_DB,
+        NIL.ordinal)
   }
 
   /**
@@ -135,8 +137,8 @@ public object AudioServer : Object() {
    */
   public fun getBusVolumeDb(busIdx: Long): Double {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_VOLUME_DB,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_VOLUME_DB,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -145,7 +147,7 @@ public object AudioServer : Object() {
    */
   public fun setBusSend(busIdx: Long, send: StringName): Unit {
     TransferContext.writeArguments(LONG to busIdx, STRING_NAME to send)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_SEND, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_SEND, NIL.ordinal)
   }
 
   /**
@@ -153,8 +155,8 @@ public object AudioServer : Object() {
    */
   public fun getBusSend(busIdx: Long): StringName {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_SEND,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_SEND,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -163,7 +165,7 @@ public object AudioServer : Object() {
    */
   public fun setBusSolo(busIdx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_SOLO, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_SOLO, NIL.ordinal)
   }
 
   /**
@@ -171,7 +173,7 @@ public object AudioServer : Object() {
    */
   public fun isBusSolo(busIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_SOLO, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_SOLO, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -180,7 +182,7 @@ public object AudioServer : Object() {
    */
   public fun setBusMute(busIdx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_MUTE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_MUTE, NIL.ordinal)
   }
 
   /**
@@ -188,7 +190,7 @@ public object AudioServer : Object() {
    */
   public fun isBusMute(busIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_MUTE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_MUTE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -197,8 +199,8 @@ public object AudioServer : Object() {
    */
   public fun setBusBypassEffects(busIdx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_BYPASS_EFFECTS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_BYPASS_EFFECTS,
+        NIL.ordinal)
   }
 
   /**
@@ -206,8 +208,8 @@ public object AudioServer : Object() {
    */
   public fun isBusBypassingEffects(busIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_BYPASSING_EFFECTS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_BYPASSING_EFFECTS,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -220,7 +222,7 @@ public object AudioServer : Object() {
     atPosition: Long = -1
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, OBJECT to effect, LONG to atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS_EFFECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS_EFFECT, NIL.ordinal)
   }
 
   /**
@@ -228,7 +230,8 @@ public object AudioServer : Object() {
    */
   public fun removeBusEffect(busIdx: Long, effectIdx: Long): Unit {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_REMOVE_BUS_EFFECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_REMOVE_BUS_EFFECT,
+        NIL.ordinal)
   }
 
   /**
@@ -236,8 +239,8 @@ public object AudioServer : Object() {
    */
   public fun getBusEffectCount(busIdx: Long): Long {
     TransferContext.writeArguments(LONG to busIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT_COUNT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -246,7 +249,8 @@ public object AudioServer : Object() {
    */
   public fun getBusEffect(busIdx: Long, effectIdx: Long): AudioEffect? {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AudioEffect?
   }
 
@@ -259,8 +263,8 @@ public object AudioServer : Object() {
     channel: Long = 0
   ): AudioEffectInstance? {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, LONG to channel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT_INSTANCE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_EFFECT_INSTANCE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AudioEffectInstance?
   }
 
@@ -273,7 +277,8 @@ public object AudioServer : Object() {
     byEffectIdx: Long
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, LONG to byEffectIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SWAP_BUS_EFFECTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SWAP_BUS_EFFECTS,
+        NIL.ordinal)
   }
 
   /**
@@ -285,8 +290,8 @@ public object AudioServer : Object() {
     enabled: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_EFFECT_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_EFFECT_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -294,8 +299,8 @@ public object AudioServer : Object() {
    */
   public fun isBusEffectEnabled(busIdx: Long, effectIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to busIdx, LONG to effectIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_EFFECT_ENABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_IS_BUS_EFFECT_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -304,8 +309,8 @@ public object AudioServer : Object() {
    */
   public fun getBusPeakVolumeLeftDb(busIdx: Long, channel: Long): Double {
     TransferContext.writeArguments(LONG to busIdx, LONG to channel)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_PEAK_VOLUME_LEFT_DB, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_PEAK_VOLUME_LEFT_DB,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -314,21 +319,21 @@ public object AudioServer : Object() {
    */
   public fun getBusPeakVolumeRightDb(busIdx: Long, channel: Long): Double {
     TransferContext.writeArguments(LONG to busIdx, LONG to channel)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_PEAK_VOLUME_RIGHT_DB, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_BUS_PEAK_VOLUME_RIGHT_DB,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   public fun setPlaybackSpeedScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_PLAYBACK_SPEED_SCALE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_PLAYBACK_SPEED_SCALE,
+        NIL.ordinal)
   }
 
   public fun getPlaybackSpeedScale(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_PLAYBACK_SPEED_SCALE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_PLAYBACK_SPEED_SCALE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -339,7 +344,7 @@ public object AudioServer : Object() {
    */
   public fun lock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_LOCK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_LOCK, NIL.ordinal)
   }
 
   /**
@@ -347,7 +352,7 @@ public object AudioServer : Object() {
    */
   public fun unlock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_UNLOCK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_UNLOCK, NIL.ordinal)
   }
 
   /**
@@ -355,7 +360,8 @@ public object AudioServer : Object() {
    */
   public fun getSpeakerMode(): AudioServer.SpeakerMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_SPEAKER_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_SPEAKER_MODE,
+        LONG.ordinal)
     return AudioServer.SpeakerMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -364,7 +370,7 @@ public object AudioServer : Object() {
    */
   public fun getMixRate(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_MIX_RATE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_MIX_RATE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -373,19 +379,20 @@ public object AudioServer : Object() {
    */
   public fun getDeviceList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE_LIST, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun getDevice(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_DEVICE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun setDevice(device: String): Unit {
     TransferContext.writeArguments(STRING to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_DEVICE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_DEVICE, NIL.ordinal)
   }
 
   /**
@@ -393,8 +400,8 @@ public object AudioServer : Object() {
    */
   public fun getTimeToNextMix(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_TIME_TO_NEXT_MIX,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_TIME_TO_NEXT_MIX,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -403,8 +410,8 @@ public object AudioServer : Object() {
    */
   public fun getTimeSinceLastMix(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_TIME_SINCE_LAST_MIX,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_TIME_SINCE_LAST_MIX,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -413,8 +420,8 @@ public object AudioServer : Object() {
    */
   public fun getOutputLatency(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_OUTPUT_LATENCY,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_OUTPUT_LATENCY,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -423,21 +430,22 @@ public object AudioServer : Object() {
    */
   public fun captureGetDeviceList(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public fun captureGetDevice(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun captureSetDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_SET_DEVICE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_SET_DEVICE,
+        NIL.ordinal)
   }
 
   /**
@@ -445,7 +453,7 @@ public object AudioServer : Object() {
    */
   public fun setBusLayout(busLayout: AudioBusLayout): Unit {
     TransferContext.writeArguments(OBJECT to busLayout)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_LAYOUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_BUS_LAYOUT, NIL.ordinal)
   }
 
   /**
@@ -453,8 +461,8 @@ public object AudioServer : Object() {
    */
   public fun generateBusLayout(): AudioBusLayout? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GENERATE_BUS_LAYOUT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GENERATE_BUS_LAYOUT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as AudioBusLayout?
   }
 

@@ -39,14 +39,15 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TARGET_NODE,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TARGET_NODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TARGET_NODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -58,8 +59,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setUsePoleNode(usePoleNode: Boolean): Unit {
     TransferContext.writeArguments(BOOL to usePoleNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_USE_POLE_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_USE_POLE_NODE, NIL.ordinal)
   }
 
   /**
@@ -67,8 +68,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getUsePoleNode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_USE_POLE_NODE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_USE_POLE_NODE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -77,8 +78,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setPoleNode(poleNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to poleNodepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_POLE_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_POLE_NODE, NIL.ordinal)
   }
 
   /**
@@ -86,8 +87,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getPoleNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_POLE_NODE, NODE_PATH)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_POLE_NODE, NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -96,8 +97,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setUseTipNode(useTipNode: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useTipNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_USE_TIP_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_USE_TIP_NODE, NIL.ordinal)
   }
 
   /**
@@ -105,8 +106,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getUseTipNode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_USE_TIP_NODE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_USE_TIP_NODE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -117,8 +118,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setTipNode(tipNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to tipNodepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TIP_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TIP_NODE, NIL.ordinal)
   }
 
   /**
@@ -126,8 +127,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getTipNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TIP_NODE, NODE_PATH)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TIP_NODE, NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -138,9 +139,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setAutoCalculateJointLength(autoCalculateJointLength: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculateJointLength)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_AUTO_CALCULATE_JOINT_LENGTH,
-        NIL)
+        NIL.ordinal)
   }
 
   /**
@@ -148,9 +149,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getAutoCalculateJointLength(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_AUTO_CALCULATE_JOINT_LENGTH,
-        BOOL)
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -159,8 +160,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointOneBoneName(boneName: String): Unit {
     TransferContext.writeArguments(STRING to boneName)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_BONE_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_BONE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -168,8 +170,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointOneBoneName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_BONE_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_BONE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -178,8 +181,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointOneBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_BONE_IDX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_BONE_IDX,
+        NIL.ordinal)
   }
 
   /**
@@ -187,8 +191,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointOneBoneIdx(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_BONE_IDX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_BONE_IDX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -197,8 +202,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointOneLength(boneLength: Double): Unit {
     TransferContext.writeArguments(DOUBLE to boneLength)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_LENGTH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_LENGTH, NIL.ordinal)
   }
 
   /**
@@ -206,8 +211,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointOneLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -216,8 +222,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointTwoBoneName(boneName: String): Unit {
     TransferContext.writeArguments(STRING to boneName)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_BONE_NAME, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_BONE_NAME,
+        NIL.ordinal)
   }
 
   /**
@@ -225,8 +232,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointTwoBoneName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_BONE_NAME, STRING)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_BONE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -235,8 +243,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointTwoBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_BONE_IDX, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_BONE_IDX,
+        NIL.ordinal)
   }
 
   /**
@@ -244,8 +253,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointTwoBoneIdx(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_BONE_IDX, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_BONE_IDX,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -254,8 +264,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointTwoLength(boneLength: Double): Unit {
     TransferContext.writeArguments(DOUBLE to boneLength)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_LENGTH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_LENGTH, NIL.ordinal)
   }
 
   /**
@@ -263,8 +273,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointTwoLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -273,8 +284,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointOneRoll(roll: Double): Unit {
     TransferContext.writeArguments(DOUBLE to roll)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_ROLL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_ONE_ROLL, NIL.ordinal)
   }
 
   /**
@@ -282,8 +293,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointOneRoll(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_ROLL, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_ONE_ROLL, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -292,8 +303,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun setJointTwoRoll(roll: Double): Unit {
     TransferContext.writeArguments(DOUBLE to roll)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_ROLL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_JOINT_TWO_ROLL, NIL.ordinal)
   }
 
   /**
@@ -301,8 +312,8 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
    */
   public fun getJointTwoRoll(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_ROLL, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_JOINT_TWO_ROLL, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

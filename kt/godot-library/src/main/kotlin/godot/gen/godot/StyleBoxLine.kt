@@ -33,12 +33,12 @@ public open class StyleBoxLine : StyleBox() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_COLOR, NIL.ordinal)
     }
 
   /**
@@ -47,13 +47,14 @@ public open class StyleBoxLine : StyleBox() {
   public var growBegin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_BEGIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_BEGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_BEGIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_BEGIN,
+          NIL.ordinal)
     }
 
   /**
@@ -62,12 +63,13 @@ public open class StyleBoxLine : StyleBox() {
   public var growEnd: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_END, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_END,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_END, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_END, NIL.ordinal)
     }
 
   /**
@@ -76,12 +78,14 @@ public open class StyleBoxLine : StyleBox() {
   public var thickness: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_THICKNESS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_THICKNESS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_THICKNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_THICKNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -90,12 +94,12 @@ public open class StyleBoxLine : StyleBox() {
   public var vertical: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_IS_VERTICAL, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_IS_VERTICAL, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

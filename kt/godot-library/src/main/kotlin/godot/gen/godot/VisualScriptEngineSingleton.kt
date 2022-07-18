@@ -19,14 +19,14 @@ public open class VisualScriptEngineSingleton : VisualScriptNode() {
   public var constant: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTENGINESINGLETON_GET_SINGLETON, STRING)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTENGINESINGLETON_GET_SINGLETON, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTENGINESINGLETON_SET_SINGLETON, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTENGINESINGLETON_SET_SINGLETON, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

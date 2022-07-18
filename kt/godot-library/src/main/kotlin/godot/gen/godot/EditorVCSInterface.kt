@@ -37,8 +37,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun isAddonReady(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_ADDON_READY,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_ADDON_READY,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -47,7 +47,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun initialize(projectRootPath: String): Boolean {
     TransferContext.writeArguments(STRING to projectRootPath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_INITIALIZE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_INITIALIZE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -56,8 +57,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun isVcsInitialized(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_VCS_INITIALIZED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_VCS_INITIALIZED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -78,8 +79,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun getModifiedFilesData(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_MODIFIED_FILES_DATA, DICTIONARY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_MODIFIED_FILES_DATA, DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -88,7 +89,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun stageFile(filePath: String): Unit {
     TransferContext.writeArguments(STRING to filePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_STAGE_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_STAGE_FILE,
+        NIL.ordinal)
   }
 
   /**
@@ -96,8 +98,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun unstageFile(filePath: String): Unit {
     TransferContext.writeArguments(STRING to filePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
+        NIL.ordinal)
   }
 
   /**
@@ -105,7 +107,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun commit(msg: String): Unit {
     TransferContext.writeArguments(STRING to msg)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_COMMIT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_COMMIT, NIL.ordinal)
   }
 
   /**
@@ -127,8 +129,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun getFileDiff(filePath: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to filePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_FILE_DIFF,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_FILE_DIFF,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -137,7 +139,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun shutDown(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_SHUT_DOWN, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_SHUT_DOWN,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -146,8 +149,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun getProjectName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_PROJECT_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_PROJECT_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -156,8 +159,8 @@ public open class EditorVCSInterface internal constructor() : Object() {
    */
   public fun getVcsName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_VCS_NAME,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_VCS_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

@@ -41,8 +41,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun setDisableClass(className: StringName, disable: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to className, BOOL to disable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS,
+        NIL.ordinal)
   }
 
   /**
@@ -50,8 +50,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun isClassDisabled(className: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_DISABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -60,8 +60,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun setDisableClassEditor(className: StringName, disable: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to className, BOOL to disable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_EDITOR, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_EDITOR, NIL.ordinal)
   }
 
   /**
@@ -69,8 +69,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun isClassEditorDisabled(className: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_EDITOR_DISABLED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_EDITOR_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -83,8 +83,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
     disable: Boolean
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property, BOOL to disable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_PROPERTY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_CLASS_PROPERTY, NIL.ordinal)
   }
 
   /**
@@ -92,8 +92,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun isClassPropertyDisabled(className: StringName, `property`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to className, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_PROPERTY_DISABLED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_CLASS_PROPERTY_DISABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -102,8 +102,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun setDisableFeature(feature: EditorFeatureProfile.Feature, disable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to disable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_FEATURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SET_DISABLE_FEATURE,
+        NIL.ordinal)
   }
 
   /**
@@ -111,8 +111,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun isFeatureDisabled(feature: EditorFeatureProfile.Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_FEATURE_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_IS_FEATURE_DISABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -121,8 +121,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun getFeatureName(feature: EditorFeatureProfile.Feature): String {
     TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_GET_FEATURE_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_GET_FEATURE_NAME,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -131,8 +131,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun saveToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SAVE_TO_FILE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_SAVE_TO_FILE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -141,8 +141,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
    */
   public fun loadFromFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_LOAD_FROM_FILE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFEATUREPROFILE_LOAD_FROM_FILE,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

@@ -53,12 +53,14 @@ public open class Resource : RefCounted() {
   public var resourceLocalToScene: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_IS_LOCAL_TO_SCENE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_IS_LOCAL_TO_SCENE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_LOCAL_TO_SCENE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_LOCAL_TO_SCENE,
+          NIL.ordinal)
     }
 
   /**
@@ -67,12 +69,12 @@ public open class Resource : RefCounted() {
   public var resourcePath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_PATH, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_PATH, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_PATH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_PATH, NIL.ordinal)
     }
 
   /**
@@ -81,12 +83,12 @@ public open class Resource : RefCounted() {
   public var resourceName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_NAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_NAME, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -98,7 +100,7 @@ public open class Resource : RefCounted() {
    */
   public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL.ordinal)
   }
 
   /**
@@ -106,7 +108,7 @@ public open class Resource : RefCounted() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -115,7 +117,7 @@ public open class Resource : RefCounted() {
    */
   public fun getLocalScene(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_LOCAL_SCENE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_LOCAL_SCENE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -126,7 +128,8 @@ public open class Resource : RefCounted() {
    */
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SETUP_LOCAL_TO_SCENE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SETUP_LOCAL_TO_SCENE,
+        NIL.ordinal)
   }
 
   /**
@@ -144,7 +147,7 @@ public open class Resource : RefCounted() {
    */
   public fun emitChanged(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL.ordinal)
   }
 
   /**
@@ -158,7 +161,7 @@ public open class Resource : RefCounted() {
    */
   public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 

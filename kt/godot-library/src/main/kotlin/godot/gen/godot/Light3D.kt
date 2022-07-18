@@ -37,26 +37,28 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var lightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_COLOR, NIL.ordinal)
     }
 
   /**
    * [godot.Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [godot.ProjectSettings.rendering/textures/lightProjectors/filter].
    */
   public var lightProjector: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PROJECTOR, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PROJECTOR, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PROJECTOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PROJECTOR, NIL.ordinal)
     }
 
   /**
@@ -65,12 +67,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var lightNegative: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_NEGATIVE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_NEGATIVE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_NEGATIVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_NEGATIVE, NIL.ordinal)
     }
 
   /**
@@ -81,12 +83,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var lightBakeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_BAKE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_BAKE_MODE, NIL.ordinal)
     }
 
   /**
@@ -95,12 +97,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var lightCullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_CULL_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_CULL_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_CULL_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_CULL_MASK, NIL.ordinal)
     }
 
   /**
@@ -109,12 +111,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_HAS_SHADOW, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_HAS_SHADOW, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW, NIL.ordinal)
     }
 
   /**
@@ -123,14 +125,14 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var shadowReverseCullFace: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_SHADOW_REVERSE_CULL_FACE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_SHADOW_REVERSE_CULL_FACE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW_REVERSE_CULL_FACE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW_REVERSE_CULL_FACE,
+          NIL.ordinal)
     }
 
   /**
@@ -141,14 +143,14 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var distanceFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_DISTANCE_FADE_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_DISTANCE_FADE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_ENABLE_DISTANCE_FADE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_ENABLE_DISTANCE_FADE,
+          NIL.ordinal)
     }
 
   /**
@@ -159,14 +161,14 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var distanceFadeBegin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_BEGIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_BEGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_BEGIN,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_BEGIN,
+          NIL.ordinal)
     }
 
   /**
@@ -179,14 +181,14 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var distanceFadeShadow: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_SHADOW,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_SHADOW,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_SHADOW,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_SHADOW,
+          NIL.ordinal)
     }
 
   /**
@@ -197,14 +199,14 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var distanceFadeLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_LENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_LENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -213,12 +215,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_EDITOR_ONLY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_EDITOR_ONLY, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_EDITOR_ONLY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_EDITOR_ONLY, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -230,7 +232,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public fun setParam(`param`: Light3D.Param, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PARAM, NIL.ordinal)
   }
 
   /**
@@ -238,7 +240,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public fun getParam(`param`: Light3D.Param): Double {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PARAM, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

@@ -27,12 +27,13 @@ public open class GrooveJoint2D : Joint2D() {
   public var length: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_LENGTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_LENGTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_LENGTH, NIL.ordinal)
     }
 
   /**
@@ -41,14 +42,14 @@ public open class GrooveJoint2D : Joint2D() {
   public var initialOffset: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_INITIAL_OFFSET,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_INITIAL_OFFSET,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_INITIAL_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_INITIAL_OFFSET,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

@@ -56,12 +56,12 @@ public open class TileMap : Node2D() {
   public var tileSet: TileSet?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILESET, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILESET, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as TileSet?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILESET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILESET, NIL.ordinal)
     }
 
   /**
@@ -70,12 +70,13 @@ public open class TileMap : Node2D() {
   public var cellQuadrantSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_QUADRANT_SIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_QUADRANT_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_QUADRANT_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_QUADRANT_SIZE, NIL.ordinal)
     }
 
   /**
@@ -86,14 +87,14 @@ public open class TileMap : Node2D() {
   public var collisionAnimatable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_COLLISION_ANIMATABLE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_COLLISION_ANIMATABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_ANIMATABLE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_ANIMATABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -102,14 +103,14 @@ public open class TileMap : Node2D() {
   public var collisionVisibilityMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_VISIBILITY_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_VISIBILITY_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -118,14 +119,14 @@ public open class TileMap : Node2D() {
   public var navigationVisibilityMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_VISIBILITY_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_VISIBILITY_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -162,7 +163,7 @@ public open class TileMap : Node2D() {
    */
   public fun getLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYERS_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYERS_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -171,7 +172,7 @@ public open class TileMap : Node2D() {
    */
   public fun addLayer(toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ADD_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ADD_LAYER, NIL.ordinal)
   }
 
   /**
@@ -179,7 +180,7 @@ public open class TileMap : Node2D() {
    */
   public fun moveLayer(layer: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MOVE_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MOVE_LAYER, NIL.ordinal)
   }
 
   /**
@@ -187,7 +188,7 @@ public open class TileMap : Node2D() {
    */
   public fun removeLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_REMOVE_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_REMOVE_LAYER, NIL.ordinal)
   }
 
   /**
@@ -195,7 +196,7 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerName(layer: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to layer, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAME, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAME, NIL.ordinal)
   }
 
   /**
@@ -203,7 +204,7 @@ public open class TileMap : Node2D() {
    */
   public fun getLayerName(layer: Long): String {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -212,7 +213,7 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerEnabled(layer: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_ENABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_ENABLED, NIL.ordinal)
   }
 
   /**
@@ -220,7 +221,7 @@ public open class TileMap : Node2D() {
    */
   public fun isLayerEnabled(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_ENABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_ENABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -229,7 +230,7 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerModulate(layer: Long, enabled: Color): Unit {
     TransferContext.writeArguments(LONG to layer, COLOR to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_MODULATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_MODULATE, NIL.ordinal)
   }
 
   /**
@@ -237,7 +238,8 @@ public open class TileMap : Node2D() {
    */
   public fun getLayerModulate(layer: Long): Color {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_MODULATE, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_MODULATE,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -248,8 +250,8 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerYSortEnabled(layer: Long, ySortEnabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to ySortEnabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -257,8 +259,8 @@ public open class TileMap : Node2D() {
    */
   public fun isLayerYSortEnabled(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_Y_SORT_ENABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_Y_SORT_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -269,8 +271,8 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerYSortOrigin(layer: Long, ySortOrigin: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to ySortOrigin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ORIGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ORIGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -278,8 +280,8 @@ public open class TileMap : Node2D() {
    */
   public fun getLayerYSortOrigin(layer: Long): Long {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Y_SORT_ORIGIN,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Y_SORT_ORIGIN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -288,7 +290,7 @@ public open class TileMap : Node2D() {
    */
   public fun setLayerZIndex(layer: Long, zIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to zIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Z_INDEX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Z_INDEX, NIL.ordinal)
   }
 
   /**
@@ -296,7 +298,7 @@ public open class TileMap : Node2D() {
    */
   public fun getLayerZIndex(layer: Long): Long {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Z_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Z_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -317,7 +319,7 @@ public open class TileMap : Node2D() {
     alternativeTile: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL.ordinal)
   }
 
   /**
@@ -325,7 +327,7 @@ public open class TileMap : Node2D() {
    */
   public fun eraseCell(layer: Long, coords: Vector2i): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ERASE_CELL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ERASE_CELL, NIL.ordinal)
   }
 
   /**
@@ -337,7 +339,7 @@ public open class TileMap : Node2D() {
     useProxies: Boolean
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -350,8 +352,8 @@ public open class TileMap : Node2D() {
     useProxies: Boolean
   ): Vector2i {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -364,8 +366,8 @@ public open class TileMap : Node2D() {
     useProxies: Boolean
   ): Long {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -374,8 +376,8 @@ public open class TileMap : Node2D() {
    */
   public fun getCoordsForBodyRid(body: RID): Vector2i {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COORDS_FOR_BODY_RID,
-        VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COORDS_FOR_BODY_RID,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -384,7 +386,7 @@ public open class TileMap : Node2D() {
    */
   public fun getPattern(layer: Long, coordsArray: VariantArray<Any?>): TileMapPattern? {
     TransferContext.writeArguments(LONG to layer, ARRAY to coordsArray)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_PATTERN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_PATTERN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
   }
 
@@ -397,7 +399,7 @@ public open class TileMap : Node2D() {
     pattern: TileMapPattern
   ): Vector2i {
     TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -410,14 +412,9 @@ public open class TileMap : Node2D() {
     pattern: TileMapPattern
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to position, OBJECT to pattern)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL.ordinal)
   }
 
-  /**
-   * Updates all the cells in the `cells` coordinates array and replace them by tiles that matches the surrounding cells terrains. Only cells form the given `terrain_set` are considered.
-   *
-   * If `ignore_empty_terrains` is true, zones with no terrain defined are ignored to select the tiles.
-   */
   public fun setCellsFromSurroundingTerrains(
     layer: Long,
     cells: VariantArray<Any?>,
@@ -425,8 +422,8 @@ public open class TileMap : Node2D() {
     ignoreEmptyTerrains: Boolean = true
   ): Unit {
     TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, BOOL to ignoreEmptyTerrains)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_FROM_SURROUNDING_TERRAINS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_FROM_SURROUNDING_TERRAINS, NIL.ordinal)
   }
 
   /**
@@ -434,7 +431,7 @@ public open class TileMap : Node2D() {
    */
   public fun fixInvalidTiles(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FIX_INVALID_TILES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FIX_INVALID_TILES, NIL.ordinal)
   }
 
   /**
@@ -442,7 +439,7 @@ public open class TileMap : Node2D() {
    */
   public fun clearLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR_LAYER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR_LAYER, NIL.ordinal)
   }
 
   /**
@@ -450,7 +447,7 @@ public open class TileMap : Node2D() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -462,7 +459,7 @@ public open class TileMap : Node2D() {
    */
   public fun forceUpdate(layer: Long = -1): Unit {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL.ordinal)
   }
 
   /**
@@ -470,8 +467,8 @@ public open class TileMap : Node2D() {
    */
   public fun getSurroundingTiles(coords: Vector2i): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_TILES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_TILES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -480,7 +477,7 @@ public open class TileMap : Node2D() {
    */
   public fun getUsedCells(layer: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -489,7 +486,7 @@ public open class TileMap : Node2D() {
    */
   public fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -500,7 +497,7 @@ public open class TileMap : Node2D() {
    */
   public fun mapToWorld(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -509,7 +506,7 @@ public open class TileMap : Node2D() {
    */
   public fun worldToMap(worldPosition: Vector2): Vector2i {
     TransferContext.writeArguments(VECTOR2 to worldPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -518,7 +515,8 @@ public open class TileMap : Node2D() {
    */
   public fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NEIGHBOR_CELL, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NEIGHBOR_CELL,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 

@@ -37,6 +37,8 @@ public:
                       jint p_method_index,
                       jint expectedReturnType);
 
+    static void icall_static(JNIEnv* rawEnv, jobject instance, jint p_method_index, jint expectedReturnType);
+
     static void invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
@@ -71,6 +73,13 @@ private:
         ktvariant::send_variant_to_buffer(r_ret, buffer);
         buffer->rewind();
     }
+
+    template<bool is_static>
+    static void _icall(JNIEnv* rawEnv,
+                      jobject instance,
+                      jlong j_ptr,
+                      jint p_method_index,
+                      jint expectedReturnType);
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")

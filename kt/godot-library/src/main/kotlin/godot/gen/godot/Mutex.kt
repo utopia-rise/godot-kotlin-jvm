@@ -37,7 +37,7 @@ public open class Mutex : RefCounted() {
    */
   public fun lock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_LOCK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_LOCK, NIL.ordinal)
   }
 
   /**
@@ -47,7 +47,7 @@ public open class Mutex : RefCounted() {
    */
   public fun tryLock(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_TRY_LOCK, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_TRY_LOCK, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -58,7 +58,7 @@ public open class Mutex : RefCounted() {
    */
   public fun unlock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_UNLOCK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MUTEX_UNLOCK, NIL.ordinal)
   }
 
   public companion object

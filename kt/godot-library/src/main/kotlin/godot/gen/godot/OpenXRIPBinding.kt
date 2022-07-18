@@ -21,24 +21,26 @@ public open class OpenXRIPBinding : Resource() {
   public var action: OpenXRAction?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_ACTION,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_ACTION,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_SET_ACTION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_SET_ACTION,
+          NIL.ordinal)
     }
 
   public var paths: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_PATHS, ARRAY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_PATHS,
+          ARRAY.ordinal)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_SET_PATHS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_SET_PATHS, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

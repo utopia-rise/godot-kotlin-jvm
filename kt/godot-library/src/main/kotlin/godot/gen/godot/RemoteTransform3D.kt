@@ -31,14 +31,14 @@ public open class RemoteTransform3D : Node3D() {
   public var remotePath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_REMOTE_NODE,
-          NODE_PATH)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_REMOTE_NODE,
+          NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_REMOTE_NODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_REMOTE_NODE,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +47,14 @@ public open class RemoteTransform3D : Node3D() {
   public var useGlobalCoordinates: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_USE_GLOBAL_COORDINATES, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_USE_GLOBAL_COORDINATES, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_USE_GLOBAL_COORDINATES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_USE_GLOBAL_COORDINATES, NIL.ordinal)
     }
 
   /**
@@ -63,14 +63,14 @@ public open class RemoteTransform3D : Node3D() {
   public var updatePosition: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_POSITION, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_POSITION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_POSITION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_POSITION,
+          NIL.ordinal)
     }
 
   /**
@@ -79,14 +79,14 @@ public open class RemoteTransform3D : Node3D() {
   public var updateRotation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_ROTATION, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_ROTATION,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_ROTATION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_ROTATION,
+          NIL.ordinal)
     }
 
   /**
@@ -95,14 +95,14 @@ public open class RemoteTransform3D : Node3D() {
   public var updateScale: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_SCALE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_GET_UPDATE_SCALE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_SCALE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -114,8 +114,8 @@ public open class RemoteTransform3D : Node3D() {
    */
   public fun forceUpdateCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_FORCE_UPDATE_CACHE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_FORCE_UPDATE_CACHE,
+        NIL.ordinal)
   }
 
   public companion object

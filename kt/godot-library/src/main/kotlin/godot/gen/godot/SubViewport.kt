@@ -34,12 +34,12 @@ public open class SubViewport : Viewport() {
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE, VECTOR2I)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE, VECTOR2I.ordinal)
       return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE, NIL.ordinal)
     }
 
   /**
@@ -48,14 +48,14 @@ public open class SubViewport : Viewport() {
   public var size2dOverride: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE_2D_OVERRIDE,
-          VECTOR2I)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE_2D_OVERRIDE,
+          VECTOR2I.ordinal)
       return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE,
+          NIL.ordinal)
     }
 
   /**
@@ -64,14 +64,14 @@ public open class SubViewport : Viewport() {
   public var size2dOverrideStretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_IS_SIZE_2D_OVERRIDE_STRETCH_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_IS_SIZE_2D_OVERRIDE_STRETCH_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE_STRETCH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE_STRETCH, NIL.ordinal)
     }
 
   /**
@@ -82,12 +82,14 @@ public open class SubViewport : Viewport() {
   public var renderTargetClearMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_CLEAR_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_CLEAR_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -96,12 +98,14 @@ public open class SubViewport : Viewport() {
   public var renderTargetUpdateMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

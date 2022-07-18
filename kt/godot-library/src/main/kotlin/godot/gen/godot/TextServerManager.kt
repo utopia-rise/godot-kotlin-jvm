@@ -53,8 +53,8 @@ public object TextServerManager : Object() {
    */
   public fun addInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_ADD_INTERFACE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_ADD_INTERFACE,
+        NIL.ordinal)
   }
 
   /**
@@ -62,8 +62,8 @@ public object TextServerManager : Object() {
    */
   public fun getInterfaceCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -72,8 +72,8 @@ public object TextServerManager : Object() {
    */
   public fun removeInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_REMOVE_INTERFACE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_REMOVE_INTERFACE,
+        NIL.ordinal)
   }
 
   /**
@@ -81,8 +81,8 @@ public object TextServerManager : Object() {
    */
   public fun getInterface(idx: Long): TextServer? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TextServer?
   }
 
@@ -91,8 +91,8 @@ public object TextServerManager : Object() {
    */
   public fun getInterfaces(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -101,8 +101,8 @@ public object TextServerManager : Object() {
    */
   public fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_FIND_INTERFACE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_FIND_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TextServer?
   }
 
@@ -111,8 +111,8 @@ public object TextServerManager : Object() {
    */
   public fun setPrimaryInterface(index: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_SET_PRIMARY_INTERFACE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_SET_PRIMARY_INTERFACE,
+        NIL.ordinal)
   }
 
   /**
@@ -120,8 +120,8 @@ public object TextServerManager : Object() {
    */
   public fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_PRIMARY_INTERFACE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_PRIMARY_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TextServer?
   }
 }

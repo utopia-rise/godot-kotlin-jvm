@@ -39,14 +39,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var materialOverride: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERRIDE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -57,14 +57,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var materialOverlay: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERLAY, OBJECT)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERLAY, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERLAY, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERLAY, NIL.ordinal)
     }
 
   /**
@@ -77,14 +77,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var transparency: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_TRANSPARENCY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_TRANSPARENCY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_TRANSPARENCY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_TRANSPARENCY,
+          NIL.ordinal)
     }
 
   /**
@@ -93,14 +93,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var castShadow: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOWS_SETTING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOWS_SETTING, NIL.ordinal)
     }
 
   /**
@@ -109,14 +109,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var extraCullMargin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_EXTRA_CULL_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_EXTRA_CULL_MARGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_EXTRA_CULL_MARGIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_EXTRA_CULL_MARGIN, NIL.ordinal)
     }
 
   /**
@@ -125,14 +125,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var lodBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LOD_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LOD_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LOD_BIAS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LOD_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -141,14 +141,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var ignoreOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_IS_IGNORING_OCCLUSION_CULLING, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_IS_IGNORING_OCCLUSION_CULLING, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_IGNORE_OCCLUSION_CULLING, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_IGNORE_OCCLUSION_CULLING, NIL.ordinal)
     }
 
   /**
@@ -159,14 +159,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var giMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_GI_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_GI_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -175,14 +175,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var giLightmapScale: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LIGHTMAP_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LIGHTMAP_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -191,14 +191,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeBegin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN, NIL.ordinal)
     }
 
   /**
@@ -209,14 +209,16 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeBeginMargin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN_MARGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN_MARGIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN_MARGIN,
+          NIL.ordinal)
     }
 
   /**
@@ -225,14 +227,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeEnd: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END, NIL.ordinal)
     }
 
   /**
@@ -243,14 +245,15 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeEndMargin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END_MARGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END_MARGIN, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END_MARGIN, NIL.ordinal)
     }
 
   /**
@@ -259,14 +262,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeFadeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -278,8 +281,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    */
   public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to uniform, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_SHADER_INSTANCE_UNIFORM, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_SHADER_INSTANCE_UNIFORM, NIL.ordinal)
   }
 
   /**
@@ -287,8 +290,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    */
   public fun getShaderInstanceUniform(uniform: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to uniform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_SHADER_INSTANCE_UNIFORM, ANY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_SHADER_INSTANCE_UNIFORM, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -297,8 +300,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    */
   public fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB,
+        NIL.ordinal)
   }
 
   public enum class GIMode(

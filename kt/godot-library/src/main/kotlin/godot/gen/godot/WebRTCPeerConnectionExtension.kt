@@ -64,8 +64,8 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public fun makeDefault(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION_MAKE_DEFAULT, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION_MAKE_DEFAULT, NIL.ordinal)
   }
 
   public companion object

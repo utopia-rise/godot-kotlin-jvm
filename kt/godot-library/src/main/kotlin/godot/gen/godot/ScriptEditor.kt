@@ -48,8 +48,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getCurrentEditor(): ScriptEditorBase? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_EDITOR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_EDITOR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ScriptEditorBase?
   }
 
@@ -58,8 +58,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getOpenScriptEditors(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -70,8 +70,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun registerSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_REGISTER_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_REGISTER_SYNTAX_HIGHLIGHTER,
+        NIL.ordinal)
   }
 
   /**
@@ -81,8 +81,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun unregisterSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_UNREGISTER_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_UNREGISTER_SYNTAX_HIGHLIGHTER, NIL.ordinal)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun gotoLine(lineNumber: Long): Unit {
     TransferContext.writeArguments(LONG to lineNumber)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL.ordinal)
   }
 
   /**
@@ -98,8 +98,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getCurrentScript(): Script? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Script?
   }
 
@@ -108,8 +108,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getOpenScripts(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -118,8 +118,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG,
+        NIL.ordinal)
   }
 
   public companion object

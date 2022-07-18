@@ -32,14 +32,14 @@ public open class PanoramaSkyMaterial : Material() {
   public var panorama: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_GET_PANORAMA,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_GET_PANORAMA,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_PANORAMA,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_PANORAMA,
+          NIL.ordinal)
     }
 
   /**
@@ -48,14 +48,14 @@ public open class PanoramaSkyMaterial : Material() {
   public var filter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_IS_FILTERING_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_IS_FILTERING_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTERING_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTERING_ENABLED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

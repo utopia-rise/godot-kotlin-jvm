@@ -28,12 +28,13 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var radius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIUS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIUS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIUS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIUS, NIL.ordinal)
     }
 
   /**
@@ -42,14 +43,14 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var radialSteps: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIAL_STEPS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIAL_STEPS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIAL_STEPS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIAL_STEPS,
+          NIL.ordinal)
     }
 
   /**
@@ -58,12 +59,14 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var sections: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTIONS, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTIONS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTIONS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTIONS,
+          NIL.ordinal)
     }
 
   /**
@@ -72,14 +75,14 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var sectionLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_LENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_LENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -88,14 +91,14 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var sectionRings: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_RINGS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_RINGS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_RINGS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_RINGS,
+          NIL.ordinal)
     }
 
   /**
@@ -104,12 +107,13 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public var curve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_CURVE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_CURVE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_CURVE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_CURVE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

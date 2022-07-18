@@ -32,16 +32,16 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   public var physicalBoneChainLength: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_CHAIN_LENGTH,
-          LONG)
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
+      TransferContext.icall(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_CHAIN_LENGTH,
-          NIL)
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -55,8 +55,9 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun setPhysicalBoneNode(jointIdx: Long, physicalbone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx, NODE_PATH to physicalbone2dNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_NODE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -64,9 +65,9 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun getPhysicalBoneNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_NODE,
-        NODE_PATH)
+        NODE_PATH.ordinal)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
@@ -75,8 +76,9 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_FETCH_PHYSICAL_BONES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_FETCH_PHYSICAL_BONES,
+        NIL.ordinal)
   }
 
   /**
@@ -86,8 +88,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun startSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL.ordinal)
   }
 
   /**
@@ -97,8 +99,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun stopSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL.ordinal)
   }
 
   public companion object

@@ -27,14 +27,14 @@ public open class VelocityTracker3D : RefCounted() {
   public var trackPhysicsStep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_IS_TRACKING_PHYSICS_STEP, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_IS_TRACKING_PHYSICS_STEP, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_SET_TRACK_PHYSICS_STEP, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_SET_TRACK_PHYSICS_STEP, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -46,8 +46,8 @@ public open class VelocityTracker3D : RefCounted() {
    */
   public fun updatePosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_UPDATE_POSITION,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_UPDATE_POSITION,
+        NIL.ordinal)
   }
 
   /**
@@ -55,8 +55,8 @@ public open class VelocityTracker3D : RefCounted() {
    */
   public fun getTrackedLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_GET_TRACKED_LINEAR_VELOCITY, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_GET_TRACKED_LINEAR_VELOCITY, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -65,7 +65,7 @@ public open class VelocityTracker3D : RefCounted() {
    */
   public fun reset(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_RESET, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_RESET, NIL.ordinal)
   }
 
   public companion object

@@ -40,14 +40,14 @@ public open class SpringArm3D : Node3D() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_COLLISION_MASK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_COLLISION_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_COLLISION_MASK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_COLLISION_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -58,12 +58,12 @@ public open class SpringArm3D : Node3D() {
   public var shape: Shape3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_SHAPE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_SHAPE, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_SHAPE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_SHAPE, NIL.ordinal)
     }
 
   /**
@@ -74,12 +74,12 @@ public open class SpringArm3D : Node3D() {
   public var springLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_LENGTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_LENGTH, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_LENGTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_LENGTH, NIL.ordinal)
     }
 
   /**
@@ -92,12 +92,12 @@ public open class SpringArm3D : Node3D() {
   public var margin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_MARGIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_MARGIN, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_MARGIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_MARGIN, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -109,7 +109,8 @@ public open class SpringArm3D : Node3D() {
    */
   public fun getHitLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_HIT_LENGTH, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_HIT_LENGTH,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -118,8 +119,8 @@ public open class SpringArm3D : Node3D() {
    */
   public fun addExcludedObject(RID: RID): Unit {
     TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_ADD_EXCLUDED_OBJECT,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_ADD_EXCLUDED_OBJECT,
+        NIL.ordinal)
   }
 
   /**
@@ -127,8 +128,8 @@ public open class SpringArm3D : Node3D() {
    */
   public fun removeExcludedObject(RID: RID): Boolean {
     TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_REMOVE_EXCLUDED_OBJECT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_REMOVE_EXCLUDED_OBJECT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -137,8 +138,8 @@ public open class SpringArm3D : Node3D() {
    */
   public fun clearExcludedObjects(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_CLEAR_EXCLUDED_OBJECTS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_CLEAR_EXCLUDED_OBJECTS,
+        NIL.ordinal)
   }
 
   public companion object

@@ -33,12 +33,12 @@ public open class RegEx : RefCounted() {
 
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_CLEAR, NIL.ordinal)
   }
 
   public fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_COMPILE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_COMPILE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -48,7 +48,7 @@ public open class RegEx : RefCounted() {
     end: Long = -1
   ): RegExMatch? {
     TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as RegExMatch?
   }
 
@@ -58,7 +58,7 @@ public open class RegEx : RefCounted() {
     end: Long = -1
   ): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to subject, LONG to offset, LONG to end)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH_ALL, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SEARCH_ALL, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -70,31 +70,31 @@ public open class RegEx : RefCounted() {
     end: Long = -1
   ): String {
     TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset, LONG to end)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_IS_VALID, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_IS_VALID, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun getPattern(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_PATTERN, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_PATTERN, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   public fun getGroupCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_GROUP_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_GROUP_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public fun getNames(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 

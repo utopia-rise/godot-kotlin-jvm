@@ -19,14 +19,14 @@ public open class VisualScriptDeconstruct : VisualScriptNode() {
   public var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_GET_DECONSTRUCT_TYPE, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_GET_DECONSTRUCT_TYPE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_SET_DECONSTRUCT_TYPE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_SET_DECONSTRUCT_TYPE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

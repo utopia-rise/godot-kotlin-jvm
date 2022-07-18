@@ -67,14 +67,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_REFUSING_NEW_CONNECTIONS, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_REFUSING_NEW_CONNECTIONS, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_REFUSE_NEW_CONNECTIONS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_REFUSE_NEW_CONNECTIONS, NIL.ordinal)
     }
 
   /**
@@ -83,14 +83,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public var transferMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -101,14 +101,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public var transferChannel: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_CHANNEL, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_TRANSFER_CHANNEL,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_CHANNEL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_CHANNEL,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -122,8 +122,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun setTargetPeer(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TARGET_PEER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TARGET_PEER,
+        NIL.ordinal)
   }
 
   /**
@@ -131,8 +131,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun getPacketPeer(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_PEER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_PACKET_PEER,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -141,7 +141,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_POLL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_POLL, NIL.ordinal)
   }
 
   /**
@@ -149,8 +149,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_CONNECTION_STATUS,
+        LONG.ordinal)
     return MultiplayerPeer.ConnectionStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -159,7 +159,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun getUniqueId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_UNIQUE_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_UNIQUE_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -168,8 +169,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public fun generateUniqueId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GENERATE_UNIQUE_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GENERATE_UNIQUE_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

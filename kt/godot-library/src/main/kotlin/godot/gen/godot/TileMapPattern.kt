@@ -44,7 +44,7 @@ public open class TileMapPattern : Resource() {
     alternativeTile: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords, LONG to alternativeTile)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_CELL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_CELL, NIL.ordinal)
   }
 
   /**
@@ -52,7 +52,7 @@ public open class TileMapPattern : Resource() {
    */
   public fun hasCell(coords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_HAS_CELL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_HAS_CELL, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -61,7 +61,7 @@ public open class TileMapPattern : Resource() {
    */
   public fun removeCell(coords: Vector2i, updateSize: Boolean): Unit {
     TransferContext.writeArguments(VECTOR2I to coords, BOOL to updateSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_REMOVE_CELL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_REMOVE_CELL, NIL.ordinal)
   }
 
   /**
@@ -69,8 +69,8 @@ public open class TileMapPattern : Resource() {
    */
   public fun getCellSourceId(coords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_SOURCE_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_SOURCE_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -79,8 +79,8 @@ public open class TileMapPattern : Resource() {
    */
   public fun getCellAtlasCoords(coords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ATLAS_COORDS, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ATLAS_COORDS,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -89,8 +89,8 @@ public open class TileMapPattern : Resource() {
    */
   public fun getCellAlternativeTile(coords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ALTERNATIVE_TILE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_CELL_ALTERNATIVE_TILE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -99,8 +99,8 @@ public open class TileMapPattern : Resource() {
    */
   public fun getUsedCells(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_USED_CELLS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_USED_CELLS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -109,7 +109,8 @@ public open class TileMapPattern : Resource() {
    */
   public fun getSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_SIZE, VECTOR2I)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_GET_SIZE,
+        VECTOR2I.ordinal)
     return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
@@ -118,7 +119,7 @@ public open class TileMapPattern : Resource() {
    */
   public fun setSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_SET_SIZE, NIL.ordinal)
   }
 
   /**
@@ -126,7 +127,7 @@ public open class TileMapPattern : Resource() {
    */
   public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_IS_EMPTY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAPPATTERN_IS_EMPTY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

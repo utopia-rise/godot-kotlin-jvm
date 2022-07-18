@@ -49,12 +49,12 @@ public open class AcceptDialog : Window() {
   public var dialogText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_TEXT, STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_TEXT, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_TEXT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_TEXT, NIL.ordinal)
     }
 
   /**
@@ -65,12 +65,14 @@ public open class AcceptDialog : Window() {
   public var dialogHideOnOk: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_HIDE_ON_OK, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_HIDE_ON_OK,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_HIDE_ON_OK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_HIDE_ON_OK,
+          NIL.ordinal)
     }
 
   /**
@@ -79,12 +81,13 @@ public open class AcceptDialog : Window() {
   public var dialogAutowrap: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_HAS_AUTOWRAP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_HAS_AUTOWRAP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_AUTOWRAP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_AUTOWRAP, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -98,7 +101,8 @@ public open class AcceptDialog : Window() {
    */
   public fun getOkButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
 
@@ -109,7 +113,7 @@ public open class AcceptDialog : Window() {
    */
   public fun getLabel(): Label? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_LABEL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_LABEL, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Label?
   }
 
@@ -126,7 +130,7 @@ public open class AcceptDialog : Window() {
     action: String = ""
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_BUTTON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_BUTTON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
 
@@ -137,8 +141,8 @@ public open class AcceptDialog : Window() {
    */
   public fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_CANCEL_BUTTON,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_CANCEL_BUTTON,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
 
@@ -147,7 +151,7 @@ public open class AcceptDialog : Window() {
    */
   public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REMOVE_BUTTON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REMOVE_BUTTON, NIL.ordinal)
   }
 
   /**
@@ -155,8 +159,8 @@ public open class AcceptDialog : Window() {
    */
   public fun registerTextEnter(lineEdit: Control): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
+        NIL.ordinal)
   }
 
   public companion object

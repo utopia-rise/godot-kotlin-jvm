@@ -25,14 +25,14 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   public var windowId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_GET_WINDOW_ID, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_GET_WINDOW_ID,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_SET_WINDOW_ID, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_SET_WINDOW_ID,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

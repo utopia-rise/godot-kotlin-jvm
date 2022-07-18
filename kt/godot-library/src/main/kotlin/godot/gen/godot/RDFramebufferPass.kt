@@ -31,14 +31,15 @@ public open class RDFramebufferPass : RefCounted() {
   public var colorAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_COLOR_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_COLOR_ATTACHMENTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_COLOR_ATTACHMENTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_COLOR_ATTACHMENTS, NIL.ordinal)
     }
 
   /**
@@ -47,14 +48,15 @@ public open class RDFramebufferPass : RefCounted() {
   public var inputAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_INPUT_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_INPUT_ATTACHMENTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_INPUT_ATTACHMENTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_INPUT_ATTACHMENTS, NIL.ordinal)
     }
 
   /**
@@ -63,14 +65,15 @@ public open class RDFramebufferPass : RefCounted() {
   public var resolveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_RESOLVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_RESOLVE_ATTACHMENTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_RESOLVE_ATTACHMENTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_RESOLVE_ATTACHMENTS, NIL.ordinal)
     }
 
   /**
@@ -79,14 +82,15 @@ public open class RDFramebufferPass : RefCounted() {
   public var preserveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_PRESERVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_PRESERVE_ATTACHMENTS,
+          PACKED_INT_32_ARRAY.ordinal)
       return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_PRESERVE_ATTACHMENTS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_PRESERVE_ATTACHMENTS, NIL.ordinal)
     }
 
   /**
@@ -95,14 +99,14 @@ public open class RDFramebufferPass : RefCounted() {
   public var depthAttachment: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_DEPTH_ATTACHMENT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_DEPTH_ATTACHMENT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_DEPTH_ATTACHMENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_DEPTH_ATTACHMENT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

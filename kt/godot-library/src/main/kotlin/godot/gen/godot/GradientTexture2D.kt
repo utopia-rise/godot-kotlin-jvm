@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
 /**
  * Gradient-filled 2D texture.
  *
- * The texture uses a [godot.Gradient] to fill the texture data in 2D space. The gradient is filled according to the specified [fill] and [repeat] types using colors obtained from the gradient. The texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width] and [height]).
+ * The texture uses a [godot.Gradient] to fill the texture data in 2D space. The gradient is filled according to the specified [fill] and [repeat] types using colors obtained from the gradient. The texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width] and [height]). See also [godot.GradientTexture1D], [godot.CurveTexture] and [godot.CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture2D : Texture2D() {
@@ -33,14 +33,14 @@ public open class GradientTexture2D : Texture2D() {
   public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_GRADIENT,
-          OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_GRADIENT,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Gradient?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_GRADIENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_GRADIENT,
+          NIL.ordinal)
     }
 
   /**
@@ -52,7 +52,8 @@ public open class GradientTexture2D : Texture2D() {
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_WIDTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_WIDTH,
+          NIL.ordinal)
     }
 
   /**
@@ -64,7 +65,8 @@ public open class GradientTexture2D : Texture2D() {
     get() = super.getHeight()
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_HEIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -73,14 +75,14 @@ public open class GradientTexture2D : Texture2D() {
   public var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_IS_USING_HDR,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_IS_USING_HDR,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_USE_HDR,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_USE_HDR,
+          NIL.ordinal)
     }
 
   /**
@@ -89,12 +91,14 @@ public open class GradientTexture2D : Texture2D() {
   public var fill: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL,
+          NIL.ordinal)
     }
 
   /**
@@ -103,14 +107,14 @@ public open class GradientTexture2D : Texture2D() {
   public var fillFrom: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_FROM,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_FROM,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL_FROM,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL_FROM,
+          NIL.ordinal)
     }
 
   /**
@@ -119,14 +123,14 @@ public open class GradientTexture2D : Texture2D() {
   public var fillTo: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_TO,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_FILL_TO,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL_TO,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_FILL_TO,
+          NIL.ordinal)
     }
 
   /**
@@ -135,13 +139,14 @@ public open class GradientTexture2D : Texture2D() {
   public var repeat: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_GET_REPEAT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_REPEAT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_REPEAT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

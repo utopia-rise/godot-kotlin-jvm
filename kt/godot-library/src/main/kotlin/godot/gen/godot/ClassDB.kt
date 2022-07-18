@@ -47,8 +47,8 @@ public object ClassDB : Object() {
    */
   public fun getClassList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_CLASS_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_CLASS_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -57,8 +57,8 @@ public object ClassDB : Object() {
    */
   public fun getInheritersFromClass(_class: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_INHERITERS_FROM_CLASS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_INHERITERS_FROM_CLASS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -67,8 +67,8 @@ public object ClassDB : Object() {
    */
   public fun getParentClass(_class: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_PARENT_CLASS,
-        STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_PARENT_CLASS,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -77,7 +77,7 @@ public object ClassDB : Object() {
    */
   public fun classExists(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_EXISTS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_EXISTS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -86,7 +86,7 @@ public object ClassDB : Object() {
    */
   public fun isParentClass(_class: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_PARENT_CLASS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_PARENT_CLASS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -95,7 +95,7 @@ public object ClassDB : Object() {
    */
   public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CAN_INSTANTIATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CAN_INSTANTIATE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -104,7 +104,7 @@ public object ClassDB : Object() {
    */
   public fun instantiate(_class: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_INSTANTIATE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_INSTANTIATE, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -113,7 +113,7 @@ public object ClassDB : Object() {
    */
   public fun classHasSignal(_class: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_SIGNAL, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_SIGNAL, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -122,8 +122,8 @@ public object ClassDB : Object() {
    */
   public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -133,8 +133,8 @@ public object ClassDB : Object() {
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -144,8 +144,8 @@ public object ClassDB : Object() {
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -154,7 +154,7 @@ public object ClassDB : Object() {
    */
   public fun classGetProperty(_object: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -167,7 +167,7 @@ public object ClassDB : Object() {
     `value`: Any
   ): GodotError {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_SET_PROPERTY, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_SET_PROPERTY, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -180,7 +180,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_METHOD, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_METHOD, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -192,8 +192,8 @@ public object ClassDB : Object() {
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_METHOD_LIST,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_METHOD_LIST,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -203,8 +203,8 @@ public object ClassDB : Object() {
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_LIST, PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -213,8 +213,8 @@ public object ClassDB : Object() {
    */
   public fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_INTEGER_CONSTANT,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_INTEGER_CONSTANT,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -223,8 +223,8 @@ public object ClassDB : Object() {
    */
   public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -237,7 +237,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_ENUM, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_ENUM, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -247,8 +247,8 @@ public object ClassDB : Object() {
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_LIST,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -261,8 +261,8 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false
   ): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_CONSTANTS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_CONSTANTS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -275,8 +275,8 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_ENUM, STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_ENUM,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -285,7 +285,7 @@ public object ClassDB : Object() {
    */
   public fun isClassEnabled(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_CLASS_ENABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_CLASS_ENABLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 }

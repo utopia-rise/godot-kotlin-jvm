@@ -68,8 +68,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_SEND_MESSAGE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_SEND_MESSAGE,
+        NIL.ordinal)
   }
 
   /**
@@ -79,8 +79,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL.ordinal)
   }
 
   /**
@@ -88,8 +88,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_UNREGISTER_MESSAGE_CAPTURE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_UNREGISTER_MESSAGE_CAPTURE, NIL.ordinal)
   }
 
   /**
@@ -97,8 +97,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_HAS_CAPTURE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_HAS_CAPTURE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -107,8 +107,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun isBreaked(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_BREAKED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_BREAKED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -117,8 +117,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun isDebuggable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_DEBUGGABLE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_DEBUGGABLE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -127,8 +127,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
    */
   public fun isSessionActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_SESSION_ACTIVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_SESSION_ACTIVE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

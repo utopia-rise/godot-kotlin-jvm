@@ -39,14 +39,14 @@ public open class DirectionalLight2D : Light2D() {
   public var maxDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_GET_MAX_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_GET_MAX_DISTANCE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_SET_MAX_DISTANCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_SET_MAX_DISTANCE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

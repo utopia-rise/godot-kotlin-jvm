@@ -53,14 +53,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var frames: SpriteFrames?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_SPRITE_FRAMES, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_SPRITE_FRAMES,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_SPRITE_FRAMES, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_SPRITE_FRAMES,
+          NIL.ordinal)
     }
 
   /**
@@ -69,14 +69,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var animation: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_ANIMATION,
-          STRING_NAME)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_ANIMATION,
+          STRING_NAME.ordinal)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_ANIMATION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_ANIMATION,
+          NIL.ordinal)
     }
 
   /**
@@ -85,12 +85,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var frame: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_FRAME, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_FRAME,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FRAME, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FRAME,
+          NIL.ordinal)
     }
 
   /**
@@ -99,14 +101,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var speedScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_SPEED_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_SPEED_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_SPEED_SCALE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_SPEED_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -115,12 +117,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var playing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_PLAYING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_PLAYING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_PLAYING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_PLAYING,
+          NIL.ordinal)
     }
 
   /**
@@ -129,14 +133,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var centered: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_CENTERED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_CENTERED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_CENTERED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_CENTERED,
+          NIL.ordinal)
     }
 
   /**
@@ -145,13 +149,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_OFFSET,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_GET_OFFSET,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -160,13 +165,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_FLIPPED_H,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_FLIPPED_H,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FLIP_H, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FLIP_H,
+          NIL.ordinal)
     }
 
   /**
@@ -175,13 +181,14 @@ public open class AnimatedSprite2D : Node2D() {
   public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_FLIPPED_V,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_IS_FLIPPED_V,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FLIP_V, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FLIP_V,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -193,7 +200,7 @@ public open class AnimatedSprite2D : Node2D() {
    */
   public fun play(anim: StringName = StringName(""), backwards: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to backwards)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_PLAY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_PLAY, NIL.ordinal)
   }
 
   /**
@@ -201,7 +208,7 @@ public open class AnimatedSprite2D : Node2D() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_STOP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_STOP, NIL.ordinal)
   }
 
   public companion object

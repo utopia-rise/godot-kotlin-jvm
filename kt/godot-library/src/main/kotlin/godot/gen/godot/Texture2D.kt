@@ -112,7 +112,7 @@ public open class Texture2D : Texture() {
    */
   public fun getWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -121,7 +121,7 @@ public open class Texture2D : Texture() {
    */
   public fun getHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_HEIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_HEIGHT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -130,7 +130,7 @@ public open class Texture2D : Texture() {
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -139,7 +139,7 @@ public open class Texture2D : Texture() {
    */
   public fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_HAS_ALPHA, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_HAS_ALPHA, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -153,7 +153,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW, NIL.ordinal)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT, NIL.ordinal)
   }
 
   /**
@@ -182,15 +182,17 @@ public open class Texture2D : Texture() {
     clipUv: Boolean = true
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT_REGION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT_REGION, NIL.ordinal)
   }
 
   /**
-   * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D]. [godot.Image]s can be accessed and manipulated directly.
+   * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D] (a new [godot.Image] is created each time). [godot.Image]s can be accessed and manipulated directly.
+   *
+   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.
    */
   public fun getImage(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_IMAGE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_IMAGE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 

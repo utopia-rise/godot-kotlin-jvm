@@ -30,8 +30,8 @@ public open class CompressedTexture2D : Texture2D() {
   public val loadPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_GET_LOAD_PATH,
-          STRING)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_GET_LOAD_PATH,
+          STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -44,7 +44,7 @@ public open class CompressedTexture2D : Texture2D() {
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_LOAD, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_LOAD, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

@@ -52,12 +52,12 @@ public open class TreeItem internal constructor() : Object() {
   public var collapsed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_COLLAPSED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_COLLAPSED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_COLLAPSED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_COLLAPSED, NIL.ordinal)
     }
 
   /**
@@ -66,13 +66,14 @@ public open class TreeItem internal constructor() : Object() {
   public var disableFolding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_FOLDING_DISABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_FOLDING_DISABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_DISABLE_FOLDING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_DISABLE_FOLDING,
+          NIL.ordinal)
     }
 
   /**
@@ -81,14 +82,14 @@ public open class TreeItem internal constructor() : Object() {
   public var customMinimumHeight: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_MINIMUM_HEIGHT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_MINIMUM_HEIGHT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_MINIMUM_HEIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_MINIMUM_HEIGHT,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -100,7 +101,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCellMode(column: Long, mode: TreeItem.TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CELL_MODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CELL_MODE, NIL.ordinal)
   }
 
   /**
@@ -108,7 +109,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getCellMode(column: Long): TreeItem.TreeCellMode {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CELL_MODE, LONG.ordinal)
     return TreeItem.TreeCellMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -117,7 +118,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setChecked(column: Long, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to checked)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CHECKED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CHECKED, NIL.ordinal)
   }
 
   /**
@@ -127,7 +128,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setIndeterminate(column: Long, indeterminate: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to indeterminate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_INDETERMINATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_INDETERMINATE, NIL.ordinal)
   }
 
   /**
@@ -135,7 +136,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isChecked(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CHECKED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CHECKED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -144,7 +145,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isIndeterminate(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_INDETERMINATE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_INDETERMINATE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -153,7 +154,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun propagateCheck(column: Long, emitSignal: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to emitSignal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_PROPAGATE_CHECK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_PROPAGATE_CHECK, NIL.ordinal)
   }
 
   /**
@@ -161,7 +162,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setText(column: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT, NIL.ordinal)
   }
 
   /**
@@ -169,7 +170,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getText(column: Long): String {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -178,7 +179,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setTextDirection(column: Long, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to column, LONG to direction.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_DIRECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_DIRECTION, NIL.ordinal)
   }
 
   /**
@@ -186,38 +187,32 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getTextDirection(column: Long): Control.TextDirection {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_DIRECTION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_DIRECTION,
+        LONG.ordinal)
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text.
-   */
   public fun setOpentypeFeature(
     column: Long,
     tag: String,
     `value`: Long
   ): Unit {
     TransferContext.writeArguments(LONG to column, STRING to tag, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_OPENTYPE_FEATURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_OPENTYPE_FEATURE,
+        NIL.ordinal)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getOpentypeFeature(column: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to column, STRING to tag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_OPENTYPE_FEATURE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_OPENTYPE_FEATURE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_OPENTYPE_FEATURES,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_OPENTYPE_FEATURES,
+        NIL.ordinal)
   }
 
   /**
@@ -226,8 +221,8 @@ public open class TreeItem internal constructor() : Object() {
   public fun setStructuredTextBidiOverride(column: Long, parser: Control.StructuredTextParser):
       Unit {
     TransferContext.writeArguments(LONG to column, LONG to parser.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL.ordinal)
   }
 
   /**
@@ -235,8 +230,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getStructuredTextBidiOverride(column: Long): Control.StructuredTextParser {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG.ordinal)
     return Control.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -245,8 +240,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setStructuredTextBidiOverrideOptions(column: Long, args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to column, ARRAY to args)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL.ordinal)
   }
 
   /**
@@ -254,8 +249,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getStructuredTextBidiOverrideOptions(column: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -264,7 +259,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setLanguage(column: Long, language: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_LANGUAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_LANGUAGE, NIL.ordinal)
   }
 
   /**
@@ -272,7 +267,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getLanguage(column: Long): String {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_LANGUAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_LANGUAGE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -281,7 +276,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setSuffix(column: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SUFFIX, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SUFFIX, NIL.ordinal)
   }
 
   /**
@@ -289,7 +284,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getSuffix(column: Long): String {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_SUFFIX, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_SUFFIX, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -298,7 +293,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setIcon(column: Long, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON, NIL.ordinal)
   }
 
   /**
@@ -306,7 +301,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getIcon(column: Long): Texture2D? {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -315,7 +310,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setIconRegion(column: Long, region: Rect2): Unit {
     TransferContext.writeArguments(LONG to column, RECT2 to region)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_REGION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_REGION, NIL.ordinal)
   }
 
   /**
@@ -323,7 +318,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getIconRegion(column: Long): Rect2 {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_REGION, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_REGION, RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -332,7 +327,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setIconMaxWidth(column: Long, width: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to width)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MAX_WIDTH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MAX_WIDTH, NIL.ordinal)
   }
 
   /**
@@ -340,7 +335,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getIconMaxWidth(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MAX_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MAX_WIDTH,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -349,7 +345,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setIconModulate(column: Long, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to column, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MODULATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_MODULATE, NIL.ordinal)
   }
 
   /**
@@ -357,7 +353,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getIconModulate(column: Long): Color {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MODULATE, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_ICON_MODULATE,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -366,7 +363,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setRange(column: Long, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to column, DOUBLE to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE, NIL.ordinal)
   }
 
   /**
@@ -374,7 +371,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getRange(column: Long): Double {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -391,7 +388,7 @@ public open class TreeItem internal constructor() : Object() {
     expr: Boolean = false
   ): Unit {
     TransferContext.writeArguments(LONG to column, DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE_CONFIG, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_RANGE_CONFIG, NIL.ordinal)
   }
 
   /**
@@ -399,8 +396,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getRangeConfig(column: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE_CONFIG,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_RANGE_CONFIG,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -409,7 +406,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setMetadata(column: Long, meta: Any): Unit {
     TransferContext.writeArguments(LONG to column, ANY to meta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL.ordinal)
   }
 
   /**
@@ -417,7 +414,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getMetadata(column: Long): Any? {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_METADATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_METADATA, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -432,7 +429,7 @@ public open class TreeItem internal constructor() : Object() {
     callback: StringName
   ): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to _object, STRING_NAME to callback)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_DRAW, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_DRAW, NIL.ordinal)
   }
 
   /**
@@ -440,7 +437,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun uncollapseTree(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_UNCOLLAPSE_TREE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_UNCOLLAPSE_TREE, NIL.ordinal)
   }
 
   /**
@@ -448,7 +445,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setSelectable(column: Long, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SELECTABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_SELECTABLE, NIL.ordinal)
   }
 
   /**
@@ -456,7 +453,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isSelectable(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTABLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTABLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -465,7 +462,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isSelected(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_SELECTED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -474,7 +471,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun select(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SELECT, NIL.ordinal)
   }
 
   /**
@@ -482,7 +479,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun deselect(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_DESELECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_DESELECT, NIL.ordinal)
   }
 
   /**
@@ -490,7 +487,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setEditable(column: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EDITABLE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EDITABLE, NIL.ordinal)
   }
 
   /**
@@ -498,7 +495,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isEditable(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_EDITABLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_EDITABLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -507,7 +504,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCustomColor(column: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to column, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_COLOR, NIL.ordinal)
   }
 
   /**
@@ -515,7 +512,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getCustomColor(column: Long): Color {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_COLOR, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -524,7 +521,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun clearCustomColor(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_COLOR, NIL.ordinal)
   }
 
   /**
@@ -532,7 +529,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCustomFont(column: Long, font: Font): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to font)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT, NIL.ordinal)
   }
 
   /**
@@ -540,7 +537,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getCustomFont(column: Long): Font? {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
 
@@ -549,7 +546,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCustomFontSize(column: Long, fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to fontSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_FONT_SIZE,
+        NIL.ordinal)
   }
 
   /**
@@ -557,7 +555,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getCustomFontSize(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT_SIZE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_FONT_SIZE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -570,7 +569,8 @@ public open class TreeItem internal constructor() : Object() {
     justOutline: Boolean = false
   ): Unit {
     TransferContext.writeArguments(LONG to column, COLOR to color, BOOL to justOutline)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_BG_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_BG_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -578,7 +578,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun clearCustomBgColor(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_BG_COLOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_CUSTOM_BG_COLOR,
+        NIL.ordinal)
   }
 
   /**
@@ -586,7 +587,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getCustomBgColor(column: Long): Color {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_BG_COLOR, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CUSTOM_BG_COLOR,
+        COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -595,7 +597,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCustomAsButton(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_AS_BUTTON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_AS_BUTTON,
+        NIL.ordinal)
   }
 
   /**
@@ -603,8 +606,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isCustomSetAsButton(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CUSTOM_SET_AS_BUTTON,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_CUSTOM_SET_AS_BUTTON,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -619,7 +622,7 @@ public open class TreeItem internal constructor() : Object() {
     tooltip: String = ""
   ): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to button, LONG to id, BOOL to disabled, STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ADD_BUTTON, NIL.ordinal)
   }
 
   /**
@@ -627,7 +630,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getButtonCount(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -636,7 +639,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getButtonTooltip(column: Long, buttonIdx: Long): String {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -645,7 +649,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getButtonId(column: Long, buttonIdx: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -654,7 +658,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getButtonById(column: Long, id: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_BY_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_BY_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -663,7 +667,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getButton(column: Long, buttonIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -676,7 +680,7 @@ public open class TreeItem internal constructor() : Object() {
     button: Texture2D
   ): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx, OBJECT to button)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON, NIL.ordinal)
   }
 
   /**
@@ -684,7 +688,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun eraseButton(column: Long, buttonIdx: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ERASE_BUTTON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_ERASE_BUTTON, NIL.ordinal)
   }
 
   /**
@@ -696,7 +700,8 @@ public open class TreeItem internal constructor() : Object() {
     disabled: Boolean
   ): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_DISABLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_DISABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -704,7 +709,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun isButtonDisabled(column: Long, buttonIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_BUTTON_DISABLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_BUTTON_DISABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -713,7 +719,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setTooltip(column: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP, NIL.ordinal)
   }
 
   /**
@@ -721,7 +727,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getTooltip(column: Long): String {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -730,7 +736,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setTextAlignment(column: Long, textAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column, LONG to textAlignment.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_ALIGNMENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_ALIGNMENT, NIL.ordinal)
   }
 
   /**
@@ -738,7 +744,8 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getTextAlignment(column: Long): HorizontalAlignment {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_ALIGNMENT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_ALIGNMENT,
+        LONG.ordinal)
     return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -747,7 +754,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setExpandRight(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EXPAND_RIGHT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_EXPAND_RIGHT, NIL.ordinal)
   }
 
   /**
@@ -755,7 +762,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getExpandRight(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_EXPAND_RIGHT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_EXPAND_RIGHT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -766,7 +773,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun createChild(idx: Long = -1): TreeItem? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
@@ -775,25 +782,25 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getTree(): Tree? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TREE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TREE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Tree?
   }
 
   /**
-   * Returns the next TreeItem in the tree or a null object if there is none.
+   * Returns the next sibling TreeItem in the tree or a null object if there is none.
    */
   public fun getNext(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
   /**
-   * Returns the previous TreeItem in the tree or a null object if there is none.
+   * Returns the previous sibling TreeItem in the tree or a null object if there is none.
    */
   public fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
@@ -802,7 +809,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getParent(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PARENT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PARENT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
@@ -811,29 +818,31 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getFirstChild(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_FIRST_CHILD, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_FIRST_CHILD, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
   /**
-   * Returns the next visible TreeItem in the tree or a null object if there is none.
+   * Returns the next visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If `wrap` is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_VISIBLE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_VISIBLE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
   /**
-   * Returns the previous visible TreeItem in the tree or a null object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If `wrap` is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_VISIBLE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_VISIBLE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
@@ -844,7 +853,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getChild(idx: Long): TreeItem? {
     TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
@@ -853,7 +862,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getChildCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILD_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -862,7 +871,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getChildren(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILDREN, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_CHILDREN, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -871,7 +880,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getIndex(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_INDEX, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_INDEX, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -882,7 +891,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun moveBefore(item: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_MOVE_BEFORE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_MOVE_BEFORE, NIL.ordinal)
   }
 
   /**
@@ -892,7 +901,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun moveAfter(item: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_MOVE_AFTER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_MOVE_AFTER, NIL.ordinal)
   }
 
   /**
@@ -900,7 +909,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun removeChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_REMOVE_CHILD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_REMOVE_CHILD, NIL.ordinal)
   }
 
   /**
@@ -908,7 +917,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CALL_RECURSIVE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CALL_RECURSIVE, NIL.ordinal)
   }
 
   public enum class TreeCellMode(

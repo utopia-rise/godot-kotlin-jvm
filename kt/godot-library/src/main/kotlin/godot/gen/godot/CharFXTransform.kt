@@ -45,13 +45,13 @@ public open class CharFXTransform : RefCounted() {
   public var range: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RANGE,
-          VECTOR2I)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RANGE,
+          VECTOR2I.ordinal)
       return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RANGE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RANGE, NIL.ordinal)
     }
 
   /**
@@ -62,14 +62,14 @@ public open class CharFXTransform : RefCounted() {
   public var elapsedTime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ELAPSED_TIME,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ELAPSED_TIME,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ELAPSED_TIME,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ELAPSED_TIME,
+          NIL.ordinal)
     }
 
   /**
@@ -78,13 +78,14 @@ public open class CharFXTransform : RefCounted() {
   public var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_VISIBLE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_VISIBLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_VISIBILITY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_VISIBILITY,
+          NIL.ordinal)
     }
 
   /**
@@ -93,12 +94,14 @@ public open class CharFXTransform : RefCounted() {
   public var outline: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_OUTLINE, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_OUTLINE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OUTLINE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OUTLINE,
+          NIL.ordinal)
     }
 
   /**
@@ -107,13 +110,14 @@ public open class CharFXTransform : RefCounted() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_OFFSET,
-          VECTOR2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_OFFSET,
+          VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OFFSET, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -122,12 +126,13 @@ public open class CharFXTransform : RefCounted() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_COLOR, NIL.ordinal)
     }
 
   /**
@@ -142,14 +147,14 @@ public open class CharFXTransform : RefCounted() {
   public var env: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ENVIRONMENT,
-          DICTIONARY)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ENVIRONMENT,
+          DICTIONARY.ordinal)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ENVIRONMENT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ENVIRONMENT,
+          NIL.ordinal)
     }
 
   /**
@@ -158,14 +163,14 @@ public open class CharFXTransform : RefCounted() {
   public var glyphIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_INDEX,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_INDEX,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_INDEX,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_INDEX,
+          NIL.ordinal)
     }
 
   /**
@@ -174,14 +179,14 @@ public open class CharFXTransform : RefCounted() {
   public var glyphCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_COUNT,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_COUNT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_COUNT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_COUNT,
+          NIL.ordinal)
     }
 
   /**
@@ -190,14 +195,14 @@ public open class CharFXTransform : RefCounted() {
   public var glyphFlags: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_FLAGS,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_FLAGS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_FLAGS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_FLAGS,
+          NIL.ordinal)
     }
 
   /**
@@ -206,12 +211,12 @@ public open class CharFXTransform : RefCounted() {
   public var font: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_FONT, _RID)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_FONT, _RID.ordinal)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

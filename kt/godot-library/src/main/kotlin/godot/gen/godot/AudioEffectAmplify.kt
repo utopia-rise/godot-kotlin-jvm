@@ -17,7 +17,8 @@ import kotlin.Unit
 /**
  * Adds an amplifying audio effect to an audio bus.
  *
- * Increases or decreases the volume of the selected audio bus.
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Increases or decreases the volume being routed through the audio bus.
  */
@@ -29,14 +30,14 @@ public open class AudioEffectAmplify : AudioEffect() {
   public var volumeDb: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTAMPLIFY_GET_VOLUME_DB,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTAMPLIFY_GET_VOLUME_DB,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTAMPLIFY_SET_VOLUME_DB,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTAMPLIFY_SET_VOLUME_DB,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

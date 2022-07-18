@@ -38,12 +38,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENABLED, NIL.ordinal)
     }
 
   /**
@@ -52,12 +52,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_EDITOR_ONLY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_EDITOR_ONLY, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_EDITOR_ONLY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_EDITOR_ONLY, NIL.ordinal)
     }
 
   /**
@@ -66,12 +66,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_COLOR, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_COLOR, NIL.ordinal)
     }
 
   /**
@@ -80,12 +80,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var energy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENERGY, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -94,12 +94,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var blendMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_BLEND_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_BLEND_MODE, NIL.ordinal)
     }
 
   /**
@@ -108,12 +108,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeZMin: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MIN, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MIN, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MIN, NIL.ordinal)
     }
 
   /**
@@ -122,12 +122,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeZMax: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MAX, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MAX, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MAX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MAX, NIL.ordinal)
     }
 
   /**
@@ -136,12 +136,14 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeLayerMin: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MIN, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MIN,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MIN,
+          NIL.ordinal)
     }
 
   /**
@@ -150,12 +152,14 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeLayerMax: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MAX, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MAX,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MAX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MAX,
+          NIL.ordinal)
     }
 
   /**
@@ -164,12 +168,14 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeItemCullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_CULL_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_CULL_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_CULL_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_CULL_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -178,12 +184,14 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_SHADOW_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_SHADOW_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_ENABLED, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -192,12 +200,13 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_COLOR, NIL.ordinal)
     }
 
   /**
@@ -206,12 +215,13 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_FILTER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_FILTER, NIL.ordinal)
     }
 
   /**
@@ -220,12 +230,13 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowFilterSmooth: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_SMOOTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_SMOOTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_SMOOTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_SMOOTH, NIL.ordinal)
     }
 
   /**
@@ -234,14 +245,14 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowItemCullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_SHADOW_CULL_MASK,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_SHADOW_CULL_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_SHADOW_CULL_MASK,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_SHADOW_CULL_MASK,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -253,7 +264,7 @@ public open class Light2D internal constructor() : Node2D() {
    */
   public fun setHeight(height: Double): Unit {
     TransferContext.writeArguments(DOUBLE to height)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_HEIGHT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_HEIGHT, NIL.ordinal)
   }
 
   /**
@@ -261,7 +272,7 @@ public open class Light2D internal constructor() : Node2D() {
    */
   public fun getHeight(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_HEIGHT, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_HEIGHT, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

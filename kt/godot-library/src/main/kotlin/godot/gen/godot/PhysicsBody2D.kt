@@ -53,8 +53,8 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     safeMargin: Double = 0.08
   ): KinematicCollision2D? {
     TransferContext.writeArguments(VECTOR2 to distance, BOOL to testOnly, DOUBLE to safeMargin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
   }
 
@@ -74,7 +74,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     safeMargin: Double = 0.08
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision, DOUBLE to safeMargin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -83,8 +83,8 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    */
   public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -93,8 +93,8 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    */
   public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_ADD_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_ADD_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   /**
@@ -102,8 +102,8 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    */
   public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_REMOVE_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   public companion object

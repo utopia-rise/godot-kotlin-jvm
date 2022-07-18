@@ -31,6 +31,8 @@ import kotlin.Unit
  * They are made of an [AABB] and a group of [godot.Texture2D]s specifying [godot.core.Color], normal, ORM (ambient occlusion, roughness, metallic), and emission. Decals are projected within their [AABB] so altering the orientation of the Decal affects the direction in which they are projected. By default, Decals are projected down (i.e. from positive Y to negative Y).
  *
  * The [godot.Texture2D]s associated with the Decal are automatically stored in a texture atlas which is used for drawing the decals so all decals can be drawn at once. Godot uses clustered decals, meaning they are stored in cluster data and drawn when the mesh is drawn, they are not drawn as a post-processing effect after.
+ *
+ * **Note:** Decals cannot affect an underlying material's transparency, regardless of its transparency mode (alpha blend, alpha scissor, alpha hash, opaque pre-pass). This means translucent or transparent areas of a material will remain translucent or transparent even if an opaque decal is applied on them.
  */
 @GodotBaseType
 public open class Decal : VisualInstance3D() {
@@ -40,12 +42,12 @@ public open class Decal : VisualInstance3D() {
   public var extents: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EXTENTS, VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EXTENTS, VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_EXTENTS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_EXTENTS, NIL.ordinal)
     }
 
   /**
@@ -54,12 +56,13 @@ public open class Decal : VisualInstance3D() {
   public var emissionEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EMISSION_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_EMISSION_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_EMISSION_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_EMISSION_ENERGY, NIL.ordinal)
     }
 
   /**
@@ -68,12 +71,12 @@ public open class Decal : VisualInstance3D() {
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_MODULATE, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_MODULATE, COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_MODULATE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_MODULATE, NIL.ordinal)
     }
 
   /**
@@ -82,12 +85,12 @@ public open class Decal : VisualInstance3D() {
   public var albedoMix: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_ALBEDO_MIX, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_ALBEDO_MIX, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_ALBEDO_MIX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_ALBEDO_MIX, NIL.ordinal)
     }
 
   /**
@@ -96,40 +99,40 @@ public open class Decal : VisualInstance3D() {
   public var normalFade: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_NORMAL_FADE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_NORMAL_FADE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_NORMAL_FADE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_NORMAL_FADE, NIL.ordinal)
     }
 
   /**
-   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
+   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`).
    */
   public var upperFade: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_UPPER_FADE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_UPPER_FADE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_UPPER_FADE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_UPPER_FADE, NIL.ordinal)
     }
 
   /**
-   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
+   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`).
    */
   public var lowerFade: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_LOWER_FADE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_LOWER_FADE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_LOWER_FADE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_LOWER_FADE, NIL.ordinal)
     }
 
   /**
@@ -138,14 +141,14 @@ public open class Decal : VisualInstance3D() {
   public var distanceFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_IS_DISTANCE_FADE_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_IS_DISTANCE_FADE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_ENABLE_DISTANCE_FADE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_ENABLE_DISTANCE_FADE,
+          NIL.ordinal)
     }
 
   /**
@@ -154,14 +157,14 @@ public open class Decal : VisualInstance3D() {
   public var distanceFadeBegin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_BEGIN,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_BEGIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_DISTANCE_FADE_BEGIN,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_DISTANCE_FADE_BEGIN,
+          NIL.ordinal)
     }
 
   /**
@@ -170,14 +173,14 @@ public open class Decal : VisualInstance3D() {
   public var distanceFadeLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_LENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_DISTANCE_FADE_LENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_DISTANCE_FADE_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -186,12 +189,12 @@ public open class Decal : VisualInstance3D() {
   public var cullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_CULL_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_CULL_MASK, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_CULL_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_CULL_MASK, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -231,7 +234,7 @@ public open class Decal : VisualInstance3D() {
    */
   public fun setTexture(type: Decal.DecalTexture, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_TEXTURE, NIL.ordinal)
   }
 
   /**
@@ -267,7 +270,7 @@ public open class Decal : VisualInstance3D() {
    */
   public fun getTexture(type: Decal.DecalTexture): Texture2D? {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_TEXTURE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 

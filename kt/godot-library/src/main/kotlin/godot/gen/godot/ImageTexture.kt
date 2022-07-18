@@ -28,10 +28,8 @@ import kotlin.Unit
  * A [godot.Texture2D] based on an [godot.Image]. For an image to be displayed, an [godot.ImageTexture] has to be created from it using the [createFromImage] method:
  *
  * ```
- * 		var texture = ImageTexture.new()
- * 		var image = Image.new()
- * 		image.load("res://icon.png")
- * 		texture.create_from_image(image)
+ * 		var image = Image.load_from_file("res://icon.png")
+ * 		var texture = ImageTexture.create_from_image(image)
  * 		$Sprite2D.texture = texture
  * 		```
  *
@@ -64,11 +62,12 @@ public open class ImageTexture : Texture2D() {
   }
 
   /**
-   * Initializes the texture by allocating and setting the data from an [godot.Image].
+   * Creates a new [godot.ImageTexture] and initializes it by allocating and setting the data from an [godot.Image].
    */
   public fun createFromImage(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE,
+        NIL.ordinal)
   }
 
   /**
@@ -76,7 +75,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG.ordinal)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -89,7 +88,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun update(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_UPDATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_UPDATE, NIL.ordinal)
   }
 
   /**
@@ -97,7 +96,8 @@ public open class ImageTexture : Texture2D() {
    */
   public fun setSizeOverride(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE,
+        NIL.ordinal)
   }
 
   public companion object

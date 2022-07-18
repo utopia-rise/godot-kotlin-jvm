@@ -54,12 +54,12 @@ public open class XRInterface internal constructor() : RefCounted() {
   public var interfaceIsPrimary: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PRIMARY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PRIMARY, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PRIMARY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PRIMARY, NIL.ordinal)
     }
 
   /**
@@ -68,8 +68,8 @@ public open class XRInterface internal constructor() : RefCounted() {
   public val xrPlayAreaMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -79,14 +79,14 @@ public open class XRInterface internal constructor() : RefCounted() {
   public var arIsAnchorDetectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ANCHOR_DETECTION_IS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ANCHOR_DETECTION_IS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ANCHOR_DETECTION_IS_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ANCHOR_DETECTION_IS_ENABLED, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -98,7 +98,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getName(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_NAME, STRING_NAME)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_NAME,
+        STRING_NAME.ordinal)
     return TransferContext.readReturnValue(STRING_NAME, false) as StringName
   }
 
@@ -107,7 +108,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getCapabilities(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAPABILITIES, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAPABILITIES,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -116,7 +118,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun isInitialized(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_INITIALIZED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_INITIALIZED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -133,7 +135,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun initialize(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_INITIALIZE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_INITIALIZE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -142,7 +144,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun uninitialize(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_UNINITIALIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_UNINITIALIZE, NIL.ordinal)
   }
 
   /**
@@ -150,8 +152,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getTrackingStatus(): XRInterface.TrackingStatus {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_TRACKING_STATUS,
+        LONG.ordinal)
     return XRInterface.TrackingStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -160,8 +162,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getRenderTargetSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_RENDER_TARGET_SIZE,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_RENDER_TARGET_SIZE,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -170,7 +172,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getViewCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_VIEW_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_VIEW_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -190,8 +192,8 @@ public open class XRInterface internal constructor() : RefCounted() {
     delaySec: Double
   ): Unit {
     TransferContext.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_TRIGGER_HAPTIC_PULSE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_TRIGGER_HAPTIC_PULSE,
+        NIL.ordinal)
   }
 
   /**
@@ -199,8 +201,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SUPPORTS_PLAY_AREA_MODE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -209,8 +211,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PLAY_AREA_MODE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -219,8 +221,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getPlayArea(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -229,8 +231,8 @@ public open class XRInterface internal constructor() : RefCounted() {
    */
   public fun getCameraFeedId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAMERA_FEED_ID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_CAMERA_FEED_ID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

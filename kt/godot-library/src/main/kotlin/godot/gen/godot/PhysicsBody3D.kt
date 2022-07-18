@@ -58,8 +58,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     maxCollisions: Long = 1
   ): KinematicCollision3D? {
     TransferContext.writeArguments(VECTOR3 to distance, BOOL to testOnly, DOUBLE to safeMargin, LONG to maxCollisions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_MOVE_AND_COLLIDE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_MOVE_AND_COLLIDE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
   }
 
@@ -82,7 +82,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     maxCollisions: Long = 1
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to distance, OBJECT to collision, DOUBLE to safeMargin, LONG to maxCollisions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -91,7 +91,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
     TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_SET_AXIS_LOCK, NIL.ordinal)
   }
 
   /**
@@ -99,7 +99,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
     TransferContext.writeArguments(LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -108,8 +109,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_COLLISION_EXCEPTIONS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -118,8 +119,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   /**
@@ -127,8 +128,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   public companion object

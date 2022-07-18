@@ -28,7 +28,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public fun getSkeleton(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -37,7 +37,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public fun getSkin(): Skin? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Skin?
   }
 

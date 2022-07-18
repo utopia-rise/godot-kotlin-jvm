@@ -417,6 +417,31 @@ public open class EditorPlugin internal constructor() : Node() {
 
   /**
    * Returns `true` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script** and **AssetLib**).
+   *
+   * When the plugin's workspace is selected, other main screen plugins will be hidden, but your plugin will not appear automatically. It needs to be added as a child of [godot.EditorInterface.getBaseControl] and made visible inside [_makeVisible].
+   *
+   * Use [_getPluginName] and [_getPluginIcon] to customize the plugin button's appearance.
+   *
+   * ```
+   * 				var plugin_control
+   *
+   * 				func _enter_tree():
+   * 				    plugin_control = preload("my_plugin_control.tscn").instantiate()
+   * 				    get_editor_interface().get_editor_main_control().add_child(plugin_control)
+   * 				    plugin_control.hide()
+   *
+   * 				func _has_main_screen():
+   * 				    return true
+   *
+   * 				func _make_visible(visible):
+   * 				    plugin_control.visible = visible
+   *
+   * 				func _get_plugin_name():
+   * 				    return "My Super Cool Plugin 3000"
+   *
+   * 				func _get_plugin_icon():
+   * 				    return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+   * 				```
    */
   public open fun _hasMainScreen(): Boolean {
     throw NotImplementedError("_has_main_screen is not implemented for EditorPlugin")
@@ -444,14 +469,34 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Gets the state of your plugin editor. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns).
+   * Override this method to provide a state data you want to be saved, like view position, grid settings, folding, etc. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns). This data is automatically saved for each scene in an `editstate` file in the editor metadata folder. If you want to store global (scene-independent) editor data for your plugin, you can use [_getWindowLayout] instead.
+   *
+   * Use [_setState] to restore your saved state.
+   *
+   * **Note:** This method should not be used to save important settings that should persist with the project.
+   *
+   * **Note:** You must implement [_getPluginName] for the state to be stored and restored correctly.
+   *
+   * ```
+   * 				func _get_state():
+   * 				    var state = {"zoom": zoom, "preferred_color": my_color}
+   * 				    return state
+   * 				```
    */
   public open fun _getState(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_state is not implemented for EditorPlugin")
   }
 
   /**
-   * Restore the state saved by [_getState].
+   * Restore the state saved by [_getState]. This method is called when the current scene tab is changed in the editor.
+   *
+   * **Note:** Your plugin must implement [_getPluginName], otherwise it will not be recognized and this method will not be called.
+   *
+   * ```
+   * 				func _set_state(data):
+   * 				    zoom = data.get("zoom", 1.0)
+   * 				    preferred_color = data.get("my_color", Color.white)
+   * 				```
    */
   public open fun _setState(state: Dictionary<Any?, Any?>): Unit {
   }
@@ -484,13 +529,27 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Restore the plugin GUI layout saved by [_getWindowLayout].
+   * Restore the plugin GUI layout and data saved by [_getWindowLayout]. This method is called for every plugin on editor startup. Use the provided `configuration` file to read your saved data.
+   *
+   * ```
+   * 				func _set_window_layout(configuration):
+   * 				    $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2())
+   * 				    $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.white)
+   * 				```
    */
   public open fun _setWindowLayout(configuration: ConfigFile): Unit {
   }
 
   /**
-   * Gets the GUI layout of the plugin. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed(For example changing the position of a dock).
+   * Override this method to provide the GUI layout of the plugin or any other data you want to be stored. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed (for example changing the position of a dock). The data is stored in the `editor_layout.cfg` file in the editor metadata directory.
+   *
+   * Use [_setWindowLayout] to restore your saved layout.
+   *
+   * ```
+   * 				func _get_window_layout(configuration):
+   * 				    configuration.set_value("MyPlugin", "window_position", $Window.position)
+   * 				    configuration.set_value("MyPlugin", "icon_color", $Icon.modulate)
+   * 				```
    */
   public open fun _getWindowLayout(configuration: ConfigFile): Unit {
   }
@@ -526,8 +585,8 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun addControlToContainer(container: EditorPlugin.CustomControlContainer,
       control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_CONTAINER, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_CONTAINER,
+        NIL.ordinal)
   }
 
   /**
@@ -535,8 +594,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addControlToBottomPanel(control: Control, title: String): Button? {
     TransferContext.writeArguments(OBJECT to control, STRING to title)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_BOTTOM_PANEL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_BOTTOM_PANEL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
 
@@ -549,8 +608,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addControlToDock(slot: EditorPlugin.DockSlot, control: Control): Unit {
     TransferContext.writeArguments(LONG to slot.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
+        NIL.ordinal)
   }
 
   /**
@@ -558,8 +617,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeControlFromDocks(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_DOCKS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_DOCKS,
+        NIL.ordinal)
   }
 
   /**
@@ -567,8 +626,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeControlFromBottomPanel(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_BOTTOM_PANEL, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_BOTTOM_PANEL, NIL.ordinal)
   }
 
   /**
@@ -577,8 +636,8 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun removeControlFromContainer(container: EditorPlugin.CustomControlContainer,
       control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_CONTAINER, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_CONTAINER, NIL.ordinal)
   }
 
   /**
@@ -586,8 +645,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addToolMenuItem(name: String, callable: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_MENU_ITEM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_MENU_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -595,8 +654,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to submenu)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_SUBMENU_ITEM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_SUBMENU_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -604,8 +663,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeToolMenuItem(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TOOL_MENU_ITEM,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TOOL_MENU_ITEM,
+        NIL.ordinal)
   }
 
   /**
@@ -624,7 +683,8 @@ public open class EditorPlugin internal constructor() : Node() {
     icon: Texture2D
   ): Unit {
     TransferContext.writeArguments(STRING to type, STRING to base, OBJECT to script, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CUSTOM_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CUSTOM_TYPE,
+        NIL.ordinal)
   }
 
   /**
@@ -632,8 +692,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeCustomType(type: String): Unit {
     TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CUSTOM_TYPE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CUSTOM_TYPE,
+        NIL.ordinal)
   }
 
   /**
@@ -641,8 +701,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addAutoloadSingleton(name: String, path: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_AUTOLOAD_SINGLETON,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_AUTOLOAD_SINGLETON,
+        NIL.ordinal)
   }
 
   /**
@@ -650,8 +710,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeAutoloadSingleton(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_AUTOLOAD_SINGLETON, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_AUTOLOAD_SINGLETON,
+        NIL.ordinal)
   }
 
   /**
@@ -659,7 +719,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun updateOverlays(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_UPDATE_OVERLAYS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_UPDATE_OVERLAYS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -668,8 +729,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun makeBottomPanelItemVisible(item: Control): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_MAKE_BOTTOM_PANEL_ITEM_VISIBLE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_MAKE_BOTTOM_PANEL_ITEM_VISIBLE, NIL.ordinal)
   }
 
   /**
@@ -677,7 +738,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun hideBottomPanel(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_HIDE_BOTTOM_PANEL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_HIDE_BOTTOM_PANEL,
+        NIL.ordinal)
   }
 
   /**
@@ -685,7 +747,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getUndoRedo(): UndoRedo? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as UndoRedo?
   }
 
@@ -696,8 +759,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -705,8 +768,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL.ordinal)
   }
 
   /**
@@ -714,7 +777,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun queueSaveLayout(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_QUEUE_SAVE_LAYOUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_QUEUE_SAVE_LAYOUT,
+        NIL.ordinal)
   }
 
   /**
@@ -722,8 +786,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TRANSLATION_PARSER_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TRANSLATION_PARSER_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -731,8 +795,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TRANSLATION_PARSER_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TRANSLATION_PARSER_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -746,7 +810,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addImportPlugin(importer: EditorImportPlugin, firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to importer, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_IMPORT_PLUGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_IMPORT_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -754,8 +819,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeImportPlugin(importer: EditorImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to importer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_IMPORT_PLUGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_IMPORT_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -766,8 +831,8 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_FORMAT_IMPORTER_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_FORMAT_IMPORTER_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -775,8 +840,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_FORMAT_IMPORTER_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_FORMAT_IMPORTER_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -787,8 +852,8 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_POST_IMPORT_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_POST_IMPORT_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -796,8 +861,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_POST_IMPORT_PLUGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_POST_IMPORT_PLUGIN, NIL.ordinal)
   }
 
   /**
@@ -807,7 +872,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_EXPORT_PLUGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_EXPORT_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -815,8 +881,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_EXPORT_PLUGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_EXPORT_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -826,8 +892,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SPATIAL_GIZMO_PLUGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SPATIAL_GIZMO_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -835,8 +901,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SPATIAL_GIZMO_PLUGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SPATIAL_GIZMO_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -870,8 +936,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_INSPECTOR_PLUGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_INSPECTOR_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -879,8 +945,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_INSPECTOR_PLUGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_INSPECTOR_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -888,8 +954,9 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun setInputEventForwardingAlwaysEnabled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_INPUT_EVENT_FORWARDING_ALWAYS_ENABLED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_INPUT_EVENT_FORWARDING_ALWAYS_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -897,8 +964,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun setForceDrawOverForwardingEnabled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_FORCE_DRAW_OVER_FORWARDING_ENABLED, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_FORCE_DRAW_OVER_FORWARDING_ENABLED, NIL.ordinal)
   }
 
   /**
@@ -906,13 +973,13 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EDITOR_INTERFACE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EDITOR_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorInterface?
   }
 
   /**
-   * Gets the Editor's dialogue used for making scripts.
+   * Gets the Editor's dialog used for making scripts.
    *
    * **Note:** Users can configure it before use.
    *
@@ -920,8 +987,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getScriptCreateDialog(): ScriptCreateDialog? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_SCRIPT_CREATE_DIALOG, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_SCRIPT_CREATE_DIALOG,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ScriptCreateDialog?
   }
 
@@ -930,8 +997,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addDebuggerPlugin(script: Script): Unit {
     TransferContext.writeArguments(OBJECT to script)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_DEBUGGER_PLUGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_DEBUGGER_PLUGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -939,8 +1006,8 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeDebuggerPlugin(script: Script): Unit {
     TransferContext.writeArguments(OBJECT to script)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_DEBUGGER_PLUGIN,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_DEBUGGER_PLUGIN,
+        NIL.ordinal)
   }
 
   public enum class DockSlot(

@@ -21,7 +21,7 @@ public open class GDScriptNativeClass internal constructor() : RefCounted() {
 
   public fun new(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPTNATIVECLASS_NEW, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPTNATIVECLASS_NEW, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 

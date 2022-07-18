@@ -27,14 +27,14 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   public var source: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_GET_SOURCE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_GET_SOURCE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_SET_SOURCE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_SET_SOURCE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {

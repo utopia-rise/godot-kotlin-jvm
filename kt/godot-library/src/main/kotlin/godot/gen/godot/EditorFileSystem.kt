@@ -61,17 +61,18 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFilesystem(): EditorFileSystemDirectory? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
   }
 
   /**
-   * Returns `true` of the filesystem is being scanned.
+   * Returns `true` if the filesystem is being scanned.
    */
   public fun isScanning(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -80,8 +81,8 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getScanningProgress(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -90,7 +91,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun scan(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN, NIL.ordinal)
   }
 
   /**
@@ -98,15 +99,19 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun scanSources(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN_SOURCES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN_SOURCES,
+        NIL.ordinal)
   }
 
   /**
-   * Update a file information. Call this if an external program (not Godot) modified the file.
+   * Add a file in an existing directory, or schedule file information to be updated on editor restart. Can be used to update text files saved by an external program.
+   *
+   * This will not import the file. To reimport, call [reimportFiles] or [scan] methods.
    */
   public fun updateFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_FILE,
+        NIL.ordinal)
   }
 
   /**
@@ -114,8 +119,8 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
   }
 
@@ -124,8 +129,8 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFileType(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -134,8 +139,8 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun updateScriptClasses(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES,
+        NIL.ordinal)
   }
 
   public companion object

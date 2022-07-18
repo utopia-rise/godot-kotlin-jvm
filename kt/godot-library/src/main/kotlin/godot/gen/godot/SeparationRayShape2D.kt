@@ -31,14 +31,14 @@ public open class SeparationRayShape2D : Shape2D() {
   public var length: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_GET_LENGTH,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_GET_LENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_SET_LENGTH,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_SET_LENGTH,
+          NIL.ordinal)
     }
 
   /**
@@ -49,14 +49,14 @@ public open class SeparationRayShape2D : Shape2D() {
   public var slideOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_GET_SLIDE_ON_SLOPE, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_GET_SLIDE_ON_SLOPE, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_SET_SLIDE_ON_SLOPE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_SET_SLIDE_ON_SLOPE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

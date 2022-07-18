@@ -77,8 +77,8 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
     shortcutText: String = "None"
   ): Unit {
     TransferContext.writeArguments(STRING to commandName, STRING to keyName, CALLABLE to bindedCallable, STRING to shortcutText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_ADD_COMMAND,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_ADD_COMMAND,
+        NIL.ordinal)
   }
 
   /**
@@ -88,8 +88,8 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
    */
   public fun removeCommand(keyName: String): Unit {
     TransferContext.writeArguments(STRING to keyName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_REMOVE_COMMAND,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_REMOVE_COMMAND,
+        NIL.ordinal)
   }
 
   public companion object

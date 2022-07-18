@@ -154,7 +154,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to billboard, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_LINES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_LINES, NIL.ordinal)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     skeleton: SkinReference? = null
   ): Unit {
     TransferContext.writeArguments(OBJECT to mesh, OBJECT to material, TRANSFORM3D to transform, OBJECT to skeleton)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_MESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_MESH, NIL.ordinal)
   }
 
   /**
@@ -175,8 +175,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun addCollisionSegments(segments: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to segments)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_SEGMENTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_SEGMENTS,
+        NIL.ordinal)
   }
 
   /**
@@ -184,8 +184,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun addCollisionTriangles(triangles: TriangleMesh): Unit {
     TransferContext.writeArguments(OBJECT to triangles)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_TRIANGLES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_TRIANGLES, NIL.ordinal)
   }
 
   /**
@@ -197,8 +197,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
     TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale, COLOR to modulate)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_UNSCALED_BILLBOARD, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_UNSCALED_BILLBOARD,
+        NIL.ordinal)
   }
 
   /**
@@ -216,7 +216,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     secondary: Boolean = false
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to handles, OBJECT to material, PACKED_INT_32_ARRAY to ids, BOOL to billboard, BOOL to secondary)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES,
+        NIL.ordinal)
   }
 
   /**
@@ -224,8 +225,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun setSpatialNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_SPATIAL_NODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_SPATIAL_NODE,
+        NIL.ordinal)
   }
 
   /**
@@ -233,8 +234,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getSpatialNode(): Node3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SPATIAL_NODE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SPATIAL_NODE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node3D?
   }
 
@@ -243,8 +244,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getPlugin(): EditorNode3DGizmoPlugin? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_PLUGIN,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_PLUGIN,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorNode3DGizmoPlugin?
   }
 
@@ -253,7 +254,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_CLEAR, NIL.ordinal)
   }
 
   /**
@@ -261,7 +262,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun setHidden(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_HIDDEN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_HIDDEN,
+        NIL.ordinal)
   }
 
   /**
@@ -269,8 +271,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun isSubgizmoSelected(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_IS_SUBGIZMO_SELECTED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_IS_SUBGIZMO_SELECTED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -279,8 +281,8 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getSubgizmoSelection(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SUBGIZMO_SELECTION, PACKED_INT_32_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SUBGIZMO_SELECTION,
+        PACKED_INT_32_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 

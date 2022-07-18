@@ -36,8 +36,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getTravel(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_TRAVEL, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_TRAVEL,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -46,8 +46,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getRemainder(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_REMAINDER, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_REMAINDER,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -56,8 +56,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionSafeFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_SAFE_FRACTION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_SAFE_FRACTION,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -66,8 +67,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionUnsafeFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_UNSAFE_FRACTION, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_UNSAFE_FRACTION,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -76,8 +78,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -86,8 +88,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionPoint(collisionIndex: Long = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_POINT, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_POINT, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -96,8 +98,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionNormal(collisionIndex: Long = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_NORMAL, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_NORMAL, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -106,8 +108,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getColliderVelocity(collisionIndex: Long = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_VELOCITY, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_VELOCITY, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -116,8 +118,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getColliderId(collisionIndex: Long = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_ID, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -126,8 +128,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getColliderRid(collisionIndex: Long = 0): RID {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_RID, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -136,8 +138,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollider(collisionIndex: Long = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
@@ -146,8 +148,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getColliderShape(collisionIndex: Long = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_SHAPE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLIDER_SHAPE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -156,8 +158,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionLocalShape(collisionIndex: Long = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_LOCAL_SHAPE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_LOCAL_SHAPE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -166,8 +168,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   public fun getCollisionDepth(collisionIndex: Long = 0): Double {
     TransferContext.writeArguments(LONG to collisionIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_DEPTH, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONRESULT3D_GET_COLLISION_DEPTH, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 

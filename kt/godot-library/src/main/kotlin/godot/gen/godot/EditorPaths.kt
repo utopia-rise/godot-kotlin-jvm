@@ -46,7 +46,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -63,7 +63,8 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -80,7 +81,8 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -93,7 +95,8 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun isSelfContained(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -102,8 +105,8 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getSelfContainedFile(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

@@ -39,12 +39,13 @@ public open class NinePatchRect : Control() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_TEXTURE, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_TEXTURE,
+          OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_TEXTURE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_TEXTURE, NIL.ordinal)
     }
 
   /**
@@ -53,14 +54,14 @@ public open class NinePatchRect : Control() {
   public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_IS_DRAW_CENTER_ENABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_IS_DRAW_CENTER_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_DRAW_CENTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_DRAW_CENTER,
+          NIL.ordinal)
     }
 
   /**
@@ -69,14 +70,14 @@ public open class NinePatchRect : Control() {
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_REGION_RECT,
-          RECT2)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_REGION_RECT,
+          RECT2.ordinal)
       return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_REGION_RECT,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_REGION_RECT,
+          NIL.ordinal)
     }
 
   /**
@@ -85,14 +86,14 @@ public open class NinePatchRect : Control() {
   public var axisStretchHorizontal: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_H_AXIS_STRETCH_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_H_AXIS_STRETCH_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_H_AXIS_STRETCH_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_H_AXIS_STRETCH_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -101,14 +102,14 @@ public open class NinePatchRect : Control() {
   public var axisStretchVertical: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_V_AXIS_STRETCH_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_V_AXIS_STRETCH_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_V_AXIS_STRETCH_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_V_AXIS_STRETCH_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -120,7 +121,8 @@ public open class NinePatchRect : Control() {
    */
   public fun setPatchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN,
+        NIL.ordinal)
   }
 
   /**
@@ -128,8 +130,8 @@ public open class NinePatchRect : Control() {
    */
   public fun getPatchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_PATCH_MARGIN,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

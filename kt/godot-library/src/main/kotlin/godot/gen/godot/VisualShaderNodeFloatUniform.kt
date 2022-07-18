@@ -31,14 +31,14 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var hint: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_HINT, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_HINT,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_HINT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_HINT,
+          NIL.ordinal)
     }
 
   /**
@@ -47,14 +47,14 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var min: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_MIN, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_MIN,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_MIN, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_MIN,
+          NIL.ordinal)
     }
 
   /**
@@ -63,14 +63,14 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var max: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_MAX, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_MAX,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_MAX, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_MAX,
+          NIL.ordinal)
     }
 
   /**
@@ -79,14 +79,14 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var step: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_STEP, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_STEP,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_STEP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_STEP,
+          NIL.ordinal)
     }
 
   /**
@@ -95,14 +95,16 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_IS_DEFAULT_VALUE_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_DEFAULT_VALUE_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -111,14 +113,14 @@ public open class VisualShaderNodeFloatUniform : VisualShaderNodeUniform() {
   public var defaultValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_DEFAULT_VALUE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_GET_DEFAULT_VALUE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_DEFAULT_VALUE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATUNIFORM_SET_DEFAULT_VALUE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

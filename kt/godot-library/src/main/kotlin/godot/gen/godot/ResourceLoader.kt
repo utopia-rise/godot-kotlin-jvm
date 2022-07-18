@@ -55,8 +55,8 @@ public object ResourceLoader : Object() {
     useSubThreads: Boolean = false
   ): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_REQUEST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_REQUEST,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -68,8 +68,8 @@ public object ResourceLoader : Object() {
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS,
+        LONG.ordinal)
     return ResourceLoader.ThreadLoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -80,8 +80,8 @@ public object ResourceLoader : Object() {
    */
   public fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
@@ -104,7 +104,7 @@ public object ResourceLoader : Object() {
     cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): Resource? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
@@ -113,9 +113,9 @@ public object ResourceLoader : Object() {
    */
   public fun getRecognizedExtensionsForType(type: String): PackedStringArray {
     TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.icall(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
-        PACKED_STRING_ARRAY)
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -124,8 +124,8 @@ public object ResourceLoader : Object() {
    */
   public fun setAbortOnMissingResources(abort: Boolean): Unit {
     TransferContext.writeArguments(BOOL to abort)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL.ordinal)
   }
 
   /**
@@ -133,8 +133,8 @@ public object ResourceLoader : Object() {
    */
   public fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_DEPENDENCIES,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_DEPENDENCIES,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -145,7 +145,7 @@ public object ResourceLoader : Object() {
    */
   public fun hasCached(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_HAS_CACHED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_HAS_CACHED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -156,7 +156,7 @@ public object ResourceLoader : Object() {
    */
   public fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_EXISTS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_EXISTS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -165,8 +165,8 @@ public object ResourceLoader : Object() {
    */
   public fun getResourceUid(path: String): Long {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RESOURCE_UID,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_GET_RESOURCE_UID,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 

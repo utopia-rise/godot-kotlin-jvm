@@ -43,7 +43,7 @@ public open class PacketPeerDTLS : PacketPeer() {
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_POLL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_POLL, NIL.ordinal)
   }
 
   /**
@@ -56,8 +56,8 @@ public open class PacketPeerDTLS : PacketPeer() {
     validCertificate: X509Certificate? = null
   ): GodotError {
     TransferContext.writeArguments(OBJECT to packetPeer, BOOL to validateCerts, STRING to forHostname, OBJECT to validCertificate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_CONNECT_TO_PEER,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_CONNECT_TO_PEER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -66,7 +66,7 @@ public open class PacketPeerDTLS : PacketPeer() {
    */
   public fun getStatus(): PacketPeerDTLS.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_GET_STATUS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_GET_STATUS, LONG.ordinal)
     return PacketPeerDTLS.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -75,8 +75,8 @@ public open class PacketPeerDTLS : PacketPeer() {
    */
   public fun disconnectFromPeer(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_DISCONNECT_FROM_PEER,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERDTLS_DISCONNECT_FROM_PEER,
+        NIL.ordinal)
   }
 
   public enum class Status(

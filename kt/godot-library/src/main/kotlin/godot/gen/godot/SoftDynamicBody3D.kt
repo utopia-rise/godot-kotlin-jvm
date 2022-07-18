@@ -48,14 +48,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_LAYER, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_LAYER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_LAYER, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_LAYER,
+          NIL.ordinal)
     }
 
   /**
@@ -66,14 +66,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_MASK, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_MASK,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_MASK, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_MASK,
+          NIL.ordinal)
     }
 
   /**
@@ -82,14 +82,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var parentCollisionIgnore: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PARENT_COLLISION_IGNORE, NODE_PATH)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PARENT_COLLISION_IGNORE, NODE_PATH.ordinal)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_PARENT_COLLISION_IGNORE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_PARENT_COLLISION_IGNORE, NIL.ordinal)
     }
 
   /**
@@ -98,14 +98,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var simulationPrecision: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_SIMULATION_PRECISION, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_SIMULATION_PRECISION, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_SIMULATION_PRECISION, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_SIMULATION_PRECISION, NIL.ordinal)
     }
 
   /**
@@ -114,14 +114,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var totalMass: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_TOTAL_MASS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_TOTAL_MASS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_TOTAL_MASS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_TOTAL_MASS,
+          NIL.ordinal)
     }
 
   /**
@@ -130,14 +130,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var linearStiffness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_LINEAR_STIFFNESS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_LINEAR_STIFFNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_LINEAR_STIFFNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_LINEAR_STIFFNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -146,14 +146,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var pressureCoefficient: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PRESSURE_COEFFICIENT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PRESSURE_COEFFICIENT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_PRESSURE_COEFFICIENT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_PRESSURE_COEFFICIENT, NIL.ordinal)
     }
 
   /**
@@ -162,14 +162,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var dampingCoefficient: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DAMPING_COEFFICIENT, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DAMPING_COEFFICIENT, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DAMPING_COEFFICIENT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DAMPING_COEFFICIENT, NIL.ordinal)
     }
 
   /**
@@ -178,14 +178,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var dragCoefficient: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DRAG_COEFFICIENT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DRAG_COEFFICIENT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DRAG_COEFFICIENT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DRAG_COEFFICIENT,
+          NIL.ordinal)
     }
 
   /**
@@ -194,14 +194,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var rayPickable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_RAY_PICKABLE,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_RAY_PICKABLE,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_RAY_PICKABLE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_RAY_PICKABLE,
+          NIL.ordinal)
     }
 
   /**
@@ -210,14 +210,14 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public var disableMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DISABLE_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_DISABLE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DISABLE_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DISABLE_MODE,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -229,8 +229,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun getPhysicsRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PHYSICS_RID,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_PHYSICS_RID,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -239,8 +239,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_MASK_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_MASK_VALUE, NIL.ordinal)
   }
 
   /**
@@ -248,8 +248,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_MASK_VALUE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_MASK_VALUE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -258,8 +258,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_LAYER_VALUE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_COLLISION_LAYER_VALUE, NIL.ordinal)
   }
 
   /**
@@ -267,8 +267,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_LAYER_VALUE, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_LAYER_VALUE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -277,8 +277,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -287,8 +287,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_ADD_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   /**
@@ -296,8 +296,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_REMOVE_COLLISION_EXCEPTION_WITH, NIL.ordinal)
   }
 
   /**
@@ -305,8 +305,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun getPointTransform(pointIndex: Long): Vector3 {
     TransferContext.writeArguments(LONG to pointIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_POINT_TRANSFORM, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_POINT_TRANSFORM,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -319,8 +319,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
     attachmentPath: NodePath = NodePath("")
   ): Unit {
     TransferContext.writeArguments(LONG to pointIndex, BOOL to pinned, NODE_PATH to attachmentPath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_POINT_PINNED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_POINT_PINNED,
+        NIL.ordinal)
   }
 
   /**
@@ -328,8 +328,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
    */
   public fun isPointPinned(pointIndex: Long): Boolean {
     TransferContext.writeArguments(LONG to pointIndex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_POINT_PINNED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_POINT_PINNED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

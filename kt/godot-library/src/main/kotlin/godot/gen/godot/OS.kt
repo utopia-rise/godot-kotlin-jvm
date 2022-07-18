@@ -51,8 +51,8 @@ public object OS : Object() {
    */
   public fun getConnectedMidiInputs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONNECTED_MIDI_INPUTS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONNECTED_MIDI_INPUTS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -63,7 +63,7 @@ public object OS : Object() {
    */
   public fun openMidiInputs(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_OPEN_MIDI_INPUTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_OPEN_MIDI_INPUTS, NIL.ordinal)
   }
 
   /**
@@ -73,7 +73,7 @@ public object OS : Object() {
    */
   public fun closeMidiInputs(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CLOSE_MIDI_INPUTS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CLOSE_MIDI_INPUTS, NIL.ordinal)
   }
 
   /**
@@ -81,7 +81,7 @@ public object OS : Object() {
    */
   public fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_ALERT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_ALERT, NIL.ordinal)
   }
 
   /**
@@ -89,32 +89,32 @@ public object OS : Object() {
    */
   public fun crash(message: String): Unit {
     TransferContext.writeArguments(STRING to message)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CRASH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CRASH, NIL.ordinal)
   }
 
   public fun setLowProcessorUsageMode(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE,
+        NIL.ordinal)
   }
 
   public fun isInLowProcessorUsageMode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_IN_LOW_PROCESSOR_USAGE_MODE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_IN_LOW_PROCESSOR_USAGE_MODE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public fun setLowProcessorUsageModeSleepUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL.ordinal)
   }
 
   public fun getLowProcessorUsageModeSleepUsec(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -123,7 +123,7 @@ public object OS : Object() {
    */
   public fun getProcessorCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -134,7 +134,7 @@ public object OS : Object() {
    */
   public fun getProcessorName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -145,7 +145,7 @@ public object OS : Object() {
    */
   public fun getExecutablePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -220,7 +220,7 @@ public object OS : Object() {
     openConsole: Boolean = false
   ): Long {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -261,7 +261,7 @@ public object OS : Object() {
     openConsole: Boolean = false
   ): Long {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -274,7 +274,7 @@ public object OS : Object() {
    */
   public fun createInstance(arguments: PackedStringArray): Long {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_INSTANCE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_INSTANCE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -287,7 +287,7 @@ public object OS : Object() {
    */
   public fun kill(pid: Long): GodotError {
     TransferContext.writeArguments(LONG to pid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -298,7 +298,7 @@ public object OS : Object() {
    *
    * - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official Godot website.
    *
-   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.Customizing `mailto:` Links](https://blog.escapecreative.com/customizing-mailto-links/) for a list of fields that can be added.
+   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.RFC 2368 - The `mailto` URL scheme](https://datatracker.ietf.org/doc/html/rfc2368) for a list of fields that can be added.
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *
@@ -306,7 +306,7 @@ public object OS : Object() {
    */
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -317,7 +317,7 @@ public object OS : Object() {
    */
   public fun getProcessId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESS_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESS_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -328,7 +328,7 @@ public object OS : Object() {
    */
   public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_ENVIRONMENT, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_ENVIRONMENT, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -339,7 +339,7 @@ public object OS : Object() {
    */
   public fun setEnvironment(variable: String, `value`: String): Boolean {
     TransferContext.writeArguments(STRING to variable, STRING to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -350,7 +350,7 @@ public object OS : Object() {
    */
   public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -465,7 +465,7 @@ public object OS : Object() {
    */
   public fun getName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -494,6 +494,14 @@ public object OS : Object() {
    *
    *         arguments[key_value[0].lstrip("--")] = key_value[1]
    *
+   *     else:
+   *
+   *         # Options without an argument will be present in the dictionary,
+   *
+   *         # with the value set to an empty string.
+   *
+   *         arguments[argument.lstrip("--")] = ""
+   *
    * [/gdscript]
    *
    * [csharp]
@@ -514,6 +522,18 @@ public object OS : Object() {
    *
    *     }
    *
+   *     else
+   *
+   *     {
+   *
+   *         // Options without an argument will be present in the dictionary,
+   *
+   *         // with the value set to an empty string.
+   *
+   *         arguments[keyValue[0].LStrip("--")] = "";
+   *
+   *     }
+   *
    * }
    *
    * [/csharp]
@@ -522,8 +542,8 @@ public object OS : Object() {
    */
   public fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -536,7 +556,7 @@ public object OS : Object() {
    */
   public fun delayUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_USEC, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_USEC, NIL.ordinal)
   }
 
   /**
@@ -548,7 +568,7 @@ public object OS : Object() {
    */
   public fun delayMsec(msec: Long): Unit {
     TransferContext.writeArguments(LONG to msec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_MSEC, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_MSEC, NIL.ordinal)
   }
 
   /**
@@ -566,7 +586,7 @@ public object OS : Object() {
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -577,7 +597,7 @@ public object OS : Object() {
    */
   public fun getLocaleLanguage(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE_LANGUAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE_LANGUAGE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -588,7 +608,7 @@ public object OS : Object() {
    */
   public fun getModelName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MODEL_NAME, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MODEL_NAME, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -597,7 +617,7 @@ public object OS : Object() {
    */
   public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_USERFS_PERSISTENT, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_USERFS_PERSISTENT, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -606,7 +626,7 @@ public object OS : Object() {
    */
   public fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_STDOUT_VERBOSE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_STDOUT_VERBOSE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -615,7 +635,7 @@ public object OS : Object() {
    */
   public fun canUseThreads(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CAN_USE_THREADS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CAN_USE_THREADS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -628,7 +648,7 @@ public object OS : Object() {
    */
   public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -639,7 +659,7 @@ public object OS : Object() {
    */
   public fun dumpMemoryToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_MEMORY_TO_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_MEMORY_TO_FILE, NIL.ordinal)
   }
 
   /**
@@ -651,7 +671,7 @@ public object OS : Object() {
    */
   public fun dumpResourcesToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_RESOURCES_TO_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_RESOURCES_TO_FILE, NIL.ordinal)
   }
 
   /**
@@ -659,7 +679,7 @@ public object OS : Object() {
    */
   public fun printResourcesInUse(short: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to short)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_IN_USE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_IN_USE, NIL.ordinal)
   }
 
   /**
@@ -667,7 +687,7 @@ public object OS : Object() {
    */
   public fun printAllResources(tofile: String = ""): Unit {
     TransferContext.writeArguments(STRING to tofile)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_RESOURCES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_RESOURCES, NIL.ordinal)
   }
 
   /**
@@ -675,7 +695,7 @@ public object OS : Object() {
    */
   public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_USAGE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_USAGE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -684,8 +704,8 @@ public object OS : Object() {
    */
   public fun getStaticMemoryPeakUsage(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -708,7 +728,7 @@ public object OS : Object() {
    */
   public fun getUserDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_USER_DATA_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_USER_DATA_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -721,7 +741,7 @@ public object OS : Object() {
    */
   public fun getSystemDir(dir: OS.SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -732,7 +752,7 @@ public object OS : Object() {
    */
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONFIG_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONFIG_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -743,7 +763,7 @@ public object OS : Object() {
    */
   public fun getDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DATA_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DATA_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -754,7 +774,7 @@ public object OS : Object() {
    */
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CACHE_DIR, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CACHE_DIR, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -767,7 +787,7 @@ public object OS : Object() {
    */
   public fun getUniqueId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -776,7 +796,8 @@ public object OS : Object() {
    */
   public fun printAllTexturesBySize(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_TEXTURES_BY_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_TEXTURES_BY_SIZE,
+        NIL.ordinal)
   }
 
   /**
@@ -784,7 +805,7 @@ public object OS : Object() {
    */
   public fun printResourcesByType(types: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to types)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_BY_TYPE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_BY_TYPE, NIL.ordinal)
   }
 
   /**
@@ -794,7 +815,7 @@ public object OS : Object() {
    */
   public fun getKeycodeString(code: Key): String {
     TransferContext.writeArguments(LONG to code.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_KEYCODE_STRING, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_KEYCODE_STRING, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -803,7 +824,7 @@ public object OS : Object() {
    */
   public fun isKeycodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_KEYCODE_UNICODE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_KEYCODE_UNICODE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -812,7 +833,8 @@ public object OS : Object() {
    */
   public fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING,
+        LONG.ordinal)
     return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -821,8 +843,8 @@ public object OS : Object() {
    */
   public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_SET_USE_FILE_ACCESS_SAVE_AND_SWAP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_USE_FILE_ACCESS_SAVE_AND_SWAP,
+        NIL.ordinal)
   }
 
   /**
@@ -830,7 +852,7 @@ public object OS : Object() {
    */
   public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -841,7 +863,7 @@ public object OS : Object() {
    */
   public fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_THREAD_CALLER_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_THREAD_CALLER_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -852,7 +874,7 @@ public object OS : Object() {
    */
   public fun getMainThreadId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MAIN_THREAD_ID, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MAIN_THREAD_ID, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -863,7 +885,7 @@ public object OS : Object() {
    */
   public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_FEATURE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_FEATURE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -872,7 +894,7 @@ public object OS : Object() {
    */
   public fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -883,7 +905,7 @@ public object OS : Object() {
    */
   public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSIONS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSIONS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -894,8 +916,8 @@ public object OS : Object() {
    */
   public fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_GRANTED_PERMISSIONS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_GRANTED_PERMISSIONS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 

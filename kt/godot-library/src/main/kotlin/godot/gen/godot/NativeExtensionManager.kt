@@ -39,8 +39,8 @@ public object NativeExtensionManager : Object() {
    */
   public fun loadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_LOAD_EXTENSION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_LOAD_EXTENSION,
+        LONG.ordinal)
     return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -49,8 +49,8 @@ public object NativeExtensionManager : Object() {
    */
   public fun reloadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_RELOAD_EXTENSION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_RELOAD_EXTENSION,
+        LONG.ordinal)
     return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -59,8 +59,8 @@ public object NativeExtensionManager : Object() {
    */
   public fun unloadExtension(path: String): NativeExtensionManager.LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_UNLOAD_EXTENSION, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_UNLOAD_EXTENSION,
+        LONG.ordinal)
     return NativeExtensionManager.LoadStatus.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -69,8 +69,8 @@ public object NativeExtensionManager : Object() {
    */
   public fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_IS_EXTENSION_LOADED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -79,8 +79,9 @@ public object NativeExtensionManager : Object() {
    */
   public fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_LOADED_EXTENSIONS, PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_LOADED_EXTENSIONS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -89,8 +90,8 @@ public object NativeExtensionManager : Object() {
    */
   public fun getExtension(path: String): NativeExtension? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_EXTENSION, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVEEXTENSIONMANAGER_GET_EXTENSION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as NativeExtension?
   }
 

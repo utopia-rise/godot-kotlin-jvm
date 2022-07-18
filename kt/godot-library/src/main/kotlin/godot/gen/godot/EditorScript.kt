@@ -87,7 +87,7 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun addRootNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_ADD_ROOT_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_ADD_ROOT_NODE, NIL.ordinal)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun getScene(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -104,8 +104,8 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorInterface?
   }
 

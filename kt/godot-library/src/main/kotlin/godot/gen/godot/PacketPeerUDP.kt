@@ -49,7 +49,7 @@ public open class PacketPeerUDP : PacketPeer() {
     recvBufSize: Long = 65536
   ): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress, LONG to recvBufSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_BIND, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_BIND, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -58,7 +58,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CLOSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CLOSE, NIL.ordinal)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun wait(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_WAIT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_WAIT, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -137,7 +137,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun isBound(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_BOUND, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_BOUND, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -148,14 +148,15 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CONNECT_TO_HOST, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CONNECT_TO_HOST,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -164,7 +165,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun getPacketIp(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_IP, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_IP,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -173,7 +175,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun getPacketPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -182,7 +185,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_LOCAL_PORT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_LOCAL_PORT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -193,8 +197,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun setDestAddress(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_DEST_ADDRESS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_DEST_ADDRESS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -205,8 +209,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun setBroadcastEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_BROADCAST_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_BROADCAST_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -218,8 +222,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_JOIN_MULTICAST_GROUP,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_JOIN_MULTICAST_GROUP,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -228,8 +232,8 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_LEAVE_MULTICAST_GROUP,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_LEAVE_MULTICAST_GROUP,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

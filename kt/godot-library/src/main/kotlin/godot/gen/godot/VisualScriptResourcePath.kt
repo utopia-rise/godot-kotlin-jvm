@@ -19,14 +19,14 @@ public open class VisualScriptResourcePath : VisualScriptNode() {
   public var path: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRESOURCEPATH_GET_RESOURCE_PATH, STRING)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRESOURCEPATH_GET_RESOURCE_PATH, STRING.ordinal)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRESOURCEPATH_SET_RESOURCE_PATH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRESOURCEPATH_SET_RESOURCE_PATH, NIL.ordinal)
     }
 
   public override fun __new(): Unit {

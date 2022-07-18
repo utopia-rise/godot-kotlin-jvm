@@ -68,12 +68,12 @@ public open class Viewport internal constructor() : Node() {
   public var disable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL.ordinal)
     }
 
   /**
@@ -82,12 +82,12 @@ public open class Viewport internal constructor() : Node() {
   public var useXr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_XR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_XR, NIL.ordinal)
     }
 
   /**
@@ -96,30 +96,30 @@ public open class Viewport internal constructor() : Node() {
   public var audioListenerEnable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
+          NIL.ordinal)
     }
 
   /**
-   * If `true`, the viewport will use the [godot.World3D] defined in [world3d].
+   * If `true`, the viewport will use a unique copy of the [godot.World3D] defined in [world3d].
    */
   public var ownWorld3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OWN_WORLD_3D,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OWN_WORLD_3D,
+          NIL.ordinal)
     }
 
   /**
@@ -128,12 +128,12 @@ public open class Viewport internal constructor() : Node() {
   public var world3d: World3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as World3D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_3D, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_3D, NIL.ordinal)
     }
 
   /**
@@ -142,12 +142,12 @@ public open class Viewport internal constructor() : Node() {
   public var world2d: World2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT.ordinal)
       return TransferContext.readReturnValue(OBJECT, true) as World2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL.ordinal)
     }
 
   /**
@@ -156,14 +156,14 @@ public open class Viewport internal constructor() : Node() {
   public var transparentBg: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_HAS_TRANSPARENT_BACKGROUND, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_HAS_TRANSPARENT_BACKGROUND,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BACKGROUND, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BACKGROUND,
+          NIL.ordinal)
     }
 
   /**
@@ -172,14 +172,14 @@ public open class Viewport internal constructor() : Node() {
   public var handleInputLocally: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_HANDLING_INPUT_LOCALLY, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_HANDLING_INPUT_LOCALLY,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HANDLE_INPUT_LOCALLY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HANDLE_INPUT_LOCALLY,
+          NIL.ordinal)
     }
 
   /**
@@ -188,14 +188,14 @@ public open class Viewport internal constructor() : Node() {
   public var snap2dTransformsToPixel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_TRANSFORMS_TO_PIXEL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_TRANSFORMS_TO_PIXEL_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_TRANSFORMS_TO_PIXEL, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_TRANSFORMS_TO_PIXEL, NIL.ordinal)
     }
 
   /**
@@ -204,14 +204,14 @@ public open class Viewport internal constructor() : Node() {
   public var snap2dVerticesToPixel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_VERTICES_TO_PIXEL_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_VERTICES_TO_PIXEL_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL,
+          NIL.ordinal)
     }
 
   /**
@@ -220,12 +220,12 @@ public open class Viewport internal constructor() : Node() {
   public var msaa: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA, NIL.ordinal)
     }
 
   /**
@@ -234,13 +234,14 @@ public open class Viewport internal constructor() : Node() {
   public var screenSpaceAa: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCREEN_SPACE_AA,
+          NIL.ordinal)
     }
 
   /**
@@ -249,12 +250,14 @@ public open class Viewport internal constructor() : Node() {
   public var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_DEBANDING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_DEBANDING,
+          NIL.ordinal)
     }
 
   /**
@@ -265,14 +268,14 @@ public open class Viewport internal constructor() : Node() {
   public var useOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OCCLUSION_CULLING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OCCLUSION_CULLING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OCCLUSION_CULLING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OCCLUSION_CULLING,
+          NIL.ordinal)
     }
 
   /**
@@ -285,14 +288,14 @@ public open class Viewport internal constructor() : Node() {
   public var meshLodThreshold: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MESH_LOD_THRESHOLD,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MESH_LOD_THRESHOLD,
+          NIL.ordinal)
     }
 
   /**
@@ -301,12 +304,12 @@ public open class Viewport internal constructor() : Node() {
   public var debugDraw: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBUG_DRAW, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBUG_DRAW, NIL.ordinal)
     }
 
   /**
@@ -317,13 +320,14 @@ public open class Viewport internal constructor() : Node() {
   public var scaling3dMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -336,14 +340,14 @@ public open class Viewport internal constructor() : Node() {
   public var scaling3dScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_SCALE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -354,13 +358,14 @@ public open class Viewport internal constructor() : Node() {
   public var fsrMipmapBias: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_MIPMAP_BIAS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_MIPMAP_BIAS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_MIPMAP_BIAS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_MIPMAP_BIAS,
+          NIL.ordinal)
     }
 
   /**
@@ -371,13 +376,14 @@ public open class Viewport internal constructor() : Node() {
   public var fsrSharpness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_SHARPNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_SHARPNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -386,14 +392,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasItemDefaultTextureFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, NIL.ordinal)
     }
 
   /**
@@ -402,14 +408,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasItemDefaultTextureRepeat: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, NIL.ordinal)
     }
 
   /**
@@ -418,14 +424,14 @@ public open class Viewport internal constructor() : Node() {
   public var audioListenerEnable2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_2D,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_2D,
+          NIL.ordinal)
     }
 
   /**
@@ -434,14 +440,14 @@ public open class Viewport internal constructor() : Node() {
   public var physicsObjectPicking: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING,
+          NIL.ordinal)
     }
 
   /**
@@ -450,12 +456,14 @@ public open class Viewport internal constructor() : Node() {
   public var guiDisableInput: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_INPUT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_INPUT,
+          NIL.ordinal)
     }
 
   /**
@@ -464,14 +472,14 @@ public open class Viewport internal constructor() : Node() {
   public var guiSnapControlsToPixels: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_CONTROLS_TO_PIXELS_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_CONTROLS_TO_PIXELS_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_CONTROLS_TO_PIXELS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_CONTROLS_TO_PIXELS,
+          NIL.ordinal)
     }
 
   /**
@@ -480,14 +488,14 @@ public open class Viewport internal constructor() : Node() {
   public var guiEmbedSubwindows: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_EMBEDDING_SUBWINDOWS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_EMBEDDING_SUBWINDOWS,
+          NIL.ordinal)
     }
 
   /**
@@ -496,12 +504,13 @@ public open class Viewport internal constructor() : Node() {
   public var sdfOversize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_OVERSIZE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_OVERSIZE, NIL.ordinal)
     }
 
   /**
@@ -510,89 +519,69 @@ public open class Viewport internal constructor() : Node() {
   public var sdfScale: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL.ordinal)
     }
 
-  /**
-   * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
-   *
-   * **Note:** If this is set to 0, shadows won't be visible.
-   */
   public var shadowAtlasSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_SIZE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_SIZE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_SIZE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_SIZE,
+          NIL.ordinal)
     }
 
-  /**
-   *
-   */
   public var shadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_16_BITS,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_16_BITS,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_16_BITS,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_16_BITS,
+          NIL.ordinal)
     }
 
-  /**
-   * The subdivision amount of the first quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad0: Long
     get() {
       TransferContext.writeArguments(LONG to 0)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the second quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad1: Long
     get() {
       TransferContext.writeArguments(LONG to 1)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the third quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad2: Long
     get() {
       TransferContext.writeArguments(LONG to 2)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the fourth quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad3: Long
     get() {
       TransferContext.writeArguments(LONG to 3)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -602,14 +591,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
-          TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
+          TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_TRANSFORM,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_TRANSFORM,
+          NIL.ordinal)
     }
 
   /**
@@ -618,14 +607,14 @@ public open class Viewport internal constructor() : Node() {
   public var globalCanvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM, TRANSFORM2D)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM,
+          TRANSFORM2D.ordinal)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -637,7 +626,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as World2D?
   }
 
@@ -646,8 +635,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FINAL_TRANSFORM,
-        TRANSFORM2D)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FINAL_TRANSFORM,
+        TRANSFORM2D.ordinal)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
@@ -656,7 +645,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getVisibleRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VISIBLE_RECT, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VISIBLE_RECT, RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -665,7 +654,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -682,7 +671,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?
   }
 
@@ -691,7 +680,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getViewportRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -700,7 +689,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_TEXT_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_TEXT_INPUT, NIL.ordinal)
   }
 
   /**
@@ -708,7 +697,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL.ordinal)
   }
 
   /**
@@ -716,7 +705,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT,
+        NIL.ordinal)
   }
 
   /**
@@ -724,7 +714,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Camera2D?
   }
 
@@ -733,8 +723,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
-        VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
+        VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -743,7 +733,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL.ordinal)
   }
 
   /**
@@ -751,7 +741,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -762,7 +752,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAGGING, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAGGING, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -771,8 +761,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiIsDragSuccessful(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -781,7 +771,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiReleaseFocus(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_RELEASE_FOCUS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_RELEASE_FOCUS, NIL.ordinal)
   }
 
   /**
@@ -789,19 +779,16 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
-  /**
-   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
-   */
   public fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
       subdiv: Viewport.ShadowAtlasQuadrantSubdiv): Unit {
     TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL.ordinal)
   }
 
   /**
@@ -809,7 +796,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED,
+        NIL.ordinal)
   }
 
   /**
@@ -817,7 +805,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -826,7 +814,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as World3D?
   }
 
@@ -835,7 +823,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Camera3D?
   }
 
@@ -1191,15 +1179,15 @@ public open class Viewport internal constructor() : Node() {
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
     /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
     /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
     /**
-     * Represents the size of the [enum ShadowAtlasQuadrantSubdiv] enum.
+     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;

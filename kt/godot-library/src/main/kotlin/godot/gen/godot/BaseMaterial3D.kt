@@ -39,14 +39,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var transparency: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSPARENCY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSPARENCY,
+          NIL.ordinal)
     }
 
   /**
@@ -55,14 +55,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaScissorThreshold: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_SCISSOR_THRESHOLD, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_SCISSOR_THRESHOLD, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_SCISSOR_THRESHOLD, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_SCISSOR_THRESHOLD, NIL.ordinal)
     }
 
   /**
@@ -71,14 +71,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaHashScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_HASH_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_HASH_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_HASH_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_HASH_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -87,14 +87,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaAntialiasingMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING,
+          NIL.ordinal)
     }
 
   /**
@@ -103,14 +103,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaAntialiasingEdge: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING_EDGE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING_EDGE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING_EDGE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING_EDGE, NIL.ordinal)
     }
 
   /**
@@ -121,14 +121,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var blendMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BLEND_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BLEND_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -137,13 +137,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var cullMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CULL_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CULL_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -152,14 +153,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var depthDrawMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DEPTH_DRAW_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DEPTH_DRAW_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -168,14 +169,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var shadingMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SHADING_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SHADING_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -184,14 +185,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var diffuseMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DIFFUSE_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DIFFUSE_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -202,14 +203,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var specularMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -220,12 +221,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var albedoColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALBEDO, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALBEDO,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALBEDO, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALBEDO, NIL.ordinal)
     }
 
   /**
@@ -234,13 +236,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallic: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC,
+          NIL.ordinal)
     }
 
   /**
@@ -251,13 +254,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallicSpecular: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR,
+          NIL.ordinal)
     }
 
   /**
@@ -266,14 +270,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallicTextureChannel: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC_TEXTURE_CHANNEL, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC_TEXTURE_CHANNEL, NIL.ordinal)
     }
 
   /**
@@ -282,13 +286,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var roughness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -297,14 +302,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var roughnessTextureChannel: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS_TEXTURE_CHANNEL, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS_TEXTURE_CHANNEL, NIL.ordinal)
     }
 
   /**
@@ -313,13 +318,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emission: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION,
+          NIL.ordinal)
     }
 
   /**
@@ -328,14 +334,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_ENERGY, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_ENERGY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_ENERGY, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_ENERGY,
+          NIL.ordinal)
     }
 
   /**
@@ -344,14 +350,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionOperator: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_OPERATOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_OPERATOR,
+          NIL.ordinal)
     }
 
   /**
@@ -360,14 +366,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var normalScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_NORMAL_SCALE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_NORMAL_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_NORMAL_SCALE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_NORMAL_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -376,12 +382,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rim: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM, NIL.ordinal)
     }
 
   /**
@@ -390,13 +396,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rimTint: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM_TINT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM_TINT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM_TINT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM_TINT,
+          NIL.ordinal)
     }
 
   /**
@@ -405,13 +412,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoat: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT,
+          NIL.ordinal)
     }
 
   /**
@@ -420,14 +428,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoatRoughness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT_ROUGHNESS, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT_ROUGHNESS,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT_ROUGHNESS, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT_ROUGHNESS,
+          NIL.ordinal)
     }
 
   /**
@@ -436,14 +444,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var anisotropy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ANISOTROPY,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ANISOTROPY,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ANISOTROPY,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ANISOTROPY,
+          NIL.ordinal)
     }
 
   /**
@@ -452,14 +460,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoLightAffect: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_LIGHT_AFFECT, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_LIGHT_AFFECT,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_LIGHT_AFFECT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_LIGHT_AFFECT,
+          NIL.ordinal)
     }
 
   /**
@@ -468,14 +476,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoTextureChannel: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_TEXTURE_CHANNEL, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_TEXTURE_CHANNEL,
+          NIL.ordinal)
     }
 
   /**
@@ -484,14 +492,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_SCALE, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_SCALE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -500,14 +508,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapDeepParallax: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_HEIGHTMAP_DEEP_PARALLAX_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_HEIGHTMAP_DEEP_PARALLAX_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX, NIL.ordinal)
     }
 
   /**
@@ -516,14 +524,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapMinLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS,
+          NIL.ordinal)
     }
 
   /**
@@ -532,14 +542,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapMaxLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS,
+          NIL.ordinal)
     }
 
   /**
@@ -548,14 +560,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapFlipTangent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT,
+          NIL.ordinal)
     }
 
   /**
@@ -564,14 +578,16 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapFlipBinormal: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL,
+          NIL.ordinal)
     }
 
   /**
@@ -580,14 +596,15 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterStrength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SUBSURFACE_SCATTERING_STRENGTH, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SUBSURFACE_SCATTERING_STRENGTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SUBSURFACE_SCATTERING_STRENGTH, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SUBSURFACE_SCATTERING_STRENGTH, NIL.ordinal)
     }
 
   /**
@@ -596,14 +613,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_COLOR, COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_COLOR,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_COLOR, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_COLOR,
+          NIL.ordinal)
     }
 
   /**
@@ -612,14 +629,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceDepth: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_DEPTH, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_DEPTH,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_DEPTH, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_DEPTH,
+          NIL.ordinal)
     }
 
   /**
@@ -628,14 +645,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceBoost: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_BOOST, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_BOOST,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_BOOST, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_BOOST,
+          NIL.ordinal)
     }
 
   /**
@@ -644,13 +661,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var backlight: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BACKLIGHT,
-          COLOR)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BACKLIGHT,
+          COLOR.ordinal)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BACKLIGHT, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BACKLIGHT,
+          NIL.ordinal)
     }
 
   /**
@@ -659,14 +677,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION,
+          NIL.ordinal)
     }
 
   /**
@@ -675,14 +693,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionTextureChannel: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION_TEXTURE_CHANNEL, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION_TEXTURE_CHANNEL, NIL.ordinal)
     }
 
   /**
@@ -691,14 +709,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailBlendMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE, LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_BLEND_MODE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_BLEND_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -707,13 +725,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailUvLayer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_UV, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_UV,
+          NIL.ordinal)
     }
 
   /**
@@ -722,13 +741,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1Scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_SCALE,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_SCALE,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -737,14 +757,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1Offset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_OFFSET,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_OFFSET,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -753,14 +773,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1TriplanarSharpness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_TRIPLANAR_BLEND_SHARPNESS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_TRIPLANAR_BLEND_SHARPNESS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_TRIPLANAR_BLEND_SHARPNESS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_TRIPLANAR_BLEND_SHARPNESS, NIL.ordinal)
     }
 
   /**
@@ -769,13 +789,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2Scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_SCALE,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_SCALE,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_SCALE, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_SCALE,
+          NIL.ordinal)
     }
 
   /**
@@ -784,14 +805,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2Offset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_OFFSET,
-          VECTOR3)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_OFFSET,
+          VECTOR3.ordinal)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_OFFSET,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_OFFSET,
+          NIL.ordinal)
     }
 
   /**
@@ -800,30 +821,32 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2TriplanarSharpness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_TRIPLANAR_BLEND_SHARPNESS, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_TRIPLANAR_BLEND_SHARPNESS, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_TRIPLANAR_BLEND_SHARPNESS, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_TRIPLANAR_BLEND_SHARPNESS, NIL.ordinal)
     }
 
   /**
    * Filter flags for the texture. See [enum TextureFilter] for options.
+   *
+   * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.
    */
   public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE_FILTER,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE_FILTER,
+          NIL.ordinal)
     }
 
   /**
@@ -834,14 +857,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var billboardMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BILLBOARD_MODE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BILLBOARD_MODE,
+          NIL.ordinal)
     }
 
   /**
@@ -850,14 +873,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimHFrames: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_H_FRAMES, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_H_FRAMES, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_H_FRAMES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_H_FRAMES, NIL.ordinal)
     }
 
   /**
@@ -866,14 +889,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimVFrames: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_V_FRAMES, LONG)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_V_FRAMES, LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_V_FRAMES, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_V_FRAMES, NIL.ordinal)
     }
 
   /**
@@ -882,14 +905,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_LOOP, BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_LOOP,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_LOOP, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_LOOP,
+          NIL.ordinal)
     }
 
   /**
@@ -898,14 +921,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var grow: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_GROW_ENABLED,
-          BOOL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_GROW_ENABLED,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW_ENABLED,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW_ENABLED,
+          NIL.ordinal)
     }
 
   /**
@@ -914,12 +937,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var growAmount: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_GROW, DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_GROW,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW, NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW, NIL.ordinal)
     }
 
   /**
@@ -928,14 +952,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var pointSize: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_POINT_SIZE,
-          DOUBLE)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_POINT_SIZE,
+          DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_POINT_SIZE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_POINT_SIZE,
+          NIL.ordinal)
     }
 
   /**
@@ -944,14 +968,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var proximityFadeEnable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_PROXIMITY_FADE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_PROXIMITY_FADE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE,
+          NIL.ordinal)
     }
 
   /**
@@ -960,14 +984,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var proximityFadeDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PROXIMITY_FADE_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PROXIMITY_FADE_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE_DISTANCE, NIL.ordinal)
     }
 
   /**
@@ -976,14 +1000,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
-          LONG)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
+          LONG.ordinal)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE,
-          NIL)
+      TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE,
+          NIL.ordinal)
     }
 
   /**
@@ -994,14 +1018,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMinDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MIN_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MIN_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MIN_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MIN_DISTANCE, NIL.ordinal)
     }
 
   /**
@@ -1012,14 +1036,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMaxDistance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MAX_DISTANCE, DOUBLE)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MAX_DISTANCE, DOUBLE.ordinal)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MAX_DISTANCE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MAX_DISTANCE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -1031,7 +1055,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun setFlag(flag: BaseMaterial3D.Flags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL.ordinal)
   }
 
   /**
@@ -1039,7 +1063,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun getFlag(flag: BaseMaterial3D.Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1048,7 +1072,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun setFeature(feature: BaseMaterial3D.Feature, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL.ordinal)
   }
 
   /**
@@ -1056,7 +1080,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun getFeature(feature: BaseMaterial3D.Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -1065,7 +1089,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun setTexture(`param`: BaseMaterial3D.TextureParam, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL.ordinal)
   }
 
   /**
@@ -1073,7 +1097,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public fun getTexture(`param`: BaseMaterial3D.TextureParam): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
@@ -1268,7 +1293,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_ALBEDO_FROM_VERTEX_COLOR(1),
     /**
-     * Vertex color is in sRGB space and needs to be converted to linear. Only applies in the Vulkan renderer.
+     * Vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. See also [vertexColorIsSrgb].
+     *
+     * **Note:** Only effective when using the Vulkan Clustered or Vulkan Mobile backends.
      */
     FLAG_SRGB_VERTEX_COLOR(2),
     /**
@@ -1308,7 +1335,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_EMISSION_ON_UV2(11),
     /**
-     * Forces the shader to convert albedo from sRGB space to linear space.
+     * Forces the shader to convert albedo from sRGB space to linear space. See also [albedoTextureForceSrgb].
      */
     FLAG_ALBEDO_TEXTURE_FORCE_SRGB(12),
     /**

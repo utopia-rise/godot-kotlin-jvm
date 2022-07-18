@@ -52,7 +52,7 @@ public object CameraServer : Object() {
    */
   public fun getFeed(index: Long): CameraFeed? {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as CameraFeed?
   }
 
@@ -61,7 +61,8 @@ public object CameraServer : Object() {
    */
   public fun getFeedCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -70,7 +71,7 @@ public object CameraServer : Object() {
    */
   public fun feeds(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -79,7 +80,7 @@ public object CameraServer : Object() {
    */
   public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_ADD_FEED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_ADD_FEED, NIL.ordinal)
   }
 
   /**
@@ -87,7 +88,7 @@ public object CameraServer : Object() {
    */
   public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_REMOVE_FEED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_REMOVE_FEED, NIL.ordinal)
   }
 
   public enum class FeedImage(

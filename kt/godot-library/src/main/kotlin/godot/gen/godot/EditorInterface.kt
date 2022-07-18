@@ -42,14 +42,14 @@ public open class EditorInterface internal constructor() : Node() {
   public var distractionFreeMode: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -65,7 +65,8 @@ public open class EditorInterface internal constructor() : Node() {
     inspectorOnly: Boolean = false
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT,
+        NIL.ordinal)
   }
 
   /**
@@ -73,8 +74,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getSelection(): EditorSelection? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorSelection?
   }
 
@@ -83,8 +84,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getEditorSettings(): EditorSettings? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorSettings?
   }
 
@@ -95,8 +96,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getScriptEditor(): ScriptEditor? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?
   }
 
@@ -107,8 +108,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getBaseControl(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
@@ -119,8 +120,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getEditorScale(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
-        DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -129,7 +130,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun editResource(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_RESOURCE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_RESOURCE,
+        NIL.ordinal)
   }
 
   /**
@@ -137,7 +139,7 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun editNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL.ordinal)
   }
 
   /**
@@ -150,7 +152,7 @@ public open class EditorInterface internal constructor() : Node() {
     grabFocus: Boolean = true
   ): Unit {
     TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to grabFocus)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL.ordinal)
   }
 
   /**
@@ -158,8 +160,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun openSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_OPEN_SCENE_FROM_PATH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_OPEN_SCENE_FROM_PATH,
+        NIL.ordinal)
   }
 
   /**
@@ -167,8 +169,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun reloadSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RELOAD_SCENE_FROM_PATH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RELOAD_SCENE_FROM_PATH,
+        NIL.ordinal)
   }
 
   /**
@@ -176,8 +178,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun playMainScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_MAIN_SCENE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_MAIN_SCENE,
+        NIL.ordinal)
   }
 
   /**
@@ -185,8 +187,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun playCurrentScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CURRENT_SCENE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CURRENT_SCENE,
+        NIL.ordinal)
   }
 
   /**
@@ -194,8 +196,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun playCustomScene(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CUSTOM_SCENE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CUSTOM_SCENE,
+        NIL.ordinal)
   }
 
   /**
@@ -203,8 +205,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun stopPlayingScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_STOP_PLAYING_SCENE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_STOP_PLAYING_SCENE,
+        NIL.ordinal)
   }
 
   /**
@@ -212,8 +214,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun isPlayingScene(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -222,8 +224,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getPlayingScene(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -232,8 +234,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getOpenScenes(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -242,8 +244,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getEditedSceneRoot(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -252,8 +254,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getResourcePreviewer(): EditorResourcePreview? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?
   }
 
@@ -262,8 +264,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getResourceFilesystem(): EditorFileSystem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
   }
 
@@ -276,8 +278,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getEditorMainControl(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_CONTROL, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_CONTROL,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
@@ -286,8 +288,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun makeMeshPreviews(meshes: VariantArray<Any?>, previewSize: Long): VariantArray<Any?> {
     TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
-        ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
+        ARRAY.ordinal)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -296,7 +298,7 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun selectFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL.ordinal)
   }
 
   /**
@@ -304,8 +306,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getSelectedPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATH,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -314,8 +316,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getCurrentPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
-        STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
+        STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -326,8 +328,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getFileSystemDock(): FileSystemDock? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?
   }
 
@@ -336,8 +338,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getEditorPaths(): EditorPaths? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorPaths?
   }
 
@@ -348,8 +350,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getCommandPalette(): EditorCommandPalette? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?
   }
 
@@ -358,8 +360,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun setPluginEnabled(plugin: String, enabled: Boolean): Unit {
     TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
+        NIL.ordinal)
   }
 
   /**
@@ -367,8 +369,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun isPluginEnabled(plugin: String): Boolean {
     TransferContext.writeArguments(STRING to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -379,8 +381,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun getInspector(): EditorInspector? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
-        OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
+        OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as EditorInspector?
   }
 
@@ -389,7 +391,7 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -398,7 +400,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS,
+        NIL.ordinal)
   }
 
   /**
@@ -406,8 +409,8 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun setMainScreenEditor(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR,
+        NIL.ordinal)
   }
 
   public companion object

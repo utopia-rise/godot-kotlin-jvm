@@ -112,7 +112,7 @@ public open class JSON : RefCounted() {
     fullPrecision: Boolean = false
   ): String {
     TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -123,7 +123,7 @@ public open class JSON : RefCounted() {
    */
   public fun parse(jsonString: String): GodotError {
     TransferContext.writeArguments(STRING to jsonString)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -134,7 +134,7 @@ public open class JSON : RefCounted() {
    */
   public fun getData(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_DATA, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_DATA, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -143,7 +143,7 @@ public open class JSON : RefCounted() {
    */
   public fun getErrorLine(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_LINE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_LINE, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -152,7 +152,7 @@ public open class JSON : RefCounted() {
    */
   public fun getErrorMessage(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_MESSAGE, STRING)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_MESSAGE, STRING.ordinal)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 

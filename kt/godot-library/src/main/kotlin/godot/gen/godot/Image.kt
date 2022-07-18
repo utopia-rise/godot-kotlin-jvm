@@ -61,7 +61,7 @@ public open class Image : Resource() {
    */
   public fun getWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_WIDTH, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_WIDTH, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -70,7 +70,7 @@ public open class Image : Resource() {
    */
   public fun getHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_HEIGHT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_HEIGHT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -79,7 +79,7 @@ public open class Image : Resource() {
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_SIZE, VECTOR2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_SIZE, VECTOR2.ordinal)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
@@ -88,7 +88,7 @@ public open class Image : Resource() {
    */
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_HAS_MIPMAPS, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_HAS_MIPMAPS, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -97,7 +97,7 @@ public open class Image : Resource() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_FORMAT, LONG.ordinal)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -106,7 +106,8 @@ public open class Image : Resource() {
    */
   public fun getData(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_DATA, PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_DATA,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -115,7 +116,7 @@ public open class Image : Resource() {
    */
   public fun convert(format: Image.Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CONVERT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CONVERT, NIL.ordinal)
   }
 
   /**
@@ -123,7 +124,7 @@ public open class Image : Resource() {
    */
   public fun getMipmapOffset(mipmap: Long): Long {
     TransferContext.writeArguments(LONG to mipmap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_MIPMAP_OFFSET, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_MIPMAP_OFFSET, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -133,7 +134,7 @@ public open class Image : Resource() {
   public fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL.ordinal)
   }
 
   /**
@@ -145,7 +146,7 @@ public open class Image : Resource() {
     interpolation: Image.Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to interpolation.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL.ordinal)
   }
 
   /**
@@ -153,7 +154,7 @@ public open class Image : Resource() {
    */
   public fun shrinkX2(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SHRINK_X2, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SHRINK_X2, NIL.ordinal)
   }
 
   /**
@@ -161,7 +162,7 @@ public open class Image : Resource() {
    */
   public fun crop(width: Long, height: Long): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CROP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CROP, NIL.ordinal)
   }
 
   /**
@@ -169,7 +170,7 @@ public open class Image : Resource() {
    */
   public fun flipX(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_X, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_X, NIL.ordinal)
   }
 
   /**
@@ -177,7 +178,7 @@ public open class Image : Resource() {
    */
   public fun flipY(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_Y, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FLIP_Y, NIL.ordinal)
   }
 
   /**
@@ -187,7 +188,7 @@ public open class Image : Resource() {
    */
   public fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GENERATE_MIPMAPS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GENERATE_MIPMAPS, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -196,7 +197,7 @@ public open class Image : Resource() {
    */
   public fun clearMipmaps(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CLEAR_MIPMAPS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CLEAR_MIPMAPS, NIL.ordinal)
   }
 
   /**
@@ -209,7 +210,7 @@ public open class Image : Resource() {
     format: Image.Format
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE, NIL.ordinal)
   }
 
   /**
@@ -223,7 +224,7 @@ public open class Image : Resource() {
     `data`: PackedByteArray
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_CREATE_FROM_DATA, NIL.ordinal)
   }
 
   /**
@@ -231,7 +232,7 @@ public open class Image : Resource() {
    */
   public fun isEmpty(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_EMPTY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_EMPTY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -244,26 +245,26 @@ public open class Image : Resource() {
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Saves the image as a PNG file to `path`.
+   * Saves the image as a PNG file to the file at `path`.
    */
   public fun savePng(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   *
+   * Saves the image as a PNG file to a byte array.
    */
   public fun savePngToBuffer(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG_TO_BUFFER,
-        PACKED_BYTE_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_PNG_TO_BUFFER,
+        PACKED_BYTE_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
   }
 
@@ -274,7 +275,7 @@ public open class Image : Resource() {
    */
   public fun saveExr(path: String, grayscale: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to grayscale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SAVE_EXR, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -283,7 +284,7 @@ public open class Image : Resource() {
    */
   public fun detectAlpha(): Image.AlphaMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_ALPHA, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_ALPHA, LONG.ordinal)
     return Image.AlphaMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -292,7 +293,7 @@ public open class Image : Resource() {
    */
   public fun isInvisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_INVISIBLE, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_INVISIBLE, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -302,7 +303,7 @@ public open class Image : Resource() {
   public fun detectUsedChannels(source: Image.CompressSource =
       Image.CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG.ordinal)
     return Image.UsedChannels.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -315,7 +316,7 @@ public open class Image : Resource() {
     lossyQuality: Double = 0.7
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -328,7 +329,8 @@ public open class Image : Resource() {
     lossyQuality: Double = 0.7
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, DOUBLE to lossyQuality)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPRESS_FROM_CHANNELS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -339,7 +341,7 @@ public open class Image : Resource() {
    */
   public fun decompress(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DECOMPRESS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DECOMPRESS, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -348,7 +350,7 @@ public open class Image : Resource() {
    */
   public fun isCompressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_COMPRESSED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_IS_COMPRESSED, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -357,7 +359,7 @@ public open class Image : Resource() {
    */
   public fun fixAlphaEdges(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FIX_ALPHA_EDGES, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FIX_ALPHA_EDGES, NIL.ordinal)
   }
 
   /**
@@ -365,7 +367,7 @@ public open class Image : Resource() {
    */
   public fun premultiplyAlpha(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_PREMULTIPLY_ALPHA, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_PREMULTIPLY_ALPHA, NIL.ordinal)
   }
 
   /**
@@ -373,7 +375,7 @@ public open class Image : Resource() {
    */
   public fun srgbToLinear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SRGB_TO_LINEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SRGB_TO_LINEAR, NIL.ordinal)
   }
 
   /**
@@ -381,7 +383,7 @@ public open class Image : Resource() {
    */
   public fun normalMapToXy(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_NORMAL_MAP_TO_XY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_NORMAL_MAP_TO_XY, NIL.ordinal)
   }
 
   /**
@@ -389,7 +391,7 @@ public open class Image : Resource() {
    */
   public fun rgbeToSrgb(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RGBE_TO_SRGB, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RGBE_TO_SRGB, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -398,7 +400,8 @@ public open class Image : Resource() {
    */
   public fun bumpMapToNormalMap(bumpScale: Double = 1.0): Unit {
     TransferContext.writeArguments(DOUBLE to bumpScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BUMP_MAP_TO_NORMAL_MAP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BUMP_MAP_TO_NORMAL_MAP,
+        NIL.ordinal)
   }
 
   /**
@@ -408,8 +411,8 @@ public open class Image : Resource() {
    */
   public fun computeImageMetrics(comparedImage: Image, useLuma: Boolean): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPUTE_IMAGE_METRICS,
-        DICTIONARY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COMPUTE_IMAGE_METRICS,
+        DICTIONARY.ordinal)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -422,7 +425,7 @@ public open class Image : Resource() {
     dst: Vector2
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, RECT2 to srcRect, VECTOR2 to dst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT, NIL.ordinal)
   }
 
   /**
@@ -435,7 +438,7 @@ public open class Image : Resource() {
     dst: Vector2
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2 to srcRect, VECTOR2 to dst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLIT_RECT_MASK, NIL.ordinal)
   }
 
   /**
@@ -447,7 +450,7 @@ public open class Image : Resource() {
     dst: Vector2
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, RECT2 to srcRect, VECTOR2 to dst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT, NIL.ordinal)
   }
 
   /**
@@ -460,7 +463,7 @@ public open class Image : Resource() {
     dst: Vector2
   ): Unit {
     TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2 to srcRect, VECTOR2 to dst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT_MASK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_BLEND_RECT_MASK, NIL.ordinal)
   }
 
   /**
@@ -468,7 +471,7 @@ public open class Image : Resource() {
    */
   public fun fill(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL, NIL.ordinal)
   }
 
   /**
@@ -476,7 +479,7 @@ public open class Image : Resource() {
    */
   public fun fillRect(rect: Rect2, color: Color): Unit {
     TransferContext.writeArguments(RECT2 to rect, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL_RECT, NIL.ordinal)
   }
 
   /**
@@ -484,7 +487,7 @@ public open class Image : Resource() {
    */
   public fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_USED_RECT, RECT2)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_USED_RECT, RECT2.ordinal)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
@@ -493,7 +496,7 @@ public open class Image : Resource() {
    */
   public fun getRect(rect: Rect2): Image? {
     TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_RECT, OBJECT)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_RECT, OBJECT.ordinal)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -502,7 +505,7 @@ public open class Image : Resource() {
    */
   public fun copyFrom(src: Image): Unit {
     TransferContext.writeArguments(OBJECT to src)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COPY_FROM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_COPY_FROM, NIL.ordinal)
   }
 
   /**
@@ -512,7 +515,7 @@ public open class Image : Resource() {
    */
   public fun getPixelv(point: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXELV, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXELV, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -523,7 +526,7 @@ public open class Image : Resource() {
    */
   public fun getPixel(x: Long, y: Long): Color {
     TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXEL, COLOR)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_PIXEL, COLOR.ordinal)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
@@ -570,7 +573,7 @@ public open class Image : Resource() {
    */
   public fun setPixelv(point: Vector2i, color: Color): Unit {
     TransferContext.writeArguments(VECTOR2I to point, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXELV, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXELV, NIL.ordinal)
   }
 
   /**
@@ -620,7 +623,7 @@ public open class Image : Resource() {
     color: Color
   ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXEL, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_SET_PIXEL, NIL.ordinal)
   }
 
   /**
@@ -632,7 +635,7 @@ public open class Image : Resource() {
     saturation: Double
   ): Unit {
     TransferContext.writeArguments(DOUBLE to brightness, DOUBLE to contrast, DOUBLE to saturation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_ADJUST_BCS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_ADJUST_BCS, NIL.ordinal)
   }
 
   /**
@@ -640,7 +643,7 @@ public open class Image : Resource() {
    */
   public fun loadPngFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_PNG_FROM_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_PNG_FROM_BUFFER, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -649,7 +652,7 @@ public open class Image : Resource() {
    */
   public fun loadJpgFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_JPG_FROM_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_JPG_FROM_BUFFER, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -658,7 +661,8 @@ public open class Image : Resource() {
    */
   public fun loadWebpFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_WEBP_FROM_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_WEBP_FROM_BUFFER,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -667,7 +671,7 @@ public open class Image : Resource() {
    */
   public fun loadTgaFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_TGA_FROM_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_TGA_FROM_BUFFER, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -678,7 +682,7 @@ public open class Image : Resource() {
    */
   public fun loadBmpFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

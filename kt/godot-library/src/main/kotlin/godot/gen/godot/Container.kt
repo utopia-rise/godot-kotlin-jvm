@@ -69,7 +69,7 @@ public open class Container : Control() {
    */
   public fun queueSort(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL.ordinal)
   }
 
   /**
@@ -77,7 +77,7 @@ public open class Container : Control() {
    */
   public fun fitChildInRect(child: Control, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL.ordinal)
   }
 
   public companion object {

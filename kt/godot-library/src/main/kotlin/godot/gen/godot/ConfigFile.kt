@@ -207,7 +207,7 @@ public open class ConfigFile : RefCounted() {
     `value`: Any
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL.ordinal)
   }
 
   /**
@@ -219,7 +219,7 @@ public open class ConfigFile : RefCounted() {
     default: Any? = null
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_VALUE, ANY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_VALUE, ANY.ordinal)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -228,7 +228,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun hasSection(section: String): Boolean {
     TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -237,7 +237,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun hasSectionKey(section: String, key: String): Boolean {
     TransferContext.writeArguments(STRING to section, STRING to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION_KEY, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION_KEY, BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -246,8 +246,8 @@ public open class ConfigFile : RefCounted() {
    */
   public fun getSections(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -256,8 +256,8 @@ public open class ConfigFile : RefCounted() {
    */
   public fun getSectionKeys(section: String): PackedStringArray {
     TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
-        PACKED_STRING_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
+        PACKED_STRING_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
@@ -266,7 +266,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun eraseSection(section: String): Unit {
     TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL.ordinal)
   }
 
   /**
@@ -274,7 +274,8 @@ public open class ConfigFile : RefCounted() {
    */
   public fun eraseSectionKey(section: String, key: String): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY,
+        NIL.ordinal)
   }
 
   /**
@@ -284,7 +285,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -295,7 +296,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun parse(`data`: String): GodotError {
     TransferContext.writeArguments(STRING to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_PARSE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_PARSE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -306,7 +307,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -317,7 +318,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -328,8 +329,8 @@ public open class ConfigFile : RefCounted() {
    */
   public fun loadEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -340,7 +341,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED, LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -351,8 +352,8 @@ public open class ConfigFile : RefCounted() {
    */
   public fun saveEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED_PASS,
-        LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED_PASS,
+        LONG.ordinal)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -361,7 +362,7 @@ public open class ConfigFile : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL.ordinal)
   }
 
   public companion object

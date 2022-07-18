@@ -41,9 +41,13 @@ import kotlin.Unit
  *
  * NavigationServer3D is the server responsible for all 3D navigation. It handles several objects, namely maps, regions and agents.
  *
- * Maps are made up of regions, which are made of navigation meshes. Together, they define the navigable areas in the 3D world. For two regions to be connected to each other, they must share a similar edge. An edge is considered connected to another if both of its two vertices are at a distance less than `edge_connection_margin` to the respective other edge's vertex.
+ * Maps are made up of regions, which are made of navigation meshes. Together, they define the navigable areas in the 3D world.
  *
- * You may assign navigation layers to regions with [godot.NavigationServer3D.regionSetLayers], which then can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath]. This allows allowing or forbidding some areas to 3D objects.
+ * **Note:** Most NavigationServer changes take effect after the next physics frame and not immediately. This includes all changes made to maps, regions or agents by navigation related Nodes in the SceneTree or made through scripts.
+ *
+ * For two regions to be connected to each other, they must share a similar edge. An edge is considered connected to another if both of its two vertices are at a distance less than `edge_connection_margin` to the respective other edge's vertex.
+ *
+ * You may assign navigation layers to regions with [godot.NavigationServer3D.regionSetNavigationLayers], which then can be checked upon when requesting a path with [godot.NavigationServer3D.mapGetPath]. This allows allowing or forbidding some areas to 3D objects.
  *
  * To use the collision avoidance system, you may use agents. You can set an agent's target velocity, then the servers will emit a callback with a modified velocity.
  *
@@ -69,7 +73,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_CREATE, _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -78,8 +83,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapSetActive(map: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_ACTIVE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_ACTIVE,
+        NIL.ordinal)
   }
 
   /**
@@ -87,8 +92,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapIsActive(nap: RID): Boolean {
     TransferContext.writeArguments(_RID to nap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_IS_ACTIVE,
-        BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_IS_ACTIVE,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -97,7 +102,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapSetUp(map: RID, up: Vector3): Unit {
     TransferContext.writeArguments(_RID to map, VECTOR3 to up)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_UP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_UP,
+        NIL.ordinal)
   }
 
   /**
@@ -105,8 +111,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetUp(map: RID): Vector3 {
     TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_UP,
-        VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_UP,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -115,8 +121,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapSetCellSize(map: RID, cellSize: Double): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to cellSize)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_CELL_SIZE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_CELL_SIZE,
+        NIL.ordinal)
   }
 
   /**
@@ -124,8 +130,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetCellSize(map: RID): Double {
     TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CELL_SIZE, DOUBLE)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CELL_SIZE,
+        DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -134,8 +140,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapSetEdgeConnectionMargin(map: RID, margin: Double): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to margin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_EDGE_CONNECTION_MARGIN, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_EDGE_CONNECTION_MARGIN, NIL.ordinal)
   }
 
   /**
@@ -143,13 +149,13 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetEdgeConnectionMargin(map: RID): Double {
     TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_EDGE_CONNECTION_MARGIN, DOUBLE)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_EDGE_CONNECTION_MARGIN, DOUBLE.ordinal)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Returns the navigation path to reach the destination from the origin. `layers` is a bitmask of all region layers that are allowed to be in the path.
+   * Returns the navigation path to reach the destination from the origin. `navigation_layers` is a bitmask of all region navigation layers that are allowed to be in the path.
    */
   public fun mapGetPath(
     map: RID,
@@ -159,8 +165,8 @@ public object NavigationServer3D : Object() {
     layers: Long = 1
   ): PackedVector3Array {
     TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to layers)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
+        PACKED_VECTOR3_ARRAY.ordinal)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
@@ -174,8 +180,9 @@ public object NavigationServer3D : Object() {
     useCollision: Boolean = false
   ): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_TO_SEGMENT,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -184,8 +191,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetClosestPoint(map: RID, toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT, VECTOR3)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -194,8 +201,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetClosestPointNormal(map: RID, toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_NORMAL, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_NORMAL, VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -204,8 +211,8 @@ public object NavigationServer3D : Object() {
    */
   public fun mapGetClosestPointOwner(map: RID, toPoint: Vector3): RID {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_OWNER, _RID)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_OWNER, _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -214,8 +221,8 @@ public object NavigationServer3D : Object() {
    */
   public fun regionCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -224,26 +231,20 @@ public object NavigationServer3D : Object() {
    */
   public fun regionSetMap(region: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to region, _RID to map)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_MAP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_MAP,
+        NIL.ordinal)
   }
 
-  /**
-   * Set the region's layers. This allows selecting regions from a path request (when using [godot.NavigationServer3D.mapGetPath]).
-   */
   public fun regionSetLayers(region: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to region, LONG to layers)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_LAYERS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_LAYERS,
+        NIL.ordinal)
   }
 
-  /**
-   * Returns the region's layers.
-   */
   public fun regionGetLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_LAYERS, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_LAYERS,
+        LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -252,8 +253,8 @@ public object NavigationServer3D : Object() {
    */
   public fun regionSetTransform(region: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to region, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_TRANSFORM, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_TRANSFORM,
+        NIL.ordinal)
   }
 
   /**
@@ -261,8 +262,8 @@ public object NavigationServer3D : Object() {
    */
   public fun regionSetNavmesh(region: RID, navMesh: NavigationMesh): Unit {
     TransferContext.writeArguments(_RID to region, OBJECT to navMesh)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVMESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVMESH,
+        NIL.ordinal)
   }
 
   /**
@@ -270,8 +271,8 @@ public object NavigationServer3D : Object() {
    */
   public fun regionBakeNavmesh(mesh: NavigationMesh, node: Node): Unit {
     TransferContext.writeArguments(OBJECT to mesh, OBJECT to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_BAKE_NAVMESH, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_BAKE_NAVMESH,
+        NIL.ordinal)
   }
 
   /**
@@ -279,8 +280,8 @@ public object NavigationServer3D : Object() {
    */
   public fun regionGetConnectionsCount(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTIONS_COUNT, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTIONS_COUNT, LONG.ordinal)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -289,8 +290,9 @@ public object NavigationServer3D : Object() {
    */
   public fun regionGetConnectionPathwayStart(region: RID, connection: Long): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to connection)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_START, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_START,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -299,8 +301,9 @@ public object NavigationServer3D : Object() {
    */
   public fun regionGetConnectionPathwayEnd(region: RID, connection: Long): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to connection)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_END, VECTOR3)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_END,
+        VECTOR3.ordinal)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -309,8 +312,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_CREATE,
-        _RID)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_CREATE,
+        _RID.ordinal)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
@@ -319,8 +322,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetMap(agent: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to agent, _RID to map)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAP,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAP,
+        NIL.ordinal)
   }
 
   /**
@@ -328,8 +331,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetNeighborDist(agent: RID, dist: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to dist)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_NEIGHBOR_DIST, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_NEIGHBOR_DIST, NIL.ordinal)
   }
 
   /**
@@ -337,8 +340,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetMaxNeighbors(agent: RID, count: Long): Unit {
     TransferContext.writeArguments(_RID to agent, LONG to count)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_NEIGHBORS, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_NEIGHBORS, NIL.ordinal)
   }
 
   /**
@@ -346,8 +349,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetTimeHorizon(agent: RID, time: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to time)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON, NIL.ordinal)
   }
 
   /**
@@ -355,8 +358,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetRadius(agent: RID, radius: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to radius)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_RADIUS,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_RADIUS,
+        NIL.ordinal)
   }
 
   /**
@@ -364,8 +367,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetMaxSpeed(agent: RID, maxSpeed: Double): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_SPEED, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_SPEED,
+        NIL.ordinal)
   }
 
   /**
@@ -373,8 +376,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetVelocity(agent: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_VELOCITY, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_VELOCITY,
+        NIL.ordinal)
   }
 
   /**
@@ -382,8 +385,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetTargetVelocity(agent: RID, targetVelocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to targetVelocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TARGET_VELOCITY, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TARGET_VELOCITY, NIL.ordinal)
   }
 
   /**
@@ -391,8 +394,8 @@ public object NavigationServer3D : Object() {
    */
   public fun agentSetPosition(agent: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_POSITION, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_POSITION,
+        NIL.ordinal)
   }
 
   /**
@@ -400,13 +403,15 @@ public object NavigationServer3D : Object() {
    */
   public fun agentIsMapChanged(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_IS_MAP_CHANGED, BOOL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_IS_MAP_CHANGED,
+        BOOL.ordinal)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Callback called at the end of the RVO process.
+   * Callback called at the end of the RVO process. If a callback is created manually and the agent is placed on a navigation map it will calculate avoidance for the agent and dispatch the calculated `safe_velocity` to the `receiver` object with a signal to the chosen `method` name.
+   *
+   * **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [agentSetCallback] again with a `null` object as the `receiver`.
    */
   public fun agentSetCallback(
     agent: RID,
@@ -415,13 +420,13 @@ public object NavigationServer3D : Object() {
     userdata: Any? = null
   ): Unit {
     TransferContext.writeArguments(_RID to agent, OBJECT to receiver, STRING_NAME to method, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_CALLBACK,
+        NIL.ordinal)
   }
 
   public fun free(_object: RID): Unit {
     TransferContext.writeArguments(_RID to _object)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_FREE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_FREE, NIL.ordinal)
   }
 
   /**
@@ -429,7 +434,8 @@ public object NavigationServer3D : Object() {
    */
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_SET_ACTIVE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_SET_ACTIVE,
+        NIL.ordinal)
   }
 
   /**
@@ -441,6 +447,6 @@ public object NavigationServer3D : Object() {
    */
   public fun process(deltaTime: Double): Unit {
     TransferContext.writeArguments(DOUBLE to deltaTime)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_PROCESS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_PROCESS, NIL.ordinal)
   }
 }

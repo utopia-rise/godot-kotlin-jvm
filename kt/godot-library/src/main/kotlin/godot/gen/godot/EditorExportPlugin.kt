@@ -76,8 +76,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     target: String
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to tags, STRING to target)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_SHARED_OBJECT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_SHARED_OBJECT,
+        NIL.ordinal)
   }
 
   /**
@@ -85,8 +85,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosProjectStaticLib(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PROJECT_STATIC_LIB, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PROJECT_STATIC_LIB, NIL.ordinal)
   }
 
   /**
@@ -98,7 +98,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     remap: Boolean
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to file, BOOL to remap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_FILE, NIL.ordinal)
   }
 
   /**
@@ -106,8 +106,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_FRAMEWORK, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_FRAMEWORK,
+        NIL.ordinal)
   }
 
   /**
@@ -119,8 +119,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosEmbeddedFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_EMBEDDED_FRAMEWORK, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_EMBEDDED_FRAMEWORK, NIL.ordinal)
   }
 
   /**
@@ -128,8 +128,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosPlistContent(plistContent: String): Unit {
     TransferContext.writeArguments(STRING to plistContent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PLIST_CONTENT, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PLIST_CONTENT,
+        NIL.ordinal)
   }
 
   /**
@@ -137,8 +137,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosLinkerFlags(flags: String): Unit {
     TransferContext.writeArguments(STRING to flags)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_LINKER_FLAGS, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_LINKER_FLAGS,
+        NIL.ordinal)
   }
 
   /**
@@ -146,8 +146,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosBundleFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_BUNDLE_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_BUNDLE_FILE,
+        NIL.ordinal)
   }
 
   /**
@@ -155,8 +155,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosCppCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_CPP_CODE,
-        NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_CPP_CODE,
+        NIL.ordinal)
   }
 
   /**
@@ -166,8 +166,8 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addOsxPluginFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_OSX_PLUGIN_FILE, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_OSX_PLUGIN_FILE,
+        NIL.ordinal)
   }
 
   /**
@@ -175,7 +175,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun skip(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL.ordinal)
   }
 
   public companion object

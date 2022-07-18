@@ -46,14 +46,14 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public var sizeOverride: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_SIZE_OVERRIDE, VECTOR2)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_SIZE_OVERRIDE, VECTOR2.ordinal)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_SIZE_OVERRIDE, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_SIZE_OVERRIDE, NIL.ordinal)
     }
 
   /**
@@ -64,14 +64,16 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public var keepCompressedBuffer: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_IS_KEEPING_COMPRESSED_BUFFER, BOOL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_IS_KEEPING_COMPRESSED_BUFFER,
+          BOOL.ordinal)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_COMPRESSED_BUFFER, NIL)
+      TransferContext.icall(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_COMPRESSED_BUFFER,
+          NIL.ordinal)
     }
 
   public override fun __new(): Unit {
@@ -92,8 +94,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
     lossyQuality: Double = 0.8
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_CREATE_FROM_IMAGE, NIL)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_CREATE_FROM_IMAGE, NIL.ordinal)
   }
 
   /**
@@ -101,8 +103,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_FORMAT, LONG)
+    TransferContext.icall(rawPtr, ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_FORMAT,
+        LONG.ordinal)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -111,8 +113,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
    */
   public fun getCompressionMode(): PortableCompressedTexture2D.CompressionMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG)
+    TransferContext.icall(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_GET_COMPRESSION_MODE, LONG.ordinal)
     return PortableCompressedTexture2D.CompressionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -155,5 +157,24 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Overrides the flag globally for all textures of this type. This is used primarily by the editor.
+     */
+    public fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
+      TransferContext.writeArguments(BOOL to keep)
+      TransferContext.icallStatic(ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_ALL_COMPRESSED_BUFFERS,
+          NIL.ordinal)
+    }
+
+    /**
+     * Return whether the flag is overridden for all textures of this type.
+     */
+    public fun isKeepingAllCompressedBuffers(): Boolean {
+      TransferContext.writeArguments()
+      TransferContext.icallStatic(ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_IS_KEEPING_ALL_COMPRESSED_BUFFERS,
+          BOOL.ordinal)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+  }
 }
