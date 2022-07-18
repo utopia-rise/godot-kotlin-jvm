@@ -17,23 +17,23 @@ class Callable internal constructor(
 
     constructor(target: Object, methodName: StringName) : this(target, methodName, null) {
         TransferContext.writeArguments(VariantType.OBJECT to target, VariantType.STRING_NAME to methodName)
-        _handle = Bridge.engine_call_constructor(1)
+        _handle = Bridge.engine_call_constructor_object_string_name()
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(target: Object, kFunction: KtCallable<KtObject, *>) : this(target, null, KtCustomCallable(target, kFunction)) {
-        _handle = Bridge.engine_call_constructor(2)
+        _handle = Bridge.engine_call_constructor_kt_custom_callable(customCallable!!)
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(jvmCall: () -> Any?) : this(null, null, KtCustomCallable(jvmCall)) {
-        _handle = Bridge.engine_call_constructor(2)
+        _handle = Bridge.engine_call_constructor_kt_custom_callable(customCallable!!)
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
     constructor(callable: Callable) : this(callable.target, callable.methodName, callable.customCallable) {
         TransferContext.writeArguments(VariantType.CALLABLE to callable)
-        _handle = Bridge.engine_call_constructor(3)
+        _handle = Bridge.engine_call_copy_constructor()
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
@@ -55,11 +55,10 @@ class Callable internal constructor(
 
     @Suppress("FunctionName")
     object Bridge {
-        external fun engine_call_constructor(
-            paramType: Int = 0,
-            callable: KtCustomCallable? = null,
-            classLoader: ClassLoader? = null
-        ): VoidPtr
+        external fun engine_call_constructor(): VoidPtr
+        external fun engine_call_constructor_object_string_name(): VoidPtr
+        external fun engine_call_constructor_kt_custom_callable(callable: KtCustomCallable): VoidPtr
+        external fun engine_call_copy_constructor(): VoidPtr
 
         external fun engine_call_call(handle: VoidPtr)
         external fun engine_call_call_deferred(handle: VoidPtr)
