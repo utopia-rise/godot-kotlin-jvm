@@ -1,5 +1,5 @@
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include <modules/kotlin_jvm/src/kt_custom_callable.h>
+#include <modules/kotlin_jvm/src/jni/class_loader.h>
 #include "callable_bridge.h"
 #include "constants.h"
 #include "bridges_utils.h"
@@ -8,25 +8,33 @@ using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(CallableBridge)
 
-uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jint param_type,
-                                                  jobject p_kt_custom_callable_instance, jobject p_class_loader) {
-    if (param_type == 0) {
-        return reinterpret_cast<uintptr_t>(memnew(Callable));
-    } else {
-        jni::Env env{p_raw_env};
-        Variant args[2] = {};
-        switch (param_type) {
-            case 1:
-                GDKotlin::get_instance().transfer_context->read_args(env, args);
-                return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object *(),
-                                                                   args[1].operator StringName())));
-            case 2:
-                return reinterpret_cast<uintptr_t>(memnew(Callable(memnew(KtCustomCallable(p_kt_custom_callable_instance, p_class_loader)))));
-            case 3:
-                GDKotlin::get_instance().transfer_context->read_args(env, args);
-                return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Callable())));
-        }
-    }
+uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
+    return reinterpret_cast<uintptr_t>(memnew(Callable));
+}
+
+uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env{p_raw_env};
+    Variant args[2] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    return reinterpret_cast<uintptr_t>(
+            memnew(Callable(args[0].operator Object *(), args[1].operator StringName()))
+    );
+}
+
+uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
+                                                                     jobject p_kt_custom_callable_instance) {
+    return reinterpret_cast<uintptr_t>(
+            memnew(Callable(
+                    memnew(KtCustomCallable(p_kt_custom_callable_instance, ClassLoader::get_default_loader()))
+            ))
+    );
+}
+
+uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env{p_raw_env};
+    Variant args[1] = {};
+    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Callable())));
 }
 
 void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -62,8 +70,26 @@ CallableBridge::CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_load
         JavaInstanceWrapper<CallableBridge>(CALLABLE_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader){
     jni::JNativeMethod engine_call_constructor_method{
         "engine_call_constructor",
-        "(ILgodot/core/KtCustomCallable;Ljava/lang/ClassLoader;)J",
+        "()J",
         (void *) CallableBridge::engine_call_constructor
+    };
+
+    jni::JNativeMethod engine_call_constructor_object_string_name_method{
+        "engine_call_constructor_object_string_name",
+        "()J",
+        (void *) CallableBridge::engine_call_constructor_object_string_name
+    };
+
+    jni::JNativeMethod engine_call_constructor_kt_custom_callable_method{
+        "engine_call_constructor_kt_custom_callable",
+        "(Lgodot/core/KtCustomCallable;)J",
+        (void *) CallableBridge::engine_call_constructor_kt_custom_callable
+    };
+
+    jni::JNativeMethod engine_call_copy_constructor_method{
+        "engine_call_copy_constructor",
+        "()J",
+        (void *) CallableBridge::engine_call_copy_constructor
     };
 
     jni::JNativeMethod engine_call_call_method{
@@ -80,6 +106,10 @@ CallableBridge::CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_load
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(engine_call_constructor_method);
+    methods.push_back(engine_call_constructor_object_string_name_method);
+    methods.push_back(engine_call_constructor_kt_custom_callable_method);
+    methods.push_back(engine_call_copy_constructor_method);
+
     methods.push_back(engine_call_call_method);
     methods.push_back(engine_call_call_deferred_method);
 
