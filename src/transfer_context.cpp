@@ -5,7 +5,7 @@
 #include "kotlin_instance.h"
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
-
+const int VARIANT_ARG_MAX{5};
 const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
