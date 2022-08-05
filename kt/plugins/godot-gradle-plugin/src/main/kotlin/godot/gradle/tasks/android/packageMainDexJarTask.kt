@@ -16,7 +16,7 @@ fun Project.packageMainDexJarTask(
 
             archiveBaseName.set("main-dex")
 
-            from("src/main/resources").include("**/godot.runtime.Entry")
+            from("src/main/resources").include("**/godot.registration.Entry")
             from("${project.buildDir.absolutePath}/libs/").include("*.dex")
 
             dependsOn(createMainDexFileTask)
