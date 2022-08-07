@@ -289,6 +289,7 @@ void GDKotlin::init() {
 
 #ifdef __ANDROID__
     String main_jar_file{"main-dex.jar"};
+    _check_and_copy_jar(main_jar_file);
 #else
     String main_jar_file;
     if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
