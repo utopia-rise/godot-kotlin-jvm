@@ -7916,6 +7916,14 @@ private fun registerEngineTypeMethodForNavigationServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "set_active")
 }
 
+private fun registerEngineTypeMethodForNetworkedMultiplayerCustom(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERCUSTOM to "deliver_packet")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERCUSTOM to "initialize")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERCUSTOM to
+      "set_connection_status")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERCUSTOM to "set_max_packet_size")
+}
+
 private fun registerEngineTypeMethodForNetworkedMultiplayerENet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "close_connection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "create_client")
@@ -10537,8 +10545,12 @@ private fun registerEngineTypeMethodForSpatial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "update_gizmo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_gizmo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_gizmo")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_global_rotation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_global_rotation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_global_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_global_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_global_translation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_global_translation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_rotation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_rotation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_rotation_degrees")
@@ -13154,6 +13166,7 @@ private fun registerEngineTypeMethodForVisualServer(): Unit {
       "viewport_set_transparent_background")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_update_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_usage")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_use_32_bpc_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_use_arvr")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_use_debanding")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "viewport_set_use_fxaa")
@@ -14444,6 +14457,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NavigationPolygonInstance", ::NavigationPolygonInstance)
   TypeManager.registerEngineType("NavigationServer") { NavigationServer }
   TypeManager.registerSingleton("NavigationServer")
+  TypeManager.registerEngineType("NetworkedMultiplayerCustom", ::NetworkedMultiplayerCustom)
   TypeManager.registerEngineType("NetworkedMultiplayerENet", ::NetworkedMultiplayerENet)
   TypeManager.registerEngineType("NetworkedMultiplayerPeer", ::NetworkedMultiplayerPeer)
   TypeManager.registerEngineType("NinePatchRect", ::NinePatchRect)
@@ -15153,6 +15167,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[NavigationPolygon::class] = OBJECT
   variantMapper[NavigationPolygonInstance::class] = OBJECT
   variantMapper[NavigationServer::class] = OBJECT
+  variantMapper[NetworkedMultiplayerCustom::class] = OBJECT
   variantMapper[NetworkedMultiplayerENet::class] = OBJECT
   variantMapper[NetworkedMultiplayerPeer::class] = OBJECT
   variantMapper[NinePatchRect::class] = OBJECT
@@ -15830,6 +15845,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForNavigationPolygon()
   registerEngineTypeMethodForNavigationPolygonInstance()
   registerEngineTypeMethodForNavigationServer()
+  registerEngineTypeMethodForNetworkedMultiplayerCustom()
   registerEngineTypeMethodForNetworkedMultiplayerENet()
   registerEngineTypeMethodForNetworkedMultiplayerPeer()
   registerEngineTypeMethodForNinePatchRect()

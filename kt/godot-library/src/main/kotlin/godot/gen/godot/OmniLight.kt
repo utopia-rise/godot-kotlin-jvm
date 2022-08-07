@@ -42,7 +42,9 @@ public open class OmniLight : Light() {
     }
 
   /**
-   * See [enum ShadowMode].
+   * The shadow rendering mode to use for this [godot.OmniLight]. See [enum ShadowMode].
+   *
+   * **Note:** In GLES2, [SHADOW_CUBE] is only supported on GPUs that feature support for depth cubemaps. Old GPUs such as the Radeon HD 4000 series don't support cubemap shadows and will fall back to dual paraboloid shadows as a result.
    */
   public open var omniShadowMode: Long
     get() {
@@ -69,7 +71,7 @@ public open class OmniLight : Light() {
      */
     SHADOW_DUAL_PARABOLOID(0),
     /**
-     * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality.
+     * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality. Only supported on GPUs that feature support for depth cubemaps.
      */
     SHADOW_CUBE(1),
     ;
@@ -109,7 +111,7 @@ public open class OmniLight : Light() {
 
   public companion object {
     /**
-     * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality.
+     * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality. Only supported on GPUs that feature support for depth cubemaps.
      */
     public final const val SHADOW_CUBE: Long = 1
 

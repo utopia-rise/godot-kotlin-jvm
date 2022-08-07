@@ -181,7 +181,7 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   * If set to a value greater than `0.0`, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value greater than `0.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
+   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
    */
   public open var timeout: Double
     get() {

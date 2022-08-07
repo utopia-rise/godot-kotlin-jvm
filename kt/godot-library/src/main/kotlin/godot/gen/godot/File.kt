@@ -165,12 +165,12 @@ public open class File : Reference() {
   }
 
   /**
-   * Returns the whole file as a [godot.String].
+   * Returns the whole file as a [godot.String]. Text is interpreted as being UTF-8 encoded.
    *
-   * Text is interpreted as being UTF-8 encoded.
+   * If `skip_cr` is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
-  public open fun getAsText(): String {
-    TransferContext.writeArguments()
+  public open fun getAsText(skipCr: Boolean = true): String {
+    TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_GET_AS_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
