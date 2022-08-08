@@ -56,6 +56,8 @@ public open class Camera : Spatial() {
 
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
+   *
+   * If multiple cameras are in the scene, one will always be made current. For example, if two [godot.Camera] nodes are present in the scene and only one is current, setting one camera's [current] to `false` will cause the other camera to be made current.
    */
   public open var current: Boolean
     get() {
@@ -138,6 +140,8 @@ public open class Camera : Spatial() {
 
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   public open var frustumOffset: Vector2
     get() {
@@ -356,7 +360,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units.
+   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units. See also [frustumOffset].
    */
   public open fun setFrustum(
     size: Double,

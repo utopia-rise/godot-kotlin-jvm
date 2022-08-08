@@ -376,7 +376,7 @@ public object Geometry : Object() {
   }
 
   /**
-   * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a vector of [godot.core.Vector2] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.core.Vector2].
+   * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is an array of [godot.core.Vector2] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.core.Vector2].
    */
   public fun makeAtlas(sizes: PoolVector2Array): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to sizes)

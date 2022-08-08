@@ -1139,7 +1139,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Bookmarks the `line` if `bookmark` is true. Deletes the bookmark if `bookmark` is false.
+   * Bookmarks the `line` if `bookmark` is `true`. Deletes the bookmark if `bookmark` is `false`.
    *
    * Bookmarks are shown in the [breakpointGutter].
    */

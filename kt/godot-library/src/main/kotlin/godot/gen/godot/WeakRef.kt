@@ -24,7 +24,7 @@ public open class WeakRef : Reference() {
   }
 
   /**
-   * Returns the [godot.Object] this weakref is referring to.
+   * Returns the [godot.Object] this weakref is referring to. Returns `null` if that object no longer exists.
    */
   public open fun getRef(): Any? {
     TransferContext.writeArguments()

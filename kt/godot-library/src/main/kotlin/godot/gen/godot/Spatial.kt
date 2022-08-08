@@ -68,6 +68,23 @@ public open class Spatial : Node() {
     }
 
   /**
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
+   *
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   */
+  public open var globalRotation: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_ROTATION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_ROTATION, NIL)
+    }
+
+  /**
    * World space (global) [godot.core.Transform] of this node.
    */
   public open var globalTransform: Transform
@@ -80,6 +97,22 @@ public open class Spatial : Node() {
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_TRANSFORM, NIL)
+    }
+
+  /**
+   * Global position of this node. This is equivalent to `global_transform.origin`.
+   */
+  public open var globalTranslation: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_TRANSLATION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_TRANSLATION,
+          NIL)
     }
 
   /**
@@ -176,10 +209,25 @@ public open class Spatial : Node() {
   }
 
   @CoreTypeHelper
+  public open fun globalRotation(schedule: Vector3.() -> Unit): Vector3 = globalRotation.apply{
+      schedule(this)
+      globalRotation = this
+  }
+
+
+  @CoreTypeHelper
   public open fun globalTransform(schedule: Transform.() -> Unit): Transform =
       globalTransform.apply{
       schedule(this)
       globalTransform = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun globalTranslation(schedule: Vector3.() -> Unit): Vector3 =
+      globalTranslation.apply{
+      schedule(this)
+      globalTranslation = this
   }
 
 

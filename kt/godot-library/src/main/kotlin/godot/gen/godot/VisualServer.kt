@@ -5144,7 +5144,9 @@ public object VisualServer : Object() {
   }
 
   /**
-   * If `true`, the viewport renders to hdr.
+   * If `true`, the viewport renders to high dynamic range (HDR) instead of standard dynamic range (SDR). See also [viewportSetUse32BpcDepth].
+   *
+   * **Note:** Only available on the GLES3 backend.
    */
   public fun viewportSetHdr(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -5274,6 +5276,17 @@ public object VisualServer : Object() {
     TransferContext.writeArguments(_RID to viewport, LONG to usage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USAGE,
         NIL)
+  }
+
+  /**
+   * If `true`, allocates the viewport's framebuffer with full floating-point precision (32-bit) instead of half floating-point precision (16-bit). Only effective if [viewportSetUse32BpcDepth] is used on the same [godot.Viewport] to set HDR to `true`.
+   *
+   * **Note:** Only available on the GLES3 backend.
+   */
+  public fun viewportSetUse32BpcDepth(viewport: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_32_BPC_DEPTH, NIL)
   }
 
   /**

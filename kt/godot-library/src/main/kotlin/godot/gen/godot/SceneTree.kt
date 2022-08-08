@@ -437,6 +437,8 @@ public open class SceneTree : MainLoop() {
    * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
    *
    * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneTo] call.
+   *
+   * **Note:** Passing a value of `null` into the method will unload the current scene without loading a new one.
    */
   public open fun changeSceneTo(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)

@@ -281,7 +281,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Returns the next TreeItem in the tree or a null object if there is none.
+   * Returns the next sibling TreeItem in the tree or a null object if there is none.
    */
   public open fun getNext(): TreeItem? {
     TransferContext.writeArguments()
@@ -290,7 +290,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Returns the next visible TreeItem in the tree or a null object if there is none.
+   * Returns the next visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If `wrap` is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
@@ -310,7 +310,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Returns the previous TreeItem in the tree or a null object if there is none.
+   * Returns the previous sibling TreeItem in the tree or a null object if there is none.
    */
   public open fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
@@ -319,7 +319,7 @@ public open class TreeItem : Object() {
   }
 
   /**
-   * Returns the previous visible TreeItem in the tree or a null object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
    *
    * If `wrap` is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */

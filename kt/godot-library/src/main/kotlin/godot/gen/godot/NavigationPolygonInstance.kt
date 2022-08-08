@@ -33,7 +33,7 @@ import kotlin.Unit
  *
  * The pathfinding cost of entering this region from another region can be controlled with the [enterCost] value.
  *
- * **Note**: This value is not added to the path cost when the start position is already inside this region.
+ * **Note:** This value is not added to the path cost when the start position is already inside this region.
  *
  * The pathfinding cost of traveling distances inside this region can be controlled with the [travelCost] multiplier.
  */

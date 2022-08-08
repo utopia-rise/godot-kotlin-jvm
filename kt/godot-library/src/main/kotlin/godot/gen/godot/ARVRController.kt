@@ -77,7 +77,7 @@ public open class ARVRController : Spatial() {
     }
 
   /**
-   * The degree to which the controller vibrates. Ranges from `0.0` to `1.0` with precision `.01`. If changed, updates [godot.ARVRPositionalTracker.rumble] accordingly.
+   * The degree to which the controller vibrates. Ranges from `0.0` to `1.0`. If changed, updates [godot.ARVRPositionalTracker.rumble] accordingly.
    *
    * This is a useful property to animate if you want the controller to vibrate for a limited duration.
    */
