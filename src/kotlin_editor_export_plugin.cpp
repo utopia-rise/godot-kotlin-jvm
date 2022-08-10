@@ -77,18 +77,17 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
             if (is_osx_export) {
                 bool is_arm64{p_features.has("arm64")};
                 bool is_x64{p_features.has("x86_64")};
-                if (p_features.has("universal")) {
-                    is_arm64 = true;
-                    is_x64 = true;
-                }
 
-                if (is_arm64 || !is_x64) {
-                    add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
-                    _copy_jre_to(jni::JniConstants::JRE_ARM64, dir_access);
-                }
+                if (!is_arm64 && !is_x64) {
+                    add_osx_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                } else {
+                    if (is_arm64) {
+                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
+                    }
 
-                if (is_x64 || !is_arm64) {
-                    _copy_jre_to(jni::JniConstants::JRE_AMD64, dir_access);
+                    if (is_x64) {
+                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
+                    }
                 }
             } else {
                 _copy_jre_to(jni::JniConstants::JRE_AMD64, dir_access);
