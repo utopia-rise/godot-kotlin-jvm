@@ -10,7 +10,7 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
-import org.jetbrains.kotlin.idea.hierarchy.overrides.isOverrideHierarchyElement
+import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -39,10 +39,11 @@ class RegisterFunctionAnnotator : Annotator {
         }
     }
 
-    private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction) =
-        element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
-            element.isOverrideHierarchyElement() &&
-            element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
+    private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction): Boolean {
+        return element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
+            element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null &&
+            element.resolveToDescriptorIfAny()?.overriddenDescriptors?.any { it.annotations.hasAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) } == true
+    }
 
     private fun overriddenNotificationFunctionNotRegistered(element: KtNamedFunction) =
         element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
