@@ -18,14 +18,6 @@ plugins {
 //sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ212" to BuildConfig(
-        sdk = "212.5457.46",
-        prefix = "IJ2021.2",
-        extraSource = "IJ183",
-        version = VersionRange("212.3", "212.*"),
-        ideVersionsForVerifierTask = listOf("2021.2.1"),
-        deps = listOf("java", "org.jetbrains.kotlin:212-1.6.21-release-334-IJ5457.46", "gradle")
-    ),
     "IJ213" to BuildConfig(
         sdk = "213.6777.52",
         prefix = "IJ2021.3",
@@ -41,14 +33,28 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         version = VersionRange("221.3", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.1"),
         deps = listOf("java", "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52", "gradle")
+    ),
+    "IJ222" to BuildConfig(
+        sdk = "222.3345.118",
+        prefix = "IJ2022.2",
+        extraSource = "IJ213", // hasn't changed. Thus no need to update
+        version = VersionRange("222.2", "999.*"),
+        ideVersionsForVerifierTask = listOf("2022.2"),
+        deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
     )
 )
 
 repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://www.jetbrains.com/intellij-repository/releases/")
+    }
+    maven {
+        url = uri("https://www.jetbrains.com/intellij-repository/snapshots/")
+    }
     maven {
         url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
-    mavenCentral()
 }
 
 val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
@@ -71,7 +77,7 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ221"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ222"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
