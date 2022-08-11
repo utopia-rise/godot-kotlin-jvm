@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.psi.psiUtil.containingClassOrObject
 import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
-import org.jetbrains.kotlin.resolve.calls.util.getType
+import godot.intellij.plugin.extension.getType
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
 object KtCallExpressionExtractor {

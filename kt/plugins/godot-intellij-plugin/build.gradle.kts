@@ -29,7 +29,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ221" to BuildConfig(
         sdk = "221.5591.52",
         prefix = "IJ2022.1",
-        extraSource = "IJ213", // hasn't changed. Thus no need to update
+        extraSource = "IJ221",
         version = VersionRange("221.3", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.1"),
         deps = listOf("java", "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52", "gradle")
@@ -37,7 +37,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ222" to BuildConfig(
         sdk = "222.3345.118",
         prefix = "IJ2022.2",
-        extraSource = "IJ213", // hasn't changed. Thus no need to update
+        extraSource = "IJ221", // hasn't changed. Thus no need to update
         version = VersionRange("222.2", "999.*"),
         ideVersionsForVerifierTask = listOf("2022.2"),
         deps = listOf("java", "org.jetbrains.kotlin", "gradle") // kotlin plugin version no longer needed as it's now bundled with the IDE
