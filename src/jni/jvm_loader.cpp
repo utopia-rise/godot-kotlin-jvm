@@ -50,23 +50,26 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
 }
 
 String jni::JvmLoader::get_jvm_lib_path() {
-    if (Jvm::get_type() != Jvm::GRAAL_NATIVE_IMAGE && Engine::get_singleton()->is_editor_hint()) {
-        LOG_INFO("Godot-JVM: Editor mode, loading jvm from JAVA_HOME");
-        return get_path_to_locally_installed_jvm();
-    } else {
-        String embeddedJrePath{get_embedded_jre_path()};
-        if (!FileAccess::exists(embeddedJrePath)) {
-            if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
-                JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image");
-            }
-            LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath));
-#ifdef DEBUG_ENABLED
-            LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation if you don't know how to do that"));
-#endif
-            return get_path_to_locally_installed_jvm();
+    String embeddedJrePath{get_embedded_jre_path()};
+    if (!FileAccess::exists(embeddedJrePath)) {
+        // Cannot find graal usercode, so no JVM can be found, make crash.
+        if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+            JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image");
         }
-        return embeddedJrePath;
+
+#if !defined(TOOLS_ENABLED)
+        // Cannot find JVM (here hotspot) while not in TOOL mode, make crash.
+        JVM_CRASH_NOW_MSG(vformat("Cannot find embedded JVM on path: %s", embeddedJrePath));
+#endif
+        LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath));
+#ifdef DEBUG_ENABLED
+        LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation if you don't know how to do that"));
+#endif
+
+        // Can only happen in TOOL mode, with hotspot.
+        return get_path_to_locally_installed_jvm();
     }
+    return embeddedJrePath;
 }
 
 String jni::JvmLoader::get_path_to_locally_installed_jvm() {
@@ -105,7 +108,9 @@ String jni::JvmLoader::get_embedded_jre_path() {
         String jre_folder{
                 vformat(
                         "%s%s",
-#if defined(OSX_ENABLED) && !defined(TOOLS_ENABLED)
+#ifdef TOOLS_ENABLED
+                        "res://"
+#elifdef OSX_ENABLED
                         "../PlugIns/"
 #else
                         ""
@@ -114,8 +119,14 @@ String jni::JvmLoader::get_embedded_jre_path() {
                         jni::JniConstants::CURRENT_RUNTIME_JRE
                 )
         };
-        jre_path = OS::get_singleton()->get_executable_path()
-                .get_base_dir()
+        String jre_location{
+#ifdef TOOLS_ENABLED
+            ""
+#else
+            OS::get_singleton()->get_executable_path().get_base_dir()
+#endif
+        };
+        jre_path = jre_location
                 .plus_file(jre_folder)
                 .plus_file(LIB_JVM_RELATIVE_PATH);
     }
