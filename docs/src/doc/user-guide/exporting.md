@@ -20,9 +20,14 @@ Then you can export your game as usual, your game `jar` will be included in `pck
 ## Requirements
 To export your game, you need to have an embedded JRE created. Run the following command within your project's root.
 
-```shell
-jlink --add-modules java.base,java.logging --output jre
-```
+- amd64 systems:
+    ```shell
+    jlink --add-modules java.base,java.logging --output jre-amd64
+    ```
+- arm64 systems:
+    ```shell
+    jlink --add-modules java.base,java.logging --output jre-arm64
+    ```
 
 The above command will create a very minimal JVM, if you need extra features you can include the following modules:
 
