@@ -110,7 +110,7 @@ String jni::JvmLoader::get_embedded_jre_path() {
                         "%s%s",
 #ifdef TOOLS_ENABLED
                         "res://"
-#elifdef OSX_ENABLED
+#elif defined(OSX_ENABLED)
                         "../PlugIns/"
 #else
                         ""
