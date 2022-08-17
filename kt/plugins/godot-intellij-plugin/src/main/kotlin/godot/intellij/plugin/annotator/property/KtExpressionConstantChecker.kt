@@ -1,5 +1,6 @@
 package godot.intellij.plugin.annotator.property
 
+import godot.intellij.plugin.extension.getType
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
@@ -17,7 +18,6 @@ import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
-import org.jetbrains.kotlin.resolve.calls.util.getType
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.isCompanionObject
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
@@ -26,7 +26,7 @@ class KtExpressionConstantChecker {
     fun isConstantEnoughForRegistration(ktExpression: KtExpression): Boolean {
         return if (!ktExpression.isConstant()) {
             return when (ktExpression) {
-                is KtCallExpression -> checkKtCallExpresion(ktExpression)
+                is KtCallExpression -> checkKtCallExpression(ktExpression)
                 is KtDotQualifiedExpression -> checkKtDotQualifiedExpression(ktExpression)
                 is KtStringTemplateExpression -> !ktExpression.hasInterpolation()
                 is KtBinaryExpression -> checkKtBinaryExpression(ktExpression)
@@ -35,7 +35,7 @@ class KtExpressionConstantChecker {
         } else true
     }
 
-    private fun checkKtCallExpresion(ktExpression: KtCallExpression): Boolean {
+    private fun checkKtCallExpression(ktExpression: KtCallExpression): Boolean {
         val bindingContext = ktExpression.analyze(BodyResolveMode.FULL)
         return ktExpression
             .referenceExpression()

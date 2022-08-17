@@ -36,13 +36,13 @@ import java.awt.event.MouseEvent
 import javax.swing.JPanel
 
 @Suppress("UnstableApiUsage")
-class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
+class RegisteredNameInlayHint : InlayHintsProvider<Any> {
 
-    override val key: SettingsKey<NoSettings> = SettingsKey("kotlin.references.types.hints")
+    override val key: SettingsKey<Any> = SettingsKey("kotlin.references.types.hints")
     override val name: String = GodotPluginBundle.message("codeVision.name")
     override val previewText: String? = null
 
-    override fun createConfigurable(settings: NoSettings): ImmediateConfigurable = object : ImmediateConfigurable {
+    override fun createConfigurable(settings: Any): ImmediateConfigurable = object : ImmediateConfigurable {
         override fun reset() {
             // no op
         }
@@ -57,7 +57,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
     override fun getCollectorFor(
         file: PsiFile,
         editor: Editor,
-        settings: NoSettings,
+        settings: Any,
         sink: InlayHintsSink
     ): InlayHintsCollector {
         return object : InlayHintsCollector, FactoryInlayHintsCollector(editor) {

@@ -7,6 +7,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.search.searches.ReferencesSearch
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
+import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
@@ -40,6 +41,8 @@ class CopyModificationAnnotator : Annotator {
     private val singleValueTokensToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=")
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        if (!element.isInGodotRoot()) return
+
         val isCoreTypeCopyAssignment = when (element) {
             is KtBinaryExpression -> {
                 val tokenType = element.operationToken
@@ -117,11 +120,29 @@ class CopyModificationAnnotator : Annotator {
                     } else {
                         evaluateKtCallExpression(receiverExpression)
                     }
-                is KtDotQualifiedExpression ->
-                    receiverExpression
-                        .receiverExpression
-                        .resolveTypeSafe()
-                        ?.isPoolArray() != true
+                is KtDotQualifiedExpression -> if (receiverExpression.receiverExpression.resolveTypeSafe()?.isPoolArray() != true) {
+                    if (receiverExpression.isConstructorCall()) {
+                        receiverExpression.selectorExpression?.let { evaluateExpression(it) } ?: false
+                    } else {
+                        // call chain check
+                        //
+                        // example:
+                        // val property = someClass.vectorProperty.x
+                        // fun modificationFunction() {
+                        //     property = 1f
+                        // }
+                        //
+                        // this is wrong as we're modifying a property of "by value" core type vectorProperty without reassigning it
+                        if (receiverExpression.receiverExpression.resolveTypeSafe()?.isCoreType() == true && receiverExpression.selectorExpression is KtReferenceExpression) {
+                            true
+                        } else {
+                            evaluateExpression(receiverExpression)
+                        }
+                    }
+                } else {
+                    false
+                }
+
                 is KtArrayAccessExpression ->
                     receiverExpression
                         .arrayExpression
