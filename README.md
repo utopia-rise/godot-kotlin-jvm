@@ -23,7 +23,7 @@ The documentation can be found [here](https://godot-kotl.in)
 Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)
 
 ## Contribution
-If you want to contribute to the project, please read through the contribution guidlines and getting started sections [here](https://godot-kotl.in/contribution/guidelines.html)
+If you want to contribute to the project, please read through the contribution guidlines and getting started sections [here](https://godot-kotl.in/en/stable/contribution/guidelines/)
 
 ## Partners
 Jetbrains is helping us to develop this project by providing development tools to maintainers.  
