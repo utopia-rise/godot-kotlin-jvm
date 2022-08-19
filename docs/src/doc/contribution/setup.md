@@ -12,11 +12,15 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
 
 4. Build sample
     - navigate to `<module-root>/harness/tests`
-    - create embedded JVM: `jlink --add-modules java.base,java.logging --output jre`
+    - create embedded JVM:
+        - For amd64 systems:
+          - `jlink --add-modules java.base,java.logging --output jre-amd64`
+        - For arm64 systems:
+          - `jlink --add-modules java.base,java.logging --output jre-arm64`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
     - Windows: `gradlew build`
-	- Unix: `./gradlew build`
+    - Unix: `./gradlew build`
 
 5. In order to run the engine, run `godot.x11.tools.64` located in the `bin` folder of `godot-root`
 

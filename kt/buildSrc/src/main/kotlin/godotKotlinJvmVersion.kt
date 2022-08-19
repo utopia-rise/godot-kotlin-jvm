@@ -1,1 +1,1 @@
-const val godotKotlinJvmVersion = "0.4.0"
+const val godotKotlinJvmVersion = "0.5.0"

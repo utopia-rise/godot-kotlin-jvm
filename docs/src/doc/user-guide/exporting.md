@@ -18,16 +18,26 @@ On OSX use the script mentioned in [this issue](https://github.com/godotengine/g
 Then you can export your game as usual, your game `jar` will be included in `pck`.   On desktop platforms, this also copies the jre folder of your project in the exported game folder.
 
 ## Requirements
-To export your game, you need to have an embedded JRE created. Run the following command within your project's root.
+To export your game, you need to have an embedded JRE created. Run the following command within your project's root.  
+For desktop exports you need to make exports based on the platform you're on, as exporting will copy jre folder to
+your export. An OSX jre will not work with a windows, so you'll need a windows to export for windows.  
 
-```shell
-jlink --add-modules java.base,java.logging --output jre
-```
+- amd64 systems:
+    ```shell
+    jlink --add-modules java.base,java.logging --output jre-amd64
+    ```
+- arm64 systems:
+    ```shell
+    jlink --add-modules java.base,java.logging --output jre-arm64
+    ```
 
 The above command will create a very minimal JVM, if you need extra features you can include the following modules:
 
 - `jdk.jdwp.agent` to enable remote debugging
 - `jdk.management.agent` to enable JMX.
+
+*Special note for MacOS*: To create a universal app, you'll need both amd64 and arm64 JRE. You can create an amd64 jre
+by using jlink with rosetta and an amd64 jdk on an arm64 MacOS.
 
 ## Specifics
 
