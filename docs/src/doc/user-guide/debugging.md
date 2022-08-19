@@ -4,7 +4,7 @@ In order to debug your code using an embedded JRE, make sure to include the foll
 - `jdk.jdwp.agent`
 
 !!! info
-    Example for ADM64 systems: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre-amd64`  
+    Example for AMD64 systems: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre-amd64`  
     Example for ARM64 systems: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre-arm64`
 
 ## Run and attach Remote Debugger
