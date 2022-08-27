@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * (only available on mobile devices)
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
  */

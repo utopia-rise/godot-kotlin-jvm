@@ -29,7 +29,7 @@ import kotlin.Unit
  * A spatial node representing a spatially-tracked controller.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
  *
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
  *
@@ -77,7 +77,7 @@ public open class ARVRController : Spatial() {
     }
 
   /**
-   * The degree to which the controller vibrates. Ranges from `0.0` to `1.0` with precision `.01`. If changed, updates [godot.ARVRPositionalTracker.rumble] accordingly.
+   * The degree to which the controller vibrates. Ranges from `0.0` to `1.0`. If changed, updates [godot.ARVRPositionalTracker.rumble] accordingly.
    *
    * This is a useful property to animate if you want the controller to vibrate for a limited duration.
    */

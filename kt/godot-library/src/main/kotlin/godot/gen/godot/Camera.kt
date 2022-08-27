@@ -56,6 +56,8 @@ public open class Camera : Spatial() {
 
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
+   *
+   * If multiple cameras are in the scene, one will always be made current. For example, if two [godot.Camera] nodes are present in the scene and only one is current, setting one camera's [current] to `false` will cause the other camera to be made current.
    */
   public open var current: Boolean
     get() {
@@ -138,6 +140,8 @@ public open class Camera : Spatial() {
 
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   public open var frustumOffset: Vector2
     get() {
@@ -208,7 +212,7 @@ public open class Camera : Spatial() {
     }
 
   /**
-   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal mode. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
+   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal and frustum modes. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
    */
   public open var size: Double
     get() {
@@ -330,7 +334,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -339,7 +343,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -356,7 +360,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units.
+   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units. See also [frustumOffset].
    */
   public open fun setFrustum(
     size: Double,
@@ -469,11 +473,11 @@ public open class Camera : Spatial() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;
@@ -495,12 +499,12 @@ public open class Camera : Spatial() {
     public final const val DOPPLER_TRACKING_DISABLED: Long = 0
 
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     public final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
 
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     public final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 

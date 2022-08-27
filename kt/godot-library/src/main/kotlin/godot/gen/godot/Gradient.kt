@@ -44,6 +44,22 @@ public open class Gradient : Resource() {
     }
 
   /**
+   * Defines how the colors between points of the gradient are interpolated. See [enum InterpolationMode] for available modes.
+   */
+  public open var interpolationMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_INTERPOLATION_MODE,
+          NIL)
+    }
+
+  /**
    * Gradient's offsets returned as a [godot.core.PoolRealArray].
    */
   public open var offsets: PoolRealArray
@@ -128,5 +144,49 @@ public open class Gradient : Resource() {
   public open fun setOffset(point: Long, offset: Double): Unit {
     TransferContext.writeArguments(LONG to point, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL)
+  }
+
+  public enum class InterpolationMode(
+    id: Long
+  ) {
+    /**
+     * Linear interpolation.
+     */
+    GRADIENT_INTERPOLATE_LINEAR(0),
+    /**
+     * Constant interpolation, color changes abruptly at each point and stays uniform between. This might cause visible aliasing when used for a gradient texture in some cases.
+     */
+    GRADIENT_INTERPOLATE_CONSTANT(1),
+    /**
+     * Cubic interpolation.
+     */
+    GRADIENT_INTERPOLATE_CUBIC(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public companion object {
+    /**
+     * Constant interpolation, color changes abruptly at each point and stays uniform between. This might cause visible aliasing when used for a gradient texture in some cases.
+     */
+    public final const val GRADIENT_INTERPOLATE_CONSTANT: Long = 1
+
+    /**
+     * Cubic interpolation.
+     */
+    public final const val GRADIENT_INTERPOLATE_CUBIC: Long = 2
+
+    /**
+     * Linear interpolation.
+     */
+    public final const val GRADIENT_INTERPOLATE_LINEAR: Long = 0
   }
 }

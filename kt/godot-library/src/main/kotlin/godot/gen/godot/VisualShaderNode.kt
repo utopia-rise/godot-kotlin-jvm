@@ -23,7 +23,7 @@ import kotlin.Unit
  * Base class for nodes in a visual shader graph.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shaders/visual_shaders.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/visual_shaders.html)
+ * [$DOCS_URL/tutorials/shaders/visual_shaders.html]($DOCS_URL/tutorials/shaders/visual_shaders.html)
  *
  * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node has also connection ports that allow to connect it to another nodes and control the flow of the shader.
  */

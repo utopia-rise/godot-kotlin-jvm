@@ -9,9 +9,14 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Vertical flow container.
+ *
+ * Vertical version of [godot.FlowContainer].
+ */
 @GodotBaseType
-public open class Physics2DDirectBodyStateSW : Physics2DDirectBodyState() {
+public open class VFlowContainer : FlowContainer() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATESW)
+    callConstructor(ENGINECLASS_VFLOWCONTAINER)
   }
 }

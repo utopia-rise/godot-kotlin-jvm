@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import kotlin.Any
@@ -123,6 +124,15 @@ public open class NavigationPolygon : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
         NIL)
+  }
+
+  /**
+   * Returns the [godot.NavigationMesh] resulting from this navigation polygon. This navmesh can be used to update the navmesh of a region with the [godot.NavigationServer.regionSetNavmesh] API directly (as 2D uses the 3D server behind the scene).
+   */
+  public open fun getMesh(): NavigationMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_MESH, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?
   }
 
   /**

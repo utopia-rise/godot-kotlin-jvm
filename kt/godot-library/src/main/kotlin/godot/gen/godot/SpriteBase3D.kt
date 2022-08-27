@@ -105,6 +105,20 @@ public open class SpriteBase3D : GeometryInstance() {
     }
 
   /**
+   * If `true`, the label is rendered at the same size regardless of distance.
+   */
+  public open var fixedSize: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_FIXED_SIZE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_FIXED_SIZE, NIL)
+    }
+
+  /**
    * If `true`, texture is flipped horizontally.
    */
   public open var flipH: Boolean
@@ -135,7 +149,7 @@ public open class SpriteBase3D : GeometryInstance() {
   /**
    * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of light.
    *
-   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;[/color] must be inserted in the shader's `fragment()` function.
+   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
   public open var modulate: Color
     get() {
@@ -146,6 +160,22 @@ public open class SpriteBase3D : GeometryInstance() {
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_MODULATE, NIL)
+    }
+
+  /**
+   * If `true`, depth testing is disabled and the object will be drawn in render order.
+   */
+  public open var noDepthTest: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_NO_DEPTH_TEST,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_NO_DEPTH_TEST,
+          NIL)
     }
 
   /**
@@ -165,7 +195,7 @@ public open class SpriteBase3D : GeometryInstance() {
   /**
    * The texture's visibility on a scale from `0` (fully invisible) to `1` (fully visible). [opacity] is a multiplier for the [modulate] color's alpha channel.
    *
-   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the opacity defined in [opacity] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALPHA *= COLOR.a;[/color] must be inserted in the shader's `fragment()` function.
+   * **Note:** If a [godot.GeometryInstance.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the opacity defined in [opacity] will be ignored. For a [godot.SpatialMaterial], [godot.SpatialMaterial.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALPHA *= COLOR.a;` must be inserted in the shader's `fragment()` function.
    */
   public open var opacity: Double
     get() {
@@ -191,6 +221,26 @@ public open class SpriteBase3D : GeometryInstance() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_PIXEL_SIZE, NIL)
+    }
+
+  /**
+   * Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.
+   *
+   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
+   *
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   */
+  public open var renderPriority: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_RENDER_PRIORITY,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_RENDER_PRIORITY,
+          NIL)
     }
 
   /**
@@ -281,9 +331,17 @@ public open class SpriteBase3D : GeometryInstance() {
      */
     FLAG_DOUBLE_SIDED(2),
     /**
+     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+     */
+    FLAG_DISABLE_DEPTH_TEST(3),
+    /**
+     * Sprite is scaled by depth so that it always appears the same size on screen.
+     */
+    FLAG_FIXED_SIZE(4),
+    /**
      * Represents the size of the [enum DrawFlags] enum.
      */
-    FLAG_MAX(3),
+    FLAG_MAX(5),
     ;
 
     public val id: Long
@@ -340,14 +398,24 @@ public open class SpriteBase3D : GeometryInstance() {
     public final const val ALPHA_CUT_OPAQUE_PREPASS: Long = 2
 
     /**
+     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+     */
+    public final const val FLAG_DISABLE_DEPTH_TEST: Long = 3
+
+    /**
      * If set, texture can be seen from the back as well, if not, it is invisible when looking at it from behind.
      */
     public final const val FLAG_DOUBLE_SIDED: Long = 2
 
     /**
+     * Sprite is scaled by depth so that it always appears the same size on screen.
+     */
+    public final const val FLAG_FIXED_SIZE: Long = 4
+
+    /**
      * Represents the size of the [enum DrawFlags] enum.
      */
-    public final const val FLAG_MAX: Long = 3
+    public final const val FLAG_MAX: Long = 5
 
     /**
      * If set, lights in the environment affect the sprite.

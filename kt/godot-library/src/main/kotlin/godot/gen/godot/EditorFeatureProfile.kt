@@ -94,7 +94,7 @@ public open class EditorFeatureProfile : Reference() {
   }
 
   /**
-   * Saves the editor feature profile to a file in JSON format. It can then be imported using the feature profile manager's **Import** button or the [loadFromFile] button.
+   * Saves the editor feature profile to a file in JSON format. It can then be imported using the feature profile manager's **Import** button or the [loadFromFile] method.
    */
   public open fun saveToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

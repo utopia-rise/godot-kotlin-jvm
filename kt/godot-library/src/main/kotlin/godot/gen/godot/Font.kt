@@ -7,17 +7,22 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.Dictionary
 import godot.core.RID
+import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -87,12 +92,92 @@ public open class Font : Resource() {
   }
 
   /**
+   * Returns outline contours of the glyph as a `Dictionary` with the following contents:
+   *
+   * `points`         - [godot.core.PoolVector3Array], containing outline points. `x` and `y` are point coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
+   *
+   * `contours`       - [godot.core.PoolIntArray], containing indices the end points of each contour.
+   *
+   * `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
+   */
+  public open fun getCharContours(char: Long, next: Long = 0): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to char, LONG to next)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_CONTOURS, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
    * Returns the size of a character, optionally taking kerning into account if the next character is provided. Note that the height returned is the font height (see [getHeight]) and has no relation to the glyph height.
    */
   public open fun getCharSize(char: Long, next: Long = 0): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to next)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns resource id of the cache texture containing the char.
+   */
+  public open fun getCharTexture(
+    char: Long,
+    next: Long = 0,
+    outline: Boolean = false
+  ): RID {
+    TransferContext.writeArguments(LONG to char, LONG to next, BOOL to outline)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_TEXTURE, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns size of the cache texture containing the char.
+   */
+  public open fun getCharTextureSize(
+    char: Long,
+    next: Long = 0,
+    outline: Boolean = false
+  ): Vector2 {
+    TransferContext.writeArguments(LONG to char, LONG to next, BOOL to outline)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_TEXTURE_SIZE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns char offset from the baseline.
+   */
+  public open fun getCharTxOffset(
+    char: Long,
+    next: Long = 0,
+    outline: Boolean = false
+  ): Vector2 {
+    TransferContext.writeArguments(LONG to char, LONG to next, BOOL to outline)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_TX_OFFSET, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns size of the char.
+   */
+  public open fun getCharTxSize(
+    char: Long,
+    next: Long = 0,
+    outline: Boolean = false
+  ): Vector2 {
+    TransferContext.writeArguments(LONG to char, LONG to next, BOOL to outline)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_TX_SIZE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns rectangle in the cache texture containing the char.
+   */
+  public open fun getCharTxUvRect(
+    char: Long,
+    next: Long = 0,
+    outline: Boolean = false
+  ): Rect2 {
+    TransferContext.writeArguments(LONG to char, LONG to next, BOOL to outline)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_TX_UV_RECT, RECT2)
+    return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
   /**
@@ -156,5 +241,49 @@ public open class Font : Resource() {
   public open fun updateChanges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
+  }
+
+  public enum class ContourPointTag(
+    id: Long
+  ) {
+    /**
+     * Contour point isn't on the curve, but serves as a control point for a conic (quadratic) Bézier arc.
+     */
+    CONTOUR_CURVE_TAG_OFF_CONIC(0),
+    /**
+     * Contour point is on the curve.
+     */
+    CONTOUR_CURVE_TAG_ON(1),
+    /**
+     * Contour point isn't on the curve, but serves as a control point for a cubic Bézier arc.
+     */
+    CONTOUR_CURVE_TAG_OFF_CUBIC(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public companion object {
+    /**
+     * Contour point isn't on the curve, but serves as a control point for a conic (quadratic) Bézier arc.
+     */
+    public final const val CONTOUR_CURVE_TAG_OFF_CONIC: Long = 0
+
+    /**
+     * Contour point isn't on the curve, but serves as a control point for a cubic Bézier arc.
+     */
+    public final const val CONTOUR_CURVE_TAG_OFF_CUBIC: Long = 2
+
+    /**
+     * Contour point is on the curve.
+     */
+    public final const val CONTOUR_CURVE_TAG_ON: Long = 1
   }
 }

@@ -34,7 +34,7 @@ import kotlin.Unit
  * *Deprecated.* Animation player that uses a node graph for blending animations. Superseded by [godot.AnimationTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * *Deprecated.* A node graph tool for blending multiple animations bound to an [godot.AnimationPlayer]. Especially useful for animating characters or other skeleton-based rigs. It can combine several animations to form a desired pose.
  *

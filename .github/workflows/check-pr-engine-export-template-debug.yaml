@@ -3,7 +3,7 @@ on: [pull_request]
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
-  GODOT_BASE_VERSION: 3.4.4
+  GODOT_BASE_VERSION: 3.5.0
 
 jobs:
   build-export-debug:
@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 3.4.4-stable
+          ref: 3.5-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:

@@ -12,6 +12,7 @@ import godot.core.PoolByteArray
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -21,6 +22,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -31,8 +33,8 @@ import kotlin.Unit
  * A node with the ability to send HTTP(S) requests.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
+ * [$DOCS_URL/tutorials/networking/http_request_class.html]($DOCS_URL/tutorials/networking/http_request_class.html)
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
  *
@@ -57,7 +59,7 @@ import kotlin.Unit
  * 		    # Perform a POST request. The URL below returns JSON as of writing.
  * 		    # Note: Don't make simultaneous requests using a single HTTPRequest node.
  * 		    # The snippet below is provided for reference only.
- * 		    var body = {"name": "Godette"}
+ * 		    var body = to_json({"name": "Godette"})
  * 		    error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
  * 		    if error != OK:
  * 		        push_error("An error occurred in the HTTP request.")
@@ -111,7 +113,7 @@ public open class HTTPRequest : Node() {
       signal("result", "response_code", "headers", "body")
 
   /**
-   * Maximum allowed size for response bodies.
+   * Maximum allowed size for response bodies (`-1` means no limit). When only small files are expected, this can be used to prevent disallow receiving files that are too large, preventing potential denial of service attacks.
    */
   public open var bodySizeLimit: Long
     get() {
@@ -145,7 +147,9 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   * The file to download into. Will output any received file into it.
+   * The file to download into. If set to a non-empty string, the request output will be written to the file located at the path. If a file already exists at the specified location, it will be overwritten as soon as body data begins to be received.
+   *
+   * **Note:** Folders are not automatically created when the file is created. If [downloadFile] points to a subfolder, it's recommended to create the necessary folders beforehand using [godot.Directory.makeDirRecursive] to ensure the file can be written.
    */
   public open var downloadFile: String
     get() {
@@ -161,7 +165,7 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   * Maximum number of allowed redirects.
+   * Maximum number of allowed redirects. This is used to prevent endless redirect loops.
    */
   public open var maxRedirects: Long
     get() {
@@ -177,16 +181,16 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   *
+   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
    */
-  public open var timeout: Long
+  public open var timeout: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
@@ -297,6 +301,26 @@ public open class HTTPRequest : Node() {
         sslValidateDomain, LONG to method, POOL_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets the proxy server for HTTP requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
+  }
+
+  /**
+   * Sets the proxy server for HTTPS requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpsProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
   }
 
   public enum class Result(

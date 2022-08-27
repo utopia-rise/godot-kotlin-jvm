@@ -1,6 +1,7 @@
 #ifdef TOOLS_ENABLED
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
+#include <modules/kotlin_jvm/src/jni/jni_constants.h>
 #include "kotlin_editor_export_plugin.h"
 #include "core/os/file_access.h"
 #include "gd_kotlin.h"
@@ -17,6 +18,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
 
     bool is_graal_only{false};
     bool is_android_export{p_features.has("Android")};
+    bool is_osx_export{p_features.has("OSX")};
     if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
@@ -25,7 +27,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         String graal_usercode_lib;
         if (p_features.has("Windows")) {
             graal_usercode_lib = "usercode.dll";
-        } else if (p_features.has("OSX")) {
+        } else if (is_osx_export) {
             graal_usercode_lib = "usercode.dylib";
         } else if (p_features.has("X11")) {
             graal_usercode_lib = "usercode.so";
@@ -65,12 +67,6 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         }
     }
 
-    for (int i = 0; i < files_to_add.size(); ++i) {
-        const String& file_to_add{files_to_add[i]};
-        add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
-        LOG_INFO(vformat("Exporting %s", file_to_add));
-    }
-
     // Copy JRE for desktop platforms
     if (!is_android_export && !is_graal_only) {
         const Vector<String>& path_split = p_path.split("/");
@@ -78,17 +74,34 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         Error error;
         DirAccess* dir_access{DirAccess::open(export_dir, &error)};
         if (error == OK) {
-            if (dir_access->copy_dir(
-                    ProjectSettings::get_singleton()->globalize_path("res://jre"),
-                    vformat("%s/jre", dir_access->get_current_dir())
-            ) != OK) {
-                LOG_ERROR("Cannot copy jre folder to export folder, please make sure you created a jre in project "
-                          "root folder using jlink.");
+            if (is_osx_export) {
+                bool is_arm64{p_features.has("arm64")};
+                bool is_x64{p_features.has("x86_64")};
+
+                if (!is_arm64 && !is_x64) {
+                    add_osx_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                } else {
+                    if (is_arm64) {
+                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
+                    }
+
+                    if (is_x64) {
+                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
+                    }
+                }
+            } else {
+                _copy_jre_to(jni::JniConstants::JRE_AMD64, dir_access);
             }
         } else {
             LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
         }
         memdelete(dir_access);
+    }
+
+    for (int i = 0; i < files_to_add.size(); ++i) {
+        const String& file_to_add{files_to_add[i]};
+        add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
+        LOG_INFO(vformat("Exporting %s", file_to_add));
     }
 
     LOG_INFO("Finished Godot-Jvm specific exports.");
@@ -104,6 +117,43 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Typ
         json_bytes.push_back(json_string[i]);
     }
     add_file(configuration_path, json_bytes, false);
+}
+
+void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, DirAccess* dir_access) {
+    if (dir_access->copy_dir(
+            ProjectSettings::get_singleton()->globalize_path(vformat("res://%s", jre_folder)),
+            vformat("%s/%s", dir_access->get_current_dir(), jre_folder)
+    ) != OK) {
+        LOG_ERROR(vformat("Cannot copy %s folder to export folder, please make sure you created a %s in project "
+                          "root folder using jlink.", jre_folder, jre_folder));
+    }
+}
+
+Vector<String> KotlinEditorExportPlugin::_list_files_in_folder(const String& folder) {
+    Vector<String> ret;
+
+    Error jre_access_error;
+    DirAccessRef folder_access{DirAccess::open(folder, &jre_access_error)};
+    folder_access->list_dir_begin();
+    String current_file{folder_access->get_next()};
+    while (!current_file.empty()) {
+        if (current_file == ".." || current_file == ".") {
+            current_file = folder_access->get_next();
+            continue;
+        }
+
+        String current_file_path{vformat("%s/%s", folder, current_file)};
+        if (folder_access->current_is_dir()) {
+            ret.append_array(_list_files_in_folder(current_file_path));
+        } else {
+            ret.push_back(current_file_path);
+        }
+
+        current_file = folder_access->get_next();
+    }
+    folder_access->list_dir_end();
+
+    return ret;
 }
 
 #endif

@@ -25,7 +25,7 @@ import kotlin.Unit
  * Singleton that manages [godot.InputEventAction].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html#inputmap]($DOCS_URL/tutorials/inputs/inputevent.html#inputmap)
  *
  * Manages all [godot.InputEventAction] which can be created/modified from the project settings menu **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See [godot.Node.Input].
  */
@@ -109,7 +109,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [godot.InputEvent] is not pressed (for proper release detection). See [actionHasEvent] if you don't want this behavior.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun eventIsAction(
     event: InputEvent,
@@ -123,6 +123,8 @@ public object InputMap : Object() {
 
   /**
    * Returns an array of [godot.InputEvent]s associated with a given action.
+   *
+   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/ *` settings from [godot.ProjectSettings].
    */
   public fun getActionList(action: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to action)

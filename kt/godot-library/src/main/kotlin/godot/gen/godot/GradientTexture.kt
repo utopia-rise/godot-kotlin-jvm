@@ -18,7 +18,7 @@ import kotlin.jvm.JvmName
 /**
  * Gradient-filled texture.
  *
- * GradientTexture uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]).
+ * GradientTexture uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]). See also [godot.GradientTexture2D] and [godot.CurveTexture].
  */
 @GodotBaseType
 public open class GradientTexture : Texture() {

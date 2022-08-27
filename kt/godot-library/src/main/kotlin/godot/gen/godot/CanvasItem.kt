@@ -277,11 +277,18 @@ public open class CanvasItem : Node() {
   public open fun _toplevelRaiseSelf(): Unit {
   }
 
+  public open fun _toplevelVisibilityChanged(visible: Boolean): Unit {
+  }
+
   public open fun _updateCallback(): Unit {
   }
 
   /**
    * Draws a unfilled arc between the given angles. The larger the value of `point_count`, the smoother the curve. See also [drawCircle].
+   *
+   * **Note:** Line drawing is not accelerated by batching if `antialiased` is `true`.
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent lines and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedRegularPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing. 2D batching is also still supported with those antialiased lines.
    */
   public open fun drawArc(
     center: Vector2,
@@ -315,7 +322,9 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a colored, unfilled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
+   * Draws a colored, filled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
+   *
+   * **Note:** Built-in antialiasing is not provided for [drawCircle]. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedRegularPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawCircle(
     position: Vector2,
@@ -328,6 +337,8 @@ public open class CanvasItem : Node() {
 
   /**
    * Draws a colored polygon of any amount of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent polygons and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawColoredPolygon(
     points: PoolVector2Array,
@@ -345,6 +356,10 @@ public open class CanvasItem : Node() {
 
   /**
    * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [drawMultiline] and [drawPolyline].
+   *
+   * **Note:** Line drawing is not accelerated by batching if `antialiased` is `true`.
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent lines and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedLine2D node. That node relies on a texture with custom mipmaps to perform antialiasing. 2D batching is also still supported with those antialiased lines.
    */
   public open fun drawLine(
     from: Vector2,
@@ -376,7 +391,7 @@ public open class CanvasItem : Node() {
   /**
    * Draws multiple disconnected lines with a uniform `color`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    *
-   * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
+   * **Note:** `width` and `antialiased` are currently not implemented and have no effect. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedLine2D node. That node relies on a texture with custom mipmaps to perform antialiasing. 2D batching is also still supported with those antialiased lines.
    */
   public open fun drawMultiline(
     points: PoolVector2Array,
@@ -392,7 +407,7 @@ public open class CanvasItem : Node() {
   /**
    * Draws multiple disconnected lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
    *
-   * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
+   * **Note:** `width` and `antialiased` are currently not implemented and have no effect. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedLine2D node. That node relies on a texture with custom mipmaps to perform antialiasing. 2D batching is also still supported with those antialiased lines.
    */
   public open fun drawMultilineColors(
     points: PoolVector2Array,
@@ -420,6 +435,8 @@ public open class CanvasItem : Node() {
 
   /**
    * Draws a solid polygon of any amount of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent polygons and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawPolygon(
     points: PoolVector2Array,
@@ -436,6 +453,8 @@ public open class CanvasItem : Node() {
 
   /**
    * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent polygons and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawPolyline(
     points: PoolVector2Array,
@@ -450,6 +469,8 @@ public open class CanvasItem : Node() {
 
   /**
    * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent polygons and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawPolylineColors(
     points: PoolVector2Array,
@@ -480,9 +501,11 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Draws a rectangle. If `filled` is `true`, the rectangle will be filled with the `color` specified. If `filled` is `false`, the rectangle will be drawn as a stroke with the `color` and `width` specified. If `antialiased` is `true`, the lines will be antialiased.
+   * Draws a rectangle. If `filled` is `true`, the rectangle will be filled with the `color` specified. If `filled` is `false`, the rectangle will be drawn as a stroke with the `color` and `width` specified. If `antialiased` is `true`, the lines will attempt to perform antialiasing using OpenGL line smoothing.
    *
    * **Note:** `width` and `antialiased` are only effective if `filled` is `false`.
+   *
+   * **Note:** Due to how it works, built-in antialiasing will not look correct for translucent polygons and may not work on certain platforms. As a workaround, install the [godot.Antialiased Line2D](https://github.com/godot-extended-libraries/godot-antialiased-line2d) add-on then create an AntialiasedPolygon2D node. That node relies on a texture with custom mipmaps to perform antialiasing.
    */
   public open fun drawRect(
     rect: Rect2,
@@ -638,7 +661,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Returns the global position of the mouse.
+   * Returns the mouse's position in the [godot.CanvasLayer] that this [godot.CanvasItem] is in using the coordinate system of the [godot.CanvasLayer].
    */
   public open fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -668,7 +691,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Returns the mouse position relative to this item's position.
+   * Returns the mouse's position in this [godot.CanvasItem] using the local coordinate system of this [godot.CanvasItem].
    */
   public open fun getLocalMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -781,7 +804,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * If `enable` is `true`, the node won't inherit its transform from parent canvas items.
+   * If `enable` is `true`, this [godot.CanvasItem] will *not* inherit its transform from parent [godot.CanvasItem]s. Its draw order will also be changed to make it draw on top of other [godot.CanvasItem]s that are not set as top-level. The [godot.CanvasItem] will effectively act as if it was placed as a child of a bare [godot.Node]. See also [isSetAsToplevel].
    */
   public open fun setAsToplevel(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -789,7 +812,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * If `enable` is `true`, children will be updated with local transform data.
+   * If `enable` is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
    */
   public open fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -798,7 +821,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * If `enable` is `true`, children will be updated with global transform data.
+   * If `enable` is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
    */
   public open fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -908,7 +931,12 @@ public open class CanvasItem : Node() {
     public final const val NOTIFICATION_EXIT_CANVAS: Long = 33
 
     /**
-     * The [godot.CanvasItem]'s transform has changed. This notification is only received if enabled by [setNotifyTransform] or [setNotifyLocalTransform].
+     * The [godot.CanvasItem]'s local transform has changed. This notification is only received if enabled by [setNotifyLocalTransform].
+     */
+    public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 35
+
+    /**
+     * The [godot.CanvasItem]'s global transform has changed. This notification is only received if enabled by [setNotifyTransform].
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 

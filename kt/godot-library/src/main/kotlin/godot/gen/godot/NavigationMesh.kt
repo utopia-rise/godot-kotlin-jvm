@@ -5,7 +5,9 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
+import godot.core.AABB
 import godot.core.PoolIntArray
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
@@ -18,6 +20,8 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR3
+import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -37,7 +41,12 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
-  public open var agent_height: Double
+  /**
+   * The minimum floor to ceiling height that will still allow the floor area to be considered walkable.
+   *
+   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
+   */
+  public open var agentHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_HEIGHT,
@@ -50,7 +59,12 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public open var agent_maxClimb: Double
+  /**
+   * The minimum ledge height that is considered to still be traversable.
+   *
+   * **Note:** While baking, this value will be rounded down to the nearest multiple of [cellHeight].
+   */
+  public open var agentMaxClimb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -63,7 +77,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_CLIMB, NIL)
     }
 
-  public open var agent_maxSlope: Double
+  /**
+   * The maximum slope that is considered walkable, in degrees.
+   */
+  public open var agentMaxSlope: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -76,7 +93,12 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_SLOPE, NIL)
     }
 
-  public open var agent_radius: Double
+  /**
+   * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
+   *
+   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
+   */
+  public open var agentRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_RADIUS,
@@ -89,7 +111,10 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public open var cell_height: Double
+  /**
+   * The Y axis cell size to use for fields.
+   */
+  public open var cellHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_HEIGHT,
@@ -102,7 +127,10 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public open var cell_size: Double
+  /**
+   * The XZ plane cell size to use for fields.
+   */
+  public open var cellSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_SIZE,
@@ -114,7 +142,10 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_CELL_SIZE, NIL)
     }
 
-  public open var detail_sampleDistance: Double
+  /**
+   * The sampling distance to use when generating the detail mesh, in cell unit.
+   */
+  public open var detailSampleDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -127,7 +158,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_DISTANCE, NIL)
     }
 
-  public open var detail_sampleMaxError: Double
+  /**
+   * The maximum distance the detail mesh surface should deviate from heightfield, in cell unit.
+   */
+  public open var detailSampleMaxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -140,7 +174,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_MAX_ERROR, NIL)
     }
 
-  public open var edge_maxError: Double
+  /**
+   * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
+   */
+  public open var edgeMaxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_EDGE_MAX_ERROR,
@@ -153,7 +190,12 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public open var edge_maxLength: Double
+  /**
+   * The maximum allowed length for contour edges along the border of the mesh.
+   *
+   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
+   */
+  public open var edgeMaxLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -166,20 +208,43 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_EDGE_MAX_LENGTH, NIL)
     }
 
-  public open var filter_filterWalkableLowHeightSpans: Boolean
+  /**
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
+   */
+  public open var filterBakingAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_FILTER_WALKABLE_LOW_HEIGHT_SPANS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_BAKING_AABB,
+          godot.core.VariantType.AABB)
+      return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_FILTER_WALKABLE_LOW_HEIGHT_SPANS, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_BAKING_AABB, NIL)
     }
 
-  public open var filter_ledgeSpans: Boolean
+  /**
+   * The position offset applied to the [filterBakingAabb] [AABB].
+   */
+  public open var filterBakingAabbOffset: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_BAKING_AABB_OFFSET, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_BAKING_AABB_OFFSET, NIL)
+    }
+
+  /**
+   * If `true`, marks spans that are ledges as non-walkable.
+   */
+  public open var filterLedgeSpans: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -192,7 +257,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LEDGE_SPANS, NIL)
     }
 
-  public open var filter_lowHangingObstacles: Boolean
+  /**
+   * If `true`, marks non-walkable spans as walkable if their maximum is within [agentMaxClimb] of a walkable neighbor.
+   */
+  public open var filterLowHangingObstacles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -205,7 +273,28 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LOW_HANGING_OBSTACLES, NIL)
     }
 
-  public open var geometry_collisionMask: Long
+  /**
+   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than [agentHeight].
+   */
+  public open var filterWalkableLowHeightSpans: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, NIL)
+    }
+
+  /**
+   * The physics layers to scan for static colliders.
+   *
+   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
+   */
+  public open var geometryCollisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -218,7 +307,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_COLLISION_MASK, NIL)
     }
 
-  public open var geometry_parsedGeometryType: Long
+  /**
+   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
+   */
+  public open var geometryParsedGeometryType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -231,7 +323,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_PARSED_GEOMETRY_TYPE, NIL)
     }
 
-  public open var geometry_sourceGeometryMode: Long
+  /**
+   * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
+   */
+  public open var geometrySourceGeometryMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -244,7 +339,12 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_SOURCE_GEOMETRY_MODE, NIL)
     }
 
-  public open var geometry_sourceGroupName: String
+  /**
+   * The name of the group to scan for geometry.
+   *
+   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   */
+  public open var geometrySourceGroupName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -257,7 +357,10 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_SOURCE_GROUP_NAME, NIL)
     }
 
-  public open var polygon_vertsPerPoly: Double
+  /**
+   * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
+   */
+  public open var polygonVertsPerPoly: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -270,7 +373,12 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_POLYGON_VERTS_PER_POLY, NIL)
     }
 
-  public open var region_mergeSize: Double
+  /**
+   * Any regions with a size smaller than this will be merged with larger regions if possible.
+   *
+   * **Note:** This value will be squared to calculate the number of cells. For example, a value of 20 will set the number of cells to 400.
+   */
+  public open var regionMergeSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -283,7 +391,12 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MERGE_SIZE, NIL)
     }
 
-  public open var region_minSize: Double
+  /**
+   * The minimum size of a region for it to be created.
+   *
+   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form isolated island areas. For example, a value of 8 will set the number of cells to 64.
+   */
+  public open var regionMinSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -296,19 +409,20 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MIN_SIZE, NIL)
     }
 
-  public open var samplePartitionType_samplePartitionType: Long
+  /**
+   * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values.
+   */
+  public open var samplePartitionType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE_SAMPLE_PARTITION_TYPE,
-          LONG)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE_SAMPLE_PARTITION_TYPE,
-          NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
     }
 
   public open var vertices: PoolVector3Array
@@ -326,6 +440,21 @@ public open class NavigationMesh : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONMESH)
   }
+
+  @CoreTypeHelper
+  public open fun filterBakingAabb(schedule: AABB.() -> Unit): AABB = filterBakingAabb.apply{
+      schedule(this)
+      filterBakingAabb = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun filterBakingAabbOffset(schedule: Vector3.() -> Unit): Vector3 =
+      filterBakingAabbOffset.apply{
+      schedule(this)
+      filterBakingAabbOffset = this
+  }
+
 
   public open fun _getPolygons(): VariantArray<Any?> {
     throw NotImplementedError("_get_polygons is not implemented for NavigationMesh")
@@ -360,7 +489,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Returns whether the specified `bit` of the [geometry/collisionMask] is set.
+   * Returns whether the specified `bit` of the [geometryCollisionMask] is set.
    */
   public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
@@ -390,9 +519,9 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * If `value` is `true`, sets the specified `bit` in the [geometry/collisionMask].
+   * If `value` is `true`, sets the specified `bit` in the [geometryCollisionMask].
    *
-   * If `value` is `false`, clears the specified `bit` in the [geometry/collisionMask].
+   * If `value` is `false`, clears the specified `bit` in the [geometryCollisionMask].
    */
   public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
@@ -408,7 +537,7 @@ public open class NavigationMesh : Resource() {
      */
     PARSED_GEOMETRY_MESH_INSTANCES(0),
     /**
-     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometry/collisionMask].
+     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometryCollisionMask].
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
@@ -470,11 +599,11 @@ public open class NavigationMesh : Resource() {
      */
     SOURCE_GEOMETRY_NAVMESH_CHILDREN(0),
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometry/sourceGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
     /**
-     * Uses nodes in a group for geometry. The group is specified by [geometry/sourceGroupName].
+     * Uses nodes in a group for geometry. The group is specified by [geometrySourceGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
     /**
@@ -510,7 +639,7 @@ public open class NavigationMesh : Resource() {
     public final const val PARSED_GEOMETRY_MESH_INSTANCES: Long = 0
 
     /**
-     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometry/collisionMask].
+     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometryCollisionMask].
      */
     public final const val PARSED_GEOMETRY_STATIC_COLLIDERS: Long = 1
 
@@ -535,12 +664,12 @@ public open class NavigationMesh : Resource() {
     public final const val SAMPLE_PARTITION_WATERSHED: Long = 0
 
     /**
-     * Uses nodes in a group for geometry. The group is specified by [geometry/sourceGroupName].
+     * Uses nodes in a group for geometry. The group is specified by [geometrySourceGroupName].
      */
     public final const val SOURCE_GEOMETRY_GROUPS_EXPLICIT: Long = 2
 
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometry/sourceGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
      */
     public final const val SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN: Long = 1
 

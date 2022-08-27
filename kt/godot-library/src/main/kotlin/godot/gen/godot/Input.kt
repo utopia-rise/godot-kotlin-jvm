@@ -53,7 +53,7 @@ public object Input : Object() {
   public final const val CURSOR_BDIAGSIZE: Long = 11
 
   /**
-   * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
+   * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
    */
   public final const val CURSOR_BUSY: Long = 5
 
@@ -123,7 +123,7 @@ public object Input : Object() {
   public final const val CURSOR_VSPLIT: Long = 14
 
   /**
-   * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
+   * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
    */
   public final const val CURSOR_WAIT: Long = 4
 
@@ -153,6 +153,40 @@ public object Input : Object() {
    * Emitted when a joypad device has been connected or disconnected.
    */
   public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
+
+  /**
+   * Controls the mouse mode. See [enum MouseMode] for more information.
+   */
+  public var mouseMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
+    }
+
+  /**
+   * If `true`, similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
+   *
+   * Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
+   *
+   * **Note:** Input accumulation is *enabled* by default. It is recommended to keep it enabled for games which don't require very reactive input, as this will decrease CPU usage.
+   */
+  public var useAccumulatedInput: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_USE_ACCUMULATED_INPUT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
+          NIL)
+    }
 
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUT)
@@ -189,7 +223,7 @@ public object Input : Object() {
   }
 
   /**
-   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([setUseAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
+   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([useAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
    *
    * The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.
    */
@@ -214,7 +248,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [getActionStrength] instead.
    *
-   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun getActionRawStrength(action: String, exact: Boolean = false): Double {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -226,7 +260,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
    *
-   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun getActionStrength(action: String, exact: Boolean = false): Double {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -401,15 +435,6 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the mouse mode. See the constants for more information.
-   */
-  public fun getMouseMode(): Input.MouseMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
-    return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
    * Gets an input vector by specifying four actions for the positive and negative X and Y axes.
    *
    * This method is useful when getting vector input, such as from a joystick, directional pad, arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is useful for using vector input as movement.
@@ -434,9 +459,9 @@ public object Input : Object() {
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    *
-   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
-   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isActionJustPressed(action: String, exact: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -447,7 +472,7 @@ public object Input : Object() {
   /**
    * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
    *
-   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun isActionJustReleased(action: String, exact: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -458,9 +483,9 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
    *
-   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
-   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isActionPressed(action: String, exact: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -491,7 +516,7 @@ public object Input : Object() {
    *
    * [isKeyPressed] is only recommended over [isPhysicalKeyPressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [isPhysicalKeyPressed].
    *
-   * **Note:** Due to keyboard ghosting, [isKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isKeyPressed(scancode: Long): Boolean {
     TransferContext.writeArguments(LONG to scancode)
@@ -513,7 +538,7 @@ public object Input : Object() {
    *
    * [isPhysicalKeyPressed] is recommended over [isKeyPressed] for in-game actions, as it will make W/A/S/D layouts work regardless of the user's keyboard layout. [isPhysicalKeyPressed] will also ensure that the top row number keys work on any keyboard layout. If in doubt, use [isPhysicalKeyPressed].
    *
-   * **Note:** Due to keyboard ghosting, [isPhysicalKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isPhysicalKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isPhysicalKeyPressed(scancode: Long): Boolean {
     TransferContext.writeArguments(LONG to scancode)
@@ -635,25 +660,6 @@ public object Input : Object() {
   }
 
   /**
-   * Sets the mouse mode. See the constants for more information.
-   */
-  public fun setMouseMode(mode: Long): Unit {
-    TransferContext.writeArguments(LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
-  }
-
-  /**
-   * Enables or disables the accumulation of similar input events sent by the operating system. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
-   *
-   * Input accumulation is enabled by default. It can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
-   */
-  public fun setUseAccumulatedInput(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
-        NIL)
-  }
-
-  /**
    * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. `weak_magnitude` is the strength of the weak motor (between 0 and 1) and `strong_magnitude` is the strength of the strong motor (between 0 and 1). `duration` is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
@@ -678,9 +684,15 @@ public object Input : Object() {
   }
 
   /**
-   * Vibrate Android and iOS devices.
+   * Vibrate handheld devices.
    *
-   * **Note:** It needs `VIBRATE` permission for Android at export settings. iOS does not support duration.
+   * **Note:** This method is implemented on Android, iOS, and HTML5.
+   *
+   * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
+   *
+   * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
+   *
+   * **Note:** Some web browsers such as Safari and Firefox for Android do not support this method.
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)
@@ -750,11 +762,11 @@ public object Input : Object() {
      */
     CURSOR_CROSS(3),
     /**
-     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
+     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
      */
     CURSOR_WAIT(4),
     /**
-     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
+     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
      */
     CURSOR_BUSY(5),
     /**

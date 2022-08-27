@@ -450,6 +450,8 @@ public open class AnimationPlayer : Node() {
 
   /**
    * Seeks the animation to the `seconds` point in time (in seconds). If `update` is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and `seconds` are skipped.
+   *
+   * **Note:** Seeking to the end of the animation doesn't emit [animationFinished]. If you want to skip animation and emit the signal, use [advance].
    */
   public open fun seek(seconds: Double, update: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to seconds, BOOL to update)

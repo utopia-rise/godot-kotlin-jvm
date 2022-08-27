@@ -250,9 +250,11 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot HDR uses 16 bits, meaning it does not store the full range of a floating point number.
+   * If `true`, the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot, HDR uses half floating-point precision (16-bit) by default. To use full floating-point precision (32-bit), enable [use32BpcDepth].
    *
    * **Note:** Requires [usage] to be set to [godot.USAGE_3D] or [godot.USAGE_3D_NO_EFFECTS], since HDR is not supported for 2D.
+   *
+   * **Note:** Only available on the GLES3 backend.
    */
   public open var hdr: Boolean
     get() {
@@ -294,7 +296,7 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport will use [godot.World] defined in `world` property.
+   * If `true`, the viewport will use a unique copy of the [godot.World] defined in [world].
    */
   public open var ownWorld: Boolean
     get() {
@@ -456,7 +458,7 @@ public open class Viewport : Node() {
   /**
    * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
    *
-   * **Note:** If this is set to 0, shadows won't be visible. Since user-created viewports default to a value of 0, this value must be set above 0 manually.
+   * **Note:** If this is set to `0`, both point *and* directional shadows won't be visible. Since user-created viewports default to a value of `0`, this value must be set above `0` manually (typically at least `256`).
    */
   public open var shadowAtlasSize: Long
     get() {
@@ -533,6 +535,8 @@ public open class Viewport : Node() {
 
   /**
    * The rendering mode of viewport.
+   *
+   * **Note:** If set to [godot.USAGE_2D] or [godot.USAGE_2D_NO_SAMPLING], [hdr] will have no effect when enabled since HDR is not supported for 2D.
    */
   public open var usage: Long
     get() {
@@ -543,6 +547,26 @@ public open class Viewport : Node() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USAGE, NIL)
+    }
+
+  /**
+   * If `true`, allocates the viewport's framebuffer with full floating-point precision (32-bit) instead of half floating-point precision (16-bit). Only effective when [hdr] is also enabled.
+   *
+   * **Note:** Enabling this setting does not improve rendering quality. Using full floating-point precision is slower, and is generally only needed for advanced shaders that require a high level of precision. To reduce banding, enable [debanding] instead.
+   *
+   * **Note:** Only available on the GLES3 backend.
+   */
+  public open var use32BpcDepth: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_32_BPC_DEPTH,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_32_BPC_DEPTH,
+          NIL)
     }
 
   /**
@@ -675,7 +699,7 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns the mouse position relative to the viewport.
+   * Returns the mouse's position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
   public open fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -755,7 +779,19 @@ public open class Viewport : Node() {
   }
 
   /**
+   * Returns `true` if the drag operation is successful.
+   */
+  public open fun guiIsDragSuccessful(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns `true` if the viewport is currently performing a drag operation.
+   *
+   * Alternative to [godot.Node.NOTIFICATION_DRAG_BEGIN] and [godot.Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
    */
   public open fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
@@ -836,7 +872,7 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Warps the mouse to a position relative to the viewport.
+   * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
   public open fun warpMouse(toPosition: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to toPosition)

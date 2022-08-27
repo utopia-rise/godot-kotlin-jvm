@@ -33,8 +33,8 @@ import kotlin.Unit
  * Low-level hyper-text transfer protocol client.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_client_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_client_class.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
+ * [$DOCS_URL/tutorials/networking/http_client_class.html]($DOCS_URL/tutorials/networking/http_client_class.html)
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests to download web content, upload files and other data or to communicate with various services, among other use cases. **See the [godot.HTTPRequest] node for a higher-level alternative.**
  *
@@ -300,6 +300,26 @@ public open class HTTPClient : Reference() {
         POOL_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets the proxy server for HTTP requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL)
+  }
+
+  /**
+   * Sets the proxy server for HTTPS requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpsProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL)
   }
 
   public enum class Status(

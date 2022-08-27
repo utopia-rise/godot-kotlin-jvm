@@ -53,7 +53,7 @@ import kotlin.Unit
  * 		    return content
  * 		```
  *
- * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/3.4/tutorials/io/data_paths.html) documentation.
+ * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths]($DOCS_URL/tutorials/io/data_paths.html) documentation.
  *
  * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of the [godot.File] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
  *
@@ -165,12 +165,12 @@ public open class File : Reference() {
   }
 
   /**
-   * Returns the whole file as a [godot.String].
+   * Returns the whole file as a [godot.String]. Text is interpreted as being UTF-8 encoded.
    *
-   * Text is interpreted as being UTF-8 encoded.
+   * If `skip_cr` is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
-  public open fun getAsText(): String {
-    TransferContext.writeArguments()
+  public open fun getAsText(skipCr: Boolean = true): String {
+    TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_GET_AS_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }

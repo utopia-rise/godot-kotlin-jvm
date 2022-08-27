@@ -16,7 +16,7 @@ import kotlin.Unit
 /**
  * Groups [godot.Room]s together to allow common functionality.
  *
- * Although [godot.Room] behaviour can be specified individually, sometimes it is faster and more convenient to write functionality for a group of rooms.
+ * Although [godot.Room] behavior can be specified individually, sometimes it is faster and more convenient to write functionality for a group of rooms.
  *
  * [godot.RoomGroup]s should be placed as children of the **room list** (the parent [godot.Node] of your [godot.Room]s), and [godot.Room]s should be placed in turn as children of a [godot.RoomGroup] in order to assign them to the RoomGroup.
  *

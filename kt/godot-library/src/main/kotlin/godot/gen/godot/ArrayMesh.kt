@@ -34,7 +34,7 @@ import kotlin.Unit
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/3d/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/3.4/tutorials/3d/procedural_geometry/arraymesh.html)
+ * [$DOCS_URL/tutorials/3d/procedural_geometry/arraymesh.html]($DOCS_URL/tutorials/3d/procedural_geometry/arraymesh.html)
  *
  * The [godot.ArrayMesh] is used to construct a [godot.Mesh] by specifying the attributes as arrays.
  *
@@ -495,7 +495,7 @@ public open class ArrayMesh : Mesh() {
     public final const val ARRAY_WEIGHTS_SIZE: Long = 4
 
     /**
-     * Default value used for index_array_len when no indices are present.
+     * Value used internally when no indices are present.
      */
     public final const val NO_INDEX_ARRAY: Long = -1
   }

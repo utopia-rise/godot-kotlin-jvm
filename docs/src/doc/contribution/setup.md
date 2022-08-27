@@ -4,7 +4,7 @@ To build our module, you need to same dependencies as the ones described in the 
 
 Make sure that Java is installed and its PATH set in your system as well (at least Java 9 is needed!).
 
-1. Clone godot repo with the stable tag you want do deveop for (3.4.4-stable in this example). `git clone git@github.com:godotengine/godot.git 3.4.4-stable --recursive`
+1. Clone godot repo with the stable tag you want to develop for (3.5-stable in this example). `git clone git@github.com:godotengine/godot.git 3.5-stable --recursive`
 
 2. In the `godot-root` dir, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 
@@ -12,11 +12,15 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
 
 4. Build sample
     - navigate to `<module-root>/harness/tests`
-    - create embedded JVM: `jlink --add-modules java.base,java.logging --output jre`
+    - create embedded JVM:
+        - For amd64 systems:
+          - `jlink --add-modules java.base,java.logging --output jre-amd64`
+        - For arm64 systems:
+          - `jlink --add-modules java.base,java.logging --output jre-arm64`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
     - Windows: `gradlew build`
-	- Unix: `./gradlew build`
+    - Unix: `./gradlew build`
 
 5. In order to run the engine, run `godot.x11.tools.64` located in the `bin` folder of `godot-root`
 

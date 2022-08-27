@@ -27,7 +27,7 @@ import kotlin.Unit
  * Plays positional sound in 2D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html)
+ * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
  * Plays audio that dampens with distance from screen center.
  *
@@ -92,6 +92,8 @@ public open class AudioStreamPlayer2D : Node2D() {
 
   /**
    * Bus on which this audio is playing.
+   *
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public open var bus: String
     get() {

@@ -34,14 +34,14 @@ public:
     bool has_method(const StringName& p_method) const override;
 
     Variant call(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2, const Variant& p_arg3,
-                 const Variant& p_arg4, const Variant& p_arg5) override;
+                 const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) override;
 
     Variant
     call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) override;
 
     void
     call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2, const Variant& p_arg3,
-                    const Variant& p_arg4, const Variant& p_arg5) override;
+                    const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) override;
 
     void call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) override;
 

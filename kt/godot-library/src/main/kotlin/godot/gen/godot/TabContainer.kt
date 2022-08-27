@@ -26,6 +26,9 @@ import kotlin.Unit
 /**
  * Tabbed container.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Arranges [godot.Control] children into a tabbed view, creating a tab for each one. The active tab's corresponding [godot.Control] has its `visible` property set to `true`, and all other children's to `false`.
  *
  * Ignores non-[godot.Control] children.

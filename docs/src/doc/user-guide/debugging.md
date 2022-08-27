@@ -4,7 +4,8 @@ In order to debug your code using an embedded JRE, make sure to include the foll
 - `jdk.jdwp.agent`
 
 !!! info
-    Example: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre`
+    Example for AMD64 systems: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre-amd64`  
+    Example for ARM64 systems: `jlink --add-modules java.base,java.logging,jdk.jdwp.agent --output jre-arm64`
 
 ## Run and attach Remote Debugger
 Run your game with the commandline option `--jvm-debug-port=<port (normally 5005)>` and attach a remote debugger.

@@ -10,6 +10,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
@@ -74,7 +75,7 @@ public open class VehicleWheel : Spatial() {
     }
 
   /**
-   * Accelerates the wheel by applying an engine force. The wheel is only speed up if it is in contact with a surface. The [godot.RigidBody.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
+   * Accelerates the wheel by applying an engine force. The wheel is only sped up if it is in contact with a surface. The [godot.RigidBody.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
    *
    * **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
    *
@@ -255,6 +256,18 @@ public open class VehicleWheel : Spatial() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VEHICLEWHEEL)
+  }
+
+  /**
+   * Returns the contacting body node if valid in the tree, as [godot.Spatial]. At the moment, [godot.GridMap] is not supported so the node will be always of type [godot.PhysicsBody].
+   *
+   * Returns `null` if the wheel is not in contact with a surface, or the contact body is not a [godot.PhysicsBody].
+   */
+  public open fun getContactBody(): Spatial? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL_GET_CONTACT_BODY,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Spatial?
   }
 
   /**

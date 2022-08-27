@@ -53,7 +53,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StyleBoxFlat : StyleBox() {
   /**
-   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners.
+   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners or [skew].
    *
    * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.
    */
@@ -297,6 +297,8 @@ public open class StyleBoxFlat : StyleBox() {
 
   /**
    * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [borderWidthBottom] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public open var expandMarginBottom: Double
     get() {
@@ -313,6 +315,8 @@ public open class StyleBoxFlat : StyleBox() {
 
   /**
    * Expands the stylebox outside of the control rect on the left edge. Useful in combination with [borderWidthLeft] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public open var expandMarginLeft: Double
     get() {
@@ -329,6 +333,8 @@ public open class StyleBoxFlat : StyleBox() {
 
   /**
    * Expands the stylebox outside of the control rect on the right edge. Useful in combination with [borderWidthRight] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public open var expandMarginRight: Double
     get() {
@@ -345,6 +351,8 @@ public open class StyleBoxFlat : StyleBox() {
 
   /**
    * Expands the stylebox outside of the control rect on the top edge. Useful in combination with [borderWidthTop] to draw a border outside the control rect.
+   *
+   * **Note:** Unlike [godot.StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public open var expandMarginTop: Double
     get() {
@@ -406,6 +414,22 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_SIZE, NIL)
     }
 
+  /**
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
+   *
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
+   */
+  public open var skew: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SKEW, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SKEW, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOXFLAT)
   }
@@ -435,6 +459,13 @@ public open class StyleBoxFlat : StyleBox() {
   public open fun shadowOffset(schedule: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       schedule(this)
       shadowOffset = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun skew(schedule: Vector2.() -> Unit): Vector2 = skew.apply{
+      schedule(this)
+      skew = this
   }
 
 

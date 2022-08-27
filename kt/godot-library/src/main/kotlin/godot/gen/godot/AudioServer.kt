@@ -78,6 +78,22 @@ public object AudioServer : Object() {
     }
 
   /**
+   * Name of the current device for audio input (see [getDeviceList]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
+   */
+  public var captureDevice: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_GET_CAPTURE_DEVICE,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_SET_CAPTURE_DEVICE,
+          NIL)
+    }
+
+  /**
    * Name of the current device for audio output (see [getDeviceList]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`.
    */
   public var device: String
@@ -134,16 +150,6 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Name of the current device for audio input (see [captureGetDeviceList]). The value `"Default"` means that the system-wide default audio input is currently used.
-   */
-  public fun captureGetDevice(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
    * Returns the names of all audio input devices detected on the system.
    */
   public fun captureGetDeviceList(): VariantArray<Any?> {
@@ -151,14 +157,6 @@ public object AudioServer : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE_LIST,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Sets which audio input device is used for audio capture. On systems with multiple audio inputs (such as analog and USB), this can be used to select the audio input device. Setting the value `"Default"` will record audio from the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
-   */
-  public fun captureSetDevice(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_SET_DEVICE, NIL)
   }
 
   /**

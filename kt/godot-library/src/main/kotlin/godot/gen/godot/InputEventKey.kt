@@ -20,7 +20,7 @@ import kotlin.jvm.JvmName
  * Input event type for keyboard events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
  */

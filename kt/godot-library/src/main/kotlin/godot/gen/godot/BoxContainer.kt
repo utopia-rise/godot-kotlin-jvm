@@ -18,6 +18,9 @@ import kotlin.Unit
 /**
  * Base class for box containers.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
+ *
  * Arranges child controls vertically or horizontally, and rearranges the controls automatically when their minimum size changes.
  */
 @GodotBaseType

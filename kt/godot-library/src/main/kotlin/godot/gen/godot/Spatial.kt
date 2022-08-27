@@ -68,6 +68,23 @@ public open class Spatial : Node() {
     }
 
   /**
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
+   *
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   */
+  public open var globalRotation: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_ROTATION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_ROTATION, NIL)
+    }
+
+  /**
    * World space (global) [godot.core.Transform] of this node.
    */
   public open var globalTransform: Transform
@@ -80,6 +97,22 @@ public open class Spatial : Node() {
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_TRANSFORM, NIL)
+    }
+
+  /**
+   * Global position of this node. This is equivalent to `global_transform.origin`.
+   */
+  public open var globalTranslation: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_TRANSLATION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_TRANSLATION,
+          NIL)
     }
 
   /**
@@ -115,6 +148,8 @@ public open class Spatial : Node() {
 
   /**
    * Scale part of the local transformation.
+   *
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
    */
   public open var scale: Vector3
     get() {
@@ -174,10 +209,25 @@ public open class Spatial : Node() {
   }
 
   @CoreTypeHelper
+  public open fun globalRotation(schedule: Vector3.() -> Unit): Vector3 = globalRotation.apply{
+      schedule(this)
+      globalRotation = this
+  }
+
+
+  @CoreTypeHelper
   public open fun globalTransform(schedule: Transform.() -> Unit): Transform =
       globalTransform.apply{
       schedule(this)
       globalTransform = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun globalTranslation(schedule: Vector3.() -> Unit): Vector3 =
+      globalTranslation.apply{
+      schedule(this)
+      globalTranslation = this
   }
 
 
@@ -225,6 +275,18 @@ public open class Spatial : Node() {
   public open fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_FORCE_UPDATE_TRANSFORM, NIL)
+  }
+
+  /**
+   * When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
+   *
+   * This is particularly important for frame-based operations that take place in [godot.Node.Process], rather than [godot.Node.PhysicsProcess]. Examples include [godot.Camera]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
+   */
+  public open fun getGlobalTransformInterpolated(): Transform {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_TRANSFORM_INTERPOLATED, TRANSFORM)
+    return TransferContext.readReturnValue(TRANSFORM, false) as Transform
   }
 
   /**

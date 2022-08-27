@@ -40,8 +40,8 @@ import kotlin.Unit
  * Manages the game loop via a hierarchy of nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html](https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html)
+ * [$DOCS_URL/tutorials/scripting/scene_tree.html]($DOCS_URL/tutorials/scripting/scene_tree.html)
+ * [$DOCS_URL/tutorials/rendering/multiple_resolutions.html]($DOCS_URL/tutorials/rendering/multiple_resolutions.html)
  *
  * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
  *
@@ -125,6 +125,24 @@ public open class SceneTree : MainLoop() {
    * Emitted whenever the [godot.SceneTree] hierarchy changed (children being moved or renamed, etc.).
    */
   public val treeChanged: Signal0 by signal()
+
+  /**
+   * If `true`, the application automatically accepts quitting.
+   *
+   * For mobile platforms, see [quitOnGoBack].
+   */
+  public open var autoAcceptQuit: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_AUTO_ACCEPT_QUIT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT,
+          NIL)
+    }
 
   /**
    * The current scene.
@@ -252,6 +270,40 @@ public open class SceneTree : MainLoop() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PAUSED, NIL)
+    }
+
+  /**
+   * Although physics interpolation would normally be globally turned on and off using [godot.ProjectSettings.physics/common/physicsInterpolation], this property allows control over interpolation at runtime.
+   */
+  public open var physicsInterpolation: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PHYSICS_INTERPOLATION, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PHYSICS_INTERPOLATION, NIL)
+    }
+
+  /**
+   * If `true`, the application quits automatically on going back (e.g. on Android).
+   *
+   * To handle 'Go Back' button when this option is disabled, use [godot.MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST].
+   */
+  public open var quitOnGoBack: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_QUIT_ON_GO_BACK,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK,
+          NIL)
     }
 
   /**
@@ -385,6 +437,8 @@ public open class SceneTree : MainLoop() {
    * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
    *
    * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneTo] call.
+   *
+   * **Note:** Passing a value of `null` into the method will unload the current scene without loading a new one.
    */
   public open fun changeSceneTo(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
@@ -410,6 +464,15 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to pauseModeProcess)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?
+  }
+
+  /**
+   * Creates and returns a new [godot.SceneTreeTween].
+   */
+  public open fun createTween(): SceneTreeTween? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TWEEN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTween?
   }
 
   /**
@@ -456,6 +519,16 @@ public open class SceneTree : MainLoop() {
   public open fun getNodesInGroup(group: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns an array of currently existing [godot.SceneTreeTween]s in the [godot.SceneTree] (both running and paused).
+   */
+  public open fun getProcessedTweens(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
+        ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -555,16 +628,6 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * If `true`, the application automatically accepts quitting. Enabled by default.
-   *
-   * For mobile platforms, see [setQuitOnGoBack].
-   */
-  public open fun setAutoAcceptQuit(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT, NIL)
-  }
-
-  /**
    * Sets the given `property` to `value` on all members of the given group.
    */
   public open fun setGroup(
@@ -596,16 +659,6 @@ public open class SceneTree : MainLoop() {
   public open fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_INPUT_AS_HANDLED, NIL)
-  }
-
-  /**
-   * If `true`, the application quits automatically on going back (e.g. on Android). Enabled by default.
-   *
-   * To handle 'Go Back' button when this option is disabled, use [godot.MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST].
-   */
-  public open fun setQuitOnGoBack(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK, NIL)
   }
 
   /**

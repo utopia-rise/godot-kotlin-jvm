@@ -31,6 +31,24 @@ import kotlin.Unit
 @GodotBaseType
 public open class CullInstance : Spatial() {
   /**
+   * This allows fine control over the mesh merging feature in the [godot.RoomManager].
+   *
+   * Setting this option to `false` can be used to prevent an instance being merged.
+   */
+  public open var allowMerging: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CULLINSTANCE_GET_ALLOW_MERGING,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CULLINSTANCE_SET_ALLOW_MERGING,
+          NIL)
+    }
+
+  /**
    * When set to `0`, [godot.CullInstance]s will be autoplaced in the [godot.Room] with the highest priority.
    *
    * When set to a value other than `0`, the system will attempt to autoplace in a [godot.Room] with the `autoplace_priority`, if it is present.

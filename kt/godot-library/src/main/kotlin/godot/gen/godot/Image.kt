@@ -39,7 +39,7 @@ import kotlin.Unit
  * Image datatype.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/assets_pipeline/importing_images.html](https://docs.godotengine.org/en/3.4/tutorials/assets_pipeline/importing_images.html)
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
  *
  * Native image datatype. Contains image data which can be converted to an [godot.ImageTexture] and provides commonly used *image processing* methods. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
@@ -61,7 +61,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`.
+   * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
    */
   public open fun blendRect(
     src: Image,
@@ -73,7 +73,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
+   * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`, clipped accordingly to both image bounds. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
    */
   public open fun blendRectMask(
     src: Image,
@@ -86,7 +86,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies `src_rect` from `src` image to this image at coordinates `dst`.
+   * Copies `src_rect` from `src` image to this image at coordinates `dst`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
    */
   public open fun blitRect(
     src: Image,
@@ -98,7 +98,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats.
+   * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`, clipped accordingly to both image bounds. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
    */
   public open fun blitRectMask(
     src: Image,
@@ -219,11 +219,19 @@ public open class Image : Resource() {
   }
 
   /**
-   * Fills the image with a given [godot.core.Color].
+   * Fills the image with `color`.
    */
   public open fun fill(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL, NIL)
+  }
+
+  /**
+   * Fills `rect` with `color`.
+   */
+  public open fun fillRect(rect: Rect2, color: Color): Unit {
+    TransferContext.writeArguments(RECT2 to rect, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_FILL_RECT, NIL)
   }
 
   /**
@@ -388,7 +396,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Loads an image from file `path`. See [godot.Supported image formats](https://docs.godotengine.org/en/3.4/tutorials/assets_pipeline/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
+   * Loads an image from file `path`. See [godot.Supported image formats]($DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.
    *

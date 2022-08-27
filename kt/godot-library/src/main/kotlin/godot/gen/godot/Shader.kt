@@ -25,8 +25,8 @@ import kotlin.Unit
  * A custom shader program.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/shaders/introduction_to_shaders.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/introduction_to_shaders.html)
+ * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
+ * [$DOCS_URL/tutorials/shaders/introduction_to_shaders.html]($DOCS_URL/tutorials/shaders/introduction_to_shaders.html)
  *
  * This class allows you to define a custom shader program that can be used by a [godot.ShaderMaterial]. Shaders allow you to write your own custom behavior for rendering objects or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
  */

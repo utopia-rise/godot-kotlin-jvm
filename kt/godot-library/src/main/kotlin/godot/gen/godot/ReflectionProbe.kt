@@ -26,7 +26,7 @@ import kotlin.Unit
  * Captures its surroundings to create fast, accurate reflections from a given point.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html)
+ * [$DOCS_URL/tutorials/3d/reflection_probes.html]($DOCS_URL/tutorials/3d/reflection_probes.html)
  *
  * Capture its surroundings as a dual paraboloid image, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
