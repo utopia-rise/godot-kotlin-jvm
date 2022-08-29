@@ -38,11 +38,6 @@ private:
 
 public:
     TransferContext* transfer_context;
-    Vector<StringName> engine_type_names;
-    Vector<MethodBind*> engine_type_method;
-    Vector<String> engine_singleton_names;
-
-    Vector<Ref<KotlinScript>> user_scripts;
 
     GDKotlin(const GDKotlin&) = delete;
 

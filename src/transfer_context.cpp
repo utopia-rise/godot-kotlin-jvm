@@ -133,7 +133,7 @@ void TransferContext::icall(
     auto* ptr{reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index{static_cast<int>(p_method_index)};
-    MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
+    MethodBind* methodBind{TypeManager::get_instance().get_engine_type_method_for_index(method_index)};
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
@@ -173,7 +173,7 @@ void TransferContext::icall(
 }
 
 void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
-    const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
+    const StringName& class_name{TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
     Object* ptr = ClassDB::instance(class_name);
 
     auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
@@ -201,7 +201,7 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
 jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     return reinterpret_cast<uintptr_t>(
             Engine::get_singleton()->get_singleton_object(
-                    GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
+                    TypeManager::get_instance().get_engine_singleton_name_for_index(static_cast<int>(p_class_index))
             )
     );
 }
@@ -213,7 +213,7 @@ void TransferContext::set_script(
         jint p_class_index,
         jobject p_object,
         jobject p_class_loader) {
-    Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
+    Ref<KotlinScript> kotlin_script{TypeManager::get_instance().get_user_script_for_index(static_cast<int>(p_class_index))};
     auto* owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
     auto* script{memnew(KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};

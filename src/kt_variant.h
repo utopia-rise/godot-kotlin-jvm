@@ -246,11 +246,11 @@ namespace ktvariant {
 
         StringName class_name{ptr->get_class_name()};
 
-        if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+        if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
             class_name = ClassDB::get_parent_class(class_name);
 
             while (class_name == String()) {
-                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
                     class_name = ClassDB::get_parent_class(class_name);
                 } else {
                     break;
@@ -275,7 +275,7 @@ namespace ktvariant {
                 reinterpret_cast<uintptr_t>(ptr),
                 des->get_cursor()));
         des->increment_position(encode_uint32(
-                TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name],
+                TypeManager::get_instance().get_java_engine_type_constructor_index_for_type(class_name),
                 des->get_cursor()));
         des->increment_position(encode_uint32(
                 is_ref,

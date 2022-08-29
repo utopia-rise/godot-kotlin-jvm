@@ -62,67 +62,30 @@ register_engine_types_hook(
     jni::Env env(p_env);
 
     jni::JObjectArray engine_types{p_engine_types};
-    for (int i = 0; i < engine_types.length(env); ++i) {
-        jni::JObject type = engine_types.get(env, i);
-        const String& class_name = env.from_jstring(static_cast<jni::JString>(type));
-        GDKotlin::get_instance().engine_type_names.insert(i, class_name);
-        TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i));
-#endif
-        type.delete_local_ref(env);
-    }
+    TypeManager::get_instance().register_engine_types(env, engine_types);
 
     jni::JObjectArray singleton_names{p_singleton_names};
-    for (int i = 0; i < singleton_names.length(env); ++i) {
-        jni::JObject name = singleton_names.get(env, i);
-        const String& singleton_name{env.from_jstring(static_cast<jni::JString>(name))};
-        GDKotlin::get_instance().engine_singleton_names.insert(i, singleton_name);
-        name.delete_local_ref(env);
-    }
+    TypeManager::get_instance().register_engine_singletons(env, singleton_names);
 
     jni::JObjectArray method_names{p_method_names};
     jni::JObjectArray types_of_methods{p_types_of_methods};
-    jni::JClass integer_class{env.load_class("java.lang.Integer", ClassLoader::get_default_loader())};
-    jni::MethodId integer_get_value_method{integer_class.get_method_id(env, "intValue", "()I")};
-    for (int i = 0; i < method_names.length(env); i++) {
-        jni::JObject type = types_of_methods.get(env, i);
-        jni::JObject name = method_names.get(env, i);
-        int type_of_method{static_cast<int>(type.call_int_method(env, integer_get_value_method))};
-        GDKotlin::get_instance().engine_type_method.insert(
-                i,
-                ClassDB::get_method(
-                        GDKotlin::get_instance().engine_type_names[type_of_method],
-                        env.from_jstring(name)
-                )
-        );
-        name.delete_local_ref(env);
-        type.delete_local_ref(env);
-    }
+    TypeManager::get_instance().register_methods(env, method_names, types_of_methods);
+
     jni::JObject j_object{p_this};
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     singleton_names.delete_local_ref(env);
     method_names.delete_local_ref(env);
     types_of_methods.delete_local_ref(env);
-    integer_class.delete_local_ref(env);
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE("Done registering managed engine types...");
 #endif
 }
 
 void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_types) {
-    print_verbose("Starting to register user types...");
     jni::Env env(p_env);
     jni::JObjectArray types{p_types};
-    for (int i = 0; i < types.length(env); ++i) {
-        const String& script_path{env.from_jstring(static_cast<jni::JString>(types.get(env, i)))};
-        GDKotlin::get_instance().user_scripts.insert(i, ResourceLoader::load(script_path, "KotlinScript"));
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Registered %s user type with index %s.", script_path, i));
-#endif
-    }
-    LOG_VERBOSE("Done registering user types.");
+    TypeManager::get_instance().register_user_types(env, types);
 }
 
 void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
@@ -424,11 +387,8 @@ void GDKotlin::finish() {
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
 
-    engine_type_method.clear();
-    engine_type_names.clear();
-    user_scripts.clear();
+    TypeManager::get_instance().clear();
 
-    TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
     LOG_INFO("Shutting down JVM ...");
