@@ -1,8 +1,8 @@
-#include <assert.h>
-#include <core/io/marshalls.h>
 #include "transfer_context.h"
-#include "gd_kotlin.h"
-#include "kotlin_instance.h"
+#include "core/io/marshalls.h"
+#include "modules/kotlin_jvm/src/gd_kotlin.h"
+#include "modules/kotlin_jvm/src/kotlin_instance.h"
+#include <assert.h>
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 const int VARIANT_ARG_MAX{5};
@@ -12,12 +12,18 @@ thread_local static Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-c
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
-TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
-        : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
+TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader) :
+        JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
             const_cast<char*>("icall"),
             const_cast<char*>("(JII)V"),
             (void*) TransferContext::icall
+    };
+
+    jni::JNativeMethod icall_static_method{
+            const_cast<char*>("icallStatic"),
+            const_cast<char*>("(II)V"),
+            (void*) TransferContext::icall_static
     };
 
     jni::JNativeMethod invoke_ctor_method{
@@ -44,7 +50,6 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             (void*) TransferContext::free_object
     };
 
-
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
     methods.push_back(invoke_ctor_method);
@@ -56,7 +61,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 }
 
 TransferContext::~TransferContext() {
-    for (auto& variant_arg : variant_args) {
+    for (auto& variant_arg: variant_args) {
         variant_arg = Variant();
     }
 }
@@ -65,7 +70,6 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
-
         jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.is_null());
@@ -184,7 +188,8 @@ void TransferContext::icall(
 #endif
 }
 
-void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
+void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object,
+                                         jboolean user_defined) {
     const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instantiate(class_name);
 
@@ -195,11 +200,17 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
-    if (auto* ref = Object::cast_to<RefCounted>(ptr)) {
-        id = RefDB::get_instance().get_ref_id(ref);
-    } else {
-        id = ptr->get_instance_id();
+    //We don't set a binding if it's user defined because the script is already fulfilling that purpose.
+    if (!static_cast<bool>(user_defined)) {
+        KtObject* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+        KotlinBindingManager::set_instance_binding(ptr, kt_object);
     }
+
+    if (ptr->is_ref_counted()) {
+        reinterpret_cast<RefCounted*>(ptr)->init_ref();
+    }
+
+    id = ptr->get_instance_id();
 
     jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
@@ -213,9 +224,7 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
 jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     return reinterpret_cast<uintptr_t>(
             Engine::get_singleton()->get_singleton_object(
-                    GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
-            )
-    );
+                    GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]));
 }
 
 void TransferContext::set_script(
@@ -228,7 +237,8 @@ void TransferContext::set_script(
     Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
     auto* owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
-    auto* script{memnew(KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};
+    ScriptInstance* script{
+            new KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr())};
     owner->set_script_instance(script);
 }
 

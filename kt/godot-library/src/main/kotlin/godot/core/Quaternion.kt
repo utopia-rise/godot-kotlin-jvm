@@ -1,6 +1,9 @@
 package godot.core
 
-import godot.util.*
+import godot.util.CMP_EPSILON
+import godot.util.RealT
+import godot.util.isEqualApprox
+import godot.util.toRealT
 import kotlin.math.*
 
 class Quaternion(
@@ -19,12 +22,12 @@ class Quaternion(
 
     //CONSTRUCTOR
     constructor() :
-            this(0.0, 0.0, 0.0, 1.0)
+        this(0.0, 0.0, 0.0, 1.0)
 
     constructor(other: Quaternion) : this(other.x, other.y, other.z, other.w)
 
     constructor(x: Number, y: Number, z: Number, w: Number = 1.0) :
-            this(x.toRealT(), y.toRealT(), z.toRealT(), w.toRealT())
+        this(x.toRealT(), y.toRealT(), z.toRealT(), w.toRealT())
 
     constructor(axis: Vector3, angle: RealT) : this() {
         val d: RealT = axis.length()
@@ -110,9 +113,9 @@ class Quaternion(
      */
     fun isEqualApprox(other: Quaternion): Boolean {
         return isEqualApprox(other.x, x)
-                && isEqualApprox(other.y, y)
-                && isEqualApprox(other.z, z)
-                && isEqualApprox(other.w, w)
+            && isEqualApprox(other.y, y)
+            && isEqualApprox(other.z, z)
+            && isEqualApprox(other.w, w)
     }
 
     /**

@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.core.memory.GarbageCollector
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -43,6 +44,7 @@ class RID : NativeCoreType, Comparable<RID> {
                 Bridge.engine_call_compareTo(_handle)
                 TransferContext.readReturnValue(VariantType.BOOL) as Boolean
             }() -> -1
+
             else -> 1
         }
     }
@@ -54,6 +56,7 @@ class RID : NativeCoreType, Comparable<RID> {
                 Bridge.engine_call_equals(_handle)
                 TransferContext.readReturnValue(VariantType.BOOL) as Boolean
             }
+
             else -> false
         }
     }

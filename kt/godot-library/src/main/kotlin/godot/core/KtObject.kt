@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.core.memory.GarbageCollector
 import godot.util.VoidPtr
 import godot.util.nullptr
 
@@ -11,12 +12,12 @@ abstract class KtObject {
     private class InitConfiguration {
         var shouldOverride = false
         var ptr: VoidPtr = nullptr
-        var id: Long = -1
+        var id: ObjectID = ObjectID(-1)
 
         fun reset() {
             shouldOverride = false
             ptr = nullptr
-            id = -1
+            id = ObjectID(-1)
         }
     }
 
@@ -28,10 +29,7 @@ abstract class KtObject {
             field = value
         }
 
-    /** Godot ID in the case of an Object.
-     *  Index in the case of a Reference.
-     */
-    var __id: Long = -1
+    var __id: ObjectID = ObjectID(-1)
 
     init {
         val config = initConfig.get()
@@ -55,16 +53,9 @@ abstract class KtObject {
         }
 
         if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
-            if (____DO_NOT_TOUCH_THIS_isRef____()) {
-                GarbageCollector.registerReference(this)
-            } else {
-                GarbageCollector.registerObject(this)
-            }
+            GarbageCollector.registerObject(this)
         }
     }
-
-    @Suppress("FunctionName")
-    open fun ____DO_NOT_TOUCH_THIS_isRef____() = false
 
     @Suppress("FunctionName")
     open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
@@ -83,7 +74,7 @@ abstract class KtObject {
         fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, id: Long, constructor: () -> T): T {
             val config = initConfig.get()
             config.ptr = rawPtr
-            config.id = id
+            config.id = ObjectID(id)
             config.shouldOverride = true
             return constructor()
         }

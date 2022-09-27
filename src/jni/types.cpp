@@ -48,6 +48,11 @@ namespace jni {
         p_env.check_exceptions();
     }
 
+	void JObject::delete_weak_ref(Env& p_env) {
+		p_env.env->DeleteWeakGlobalRef(obj);
+		p_env.check_exceptions();
+	}
+
     void JObject::delete_local_ref(Env& p_env) {
         p_env.env->DeleteLocalRef(obj);
         p_env.check_exceptions();

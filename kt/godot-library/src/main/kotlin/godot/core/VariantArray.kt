@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
+import godot.core.memory.GarbageCollector
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
@@ -190,8 +191,10 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Note: Calling bsearch on an unsorted array results in unexpected behavior.
      */
     fun bsearchCustom(value: T, obj: KtObject, func: String, before: Boolean = true): Int {
-        TransferContext.writeArguments(variantType to value, VariantType.OBJECT to obj,
-                VariantType.STRING to func, VariantType.BOOL to before)
+        TransferContext.writeArguments(
+            variantType to value, VariantType.OBJECT to obj,
+            VariantType.STRING to func, VariantType.BOOL to before
+        )
         Bridge.engine_call_bsearchCustom(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
@@ -342,8 +345,10 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * If negative, the start index is considered relative to the end of the array.
      */
     fun slice(begin: Int, end: Int, step: Int = 1, deep: Boolean = false): VariantArray<T> {
-        TransferContext.writeArguments(VariantType.JVM_INT to begin, VariantType.JVM_INT to end,
-                VariantType.JVM_INT to step, VariantType.BOOL to deep)
+        TransferContext.writeArguments(
+            VariantType.JVM_INT to begin, VariantType.JVM_INT to end,
+            VariantType.JVM_INT to step, VariantType.BOOL to deep
+        )
         Bridge.engine_call_slice(_handle)
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
             it.variantType = variantType
@@ -460,7 +465,7 @@ inline fun <reified T> VariantArray(): VariantArray<T> {
         "Can't create a VariantArray with generic ${T::class}."
     }
     return VariantArray<T>(
-            variantType
+        variantType
     )
 }
 

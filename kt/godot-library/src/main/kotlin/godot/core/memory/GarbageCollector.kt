@@ -1,8 +1,9 @@
-package godot.core
+package godot.core.memory
 
-import godot.core.memory.GodotStatic
-import godot.core.memory.NativeCoreWeakReference
-import godot.core.memory.ReferenceWeakReference
+import godot.core.KtObject
+import godot.core.NativeCoreType
+import godot.core.ObjectID
+import godot.core.VariantType
 import godot.util.VoidPtr
 import godot.util.info
 import godot.util.warning
@@ -31,20 +32,11 @@ internal object GarbageCollector {
     /** Number of references to check each loop.*/
     private const val CHECK_NUMBER = 256
 
-    /** Percentage of objects to check each loop.*/
-    private const val CHECK_PER_CENT = 0.2f
+    /** Maximum size of the objectDB, Godot shouldn't provide index higher than this.*/
+    private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
-    /** Index of the last Object checked.*/
-    private var current_index = 0
-
-    /** Pointers to Objects.*/
-    private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>(CHECK_NUMBER)
-
-    /** Pointers to References.*/
-    private val refWrappedList = ArrayList<ReferenceWeakReference?>(CHECK_NUMBER)
-
-    /** CurrentSize of the List, so we can grow it a lot chunk instead of one by one */
-    private var current_size = CHECK_NUMBER
+    /** Pointers to Godot objects.*/
+    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { _ -> null }
 
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
@@ -55,11 +47,8 @@ internal object GarbageCollector {
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
-    /** List of element to remove from RefWrapperList*/
-    private val deleteQueue = ArrayList<ReferenceWeakReference>()
-
-    /** List mirroring the content of the Object HashMap.*/
-    private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
+    /** List of element to remove from ObjectDB*/
+    private val deleteQueue = ArrayList<GodotWeakReference>()
 
     /** Holds the instances to clean up when the JVM stops.*/
     private var staticInstances = mutableSetOf<GodotStatic>()
@@ -76,24 +65,9 @@ internal object GarbageCollector {
         get() = gcState == GCState.CLOSED
 
     fun registerObject(instance: KtObject) {
-        val rawPtr = instance.rawPtr
-        wrappedMap[rawPtr] = instance
-    }
-
-    fun registerReference(instance: KtObject) {
-        val index = instance.__id.toInt()
-        synchronized(refWrappedList) {
-            //It will throw an Exception if the size is too small so we have to grow the list.
-            if (refWrappedList.size == index) {
-                if (refWrappedList.size == current_size) {
-                    current_size *= 2
-                    refWrappedList.ensureCapacity(current_size)
-                }
-                //index is size of the list, this means we can add it at the end of it.
-                refWrappedList.add(ReferenceWeakReference(instance, refReferenceQueue, index))
-            } else {
-                refWrappedList[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
-            }
+        synchronized(ObjectDB) {
+            val index = instance.__id.index
+            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.__id)
         }
     }
 
@@ -106,40 +80,23 @@ internal object GarbageCollector {
         staticInstances.add(instance)
     }
 
-    fun getObjectInstance(ptr: VoidPtr, id: Long): KtObject? {
-        val ktObject = wrappedMap[ptr]
-        if (ktObject != null) {
-            if (id == ktObject.__id) {
-                return ktObject
-            }
+    fun getInstance(id: Long): KtObject? {
+        val objectID = ObjectID(id)
+        val ktObject = ObjectDB[objectID.index]?.get()
+        if (ktObject != null && objectID == ktObject.__id) {
+            return ktObject
         }
         return null
-    }
-
-    fun getRefInstance(index: Int): KtObject? {
-        synchronized(refWrappedList) {
-            if (refWrappedList.size <= index) {
-                //If the list is too small, it means the ref we want is not there yet.
-                return null
-            }
-            val ref = refWrappedList[index]
-            val instance = ref?.get()
-            if(instance != null){
-                ref.counter++
-                return instance
-            }
-            return null
-        }
     }
 
     fun getNativeCoreTypeInstance(ptr: VoidPtr): NativeCoreType? {
         return nativeCoreTypeMap[ptr]?.get()
     }
 
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.__id)
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.__id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
-        this.forceJvmGarbageCollector = forceJvmGarbageCollector
+        GarbageCollector.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
         info("Starting GC thread")
         executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
@@ -174,66 +131,31 @@ internal object GarbageCollector {
      */
     private fun checkAndClean(): Boolean {
         var isActive = false
+
         var counter = 0
-
-        // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
-        // This binds jvm instance lifecycle to native object's one.
-        if (wrapperList == null) {
-            //We only create a single List in this block so we don't block the whole map for the duration of the checking
-            wrapperList = wrappedMap.toList()
-        }
-
-        val size = wrapperList!!.size
-
-        //Number of check is a % of the total list of object, which at least the regular number of check per iteration.
-        val limit = (CHECK_PER_CENT * size)
-            .toInt()
-            .coerceAtLeast(CHECK_NUMBER)
-            .coerceAtMost(size - current_index)
-
-        while (counter < limit) {
-            val entry = wrapperList!![current_index++]
-            if (!MemoryBridge.checkInstance(entry.first, entry.second.__id)) {
-                wrappedMap.remove(entry.first)
-                isActive = true
-            }
-            counter++
-        }
-        if (current_index == size) {
-            wrapperList = null
-            current_index = 0
-        }
-        counter = 0
-
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
         while (counter < CHECK_NUMBER || isCleanup) {
-            val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
-            //We first add the ref to the deleteQueue
+            val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
             deleteQueue.add(ref)
             isActive = true
             counter++
         }
-        synchronized(refWrappedList) {
-            //we remove the element from the map
+
+        synchronized(ObjectDB) {
+            //we remove the element from the array
             for (ref in deleteQueue) {
-                val otherRef = refWrappedList[ref.index]
-                //Check if the ref in the hashmap hasn't been modified by another thread
-                if(otherRef == ref){
-                    refWrappedList[ref.index] = null
+                val index = ref.id.index
+                val otherRef = ObjectDB[index]
+                //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
+                if (otherRef == ref) {
+                    ObjectDB[index] = null
                 }
             }
         }
 
-        //Lastly, we call unref after removing elements from the map.
-        // We don't want an index to be reused when there is cleaning to do.
-        for (ref in deleteQueue) {
-            MemoryBridge.unref(ref.ptr, ref.counter)
-        }
-
         deleteQueue.clear()
         counter = 0
-
         // Same as before for NativeCoreTypes
         while (counter < CHECK_NUMBER || isCleanup) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
@@ -254,7 +176,7 @@ internal object GarbageCollector {
     }
 
     fun cleanUp() {
-        while(staticInstances.size > 0){
+        while (staticInstances.size > 0) {
             val iterator = staticInstances.iterator()
             staticInstances = mutableSetOf()
             for (instance in iterator) {
@@ -264,7 +186,7 @@ internal object GarbageCollector {
 
         isCleanup = true
         var begin = Instant.now()
-        while (refWrappedList.any { it != null } || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
+        while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
 
             forceJvmGc()
             if (checkAndClean()) {
@@ -277,17 +199,12 @@ internal object GarbageCollector {
                     buildString {
                         appendLine("Some JVM godot instances are leaked.")
                         if (shouldDisplayLeakInstancesOnClose) {
-                            appendLine("Leaked references:")
-                            for (entry in refWrappedList) {
+                            appendLine("Leaked Objects:")
+                            for (entry in ObjectDB) {
                                 if (entry != null) {
                                     append("    ${entry.get()}")
                                     append(System.lineSeparator())
                                 }
-                            }
-                            appendLine("Leaked objects:")
-                            for (entry in wrappedMap) {
-                                append("    ${entry.key}: ${entry.value}")
-                                append(System.lineSeparator())
                             }
                             appendLine("Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {

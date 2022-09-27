@@ -1,8 +1,8 @@
-#include <modules/kotlin_jvm/src/logging.h>
-#include <modules/kotlin_jvm/src/ref_db.h>
-#include <core/object/object.h>
 #include "memory_bridge.h"
 #include "constants.h"
+#include "modules/kotlin_jvm/src/memory/kotlin_binding_manager.h"
+#include <core/object/object.h>
+#include <modules/kotlin_jvm/src/logging.h>
 
 using namespace bridges;
 
@@ -54,7 +54,7 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_counter) {
     if (auto* reference{reinterpret_cast<RefCounted*>(static_cast<uintptr_t>(p_raw_ptr))}) {
         auto counter = static_cast<uint32_t>(p_counter);
-        RefDB::get_instance().remove_ref(reference, counter);
+		reference->unreference();
     }
     return true;
 }

@@ -1,7 +1,7 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.util.*
+import godot.util.RealT
 import kotlin.math.max
 import kotlin.math.min
 
@@ -12,6 +12,7 @@ class Rect2(
 
     @PublishedApi
     internal var _position = Vector2(p_position)
+
     @PublishedApi
     internal var _size = Vector2(p_size)
 
@@ -82,13 +83,13 @@ class Rect2(
 
     //CONSTRUCTOR
     constructor() :
-            this(Vector2(), Vector2())
+        this(Vector2(), Vector2())
 
     constructor(other: Rect2) :
-            this(other._position, other._size)
+        this(other._position, other._size)
 
     constructor(x: RealT, y: RealT, width: RealT, height: RealT) :
-            this(Vector2(x, y), Vector2(width, height))
+        this(Vector2(x, y), Vector2(width, height))
 
     //API
     /**
@@ -127,8 +128,8 @@ class Rect2(
      */
     fun encloses(b: Rect2): Boolean {
         return (b._position.x >= _position.x) && (b._position.y >= _position.y) &&
-                ((b._position.x + b._size.x) < (_position.x + _size.x)) &&
-                ((b._position.y + b._size.y) < (_position.y + _size.y))
+            ((b._position.x + b._size.x) < (_position.x + _size.x)) &&
+            ((b._position.y + b._size.y) < (_position.y + _size.y))
     }
 
     /**
@@ -203,13 +204,16 @@ class Rect2(
                 g._position.x -= by
                 g._size.x += by
             }
+
             Margin.RIGHT -> {
                 g._size.x += by
             }
+
             Margin.TOP -> {
                 g._position.y -= by
                 g._size.y += by
             }
+
             Margin.BOTTOM -> {
                 g._size.y += by
             }

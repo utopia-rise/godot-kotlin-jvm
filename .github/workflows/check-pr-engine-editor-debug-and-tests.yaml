@@ -107,10 +107,10 @@ jobs:
       - name: Build with editor debug
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
+          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }} dev_build=yes
           platform: ${{ matrix.platform }}
           target: editor
-          
+
       - name: Upload MacOs binary
         if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3

@@ -35,7 +35,8 @@ internal object TransferContext {
         buffer.rewind()
     }
 
-    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false) = variantType.toKotlin(buffer, isNullable)
+    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false) =
+        variantType.toKotlin(buffer, isNullable)
 
     fun writeReturnValue(value: Any?, type: VariantType) {
         type.toGodot(buffer, value)

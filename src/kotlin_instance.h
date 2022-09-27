@@ -1,19 +1,23 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
-#include <core/object/script_language.h>
-#include "kt_object.h"
+#include "kotlin_script.h"
 #include "kt_class.h"
+#include "kt_object.h"
+#include "modules/kotlin_jvm/src/memory/kotlin_binding.h"
+#include <core/object/script_language.h>
 
 class KotlinInstance : public ScriptInstance {
 private:
-    KtObject *wrapped_object;
-    Object *owner;
+	KotlinBinding* binding;
     KtClass* kt_class;
-    Ref<Script> script;
+    Ref<KotlinScript> script;
 
 public:
-    KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, Script* p_script);
+    KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, KotlinScript* p_script);
     ~KotlinInstance() override;
+
+	bool property_can_revert(const StringName &p_name) const  override;
+	bool property_get_revert(const StringName &p_name, Variant &r_ret) const  override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
 
@@ -24,8 +28,6 @@ public:
     Variant::Type get_property_type(const StringName& p_name, bool* r_is_valid) const override;
 
     Object* get_owner() override;
-
-    void set_owner(Object *object);
 
     void get_property_state(List<Pair<StringName, Variant>>& state) override;
 

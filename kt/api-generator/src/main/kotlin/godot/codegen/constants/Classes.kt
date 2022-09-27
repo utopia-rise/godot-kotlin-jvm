@@ -19,6 +19,7 @@ object KotlinTypes{
     const val variantType = "VariantType"
     const val transferContext = "TransferContext"
     const val typeManager = "TypeManager"
+    const val objectID = "ObjectID"
 
     object Annotations {
         const val godotBaseType = "GodotBaseType"
@@ -155,3 +156,4 @@ val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, KotlinTypes.Annotations
 
 val TRANSFER_CONTEXT = ClassName(godotCorePackage, KotlinTypes.transferContext)
 val TYPE_MANAGER = ClassName(godotCorePackage, KotlinTypes.typeManager)
+val OBJECT_ID = ClassName(godotCorePackage, KotlinTypes.objectID)

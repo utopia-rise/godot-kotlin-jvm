@@ -713,16 +713,19 @@ class Basis() : CoreType {
         it._y = this._y * scalar
         it._z = this._z * scalar
     }
+
     operator fun times(scalar: Long) = Basis().also {
         it._x = this._x * scalar
         it._y = this._y * scalar
         it._z = this._z * scalar
     }
+
     operator fun times(scalar: Float) = Basis().also {
         it._x = this._x * scalar
         it._y = this._y * scalar
         it._z = this._z * scalar
     }
+
     operator fun times(scalar: Double) = Basis().also {
         it._x = this._x * scalar
         it._y = this._y * scalar
@@ -742,6 +745,7 @@ class Basis() : CoreType {
             is Basis -> (this._x.x == other._x.x && this._x.y == other._x.y && this._x.z == other._x.z &&
                 this._y.x == other._y.x && this._y.y == other._y.y && this._y.z == other._y.z &&
                 this._z.x == other._z.x && this._z.y == other._z.y && this._z.z == other._z.z)
+
             else -> throw IllegalArgumentException()
         }
 
@@ -780,7 +784,7 @@ class Basis() : CoreType {
     @CoreTypeHelper
     inline fun <T> x(block: Vector3.() -> T): T {
         val x = getAxis(0)
-        val ret =  x.block()
+        val ret = x.block()
         setAxis(0, x)
         return ret
     }
@@ -798,7 +802,7 @@ class Basis() : CoreType {
     @CoreTypeHelper
     inline fun <T> y(block: Vector3.() -> T): T {
         val y = getAxis(1)
-        val ret =  y.block()
+        val ret = y.block()
         setAxis(1, y)
         return ret
     }
@@ -816,7 +820,7 @@ class Basis() : CoreType {
     @CoreTypeHelper
     inline fun <T> z(block: Vector3.() -> T): T {
         val z = getAxis(2)
-        val ret =  z.block()
+        val ret = z.block()
         setAxis(2, z)
         return ret
     }

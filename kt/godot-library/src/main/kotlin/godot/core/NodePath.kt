@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.core.memory.GarbageCollector
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate")

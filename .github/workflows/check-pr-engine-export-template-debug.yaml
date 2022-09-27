@@ -49,6 +49,14 @@ jobs:
             output_folder: platform/android/java/lib/libs/debug/arm64-v8a/
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Download Vulkan SDK
+        if: matrix.platform == 'osx'
+        uses: humbletim/setup-vulkan-sdk@v1.2.0
+        with:
+          vulkan-query-version: 1.3.204.0
+          vulkan-components: Vulkan-Headers, Vulkan-Loader
+          vulkan-use-cache: true
+
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
@@ -96,10 +104,10 @@ jobs:
       - name: Build debug export template
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
+          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }} bits=64
           platform: ${{ matrix.platform }}
           target: template_debug
-          
+
       - name: Upload android binary
         if: matrix.platform == 'android'
         uses: actions/upload-artifact@v3

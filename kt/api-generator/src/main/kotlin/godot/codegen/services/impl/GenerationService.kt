@@ -99,14 +99,6 @@ class GenerationService(
             classTypeBuilder.generateConstructorMethod()
             classTypeBuilder.generateSignalExtensions()
         }
-        if (name == KotlinTypes.refCounted) {
-            classTypeBuilder.addFunction(
-                FunSpec.builder("____DO_NOT_TOUCH_THIS_isRef____")
-                    .addModifiers(KModifier.OVERRIDE)
-                    .addStatement("return true")
-                    .build()
-            )
-        }
         if (name == "Node") {
             classTypeBuilder.generateTypesafeRpc()
         }
@@ -543,7 +535,13 @@ class GenerationService(
             if (method.isSameSignature(jvmReservedMethod) && !method.internal.isVirtual) {
                 generatedFunBuilder.addAnnotation(
                     AnnotationSpec.builder(JvmName::class)
-                        .addMember(CodeBlock.of("\"%L%L\"", enrichedClass.name.decapitalize(), method.name.capitalize()))
+                        .addMember(
+                            CodeBlock.of(
+                                "\"%L%L\"",
+                                enrichedClass.name.decapitalize(),
+                                method.name.capitalize()
+                            )
+                        )
                         .build()
                 )
             }
@@ -569,7 +567,10 @@ class GenerationService(
                 TRANSFER_CONTEXT
             )
             .addStatement("rawPtr = buffer.long")
-            .addStatement("__id = buffer.long")
+            .addStatement(
+                "__id = %T(buffer.long)",
+                OBJECT_ID
+            )
             .addStatement("buffer.rewind()")
         addFunction(constructorFun.build())
     }
@@ -859,9 +860,9 @@ class GenerationService(
             AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
                 .addMember(
                     "\"PackageDirectoryMismatch\", \"unused\", \"FunctionName\", \"RedundantModalityModifier\", " +
-                            "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
-                            "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\", " +
-                            "\"RedundantUnitReturnType\", \"MemberVisibilityCanBePrivate\""
+                        "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
+                        "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\", " +
+                        "\"RedundantUnitReturnType\", \"MemberVisibilityCanBePrivate\""
                 )
                 .build()
         )

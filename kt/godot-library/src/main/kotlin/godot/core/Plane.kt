@@ -1,7 +1,10 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.util.*
+import godot.util.CMP_EPSILON
+import godot.util.RealT
+import godot.util.isEqualApprox
+import godot.util.toRealT
 import kotlin.math.abs
 
 class Plane(
@@ -43,13 +46,13 @@ class Plane(
 
     //CONSTRUCTOR
     constructor() :
-            this(Vector3(0, 0, 0), 0)
+        this(Vector3(0, 0, 0), 0)
 
     constructor(other: Plane) :
-            this(other._normal, other.d)
+        this(other._normal, other.d)
 
     constructor(p1: Number, p2: Number, p3: Number, p4: Number) :
-            this(Vector3(p1.toRealT(), p2.toRealT(), p3.toRealT()), p4.toRealT())
+        this(Vector3(p1.toRealT(), p2.toRealT(), p3.toRealT()), p4.toRealT())
 
     constructor(point1: Vector3, point2: Vector3, point3: Vector3) : this() {
         _normal = (point1 - point3).cross(point1 - point2)
@@ -58,10 +61,10 @@ class Plane(
     }
 
     constructor(normal: Vector3, d: Number) :
-            this(normal, d.toRealT())
+        this(normal, d.toRealT())
 
     constructor(point: Vector3, normal: Vector3) :
-            this(normal, normal.dot(point))
+        this(normal, normal.dot(point))
 
     //API
     /**
@@ -126,8 +129,8 @@ class Plane(
 
         val result: Vector3?
         result = (normal1.cross(normal2) * plane0.d) +
-                (normal2.cross(normal0) * plane1.d) +
-                (normal0.cross(normal1) * plane2.d) / denom
+            (normal2.cross(normal0) * plane1.d) +
+            (normal0.cross(normal1) * plane2.d) / denom
         return result
     }
 

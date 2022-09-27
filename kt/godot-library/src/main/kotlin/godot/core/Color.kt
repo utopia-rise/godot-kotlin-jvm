@@ -115,26 +115,31 @@ class Color(
                 g = t
                 b = p
             }
+
             1 -> { // Green is the dominant color
                 r = q
                 g = v
                 b = p
             }
+
             2 -> {
                 r = p
                 g = v
                 b = t
             }
+
             3 -> { // Blue is the dominant color
                 r = p
                 g = q
                 b = v
             }
+
             4 -> {
                 r = t
                 g = p
                 b = v
             }
+
             else -> { // (5) Red is the dominant color
                 r = v
                 g = p
@@ -454,10 +459,12 @@ class Color(
                         v = c.code - 'a'.code
                         v += 10
                     }
+
                     in 'A'..'F' -> {
                         v = c.code - 'A'.code
                         v += 10
                     }
+
                     else -> return -1.0
                 }
 
@@ -500,10 +507,10 @@ class Color(
             }
 
             return Color(
-                    r / 255.0,
-                    g / 255.0,
-                    b / 255.0,
-                    a / 255.0
+                r / 255.0,
+                g / 255.0,
+                b / 255.0,
+                a / 255.0
             )
         }
 
@@ -537,7 +544,7 @@ class Color(
     constructor(other: Color) : this(other.r, other.g, other.b, other.a)
 
     constructor(r: Number, g: Number, b: Number, a: Number = 1.0) :
-            this(r.toRealT(), g.toRealT(), b.toRealT(), a.toRealT())
+        this(r.toRealT(), g.toRealT(), b.toRealT(), a.toRealT())
 
     //API
     /**
@@ -636,9 +643,9 @@ class Color(
      */
     fun isEqualApprox(color: Color): Boolean {
         return isEqualApprox(r, color.r)
-                && isEqualApprox(g, color.g)
-                && isEqualApprox(b, color.b)
-                && isEqualApprox(a, color.a)
+            && isEqualApprox(g, color.g)
+            && isEqualApprox(b, color.b)
+            && isEqualApprox(a, color.a)
     }
 
     /**
@@ -781,12 +788,15 @@ class Color(
                         a == other.a -> 0
                         else -> 1
                     }
+
                     b < other.b -> -1
                     else -> 1
                 }
+
                 g < other.g -> -1
                 else -> 1
             }
+
             r < other.r -> -1
             else -> 1
         }

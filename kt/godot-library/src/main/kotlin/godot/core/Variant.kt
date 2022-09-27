@@ -2,6 +2,7 @@ package godot.core
 
 import godot.core.VariantType.*
 import godot.core.VariantType.AABB
+import godot.core.memory.GarbageCollector
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
@@ -116,16 +117,9 @@ private var ByteBuffer.obj: KtObject
     get() {
         val ptr = long
         val constructorIndex = int
-        val isRef = bool
         val id = long
 
-        val existingInstance = if (isRef) {
-            GarbageCollector.getRefInstance(id.toInt())
-        } else {
-            GarbageCollector.getObjectInstance(ptr, id)
-        }
-
-        return existingInstance ?: KtObject.instantiateWith(
+        return GarbageCollector.getInstance(id) ?: KtObject.instantiateWith(
             ptr,
             id,
             TypeManager.engineTypesConstructors[constructorIndex]
@@ -133,7 +127,6 @@ private var ByteBuffer.obj: KtObject
     }
     set(value) {
         putLong(value.rawPtr)
-        bool = value.____DO_NOT_TOUCH_THIS_isRef____()
     }
 
 private var ByteBuffer.variantType: Int
@@ -742,10 +735,12 @@ internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, 
                 baseOrdinal -> {
                     defaultLambda(buffer, variantType)
                 }
+
                 NIL.ordinal -> {
                     if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
                     null
                 }
+
                 else -> throw TypeCastException("Cannot match $variantType to ${this.baseOrdinal}")
             }
         }

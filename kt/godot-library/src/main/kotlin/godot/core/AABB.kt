@@ -1,15 +1,18 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.util.*
+import godot.util.CMP_EPSILON
+import godot.util.RealT
 
 class AABB(
     p_position: Vector3,
     p_size: Vector3
 ) : CoreType {
 
-    @PublishedApi internal var _position = Vector3(p_position)
-    @PublishedApi internal var _size  = Vector3(p_size)
+    @PublishedApi
+    internal var _position = Vector3(p_position)
+    @PublishedApi
+    internal var _size = Vector3(p_size)
 
 
     //PROPERTIES
@@ -39,7 +42,7 @@ class AABB(
         }
 
     @CoreTypeHelper
-    inline fun <T> size(block: Vector3.() -> T): T{
+    inline fun <T> size(block: Vector3.() -> T): T {
         return _size.block()
     }
 
@@ -54,7 +57,7 @@ class AABB(
         }
 
     @CoreTypeHelper
-    inline fun <T> end(block: Vector3.() -> T): T{
+    inline fun <T> end(block: Vector3.() -> T): T {
         val vec = end
         val ret = vec.block()
         end = vec
@@ -64,10 +67,10 @@ class AABB(
 
     //CONSTRUCTOR
     constructor() :
-            this(Vector3(), Vector3())
+        this(Vector3(), Vector3())
 
     constructor(other: AABB) :
-            this(other._position, other._size)
+        this(other._position, other._size)
 
     //API
     /**
@@ -79,11 +82,11 @@ class AABB(
         val dstMin = other._position
         val dstMax = other._position + other._size
         return ((srcMin.x <= dstMin.x) &&
-                (srcMax.x > dstMax.x) &&
-                (srcMin.y <= dstMin.y) &&
-                (srcMax.y > dstMax.y) &&
-                (srcMin.z <= dstMin.z) &&
-                (srcMax.z > dstMax.z))
+            (srcMax.x > dstMax.x) &&
+            (srcMin.y <= dstMin.y) &&
+            (srcMax.y > dstMax.y) &&
+            (srcMin.z <= dstMin.z) &&
+            (srcMax.z > dstMax.z))
     }
 
     /**

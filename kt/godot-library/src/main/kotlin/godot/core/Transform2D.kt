@@ -1,8 +1,9 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.util.*
-import kotlin.jvm.JvmOverloads
+import godot.util.RealT
+import godot.util.isEqualApprox
+import godot.util.toRealT
 import kotlin.math.acos
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -216,8 +217,8 @@ class Transform2D(
      */
     fun isEqualApprox(transform: Transform2D): Boolean {
         return transform._x.isEqualApprox(this._x)
-                && transform._y.isEqualApprox(this._y)
-                && transform._origin.isEqualApprox(this._origin)
+            && transform._y.isEqualApprox(this._y)
+            && transform._origin.isEqualApprox(this._origin)
     }
 
     /**

@@ -2,6 +2,7 @@ package godot.core
 
 import godot.Object
 import godot.core.callable.*
+import godot.core.memory.GarbageCollector
 import godot.util.VoidPtr
 
 class Callable internal constructor(
@@ -21,7 +22,11 @@ class Callable internal constructor(
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
 
-    constructor(target: Object, kFunction: KtCallable<KtObject, *>) : this(target, null, KtCustomCallable(target, kFunction)) {
+    constructor(target: Object, kFunction: KtCallable<KtObject, *>) : this(
+        target,
+        null,
+        KtCustomCallable(target, kFunction)
+    ) {
         _handle = Bridge.engine_call_constructor_kt_custom_callable(customCallable!!)
         GarbageCollector.registerNativeCoreType(this, VariantType.CALLABLE)
     }
@@ -97,7 +102,7 @@ inline fun <T : KtObject, reified P0 : Any?, reified R : Any?> callable(
 )
 
 @Suppress("UNCHECKED_CAST")
-inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified R : Any?> callable(
+inline fun <T : KtObject, reified P0 : Any?, reified P1 : Any?, reified R : Any?> callable(
     target: Object,
     noinline function: T.(P0, P1) -> R
 ) = Callable(
@@ -117,7 +122,7 @@ inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified R : Any?>
 )
 
 @Suppress("UNCHECKED_CAST")
-inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified P2: Any?, reified R : Any?> callable(
+inline fun <T : KtObject, reified P0 : Any?, reified P1 : Any?, reified P2 : Any?, reified R : Any?> callable(
     target: Object,
     noinline function: T.(P0, P1, P2) -> R
 ) = Callable(
@@ -140,7 +145,7 @@ inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified P2: Any?,
 )
 
 @Suppress("UNCHECKED_CAST")
-inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified P2: Any?, reified P3: Any?, reified R : Any?> callable(
+inline fun <T : KtObject, reified P0 : Any?, reified P1 : Any?, reified P2 : Any?, reified P3 : Any?, reified R : Any?> callable(
     target: Object,
     noinline function: T.(P0, P1, P2, P3) -> R
 ) = Callable(
@@ -166,7 +171,7 @@ inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified P2: Any?,
 )
 
 @Suppress("UNCHECKED_CAST")
-inline fun <T : KtObject, reified P0 : Any?, reified P1: Any?, reified P2: Any?, reified P3: Any?, reified P4: Any?, reified R : Any?> callable(
+inline fun <T : KtObject, reified P0 : Any?, reified P1 : Any?, reified P2 : Any?, reified P3 : Any?, reified P4 : Any?, reified R : Any?> callable(
     target: Object,
     noinline function: T.(P0, P1, P2, P3, P4) -> R
 ) = Callable(

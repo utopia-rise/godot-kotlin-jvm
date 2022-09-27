@@ -399,6 +399,8 @@ int KotlinLanguage::profiling_get_frame_data(ScriptLanguage::ProfilingInfo* p_in
     return 0;
 }
 
+//The next 4 functions are in an odd spot, they are part of the Godot API, so we override them, but they don't accomplish anything
+//Nowhere in Godot those functions are ever called.
 void* KotlinLanguage::alloc_instance_binding_data(Object* p_object) {
     return ScriptLanguage::alloc_instance_binding_data(p_object);
 }

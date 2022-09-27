@@ -1,14 +1,12 @@
 #ifndef GODOT_JVM_TRANSFER_CONTEXT_H
 #define GODOT_JVM_TRANSFER_CONTEXT_H
 
-
-#include "kt_variant.h"
-#include "java_instance_wrapper.h"
+#include "modules/kotlin_jvm/src/java_instance_wrapper.h"
+#include "modules/kotlin_jvm/src/kt_variant.h"
 #include "shared_buffer.h"
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
-
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
 
     ~TransferContext();
@@ -35,14 +33,16 @@ public:
                       jint p_method_index,
                       jint expectedReturnType);
 
-    static void invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
+    static void icall_static(JNIEnv* rawEnv, jobject instance, jint p_method_index, jint expectedReturnType);
+
+    static void invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object,
+                                   jboolean user_defined);
 
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 
     static void set_script(JNIEnv* p_raw_env,
                            jobject p_instance,
-                           jlong p_raw_ptr, jint
-                           p_class_index,
+                           jlong p_raw_ptr, jint p_class_index,
                            jobject p_object,
                            jobject p_class_loader);
 
@@ -70,10 +70,15 @@ private:
         buffer->rewind();
     }
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
-)
+    template<bool is_static>
+    static void _icall(JNIEnv* rawEnv,
+                       jobject instance,
+                       jlong j_ptr,
+                       jint p_method_index,
+                       jint expectedReturnType);
 
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;"))
 };
 
 #endif //GODOT_JVM_TRANSFER_CONTEXT_H

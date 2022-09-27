@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.core.memory.GarbageCollector
 import godot.util.IndexedIterator
 import godot.util.RealT
 import godot.util.VoidPtr

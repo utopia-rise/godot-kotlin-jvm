@@ -16,7 +16,7 @@ internal object TypeManager {
         userTypeToId[kclass] = userTypes.size - 1
     }
 
-    fun <T: KtObject> registerEngineType(className: String, invocator: () -> T) {
+    fun <T : KtObject> registerEngineType(className: String, invocator: () -> T) {
         engineTypesConstructors.add(invocator)
         engineTypeNames.add(className)
     }
