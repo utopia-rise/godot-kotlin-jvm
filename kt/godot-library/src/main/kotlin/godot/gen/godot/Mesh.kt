@@ -294,6 +294,8 @@ public open class Mesh : Resource() {
     ARRAY_COMPRESS_TANGENT(2048),
     /**
      * Flag used to mark a compressed (half float) color array.
+     *
+     * **Note:** If this flag is enabled, vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to `Color(1, 1, 1, 1)` and reduce colors' precision.
      */
     ARRAY_COMPRESS_COLOR(4096),
     /**
@@ -330,6 +332,8 @@ public open class Mesh : Resource() {
     ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION(2097152),
     /**
      * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
+     *
+     * **Note:** Since this flag enables [ARRAY_COMPRESS_COLOR], vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to `Color(1, 1, 1, 1)` and reduce colors' precision.
      */
     ARRAY_COMPRESS_DEFAULT(2194432),
     ;
@@ -422,11 +426,15 @@ public open class Mesh : Resource() {
 
     /**
      * Flag used to mark a compressed (half float) color array.
+     *
+     * **Note:** If this flag is enabled, vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to `Color(1, 1, 1, 1)` and reduce colors' precision.
      */
     public final const val ARRAY_COMPRESS_COLOR: Long = 4096
 
     /**
      * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
+     *
+     * **Note:** Since this flag enables [ARRAY_COMPRESS_COLOR], vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to `Color(1, 1, 1, 1)` and reduce colors' precision.
      */
     public final const val ARRAY_COMPRESS_DEFAULT: Long = 2194432
 

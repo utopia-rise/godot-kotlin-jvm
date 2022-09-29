@@ -207,9 +207,9 @@ public open class CollisionObject2D : Node2D() {
   }
 
   /**
-   * If `value` is `true`, sets the specified `bit` in the the [collisionLayer].
+   * If `value` is `true`, sets the specified `bit` in the [collisionLayer].
    *
-   * If `value` is `false`, clears the specified `bit` in the the [collisionLayer].
+   * If `value` is `false`, clears the specified `bit` in the [collisionLayer].
    */
   public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
@@ -218,9 +218,9 @@ public open class CollisionObject2D : Node2D() {
   }
 
   /**
-   * If `value` is `true`, sets the specified `bit` in the the [collisionMask].
+   * If `value` is `true`, sets the specified `bit` in the [collisionMask].
    *
-   * If `value` is `false`, clears the specified `bit` in the the [collisionMask].
+   * If `value` is `false`, clears the specified `bit` in the [collisionMask].
    */
   public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)

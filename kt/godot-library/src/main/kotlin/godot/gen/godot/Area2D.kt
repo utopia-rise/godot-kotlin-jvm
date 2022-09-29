@@ -37,6 +37,10 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/120](https://godotengine.org/asset-library/asset/120)
  *
  * 2D area that detects [godot.CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping) and route audio to a custom audio bus.
+ *
+ * To give the area its shape, add a [godot.CollisionShape2D] or a [godot.CollisionPolygon2D] node as a *direct* child (or add multiple such nodes as direct children) of the area.
+ *
+ * **Warning:** See [godot.ConcavePolygonShape2D] for a warning about possibly unexpected behavior when using that shape for an area.
  */
 @GodotBaseType
 public open class Area2D : CollisionObject2D() {

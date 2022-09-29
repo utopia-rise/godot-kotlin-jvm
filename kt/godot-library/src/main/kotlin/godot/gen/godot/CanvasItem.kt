@@ -48,7 +48,7 @@ import kotlin.Unit
  *
  * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
  *
- * Any [godot.CanvasItem] can draw. For this, [update] must be called, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside the [godot.Object.Notification], signal or [_draw] virtual functions.
+ * Any [godot.CanvasItem] can draw. For this, [update] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
  *
  * Canvas items are drawn in tree order. By default, children are on top of their parents so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
  *
@@ -61,7 +61,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class CanvasItem : Node() {
   /**
-   * Emitted when the [godot.CanvasItem] must redraw. This can only be connected realtime, as deferred will not allow drawing.
+   * Emitted when the [godot.CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW] notification, and *before* [_draw] is called.
+   *
+   * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
   public val draw: Signal0 by signal()
 
@@ -204,7 +206,9 @@ public open class CanvasItem : Node() {
 
 
   /**
-   * Overridable function called by the engine (if defined) to draw the canvas item.
+   * Called when [godot.CanvasItem] has been requested to redraw (when [update] is called, either manually or by the engine).
+   *
+   * Corresponds to the [NOTIFICATION_DRAW] notification in [godot.Object.Notification].
    */
   public open fun _draw(): Unit {
   }
@@ -776,7 +780,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
    */
   public open fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -838,7 +842,7 @@ public open class CanvasItem : Node() {
   }
 
   /**
-   * Queue the [godot.CanvasItem] for update. [NOTIFICATION_DRAW] will be called on idle time to request redraw.
+   * Queues the [godot.CanvasItem] to redraw. During idle time, if [godot.CanvasItem] is visible, [NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if this method has been called multiple times.
    */
   public open fun update(): Unit {
     TransferContext.writeArguments()
@@ -916,7 +920,7 @@ public open class CanvasItem : Node() {
     public final const val BLEND_MODE_SUB: Long = 2
 
     /**
-     * The [godot.CanvasItem] is requested to draw.
+     * The [godot.CanvasItem] is requested to draw (see [_draw]).
      */
     public final const val NOTIFICATION_DRAW: Long = 30
 

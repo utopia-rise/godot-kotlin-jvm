@@ -22,6 +22,8 @@ import kotlin.Unit
  * Concave polygon shape resource, which can be set into a [godot.PhysicsBody] or area. This shape is created by feeding a list of triangles.
  *
  * **Note:** When used for collision, [godot.ConcavePolygonShape] is intended to work with static [godot.PhysicsBody] nodes like [godot.StaticBody] and will not work with [godot.KinematicBody] or [godot.RigidBody] with a mode other than Static.
+ *
+ * **Warning:** Using this shape for an [godot.Area] (via a [godot.CollisionShape] node, created e.g. by using the *Create Trimesh Collision Sibling* option in the *Mesh* menu that appears when selecting a [godot.MeshInstance] node) may give unexpected results: when using Godot Physics, the area will only detect collisions with the triangle faces in the [godot.ConcavePolygonShape] (and not with any "inside" of the shape, for example), and when using Bullet Physics the area will not detect any collisions with the concave shape at all (this is a known bug).
  */
 @GodotBaseType
 public open class ConcavePolygonShape : Shape() {

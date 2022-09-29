@@ -29,6 +29,8 @@ import kotlin.Unit
  * A mathematic curve.
  *
  * A curve that can be saved and re-used for other objects. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the `0.5` Y position.
+ *
+ * See also [godot.Gradient] which is designed for color interpolation. See also [godot.Curve2D] and [godot.Curve3D].
  */
 @GodotBaseType
 public open class Curve : Resource() {

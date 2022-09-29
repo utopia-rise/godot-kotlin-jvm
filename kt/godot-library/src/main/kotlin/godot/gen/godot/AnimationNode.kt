@@ -137,21 +137,21 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Gets the text caption for this node (used by some editors).
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to override the text caption for this node.
    */
   public open fun _getCaption(): String {
     throw NotImplementedError("get_caption is not implemented for AnimationNode")
   }
 
   /**
-   * Gets a child node by index (used by editors inheriting from [godot.AnimationRootNode]).
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a child node by its `name`.
    */
   public open fun _getChildByName(name: String): Object? {
     throw NotImplementedError("get_child_by_name is not implemented for AnimationNode")
   }
 
   /**
-   * Gets all children nodes in order as a `name: node` dictionary. Only useful when inheriting [godot.AnimationRootNode].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all children nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("get_child_nodes is not implemented for AnimationNode")
@@ -186,23 +186,23 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Gets the default value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return the default value of parameter "`name`". Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(name: String): Any? {
     throw NotImplementedError("get_parameter_default_value is not implemented for AnimationNode")
   }
 
   /**
-   * Gets the property information for parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a list of the properties on this node. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("get_parameter_list is not implemented for AnimationNode")
   }
 
   /**
-   * Returns `true` whether you want the blend tree editor to display filter editing on this node.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this node.
    */
-  public open fun _hasFilter(): String {
+  public open fun _hasFilter(): Boolean {
     throw NotImplementedError("has_filter is not implemented for AnimationNode")
   }
 
@@ -217,7 +217,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * User-defined callback called when a custom node is processed. The `time` parameter is a relative delta, unless `seek` is `true`, in which case it is absolute.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to run some code when this node is processed. The `time` parameter is a relative delta, unless `seek` is `true`, in which case it is absolute.
    *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use [getParameter] and [setParameter] to modify local memory.
    *

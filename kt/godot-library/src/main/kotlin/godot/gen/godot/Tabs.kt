@@ -35,7 +35,7 @@ public open class Tabs : Control() {
   public val repositionActiveTabRequest: Signal1<Long> by signal("idx_to")
 
   /**
-   * Emitted when a tab is right-clicked.
+   * Emitted when a tab's right button is pressed. See [setTabButtonIcon].
    */
   public val rightButtonPressed: Signal1<Long> by signal("tab")
 
@@ -191,6 +191,15 @@ public open class Tabs : Control() {
   }
 
   /**
+   * Returns the button icon from the tab at index `tab_idx`.
+   */
+  public open fun getTabButtonIcon(tabIdx: Long): Texture? {
+    TransferContext.writeArguments(LONG to tabIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_GET_TAB_BUTTON_ICON, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture?
+  }
+
+  /**
    * Returns the number of tabs.
    */
   public open fun getTabCount(): Long {
@@ -275,6 +284,14 @@ public open class Tabs : Control() {
   public open fun setSelectWithRmb(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_SET_SELECT_WITH_RMB, NIL)
+  }
+
+  /**
+   * Sets the button icon from the tab at index `tab_idx`.
+   */
+  public open fun setTabButtonIcon(tabIdx: Long, icon: Texture): Unit {
+    TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_SET_TAB_BUTTON_ICON, NIL)
   }
 
   /**

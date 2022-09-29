@@ -161,6 +161,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.
+   *
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugCollisionsHint] while the project is running will not have the desired effect.
    */
   public open var debugCollisionsHint: Boolean
     get() {
@@ -177,6 +179,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, navigation polygons will be visible when running the game from the editor for debugging purposes.
+   *
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugNavigationHint] while the project is running will not have the desired effect.
    */
   public open var debugNavigationHint: Boolean
     get() {

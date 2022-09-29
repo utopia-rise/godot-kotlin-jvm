@@ -1138,6 +1138,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
+   *
+   * **Note**: Using this method together with [godot.Object.callDeferred] makes it more reliable, especially when called inside [godot.Node.Ready].
    */
   public open fun grabFocus(): Unit {
     TransferContext.writeArguments()

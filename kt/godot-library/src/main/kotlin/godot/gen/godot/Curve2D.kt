@@ -59,18 +59,18 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Adds a point to a curve at `position` relative to the [godot.Curve2D]'s position, with control points `in` and `out`.
+   * Adds a point with the specified `position` relative to the curve's own position, with control points `in` and `out`. Appends the new point at the end of the point list.
    *
-   * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position <0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
+   * If `index` is given, the new point is inserted before the existing point identified by index `index`. Every existing point starting from `index` is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [getPointCount].
    */
   public open fun addPoint(
     position: Vector2,
     _in: Vector2 = Vector2(0.0, 0.0),
     `out`: Vector2 = Vector2(0.0, 0.0),
-    atPosition: Long = -1
+    index: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to
-        atPosition)
+        index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
   }
 
