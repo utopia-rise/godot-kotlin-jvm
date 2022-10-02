@@ -86,7 +86,7 @@ public open class SpatialMaterial : Material() {
    *
    * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.
    *
-   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering. Anisotropic texture filtering can be enabled by selecting a texture in the FileSystem dock, going to the Import dock, checking the **Anisotropic** checkbox then clicking **Reimport**.
+   * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering. Anisotropic texture filtering can be enabled by selecting a texture in the FileSystem dock, going to the Import dock, checking the **Anisotropic** checkbox then clicking **Reimport**. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/quality/filters/anisotropicFilterLevel].
    */
   public open var anisotropyEnabled: Boolean
     get() {

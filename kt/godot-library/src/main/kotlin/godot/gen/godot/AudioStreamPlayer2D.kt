@@ -29,7 +29,9 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
- * Plays audio that dampens with distance from screen center.
+ * Plays audio that dampens with distance from a given position.
+ *
+ * By default, audio is heard from the screen center. This can be changed by adding a [godot.Listener2D] node to the scene and enabling it by calling [godot.Listener2D.makeCurrent] on it.
  *
  * See also [godot.AudioStreamPlayer] to play a sound non-positionally.
  *

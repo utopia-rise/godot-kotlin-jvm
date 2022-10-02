@@ -1454,6 +1454,8 @@ public object OS : Object() {
    * Returns the current UNIX epoch timestamp in seconds.
    *
    * **Important:** This is the system clock that the user can manually set. **Never use** this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
+   *
+   * **Note:** To get a floating point timestamp with sub-second precision, use [godot.Time.getUnixTimeFromSystem].
    */
   public fun getUnixTime(): Long {
     TransferContext.writeArguments()

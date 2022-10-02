@@ -325,7 +325,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the [godot.Animation] with key `name` or `null` if not found.
+   * Returns the [godot.Animation] with the key `name`. If the animation does not exist, `null` is returned and an error is logged.
    */
   public open fun getAnimation(name: String): Animation? {
     TransferContext.writeArguments(STRING to name)

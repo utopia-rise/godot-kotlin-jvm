@@ -120,6 +120,10 @@ public open class ArrayMesh : Mesh() {
    * Surfaces are created to be rendered using a `primitive`, which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
    *
    * The `arrays` argument is an array of arrays. See [enum ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [ARRAY_INDEX] if it is used.
+   *
+   * `compress_flags` is a bitfield made of [enum Mesh.ArrayFormat] values. It defaults to [godot.Mesh.ARRAY_COMPRESS_DEFAULT].
+   *
+   * **Note:** The default `compress_flags` enable [godot.Mesh.ARRAY_COMPRESS_COLOR], which makes vertex colors stored as 8-bit unsigned integers. This will clamp overbright vertex colors to `Color(1, 1, 1, 1)` and reduce their precision. To store HDR vertex colors, remove the vertex color compression flag by passing `Mesh.ARRAY_COMPRESS_DEFAULT ^ Mesh.ARRAY_COMPRESS_COLOR` as the value of `compress_flags`.
    */
   public open fun addSurfaceFromArrays(
     primitive: Long,

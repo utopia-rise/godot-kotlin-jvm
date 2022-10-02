@@ -59,7 +59,9 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * Sets the layer to follow the viewport in order to simulate a pseudo 3D effect.
+   * If enabled, the [godot.CanvasLayer] will use the viewport's transform, so it will move when camera moves instead of being anchored in a fixed position on the screen.
+   *
+   * Together with [followViewportScale] it can be used for a pseudo 3D effect.
    */
   public open var followViewportEnable: Boolean
     get() {

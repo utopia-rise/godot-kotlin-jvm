@@ -212,7 +212,7 @@ public open class Camera : Spatial() {
     }
 
   /**
-   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal and frustum modes. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
+   * The camera's size in meters measured as the diameter of the width or height, depending on [keepAspect]. Only applicable in orthogonal and frustum modes.
    */
   public open var size: Double
     get() {

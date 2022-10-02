@@ -78,7 +78,9 @@ public object AudioServer : Object() {
     }
 
   /**
-   * Name of the current device for audio input (see [getDeviceList]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
+   * Name of the current device for audio input (see [captureGetDeviceList]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.
+   *
+   * **Note:** [godot.ProjectSettings.audio/enableAudioInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
   public var captureDevice: String
     get() {
@@ -151,6 +153,8 @@ public object AudioServer : Object() {
 
   /**
    * Returns the names of all audio input devices detected on the system.
+   *
+   * **Note:** [godot.ProjectSettings.audio/enableAudioInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
    */
   public fun captureGetDeviceList(): VariantArray<Any?> {
     TransferContext.writeArguments()

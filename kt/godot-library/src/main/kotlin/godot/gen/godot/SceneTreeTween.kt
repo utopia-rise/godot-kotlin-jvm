@@ -77,11 +77,23 @@ import kotlin.Unit
  *
  * In the example above, all children of a node are moved one after another to position (0, 0).
  *
+ * You should avoid using more than one [godot.SceneTreeTween] per object's property. If two or more tweens animate one property at the same time, the last one created will take priority and assign the final value. If you want to interrupt and restart an animation, consider assigning the [godot.SceneTreeTween] to a variable:
+ *
+ * ```
+ * 		var tween
+ * 		func animate():
+ * 		    if tween:
+ * 		        tween.kill() # Abort the previous animation.
+ * 		    tween = create_tween()
+ * 		```
+ *
  * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum Tween.TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum Tween.EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum Tween.TransitionType] constants with [godot.Tween.EASE_IN_OUT], and use the one that looks best.
  *
  * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
  *
  * **Note:** All [godot.SceneTreeTween]s will automatically start by default. To prevent a [godot.SceneTreeTween] from autostarting, you can call [stop] immediately after it is created.
+ *
+ * **Note:** [godot.SceneTreeTween]s are processing after all of nodes in the current frame, i.e. after [godot.Node.Process] or [godot.Node.PhysicsProcess] (depending on [enum Tween.TweenProcessMode]).
  */
 @GodotBaseType
 public open class SceneTreeTween : Reference() {

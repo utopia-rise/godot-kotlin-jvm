@@ -569,6 +569,8 @@ public open class PopupMenu : Popup() {
 
   /**
    * Sets the currently focused item as the given `index`.
+   *
+   * Passing `-1` as the index makes so that no item is focused.
    */
   public open fun setCurrentIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)

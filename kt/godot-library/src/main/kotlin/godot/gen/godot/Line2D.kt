@@ -244,12 +244,12 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Adds a point at the `position`. Appends the point at the end of the line.
+   * Adds a point with the specified `position` relative to the line's own position. Appends the new point at the end of the point list.
    *
-   * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position < 0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
+   * If `index` is given, the new point is inserted before the existing point identified by index `index`. Every existing point starting from `index` is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [getPointCount].
    */
-  public open fun addPoint(position: Vector2, atPosition: Long = -1): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, LONG to atPosition)
+  public open fun addPoint(position: Vector2, index: Long = -1): Unit {
+    TransferContext.writeArguments(VECTOR2 to position, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_ADD_POINT, NIL)
   }
 
@@ -262,7 +262,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Returns the Line2D's amount of points.
+   * Returns the amount of points in the line.
    */
   public open fun getPointCount(): Long {
     TransferContext.writeArguments()
@@ -271,27 +271,27 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Returns point `i`'s position.
+   * Returns the position of the point at index `index`.
    */
-  public open fun getPointPosition(i: Long): Vector2 {
-    TransferContext.writeArguments(LONG to i)
+  public open fun getPointPosition(index: Long): Vector2 {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Removes the point at index `i` from the line.
+   * Removes the point at index `index` from the line.
    */
-  public open fun removePoint(i: Long): Unit {
-    TransferContext.writeArguments(LONG to i)
+  public open fun removePoint(index: Long): Unit {
+    TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_REMOVE_POINT, NIL)
   }
 
   /**
-   * Overwrites the position in point `i` with the supplied `position`.
+   * Overwrites the position of the point at index `index` with the supplied `position`.
    */
-  public open fun setPointPosition(i: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to i, VECTOR2 to position)
+  public open fun setPointPosition(index: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to index, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
   }
 

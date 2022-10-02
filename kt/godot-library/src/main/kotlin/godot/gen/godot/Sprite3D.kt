@@ -107,7 +107,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * [godot.Texture] object to draw. If [godot.GeometryInstance.materialOverride] is used, this will be overridden.
+   * [godot.Texture] object to draw. If [godot.GeometryInstance.materialOverride] is used, this will be overridden. The size information is still used.
    */
   public open var texture: Texture?
     get() {

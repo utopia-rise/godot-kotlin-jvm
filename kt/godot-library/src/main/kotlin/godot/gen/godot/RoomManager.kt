@@ -29,9 +29,11 @@ public open class RoomManager : Spatial() {
   /**
    * Switches the portal culling system on and off.
    *
-   * It is important to note that when portal culling is active, it is responsible for **all** the 3d culling. Some editor functionality may be more difficult to use, so switching the active flag is intended to be used to make sure your [godot.Room] / [godot.Portal] layout works within the editor.
+   * It is important to note that when portal culling is active, it is responsible for **all** the 3d culling. Some editor visual debugging helpers may not be available when active, so switching the active flag is intended to be used to ensure your [godot.Room] / [godot.Portal] layout works within the editor.
    *
    * Switching to `active` will have no effect when the `room graph` is unloaded (the rooms have not yet been converted).
+   *
+   * **Note:** For efficiency, the portal system is designed to work with only the core visual object types. In particular, only nodes derived from [godot.VisualInstance] are expected to show when the system is active.
    */
   public open var active: Boolean
     get() {

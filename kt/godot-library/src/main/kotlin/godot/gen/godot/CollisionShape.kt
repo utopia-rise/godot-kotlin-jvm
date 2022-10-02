@@ -20,7 +20,9 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Editor facility for creating and editing collision shapes in 3D space. You can use this node to represent all sorts of collision shapes, for example, add this to an [godot.Area] to give it a detection shape, or add it to a [godot.PhysicsBody] to create a solid object. **IMPORTANT**: this is an Editor-only helper to create shapes, use [godot.CollisionObject.shapeOwnerGetShape] to get the actual shape.
+ * Editor facility for creating and editing collision shapes in 3D space. Set the [shape] property to configure the shape. **IMPORTANT**: this is an Editor-only helper to create shapes, use [godot.CollisionObject.shapeOwnerGetShape] to get the actual shape.
+ *
+ * You can use this node to represent all sorts of collision shapes, for example, add this to an [godot.Area] to give it a detection shape, or add it to a [godot.PhysicsBody] to create a solid object.
  */
 @GodotBaseType
 public open class CollisionShape : Spatial() {

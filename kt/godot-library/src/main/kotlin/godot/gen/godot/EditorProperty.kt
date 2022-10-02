@@ -16,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.Signal2
+import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
@@ -45,7 +46,8 @@ public open class EditorProperty : Container() {
   /**
    * Do not emit this manually, use the [emitChanged] method instead.
    */
-  public val propertyChanged: Signal2<String, Any> by signal("property", "value")
+  public val propertyChanged: Signal4<String, Any, String, Boolean> by signal("property", "value",
+      "field", "changing")
 
   /**
    * Emitted when a property was checked. Used internally.
