@@ -11,163 +11,163 @@ JNI_INIT_STATICS_FOR_CLASS(VariantArrayBridge)
 VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper(VARIANT_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method {
-        "engine_call_constructor",
-        "()J",
+        const_cast<char*>("engine_call_constructor"),
+        const_cast<char*>("()J"),
         (void*) VariantArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_get_size_method {
-        "engine_call_get_size",
-        "(J)V",
+        const_cast<char*>("engine_call_get_size"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_get_size
     };
     jni::JNativeMethod engine_call_clear_method {
-        "engine_call_clear",
-        "(J)V",
+        const_cast<char*>("engine_call_clear"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_clear
     };
     jni::JNativeMethod engine_call_empty_method {
-        "engine_call_empty",
-        "(J)V",
+        const_cast<char*>("engine_call_empty"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_empty
     };
     jni::JNativeMethod engine_call_hash_method {
-        "engine_call_hash",
-        "(J)V",
+        const_cast<char*>("engine_call_hash"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_hash
     };
     jni::JNativeMethod engine_call_invert_method {
-        "engine_call_invert",
-        "(J)V",
+        const_cast<char*>("engine_call_invert"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_invert
     };
     jni::JNativeMethod engine_call_remove_method {
-        "engine_call_remove",
-        "(J)V",
+        const_cast<char*>("engine_call_remove"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_remove
     };
     jni::JNativeMethod engine_call_resize_method {
-        "engine_call_resize",
-        "(J)V",
+        const_cast<char*>("engine_call_resize"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_resize
     };
     jni::JNativeMethod engine_call_shuffle_method {
-        "engine_call_shuffle",
-        "(J)V",
+        const_cast<char*>("engine_call_shuffle"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_shuffle
     };
     jni::JNativeMethod engine_call_sort_method {
-        "engine_call_sort",
-        "(J)V",
+        const_cast<char*>("engine_call_sort"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_sort
     };
     jni::JNativeMethod engine_call_sortCustom_method {
-        "engine_call_sortCustom",
-        "(J)V",
+        const_cast<char*>("engine_call_sortCustom"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_sortCustom
     };
     jni::JNativeMethod engine_call_append_method {
-        "engine_call_append",
-        "(J)V",
+        const_cast<char*>("engine_call_append"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_append
     };
     jni::JNativeMethod engine_call_bsearch_method {
-        "engine_call_bsearch",
-        "(J)V",
+        const_cast<char*>("engine_call_bsearch"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_bsearch
     };
     jni::JNativeMethod engine_call_bsearchCustom_method {
-        "engine_call_bsearchCustom",
-        "(J)V",
+        const_cast<char*>("engine_call_bsearchCustom"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_bsearchCustom
     };
     jni::JNativeMethod engine_call_count_method {
-        "engine_call_count",
-        "(J)V",
+        const_cast<char*>("engine_call_count"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_count
     };
     jni::JNativeMethod engine_call_duplicate_method {
-        "engine_call_duplicate",
-        "(J)V",
+        const_cast<char*>("engine_call_duplicate"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_duplicate
     };
     jni::JNativeMethod engine_call_erase_method {
-        "engine_call_erase",
-        "(J)V",
+        const_cast<char*>("engine_call_erase"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_erase
     };
     jni::JNativeMethod engine_call_find_method {
-        "engine_call_find",
-        "(J)V",
+        const_cast<char*>("engine_call_find"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_find
     };
     jni::JNativeMethod engine_call_findLast_method {
-        "engine_call_findLast",
-        "(J)V",
+        const_cast<char*>("engine_call_findLast"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_findLast
     };
     jni::JNativeMethod engine_call_front_method {
-        "engine_call_front",
-        "(J)V",
+        const_cast<char*>("engine_call_front"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_front
     };
     jni::JNativeMethod engine_call_has_method {
-        "engine_call_has",
-        "(J)V",
+        const_cast<char*>("engine_call_has"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_has
     };
     jni::JNativeMethod engine_call_insert_method {
-        "engine_call_insert",
-        "(J)V",
+        const_cast<char*>("engine_call_insert"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_insert
     };
     jni::JNativeMethod engine_call_max_method {
-        "engine_call_max",
-        "(J)V",
+        const_cast<char*>("engine_call_max"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_max
     };
     jni::JNativeMethod engine_call_min_method {
-        "engine_call_min",
-        "(J)V",
+        const_cast<char*>("engine_call_min"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_min
     };
     jni::JNativeMethod engine_call_popBack_method {
-        "engine_call_popBack",
-        "(J)V",
+        const_cast<char*>("engine_call_popBack"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_popBack
     };
     jni::JNativeMethod engine_call_popFront_method {
-        "engine_call_popFront",
-        "(J)V",
+        const_cast<char*>("engine_call_popFront"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_popFront
     };
     jni::JNativeMethod engine_call_pushBack_method {
-        "engine_call_pushBack",
-        "(J)V",
+        const_cast<char*>("engine_call_pushBack"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_pushBack
     };
     jni::JNativeMethod engine_call_pushFront_method {
-        "engine_call_pushFront",
-        "(J)V",
+        const_cast<char*>("engine_call_pushFront"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_pushFront
     };
     jni::JNativeMethod engine_call_rfind_method {
-        "engine_call_rfind",
-        "(J)V",
+        const_cast<char*>("engine_call_rfind"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_rfind
     };
     jni::JNativeMethod engine_call_slice_method {
-        "engine_call_slice",
-        "(J)V",
+        const_cast<char*>("engine_call_slice"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_slice
     };
     jni::JNativeMethod engine_call_operator_set_method {
-        "engine_call_operator_set",
-        "(J)V",
+        const_cast<char*>("engine_call_operator_set"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_operator_set
     };
     jni::JNativeMethod engine_call_operator_get_method {
-        "engine_call_operator_get",
-        "(J)V",
+        const_cast<char*>("engine_call_operator_get"),
+        const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_operator_get
     };
 

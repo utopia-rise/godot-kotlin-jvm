@@ -1,5 +1,4 @@
 #include "bootstrap.h"
-#include <core/print_string.h>
 
 
 JNI_INIT_STATICS_FOR_CLASS(Bootstrap)
@@ -13,32 +12,32 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
                           RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
                           RegisterUserTypesNamesHook p_user_types_names_hook, RegisterUserTypesMembersHook p_user_types_nmembers_hook) {
     jni::JNativeMethod load_class_hook_method {
-            "loadClasses",
-            "([Lgodot/core/KtClass;)V",
+            const_cast<char*>("loadClasses"),
+            const_cast<char*>("([Lgodot/core/KtClass;)V"),
             (void*) p_load_classes_hook
     };
 
     jni::JNativeMethod unload_class_hook_method {
-            "unloadClasses",
-            "([Lgodot/core/KtClass;)V",
+            const_cast<char*>("unloadClasses"),
+            const_cast<char*>("([Lgodot/core/KtClass;)V"),
             (void*) p_unload_classes_hook
     };
 
     jni::JNativeMethod register_managed_engine_types_method{
-            "registerManagedEngineTypes",
-            "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V",
+            const_cast<char*>("registerManagedEngineTypes"),
+            const_cast<char*>("([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V"),
             (void*) p_register_managed_engine_types_hook
     };
 
     jni::JNativeMethod register_user_types_names {
-            "registerUserTypesNames",
-            "([Ljava/lang/String;)V",
+            const_cast<char*>("registerUserTypesNames"),
+            const_cast<char*>("([Ljava/lang/String;)V"),
             (void*) p_user_types_names_hook
     };
 
     jni::JNativeMethod register_user_types_members {
-            "registerUserTypesMembers",
-            "()V",
+            const_cast<char*>("registerUserTypesMembers"),
+            const_cast<char*>("()V"),
             (void*) p_user_types_nmembers_hook
     };
 

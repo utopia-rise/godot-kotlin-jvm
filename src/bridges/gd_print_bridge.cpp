@@ -2,7 +2,6 @@
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include "gd_print_bridge.h"
 #include "constants.h"
-#include "bridges_utils.h"
 
 using namespace bridges;
 
@@ -11,20 +10,20 @@ JNI_INIT_STATICS_FOR_CLASS(GDPrintBridge)
 GDPrintBridge::GDPrintBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper(GD_PRINT_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod print_method{
-            "print",
-            "()V",
+            const_cast<char*>("print"),
+            const_cast<char*>("()V"),
             (void *) GDPrintBridge::print
     };
 
     jni::JNativeMethod print_err_method{
-            "printErr",
-            "()V",
+            const_cast<char*>("printErr"),
+            const_cast<char*>("()V"),
             (void *) GDPrintBridge::print_err
     };
 
     jni::JNativeMethod print_raw_method{
-            "printRaw",
-            "()V",
+            const_cast<char*>("printRaw"),
+            const_cast<char*>("()V"),
             (void *) GDPrintBridge::print_raw
     };
 

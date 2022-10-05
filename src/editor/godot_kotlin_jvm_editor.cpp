@@ -1,11 +1,9 @@
-
 #ifdef TOOLS_ENABLED
 
 #include "godot_kotlin_jvm_editor.h"
 #include "../logging.h"
 #include <editor/filesystem_dock.h>
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
-#include <scene/gui/control.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)

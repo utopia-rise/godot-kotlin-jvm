@@ -13,32 +13,32 @@ thread_local static bool icall_args_init = false;
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
-            "icall",
-            "(JII)V",
+            const_cast<char*>("icall"),
+            const_cast<char*>("(JII)V"),
             (void*) TransferContext::icall
     };
 
     jni::JNativeMethod invoke_ctor_method{
-            "invokeConstructor",
-            "(I)V",
+            const_cast<char*>("invokeConstructor"),
+            const_cast<char*>("(I)V"),
             (void*) TransferContext::invoke_constructor
     };
 
     jni::JNativeMethod get_singleton_method{
-            "getSingleton",
-            "(I)J",
+            const_cast<char*>("getSingleton"),
+            const_cast<char*>("(I)J"),
             (void*) TransferContext::get_singleton
     };
 
     jni::JNativeMethod set_script_method{
-            "setScript",
-            "(JILgodot/core/KtObject;Ljava/lang/ClassLoader;)V",
+            const_cast<char*>("setScript"),
+            const_cast<char*>("(JILgodot/core/KtObject;Ljava/lang/ClassLoader;)V"),
             (void*) TransferContext::set_script
     };
 
     jni::JNativeMethod free_object_method{
-            "freeObject",
-            "(J)V",
+            const_cast<char*>("freeObject"),
+            const_cast<char*>("(J)V"),
             (void*) TransferContext::free_object
     };
 

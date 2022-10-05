@@ -1,7 +1,6 @@
 #include "kotlin_instance.h"
 #include "kotlin_language.h"
 #include "kt_class.h"
-#include "gd_kotlin.h"
 
 KotlinInstance::KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, Script* p_script)
         : wrapped_object(p_wrapped_object),

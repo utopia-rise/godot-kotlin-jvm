@@ -10,63 +10,63 @@ JNI_INIT_STATICS_FOR_CLASS(PoolColorArrayBridge)
 PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(POOL_COLOR_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
-            "engine_call_constructor",
-            "()J",
+            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("()J"),
             (void*) PoolColorArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_append_method{
-            "engine_call_append",
-            "(J)V",
+            const_cast<char*>("engine_call_append"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_append
     };
     jni::JNativeMethod engine_call_appendArray_method{
-            "engine_call_appendArray",
-            "(J)V",
+            const_cast<char*>("engine_call_appendArray"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_appendArray
     };
     jni::JNativeMethod engine_call_empty_method{
-            "engine_call_empty",
-            "(J)V",
+            const_cast<char*>("engine_call_empty"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_empty
     };
     jni::JNativeMethod engine_call_get_method{
-            "engine_call_get",
-            "(J)V",
+            const_cast<char*>("engine_call_get"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_get
     };
     jni::JNativeMethod engine_call_insert_method{
-            "engine_call_insert",
-            "(J)V",
+            const_cast<char*>("engine_call_insert"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_insert
     };
     jni::JNativeMethod engine_call_invert_method{
-            "engine_call_invert",
-            "(J)V",
+            const_cast<char*>("engine_call_invert"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_invert
     };
     jni::JNativeMethod engine_call_pushback_method{
-            "engine_call_pushback",
-            "(J)V",
+            const_cast<char*>("engine_call_pushback"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_pushback
     };
     jni::JNativeMethod engine_call_remove_method{
-            "engine_call_remove",
-            "(J)V",
+            const_cast<char*>("engine_call_remove"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_remove
     };
     jni::JNativeMethod engine_call_resize_method{
-            "engine_call_resize",
-            "(J)V",
+            const_cast<char*>("engine_call_resize"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_resize
     };
     jni::JNativeMethod engine_call_set_method{
-            "engine_call_set",
-            "(J)V",
+            const_cast<char*>("engine_call_set"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_set
     };
     jni::JNativeMethod engine_call_size_method{
-            "engine_call_size",
-            "(J)V",
+            const_cast<char*>("engine_call_size"),
+            const_cast<char*>("(J)V"),
             (void*) PoolColorArrayBridge::engine_call_size
     };
 
