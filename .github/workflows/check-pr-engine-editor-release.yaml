@@ -4,6 +4,11 @@ on: [pull_request]
 env:
   SCONS_CACHE_MSVC_CONFIG: true
   GODOT_BASE_VERSION: 3.5.1
+  GODOT_BASE_BRANCH: 3.5.1
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-check-pr-engine-editor-release
+  cancel-in-progress: true
 
 jobs:
   build-editor-release:
@@ -13,7 +18,7 @@ jobs:
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
-            os: ubuntu-18.04
+            os: ubuntu-20.04
             platform: x11
             arch: 64
           - name: OSX-x64
@@ -30,11 +35,6 @@ jobs:
             arch: 64
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Configure dependencies
-        if: matrix.platform == 'x11'
-        run: |
-          sudo apt-get update && sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-            libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
@@ -45,31 +45,32 @@ jobs:
         with:
           path: modules/kotlin_jvm
           submodules: recursive
-      # Upload cache on completion and check it out now
-      - name: Load .scons_cache directory
-        id: editor-release-cache
-        uses: actions/cache@v2
-        with:
-          path: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
-          key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
-          restore-keys: |
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-          architecture: 'x64'
-      - name: Configuring Python packages
+      - name: Linux dependencies
+        if: matrix.platform == 'x11'
+        shell: bash
         run: |
-          python -c "import sys; print(sys.version)"
-          python -m pip install -r modules/kotlin_jvm/requirements.txt
+          # Azure repositories are not reliable, we need to prevent azure giving us packages.
+          sudo rm -f /etc/apt/sources.list.d/*
+          sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+          sudo apt-get update
+          # The actual dependencies
+          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
+              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
+      - name: Setup Godot dependencies
+        uses: ./.github/actions/godot-deps
+      # Upload cache on completion and check it out now
+      - name: Setup Godot build cache
+        uses: ./.github/actions/godot-cache
+        with:
+          cache-name: ${{ github.job }}-${{ matrix.platform }}-${{ matrix.arch }}
       - name: Get number of CPU cores
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build with editor release
-        env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
-        run: |
-          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} target=release_debug -j${{ steps.cpu-cores.outputs.count }}
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
+          platform: ${{ matrix.platform }}
+          target: release_debug
+          tools: true
