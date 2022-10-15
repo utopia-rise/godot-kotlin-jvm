@@ -14,11 +14,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Download OSX Editor Debug App x64
+    - name: Download x64 binary
       uses: actions/download-artifact@v1
       with:
         name: ${{ inputs.amd-64-binary-artifact }}
-    - name: Download OSX Editor Debug App arm64
+    - name: Download arm64 binary
       uses: actions/download-artifact@v1
       with:
         name: ${{ inputs.arm-64-binary-artifact }}

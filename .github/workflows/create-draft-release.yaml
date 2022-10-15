@@ -21,12 +21,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Generate changelog
-        uses: eskatos/gradle-command-action@v1
-        with:
-          wrapper-directory: kt/
-          build-root-directory: kt/
-          arguments: generateChangelog --stacktrace
+#      - name: Generate changelog
+#        uses: eskatos/gradle-command-action@v1
+#        with:
+#          wrapper-directory: kt/
+#          build-root-directory: kt/
+#          arguments: generateChangelog --stacktrace
       - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
@@ -37,7 +37,7 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
           prerelease: false
-          body_path: kt/build/changelog.md
+#          body_path: kt/build/changelog.md
 
       - name: Output release url file
         run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
@@ -49,19 +49,19 @@ jobs:
         run: echo $(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/)\K\d+.\d+.\d+-\d+.\d+.\d+(?:-SNAPSHOT)$') > godot_kotlin_jvm_version.txt
 
       - name: Save Release URL File for publish
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: release_url
           path: release_url.txt
 
       - name: Save supported godot version for publish
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: godot_version
           path: godot_version.txt
 
       - name: Save godot kotlin jvm version for publish
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: godot_kotlin_jvm_version
           path: godot_kotlin_jvm_version.txt

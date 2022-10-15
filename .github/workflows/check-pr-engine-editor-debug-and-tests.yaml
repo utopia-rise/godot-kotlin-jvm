@@ -40,7 +40,7 @@ jobs:
           build-root-directory: modules/kotlin_jvm/kt/
           arguments: godot-library:build
       - name: Upload godot-bootstrap jar
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: godot-bootstrap
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
@@ -109,7 +109,7 @@ jobs:
           tools: true
       - name: Upload OSX binary
         if: matrix.platform == 'osx'
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: osx-editor-debug-app-${{ matrix.arch }}
           path: bin/godot.osx.tools.${{ matrix.arch }}
@@ -128,7 +128,7 @@ jobs:
         with:
           submodules: recursive
       - name: Create OSX universal binary
-        uses: ./.github/actions/create-osx-editor-app
+        uses: ./.github/actions/create-osx-universal-binary
         with:
           amd-64-binary-artifact: osx-editor-debug-app-64
           amd-64-binary-name: godot.osx.tools.64
@@ -136,7 +136,7 @@ jobs:
           arm-64-binary-name: godot.osx.tools.arm64
           universal-output-binary-name: godot.osx.tools.universal
       - name: Upload OSX universal binary
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: osx-editor-debug-app
           path: godot.osx.tools.universal

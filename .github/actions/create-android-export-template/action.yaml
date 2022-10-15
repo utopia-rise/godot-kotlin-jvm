@@ -9,12 +9,10 @@ runs:
     - name: Setup Godot dependencies
       uses: ./.github/actions/godot-deps
     - name: Set up JDK 11
-      if: matrix.platform == 'android'
       uses: actions/setup-java@v1
       with:
         java-version: 11
     - name: Setup Android SDK
-      if: matrix.platform == 'android'
       uses: android-actions/setup-android@v2
     - name: Download android ${{ inputs.target }} export armv7 binary
       uses: actions/download-artifact@v3
@@ -26,6 +24,5 @@ runs:
         name: android-export-${{ inputs.target }}-binary-arm64v8
     - name: Build android ${{ inputs.target }} export template
       shell: bash
-      if: matrix.platform == 'android'
       run: |
         cd platform/android/java/ && ./gradlew generateGodotTemplates
