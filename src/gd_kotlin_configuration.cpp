@@ -1,5 +1,6 @@
 #include "gd_kotlin_configuration.h"
 #include "long_string_queue.h"
+#include "main/main.h"
 
 #include <core/io/json.h>
 #include <core/os/file_access.h>
@@ -68,8 +69,11 @@ GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_or_def
         configuration_access_read->close();
     } else {
 #ifdef TOOLS_ENABLED
-        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
         configuration = GdKotlinConfiguration();
+        if (Main::is_project_manager()) {
+            return configuration;
+        }
+        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
         file->store_string(configuration.to_json());
         file->close();
 #else
