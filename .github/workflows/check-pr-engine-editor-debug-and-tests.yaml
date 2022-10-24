@@ -4,6 +4,11 @@ on: [pull_request]
 env:
   SCONS_CACHE_MSVC_CONFIG: true
   GODOT_BASE_VERSION: 3.5.1
+  GODOT_BASE_BRANCH: 3.5.1
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-check-pr-engine-editor-debug-and-tests
+  cancel-in-progress: true
 
 jobs:
   build-godot-bootstrap:
@@ -35,7 +40,7 @@ jobs:
           build-root-directory: modules/kotlin_jvm/kt/
           arguments: godot-library:build
       - name: Upload godot-bootstrap jar
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: godot-bootstrap
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
@@ -46,7 +51,7 @@ jobs:
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
-            os: ubuntu-18.04
+            os: ubuntu-20.04
             platform: x11
             arch: 64
           - name: OSX-x64
@@ -58,16 +63,11 @@ jobs:
             platform: osx
             arch: arm64
           - name: Windows
-            os: windows-2019
+            os: windows-latest
             platform: windows
             arch: 64
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Configure dependencies
-        if: matrix.platform == 'x11'
-        run: |
-          sudo apt-get update && sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-            libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
@@ -78,37 +78,38 @@ jobs:
         with:
           path: modules/kotlin_jvm
           submodules: recursive
-      # Upload cache on completion and check it out now
-      - name: Load .scons_cache directory
-        id: editor-debug-cache
-        uses: actions/cache@v2
-        with:
-          path: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
-          key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
-          restore-keys: |
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BASE_VERSION}}
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-          architecture: 'x64'
-      - name: Configuring Python packages
+      - name: Linux dependencies
+        if: matrix.platform == 'x11'
+        shell: bash
         run: |
-          python -c "import sys; print(sys.version)"
-          python -m pip install -r modules/kotlin_jvm/requirements.txt
+          # Azure repositories are not reliable, we need to prevent azure giving us packages.
+          sudo rm -f /etc/apt/sources.list.d/*
+          sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+          sudo apt-get update
+          # The actual dependencies
+          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
+              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
+      - name: Setup Godot dependencies
+        uses: ./.github/actions/godot-deps
+      # Upload cache on completion and check it out now
+      - name: Setup Godot build cache
+        uses: ./.github/actions/godot-cache
+        with:
+          cache-name: ${{ github.job }}-${{ matrix.platform }}-${{ matrix.arch }}
       - name: Get number of CPU cores
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build with editor debug
-        env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
-        run: |
-          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
+          platform: ${{ matrix.platform }}
+          target: debug
+          tools: true
       - name: Upload OSX binary
         if: matrix.platform == 'osx'
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: osx-editor-debug-app-${{ matrix.arch }}
           path: bin/godot.osx.tools.${{ matrix.arch }}
@@ -122,19 +123,20 @@ jobs:
             java-version: 11
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Download OSX Editor Debug App x64
-        uses: actions/download-artifact@v1
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
         with:
-          name: osx-editor-debug-app-64
-      - name: Download OSX Editor Debug App arm64
-        uses: actions/download-artifact@v1
-        with:
-          name: osx-editor-debug-app-arm64
+          submodules: recursive
       - name: Create OSX universal binary
-        run: |
-          lipo -create osx-editor-debug-app-64/godot.osx.tools.64 osx-editor-debug-app-arm64/godot.osx.tools.arm64 -output godot.osx.tools.universal
+        uses: ./.github/actions/create-osx-universal-binary
+        with:
+          amd-64-binary-artifact: osx-editor-debug-app-64
+          amd-64-binary-name: godot.osx.tools.64
+          arm-64-binary-artifact: osx-editor-debug-app-arm64
+          arm-64-binary-name: godot.osx.tools.arm64
+          universal-output-binary-name: godot.osx.tools.universal
       - name: Upload OSX universal binary
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: osx-editor-debug-app
           path: godot.osx.tools.universal

@@ -1,0 +1,28 @@
+name: Create OSX universal binary
+description: Creates a MacOs universal binary
+inputs:
+  amd-64-binary-artifact:
+    description: Artifact containing AMD64 arch binary to download
+  amd-64-binary-name:
+    description: AMD64 arch binary name
+  arm-64-binary-artifact:
+    description: Artifact containing ARM64 arch binary to download
+  arm-64-binary-name:
+    description: ARM64 arch binary name
+  universal-output-binary-name:
+    description: Name for the output universal binary
+runs:
+  using: composite
+  steps:
+    - name: Download x64 binary
+      uses: actions/download-artifact@v1
+      with:
+        name: ${{ inputs.amd-64-binary-artifact }}
+    - name: Download arm64 binary
+      uses: actions/download-artifact@v1
+      with:
+        name: ${{ inputs.arm-64-binary-artifact }}
+    - name: Create OSX universal binary
+      shell: sh
+      run: |
+        lipo -create ${{ inputs.amd-64-binary-artifact }}/${{ inputs.amd-64-binary-name }} ${{ inputs.arm-64-binary-artifact }}/${{ inputs.arm-64-binary-name }} -output ${{ inputs.universal-output-binary-name }}
