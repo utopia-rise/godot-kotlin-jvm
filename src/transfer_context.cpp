@@ -6,8 +6,7 @@
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
-#define MAX_ARGS_SIZE 16
-#define MAX_STACK_SIZE MAX_ARGS_SIZE * 8
+const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
@@ -127,8 +126,8 @@ void TransferContext::icall(
     uint32_t args_size{read_args_size(env, buffer)};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > MAX_ARGS_SIZE,
-                       vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE));
+    JVM_CRASH_COND_MSG(args_size > VARIANT_ARG_MAX,
+                       vformat("Cannot have more than %s arguments for method call.", VARIANT_ARG_MAX));
 #endif
 
 #ifdef DEBUG_ENABLED
