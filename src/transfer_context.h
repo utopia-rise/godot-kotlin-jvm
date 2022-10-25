@@ -6,8 +6,6 @@
 #include "java_instance_wrapper.h"
 #include "shared_buffer.h"
 
-#define MAX_ARGS_SIZE 16
-
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
 

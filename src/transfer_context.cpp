@@ -6,9 +6,12 @@
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
-thread_local static Variant variant_args[MAX_ARGS_SIZE]; // NOLINT(cert-err58-cpp)
-thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
-thread_local static bool icall_args_init = false;
+#define MAX_ARGS_SIZE 16
+#define MAX_STACK_SIZE MAX_ARGS_SIZE * 8
+
+thread_local static Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
+thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
+thread_local static bool stack_offset = -1;
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
@@ -110,11 +113,11 @@ void TransferContext::icall(
         jlong j_ptr,
         jint p_method_index,
         jint expectedReturnType) {
-    if (unlikely(!icall_args_init)) {
-        for (int i = 0; i < MAX_ARGS_SIZE; i++) {
+    if (unlikely(stack_offset == -1)) {
+        for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
         }
-        icall_args_init = true;
+        stack_offset = 0;
     }
 
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
@@ -128,7 +131,13 @@ void TransferContext::icall(
                        vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE));
 #endif
 
-    read_args_to_array(buffer, variant_args, args_size);
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(stack_offset + args_size > MAX_STACK_SIZE,
+                       vformat("Cannot have more than %s arguments in the stack", MAX_STACK_SIZE));
+#endif
+
+    Variant* args{variant_args + stack_offset};
+    read_args_to_array(buffer, args, args_size);
 
     auto* ptr{reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
@@ -140,7 +149,11 @@ void TransferContext::icall(
 #endif
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
+
+    const Variant** args_ptr{variant_args_ptr + stack_offset};
+    stack_offset += args_size;
     const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
+    stack_offset -= args_size;
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK,
