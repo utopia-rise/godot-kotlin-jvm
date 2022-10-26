@@ -10,7 +10,7 @@ const int MAX_STACK_SIZE = VARIANT_ARG_MAX * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
-thread_local static bool stack_offset = -1;
+thread_local static int stack_offset = -1;
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
