@@ -130,14 +130,6 @@ void TransferContext::icall(
                        vformat("Cannot have more than %s arguments for method call.", VARIANT_ARG_MAX));
 #endif
 
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(stack_offset + args_size > MAX_STACK_SIZE,
-                       vformat("Cannot have more than %s arguments in the stack", MAX_STACK_SIZE));
-#endif
-
-    Variant* args{variant_args + stack_offset};
-    read_args_to_array(buffer, args, args_size);
-
     auto* ptr{reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index{static_cast<int>(p_method_index)};
@@ -149,17 +141,35 @@ void TransferContext::icall(
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
 
-    const Variant** args_ptr{variant_args_ptr + stack_offset};
-    stack_offset += args_size;
-    const Variant& ret_value{methodBind->call(ptr, args_ptr, args_size, r_error)};
-    stack_offset -= args_size;
+    if(unlikely(stack_offset + args_size > MAX_STACK_SIZE)){
+        Variant args[args_size];
+        read_args_to_array(buffer, args, args_size);
+
+        const Variant* args_ptr[args_size];
+        for (int i = 0; i < args_size; i++) {
+            args_ptr[i] = &args[i];
+        }
+
+        const Variant& ret_value{methodBind->call(ptr, args_ptr, args_size, r_error)};
+        write_return_value(buffer, ret_value);
+    } else {
+        Variant* args{variant_args + stack_offset};
+        read_args_to_array(buffer, args, args_size);
+
+        const Variant** args_ptr{variant_args_ptr + stack_offset};
+
+        stack_offset += args_size;
+        const Variant& ret_value{methodBind->call(ptr, args_ptr, args_size, r_error)};
+        stack_offset -= args_size;
+
+        write_return_value(buffer, ret_value);
+    }
+
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK,
                        vformat("Call to method with id %s failed.", method_index));
 #endif
-
-    write_return_value(buffer, ret_value);
 }
 
 void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
