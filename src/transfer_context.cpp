@@ -151,7 +151,7 @@ void TransferContext::icall(
 
     const Variant** args_ptr{variant_args_ptr + stack_offset};
     stack_offset += args_size;
-    const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
+    const Variant& ret_value{methodBind->call(ptr, args_ptr, args_size, r_error)};
     stack_offset -= args_size;
 
 #ifdef DEBUG_ENABLED
