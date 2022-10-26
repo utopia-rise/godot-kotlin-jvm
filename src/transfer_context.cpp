@@ -142,10 +142,10 @@ void TransferContext::icall(
     Variant::CallError r_error{Variant::CallError::CALL_OK};
 
     if(unlikely(stack_offset + args_size > MAX_STACK_SIZE)){
-        Variant args[args_size];
+        Variant args[VARIANT_ARG_MAX];
         read_args_to_array(buffer, args, args_size);
 
-        const Variant* args_ptr[args_size];
+        const Variant* args_ptr[VARIANT_ARG_MAX];
         for (int i = 0; i < args_size; i++) {
             args_ptr[i] = &args[i];
         }
