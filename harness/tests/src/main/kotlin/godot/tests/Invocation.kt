@@ -285,6 +285,28 @@ class Invocation : Spatial() {
     @RegisterSignal
     val signalTwoParam by signal<String, Invocation>("str", "inv")
 
+    @RegisterSignal
+    val signalWithMultipleTargets by signal<Vector2>("vector2")
+
+    //To store values emitted by signals
+    @RegisterProperty
+    var array: VariantArray<Vector2> = VariantArray()
+
+    @RegisterFunction
+    fun targetFunctionOne(vector2: Vector2) {
+        array.append(vector2)
+        //call GodotAPI to insert different parameters in the stack.
+        this.setMeta("Random", "Value")
+        val size = array.size
+        if(size < 8)
+            //Call signal inside another signal
+            signalWithMultipleTargets.emit(Vector2(1, size))
+    }
+    @RegisterFunction
+    fun targetFunctionTwo(vector2: Vector2) {
+        array.append(vector2)
+    }
+
     @RegisterFunction
     fun intValue(value: Int) = value
 
@@ -347,6 +369,9 @@ class Invocation : Spatial() {
         signalOneParam.connect(invocation, invocation::hookOneParam)
         signalTwoParam.connect(invocation, invocation::hookTwoParam)
 
+        signalWithMultipleTargets.connect(this, ::targetFunctionOne)
+        signalWithMultipleTargets.connect(this, ::targetFunctionTwo)
+
         (getNodeOrNull(path) as Button?)?.signalPressed?.connect(
             invocation,
             invocation::hookNoParam
@@ -354,6 +379,7 @@ class Invocation : Spatial() {
         signalNoParam.emit()
         signalOneParam.emit(false)
         signalTwoParam.emit("My Awesome param !", this)
+        signalWithMultipleTargets.emit(Vector2(0,0))
 
         println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
         resourceTest = NavigationMesh()
