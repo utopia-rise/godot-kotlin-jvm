@@ -288,7 +288,7 @@ class Invocation : Spatial() {
     @RegisterSignal
     val signalWithMultipleTargets by signal<Vector2>("vector2")
 
-    //to store values emitter with signals
+    //To store values emitted by signals
     @RegisterProperty
     var array: VariantArray<Vector2> = VariantArray()
 
@@ -299,14 +299,13 @@ class Invocation : Spatial() {
         this.setMeta("Random", "Value")
         val size = array.size
         if(size < 8)
-            //Call signals inside signals
+            //Call signal inside another signal
             signalWithMultipleTargets.emit(Vector2(1, size))
     }
     @RegisterFunction
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }
-
 
     @RegisterFunction
     fun intValue(value: Int) = value
