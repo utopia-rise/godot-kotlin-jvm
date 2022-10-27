@@ -12,29 +12,29 @@ JNI_INIT_STATICS_FOR_CLASS(RidBridge)
 RidBridge::RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper(RID_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
-            "engine_call_constructor",
-            "()J",
+            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("()J"),
             (void*) RidBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_constructor_arg_method{
-            "engine_call_constructor",
-            "(J)J",
+            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("(J)J"),
             (void*) RidBridge::engine_call_constructor_arg
     };
 
     jni::JNativeMethod engine_call_getID_method{
-            "engine_call_getID",
-            "(J)V",
+            const_cast<char*>("engine_call_getID"),
+            const_cast<char*>("(J)V"),
             (void*) RidBridge::engine_call_getID
     };
     jni::JNativeMethod engine_call_compareTo_method{
-            "engine_call_compareTo",
-            "(J)V",
+            const_cast<char*>("engine_call_compareTo"),
+            const_cast<char*>("(J)V"),
             (void*) RidBridge::engine_call_compareTo
     };
     jni::JNativeMethod engine_call_equals_method{
-            "engine_call_equals",
-            "(J)V",
+            const_cast<char*>("engine_call_equals"),
+            const_cast<char*>("(J)V"),
             (void*) RidBridge::engine_call_equals
     };
 

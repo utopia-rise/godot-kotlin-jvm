@@ -12,8 +12,8 @@ LongStringQueue::LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_l
         : JavaSingletonWrapper<LongStringQueue>("godot.core.LongStringQueue", p_wrapped, p_class_loader) {
 
     jni::JNativeMethod send_string_to_cpp_method{
-            "sendStringToCPP",
-            "(Ljava/lang/String;)V",
+            const_cast<char*>("sendStringToCPP"),
+            const_cast<char*>("(Ljava/lang/String;)V"),
             (void*) LongStringQueue::send_string_to_cpp
     };
 

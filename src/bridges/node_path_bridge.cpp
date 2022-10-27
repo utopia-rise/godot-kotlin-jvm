@@ -10,58 +10,58 @@ JNI_INIT_STATICS_FOR_CLASS(NodePathBridge)
 NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(NODE_PATH_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
-        "engine_call_constructor",
-        "(Z)J",
+        const_cast<char*>("engine_call_constructor"),
+        const_cast<char*>("(Z)J"),
         (void*) NodePathBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_path_method{
-        "engine_call_path",
-        "(J)V",
+        const_cast<char*>("engine_call_path"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_path
     };
     jni::JNativeMethod engine_call_getName_method{
-        "engine_call_getName",
-        "(J)V",
+        const_cast<char*>("engine_call_getName"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getName
     };
     jni::JNativeMethod engine_call_getNameCount_method{
-        "engine_call_getNameCount",
-        "(J)V",
+        const_cast<char*>("engine_call_getNameCount"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getNameCount
     };
     jni::JNativeMethod engine_call_getProperty_method{
-        "engine_call_getProperty",
-        "(J)V",
+        const_cast<char*>("engine_call_getProperty"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getProperty
     };
     jni::JNativeMethod engine_call_getSubname_method{
-        "engine_call_getSubname",
-        "(J)V",
+        const_cast<char*>("engine_call_getSubname"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getSubname
     };
     jni::JNativeMethod engine_call_getSubnameCount_method{
-        "engine_call_getSubnameCount",
-        "(J)V",
+        const_cast<char*>("engine_call_getSubnameCount"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getSubnameCount
     };
     jni::JNativeMethod engine_call_isAbsolute_method{
-        "engine_call_isAbsolute",
-        "(J)V",
+        const_cast<char*>("engine_call_isAbsolute"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_isAbsolute
     };
     jni::JNativeMethod engine_call_isEmpty_method{
-        "engine_call_isEmpty",
-        "(J)V",
+        const_cast<char*>("engine_call_isEmpty"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_isEmpty
     };
     jni::JNativeMethod engine_call_getConcatenatedSubnames_method{
-        "engine_call_getConcatenatedSubnames",
-        "(J)V",
+        const_cast<char*>("engine_call_getConcatenatedSubnames"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_getConcatenatedSubnames
     };
     jni::JNativeMethod engine_call_equals_method{
-        "engine_call_equals",
-        "(J)V",
+        const_cast<char*>("engine_call_equals"),
+        const_cast<char*>("(J)V"),
         (void*) NodePathBridge::engine_call_equals
     };
 

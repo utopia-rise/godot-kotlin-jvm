@@ -5,7 +5,6 @@
 #include "bridges_manager.h"
 #include "jni/class_loader.h"
 #include <core/io/resource_loader.h>
-#include <core/os/dir_access.h>
 
 #ifndef TOOLS_ENABLED
 

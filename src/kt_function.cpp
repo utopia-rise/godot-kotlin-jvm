@@ -1,5 +1,3 @@
-#include <utility>
-
 #include "kt_function.h"
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"

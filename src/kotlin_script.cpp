@@ -74,7 +74,10 @@ String KotlinScript::get_source_code() const {
 }
 
 void KotlinScript::set_source_code(const String& p_code) {
-    if (source == p_code) return;
+    if (source == p_code) {
+        return;
+    }
+
     source = p_code;
 
     //TODO : deal with tool mode

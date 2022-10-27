@@ -10,79 +10,79 @@ JNI_INIT_STATICS_FOR_CLASS(DictionaryBridge)
 DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(DICTIONARY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
-            "engine_call_constructor",
-            "()J",
+            const_cast<char*>("engine_call_constructor"),
+            const_cast<char*>("()J"),
             (void*) DictionaryBridge::engine_call_constructor
     };
 
     jni::JNativeMethod engine_call_clear_method{
-            "engine_call_clear",
-            "(J)V",
+            const_cast<char*>("engine_call_clear"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_clear
     };
     jni::JNativeMethod engine_call_duplicate_method{
-            "engine_call_duplicate",
-            "(J)V",
+            const_cast<char*>("engine_call_duplicate"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_duplicate
     };
     jni::JNativeMethod engine_call_empty_method{
-            "engine_call_empty",
-            "(J)V",
+            const_cast<char*>("engine_call_empty"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_empty
     };
     jni::JNativeMethod engine_call_erase_method{
-            "engine_call_erase",
-            "(J)V",
+            const_cast<char*>("engine_call_erase"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_erase
     };
     jni::JNativeMethod engine_call_get_method{
-            "engine_call_get",
-            "(J)V",
+            const_cast<char*>("engine_call_get"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_get
     };
     jni::JNativeMethod engine_call_has_method{
-            "engine_call_has",
-            "(J)V",
+            const_cast<char*>("engine_call_has"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_has
     };
     jni::JNativeMethod engine_call_hasAll_method{
-            "engine_call_hasAll",
-            "(J)V",
+            const_cast<char*>("engine_call_hasAll"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_hasAll
     };
     jni::JNativeMethod engine_call_hash_method{
-            "engine_call_hash",
-            "(J)V",
+            const_cast<char*>("engine_call_hash"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_hash
     };
     jni::JNativeMethod engine_call_keys_method{
-            "engine_call_keys",
-            "(J)V",
+            const_cast<char*>("engine_call_keys"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_keys
     };
     jni::JNativeMethod engine_call_size_method{
-            "engine_call_size",
-            "(J)V",
+            const_cast<char*>("engine_call_size"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_size
     };
     jni::JNativeMethod engine_call_values_method{
-            "engine_call_values",
-            "(J)V",
+            const_cast<char*>("engine_call_values"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_values
     };
     jni::JNativeMethod engine_call_operator_get_method{
-            "engine_call_operator_get",
-            "(J)V",
+            const_cast<char*>("engine_call_operator_get"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_operator_get
     };
     jni::JNativeMethod engine_call_operator_set_method{
-            "engine_call_operator_set",
-            "(J)V",
+            const_cast<char*>("engine_call_operator_set"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_operator_set
     };
     jni::JNativeMethod engine_call_equals_method{
-            "engine_call_equals",
-            "(J)V",
+            const_cast<char*>("engine_call_equals"),
+            const_cast<char*>("(J)V"),
             (void*) DictionaryBridge::engine_call_equals
     };
 

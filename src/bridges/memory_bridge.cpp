@@ -12,27 +12,27 @@ JNI_INIT_STATICS_FOR_CLASS(MemoryBridge)
 MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
         JavaInstanceWrapper(MEMORY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod check_instance_method{
-            "checkInstance",
-            "(JJ)Z",
+            const_cast<char*>("checkInstance"),
+            const_cast<char*>("(JJ)Z"),
             (void*) MemoryBridge::check_instance
     };
 
     jni::JNativeMethod unref_method{
-            "unref",
-            "(JI)Z",
+            const_cast<char*>("unref"),
+            const_cast<char*>("(JI)Z"),
             (void*) MemoryBridge::unref
     };
 
 
     jni::JNativeMethod unref_native_core_type_method{
-            "unrefNativeCoreType",
-            "(JI)Z",
+            const_cast<char*>("unrefNativeCoreType"),
+            const_cast<char*>("(JI)Z"),
             (void*) MemoryBridge::unref_native_core_type
     };
 
     jni::JNativeMethod notify_leak_method{
-            "notifyLeak",
-            "()V",
+            const_cast<char*>("notifyLeak"),
+            const_cast<char*>("()V"),
             (void*) MemoryBridge::notify_leak
     };
 
