@@ -4,6 +4,7 @@ import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
 import org.gradle.api.Project
 import org.gradle.plugins.ide.idea.IdeaPlugin
+import org.jetbrains.gradle.ext.IdeaExtPlugin
 import java.io.File
 
 fun Project.configureThirdPartyPlugins() {
@@ -11,6 +12,7 @@ fun Project.configureThirdPartyPlugins() {
     repositories.google() //add google repository for ksp (kotlin symbol processing
     pluginManager.apply(KspGradleSubplugin::class.java)
     pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from ksp
+    pluginManager.apply(IdeaExtPlugin::class.java) //needed so idea can find and index the generated sources from ksp
     pluginManager.apply(ShadowPlugin::class.java)
 
     addKspGeneratedSourcesToMainSourceSet()
