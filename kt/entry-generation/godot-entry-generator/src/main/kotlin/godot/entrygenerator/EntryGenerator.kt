@@ -6,6 +6,7 @@ import godot.entrygenerator.checks.ConstructorOverloadingCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.ExportedMutablilityCheck
 import godot.entrygenerator.checks.PackageSameAsFileNameCheck
+import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalNamePrefixCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
@@ -64,5 +65,7 @@ object EntryGenerator {
         SignalTypeCheck(logger, sourceFiles).execute()
 
         ExportedMutablilityCheck(logger, sourceFiles).execute()
+
+        RpcCheck(logger, sourceFiles).execute()
     }
 }

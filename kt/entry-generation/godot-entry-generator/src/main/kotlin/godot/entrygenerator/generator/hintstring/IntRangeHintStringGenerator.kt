@@ -1,7 +1,7 @@
 package godot.entrygenerator.generator.hintstring
 
-import godot.entrygenerator.exceptions.WrongAnnotationUsageException
 import godot.entrygenerator.model.IntRangeHintAnnotation
+import godot.entrygenerator.exceptions.WrongAnnotationUsageException
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RegisteredProperty
 import java.util.*

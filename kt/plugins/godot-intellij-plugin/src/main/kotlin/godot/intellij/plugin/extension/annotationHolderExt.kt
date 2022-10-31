@@ -7,9 +7,10 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 
-fun AnnotationHolder.registerProblem(message: String, errorLocation: PsiElement, quickFix: LocalQuickFix? = null, problemHighlightType: ProblemHighlightType = ProblemHighlightType.GENERIC_ERROR) {
+fun AnnotationHolder.registerProblem(message: String, errorLocation: PsiElement, vararg quickFixes: LocalQuickFix = arrayOf(), problemHighlightType: ProblemHighlightType = ProblemHighlightType.GENERIC_ERROR) {
     val annotationBuilder = newAnnotation(highlightSeverityFromHighlightType(problemHighlightType), message)
-    if (quickFix != null) {
+
+    quickFixes.forEach { quickFix ->
         annotationBuilder
             .newLocalQuickFix(
                 quickFix,
@@ -17,6 +18,7 @@ fun AnnotationHolder.registerProblem(message: String, errorLocation: PsiElement,
             )
             .registerFix()
     }
+
     annotationBuilder
         .range(errorLocation)
         .highlightType(problemHighlightType)

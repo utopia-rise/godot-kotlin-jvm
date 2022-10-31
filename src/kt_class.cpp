@@ -98,6 +98,15 @@ void KtClass::fetch_methods(jni::Env& env) {
     }
 }
 
+void KtClass::fetch_rpc_methods() {
+    HashMap<StringName, KtFunction*>::Iterator current = methods.begin();
+    while (current) {
+        KtFunction* kt_function = current->value;
+        rpc_method_configs[kt_function->get_name()] = kt_function->get_rpc_config();
+        ++current;
+    }
+}
+
 void KtClass::fetch_properties(jni::Env& env) {
     jni::MethodId getPropertiesMethod { get_method_id(env, jni_methods.GET_PROPERTIES) };
     jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
@@ -152,12 +161,18 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
 }
 
+const Dictionary KtClass::get_rpc_methods() {
+    return rpc_method_configs;
+}
+
 void KtClass::fetch_members() {
     jni::Env env { jni::Jvm::current_env() };
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
     fetch_constructors(env);
+    // has to be done after fetch_methods!
+    fetch_rpc_methods();
 }
 
 bool KtClass::is_assignable_from(KtClass* p_class) const {

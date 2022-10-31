@@ -4,12 +4,14 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
-import godot.entrygenerator.ext.getAnnotationUnsafe
+import godot.entrygenerator.ext.getAnnotation
 import godot.entrygenerator.ext.toKtVariantType
-import godot.entrygenerator.model.RegisterFunctionAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
+import godot.entrygenerator.model.Sync
+import godot.entrygenerator.model.TransferMode
 
 object FunctionRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
@@ -34,7 +36,7 @@ object FunctionRegistrationGenerator {
             }
         }
 
-        append(",·%T(%T,·%S),·%T.id.toInt())") //return KtFunctionArgument
+        append(",·%T(%T,·%S),·%T.id.toInt(),·%L,·%T.id.toInt(),·%L)") //return KtFunctionArgument
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
@@ -61,6 +63,9 @@ object FunctionRegistrationGenerator {
             add(registeredFunction.returnType.toKtVariantType())
             add(registeredFunction.returnType?.fqName ?: "kotlin.Unit")
             add(getRpcModeEnum(registeredFunction))
+            add(getRpcCallLocal(registeredFunction))
+            add(getRpcTransferModeEnum(registeredFunction))
+            add(getRpcChannel(registeredFunction))
         }
     }
 
@@ -71,16 +76,32 @@ object FunctionRegistrationGenerator {
     }
 
     private fun getRpcModeEnum(registeredFunction: RegisteredFunction): ClassName {
-        return when (registeredFunction.annotations.getAnnotationUnsafe<RegisterFunctionAnnotation>().rpcMode) {
-            RpcMode.DISABLED -> ClassName("godot.MultiplayerAPI.RPCMode", "DISABLED")
-            RpcMode.REMOTE -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTE")
-            RpcMode.MASTER -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTER")
-            RpcMode.PUPPET -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPET")
-            RpcMode.SLAVE -> ClassName("godot.MultiplayerAPI.RPCMode", "SLAVE")
-            RpcMode.REMOTE_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTESYNC")
-            RpcMode.SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "SYNC")
-            RpcMode.MASTER_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTERSYNC")
-            RpcMode.PUPPET_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPETSYNC")
+        return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.rpcMode) {
+            null,
+            RpcMode.DISABLED -> ClassName("godot.RPCMode", "RPC_MODE_DISABLED")
+            RpcMode.ANY -> ClassName("godot.RPCMode", "RPC_MODE_ANY_PEER")
+            RpcMode.AUTHORITY -> ClassName("godot.RPCMode", "RPC_MODE_AUTH")
         }
+    }
+
+    private fun getRpcTransferModeEnum(registeredFunction: RegisteredFunction): ClassName {
+        return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferMode) {
+            null,
+            TransferMode.RELIABLE -> ClassName("godot.TransferMode", "TRANSFER_MODE_RELIABLE")
+            TransferMode.UNRELIABLE -> ClassName("godot.TransferMode", "TRANSFER_MODE_UNRELIABLE")
+            TransferMode.UNRELIABLE_ORDERED -> ClassName("godot.TransferMode", "TRANSFER_MODE_UNRELIABLE_ORDERED")
+        }
+    }
+
+    private fun getRpcCallLocal(registeredFunction: RegisteredFunction): Boolean {
+        return when(registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.sync) {
+            Sync.SYNC -> true
+            Sync.NO_SYNC -> false
+            null -> false
+        }
+    }
+
+    private fun getRpcChannel(registeredFunction: RegisteredFunction): Int {
+        return registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferChannel ?: 0
     }
 }

@@ -31,10 +31,9 @@ int KtFunction::get_parameter_count() const {
     return parameter_count;
 }
 
-// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//Multiplayer::RPCMode KtFunction::get_rpc_mode() const {
-//    return method_info->rpc_mode;
-//}
+Dictionary KtFunction::get_rpc_config() const {
+    return method_info->rpc_config;
+}
 
 KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
@@ -65,9 +64,21 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
                                     ClassLoader::get_default_loader());
-    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    jni::MethodId getRPCModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
-//    rpc_mode = static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeMethod));
+
+    jni::MethodId getRPCModeIdMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
+    MultiplayerAPI::RPCMode rpc_mode{static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod))};
+    jni::MethodId getRPCCallLocalMethod{get_method_id(env, jni_methods.GET_RPC_CALL_LOCAL)};
+    bool rpc_call_local = wrapped.call_boolean_method(env, getRPCCallLocalMethod);
+    jni::MethodId getRPCTransferModeIdMethod{get_method_id(env, jni_methods.GET_RPC_TRANSFER_MODE_ID)};
+    MultiplayerPeer::TransferMode rpc_transfer_mode{static_cast<MultiplayerPeer::TransferMode>(wrapped.call_int_method(env, getRPCTransferModeIdMethod))};
+    jni::MethodId getRPCChannelMethod{get_method_id(env, jni_methods.GET_RPC_CHANNEL)};
+    int rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
+
+    // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
+    rpc_config["rpc_mode"] = rpc_mode;
+    rpc_config["transfer_mode"] = rpc_transfer_mode;
+    rpc_config["call_local"] = rpc_call_local;
+    rpc_config["channel"] = rpc_channel;
 }
 
 KtFunctionInfo::~KtFunctionInfo() {

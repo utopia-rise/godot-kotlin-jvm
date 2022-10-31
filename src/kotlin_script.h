@@ -68,7 +68,7 @@ public:
 
 
 // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
+//    const Variant get_rpc_config() const override;
     const Variant get_rpc_config() const override;
 
 #ifdef TOOLS_ENABLED

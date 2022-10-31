@@ -9,7 +9,6 @@ data class KtPropertyInfo(
     val _hint: PropertyHint,
     val hintString: String,
     val visibleInEditor: Boolean,
-    val rpcModeId: Int
 ) {
     val type: Int
         get() = _type.ordinal

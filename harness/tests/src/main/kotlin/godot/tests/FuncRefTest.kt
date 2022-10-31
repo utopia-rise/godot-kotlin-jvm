@@ -1,11 +1,11 @@
 package godot.tests
 
-import godot.MultiplayerAPI
 import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.annotation.Rpc
 import godot.extensions.call
 import godot.extensions.callDeferred
 import godot.signals.signal
@@ -16,7 +16,7 @@ class FuncRefTest : Node() {
     @RegisterSignal
     val signalTest by signal()
 
-    @RegisterProperty(/*rpcMode = MultiplayerAPI.RPCMode.REMOTE*/)
+    @RegisterProperty
     var blubb: Boolean = false
 
     @RegisterProperty
@@ -31,13 +31,10 @@ class FuncRefTest : Node() {
     @RegisterFunction
     override fun _ready() {
         signalTest.connect(this, ::testSignalCallback)
-
-//        Cannot test rpc for now as it needs two godot instances.
-//        rpc(::testFuncRef)
-//        rset(::blubb, false)
     }
 
-    @RegisterFunction(/*MultiplayerAPI.RPCMode.REMOTE*/)
+    @Rpc
+    @RegisterFunction
     fun testSignalCallback() {
         signalCallFlag = true
     }
