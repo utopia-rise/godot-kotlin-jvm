@@ -46,6 +46,11 @@ jobs:
             platform: android
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
+          - name: Android-x86_64
+            os: ubuntu-latest
+            platform: android
+            arch: x86_64
+            output_folder: platform/android/java/lib/libs/release/x86_64/
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine

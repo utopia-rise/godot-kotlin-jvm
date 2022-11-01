@@ -12,8 +12,8 @@ godot {
     // pass `-PwithAndroid=true` to build with android support
     if (project.properties["withAndroid"]?.toString()?.toBoolean() == true) {
         isAndroidExportEnabled.set(true)
-        d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/d8"))
-        androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"))
+        d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/32.0.0/d8")) // keep in sync with check-pr-engine-editor-debug-and-tests.yaml step: Install android platform tools for api level ${{ matrix.api-level }}
+        androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-33"))
     }
 
     //uncomment to test graal vm native image
