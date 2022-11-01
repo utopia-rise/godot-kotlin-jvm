@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "Kotlin",
 "path": "res://scripts/CopyModificationCheckTestClass.kt"
 }, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+}, {
 "base": "Node",
 "class": "RPCTests",
 "language": "Kotlin",
@@ -81,6 +91,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CopyModificationCheckTestClass": "",
+"GutHookScript": "",
+"GutTest": "",
 "RPCTests": "",
 "ScriptInOtherSourceDir": "",
 "godot_tests_CoreTypesIdentityTest": "",
