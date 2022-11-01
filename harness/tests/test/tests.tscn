@@ -8,8 +8,7 @@ margin_right = 1023.0
 margin_bottom = 599.0
 rect_min_size = Vector2( 740, 250 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+_run_on_load = true
 _should_maximize = true
 _directory1 = "res://test/unit"
+_junit_xml_file = "user://test_results.xml"
