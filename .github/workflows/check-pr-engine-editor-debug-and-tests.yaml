@@ -194,6 +194,7 @@ jobs:
           ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.universal
 
   test-android-debug:
+    needs: [build-editor-debug, build-godot-bootstrap]
     strategy:
       matrix:
         name: [ host-linux-api-level-33 ]
