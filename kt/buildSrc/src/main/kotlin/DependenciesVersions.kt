@@ -1,7 +1,15 @@
 object DependenciesVersions {
     const val godotVersion: String = "3.5.1"
+
+    // https://github.com/johnrengelman/shadow/releases
     const val shadowJarPluginVersion: String = "7.1.2"
+
+    // https://github.com/square/kotlinpoet/releases
     const val kotlinPoetVersion: String = "1.12.0"
-    const val kspVersion: String = "1.7.10-1.0.6"
-    const val supportedKotlinVersion: String = "1.7.10"
+
+    // https://github.com/google/ksp/releases
+    const val kspVersion: String = "1.7.20-1.0.7"
+
+    // https://kotlinlang.org/docs/releases.html#release-details
+    const val supportedKotlinVersion: String = "1.7.20"
 }
