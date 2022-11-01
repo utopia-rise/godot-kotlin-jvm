@@ -211,47 +211,70 @@ jobs:
         with:
           repository: godotengine/godot
           ref: 3.5.1-stable
+
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
           path: modules/kotlin_jvm
           submodules: recursive
+
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java-version }}
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
+
       - name: Install android tools for api level ${{ matrix.api-level }}
         run: |
           sdkmanager "platform-tools" "platforms;android-${{ matrix.api-level }}" "build-tools;32.0.0" # keep in sync with build.gradle.kts of tests harness project
           yes | sdkmanager --licenses
+
       - name: Build tests project
         uses: eskatos/gradle-command-action@v1
         with:
           wrapper-directory: modules/kotlin_jvm/harness/tests/
           build-root-directory: modules/kotlin_jvm/harness/tests/
           arguments: build -PwithAndroid=true
+
       - name: Download linux Editor Debug Executable
         uses: actions/download-artifact@v1
         with:
           name: linux-editor-debug-${{ matrix.arch }}
+
       - name: Download godot-bootstrap
         uses: actions/download-artifact@v1
         with:
           name: godot-bootstrap
-      - name: Build android export template
-        uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
+
+      - name: Get number of CPU cores
+        id: cpu-cores
+        uses: SimenB/github-actions-cpu-cores@v1
+
+      - name: Build android x86_64 export template release_debug binary
+        uses: ./.github/actions/godot-build
         with:
-          target: debug
+          sconsflags: android_arch=x86_64 -j${{ steps.cpu-cores.outputs.count }}
+          platform: android
+          target: release_debug
+          tools: false
+
+      - name: Build android x86_64 release_debug export template
+        shell: bash
+        run: |
+          cd platform/android/java/ && ./gradlew generateGodotTemplates && cd ../../..
+
       - name: Prepare for android test execution
         run: |
-          cp godot-bootstrap/godot-bootstrap.jar linux-editor-debug-${{ matrix.arch }}/
+          cp linux-editor-debug-${{ matrix.arch }}/godot.x11.tools.${{ matrix.arch }} bin/
+          cp godot-bootstrap/godot-bootstrap.jar bin/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_android_tests.sh
-          chmod +x ../../../../linux-editor-debug-${{ matrix.arch }}/godot.x11.tools.${{ matrix.arch }}
+          chmod +x ../../../../bin/godot.x11.tools.${{ matrix.arch }}
           jlink --add-modules java.base,java.logging --output jre-amd64
-          ../../../../linux-editor-debug-${{ matrix.arch }}/godot.x11.tools.${{ matrix.arch }} --no-window --export-debug "android_tests_ci_cd" tests.apk
+          ../../../../bin/godot.x11.tools.${{ matrix.arch }} --no-window --export-debug "android_tests_ci_cd" tests.apk
+
       - name: AVD cache
         uses: actions/cache@v3
         id: avd-cache
@@ -260,6 +283,7 @@ jobs:
             ~/.android/avd/*
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
+
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -269,6 +293,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
+
       - name: Run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
