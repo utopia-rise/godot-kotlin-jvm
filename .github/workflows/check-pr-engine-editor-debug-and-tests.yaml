@@ -254,11 +254,6 @@ jobs:
           build-root-directory: modules/kotlin_jvm/harness/tests/
           arguments: build -PwithAndroid=true
 
-      - name: Download linux Editor Debug Executable
-        uses: actions/download-artifact@v1
-        with:
-          name: linux-editor-debug-${{ matrix.arch }}
-
       - name: Download godot-bootstrap
         uses: actions/download-artifact@v1
         with:
@@ -267,6 +262,14 @@ jobs:
       - name: Get number of CPU cores
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
+
+      - name: Build headless editor for export
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: -j${{ steps.cpu-cores.outputs.count }}
+          platform: server
+          target: release_debug
+          tools: yes
 
       - name: Build android x86_64 export template release_debug binary
         uses: ./.github/actions/godot-build
