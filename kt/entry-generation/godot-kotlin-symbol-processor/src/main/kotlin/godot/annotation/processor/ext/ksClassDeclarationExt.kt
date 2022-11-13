@@ -77,7 +77,8 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         .toList()
 
     val shouldBeRegistered = annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName } ||
-        isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals)
+        isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
+        isAbstractAndInheritsGodotBaseClass()
 
     return if (shouldBeRegistered) {
 
@@ -116,4 +117,18 @@ fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
     registeredSignals: List<RegisteredSignal>
 ): Boolean {
     return isAbstract() && (registeredFunctions.isNotEmpty() || registeredProperties.isNotEmpty() || registeredSignals.isNotEmpty())
+}
+
+// issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/365
+// also register empty abstract classes which inherit from a godot base class as child class registrars will reference the class registrar of this class
+fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
+    return isAbstract()
+        && superTypes
+        .any { supertype ->
+            supertype
+                .resolve()
+                .declaration
+                .annotations
+                .any { annotation -> annotation.fqNameUnsafe == "godot.annotation.GodotBaseType" }
+        }
 }
