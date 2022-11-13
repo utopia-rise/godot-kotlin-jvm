@@ -161,8 +161,22 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
 }
 
-const Dictionary KtClass::get_rpc_methods() {
-    return rpc_method_configs;
+const Dictionary KtClass::get_rpc_config() {
+    Dictionary rpc_configs{};
+
+    for (const KeyValue<StringName, RpcConfig>& E : rpc_method_configs) {
+        Dictionary method_rpd_config{};
+
+        // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
+        method_rpd_config["rpc_mode"] = E.value.rpc_mode;
+        method_rpd_config["transfer_mode"] = E.value.rpc_transfer_mode;
+        method_rpd_config["call_local"] = E.value.rpc_call_local;
+        method_rpd_config["channel"] = E.value.rpc_channel;
+
+        rpc_configs[E.key] = method_rpd_config;
+    }
+
+    return rpc_configs;
 }
 
 void KtClass::fetch_members() {

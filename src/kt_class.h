@@ -43,10 +43,10 @@ public:
 
     bool is_assignable_from(KtClass* p_class) const;
 
-    const Dictionary get_rpc_methods();
+    const Dictionary get_rpc_config();
 private:
     HashMap<StringName, KtFunction*> methods;
-    Dictionary rpc_method_configs;
+    HashMap<StringName, RpcConfig> rpc_method_configs;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];

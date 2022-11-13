@@ -6,6 +6,7 @@
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"
+#include "rpc_config.h"
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -14,7 +15,7 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
-    Dictionary rpc_config;
+    RpcConfig rpc_config;
 
     MethodInfo to_method_info() const;
 
@@ -41,7 +42,7 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
-    Dictionary get_rpc_config() const;
+    const RpcConfig& get_rpc_config() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();

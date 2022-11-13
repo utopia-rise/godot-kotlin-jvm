@@ -124,7 +124,7 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
 
 // Variant is of type Dictionary
 const Variant KotlinInstance::get_rpc_config() const {
-    return kt_class->get_rpc_methods();
+    return kt_class->get_rpc_config();
 }
 
 ScriptLanguage* KotlinInstance::get_language() {

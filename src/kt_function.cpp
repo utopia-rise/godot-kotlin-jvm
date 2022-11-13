@@ -31,7 +31,7 @@ int KtFunction::get_parameter_count() const {
     return parameter_count;
 }
 
-Dictionary KtFunction::get_rpc_config() const {
+const RpcConfig& KtFunction::get_rpc_config() const {
     return method_info->rpc_config;
 }
 
@@ -75,10 +75,12 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     int rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
 
     // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
-    rpc_config["rpc_mode"] = rpc_mode;
-    rpc_config["transfer_mode"] = rpc_transfer_mode;
-    rpc_config["call_local"] = rpc_call_local;
-    rpc_config["channel"] = rpc_channel;
+    rpc_config = {
+            rpc_mode,
+            rpc_transfer_mode,
+            rpc_call_local,
+            rpc_channel
+    };
 }
 
 KtFunctionInfo::~KtFunctionInfo() {
