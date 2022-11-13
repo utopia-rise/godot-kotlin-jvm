@@ -358,7 +358,6 @@ jobs:
           repository: godotengine/godot
           ref: 3.5.1-stable
 
-      # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
       - name: Get release export template binary
         uses: actions/download-artifact@v3
         with:
