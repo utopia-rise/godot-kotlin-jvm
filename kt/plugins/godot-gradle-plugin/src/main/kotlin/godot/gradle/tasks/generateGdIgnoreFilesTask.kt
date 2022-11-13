@@ -8,18 +8,21 @@ fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
     return tasks.register("generateGdIgnoreFiles") {
         with(it) {
             group = "godot-kotlin-jvm"
-            description = "Generates .gdignore files to hide gradle and kotlin build files from the godot editor"
+            description = "Generates .gdignore files to hide gradle files, kotlin build files and jre files from the godot editor"
 
             doFirst {
-                buildDir.apply { mkdirs() }.resolve(".gdignore").createNewFile()
+                val dirsToIgnore = listOf(
+                    buildDir,
+                    projectDir.resolve("gradle"),
+                    projectDir.resolve("jre-arm64"),
+                    projectDir.resolve("jre-amd64"),
+                )
 
-                val gradleDir = projectDir.resolve("gradle")
-
-                if (gradleDir.exists() && gradleDir.isDirectory) {
-                    gradleDir.resolve(".gdignore").createNewFile()
-                } else {
-                    logger.info("Could not create .gdignore file in gradle folder as the folder does not seem to exist. Looked for it at: ${gradleDir.absolutePath}")
-                }
+                dirsToIgnore
+                    .filter { dirToIgnore -> dirToIgnore.exists() && dirToIgnore.isDirectory }
+                    .forEach { dirToIgnore ->
+                        dirToIgnore.resolve(".gdignore").createNewFile()
+                    }
             }
         }
     }
