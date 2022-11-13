@@ -38,6 +38,7 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
