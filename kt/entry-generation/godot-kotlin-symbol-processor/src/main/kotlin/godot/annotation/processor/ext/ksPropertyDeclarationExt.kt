@@ -78,8 +78,7 @@ fun KSPropertyDeclaration.mapToProperty(declaredProperties: List<KSPropertyDecla
         "${findOverridee()?.qualifiedName?.asString()}"
     } else fqName
 
-    val isRegistered = annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } ||
-        findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
+    val isRegistered = annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName }
 
     return if (isRegistered) {
         RegisteredProperty(
