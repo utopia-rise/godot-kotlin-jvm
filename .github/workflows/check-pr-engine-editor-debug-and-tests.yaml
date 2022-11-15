@@ -92,6 +92,10 @@ jobs:
               libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: |
+          sh misc/scripts/install_vulkan_sdk_macos.sh
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache

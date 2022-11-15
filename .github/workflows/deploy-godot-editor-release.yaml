@@ -70,6 +70,11 @@ jobs:
           echo "::set-output name=godot_version::$(${{ matrix.cat_command }} godot_version/godot_version.txt)"
           echo "::set-output name=godot_kotlin_jvm_version::$(${{ matrix.cat_command }} godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: |
+          sh misc/scripts/install_vulkan_sdk_macos.sh
+
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
@@ -118,8 +123,7 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: ${{ matrix.target }}
-          tools: true
+          target: editor
 
       - name: Build godot-bootstrap
         uses: eskatos/gradle-command-action@v1
