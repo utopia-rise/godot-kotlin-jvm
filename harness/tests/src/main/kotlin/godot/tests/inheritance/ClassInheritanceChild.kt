@@ -19,6 +19,7 @@ class ClassInheritanceChild : ClassInheritanceParent() {
 
     //-------------------------------------------------
 
+    @RegisterProperty
     override var openVar: Int = 100
 
     @RegisterFunction
