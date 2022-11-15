@@ -53,11 +53,11 @@ jobs:
           - name: Linux
             os: ubuntu-20.04
             platform: x11
-            arch: 64
+            arch: x86_64
           - name: OSX-x64
             os: macos-latest
             platform: osx
-            arch: 64
+            arch: x86_64
           - name: OSX-arm64
             os: macos-latest
             platform: osx
@@ -65,7 +65,7 @@ jobs:
           - name: Windows
             os: windows-latest
             platform: windows
-            arch: 64
+            arch: x86_64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine

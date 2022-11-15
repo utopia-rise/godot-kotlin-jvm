@@ -21,14 +21,14 @@ jobs:
             platform: x11
             binary: godot.x11.opt.64
             cat_command: cat
-            arch: 64
+            arch: x86_64
             target: template_release
           - name: OSX-x64-release
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.64
             cat_command: cat
-            arch: 64
+            arch: x86_64
             target: template_release
           - name: OSX-arm64-release
             os: macos-latest
@@ -42,7 +42,7 @@ jobs:
             platform: windows
             binary: godot.windows.opt.64.exe
             cat_command: type
-            arch: 64
+            arch: x86_64
             target: template_release
           - name: Android-armv7-release
             os: ubuntu-latest
@@ -66,14 +66,14 @@ jobs:
             platform: x11
             binary: godot.x11.opt.debug.64
             cat_command: cat
-            arch: 64
+            arch: x86_64
             target: template_debug
           - name: OSX-x64-debug
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.debug.64
             cat_command: cat
-            arch: 64
+            arch: x86_64
             target: template_debug
           - name: OSX-arm64-debug
             os: macos-latest
@@ -87,7 +87,7 @@ jobs:
             platform: windows
             binary: godot.windows.opt.debug.64.exe
             cat_command: type
-            arch: 64
+            arch: x86_64
             target: template_debug
           - name: Android-armv7-debug
             os: ubuntu-latest

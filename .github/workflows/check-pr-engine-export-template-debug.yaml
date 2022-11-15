@@ -20,12 +20,12 @@ jobs:
           - name: Linux
             os: ubuntu-20.04
             platform: x11
-            arch: 64
+            arch: x86_64
             output_folder: bin/
           - name: OSX-x64
             os: macos-latest
             platform: osx
-            arch: 64
+            arch: x86_64
             output_folder: bin/
           - name: OSX-arm64
             os: macos-latest
@@ -35,7 +35,7 @@ jobs:
           - name: Windows
             os: windows-2019
             platform: windows
-            arch: 64
+            arch: x86_64
             output_folder: bin/
           - name: Android-armv7
             os: ubuntu-latest
