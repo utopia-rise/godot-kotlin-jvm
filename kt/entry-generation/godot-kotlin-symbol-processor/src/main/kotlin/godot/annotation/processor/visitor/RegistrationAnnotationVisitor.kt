@@ -12,13 +12,13 @@ import godot.annotation.RegisterSignal
 import godot.annotation.processor.ext.fqNameUnsafe
 import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
-import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.SourceFile
 
 class RegistrationAnnotationVisitor(
     private val logger: KSPLogger,
     private val projectBasePath: String,
-    private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
+    private val registeredClassToKSFileMap: MutableMap<Clazz, KSFile>,
     private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>
 ) : KSVisitorVoid() {
 
@@ -38,10 +38,7 @@ class RegistrationAnnotationVisitor(
                 when (declaration) {
                     is KSClassDeclaration -> {
                         if (!declaration.hasCompilationErrors()) {
-                            val clazz = declaration.mapToClazz(projectBasePath)
-                            if (clazz is RegisteredClass) {
-                                clazz
-                            } else null
+                            declaration.mapToClazz(projectBasePath)
                         } else {
                             logger.warn("Declaration will not be processed as it seems to have compilation errors.", declaration)
                             null

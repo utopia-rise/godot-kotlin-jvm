@@ -7,13 +7,17 @@ data class RegisteredClass(
     override val fqName: String,
     override val supertypes: List<Clazz>,
     val resPath: String,
-    override val annotations: List<ClassAnnotation> = emptyList(),
-    val constructors: List<RegisteredConstructor> = emptyList(),
-    val functions: List<RegisteredFunction> = emptyList(),
-    val signals: List<RegisteredSignal> = emptyList(),
-    val properties: List<RegisteredProperty> = emptyList(),
-    override val isAbstract: Boolean = false
-) : Clazz(fqName, supertypes, isAbstract = isAbstract) {
+    override val annotations: List<ClassAnnotation>,
+    override val constructors: List<Constructor>,
+    override val functions: List<Function>,
+    val signals: List<RegisteredSignal>,
+    override val properties: List<Property>,
+    override val isAbstract: Boolean,
+    override val isInterface: Boolean,
+    val registeredConstructors: List<RegisteredConstructor> = constructors.filterIsInstance<RegisteredConstructor>(),
+    val registeredProperties: List<RegisteredProperty> = properties.filterIsInstance<RegisteredProperty>(),
+    val registeredFunctions: List<RegisteredFunction> = functions.filterIsInstance<RegisteredFunction>(),
+) : Clazz(fqName, supertypes, annotations, constructors, properties, functions, isAbstract, isInterface) {
     internal val registeredName: String
         get() {
             val customName = annotations

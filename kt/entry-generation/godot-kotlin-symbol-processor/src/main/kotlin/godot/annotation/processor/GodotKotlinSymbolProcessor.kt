@@ -11,7 +11,7 @@ import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.SourceFile
 import java.io.File
 
@@ -26,7 +26,7 @@ class GodotKotlinSymbolProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger
 ) : SymbolProcessor {
-    private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
+    private val classToKSFileMap = mutableMapOf<Clazz, KSFile>()
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
 
     private lateinit var projectBasePath: String
@@ -44,7 +44,7 @@ class GodotKotlinSymbolProcessor(
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             logger,
             projectBasePath,
-            registeredClassToKSFileMap,
+            classToKSFileMap,
             sourceFilesContainingRegisteredClasses
         )
 
@@ -57,31 +57,32 @@ class GodotKotlinSymbolProcessor(
     override fun finish() {
         super.finish()
         EntryGenerator.generateEntryFiles(
-            projectBasePath,
-            CompilerDataProvider.srcDirs,
-            LoggerWrapper(logger),
-            sourceFilesContainingRegisteredClasses,
-            { registeredClass ->
+            projectDir = projectBasePath,
+            srcDirs = CompilerDataProvider.srcDirs,
+            logger = LoggerWrapper(logger),
+            sourceFiles = sourceFilesContainingRegisteredClasses,
+            appendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
                     Dependencies(
                         false,
-                        requireNotNull(registeredClassToKSFileMap[registeredClass]) {
+                        requireNotNull(classToKSFileMap[registeredClass]) {
                             "No KSFile found for $registeredClass. This should never happen"
                         }
                     ),
                     "godot.${registeredClass.containingPackage}",
                     "${registeredClass.name}Registrar"
                 ).bufferedWriter()
+            },
+            mainBufferedWriterProvider = {
+                codeGenerator.createNewFile(
+                    Dependencies(
+                        true,
+                        *classToKSFileMap.map { it.value }.toTypedArray()
+                    ),
+                    "godot",
+                    "Entry"
+                ).bufferedWriter()
             }
-        ) {
-            codeGenerator.createNewFile(
-                Dependencies(
-                    true,
-                    *registeredClassToKSFileMap.map { it.value }.toTypedArray()
-                ),
-                "godot",
-                "Entry"
-            ).bufferedWriter()
-        }
+        )
     }
 }

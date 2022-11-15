@@ -9,7 +9,7 @@ class ConstructorOverloadingCheck(logger: Logger, sourceFiles: List<SourceFile>)
             .flatMap { it.registeredClasses }
             .forEach { registeredClass ->
                 registeredClass
-                    .constructors
+                    .registeredConstructors
                     .groupBy { it.parameters.size }
                     .filter { it.value.size > 1 }
                     .forEach { (argCount, overloadingConstructors) ->

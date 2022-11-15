@@ -12,7 +12,7 @@ object ConstructorRegistrationGenerator {
 
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
         registeredClass
-            .constructors
+            .registeredConstructors
             .filter { registeredConstructor ->
                 registeredConstructor.parameters.isEmpty() ||
                     registeredConstructor.annotations.hasAnnotation<RegisterConstructorAnnotation>()
