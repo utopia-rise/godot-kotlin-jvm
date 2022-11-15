@@ -212,6 +212,9 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 //    //TODO/4.0: Implement new RPC methods
 //    return Vector<Multiplayer::RPCConfig>();
 //}
+const Variant KotlinScript::get_rpc_config() const {
+    return Variant();
+}
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
