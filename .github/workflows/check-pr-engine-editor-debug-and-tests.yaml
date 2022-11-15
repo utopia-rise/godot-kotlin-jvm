@@ -109,7 +109,7 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: debug
+          target: editor
           
       - name: Upload OSX binary
         if: matrix.platform == 'osx'

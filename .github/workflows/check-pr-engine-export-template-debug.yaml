@@ -99,7 +99,7 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: debug
+          target: template_debug
           
       - name: Build android debug export template binary
         if: matrix.platform == 'android'
@@ -107,7 +107,7 @@ jobs:
         with:
           sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: debug
+          target: template_debug
           
       - name: Upload android binary
         if: matrix.platform == 'android'
@@ -139,4 +139,4 @@ jobs:
       - name: Build android export template
         uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
         with:
-          target: debug
+          target: template_debug
