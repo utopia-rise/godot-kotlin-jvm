@@ -134,8 +134,8 @@ jobs:
       - name: Create MacOs universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: macos-editor-debug-app-64
-          amd-64-binary-name: godot.macos.tools.64
+          amd-64-binary-artifact: macos-editor-debug-app-x86_64
+          amd-64-binary-name: godot.macos.tools.x86_64
           arm-64-binary-artifact: macos-editor-debug-app-arm64
           arm-64-binary-name: godot.macos.tools.arm64
           universal-output-binary-name: godot.macos.tools.universal
