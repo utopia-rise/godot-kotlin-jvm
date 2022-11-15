@@ -98,15 +98,6 @@ void KtClass::fetch_methods(jni::Env& env) {
     }
 }
 
-void KtClass::fetch_rpc_methods() {
-    HashMap<StringName, KtFunction*>::Iterator current = methods.begin();
-    while (current) {
-        KtFunction* kt_function = current->value;
-        rpc_method_configs[kt_function->get_name()] = kt_function->get_rpc_config();
-        ++current;
-    }
-}
-
 void KtClass::fetch_properties(jni::Env& env) {
     jni::MethodId getPropertiesMethod { get_method_id(env, jni_methods.GET_PROPERTIES) };
     jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
@@ -164,14 +155,15 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
 const Dictionary KtClass::get_rpc_config() {
     Dictionary rpc_configs{};
 
-    for (const KeyValue<StringName, RpcConfig>& E : rpc_method_configs) {
+    for (const KeyValue<StringName, KtFunction*>& E : methods) {
+        const RpcConfig& rpc_config = E.value->get_rpc_config();
         Dictionary method_rpd_config{};
 
         // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
-        method_rpd_config["rpc_mode"] = E.value.rpc_mode;
-        method_rpd_config["transfer_mode"] = E.value.rpc_transfer_mode;
-        method_rpd_config["call_local"] = E.value.rpc_call_local;
-        method_rpd_config["channel"] = E.value.rpc_channel;
+        method_rpd_config["rpc_mode"] = rpc_config.rpc_mode;
+        method_rpd_config["transfer_mode"] = rpc_config.rpc_transfer_mode;
+        method_rpd_config["call_local"] = rpc_config.rpc_call_local;
+        method_rpd_config["channel"] = rpc_config.rpc_channel;
 
         rpc_configs[E.key] = method_rpd_config;
     }
@@ -185,8 +177,6 @@ void KtClass::fetch_members() {
     fetch_properties(env);
     fetch_signals(env);
     fetch_constructors(env);
-    // has to be done after fetch_methods!
-    fetch_rpc_methods();
 }
 
 bool KtClass::is_assignable_from(KtClass* p_class) const {

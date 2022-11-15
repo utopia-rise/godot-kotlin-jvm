@@ -46,7 +46,6 @@ public:
     const Dictionary get_rpc_config();
 private:
     HashMap<StringName, KtFunction*> methods;
-    HashMap<StringName, RpcConfig> rpc_method_configs;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
@@ -60,8 +59,6 @@ private:
     StringName get_base_godot_class(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
-
-    void fetch_rpc_methods();
 
     void fetch_properties(jni::Env& env);
 
