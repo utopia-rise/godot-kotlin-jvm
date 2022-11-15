@@ -127,8 +127,8 @@ String jni::JvmLoader::get_embedded_jre_path() {
 #endif
         };
         jre_path = jre_location
-                .plus_file(jre_folder)
-                .plus_file(LIB_JVM_RELATIVE_PATH);
+                .path_join(jre_folder)
+                .path_join(LIB_JVM_RELATIVE_PATH);
     }
     return ProjectSettings::get_singleton()->globalize_path(jre_path);
 }
