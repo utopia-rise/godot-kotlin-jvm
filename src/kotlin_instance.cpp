@@ -150,3 +150,13 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
 ScriptLanguage* KotlinInstance::get_language() {
     return &KotlinLanguage::get_instance();
 }
+
+bool KotlinInstance::property_can_revert(const StringName& p_name) const {
+    //TODO/4.0: Implement
+    return false;
+}
+
+bool KotlinInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
+    //TODO/4.0: Implement
+    return false;
+}
