@@ -8,7 +8,7 @@
 #include <scene/gui/box_container.h>
 #include <editor/editor_plugin.h>
 #include <scene/gui/tab_container.h>
-#include "scene/gui/scroll_container.h"
+#include <scene/gui/scroll_container.h>
 
 class BottomPanel : public VBoxContainer {
 public:
