@@ -49,7 +49,7 @@ void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlo
     }
     Variant result;
     Callable::CallError error;
-    from_uint_to_ptr<Callable>(p_raw_ptr)->call(arg_pointers, args_size, result, error);
+    from_uint_to_ptr<Callable>(p_raw_ptr)->callp(arg_pointers, args_size, result, error);
     GDKotlin::get_instance().transfer_context->write_return_value(env, result);
 }
 
@@ -63,7 +63,7 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
         arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
         arg_pointers[i] = &arg_store[i];
     }
-    from_uint_to_ptr<Callable>(p_raw_ptr)->call_deferred(arg_pointers, args_size);
+    from_uint_to_ptr<Callable>(p_raw_ptr)->call_deferredp(arg_pointers, args_size);
 }
 
 CallableBridge::CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
