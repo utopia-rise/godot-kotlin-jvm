@@ -1,5 +1,6 @@
 package godot.intellij.plugin.annotator.property
 
+import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
@@ -67,9 +68,10 @@ class RegisterPropertiesAnnotator : Annotator {
     private fun checkMutability(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (!ktProperty.isVar) {
             holder.registerProblem(
-                GodotPluginBundle.message("problem.property.mutability"),
-                ktProperty.valOrVarKeyword,
-                mutabilityQuickFix
+                message = GodotPluginBundle.message("problem.property.mutability"),
+                errorLocation = ktProperty.valOrVarKeyword,
+                quickFix = mutabilityQuickFix,
+                problemHighlightType = ProblemHighlightType.WEAK_WARNING
             )
         }
     }
