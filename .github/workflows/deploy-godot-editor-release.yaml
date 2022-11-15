@@ -25,7 +25,7 @@ jobs:
             target: release_debug
           - name: OSX-x64
             os: macos-latest
-            platform: osx
+            platform: macos
             binary: godot.osx.opt.tools.64
             cat_command: cat
             arch: 64

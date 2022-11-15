@@ -23,11 +23,11 @@ jobs:
             arch: x86_64
           - name: OSX-x64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: x86_64
           - name: OSX-arm64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: arm64
           - name: Windows
             os: windows-2019

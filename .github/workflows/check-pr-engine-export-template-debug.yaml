@@ -24,12 +24,12 @@ jobs:
             output_folder: bin/
           - name: OSX-x64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: x86_64
             output_folder: bin/
           - name: OSX-arm64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: arm64
             output_folder: bin/
           - name: Windows

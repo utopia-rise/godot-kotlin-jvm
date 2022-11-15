@@ -25,14 +25,14 @@ jobs:
             target: template_release
           - name: OSX-x64-release
             os: macos-latest
-            platform: osx
+            platform: macos
             binary: godot.osx.opt.64
             cat_command: cat
             arch: x86_64
             target: template_release
           - name: OSX-arm64-release
             os: macos-latest
-            platform: osx
+            platform: macos
             binary: godot.osx.opt.arm64
             cat_command: cat
             arch: arm64
@@ -70,14 +70,14 @@ jobs:
             target: template_debug
           - name: OSX-x64-debug
             os: macos-latest
-            platform: osx
+            platform: macos
             binary: godot.osx.opt.debug.64
             cat_command: cat
             arch: x86_64
             target: template_debug
           - name: OSX-arm64-debug
             os: macos-latest
-            platform: osx
+            platform: macos
             binary: godot.osx.opt.debug.arm64
             cat_command: cat
             arch: arm64
