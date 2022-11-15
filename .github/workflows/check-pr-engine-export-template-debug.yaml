@@ -96,7 +96,7 @@ jobs:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: debug
-          tools: false
+          
       - name: Build android debug export template binary
         if: matrix.platform == 'android'
         uses: ./.github/actions/godot-build
@@ -104,7 +104,7 @@ jobs:
           sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: debug
-          tools: false
+          
       - name: Upload android binary
         if: matrix.platform == 'android'
         uses: actions/upload-artifact@v3

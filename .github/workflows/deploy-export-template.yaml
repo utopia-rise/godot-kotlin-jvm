@@ -186,7 +186,7 @@ jobs:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: ${{ matrix.target }}
-          tools: false
+          
 
       - name: Build android ${{ matrix.target }} export template binary
         if: matrix.platform == 'android'
@@ -195,7 +195,7 @@ jobs:
           sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: ${{ matrix.target }}
-          tools: false
+          
 
       - name: Upload android binary
         if: matrix.platform == 'android'
