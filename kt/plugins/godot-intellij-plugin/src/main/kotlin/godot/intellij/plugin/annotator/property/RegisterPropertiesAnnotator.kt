@@ -4,6 +4,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
@@ -32,6 +33,7 @@ class RegisterPropertiesAnnotator : Annotator {
 
         if (element is KtProperty) {
             if (element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null) {
+                checkNotGeneric(element, holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
                 checkIfDefaultValueIsConstantWhenExported(element, holder)
