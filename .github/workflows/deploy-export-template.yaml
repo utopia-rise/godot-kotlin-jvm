@@ -22,28 +22,28 @@ jobs:
             binary: godot.x11.opt.64
             cat_command: cat
             arch: 64
-            target: release
+            target: template_release
           - name: OSX-x64-release
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.64
             cat_command: cat
             arch: 64
-            target: release
+            target: template_release
           - name: OSX-arm64-release
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.arm64
             cat_command: cat
             arch: arm64
-            target: release
+            target: template_release
           - name: Windows-release
             os: windows-2019
             platform: windows
             binary: godot.windows.opt.64.exe
             cat_command: type
             arch: 64
-            target: release
+            target: template_release
           - name: Android-armv7-release
             os: ubuntu-latest
             platform: android
@@ -51,7 +51,7 @@ jobs:
             cat_command: cat
             arch: armv7
             output_folder: platform/android/java/lib/libs/release/armeabi-v7a/
-            target: release
+            target: template_release
           - name: Android-armv8-release
             os: ubuntu-latest
             platform: android
@@ -59,7 +59,7 @@ jobs:
             cat_command: cat
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
-            target: release
+            target: template_release
           - name: Linux-debug
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
@@ -67,28 +67,28 @@ jobs:
             binary: godot.x11.opt.debug.64
             cat_command: cat
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: OSX-x64-debug
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.debug.64
             cat_command: cat
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: OSX-arm64-debug
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.debug.arm64
             cat_command: cat
             arch: arm64
-            target: release_debug
+            target: template_debug
           - name: Windows-debug
             os: windows-2019
             platform: windows
             binary: godot.windows.opt.debug.64.exe
             cat_command: type
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: Android-armv7-debug
             os: ubuntu-latest
             platform: android
@@ -96,7 +96,7 @@ jobs:
             cat_command: cat
             arch: armv7
             output_folder: platform/android/java/lib/libs/debug/armeabi-v7a/
-            target: release_debug
+            target: template_debug
           - name: Android-armv8-debug
             os: ubuntu-latest
             platform: android
@@ -104,7 +104,7 @@ jobs:
             cat_command: cat
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/debug/arm64-v8a/
-            target: release_debug
+            target: template_debug
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -232,12 +232,12 @@ jobs:
           - name: Android-debug
             os: ubuntu-20.04
             java-version: 11
-            target: release_debug
+            target: template_debug
             apk-name: android_debug.apk
           - name: Android-release
             os: ubuntu-20.04
             java-version: 11
-            target: release
+            target: template_release
             apk-name: android_release.apk
     runs-on: ${{ matrix.os }}
     steps:
@@ -289,12 +289,12 @@ jobs:
           - name: MacOs-release
             os: macos-latest
             java-version: 11
-            target: release
+            target: template_release
             binary-suffix: opt
           - name: MacOs-debug
             os: macos-latest
             java-version: 11
-            target: release_debug
+            target: template_debug
             binary-suffix: opt.debug
     runs-on: ${{ matrix.os }}
     steps:

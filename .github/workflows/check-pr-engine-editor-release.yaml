@@ -72,5 +72,4 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: release_debug
-          tools: true
+          target: editor
