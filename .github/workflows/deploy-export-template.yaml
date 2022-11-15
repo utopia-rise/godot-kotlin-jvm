@@ -13,7 +13,7 @@ jobs:
   deploy-export-template:
     strategy:
       matrix:
-        name: [ Linux-release, MacOs-x64-release, OSX-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Linux-debug, MacOs-x64-debug, OSX-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug ]
+        name: [ Linux-release, MacOs-x64-release, MacOs-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Linux-debug, MacOs-x64-debug, MacOs-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug ]
         include:
           - name: Linux-release
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
@@ -26,14 +26,14 @@ jobs:
           - name: MacOs-x64-release
             os: macos-latest
             platform: macos
-            binary: godot.osx.opt.64
+            binary: godot.macos.opt.64
             cat_command: cat
             arch: x86_64
             target: template_release
-          - name: OSX-arm64-release
+          - name: MacOs-arm64-release
             os: macos-latest
             platform: macos
-            binary: godot.osx.opt.arm64
+            binary: godot.macos.opt.arm64
             cat_command: cat
             arch: arm64
             target: template_release
@@ -71,14 +71,14 @@ jobs:
           - name: MacOs-x64-debug
             os: macos-latest
             platform: macos
-            binary: godot.osx.opt.debug.64
+            binary: godot.macos.opt.debug.64
             cat_command: cat
             arch: x86_64
             target: template_debug
-          - name: OSX-arm64-debug
+          - name: MacOs-arm64-debug
             os: macos-latest
             platform: macos
-            binary: godot.osx.opt.debug.arm64
+            binary: godot.macos.opt.debug.arm64
             cat_command: cat
             arch: arm64
             target: template_debug
@@ -211,7 +211,7 @@ jobs:
             **/${{ matrix.output_folder }}
 
       - name: Upload export template ${{ matrix.target }}
-        if: matrix.platform != 'android' && matrix.platform != 'osx'
+        if: matrix.platform != 'android' && matrix.platform != 'macos'
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -221,11 +221,11 @@ jobs:
           asset_name: ${{ matrix.binary }}
           asset_content_type: application/octet-stream
 
-      - name: Upload OSX binary
-        if: matrix.platform == 'osx'
+      - name: Upload MacOs binary
+        if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3
         with:
-          name: osx-template-${{ matrix.target }}-binary-${{ matrix.arch }}
+          name: macos-template-${{ matrix.target }}-binary-${{ matrix.arch }}
           path: bin/${{ matrix.binary }}
 
   build-android-export-template:
@@ -320,20 +320,20 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Create OSX universal binary
-        uses: ./.github/actions/create-osx-universal-binary
+      - name: Create MacOs universal binary
+        uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: osx-template-${{ matrix.target }}-binary-64
-          amd-64-binary-name: godot.osx.${{ matrix.binary-suffix }}.64
-          arm-64-binary-artifact: osx-template-${{ matrix.target }}-binary-arm64
-          arm-64-binary-name: godot.osx.${{ matrix.binary-suffix }}.arm64
-          universal-output-binary-name: godot.osx.${{ matrix.binary-suffix }}.universal
+          amd-64-binary-artifact: macos-template-${{ matrix.target }}-binary-64
+          amd-64-binary-name: godot.macos.${{ matrix.binary-suffix }}.64
+          arm-64-binary-artifact: macos-template-${{ matrix.target }}-binary-arm64
+          arm-64-binary-name: godot.macos.${{ matrix.binary-suffix }}.arm64
+          universal-output-binary-name: godot.macos.${{ matrix.binary-suffix }}.universal
 
-      - name: Upload ${{ matrix.target }} osx universal artifact
+      - name: Upload ${{ matrix.target }} MacOs universal artifact
         uses: actions/upload-artifact@v3
         with:
-          name: osx-template-${{ matrix.target }}-binary-universal
-          path: godot.osx.${{ matrix.binary-suffix }}.universal
+          name: macos-template-${{ matrix.target }}-binary-universal
+          path: godot.macos.${{ matrix.binary-suffix }}.universal
 
   create-macos-export-template-app:
     needs: [create-macos-universal]
@@ -366,28 +366,28 @@ jobs:
       - name: Get release export template binary
         uses: actions/download-artifact@v3
         with:
-          name: osx-template-release-binary-universal
+          name: macos-template-release-binary-universal
 
       - name: Get debug export template binary
         uses: actions/download-artifact@v3
         with:
-          name: osx-template-release_debug-binary-universal
+          name: macos-template-release_debug-binary-universal
 
-      - name: Create OSX template app
+      - name: Create MacOs template app
         run: |
-          cp -r misc/dist/osx_template.app .
-          mkdir -p osx_template.app/Contents/MacOS
-          cp godot.osx.opt.universal osx_template.app/Contents/MacOS/godot_osx_release.64
-          cp godot.osx.opt.debug.universal osx_template.app/Contents/MacOS/godot_osx_debug.64
-          chmod +x osx_template.app/Contents/MacOS/godot_osx*
-          zip -q -9 -r osx.zip osx_template.app
+          cp -r misc/dist/macos_template.app .
+          mkdir -p macos_template.app/Contents/MacOS
+          cp godot.macos.opt.universal macos_template.app/Contents/MacOS/godot_macos_release.64
+          cp godot.macos.opt.debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.64
+          chmod +x macos_template.app/Contents/MacOS/godot_macos*
+          zip -q -9 -r macos.zip macos_template.app
 
-      - name: Upload OSX template app
+      - name: Upload MacOs template app
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: osx.zip
-          asset_name: osx.zip
+          asset_path: macos.zip
+          asset_name: macos.zip
           asset_content_type: application/octet-stream

@@ -47,7 +47,7 @@ jobs:
   build-editor-debug:
     strategy:
       matrix:
-        name: [ Linux, MacOs-x64, OSX-arm64, Windows ]
+        name: [ Linux, MacOs-x64, MacOs-arm64, Windows ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
@@ -58,7 +58,7 @@ jobs:
             os: macos-latest
             platform: macos
             arch: x86_64
-          - name: OSX-arm64
+          - name: MacOs-arm64
             os: macos-latest
             platform: macos
             arch: arm64
@@ -111,12 +111,12 @@ jobs:
           platform: ${{ matrix.platform }}
           target: editor
           
-      - name: Upload OSX binary
-        if: matrix.platform == 'osx'
+      - name: Upload MacOs binary
+        if: matrix.platform == 'macos'
         uses: actions/upload-artifact@v3
         with:
-          name: osx-editor-debug-app-${{ matrix.arch }}
-          path: bin/godot.osx.tools.${{ matrix.arch }}
+          name: macos-editor-debug-app-${{ matrix.arch }}
+          path: bin/godot.macos.tools.${{ matrix.arch }}
   create-macos-universal:
     needs: [build-editor-debug]
     strategy:
@@ -131,19 +131,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Create OSX universal binary
-        uses: ./.github/actions/create-osx-universal-binary
+      - name: Create MacOs universal binary
+        uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary-artifact: osx-editor-debug-app-64
-          amd-64-binary-name: godot.osx.tools.64
-          arm-64-binary-artifact: osx-editor-debug-app-arm64
-          arm-64-binary-name: godot.osx.tools.arm64
-          universal-output-binary-name: godot.osx.tools.universal
-      - name: Upload OSX universal binary
+          amd-64-binary-artifact: macos-editor-debug-app-64
+          amd-64-binary-name: godot.macos.tools.64
+          arm-64-binary-artifact: macos-editor-debug-app-arm64
+          arm-64-binary-name: godot.macos.tools.arm64
+          universal-output-binary-name: godot.macos.tools.universal
+      - name: Upload MacOs universal binary
         uses: actions/upload-artifact@v3
         with:
-          name: osx-editor-debug-app
-          path: godot.osx.tools.universal
+          name: macos-editor-debug-app
+          path: godot.macos.tools.universal
   test-editor-debug:
     needs: [create-macos-universal, build-godot-bootstrap]
     strategy:
@@ -174,19 +174,19 @@ jobs:
           wrapper-directory: modules/kotlin_jvm/harness/tests/
           build-root-directory: modules/kotlin_jvm/harness/tests/
           arguments: build
-      - name: Download OSX Editor Debug App
+      - name: Download MacOs Editor Debug App
         uses: actions/download-artifact@v1
         with:
-          name: osx-editor-debug-app
+          name: macos-editor-debug-app
       - name: Download godot-bootstrap
         uses: actions/download-artifact@v1
         with:
           name: godot-bootstrap
       - name: Run Tests
         run: |
-          cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
+          cp godot-bootstrap/godot-bootstrap.jar macos-editor-debug-app/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.universal
+          chmod +x ../../../../macos-editor-debug-app/godot.macos.tools.universal
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.universal
+          ./run_godot_kotlin_tests.sh ../../../../macos-editor-debug-app/godot.macos.tools.universal

@@ -23,10 +23,10 @@ jobs:
             cat_command: cat
             arch: 64
             target: release_debug
-          - name: OSX-x64
+          - name: MacOs
             os: macos-latest
             platform: macos
-            binary: godot.osx.opt.tools.64
+            binary: godot.macos.opt.tools.64
             cat_command: cat
             arch: 64
             target: release_debug
