@@ -23,6 +23,7 @@ class OverideeRegisteredCheck(logger: Logger, sourceFiles: List<SourceFile>): Ba
 
                 registeredClass
                     .properties
+                    .filter { it !is RegisteredProperty }
                     .filter { it.isOverridee }
                     .filter { property ->
                         registeredPropertiesInParentTypes
@@ -37,6 +38,7 @@ class OverideeRegisteredCheck(logger: Logger, sourceFiles: List<SourceFile>): Ba
 
                 registeredClass
                     .functions
+                    .filter { it !is RegisteredFunction }
                     .filter { it.isOverridee }
                     .filter { function ->
                         registeredFunctionsInParentTypes
