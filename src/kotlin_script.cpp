@@ -218,7 +218,11 @@ const Variant KotlinScript::get_rpc_config() const {
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
-    //TODO
+    //TODO/4.0:
+    return {};
+}
+PropertyInfo KotlinScript::get_class_category() const {
+    //TODO/4.0:
     return {};
 }
 #endif
