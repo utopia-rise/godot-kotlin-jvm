@@ -39,12 +39,12 @@ jobs:
           - name: Android-armv7
             os: ubuntu-latest
             platform: android
-            arch: armv7
+            arch: arm32
             output_folder: platform/android/java/lib/libs/release/armeabi-v7a/
           - name: Android-armv8
             os: ubuntu-latest
             platform: android
-            arch: arm64v8
+            arch: arm64
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
     runs-on: ${{ matrix.os }}
     steps:
@@ -93,18 +93,9 @@ jobs:
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build release export template
-        if: matrix.platform != 'android'
         uses: ./.github/actions/godot-build
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
-          platform: ${{ matrix.platform }}
-          target: template_release
-          
-      - name: Build android release export template binary
-        if: matrix.platform == 'android'
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: template_release
           
@@ -112,7 +103,7 @@ jobs:
         if: matrix.platform == 'android'
         uses: actions/upload-artifact@v3
         with:
-          name: android-export-release-binary-${{ matrix.arch }}
+          name: android-export-template_release-binary-${{ matrix.arch }}
           path: |
             **/${{ matrix.output_folder }}
   build-android-export-template:
