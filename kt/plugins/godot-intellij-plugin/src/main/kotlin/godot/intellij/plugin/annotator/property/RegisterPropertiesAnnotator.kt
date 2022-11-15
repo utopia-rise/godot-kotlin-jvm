@@ -6,18 +6,21 @@ import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
+import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
+import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.psiUtil.containingClass
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
 
@@ -41,6 +44,23 @@ class RegisterPropertiesAnnotator : Annotator {
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
             checkExportAnnotation(element, holder)
+            overriddenRegisteredAbstractPropertyNotRegistered(element, holder)
+        }
+    }
+
+    private fun overriddenRegisteredAbstractPropertyNotRegistered(element: KtProperty, holder: AnnotationHolder) {
+        if (
+            element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
+            element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) == null &&
+            element.resolveToDescriptorIfAny()?.overriddenDescriptors?.any {
+                it.annotations.hasAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION))
+            } == true
+        ) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.property.overriddenPropertyNotRegistered"),
+                element.nameIdentifier ?: element.navigationElement,
+                propertyNotRegisteredQuickFix
+            )
         }
     }
 
