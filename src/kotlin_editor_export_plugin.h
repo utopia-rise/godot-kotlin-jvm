@@ -3,8 +3,9 @@
 #define GODOT_JVM_KOTLINEDITOREXPORTPLUGIN_H
 
 
-#include <editor/editor_export.h>
 #include "jni/jvm.h"
+#include "editor/export/editor_export_plugin.h"
+#include "core/io/dir_access.h"
 
 class KotlinEditorExportPlugin : public EditorExportPlugin {
     GDCLASS(KotlinEditorExportPlugin, EditorExportPlugin)
@@ -14,7 +15,7 @@ public:
 
 private:
     void _generate_export_configuration_file(jni::Jvm::Type vm_type);
-    static void _copy_jre_to(const char* jre_folder, DirAccess* dir_access);
+    static void _copy_jre_to(const char* jre_folder, Ref<DirAccess> dir_access);
     static Vector<String> _list_files_in_folder(const String& folder);
 };
 

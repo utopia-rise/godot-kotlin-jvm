@@ -78,14 +78,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 bool is_x64{p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_osx_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                    add_macos_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
                 } else {
                     if (is_arm64) {
-                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
+                        add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
                     }
 
                     if (is_x64) {
-                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
+                        add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
                     }
                 }
             } else {
@@ -117,7 +117,7 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Typ
     add_file(configuration_path, json_bytes, false);
 }
 
-void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, DirAccess* dir_access) {
+void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAccess> dir_access) {
     if (dir_access->copy_dir(
             ProjectSettings::get_singleton()->globalize_path(vformat("res://%s", jre_folder)),
             vformat("%s/%s", dir_access->get_current_dir(), jre_folder)
@@ -131,10 +131,10 @@ Vector<String> KotlinEditorExportPlugin::_list_files_in_folder(const String& fol
     Vector<String> ret;
 
     Error jre_access_error;
-    DirAccessRef folder_access{DirAccess::open(folder, &jre_access_error)};
+    Ref<DirAccess> folder_access{DirAccess::open(folder, &jre_access_error)};
     folder_access->list_dir_begin();
     String current_file{folder_access->get_next()};
-    while (!current_file.empty()) {
+    while (!current_file.is_empty()) {
         if (current_file == ".." || current_file == ".") {
             current_file = folder_access->get_next();
             continue;
