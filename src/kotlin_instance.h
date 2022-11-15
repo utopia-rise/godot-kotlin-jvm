@@ -65,7 +65,8 @@ public:
 //    Multiplayer::RPCMode get_rpc_mode(const StringName& p_method) const override;
 //
 //    Multiplayer::RPCMode get_rset_mode(const StringName& p_variable) const override;
-    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
+// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
 
     ScriptLanguage* get_language() override;
 

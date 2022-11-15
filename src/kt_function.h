@@ -3,7 +3,6 @@
 
 
 #include <core/object/object.h>
-#include <core/multiplayer/multiplayer.h>
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"
@@ -15,7 +14,8 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
-    Multiplayer::RPCMode rpc_mode;
+    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//    Multiplayer::RPCMode rpc_mode;
 
     MethodInfo to_method_info() const;
 
@@ -39,7 +39,9 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
-    Multiplayer::RPCMode get_rpc_mode() const;
+
+    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//    Multiplayer::RPCMode get_rpc_mode() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();

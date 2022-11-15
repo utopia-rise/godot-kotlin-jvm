@@ -142,9 +142,10 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
 //    }
 //}
 //
-const Vector<Multiplayer::RPCConfig> KotlinInstance::get_rpc_methods() const {
-    return Vector<Multiplayer::RPCConfig>();
-}
+// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//const Vector<Multiplayer::RPCConfig> KotlinInstance::get_rpc_methods() const {
+//    return Vector<Multiplayer::RPCConfig>();
+//}
 
 ScriptLanguage* KotlinInstance::get_language() {
     return &KotlinLanguage::get_instance();

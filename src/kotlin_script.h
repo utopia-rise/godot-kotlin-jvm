@@ -66,7 +66,8 @@ public:
 
     void set_path(const String& p_path, bool p_take_over) override;
 
-    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
+// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
 
 #ifdef TOOLS_ENABLED
     Vector<DocData::ClassDoc> get_documentation() const override;
