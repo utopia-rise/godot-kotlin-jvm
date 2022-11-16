@@ -17,11 +17,11 @@ runs:
     - name: Download android ${{ inputs.target }} export armv7 binary
       uses: actions/download-artifact@v3
       with:
-        name: android-export-${{ inputs.target }}-binary-armv7
+        name: android-export-${{ inputs.target }}-binary-arm32
     - name: Download android ${{ inputs.target }} export arm64v8 binary
       uses: actions/download-artifact@v3
       with:
-        name: android-export-${{ inputs.target }}-binary-arm64v8
+        name: android-export-${{ inputs.target }}-binary-arm64
     - name: Build android ${{ inputs.target }} export template
       shell: bash
       run: |
