@@ -2,7 +2,7 @@ import org.ajoberstar.grgit.Commit
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
-    id("org.ajoberstar.grgit") version "4.1.0"
+    id("org.ajoberstar.grgit") version "4.1.1"
 }
 
 val currentCommit: Commit = grgit.head()
