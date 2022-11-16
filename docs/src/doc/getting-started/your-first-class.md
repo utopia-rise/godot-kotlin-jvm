@@ -24,7 +24,7 @@ The [classes](../user-guide/classes.md) section covers in detail what we did her
 ./gradlew build
 ``` 
 
-Once the build completes, you will be able to use your class in Godot. Simply attach the `kt` file containing registered clas to a node like you would do in GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
+Once the build completes, you will be able to use your class in Godot. Simply attach the `kt` file containing registered class to a node like you would do in GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
 
 ![Attach Node Script](../assets/img/attach.png)
 
