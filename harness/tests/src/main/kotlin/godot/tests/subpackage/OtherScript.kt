@@ -1,7 +1,7 @@
 package godot.tests.subpackage
 
 import godot.Node
-import godot.Spatial
+import godot.Node3D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
@@ -18,7 +18,7 @@ class OtherScript : Node() {
     }
 
     @RegisterFunction
-    fun hookTwoParam(str: String, inv: Spatial) {
+    fun hookTwoParam(str: String, inv: Node3D) {
         println("Hook was called with parameters: $str, $inv")
     }
 

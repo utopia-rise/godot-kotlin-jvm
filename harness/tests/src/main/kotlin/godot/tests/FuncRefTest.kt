@@ -16,7 +16,7 @@ class FuncRefTest : Node() {
     @RegisterSignal
     val signalTest by signal()
 
-    @RegisterProperty(rpcMode = MultiplayerAPI.RPCMode.REMOTE)
+    @RegisterProperty(/*rpcMode = MultiplayerAPI.RPCMode.REMOTE*/)
     var blubb: Boolean = false
 
     @RegisterProperty
@@ -37,7 +37,7 @@ class FuncRefTest : Node() {
 //        rset(::blubb, false)
     }
 
-    @RegisterFunction(MultiplayerAPI.RPCMode.REMOTE)
+    @RegisterFunction(/*MultiplayerAPI.RPCMode.REMOTE*/)
     fun testSignalCallback() {
         signalCallFlag = true
     }
