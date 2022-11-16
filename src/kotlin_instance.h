@@ -70,8 +70,8 @@ public:
 
     ScriptLanguage* get_language() override;
 
-    bool property_can_revert(const StringName &p_name) const override;
-    bool property_get_revert(const StringName &p_name, Variant &r_ret) const override;
+    bool property_can_revert(const StringName& p_name) const override;
+    bool property_get_revert(const StringName& p_name, Variant& r_ret) const override;
 };
 
 

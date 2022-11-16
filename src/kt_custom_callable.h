@@ -11,7 +11,7 @@ public:
     CompareEqualFunc get_compare_equal_func() const override;
     CompareLessFunc get_compare_less_func() const override;
     ObjectID get_object() const override;
-    void call(const Variant **p_arguments, int p_argcount, Variant &r_return_value, Callable::CallError &r_call_error) const override;
+    void call(const Variant **p_arguments, int p_argcount, Variant& r_return_value, Callable::CallError &r_call_error) const override;
 
     static bool compare_equal(const CallableCustom *p_a, const CallableCustom *p_b);
     static bool compare_less(const CallableCustom *p_a, const CallableCustom *p_b);
