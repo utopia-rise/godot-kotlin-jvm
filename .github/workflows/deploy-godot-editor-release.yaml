@@ -22,28 +22,28 @@ jobs:
             binary: godot.x11.opt.editor.64
             cat_command: cat
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: MacOs
             os: macos-latest
             platform: macos
             binary: godot.macos.opt.editor.64
             cat_command: cat
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: OSX-arm64
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.tools.arm64
             cat_command: cat
             arch: arm64
-            target: release_debug
+            target: template_debug
           - name: Windows
             os: windows-2019
             platform: windows
             binary: godot.windows.opt.editor.64.exe
             cat_command: type
             arch: 64
-            target: release_debug
+            target: template_debug
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -173,7 +173,7 @@ jobs:
           - name: MacOs
             os: macos-latest
             java-version: 11
-            target: release_debug
+            target: template_debug
             binary-suffix: opt.tools
     runs-on: ${{ matrix.os }}
     steps:
@@ -217,7 +217,7 @@ jobs:
         include:
           - os: macos-latest
             java-version: 11
-            target: release_debug
+            target: template_debug
             binary-suffix: opt.tools
     runs-on: ${{ matrix.os }}
     steps:

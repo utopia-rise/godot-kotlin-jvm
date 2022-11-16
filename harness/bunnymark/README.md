@@ -62,7 +62,7 @@ Attempts to draw as many sprites to the screen as possible by adding Sprite node
 
 ### Build Info:
 * OS: 5.4.95-1-MANJARO (Arch)
-* Godot 3.2 branch (Commit: 7897cf44722a1e4a9a18fb666f819ba19268d6a1), Target: release_debug 
+* Godot 3.2 branch (Commit: 7897cf44722a1e4a9a18fb666f819ba19268d6a1), Target: template_debug 
 * Kotlin 1.4.30
 
 

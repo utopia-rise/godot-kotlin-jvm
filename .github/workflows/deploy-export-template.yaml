@@ -371,7 +371,7 @@ jobs:
       - name: Get debug export template binary
         uses: actions/download-artifact@v3
         with:
-          name: macos-template-release_debug-binary-universal
+          name: macos-template-template_debug-binary-universal
 
       - name: Create MacOs template app
         run: |
