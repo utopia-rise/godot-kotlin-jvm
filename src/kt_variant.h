@@ -4,7 +4,7 @@
 
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
-#include "core/variant/variant.h"
+#include <core/variant/variant.h>
 #include "jni/wrapper.h"
 #include "shared_buffer.h"
 #include "type_manager.h"

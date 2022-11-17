@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_SCRIPT_H
 #define GODOT_JVM_KOTLIN_SCRIPT_H
 
-#include "core/object/script_language.h"
+#include <core/object/script_language.h>
 #include "kt_class.h"
 
 class KotlinScript : public Script {

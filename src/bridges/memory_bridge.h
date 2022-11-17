@@ -3,7 +3,7 @@
 
 
 #include <jni.h>
-#include <modules/kotlin_jvm/src/jni/types.h>
+#include "modules/kotlin_jvm/src/jni/types.h"
 #include "modules/kotlin_jvm/src/java_instance_wrapper.h"
 
 namespace bridges {
