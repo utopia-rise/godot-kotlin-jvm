@@ -13,13 +13,21 @@ jobs:
   deploy-editor-release:
     strategy:
       matrix:
-        name: [ Linux, OSX-x64, OSX-arm64, Windows ]
+        name: [ Linux, Linux-Headless, OSX-x64, OSX-arm64, Windows ]
         include:
           - name: Linux
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
             binary: godot.x11.opt.tools.64
+            cat_command: cat
+            arch: 64
+            target: release_debug
+          - name: Linux-Headless
+            # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
+            os: ubuntu-20.04
+            platform: server
+            binary: godot_server.x11.opt.tools.64
             cat_command: cat
             arch: 64
             target: release_debug
@@ -83,7 +91,7 @@ jobs:
           submodules: recursive
 
       - name: Linux dependencies
-        if: matrix.platform == 'x11'
+        if: matrix.platform == 'x11' || matrix.platform == 'server'
         shell: bash
         run: |
           # Azure repositories are not reliable, we need to prevent azure giving us packages.
@@ -136,7 +144,7 @@ jobs:
           dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
 
       - name: Upload zip release
-        if: matrix.platform != 'osx'
+        if: matrix.platform != 'osx' && matrix.platform != 'server'
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -144,6 +152,17 @@ jobs:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
           asset_path: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
           asset_name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload zip release
+        if: matrix.platform == 'server'
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.save_release_info.outputs.upload_url }}
+          asset_path: godot-kotlin-jvm_editor_headless_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
+          asset_name: godot-kotlin-jvm_editor_headless_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
           asset_content_type: application/zip
 
       - name: Upload bootstrap jar

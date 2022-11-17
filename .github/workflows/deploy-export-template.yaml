@@ -13,13 +13,21 @@ jobs:
   deploy-export-template:
     strategy:
       matrix:
-        name: [ Linux-release, OSX-x64-release, OSX-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Android-x86_64-release, Linux-debug, OSX-x64-debug, OSX-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug, Android-x86_64-debug ]
+        name: [ Linux-release, Linux-Server-release, OSX-x64-release, OSX-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Android-x86_64-release, Linux-debug, Linux-Server-debug, OSX-x64-debug, OSX-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug, Android-x86_64-debug ]
         include:
           - name: Linux-release
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
             binary: godot.x11.opt.64
+            cat_command: cat
+            arch: 64
+            target: release
+          - name: Linux-Server-release
+            # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
+            os: ubuntu-20.04
+            platform: server
+            binary: godot_server.x11.opt.64
             cat_command: cat
             arch: 64
             target: release
@@ -73,6 +81,14 @@ jobs:
             os: ubuntu-20.04
             platform: x11
             binary: godot.x11.opt.debug.64
+            cat_command: cat
+            arch: 64
+            target: release_debug
+          - name: Linux-Server-debug
+            # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
+            os: ubuntu-20.04
+            platform: server
+            binary: godot_server.x11.opt.debug.64
             cat_command: cat
             arch: 64
             target: release_debug
@@ -160,7 +176,7 @@ jobs:
           submodules: recursive
 
       - name: Linux dependencies
-        if: matrix.platform == 'x11'
+        if: matrix.platform == 'x11' || matrix.platform == 'server'
         shell: bash
         run: |
           # Azure repositories are not reliable, we need to prevent azure giving us packages.

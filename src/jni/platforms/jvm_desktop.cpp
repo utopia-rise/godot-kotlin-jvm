@@ -1,4 +1,4 @@
-#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED || defined SERVER_ENABLED
 
 #include <cassert>
 #include <modules/kotlin_jvm/src/logging.h>
