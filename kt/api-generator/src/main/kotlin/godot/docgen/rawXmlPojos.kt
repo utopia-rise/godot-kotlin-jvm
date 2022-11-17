@@ -253,12 +253,12 @@ private fun String.replaceCodeReferences(): String {
         }
 
     //parameters
-    //example: [param get_node]
+    //example: [param right]
     "\\[param .+?(?=])]".toRegex()
         .findAll(tmpString)
         .map { it.value }
         .map { oldParameterReference ->
-            //extracts function name from match. example: get_node in the case of [method get_node]
+            //extracts parameter name from match. example: right in the case of [param right]
             val parameterName = "(?<=\\[param ).+?(?=])".toRegex().find(oldParameterReference)?.value
             oldParameterReference to parameterName?.convertToCamelCase()
         }
