@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: master
+          ref: 89a33d28f00fec579184fb7193790d40aa09b45b
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
