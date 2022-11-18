@@ -12,11 +12,18 @@ fun Project.setupBuildTask(
     packageBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainDexJarTask: TaskProvider<out Task>,
     createGraalNativeImageTask: TaskProvider<out Task>,
-    createBuildLockTask: TaskProvider<out Task>
+    createBuildLockTask: TaskProvider<out Task>,
+    generateGdIgnoreFilesTask: TaskProvider<out Task>,
 ) {
     tasks.named("build") {
         with(it) {
-            dependsOn(createBuildLockTask, packageBootstrapJarTask, packageMainJarTask)
+            dependsOn(
+                createBuildLockTask,
+                packageBootstrapJarTask,
+                packageMainJarTask,
+                generateGdIgnoreFilesTask
+            )
+
             finalizedBy(deleteBuildLockTask)
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
