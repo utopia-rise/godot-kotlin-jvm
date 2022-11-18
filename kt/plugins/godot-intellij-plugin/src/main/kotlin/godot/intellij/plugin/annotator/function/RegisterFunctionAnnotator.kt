@@ -5,6 +5,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
@@ -36,6 +37,10 @@ class RegisterFunctionAnnotator : Annotator {
                     functionNotRegisteredQuickFix,
                     problemHighlightType = ProblemHighlightType.WEAK_WARNING
                 )
+            }
+
+            if (element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null) {
+                checkNotGeneric(element, holder)
             }
         }
     }
