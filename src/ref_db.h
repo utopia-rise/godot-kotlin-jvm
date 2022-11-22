@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <core/object/ref_counted.h>
-#include "core/os/mutex.h"
+#include <core/os/mutex.h>
 
 class RefDB {
 private:

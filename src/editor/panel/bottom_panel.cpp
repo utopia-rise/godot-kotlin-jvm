@@ -16,7 +16,7 @@ BottomPanel::BottomPanel() :
 
     set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
     set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
-    set_anchors_and_offsets_preset(LayoutPreset::PRESET_WIDE);
+    set_anchors_and_offsets_preset(LayoutPreset::PRESET_BOTTOM_WIDE);
 
     TabContainer* panel_tabs{memnew(TabContainer)};
     add_child(panel_tabs);

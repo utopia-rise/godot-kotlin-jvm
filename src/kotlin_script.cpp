@@ -207,14 +207,22 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 #endif
 }
 
-const Vector<Multiplayer::RPCConfig> KotlinScript::get_rpc_methods() const {
-    //TODO/4.0: Implement new RPC methods
-    return Vector<Multiplayer::RPCConfig>();
+// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
+//const Vector<Multiplayer::RPCConfig> KotlinScript::get_rpc_methods() const {
+//    //TODO/4.0: Implement new RPC methods
+//    return Vector<Multiplayer::RPCConfig>();
+//}
+const Variant KotlinScript::get_rpc_config() const {
+    return Variant();
 }
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
-    //TODO
+    //TODO/4.0:
+    return {};
+}
+PropertyInfo KotlinScript::get_class_category() const {
+    //TODO/4.0:
     return {};
 }
 #endif

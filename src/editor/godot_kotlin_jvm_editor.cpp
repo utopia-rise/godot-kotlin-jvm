@@ -135,7 +135,7 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         add_tool_submenu_item("Kotlin/JVM", menu_pop_up);
 
         tool_bar_build_button->set_text("Build");
-        tool_bar_build_button->set_tooltip("Build gradle project");
+        tool_bar_build_button->set_tooltip_text("Build gradle project");
         tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
         tool_bar_build_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_build_project_pressed));
 

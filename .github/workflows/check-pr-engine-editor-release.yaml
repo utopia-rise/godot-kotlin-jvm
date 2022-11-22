@@ -14,25 +14,25 @@ jobs:
   build-editor-release:
     strategy:
       matrix:
-        name: [ Linux, OSX-x64, OSX-arm64, Windows ]
+        name: [ Linux, MacOs-x64, MacOs-arm64, Windows ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
             os: ubuntu-20.04
             platform: x11
-            arch: 64
-          - name: OSX-x64
+            arch: x86_64
+          - name: MacOs-x64
             os: macos-latest
-            platform: osx
-            arch: 64
-          - name: OSX-arm64
+            platform: macos
+            arch: x86_64
+          - name: MacOs-arm64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: arm64
           - name: Windows
             os: windows-2019
             platform: windows
-            arch: 64
+            arch: x86_64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
@@ -59,6 +59,10 @@ jobs:
               libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: |
+          sh misc/scripts/install_vulkan_sdk_macos.sh
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache
@@ -72,5 +76,4 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: release_debug
-          tools: true
+          target: editor

@@ -13,38 +13,38 @@ jobs:
   build-export-release:
     strategy:
       matrix:
-        name: [ Linux, OSX-x64, OSX-arm64, Windows, Android-armv7, Android-armv8 ]
+        name: [ Linux, MacOs-x64, MacOs-arm64, Windows, Android-armv7, Android-armv8 ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
             os: ubuntu-20.04
             platform: x11
-            arch: 64
+            arch: x86_64
             output_folder: bin/
-          - name: OSX-x64
+          - name: MacOs-x64
             os: macos-latest
-            platform: osx
-            arch: 64
+            platform: macos
+            arch: x86_64
             output_folder: bin/
-          - name: OSX-arm64
+          - name: MacOs-arm64
             os: macos-latest
-            platform: osx
+            platform: macos
             arch: arm64
             output_folder: bin/
           - name: Windows
             os: windows-2019
             platform: windows
-            arch: 64
+            arch: x86_64
             output_folder: bin/
           - name: Android-armv7
             os: ubuntu-latest
             platform: android
-            arch: armv7
+            arch: arm32
             output_folder: platform/android/java/lib/libs/release/armeabi-v7a/
           - name: Android-armv8
             os: ubuntu-latest
             platform: android
-            arch: arm64v8
+            arch: arm64
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
     runs-on: ${{ matrix.os }}
     steps:
@@ -72,6 +72,10 @@ jobs:
               libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: |
+          sh misc/scripts/install_vulkan_sdk_macos.sh
       # Upload cache on completion and check it out now
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache
@@ -89,26 +93,17 @@ jobs:
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build release export template
-        if: matrix.platform != 'android'
         uses: ./.github/actions/godot-build
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: release
-          tools: false
-      - name: Build android release export template binary
-        if: matrix.platform == 'android'
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: android_arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
-          platform: ${{ matrix.platform }}
-          target: release
-          tools: false
+          target: template_release
+          
       - name: Upload android binary
         if: matrix.platform == 'android'
         uses: actions/upload-artifact@v3
         with:
-          name: android-export-release-binary-${{ matrix.arch }}
+          name: android-export-template_release-binary-${{ matrix.arch }}
           path: |
             **/${{ matrix.output_folder }}
   build-android-export-template:
@@ -134,4 +129,4 @@ jobs:
       - name: Build android export template
         uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
         with:
-          target: release
+          target: template_release

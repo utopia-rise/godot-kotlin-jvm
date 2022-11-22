@@ -12,10 +12,10 @@ class RpcTests : Node() {
     @RegisterProperty
     var remoteSyncCalled: Boolean = false
 
-    @RegisterProperty(rpcMode = MultiplayerAPI.RPCMode.REMOTESYNC)
+    @RegisterProperty(/*rpcMode = MultiplayerAPI.RPCMode.REMOTESYNC*/)
     var remoteSyncProperty: Boolean = false
 
-    @RegisterFunction(rpcMode = MultiplayerAPI.RPCMode.REMOTESYNC)
+    @RegisterFunction(/*rpcMode = MultiplayerAPI.RPCMode.REMOTESYNC*/)
     fun remoteSyncTest(called: Boolean) {
         remoteSyncCalled = called
     }
@@ -24,10 +24,5 @@ class RpcTests : Node() {
     fun triggerFunctionRemoteSyncCall() {
         println("blubb")
         rpc(::remoteSyncTest, true)
-    }
-
-    @RegisterFunction
-    fun triggerPropertyRemoteSyncCall() {
-        rset(::remoteSyncProperty, true)
     }
 }

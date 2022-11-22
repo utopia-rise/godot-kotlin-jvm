@@ -5,6 +5,7 @@
 #define GODOT_JVM_ABOUT_DIALOG_H
 
 #include <scene/gui/dialogs.h>
+#include <scene/gui/check_box.h>
 #include <editor/editor_settings.h>
 
 class AboutDialog : public AcceptDialog {

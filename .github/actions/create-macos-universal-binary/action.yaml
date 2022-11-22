@@ -1,4 +1,4 @@
-name: Create OSX universal binary
+name: Create MacOs universal binary
 description: Creates a MacOs universal binary
 inputs:
   amd-64-binary-artifact:
@@ -22,7 +22,7 @@ runs:
       uses: actions/download-artifact@v1
       with:
         name: ${{ inputs.arm-64-binary-artifact }}
-    - name: Create OSX universal binary
+    - name: Create MacOs universal binary
       shell: sh
       run: |
         lipo -create ${{ inputs.amd-64-binary-artifact }}/${{ inputs.amd-64-binary-name }} ${{ inputs.arm-64-binary-artifact }}/${{ inputs.arm-64-binary-name }} -output ${{ inputs.universal-output-binary-name }}

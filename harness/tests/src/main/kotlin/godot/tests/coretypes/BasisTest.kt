@@ -4,7 +4,7 @@ import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.Basis
-import godot.core.Quat
+import godot.core.Quaternion
 import godot.core.Vector3
 
 @RegisterClass
@@ -20,7 +20,7 @@ class BasisTest : Node() {
     }
 
     @RegisterFunction
-    fun getRotationQuat(basis: Basis): Quat {
+    fun getRotationQuat(basis: Basis): Quaternion {
         return basis.getRotationQuat()
     }
 

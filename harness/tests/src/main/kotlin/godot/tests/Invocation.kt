@@ -18,7 +18,7 @@ enum class TestEnum {
 }
 
 @RegisterClass
-class Invocation : Spatial() {
+class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
@@ -332,7 +332,7 @@ class Invocation : Spatial() {
 	override fun _ready() {
 		val formerName = name
 		println("Name is: $name")
-		name = "TestName"
+		name = "TestName".asStringName()
 		println("Name is: $name")
 		name = formerName
 		val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
@@ -346,7 +346,7 @@ class Invocation : Spatial() {
 		signalOneParam.connect(invocation, invocation::hookOneParam)
 		signalTwoParam.connect(invocation, invocation::hookTwoParam)
 
-		(getNodeOrNull(path) as Button?)?.signalPressed?.connect(
+		(getNodeOrNull(path) as Button?)?.pressed?.connect(
 			invocation,
 			invocation::hookNoParam
 		)
@@ -492,10 +492,10 @@ class Invocation : Spatial() {
 
 	//Type cast checks
 	@RegisterFunction
-	fun parentIsSpatial() = getParent() is Spatial
+	fun parentIsNode3D() = getParent() is Node3D
 
 	@RegisterFunction
-	fun isObjectSpatial(obj: Object) = obj is Spatial
+	fun isObjectNode3D(obj: Object) = obj is Node3D
 
 	@RegisterFunction
 	fun otherJvmId(invocation: Invocation) = invocation.jvmId
@@ -608,8 +608,8 @@ class Invocation : Spatial() {
 	// Singleton tests
 
 	@RegisterFunction
-	fun isSentArvrSameInstanceAsJvmSingleton(arvrServer: ARVRServer) =
-		ARVRServer.getInstanceId() == arvrServer.getInstanceId()
+	fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
+        XRServer.getInstanceId() == arvrServer.getInstanceId()
 
 	@RegisterFunction
 	fun nullableStringIsNull(nullableString: String?) = nullableString == null

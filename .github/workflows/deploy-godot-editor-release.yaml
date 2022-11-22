@@ -19,31 +19,31 @@ jobs:
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
             platform: x11
-            binary: godot.x11.opt.tools.64
+            binary: godot.x11.opt.editor.64
             cat_command: cat
             arch: 64
-            target: release_debug
-          - name: OSX-x64
+            target: template_debug
+          - name: MacOs
             os: macos-latest
-            platform: osx
-            binary: godot.osx.opt.tools.64
+            platform: macos
+            binary: godot.macos.opt.editor.64
             cat_command: cat
             arch: 64
-            target: release_debug
+            target: template_debug
           - name: OSX-arm64
             os: macos-latest
             platform: osx
             binary: godot.osx.opt.tools.arm64
             cat_command: cat
             arch: arm64
-            target: release_debug
+            target: template_debug
           - name: Windows
             os: windows-2019
             platform: windows
-            binary: godot.windows.opt.tools.64.exe
+            binary: godot.windows.opt.editor.64.exe
             cat_command: type
             arch: 64
-            target: release_debug
+            target: template_debug
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -69,6 +69,11 @@ jobs:
           echo "::set-output name=upload_url::$(${{ matrix.cat_command }} release_url/release_url.txt)"
           echo "::set-output name=godot_version::$(${{ matrix.cat_command }} godot_version/godot_version.txt)"
           echo "::set-output name=godot_kotlin_jvm_version::$(${{ matrix.cat_command }} godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
+
+      - name: Setup Vulkan SDK
+        if: matrix.platform == 'macos'
+        run: |
+          sh misc/scripts/install_vulkan_sdk_macos.sh
 
       - name: Clone Godot Engine
         uses: actions/checkout@v2
@@ -118,8 +123,7 @@ jobs:
         with:
           sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
-          target: ${{ matrix.target }}
-          tools: true
+          target: editor
 
       - name: Build godot-bootstrap
         uses: eskatos/gradle-command-action@v1
@@ -169,7 +173,7 @@ jobs:
           - name: MacOs
             os: macos-latest
             java-version: 11
-            target: release_debug
+            target: template_debug
             binary-suffix: opt.tools
     runs-on: ${{ matrix.os }}
     steps:
@@ -213,7 +217,7 @@ jobs:
         include:
           - os: macos-latest
             java-version: 11
-            target: release_debug
+            target: template_debug
             binary-suffix: opt.tools
     runs-on: ${{ matrix.os }}
     steps:

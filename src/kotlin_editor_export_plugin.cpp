@@ -1,10 +1,9 @@
 #ifdef TOOLS_ENABLED
 
-#include <modules/kotlin_jvm/src/jni/jvm.h>
-#include <modules/kotlin_jvm/src/jni/jni_constants.h>
-#include <core/config/project_settings.h>
 #include "kotlin_editor_export_plugin.h"
 #include "gd_kotlin.h"
+#include "jni/jni_constants.h"
+#include <core/config/project_settings.h>
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
 static constexpr const char* configuration_path{"res://godot_kotlin_configuration.json"};
@@ -78,14 +77,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 bool is_x64{p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_osx_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                    add_macos_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
                 } else {
                     if (is_arm64) {
-                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
+                        add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64));
                     }
 
                     if (is_x64) {
-                        add_osx_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
+                        add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64));
                     }
                 }
             } else {
@@ -117,7 +116,7 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Typ
     add_file(configuration_path, json_bytes, false);
 }
 
-void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, DirAccess* dir_access) {
+void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAccess> dir_access) {
     if (dir_access->copy_dir(
             ProjectSettings::get_singleton()->globalize_path(vformat("res://%s", jre_folder)),
             vformat("%s/%s", dir_access->get_current_dir(), jre_folder)
@@ -125,33 +124,6 @@ void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, DirAccess* d
         LOG_ERROR(vformat("Cannot copy %s folder to export folder, please make sure you created a %s in project "
                           "root folder using jlink.", jre_folder, jre_folder));
     }
-}
-
-Vector<String> KotlinEditorExportPlugin::_list_files_in_folder(const String& folder) {
-    Vector<String> ret;
-
-    Error jre_access_error;
-    DirAccessRef folder_access{DirAccess::open(folder, &jre_access_error)};
-    folder_access->list_dir_begin();
-    String current_file{folder_access->get_next()};
-    while (!current_file.empty()) {
-        if (current_file == ".." || current_file == ".") {
-            current_file = folder_access->get_next();
-            continue;
-        }
-
-        String current_file_path{vformat("%s/%s", folder, current_file)};
-        if (folder_access->current_is_dir()) {
-            ret.append_array(_list_files_in_folder(current_file_path));
-        } else {
-            ret.push_back(current_file_path);
-        }
-
-        current_file = folder_access->get_next();
-    }
-    folder_access->list_dir_end();
-
-    return ret;
 }
 
 #endif

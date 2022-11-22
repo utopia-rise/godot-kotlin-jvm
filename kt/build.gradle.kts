@@ -93,9 +93,9 @@ tasks {
         val coresAvailable = Runtime.getRuntime().availableProcessors()
 
         if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-            commandLine("cmd", "/c", "scons", "p=$platform", "target=release_debug", "-j$coresAvailable")
+            commandLine("cmd", "/c", "scons", "p=$platform", "target=template_debug", "-j$coresAvailable")
         } else {
-            commandLine("scons", "p=$platform", "target=release_debug", "-j$coresAvailable")
+            commandLine("scons", "p=$platform", "target=template_debug", "-j$coresAvailable")
         }
     }
     val runEngineDebug by creating(Exec::class) {
