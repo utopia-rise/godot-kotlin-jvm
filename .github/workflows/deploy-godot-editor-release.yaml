@@ -137,11 +137,18 @@ jobs:
           arguments: godot-library:build
 
       - name: Zip release
-        if: matrix.platform != 'osx'
+        if: matrix.platform != 'osx' && matrix.platform != 'server'
         uses: vimtor/action-zip@v1
         with:
           files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
           dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
+
+      - name: Zip release
+        if: matrix.platform != 'osx' && matrix.platform == 'server'
+        uses: vimtor/action-zip@v1
+        with:
+          files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          dest: godot-kotlin-jvm_editor_headless_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
 
       - name: Upload zip release
         if: matrix.platform != 'osx' && matrix.platform != 'server'
