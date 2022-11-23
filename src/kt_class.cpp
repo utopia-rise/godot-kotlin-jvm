@@ -156,16 +156,7 @@ const Dictionary KtClass::get_rpc_config() {
     Dictionary rpc_configs{};
 
     for (const KeyValue<StringName, KtFunction*>& E : methods) {
-        const RpcConfig& rpc_config = E.value->get_rpc_config();
-        Dictionary method_rpd_config{};
-
-        // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
-        method_rpd_config["rpc_mode"] = rpc_config.rpc_mode;
-        method_rpd_config["transfer_mode"] = rpc_config.rpc_transfer_mode;
-        method_rpd_config["call_local"] = rpc_config.rpc_call_local;
-        method_rpd_config["channel"] = rpc_config.rpc_channel;
-
-        rpc_configs[E.key] = method_rpd_config;
+        rpc_configs[E.key] = E.value->get_rpc_config()->toRpcConfigDictionary();
     }
 
     return rpc_configs;

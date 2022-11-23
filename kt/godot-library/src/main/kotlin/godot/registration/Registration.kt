@@ -1,5 +1,8 @@
 package godot.registration
 
+import godot.annotation.RpcMode
+import godot.annotation.Sync
+import godot.annotation.TransferMode
 import godot.core.CONSTRUCTOR_MAX_ARGS
 import godot.core.KtClass
 import godot.core.KtConstructor
@@ -16,6 +19,7 @@ import godot.core.KtFunctionInfo
 import godot.core.KtObject
 import godot.core.KtProperty
 import godot.core.KtPropertyInfo
+import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
 import godot.core.PropertyHint
 import godot.core.TypeManager
@@ -33,7 +37,6 @@ import kotlin.reflect.KFunction6
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
-@Suppress("UNCHECKED_CAST")
 class KtPropertyInfoBuilderDsl {
     var type: VariantType? = null
     var name: String = ""
@@ -44,6 +47,20 @@ class KtPropertyInfoBuilderDsl {
 
     internal fun build() =
         KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, visibleInEditor)
+}
+
+class KtRpcConfigBuilderDsl {
+    var mode: RpcMode = RpcMode.DISABLED
+    var sync: Sync = Sync.SYNC
+    var transferMode: TransferMode = TransferMode.RELIABLE
+    var channel: Int = 0
+
+    internal fun build() = KtRpcConfig(
+        rpcModeId = mode.ordinal,
+        rpcCallLocal = sync == Sync.SYNC,
+        rpcTransferModeId = transferMode.ordinal,
+        rpcChannel = channel
+    )
 }
 
 data class KtFunctionArgument(
@@ -270,10 +287,7 @@ class ClassBuilderDsl<T : KtObject>(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean,
-        rpcTransferModeId: Int,
-        rpcChannel: Int,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction0(
@@ -288,10 +302,7 @@ class ClassBuilderDsl<T : KtObject>(
                         hintString = "",
                         visibleInEditor = true, // always true. Only used for properties
                     ),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfig
                 ),
                 func,
                 variantType
@@ -303,23 +314,19 @@ class ClassBuilderDsl<T : KtObject>(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction0(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = listOf(),
                     returnVal = returnBuilder.build(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType
@@ -333,10 +340,7 @@ class ClassBuilderDsl<T : KtObject>(
         p0Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction1(
@@ -346,10 +350,7 @@ class ClassBuilderDsl<T : KtObject>(
                         p0.toKtPropertyInfo()
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel,
+                    rpcConfig = rpcConfig
                 ),
                 function = func,
                 variantType = variantType,
@@ -364,22 +365,18 @@ class ClassBuilderDsl<T : KtObject>(
         p0Type: Pair<VariantType, Boolean>,
         arg: KtPropertyInfoBuilderDsl.() -> Unit,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, arg)
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction1(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = arguments,
                     returnVal = returnType,
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -396,10 +393,7 @@ class ClassBuilderDsl<T : KtObject>(
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction2(
@@ -410,10 +404,7 @@ class ClassBuilderDsl<T : KtObject>(
                         p1.toKtPropertyInfo(),
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel,
+                    rpcConfig = rpcConfig
                 ),
                 function = func,
                 variantType = variantType,
@@ -430,25 +421,21 @@ class ClassBuilderDsl<T : KtObject>(
         p1Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 2) {
             "Function ${func.name.camelToSnakeCase()} should have 2 arguments, found ${args.size}"
         }
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction2(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = arguments,
                     returnVal = returnType,
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -468,10 +455,7 @@ class ClassBuilderDsl<T : KtObject>(
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction3(
@@ -483,10 +467,7 @@ class ClassBuilderDsl<T : KtObject>(
                         p2.toKtPropertyInfo(),
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel,
+                    rpcConfig = rpcConfig
                 ),
                 function = func,
                 variantType = variantType,
@@ -505,25 +486,21 @@ class ClassBuilderDsl<T : KtObject>(
         p2Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 3) {
             "Function ${func.name.camelToSnakeCase()} should have 3 arguments, found ${args.size}"
         }
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction3(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = arguments,
                     returnVal = returnType,
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -546,10 +523,7 @@ class ClassBuilderDsl<T : KtObject>(
         p2: KtFunctionArgument,
         p3: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction4(
@@ -562,10 +536,7 @@ class ClassBuilderDsl<T : KtObject>(
                         p3.toKtPropertyInfo(),
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel,
+                    rpcConfig = rpcConfig
                 ),
                 function = func,
                 variantType = variantType,
@@ -586,25 +557,21 @@ class ClassBuilderDsl<T : KtObject>(
         p3Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 4) {
             "Function ${func.name.camelToSnakeCase()} should have 4 arguments, found ${args.size}"
         }
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction4(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = arguments,
                     returnVal = returnType,
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,
@@ -630,10 +597,7 @@ class ClassBuilderDsl<T : KtObject>(
         p3: KtFunctionArgument,
         p4: KtFunctionArgument,
         returnType: KtFunctionArgument,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfig
     ) {
         appendFunction(
             KtFunction5(
@@ -647,10 +611,7 @@ class ClassBuilderDsl<T : KtObject>(
                         p4.toKtPropertyInfo()
                     ),
                     returnVal = returnType.toKtPropertyInfo(),
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel,
+                    rpcConfig = rpcConfig
                 ),
                 function = func,
                 variantType = variantType,
@@ -673,25 +634,21 @@ class ClassBuilderDsl<T : KtObject>(
         p4Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
-        rpcModeId: Int = 0,
-        rpcCallLocal: Boolean = false,
-        rpcTransferModeId: Int = 0,
-        rpcChannel: Int = 0,
+        rpcConfig: KtRpcConfigBuilderDsl.() -> Unit,
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 5) {
             "Function ${func.name.camelToSnakeCase()} should have 5 arguments, found ${args.size}"
         }
+        val rpcConfigBuilder = KtRpcConfigBuilderDsl()
+        rpcConfigBuilder.rpcConfig()
         appendFunction(
             KtFunction5(
                 functionInfo = KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = arguments,
                     returnVal = returnType,
-                    rpcModeId = rpcModeId,
-                    rpcCallLocal = rpcCallLocal,
-                    rpcTransferModeId = rpcTransferModeId,
-                    rpcChannel = rpcChannel
+                    rpcConfig = rpcConfigBuilder.build()
                 ),
                 function = func,
                 variantType = variantType,

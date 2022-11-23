@@ -32,7 +32,7 @@ int KtFunction::get_parameter_count() const {
     return parameter_count;
 }
 
-const RpcConfig& KtFunction::get_rpc_config() const {
+KtRpcConfig* KtFunction::get_rpc_config() const {
     return method_info->rpc_config;
 }
 
@@ -66,22 +66,9 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
                                     ClassLoader::get_default_loader());
 
-    jni::MethodId getRPCModeIdMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
-    MultiplayerAPI::RPCMode rpc_mode{static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod))};
-    jni::MethodId getRPCCallLocalMethod{get_method_id(env, jni_methods.GET_RPC_CALL_LOCAL)};
-    bool rpc_call_local = wrapped.call_boolean_method(env, getRPCCallLocalMethod);
-    jni::MethodId getRPCTransferModeIdMethod{get_method_id(env, jni_methods.GET_RPC_TRANSFER_MODE_ID)};
-    MultiplayerPeer::TransferMode rpc_transfer_mode{static_cast<MultiplayerPeer::TransferMode>(wrapped.call_int_method(env, getRPCTransferModeIdMethod))};
-    jni::MethodId getRPCChannelMethod{get_method_id(env, jni_methods.GET_RPC_CHANNEL)};
-    int rpc_channel = wrapped.call_int_method(env, getRPCChannelMethod);
-
-    // for key's to set, take a look at SceneRPCInterface::_parse_rpc_config and/or GDScriptParser::rpc_annotation
-    rpc_config = {
-            rpc_mode,
-            rpc_transfer_mode,
-            rpc_call_local,
-            rpc_channel
-    };
+    jni::MethodId getRpcConfigMethod{get_method_id(env, jni_methods.GET_RPC_CONFIG)};
+    rpc_config = new KtRpcConfig(wrapped.call_object_method(env, getRpcConfigMethod),
+                                    ClassLoader::get_default_loader());
 }
 
 KtFunctionInfo::~KtFunctionInfo() {

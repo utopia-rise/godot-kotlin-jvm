@@ -36,7 +36,7 @@ object FunctionRegistrationGenerator {
             }
         }
 
-        append(",·%T(%T,·%S),·%T.id.toInt(),·%L,·%T.id.toInt(),·%L)") //return KtFunctionArgument
+        append(",·%T(%T,·%S),·%T(%T.id.toInt(),·%L,·%T.id.toInt(),·%L))") //return KtFunctionArgument
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
@@ -62,6 +62,7 @@ object FunctionRegistrationGenerator {
             add(ktFunctionArgumentClassName)
             add(registeredFunction.returnType.toKtVariantType())
             add(registeredFunction.returnType?.fqName ?: "kotlin.Unit")
+            add(ClassName("godot.core", "KtRpcConfig"))
             add(getRpcModeEnum(registeredFunction))
             add(getRpcCallLocal(registeredFunction))
             add(getRpcTransferModeEnum(registeredFunction))

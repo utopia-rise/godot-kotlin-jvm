@@ -6,7 +6,7 @@
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"
-#include "rpc_config.h"
+#include "kt_rpc_config.h"
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -15,7 +15,7 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
-    RpcConfig rpc_config;
+    KtRpcConfig* rpc_config;
 
     MethodInfo to_method_info() const;
 
@@ -23,10 +23,7 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
         JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(GET_RETURN_VAL, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")
-        JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
-        JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
-        JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
-        JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
+        JNI_METHOD(GET_RPC_CONFIG, "getRpcConfig", "()[Lgodot/core/KtRpcConfig;")
 )
 };
 
@@ -42,7 +39,7 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
-    const RpcConfig& get_rpc_config() const;
+    KtRpcConfig* get_rpc_config() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
