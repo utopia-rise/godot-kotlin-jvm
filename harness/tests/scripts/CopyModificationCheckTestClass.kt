@@ -214,7 +214,7 @@ class CopyModificationCheckTestClass: Node3D() {
     fun poolArrayFunctions() {
         Invocation().vectorList.pushBack(Vector3.FORWARD)
         Invocation().vectorList[0].x += 5
-        Invocation().vectorList.get(0).x += 5 
+        Invocation().vectorList.get(0).x += 5
         //TODO: once helper functions are merged
     }
 }

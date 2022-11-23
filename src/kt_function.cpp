@@ -1,3 +1,4 @@
+#include <scene/main/multiplayer_api.h>
 #include "kt_function.h"
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"
@@ -31,10 +32,9 @@ int KtFunction::get_parameter_count() const {
     return parameter_count;
 }
 
-// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//Multiplayer::RPCMode KtFunction::get_rpc_mode() const {
-//    return method_info->rpc_mode;
-//}
+KtRpcConfig* KtFunction::get_rpc_config() const {
+    return method_info->rpc_config;
+}
 
 KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
@@ -65,9 +65,10 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
                                     ClassLoader::get_default_loader());
-    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    jni::MethodId getRPCModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
-//    rpc_mode = static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeMethod));
+
+    jni::MethodId getRpcConfigMethod{get_method_id(env, jni_methods.GET_RPC_CONFIG)};
+    rpc_config = new KtRpcConfig(wrapped.call_object_method(env, getRpcConfigMethod),
+                                    ClassLoader::get_default_loader());
 }
 
 KtFunctionInfo::~KtFunctionInfo() {

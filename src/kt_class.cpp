@@ -152,6 +152,16 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
 }
 
+const Dictionary KtClass::get_rpc_config() {
+    Dictionary rpc_configs{};
+
+    for (const KeyValue<StringName, KtFunction*>& E : methods) {
+        rpc_configs[E.key] = E.value->get_rpc_config()->toRpcConfigDictionary();
+    }
+
+    return rpc_configs;
+}
+
 void KtClass::fetch_members() {
     jni::Env env { jni::Jvm::current_env() };
     fetch_methods(env);

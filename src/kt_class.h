@@ -43,6 +43,7 @@ public:
 
     bool is_assignable_from(KtClass* p_class) const;
 
+    const Dictionary get_rpc_config();
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;

@@ -18,9 +18,6 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     hint = static_cast<PropertyHint>(wrapped.call_int_method(env, getPropertyHintMethod));
     jni::MethodId getHintStringMethod{get_method_id(env, jni_methods.GET_HINT_STRING)};
     hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
-    jni::MethodId getRpcModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE)};
-    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    rpc_mode = static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRpcModeMethod));
     jni::MethodId getVisibleInEditorMethod{get_method_id(env, jni_methods.GET_VISIBLE_IN_EDITOR)};
     visible_in_editor = wrapped.call_boolean_method(env, getVisibleInEditorMethod);
 }
@@ -57,11 +54,6 @@ KtProperty::~KtProperty() {
 StringName KtProperty::get_name() const {
     return propertyInfo->name;
 }
-
-// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//Multiplayer::RPCMode KtProperty::get_rpc_mode() const {
-//    return propertyInfo->rpc_mode;
-//}
 
 PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();

@@ -15,8 +15,6 @@ struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     StringName class_name;
     PropertyHint hint;
     String hint_string;
-    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    Multiplayer::RPCMode rpc_mode;
     bool visible_in_editor;
 
     PropertyInfo toPropertyInfo();
@@ -28,7 +26,6 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_HINT, "getHint", "()I")
         JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
         JNI_METHOD(GET_VISIBLE_IN_EDITOR, "getVisibleInEditor", "()Z")
-        JNI_METHOD(GET_RPC_MODE, "getRpcModeId", "()I")
 )
 };
 
@@ -42,8 +39,6 @@ public:
     ~KtProperty();
 
     StringName get_name() const;
-    // TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    Multiplayer::RPCMode get_rpc_mode() const;
 
     PropertyInfo get_member_info();
 
