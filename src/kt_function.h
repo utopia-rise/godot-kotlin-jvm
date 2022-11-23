@@ -23,7 +23,7 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
         JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(GET_RETURN_VAL, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")
-        JNI_METHOD(GET_RPC_CONFIG, "getRpcConfig", "()[Lgodot/core/KtRpcConfig;")
+        JNI_METHOD(GET_RPC_CONFIG, "getRpcConfig", "()Lgodot/core/KtRpcConfig;")
 )
 };
 
