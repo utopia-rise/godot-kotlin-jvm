@@ -1,3 +1,4 @@
+#include <scene/main/multiplayer_api.h>
 #include "kt_function.h"
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"
@@ -66,7 +67,7 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
                                     ClassLoader::get_default_loader());
 
     jni::MethodId getRPCModeIdMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
-    MultiplayerAPI::RPCMode rpc_mode{static_cast<Multiplayer::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod))};
+    MultiplayerAPI::RPCMode rpc_mode{static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRPCModeIdMethod))};
     jni::MethodId getRPCCallLocalMethod{get_method_id(env, jni_methods.GET_RPC_CALL_LOCAL)};
     bool rpc_call_local = wrapped.call_boolean_method(env, getRPCCallLocalMethod);
     jni::MethodId getRPCTransferModeIdMethod{get_method_id(env, jni_methods.GET_RPC_TRANSFER_MODE_ID)};

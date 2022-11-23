@@ -2,7 +2,7 @@
 #ifndef GODOT_JVM_RPC_CONFIG_H
 #define GODOT_JVM_RPC_CONFIG_H
 
-#include <core/multiplayer/multiplayer.h>
+#include <scene/main/multiplayer_api.h>
 
 struct RpcConfig {
     MultiplayerAPI::RPCMode rpc_mode;
