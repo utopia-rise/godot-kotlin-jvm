@@ -1,6 +1,6 @@
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include <modules/kotlin_jvm/src/bridges/bridges_utils.h>
-#include <modules/kotlin_jvm/src/bridges/constants.h>
+#include "bridges_utils.h"
+#include "constants.h"
 #include "packed_byte_array_bridge.h"
 
 

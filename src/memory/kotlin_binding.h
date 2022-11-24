@@ -3,10 +3,14 @@
 
 #include "modules/kotlin_jvm/src/kt_object.h"
 
+//forward declaration
 class KotlinBindingManager;
 
 class KotlinBinding {
     friend class KotlinBindingManager;
+    //The pair structure in HashMap contains values of KotlinBinding.
+    //It has to be able to call its private destructor when removing bindings.
+    friend struct KeyValue<Object*, KotlinBinding>;
 
 public:
     KtObject* kt_object;

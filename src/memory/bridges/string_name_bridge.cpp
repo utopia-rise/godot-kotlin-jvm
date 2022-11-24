@@ -9,18 +9,18 @@ JNI_INIT_STATICS_FOR_CLASS(StringNameBridge)
 StringNameBridge::StringNameBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
     JavaInstanceWrapper<StringNameBridge>(STRING_NAME_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader){
     jni::JNativeMethod engine_call_constructor_method{
-            "engine_call_constructor",
-            "()J",
-            (void *) StringNameBridge::engine_call_constructor
+        const_cast<char*>("engine_call_constructor"),
+        const_cast<char*>("()J"),
+        (void *) StringNameBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_copy_constructor{
-        "engine_call_copy_constructor",
-        "()J",
+        const_cast<char*>("engine_call_copy_constructor"),
+        const_cast<char*>("()J"),
         (void *) StringNameBridge::engine_call_copy_constructor
     };
     jni::JNativeMethod engine_call_constructor_string{
-        "engine_call_constructor_string",
-        "()J",
+        const_cast<char*>("engine_call_constructor_string"),
+        const_cast<char*>("()J"),
         (void *) StringNameBridge::engine_call_constructor_string
     };
 

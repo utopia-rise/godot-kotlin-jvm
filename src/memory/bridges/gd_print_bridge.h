@@ -3,7 +3,6 @@
 
 #include <modules/kotlin_jvm/src/java_instance_wrapper.h>
 
-
 namespace bridges {
 
     class GDPrintBridge : public JavaInstanceWrapper<GDPrintBridge> {

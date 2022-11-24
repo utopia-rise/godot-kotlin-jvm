@@ -69,39 +69,39 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
 CallableBridge::CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
         JavaInstanceWrapper<CallableBridge>(CALLABLE_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader){
     jni::JNativeMethod engine_call_constructor_method{
-        "engine_call_constructor",
-        "()J",
+        const_cast<char*>("engine_call_constructor"),
+        const_cast<char*>("()J"),
         (void *) CallableBridge::engine_call_constructor
     };
 
     jni::JNativeMethod engine_call_constructor_object_string_name_method{
-        "engine_call_constructor_object_string_name",
-        "()J",
+        const_cast<char*>("engine_call_constructor_object_string_name"),
+        const_cast<char*>("()J"),
         (void *) CallableBridge::engine_call_constructor_object_string_name
     };
 
     jni::JNativeMethod engine_call_constructor_kt_custom_callable_method{
-        "engine_call_constructor_kt_custom_callable",
-        "(Lgodot/core/KtCustomCallable;)J",
+        const_cast<char*>("engine_call_constructor_kt_custom_callable"),
+        const_cast<char*>("(Lgodot/core/KtCustomCallable;)J"),
         (void *) CallableBridge::engine_call_constructor_kt_custom_callable
     };
 
     jni::JNativeMethod engine_call_copy_constructor_method{
-        "engine_call_copy_constructor",
-        "()J",
+        const_cast<char*>("engine_call_copy_constructor"),
+        const_cast<char*>("()J"),
         (void *) CallableBridge::engine_call_copy_constructor
     };
 
     jni::JNativeMethod engine_call_call_method{
-            "engine_call_call",
-            "(J)V",
-            (void *) CallableBridge::engine_call_call
+        const_cast<char*>("engine_call_call"),
+        const_cast<char*>("(J)V"),
+        (void *) CallableBridge::engine_call_call
     };
 
     jni::JNativeMethod engine_call_call_deferred_method{
-            "engine_call_call_deferred",
-            "(J)V",
-            (void *) CallableBridge::engine_call_call_deferred
+        const_cast<char*>("engine_call_call_deferred"),
+        const_cast<char*>("(J)V"),
+        (void *) CallableBridge::engine_call_call_deferred
     };
 
     Vector<jni::JNativeMethod> methods;

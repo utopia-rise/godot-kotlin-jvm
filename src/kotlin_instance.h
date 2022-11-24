@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
-#include "kotlin_script.h"
+
 #include "kt_class.h"
-#include "kt_object.h"
-#include "modules/kotlin_jvm/src/memory/kotlin_binding.h"
+#include "memory/kotlin_binding_manager.h"
+#include "kotlin_script.h"
 #include <core/object/script_language.h>
+
 
 class KotlinInstance : public ScriptInstance {
 private:
@@ -15,9 +16,6 @@ private:
 public:
     KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, KotlinScript* p_script);
     ~KotlinInstance() override;
-
-	bool property_can_revert(const StringName &p_name) const  override;
-	bool property_get_revert(const StringName &p_name, Variant &r_ret) const  override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
 
@@ -37,15 +35,6 @@ public:
 
     Variant
     callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
-
-    //TODO/4.0: check if there is any new implementation of these methods
-//    void
-//    call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2, const Variant& p_arg3,
-//                    const Variant& p_arg4, const Variant& p_arg5) override;
-
-//    void call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) override;
-//
-//    void call_multilevel_reversed(const StringName& p_method, const Variant** p_args, int p_argcount) override;
 
     void notification(int p_notification) override;
 

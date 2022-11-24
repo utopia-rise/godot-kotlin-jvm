@@ -1,5 +1,4 @@
 #include "kotlin_instance.h"
-#include "gd_kotlin.h"
 #include "kotlin_language.h"
 #include "kt_class.h"
 
@@ -9,22 +8,12 @@ KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtCl
 }
 
 KotlinInstance::~KotlinInstance() {
-	KotlinBindingManager::delete_script_binding(this);
+	KotlinBindingManager::delete_script_binding(binding);
 	binding = nullptr;
 }
 
 Object *KotlinInstance::get_owner() {
 	return binding->owner;
-}
-
-//TODO/4.0: Implement new revert methods
-bool KotlinInstance::property_can_revert(const StringName &p_name) const {
-	return true;
-}
-
-//TODO/4.0: Implement new revert methods
-bool KotlinInstance::property_get_revert(const StringName &p_name, Variant &r_ret) const {
-	return true;
 }
 
 bool KotlinInstance::set(const StringName &p_name, const Variant &p_value) {
@@ -84,19 +73,6 @@ Variant KotlinInstance::callp(const StringName &p_method, const Variant **p_args
 	return ret_var;
 }
 
-//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
-//                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5) {
-//    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
-//}
-//
-//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) {
-//    ScriptInstance::call_multilevel(p_method, p_args, p_argcount);
-//}
-//
-//void KotlinInstance::call_multilevel_reversed(const StringName& p_method, const Variant** p_args, int p_argcount) {
-//    ScriptInstance::call_multilevel_reversed(p_method, p_args, p_argcount);
-//}
-
 void KotlinInstance::notification(int p_notification) {
 }
 
@@ -130,10 +106,9 @@ Variant KotlinInstance::property_get_fallback(const StringName &p_name, bool *r_
 	return ScriptInstance::property_get_fallback(p_name, r_valid);
 }
 
-// Variant is of type Dictionary
-//const Variant KotlinInstance::get_rpc_config() const {
-//	return kt_class->get_rpc_config();
-//}
+const Variant KotlinInstance::get_rpc_config() const {
+    return kt_class->get_rpc_config();
+}
 
 ScriptLanguage *KotlinInstance::get_language() {
 	return &KotlinLanguage::get_instance();

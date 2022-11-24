@@ -1,12 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 #define GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 
-#include "core/object/ref_counted.h"
-#include "core/os/mutex.h"
 #include "kotlin_binding.h"
-#include "modules/kotlin_jvm/src/jni/types.h"
-#include "modules/kotlin_jvm/src/kotlin_instance.h"
-#include "modules/kotlin_jvm/src/kt_object.h"
 #include <cstdint>
 
 class KotlinBindingManager {
@@ -40,7 +35,7 @@ public:
     //For script bindings, they are to bind user defined Godot objects to their JVM scripts, not for native objects.
     static KotlinBinding* create_script_binding(Object* p_object, KtObject* ktObject);
 
-    static void delete_script_binding(KotlinInstance* instance);
+    static void delete_script_binding(KotlinBinding* binding);
 
     static KotlinBindingManager& get_instance();
 };

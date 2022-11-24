@@ -1,6 +1,6 @@
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include <modules/kotlin_jvm/src/bridges/constants.h>
-#include <modules/kotlin_jvm/src/bridges/bridges_utils.h>
+#include "constants.h"
+#include "bridges_utils.h"
 #include "packed_vector2_array_bridge.h"
 
 using namespace bridges;
@@ -10,64 +10,64 @@ JNI_INIT_STATICS_FOR_CLASS(PackedVector2ArrayBridge)
 PackedVector2ArrayBridge::PackedVector2ArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(PACKED_VECTOR2_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
-            "engine_call_constructor",
-            "()J",
-            (void*) PackedVector2ArrayBridge::engine_call_constructor
+        const_cast<char*>("engine_call_constructor"),
+        const_cast<char*>("()J"),
+        (void*) PackedVector2ArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_append_method{
-            "engine_call_append",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_append
+        const_cast<char*>("engine_call_append"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_append
     };
     jni::JNativeMethod engine_call_appendArray_method{
-            "engine_call_appendArray",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_appendArray
+        const_cast<char*>("engine_call_appendArray"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_appendArray
     };
     jni::JNativeMethod engine_call_is_empty_method{
-            "engine_call_is_empty",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_is_empty
+        const_cast<char*>("engine_call_is_empty"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_is_empty
     };
     jni::JNativeMethod engine_call_get_method{
-            "engine_call_get",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_get
+        const_cast<char*>("engine_call_get"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_get
     };
     jni::JNativeMethod engine_call_insert_method{
-            "engine_call_insert",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_insert
+        const_cast<char*>("engine_call_insert"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_insert
     };
     jni::JNativeMethod engine_call_reverse_method{
-            "engine_call_reverse",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_reverse
+        const_cast<char*>("engine_call_reverse"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_reverse
     };
     jni::JNativeMethod engine_call_pushback_method{
-            "engine_call_pushback",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_pushback
+        const_cast<char*>("engine_call_pushback"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_pushback
     };
     jni::JNativeMethod engine_call_remove_at_method{
-            "engine_call_remove_at",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_remove_at
+        const_cast<char*>("engine_call_remove_at"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_remove_at
     };
     jni::JNativeMethod engine_call_resize_method{
-            "engine_call_resize",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_resize
+        const_cast<char*>("engine_call_resize"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_resize
     };
     jni::JNativeMethod engine_call_set_method{
-            "engine_call_set",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_set
+        const_cast<char*>("engine_call_set"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_set
     };
     jni::JNativeMethod engine_call_size_method{
-            "engine_call_size",
-            "(J)V",
-            (void*) PackedVector2ArrayBridge::engine_call_size
+        const_cast<char*>("engine_call_size"),
+        const_cast<char*>("(J)V"),
+        (void*) PackedVector2ArrayBridge::engine_call_size
     };
 
     Vector<jni::JNativeMethod> methods;

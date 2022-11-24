@@ -190,11 +190,11 @@ void GodotKotlinJvmEditor::on_build_check_timeout() { // NOLINT(readability-conv
 
 GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         build_check_timer(memnew(Timer)),
-        bottom_panel(memnew(BottomPanel)),
-        tool_bar_build_button(memnew(Button)),
-        build_dialog(memnew(BuildDialog)),
         about_dialog(memnew(AboutDialog)),
-        error_dialog(memnew(ErrorDialog)) {
+        error_dialog(memnew(ErrorDialog)),
+        build_dialog(memnew(BuildDialog)),
+        tool_bar_build_button(memnew(Button)),
+        bottom_panel(memnew(BottomPanel)) {
     tool_bar_build_button->set_flat(true);
 }
 

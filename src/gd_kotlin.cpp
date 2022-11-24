@@ -1,6 +1,6 @@
 #include <main/main.h>
 #include "gd_kotlin.h"
-#include "bridges_manager.h"
+#include "memory/bridges_manager.h"
 #include "jni/class_loader.h"
 #include <core/io/resource_loader.h>
 #include <core/config/project_settings.h>
@@ -555,8 +555,8 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
 GDKotlin::GDKotlin() :
         bootstrap(nullptr),
         is_gc_started(false),
-        transfer_context(nullptr),
-        configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)) {
+        configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
+        transfer_context(nullptr) {
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {

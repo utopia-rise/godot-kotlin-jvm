@@ -2,17 +2,12 @@
 #define GODOT_JVM_GD_KOTLIN_H
 
 #include "bootstrap.h"
-#include "core/string/ustring.h"
-#include "kt_class.h"
 #include <core/string/ustring.h>
-#include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
 #include "kotlin_script.h"
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
-#include "kotlin_script.h"
 #include "kt_class.h"
-#include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
-#include "modules/kotlin_jvm/src/memory/transfer_context.h"
+#include <modules/kotlin_jvm/src/memory/transfer_context.h>
 
 class GDKotlin {
 private:

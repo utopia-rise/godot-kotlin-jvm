@@ -2,7 +2,6 @@
 #define GODOT_JVM_KT_FUNCTION_H
 
 
-#include <core/object/object.h>
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"

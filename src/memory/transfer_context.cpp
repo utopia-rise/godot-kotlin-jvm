@@ -52,6 +52,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
+    methods.push_back(icall_static_method);
     methods.push_back(invoke_ctor_method);
     methods.push_back(get_singleton_method);
     methods.push_back(set_script_method);
@@ -74,11 +75,18 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.is_null());
         auto* address{static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
+#ifdef DEBUG_ENABLED
         shared_buffer = SharedBuffer{
                 address,
                 0,
                 p_env.get_direct_buffer_capacity(buffer)
         };
+#else
+        shared_buffer = SharedBuffer{
+                address,
+                0
+        };
+#endif
     }
 
     return &shared_buffer;

@@ -1,5 +1,4 @@
 #include "kotlin_binding_manager.h"
-#include "modules/kotlin_jvm/src/logging.h"
 
 GDNativeInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
         &_instance_binding_create_callback,
@@ -49,7 +48,7 @@ KotlinBindingManager::_instance_binding_reference_callback(void* p_token, void* 
         binding->refcount_incremented_unsafe();
         return false;
     } else {
-        binding->refcount_decremented_unsafe();
+        return binding->refcount_decremented_unsafe();
     }
 }
 
@@ -92,16 +91,15 @@ KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtO
     binding->owner = p_object;
     binding->kt_object = ktObject;
     binding->is_setup = true;
+    return binding;
 }
 
-void KotlinBindingManager::delete_script_binding(KotlinInstance* instance) {
+void KotlinBindingManager::delete_script_binding(KotlinBinding* binding) {
     KotlinBindingManager& manager = get_instance();
     //We avoid concurrent modification of the map. Before that it should be safe as the destructor of an object is not supposed to be called multiple times.
     manager.spin.lock();
-    manager.binding_map.erase(instance->get_owner());
+    manager.binding_map.erase(binding->owner);
     manager.spin.unlock();
-}
-
 }
 
 KotlinBindingManager& KotlinBindingManager::get_instance() {
@@ -109,6 +107,5 @@ KotlinBindingManager& KotlinBindingManager::get_instance() {
     return instance;
 }
 
-KotlinBindingManager::KotlinBindingManager() :
-        binding_map(), spin() {
+KotlinBindingManager::KotlinBindingManager() :spin(), binding_map() {
 }

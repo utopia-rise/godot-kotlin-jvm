@@ -29,8 +29,9 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     return refcount == 0;
 }
 
-KotlinBinding::KotlinBinding() :
-        owner{nullptr}, kt_object{nullptr}, is_setup{false};
+KotlinBinding::KotlinBinding() : kt_object(nullptr), owner(nullptr),  is_setup(false) {
+
+}
 
 KotlinBinding::~KotlinBinding() {
     delete kt_object;
