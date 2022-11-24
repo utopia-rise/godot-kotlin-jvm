@@ -128,7 +128,6 @@ class RegisteredNameInlayHint : InlayHintsProvider<Any> {
                             startOffset = ktProperty.startOffset,
                             convertedName = ktProperty
                                 .name
-                                ?.removePrefix("signal")
                                 ?.camelToSnakeCase()
                                 ?: "<unknown>",
                             editor = editor,
