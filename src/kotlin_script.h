@@ -66,9 +66,6 @@ public:
 
     void set_path(const String& p_path, bool p_take_over) override;
 
-
-// TODO: Fixed with https://github.com/utopia-rise/godot-kotlin-jvm/pull/369
-//    const Variant get_rpc_config() const override;
     const Variant get_rpc_config() const override;
 
 #ifdef TOOLS_ENABLED
