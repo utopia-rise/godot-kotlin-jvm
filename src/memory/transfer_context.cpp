@@ -117,7 +117,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index {static_cast<int>(p_method_index)};
-    MethodBind* methodBind {GDKotlin::get_instance().engine_type_method[method_index]};
+    MethodBind* methodBind {TypeManager::get_instance().get_engine_type_method_for_index(method_index)};
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
@@ -155,7 +155,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
 }
 
 void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index) {
-    const StringName& class_name {GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
+    const StringName& class_name {TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
     Object* ptr = ClassDB::instantiate(class_name);
 
     auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
@@ -170,7 +170,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, 
     if (script_index == -1) {
         KotlinBindingManager::set_instance_binding(ptr, kt_object);
     } else {
-        Ref<KotlinScript> kotlin_script {GDKotlin::get_instance().user_scripts[script_index]};
+        Ref<KotlinScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
         auto script {memnew(KotlinInstance(kt_object, ptr, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};
         ptr->set_script_instance(script);
     }
@@ -188,7 +188,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, 
 
 void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     Object* singleton {Engine::get_singleton()->get_singleton_object(
-            GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
+            TypeManager::get_instance().get_engine_singleton_name_for_index(static_cast<int>(p_class_index))
     )};
     jni::Env env {p_raw_env};
 
