@@ -19,6 +19,8 @@ import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
 import java.io.File
 
+fun KSClassDeclaration.hasCompilationErrors(): Boolean = superTypes.toList().any { it.resolve().isError }
+
 fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): String = containingFile
     ?.filePath
     ?.let { filePath ->

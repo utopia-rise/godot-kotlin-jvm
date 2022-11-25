@@ -42,6 +42,7 @@ class GodotKotlinSymbolProcessor(
             ?: throw IllegalStateException("No projectBasePath option provided")
 
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
+            logger,
             projectBasePath,
             registeredClassToKSFileMap,
             sourceFilesContainingRegisteredClasses

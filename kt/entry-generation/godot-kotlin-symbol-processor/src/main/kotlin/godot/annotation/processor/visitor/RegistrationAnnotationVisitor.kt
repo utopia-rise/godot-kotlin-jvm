@@ -1,5 +1,6 @@
 package godot.annotation.processor.visitor
 
+import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSVisitorVoid
@@ -9,11 +10,13 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.ext.fqNameUnsafe
+import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
 class RegistrationAnnotationVisitor(
+    private val logger: KSPLogger,
     private val projectBasePath: String,
     private val registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile>,
     private val sourceFilesContainingRegisteredClasses: MutableList<SourceFile>
@@ -34,10 +37,15 @@ class RegistrationAnnotationVisitor(
             .mapNotNull { declaration ->
                 when (declaration) {
                     is KSClassDeclaration -> {
-                        val clazz = declaration.mapToClazz(projectBasePath)
-                        if (clazz is RegisteredClass) {
-                            clazz
-                        } else null
+                        if (!declaration.hasCompilationErrors()) {
+                            val clazz = declaration.mapToClazz(projectBasePath)
+                            if (clazz is RegisteredClass) {
+                                clazz
+                            } else null
+                        } else {
+                            logger.warn("Declaration will not be processed as it seems to have compilation errors.", declaration)
+                            null
+                        }
                     }
                     else -> if (declaration.annotations.any { registerAnnotations.contains(it.fqNameUnsafe) }) {
                         throw IllegalStateException("${declaration.qualifiedName} was registered top level. Only classes can be registered top level.")
