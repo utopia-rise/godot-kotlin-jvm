@@ -49,6 +49,10 @@ private:
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
 
+#if TOOLS_ENABLED
+    LocalVector<KtProperty*> property_list;
+#endif
+
     StringName get_name(jni::Env& env);
 
     String get_registered_name(jni::Env& env);

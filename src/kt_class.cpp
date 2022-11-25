@@ -19,6 +19,10 @@ KtClass::~KtClass() {
     for (auto& constructor : constructors) {
         delete constructor;
     }
+
+#if TOOLS_ENABLED
+    property_list.clear();
+#endif
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
@@ -104,6 +108,10 @@ void KtClass::fetch_properties(jni::Env& env) {
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty { new KtProperty(propertiesArray.get(env, i), ClassLoader::get_default_loader()) };
         properties[ktProperty->get_name()] = ktProperty;
+#if TOOLS_ENABLED
+        property_list.push_back(ktProperty);
+#endif
+
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), name));
 #endif
@@ -145,7 +153,14 @@ void KtClass::get_method_list(List<MethodInfo>* p_list) {
 }
 
 void KtClass::get_property_list(List<PropertyInfo>* p_list) {
+#if TOOLS_ENABLED
+    uint32_t size = property_list.size();
+    for (auto i = 0; i < size; i++) {
+        p_list->push_back(property_list[i]->get_member_info());
+    }
+#else
     get_member_list(p_list, properties);
+#endif
 }
 
 void KtClass::get_signal_list(List<MethodInfo>* p_list) {
