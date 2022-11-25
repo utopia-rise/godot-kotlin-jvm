@@ -84,7 +84,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
     }
 
   /**
-   * The amount of CCDIK joints in the CCDIK modification.
+   * The number of CCDIK joints in the CCDIK modification.
    */
   public var ccdikDataChainLength: Long
     get() {
@@ -104,7 +104,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns the name of the bone that is assigned to the CCDIK joint at `joint_idx`.
+   * Returns the name of the bone that is assigned to the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -114,7 +114,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone name, `bone_name`, of the CCDIK joint at `joint_idx`. When possible, this will also update the `bone_index` of the CCDIK joint based on data provided by the linked skeleton.
+   * Sets the bone name, [boneName], of the CCDIK joint at [jointIdx]. When possible, this will also update the `bone_index` of the CCDIK joint based on data provided by the linked skeleton.
    */
   public fun setCcdikJointBoneName(jointIdx: Long, boneName: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to boneName)
@@ -123,7 +123,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns the bone index of the bone assigned to the CCDIK joint at `joint_idx`.
+   * Returns the bone index of the bone assigned to the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -133,7 +133,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone index, `bone_index`, of the CCDIK joint at `joint_idx`. When possible, this will also update the `bone_name` of the CCDIK joint based on data provided by the linked skeleton.
+   * Sets the bone index, [boneIndex], of the CCDIK joint at [jointIdx]. When possible, this will also update the `bone_name` of the CCDIK joint based on data provided by the linked skeleton.
    */
   public fun setCcdikJointBoneIndex(jointIdx: Long, boneIndex: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIndex)
@@ -142,7 +142,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns the integer representing the joint axis of the CCDIK joint at `joint_idx`.
+   * Returns the integer representing the joint axis of the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointCcdikAxis(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -152,7 +152,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the joint axis of the CCDIK joint at `joint_idx` to the passed-in joint axis, `axis`.
+   * Sets the joint axis of the CCDIK joint at [jointIdx] to the passed-in joint axis, [axis].
    */
   public fun setCcdikJointCcdikAxis(jointIdx: Long, axis: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to axis)
@@ -161,7 +161,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Enables angle constraints to the CCDIK joint at `joint_idx`.
+   * Enables angle constraints to the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointEnableJointConstraint(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -172,7 +172,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets whether joint constraints are enabled for the CCDIK joint at `joint_idx`.
+   * Sets whether joint constraints are enabled for the CCDIK joint at [jointIdx].
    */
   public fun setCcdikJointEnableJointConstraint(jointIdx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to enable)
@@ -182,7 +182,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns the minimum angle constraint for the joint at `joint_idx`. **Note:** This angle is in degrees!
+   * Returns the minimum angle constraint for the joint at [jointIdx]. **Note:** This angle is in degrees!
    */
   public fun getCcdikJointConstraintAngleMin(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -193,7 +193,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the minimum angle constraint for the joint at `joint_idx`. **Note:** This angle must be in radians!
+   * Sets the minimum angle constraint for the joint at [jointIdx]. **Note:** This angle must be in radians!
    */
   public fun setCcdikJointConstraintAngleMin(jointIdx: Long, minAngle: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to minAngle)
@@ -203,7 +203,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns the maximum angle constraint for the joint at `joint_idx`. **Note:** This angle is in degrees!
+   * Returns the maximum angle constraint for the joint at [jointIdx]. **Note:** This angle is in degrees!
    */
   public fun getCcdikJointConstraintAngleMax(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -214,7 +214,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the maximum angle constraint for the joint at `joint_idx`. **Note:** This angle must be in radians!
+   * Sets the maximum angle constraint for the joint at [jointIdx]. **Note:** This angle must be in radians!
    */
   public fun setCcdikJointConstraintAngleMax(jointIdx: Long, maxAngle: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to maxAngle)
@@ -224,7 +224,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Returns whether the CCDIK joint at `joint_idx` uses an inverted joint constraint. See [setCcdikJointConstraintInvert] for details.
+   * Returns whether the CCDIK joint at [jointIdx] uses an inverted joint constraint. See [setCcdikJointConstraintInvert] for details.
    */
   public fun getCcdikJointConstraintInvert(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -235,7 +235,7 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets whether the CCDIK joint at `joint_idx` uses an inverted joint constraint.
+   * Sets whether the CCDIK joint at [jointIdx] uses an inverted joint constraint.
    *
    * An inverted joint constraint only constraints the CCDIK joint to the angles *outside of* the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.
    */

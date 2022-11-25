@@ -67,9 +67,6 @@ public open class Curve3D : Resource() {
     callConstructor(ENGINECLASS_CURVE3D)
   }
 
-  /**
-   * Returns the number of points describing the curve.
-   */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_POINT_COUNT, LONG)
@@ -77,9 +74,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Adds a point to a curve at `position` relative to the [godot.Curve3D]'s position, with control points `in` and `out`.
+   * Adds a point with the specified [position] relative to the curve's own position, with control points [in] and [out]. Appends the new point at the end of the point list.
    *
-   * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position <0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
+   * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [pointCount].
    */
   public fun addPoint(
     position: Vector3,
@@ -92,7 +89,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position for the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
+   * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an error to the console.
    */
   public fun setPointPosition(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
@@ -100,7 +97,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   public fun getPointPosition(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
@@ -109,7 +106,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the tilt angle in radians for the point `idx`. If the index is out of bounds, the function sends an error to the console.
+   * Sets the tilt angle in radians for the point [idx]. If the index is out of bounds, the function sends an error to the console.
    *
    * The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a [godot.PathFollow3D], this tilt is an offset over the natural tilt the [godot.PathFollow3D] calculates.
    */
@@ -119,7 +116,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the tilt angle in radians for the point `idx`. If the index is out of bounds, the function sends an error to the console, and returns `0`.
+   * Returns the tilt angle in radians for the point [idx]. If the index is out of bounds, the function sends an error to the console, and returns `0`.
    */
   public fun getPointTilt(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
@@ -128,7 +125,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading to the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public fun setPointIn(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
@@ -136,7 +133,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading to the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading to the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   public fun getPointIn(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
@@ -145,7 +142,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading out of the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public fun setPointOut(idx: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
@@ -153,7 +150,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading out of the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading out of the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   public fun getPointOut(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
@@ -177,20 +174,12 @@ public open class Curve3D : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_CLEAR_POINTS, NIL)
   }
 
-  /**
-   * Returns the position between the vertex `idx` and the vertex `idx + 1`, where `t` controls if the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of `t` outside the range (`0.0 >= t <=1`) give strange, but predictable results.
-   *
-   * If `idx` is out of bounds it is truncated to the first or last vertex, and `t` is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
-   */
   public fun interpolate(idx: Long, t: Double): Vector3 {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  /**
-   * Returns the position at the vertex `fofs`. It calls [interpolate] using the integer part of `fofs` as `idx`, and its fractional part as `t`.
-   */
   public fun interpolatef(fofs: Double): Vector3 {
     TransferContext.writeArguments(DOUBLE to fofs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATEF, VECTOR3)
@@ -206,26 +195,12 @@ public open class Curve3D : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Returns a point within the curve at position `offset`, where `offset` is measured as a distance in 3D units along the curve.
-   *
-   * To do that, it finds the two cached points where the `offset` lies between, then interpolates the values. This interpolation is cubic if `cubic` is set to `true`, or linear if set to `false`.
-   *
-   * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
-   */
   public fun interpolateBaked(offset: Double, cubic: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  /**
-   * Returns an up vector within the curve at position `offset`, where `offset` is measured as a distance in 3D units along the curve.
-   *
-   * To do that, it finds the two cached up vectors where the `offset` lies between, then interpolates the values. If `apply_tilt` is `true`, an interpolated tilt is applied to the interpolated up vector.
-   *
-   * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
-   */
   public fun interpolateBakedUpVector(offset: Double, applyTilt: Boolean = false): Vector3 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to applyTilt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_INTERPOLATE_BAKED_UP_VECTOR,
@@ -266,9 +241,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the closest baked point (in curve's local space) to `to_point`.
+   * Returns the closest baked point (in curve's local space) to [toPoint].
    *
-   * `to_point` must be in this curve's local space.
+   * [toPoint] must be in this curve's local space.
    */
   public fun getClosestPoint(toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPoint)
@@ -277,9 +252,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the closest offset to `to_point`. This offset is meant to be used in [interpolateBaked] or [interpolateBakedUpVector].
+   * Returns the closest offset to [toPoint]. This offset is meant to be used in [sampleBaked] or [sampleBakedUpVector].
    *
-   * `to_point` must be in this curve's local space.
+   * [toPoint] must be in this curve's local space.
    */
   public fun getClosestOffset(toPoint: Vector3): Double {
     TransferContext.writeArguments(VECTOR3 to toPoint)
@@ -292,9 +267,9 @@ public open class Curve3D : Resource() {
    *
    * This approximation makes straight segments between each point, then subdivides those segments until the resulting shape is similar enough.
    *
-   * `max_stages` controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
+   * [maxStages] controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
    *
-   * `tolerance_degrees` controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
+   * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector3Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)

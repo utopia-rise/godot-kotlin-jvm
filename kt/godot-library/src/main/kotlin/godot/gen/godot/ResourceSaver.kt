@@ -37,9 +37,9 @@ public object ResourceSaver : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Saves a resource to disk to the given path, using a [godot.ResourceFormatSaver] that recognizes the resource object.
+   * Saves a resource to disk to the given path, using a [godot.ResourceFormatSaver] that recognizes the resource object. If [path] is empty, [godot.ResourceSaver] will try to use [godot.Resource.resourcePath].
    *
-   * The `flags` bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.
+   * The [flags] bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.
    *
    * Returns [OK] on success.
    */
@@ -87,11 +87,11 @@ public object ResourceSaver : Object() {
      */
     FLAG_OMIT_EDITOR_PROPERTIES(8),
     /**
-     * Save as big endian (see [godot.File.bigEndian]).
+     * Save as big endian (see [godot.FileAccess.bigEndian]).
      */
     FLAG_SAVE_BIG_ENDIAN(16),
     /**
-     * Compress the resource on save using [godot.File.COMPRESSION_ZSTD]. Only available for binary resource types.
+     * Compress the resource on save using [godot.FileAccess.COMPRESSION_ZSTD]. Only available for binary resource types.
      */
     FLAG_COMPRESS(32),
     /**

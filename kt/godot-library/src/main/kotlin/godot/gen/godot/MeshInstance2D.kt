@@ -21,7 +21,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/2d_meshes.html]($DOCS_URL/tutorials/2d/2d_meshes.html)
  *
- * Node used for displaying a [godot.Mesh] in 2D. Can be constructed from an existing [godot.Sprite2D] via a tool in the editor toolbar. Select "Sprite2D" then "Convert to Mesh2D", select settings in popup and press "Create Mesh2D".
+ * Node used for displaying a [godot.Mesh] in 2D. A [godot.MeshInstance2D] can be automatically created from an existing [godot.Sprite2D] via a tool in the editor toolbar. Select the [godot.Sprite2D] node, then choose **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
  */
 @GodotBaseType
 public open class MeshInstance2D : Node2D() {

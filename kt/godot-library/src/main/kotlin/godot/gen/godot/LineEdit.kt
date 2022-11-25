@@ -139,7 +139,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Maximum amount of characters that can be entered inside the [godot.LineEdit]. If `0`, there is no limit.
+   * Maximum number of characters that can be entered inside the [godot.LineEdit]. If `0`, there is no limit.
    *
    * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens both for existing [text] contents when setting the max length, or for new text inserted in the [godot.LineEdit], including pasting. If any input text is truncated, the [textChangeRejected] signal is emitted with the truncated substring as parameter.
    *
@@ -225,7 +225,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * The character to use to mask secret input (defaults to "*"). Only a single character can be used as the secret character.
+   * The character to use to mask secret input (defaults to "•"). Only a single character can be used as the secret character.
    */
   public var secretCharacter: String
     get() {
@@ -490,9 +490,6 @@ public open class LineEdit : Control() {
           NIL)
     }
 
-  /**
-   * Duration (in seconds) of a caret's blinking cycle.
-   */
   public var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
@@ -567,7 +564,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Selects characters inside [godot.LineEdit] between `from` and `to`. By default, `from` is at the beginning and `to` at the end.
+   * Selects characters inside [godot.LineEdit] between [from] and [to]. By default, [from] is at the beginning and [to] at the end.
    *
    * [codeblocks]
    *
@@ -647,26 +644,17 @@ public open class LineEdit : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR_OPENTYPE_FEATURES,
@@ -683,7 +671,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Inserts `text` at the caret. If the resulting value is longer than [maxLength], nothing happens.
+   * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing happens.
    */
   public fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
@@ -699,7 +687,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Deletes a section of the [text] going from position `from_column` to `to_column`. Both parameters should be within the text's length.
+   * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters should be within the text's length.
    */
   public fun deleteText(fromColumn: Long, toColumn: Long): Unit {
     TransferContext.writeArguments(LONG to fromColumn, LONG to toColumn)

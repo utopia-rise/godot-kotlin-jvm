@@ -10,11 +10,6 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * Provides a 3D texture uniform within the visual shader graph.
- *
- * Translated to `uniform sampler3D` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeTexture3DUniform : VisualShaderNodeTextureUniform() {
   public override fun __new(): Unit {

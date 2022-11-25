@@ -51,6 +51,8 @@ public open class VoxelGI : VisualInstance3D() {
 
   /**
    * The size of the area covered by the [godot.VoxelGI]. If you make the extents larger without increasing the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed lighting.
+   *
+   * **Note:** Extents are clamped to 1.0 unit or more on each axis.
    */
   public var extents: Vector3
     get() {

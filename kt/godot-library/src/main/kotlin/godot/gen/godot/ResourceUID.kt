@@ -19,12 +19,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Singleton for managing a cache of resource UIDs within a project.
  *
+ * Resources can not only be referenced using their resource paths `res://`, but alternatively through a unique identifier specified via `uid://`.
+ *
+ * Using UIDs allows for the engine to keep references between resources intact, even if the files get renamed or moved.
+ *
+ * This singleton is responsible for keeping track of all registered resource UIDs of a project, generating new UIDs and converting between the string and integer representation.
  */
 @GodotBaseType
 public object ResourceUID : Object() {
   /**
+   * The value to use for an invalid UID, for example if the resource could not be loaded.
    *
+   * Its text representation is `uid://<invalid>`.
    */
   public final const val INVALID_ID: Long = -1
 
@@ -35,7 +43,7 @@ public object ResourceUID : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   *
+   * Converts the given UID to a `uid://` string value.
    */
   public fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
@@ -44,7 +52,7 @@ public object ResourceUID : Object() {
   }
 
   /**
-   *
+   * Extracts the UID value from the given `uid://` string.
    */
   public fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
@@ -53,7 +61,9 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Generates a random resource UID which is guaranteed to be unique within the list of currently loaded UIDs.
    *
+   * In order for this UID to be registered, you must call [addId] or [setId].
    */
   public fun createId(): Long {
     TransferContext.writeArguments()
@@ -62,7 +72,7 @@ public object ResourceUID : Object() {
   }
 
   /**
-   *
+   * Returns whether the given UID value is known to the cache.
    */
   public fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
@@ -71,7 +81,9 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Adds a new UID value which is mapped to the given resource path.
    *
+   * Fails with an error if the UID already exists, so be sure to check [hasId] beforehand, or use [setId] instead.
    */
   public fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
@@ -79,7 +91,9 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Updates the resource path of an existing UID.
    *
+   * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand, or use [addId] instead.
    */
   public fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
@@ -87,7 +101,9 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Returns the path that the given UID value refers to.
    *
+   * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand.
    */
   public fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
@@ -96,7 +112,9 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Removes a loaded UID value from the cache.
    *
+   * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand.
    */
   public fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)

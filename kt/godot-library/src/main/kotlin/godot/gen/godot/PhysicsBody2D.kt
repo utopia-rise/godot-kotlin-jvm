@@ -39,13 +39,15 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
-   * Moves the body along the vector `distance`. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], `distance` should be computed using `delta`.
+   * Moves the body along the vector [motion]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
    *
    * Returns a [godot.KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.
    *
-   * If `test_only` is `true`, the body does not move but the would-be collision information is given.
+   * If [testOnly] is `true`, the body does not move but the would-be collision information is given.
    *
-   * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
+   * [safeMargin] is the extra margin used for collision recovery (see [godot.CharacterBody2D.safeMargin] for more details).
+   *
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
    */
   public fun moveAndCollide(
     distance: Vector2,
@@ -59,13 +61,15 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
-   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], `distance` should be computed using `delta`.
+   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
    *
-   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector `distance`. Returns `true` if a collision would stop the body from moving along the whole path.
+   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector [motion]. Returns `true` if a collision would stop the body from moving along the whole path.
    *
-   * `collision` is an optional object of type [godot.KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.
+   * [collision] is an optional object of type [godot.KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.
    *
-   * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
+   * [safeMargin] is the extra margin used for collision recovery (see [godot.CharacterBody2D.safeMargin] for more details).
+   *
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would *touch* any other bodies.
    */
   public fun testMove(
     from: Transform2D,

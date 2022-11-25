@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorResourcePicker internal constructor() : HBoxContainer() {
   /**
-   * Emitted when the resource value was set and user clicked to edit it. When `edit` is `true`, the signal was caused by the context menu "Edit" option.
+   * Emitted when the resource value was set and user clicked to edit it. When [inspect] is `true`, the signal was caused by the context menu "Edit" or "Inspect" option.
    */
   public val resourceSelected: Signal2<Resource, Boolean> by signal("resource", "edit")
 
@@ -112,7 +112,7 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
   }
 
   /**
-   * This virtual method is called when updating the context menu of [godot.EditorResourcePicker]. Implement this method to override the "New ..." items with your own options. `menu_node` is a reference to the [godot.PopupMenu] node.
+   * This virtual method is called when updating the context menu of [godot.EditorResourcePicker]. Implement this method to override the "New ..." items with your own options. [menuNode] is a reference to the [godot.PopupMenu] node.
    *
    * **Note:** Implement [_handleMenuSelected] to handle these custom items.
    */

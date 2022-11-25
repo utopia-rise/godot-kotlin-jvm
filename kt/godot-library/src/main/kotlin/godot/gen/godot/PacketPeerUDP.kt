@@ -35,13 +35,13 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Binds this [godot.PacketPeerUDP] to the specified `port` and `address` with a buffer size `recv_buf_size`, allowing it to receive incoming packets.
+   * Binds this [godot.PacketPeerUDP] to the specified [port] and [bindAddress] with a buffer size [recvBufSize], allowing it to receive incoming packets.
    *
-   * If `address` is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).
+   * If [bindAddress] is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).
    *
-   * If `address` is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.
+   * If [bindAddress] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.
    *
-   * If `address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).
    */
   public fun bind(
     port: Long,
@@ -142,9 +142,9 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Calling this method connects this UDP peer to the given `host`/`port` pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [setDestAddress] are not allowed). This method does not send any data to the remote peer, to do that, use [godot.PacketPeer.putVar] or [godot.PacketPeer.putPacket] as usual. See also [godot.UDPServer].
+   * Calling this method connects this UDP peer to the given [host]/[port] pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [setDestAddress] are not allowed). This method does not send any data to the remote peer, to do that, use [godot.PacketPeer.putVar] or [godot.PacketPeer.putPacket] as usual. See also [godot.UDPServer].
    *
-   * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transferring sensitive information.
+   * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.
    */
   public fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -210,7 +210,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Joins the multicast group specified by `multicast_address` using the interface identified by `interface_name`.
+   * Joins the multicast group specified by [multicastAddress] using the interface identified by [interfaceName].
    *
    * You can join the same multicast group with multiple interfaces. Use [godot.IP.getLocalInterfaces] to know which are available.
    *
@@ -224,7 +224,7 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Removes the interface identified by `interface_name` from the multicast group specified by `multicast_address`.
+   * Removes the interface identified by [interfaceName] from the multicast group specified by [multicastAddress].
    */
   public fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)

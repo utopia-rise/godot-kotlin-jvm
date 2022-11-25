@@ -1128,7 +1128,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a `node` on the virtual axis at a given position set by `pos`. You can insert it at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   public fun addBlendPoint(
     node: AnimationRootNode,
@@ -1141,7 +1141,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index `point` on the blend axis.
+   * Updates the position of the point at index [point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Long, pos: Double): Unit {
     TransferContext.writeArguments(LONG to point, DOUBLE to pos)
@@ -1150,7 +1150,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [godot.AnimationNode] referenced by the point at index `point`.
+   * Changes the [godot.AnimationNode] referenced by the point at index [point].
    */
   public fun setBlendPointNode(point: Long, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point, OBJECT to node)
@@ -1159,7 +1159,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index `point` from the blend axis.
+   * Removes the point at index [point] from the blend axis.
    */
   public fun removeBlendPoint(point: Long): Unit {
     TransferContext.writeArguments(LONG to point)

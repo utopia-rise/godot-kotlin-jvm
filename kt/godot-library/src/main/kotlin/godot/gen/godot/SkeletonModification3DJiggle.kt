@@ -190,7 +190,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone name, `bone_name`, of the Jiggle joint at `joint_idx`. When possible, this will also update the `bone_index` of the Jiggle joint based on data provided by the [godot.Skeleton3D].
+   * Sets the bone name, [name], of the Jiggle joint at [jointIdx]. When possible, this will also update the `bone_index` of the Jiggle joint based on data provided by the [godot.Skeleton3D].
    */
   public fun setJiggleJointBoneName(jointIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to jointIdx, STRING to name)
@@ -199,7 +199,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns the name of the bone that is assigned to the Jiggle joint at `joint_idx`.
+   * Returns the name of the bone that is assigned to the Jiggle joint at [jointIdx].
    */
   public fun getJiggleJointBoneName(jointIdx: Long): String {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -209,7 +209,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone index, `bone_index`, of the Jiggle joint at `joint_idx`. When possible, this will also update the `bone_name` of the Jiggle joint based on data provided by the [godot.Skeleton3D].
+   * Sets the bone index, [boneIdx], of the Jiggle joint at [jointIdx]. When possible, this will also update the `bone_name` of the Jiggle joint based on data provided by the [godot.Skeleton3D].
    */
   public fun setJiggleJointBoneIndex(jointIdx: Long, boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to jointIdx, LONG to boneIdx)
@@ -218,7 +218,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns the bone index of the bone assigned to the Jiggle joint at `joint_idx`.
+   * Returns the bone index of the bone assigned to the Jiggle joint at [jointIdx].
    */
   public fun getJiggleJointBoneIndex(jointIdx: Long): Long {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -228,7 +228,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets whether the Jiggle joint at `joint_idx` should override the default Jiggle joint settings. Setting this to true will make the joint use its own settings rather than the default ones attached to the modification.
+   * Sets whether the Jiggle joint at [jointIdx] should override the default Jiggle joint settings. Setting this to true will make the joint use its own settings rather than the default ones attached to the modification.
    */
   public fun setJiggleJointOverride(jointIdx: Long, `override`: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to override)
@@ -237,7 +237,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns a boolean that indicates whether the joint at `joint_idx` is overriding the default jiggle joint data defined in the modification.
+   * Returns a boolean that indicates whether the joint at [jointIdx] is overriding the default jiggle joint data defined in the modification.
    */
   public fun getJiggleJointOverride(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -247,7 +247,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the of stiffness of the Jiggle joint at `joint_idx`.
+   * Sets the of stiffness of the Jiggle joint at [jointIdx].
    */
   public fun setJiggleJointStiffness(jointIdx: Long, stiffness: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to stiffness)
@@ -256,7 +256,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns the stiffness of the Jiggle joint at `joint_idx`.
+   * Returns the stiffness of the Jiggle joint at [jointIdx].
    */
   public fun getJiggleJointStiffness(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -266,7 +266,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the of mass of the Jiggle joint at `joint_idx`.
+   * Sets the of mass of the Jiggle joint at [jointIdx].
    */
   public fun setJiggleJointMass(jointIdx: Long, mass: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to mass)
@@ -275,7 +275,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns the amount of mass of the Jiggle joint at `joint_idx`.
+   * Returns the amount of mass of the Jiggle joint at [jointIdx].
    */
   public fun getJiggleJointMass(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -285,7 +285,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the amount of dampening of the Jiggle joint at `joint_idx`.
+   * Sets the amount of dampening of the Jiggle joint at [jointIdx].
    */
   public fun setJiggleJointDamping(jointIdx: Long, damping: Double): Unit {
     TransferContext.writeArguments(LONG to jointIdx, DOUBLE to damping)
@@ -294,7 +294,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns the amount of dampening of the Jiggle joint at `joint_idx`.
+   * Returns the amount of dampening of the Jiggle joint at [jointIdx].
    */
   public fun getJiggleJointDamping(jointIdx: Long): Double {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -304,7 +304,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets whether the Jiggle joint at `joint_idx` should use gravity.
+   * Sets whether the Jiggle joint at [jointIdx] should use gravity.
    */
   public fun setJiggleJointUseGravity(jointIdx: Long, useGravity: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx, BOOL to useGravity)
@@ -313,7 +313,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns a boolean that indicates whether the joint at `joint_idx` is using gravity or not.
+   * Returns a boolean that indicates whether the joint at [jointIdx] is using gravity or not.
    */
   public fun getJiggleJointUseGravity(jointIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to jointIdx)
@@ -323,7 +323,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Sets the gravity vector of the Jiggle joint at `joint_idx`.
+   * Sets the gravity vector of the Jiggle joint at [jointIdx].
    */
   public fun setJiggleJointGravity(jointIdx: Long, gravity: Vector3): Unit {
     TransferContext.writeArguments(LONG to jointIdx, VECTOR3 to gravity)
@@ -332,7 +332,7 @@ public open class SkeletonModification3DJiggle : SkeletonModification3D() {
   }
 
   /**
-   * Returns a [godot.core.Vector3] representign the amount of gravity the Jiggle joint at `joint_idx` is influenced by.
+   * Returns a [godot.core.Vector3] representign the amount of gravity the Jiggle joint at [jointIdx] is influenced by.
    */
   public fun getJiggleJointGravity(jointIdx: Long): Vector3 {
     TransferContext.writeArguments(LONG to jointIdx)

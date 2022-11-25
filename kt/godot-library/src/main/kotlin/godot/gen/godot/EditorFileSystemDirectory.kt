@@ -42,7 +42,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the subdirectory at index `idx`.
+   * Returns the subdirectory at index [idx].
    */
   public fun getSubdir(idx: Long): EditorFileSystemDirectory? {
     TransferContext.writeArguments(LONG to idx)
@@ -62,7 +62,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the name of the file at index `idx`.
+   * Returns the name of the file at index [idx].
    */
   public fun getFile(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -72,7 +72,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the path to the file at index `idx`.
+   * Returns the path to the file at index [idx].
    */
   public fun getFilePath(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -82,7 +82,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the resource type of the file at index `idx`. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
+   * Returns the resource type of the file at index [idx]. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
    */
   public fun getFileType(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
@@ -92,7 +92,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the name of the script class defined in the file at index `idx`. If the file doesn't define a script class using the `class_name` syntax, this will return an empty string.
+   * Returns the name of the script class defined in the file at index [idx]. If the file doesn't define a script class using the `class_name` syntax, this will return an empty string.
    */
   public fun getFileScriptClassName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -102,7 +102,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the base class of the script class defined in the file at index `idx`. If the file doesn't define a script class using the `class_name` syntax, this will return an empty string.
+   * Returns the base class of the script class defined in the file at index [idx]. If the file doesn't define a script class using the `class_name` syntax, this will return an empty string.
    */
   public fun getFileScriptClassExtends(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -112,7 +112,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the file at index `idx` imported properly.
+   * Returns `true` if the file at index [idx] imported properly.
    */
   public fun getFileImportIsValid(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -152,7 +152,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the index of the file with name `name` or `-1` if not found.
+   * Returns the index of the file with name [name] or `-1` if not found.
    */
   public fun findFileIndex(name: String): Long {
     TransferContext.writeArguments(STRING to name)
@@ -162,7 +162,7 @@ public open class EditorFileSystemDirectory internal constructor() : Object() {
   }
 
   /**
-   * Returns the index of the directory with name `name` or `-1` if not found.
+   * Returns the index of the directory with name [name] or `-1` if not found.
    */
   public fun findDirIndex(name: String): Long {
     TransferContext.writeArguments(STRING to name)

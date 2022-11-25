@@ -14,16 +14,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * Performs a uniform texture lookup within the visual shader graph.
- *
- * Performs a lookup operation on the texture provided as a uniform for the shader.
- */
 @GodotBaseType
 public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
-  /**
-   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
-   */
   public var textureType: Long
     get() {
       TransferContext.writeArguments()
@@ -37,9 +29,6 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_TYPE, NIL)
     }
 
-  /**
-   * Sets the default color if no texture is assigned to the uniform.
-   */
   public var colorDefault: Long
     get() {
       TransferContext.writeArguments()
@@ -53,9 +42,6 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_COLOR_DEFAULT, NIL)
     }
 
-  /**
-   * Sets the texture filtering mode. See [enum TextureFilter] for options.
-   */
   public var textureFilter: Long
     get() {
       TransferContext.writeArguments()
@@ -69,9 +55,6 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_FILTER, NIL)
     }
 
-  /**
-   * Sets the texture repeating mode. See [enum TextureRepeat] for options.
-   */
   public var textureRepeat: Long
     get() {
       TransferContext.writeArguments()
@@ -92,25 +75,10 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   public enum class TextureType(
     id: Long
   ) {
-    /**
-     * No hints are added to the uniform declaration.
-     */
     TYPE_DATA(0),
-    /**
-     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
-     */
     TYPE_COLOR(1),
-    /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
-     */
     TYPE_NORMAL_MAP(2),
-    /**
-     * Adds `hint_anisotropy` as hint to the uniform declaration to use for a flowmap.
-     */
     TYPE_ANISOTROPY(3),
-    /**
-     * Represents the size of the [enum TextureType] enum.
-     */
     TYPE_MAX(4),
     ;
 
@@ -127,17 +95,8 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   public enum class ColorDefault(
     id: Long
   ) {
-    /**
-     * Defaults to white color.
-     */
     COLOR_DEFAULT_WHITE(0),
-    /**
-     * Defaults to black color.
-     */
     COLOR_DEFAULT_BLACK(1),
-    /**
-     * Represents the size of the [enum ColorDefault] enum.
-     */
     COLOR_DEFAULT_MAX(2),
     ;
 
@@ -154,37 +113,13 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   public enum class TextureFilter(
     id: Long
   ) {
-    /**
-     *
-     */
     FILTER_DEFAULT(0),
-    /**
-     *
-     */
     FILTER_NEAREST(1),
-    /**
-     *
-     */
     FILTER_LINEAR(2),
-    /**
-     *
-     */
     FILTER_NEAREST_MIPMAP(3),
-    /**
-     *
-     */
     FILTER_LINEAR_MIPMAP(4),
-    /**
-     *
-     */
     FILTER_NEAREST_MIPMAP_ANISOTROPIC(5),
-    /**
-     *
-     */
     FILTER_LINEAR_MIPMAP_ANISOTROPIC(6),
-    /**
-     * Represents the size of the [enum TextureFilter] enum.
-     */
     FILTER_MAX(7),
     ;
 
@@ -201,21 +136,9 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   public enum class TextureRepeat(
     id: Long
   ) {
-    /**
-     *
-     */
     REPEAT_DEFAULT(0),
-    /**
-     *
-     */
     REPEAT_ENABLED(1),
-    /**
-     *
-     */
     REPEAT_DISABLED(2),
-    /**
-     * Represents the size of the [enum TextureRepeat] enum.
-     */
     REPEAT_MAX(3),
     ;
 

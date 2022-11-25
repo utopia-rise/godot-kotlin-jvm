@@ -22,6 +22,8 @@ import kotlin.Unit
  *
  * Cylinder shape for collisions. Like [godot.CapsuleShape3D], but without hemispheres at the cylinder's ends.
  *
+ * **Note:** There are several known bugs with cylinder collision shapes. Using [godot.CapsuleShape3D] or [godot.BoxShape3D] instead is recommended.
+ *
  * **Performance:** Being a primitive collision shape, [godot.CylinderShape3D] is fast to check collisions against (though not as fast as [godot.SphereShape3D]). [godot.CylinderShape3D] is also more demanding compared to [godot.CapsuleShape3D].
  */
 @GodotBaseType

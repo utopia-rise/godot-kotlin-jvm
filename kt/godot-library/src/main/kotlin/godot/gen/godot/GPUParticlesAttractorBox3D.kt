@@ -15,12 +15,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Box-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
  *
+ * Box-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ *
+ * **Note:** Particle attractors only affect [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
   /**
-   *
+   * The attractor box's extents in 3D units.
    */
   public var extents: Vector3
     get() {

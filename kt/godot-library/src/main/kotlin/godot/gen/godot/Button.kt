@@ -39,7 +39,7 @@ import kotlin.Unit
  *
  *     button.text = "Click me"
  *
- *     button.connect("pressed", self, "_button_pressed")
+ *     button.pressed.connect(self._button_pressed)
  *
  *     add_child(button)
  *
@@ -61,7 +61,7 @@ import kotlin.Unit
  *
  *     button.Text = "Click me";
  *
- *     button.Connect("pressed", this, nameof(ButtonPressed));
+ *     button.Pressed += ButtonPressed;
  *
  *     AddChild(button);
  *
@@ -176,7 +176,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Text alignment policy for the button's text, use one of the [enum @GlobalScope.HorizontalAlignment] constants.
+   * Text alignment policy for the button's text, use one of the [enum HorizontalAlignment] constants.
    */
   public var alignment: Long
     get() {
@@ -190,7 +190,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum @GlobalScope.HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
+   * Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered, text will draw on top of the icon.
    */
   public var iconAlignment: Long
     get() {
@@ -221,26 +221,17 @@ public open class Button : BaseButton() {
     callConstructor(ENGINECLASS_BUTTON)
   }
 
-  /**
-   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_CLEAR_OPENTYPE_FEATURES, NIL)

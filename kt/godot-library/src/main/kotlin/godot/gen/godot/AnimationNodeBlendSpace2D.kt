@@ -1183,7 +1183,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a `node` at the position set by `pos`. You can insert it at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   public fun addBlendPoint(
     node: AnimationRootNode,
@@ -1196,7 +1196,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index `point` on the blend axis.
+   * Updates the position of the point at index [point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Long, pos: Vector2): Unit {
     TransferContext.writeArguments(LONG to point, VECTOR2 to pos)
@@ -1205,7 +1205,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [godot.AnimationNode] referenced by the point at index `point`.
+   * Changes the [godot.AnimationNode] referenced by the point at index [point].
    */
   public fun setBlendPointNode(point: Long, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point, OBJECT to node)
@@ -1214,7 +1214,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index `point` from the blend space.
+   * Removes the point at index [point] from the blend space.
    */
   public fun removeBlendPoint(point: Long): Unit {
     TransferContext.writeArguments(LONG to point)
@@ -1233,7 +1233,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Creates a new triangle using three points `x`, `y`, and `z`. Triangles can overlap. You can insert the triangle at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can insert the triangle at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   public fun addTriangle(
     x: Long,
@@ -1247,7 +1247,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index `point` in the triangle of index `triangle`.
+   * Returns the position of the point at index [point] in the triangle of index [triangle].
    */
   public fun getTrianglePoint(triangle: Long, point: Long): Long {
     TransferContext.writeArguments(LONG to triangle, LONG to point)
@@ -1257,7 +1257,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the triangle at index `triangle` from the blend space.
+   * Removes the triangle at index [triangle] from the blend space.
    */
   public fun removeTriangle(triangle: Long): Unit {
     TransferContext.writeArguments(LONG to triangle)

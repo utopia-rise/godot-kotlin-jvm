@@ -50,7 +50,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Threshold at which the alpha scissor will discard values.
+   * Threshold at which the alpha scissor will discard values. Higher values will result in more pixels being discarded. If the material becomes too opaque at a distance, try increasing [alphaScissorThreshold]. If the material disappears at a distance, try decreasing [alphaScissorThreshold].
    */
   public var alphaScissorThreshold: Double
     get() {
@@ -197,7 +197,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The method for rendering the specular blob. See [enum SpecularMode].
    *
-   * **Note:** Only applies to the specular blob. Does not affect specular reflections from the Sky, SSR, or ReflectionProbes.
+   * **Note:** [specularMode] only applies to the specular blob. It does not affect specular reflections from the sky, screen-space reflections, [godot.VoxelGI], SDFGI or [godot.ReflectionProbe]s. To disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
    */
   public var specularMode: Long
     get() {
@@ -244,7 +244,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets the size of the specular lobe. The specular lobe is the bright spot that is reflected from light sources.
+   * Adjusts the strength of specular reflections. Specular reflections are composed of scene reflections and the specular lobe which is the bright spot that is reflected from light sources. When set to `0.0`, no specular reflections will be visible. This differs from the [SPECULAR_DISABLED] [enum SpecularMode] as [SPECULAR_DISABLED] only applies to the specular lobe from the light source.
    *
    * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [roughness].
    */
@@ -322,9 +322,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION, NIL)
     }
 
-  /**
-   * The emitted light's strength. See [emissionEnabled].
-   */
   public var emissionEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -479,7 +476,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * The heightmap scale to use for the parallax effect (see [heightmapEnabled]). The default value is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing when looking at the material from oblique angles, especially when the camera moves. Negative values can be used to invert the parallax effect, but this is different from inverting the texture using [heightmapFlipTexture] as the material will also appear to be "closer" to the camera. In most cases, [heightmapScale] should be kept to a positive value.
    *
+   * **Note:** If the height map effect looks strange regardless of this value, try adjusting [heightmapFlipBinormal] and [heightmapFlipTangent]. See also [heightmapTexture] for recommendations on authoring heightmap textures, as the way the heightmap texture is authored affects how [heightmapScale] behaves.
    */
   public var heightmapScale: Double
     get() {
@@ -495,7 +494,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * If `true`, uses parallax occlusion mapping to represent depth in the material instead of simple offset mapping (see [heightmapEnabled]). This results in a more convincing depth effect, but is much more expensive on the GPU. Only enable this on materials where it makes a significant visual difference.
    */
   public var heightmapDeepParallax: Boolean
     get() {
@@ -511,7 +510,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * The number of layers to use for parallax occlusion mapping when the camera is far away from the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.
    *
+   * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public var heightmapMinLayers: Long
     get() {
@@ -527,7 +528,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * The number of layers to use for parallax occlusion mapping when the camera is up close to the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.
    *
+   * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public var heightmapMaxLayers: Long
     get() {
@@ -543,7 +546,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * If `true`, flips the mesh's tangent vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting this to `true`.
    */
   public var heightmapFlipTangent: Boolean
     get() {
@@ -559,7 +562,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * If `true`, flips the mesh's binormal vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting this to `true`.
    */
   public var heightmapFlipBinormal: Boolean
     get() {
@@ -591,7 +594,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * The color to multiply the subsurface scattering transmittance effect with. Ignored if [subsurfScatterSkinMode] is `true`.
    */
   public var subsurfScatterTransmittanceColor: Color
     get() {
@@ -607,7 +610,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * The depth of the subsurface scattering transmittance effect.
    */
   public var subsurfScatterTransmittanceDepth: Double
     get() {
@@ -623,7 +626,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   *
+   * The intensity of the subsurface scattering transmittance effect.
    */
   public var subsurfScatterTransmittanceBoost: Double
     get() {
@@ -717,7 +720,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function.
+   * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   public var uv1Scale: Vector3
     get() {
@@ -732,7 +735,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture.
+   * How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   public var uv1Offset: Vector3
     get() {
@@ -749,6 +752,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more sharply.
+   *
+   * **Note:** [uv1TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.
    */
   public var uv1TriplanarSharpness: Double
     get() {
@@ -764,7 +769,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
+   * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   public var uv2Scale: Vector3
     get() {
@@ -779,7 +784,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture.
+   * How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   public var uv2Offset: Vector3
     get() {
@@ -796,6 +801,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * A lower number blends the texture more softly while a higher number blends the texture more sharply.
+   *
+   * **Note:** [uv2TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.
    */
   public var uv2TriplanarSharpness: Double
     get() {
@@ -812,6 +819,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Filter flags for the texture. See [enum TextureFilter] for options.
+   *
+   * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.
    */
   public var textureFilter: Long
     get() {
@@ -938,9 +947,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
           NIL)
     }
 
-  /**
-   * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object.
-   */
   public var proximityFadeEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -1061,7 +1067,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Sets the texture for the slot specified by `param`. See [enum TextureParam] for available slots.
+   * Sets the texture for the slot specified by [param]. See [enum TextureParam] for available slots.
    */
   public fun setTexture(`param`: BaseMaterial3D.TextureParam, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
@@ -1069,7 +1075,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Returns the [godot.Texture] associated with the specified [enum TextureParam].
+   * Returns the [godot.Texture2D] associated with the specified [enum TextureParam].
    */
   public fun getTexture(`param`: BaseMaterial3D.TextureParam): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
@@ -1260,7 +1266,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long
   ) {
     /**
-     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+     * Disables the depth test, so this object is drawn on top of all others drawn before it. This puts the object in the transparent draw pass where it is sorted based on distance to camera. Objects drawn after it in the draw order may cover it. This also disables writing to depth.
      */
     FLAG_DISABLE_DEPTH_TEST(0),
     /**
@@ -1268,7 +1274,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_ALBEDO_FROM_VERTEX_COLOR(1),
     /**
-     * Vertex color is in sRGB space and needs to be converted to linear. Only applies in the Vulkan renderer.
+     * Vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. See also [vertexColorIsSrgb].
+     *
+     * **Note:** Only effective when using the Vulkan Clustered or Vulkan Mobile backends.
      */
     FLAG_SRGB_VERTEX_COLOR(2),
     /**
@@ -1308,7 +1316,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_EMISSION_ON_UV2(11),
     /**
-     * Forces the shader to convert albedo from sRGB space to linear space.
+     * Forces the shader to convert albedo from sRGB space to linear space. See also [albedoTextureForceSrgb].
      */
     FLAG_ALBEDO_TEXTURE_FORCE_SRGB(12),
     /**
@@ -1336,7 +1344,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_SUBSURFACE_MODE_SKIN(18),
     /**
-     *
+     * Enables parts of the shader required for [godot.GPUParticles3D] trails to function. This also requires using a mesh with appropriate skinning, such as [godot.RibbonTrailMesh] or [godot.TubeTrailMesh]. Enabling this feature outside of materials used in [godot.GPUParticles3D] meshes will break material rendering.
      */
     FLAG_PARTICLE_TRAILS_MODE(19),
     /**
@@ -1425,11 +1433,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(3),
     /**
-     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera.
+     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
     /**
-     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing.
+     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
@@ -1497,7 +1505,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Used for particle systems when assigned to [godot.GPUParticles3D] and [godot.CPUParticles3D] nodes. Enables `particles_anim_*` properties.
      *
-     * The [godot.ParticlesMaterial.animSpeedMin] or [godot.CPUParticles3D.animSpeedMin] should also be set to a value bigger than zero for the animation to play.
+     * The [godot.ParticleProcessMaterial.animSpeedMin] or [godot.CPUParticles3D.animSpeedMin] should also be set to a value bigger than zero for the animation to play.
      */
     BILLBOARD_PARTICLES(3),
     ;
@@ -1516,15 +1524,17 @@ public open class BaseMaterial3D internal constructor() : Material() {
     id: Long
   ) {
     /**
-     * Default depth draw mode. Depth is drawn only for opaque objects.
+     * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if any) and during the opaque pass.
      */
     DEPTH_DRAW_OPAQUE_ONLY(0),
     /**
-     * Depth draw is calculated for both opaque and transparent objects.
+     * Objects will write to depth during the opaque and the transparent passes. Transparent objects that are close to the camera may obscure other transparent objects behind them.
+     *
+     * **Note:** This does not influence whether transparent objects are included in the depth prepass or not. For that, see [enum Transparency].
      */
     DEPTH_DRAW_ALWAYS(1),
     /**
-     * No depth draw.
+     * Objects will not write their depth to the depth buffer, even during the depth prepass (if enabled).
      */
     DEPTH_DRAW_DISABLED(2),
     ;
@@ -1644,7 +1654,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TRANSPARENCY_ALPHA(1),
     /**
-     * The material will cut off all values below a threshold, the rest will remain opaque.
+     * The material will cut off all values below a threshold, the rest will remain opaque. The opaque portions will be rendering in the depth prepass.
      */
     TRANSPARENCY_ALPHA_SCISSOR(2),
     /**
@@ -1652,7 +1662,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TRANSPARENCY_ALPHA_HASH(3),
     /**
-     * The material will use the texture's alpha value for transparency, but will still be rendered in the pre-pass.
+     * The material will use the texture's alpha value for transparency, but will still be rendered in the depth prepass.
      */
     TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
     /**

@@ -84,9 +84,6 @@ public open class Node : Object() {
    */
   public val renamed: Signal0 by signal()
 
-  /**
-   * Emitted when a child node exits the scene tree, either because it exited on its own or because this node exited.
-   */
   public val childExitedTree: Signal1<Node> by signal("node")
 
   /**
@@ -96,16 +93,22 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node enters the tree.
+   *
+   * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
   public val treeEntered: Signal0 by signal()
 
   /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for de-initialization (or a "destructor", if you will).
+   *
+   * This signal is emitted *before* the related [NOTIFICATION_EXIT_TREE] notification.
    */
   public val treeExiting: Signal0 by signal()
 
   /**
    * Emitted when a child node enters the scene tree, either because it entered on its own or because this node entered with it.
+   *
+   * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [treeEntered].
    */
   public val childEnteredTree: Signal1<Node> by signal("node")
 
@@ -147,7 +150,7 @@ public open class Node : Object() {
   /**
    * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/misc/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public var owner: Node?
     get() {
@@ -455,7 +458,7 @@ public open class Node : Object() {
       arg6, arg7, arg8, arg9)
 
   /**
-   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant. `delta` is in seconds.
+   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the [delta] time since the previous frame is not constant. [delta] is in seconds.
    *
    * It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcess].
    *
@@ -467,7 +470,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the `delta` variable should be constant. `delta` is in seconds.
+   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [delta] variable should be constant. [delta] is in seconds.
    *
    * It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setPhysicsProcess].
    *
@@ -507,7 +510,7 @@ public open class Node : Object() {
   }
 
   /**
-   * The elements in the array returned from this method are displayed as warnings in the Scene Dock if the script that overrides it is a `tool` script.
+   * The elements in the array returned from this method are displayed as warnings in the Scene dock if the script that overrides it is a `tool` script.
    *
    * Returning an empty array produces no warnings.
    *
@@ -546,7 +549,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Called when an [godot.InputEventKey] or [godot.InputEventShortcut] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled key input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledKeyInput].
    *
@@ -556,15 +559,17 @@ public open class Node : Object() {
    *
    * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
+   * This method also performs better than [_unhandledInput], since unrelated events such as [godot.InputEventMouseMotion] are automatically filtered.
+   *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEvent): Unit {
   }
 
   /**
-   * Adds a `sibling` node to current's node parent, at the same level as that node, right below it.
+   * Adds a [sibling] node to current's node parent, at the same level as that node, right below it.
    *
-   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instantiated instead of its type.
+   * If [forceReadableName] is `true`, improves the readability of the added [sibling]. If not named, the [sibling] is renamed to its type, and if it shares [name] with a sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this to `false`, which assigns a dummy name featuring `@` in both situations.
    *
    * Use [addChild] instead of this method if you don't need the child node to be added below a specific node in the list of children.
    *
@@ -576,11 +581,11 @@ public open class Node : Object() {
   }
 
   /**
-   * Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node.
+   * Adds a child [node]. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node.
    *
-   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instantiated instead of its type.
+   * If [forceReadableName] is `true`, improves the readability of the added [node]. If not named, the [node] is renamed to its type, and if it shares [name] with a sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this to `false`, which assigns a dummy name featuring `@` in both situations.
    *
-   * If `internal` is different than [INTERNAL_MODE_DISABLED], the child will be added as internal node. Such nodes are ignored by methods like [getChildren], unless their parameter `include_internal` is `true`.The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [godot.ColorPicker]. See [enum InternalMode] for available modes.
+   * If [internal] is different than [INTERNAL_MODE_DISABLED], the child will be added as internal node. Such nodes are ignored by methods like [getChildren], unless their parameter `include_internal` is `true`.The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [godot.ColorPicker]. See [enum InternalMode] for available modes.
    *
    * **Note:** If the child node already has a parent, the function will fail. Use [removeChild] first to remove the node from its current parent. For example:
    *
@@ -618,7 +623,7 @@ public open class Node : Object() {
    *
    * If you need the child node to be added below a specific node in the list of children, use [addSibling] instead of this method.
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/misc/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public fun addChild(
     node: Node,
@@ -642,7 +647,7 @@ public open class Node : Object() {
   /**
    * Returns the number of child nodes.
    *
-   * If `include_internal` is `false`, internal children aren't counted (see `internal` parameter in [addChild]).
+   * If [includeInternal] is `false`, internal children aren't counted (see `internal` parameter in [addChild]).
    */
   public fun getChildCount(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
@@ -653,7 +658,7 @@ public open class Node : Object() {
   /**
    * Returns an array of references to node's children.
    *
-   * If `include_internal` is `false`, the returned array won't include internal children (see `internal` parameter in [addChild]).
+   * If [includeInternal] is `false`, the returned array won't include internal children (see `internal` parameter in [addChild]).
    */
   public fun getChildren(includeInternal: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to includeInternal)
@@ -666,7 +671,7 @@ public open class Node : Object() {
    *
    * Negative indices access the children from the last one.
    *
-   * If `include_internal` is `true`, internal children are skipped (see `internal` parameter in [addChild]).
+   * If [includeInternal] is `false`, internal children are skipped (see `internal` parameter in [addChild]).
    *
    * To access a child node via its name, use [getNode].
    */
@@ -740,7 +745,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Similar to [getNode], but does not log an error if `path` does not point to a valid [godot.Node].
+   * Similar to [getNode], but does not log an error if [path] does not point to a valid [godot.Node].
    */
   public fun getNodeOrNull(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -769,9 +774,9 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds the first parent of the current node whose name matches `pattern` as in [godot.String.match].
+   * Finds the first parent of the current node whose name matches [pattern] as in [godot.String.match].
    *
-   * `pattern` does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
+   * [pattern] does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
    *
    * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply nested scene trees. Whenever possible, consider using [getNode] with unique names instead (see [uniqueNameInOwner]), or caching the node references into variable.
    */
@@ -864,7 +869,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the relative [godot.core.NodePath] from this node to the specified `node`. Both nodes must be in the same scene or the function will fail.
+   * Returns the relative [godot.core.NodePath] from this node to the specified [node]. Both nodes must be in the same scene or the function will fail.
    */
   public fun getPathTo(node: Node): NodePath {
     TransferContext.writeArguments(OBJECT to node)
@@ -875,7 +880,7 @@ public open class Node : Object() {
   /**
    * Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [isInsideTree]). See notes in the description, and the group methods in [godot.SceneTree].
    *
-   * The `persistent` option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
+   * The [persistent] option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
    *
    * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
    */
@@ -885,7 +890,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Removes a node from a group. See notes in the description, and the group methods in [godot.SceneTree].
+   * Removes a node from the [group]. Does nothing if the node is not in the [group]. See notes in the description, and the group methods in [godot.SceneTree].
    */
   public fun removeFromGroup(group: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to group)
@@ -902,7 +907,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Moves a child node to a different position (order) among the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
+   * Moves a child node to a different index (order) among the other children. Since calls, signals, etc. are performed by tree order, changing the order of children nodes may be useful. If [toIndex] is negative, the index will be counted from the end.
    *
    * **Note:** Internal children can only be moved within their expected "internal range" (see `internal` parameter in [addChild]).
    */
@@ -918,13 +923,41 @@ public open class Node : Object() {
    *
    * **Note:** The engine uses some group names internally (all starting with an underscore). To avoid conflicts with internal groups, do not add custom groups whose name starts with an underscore. To exclude internal groups while looping over [getGroups], use the following snippet:
    *
-   * ```
-   * 				# Stores the node's non-internal groups only (as an array of Strings).
-   * 				var non_internal_groups = []
-   * 				for group in get_groups():
-   * 				    if not group.begins_with("_"):
-   * 				        non_internal_groups.push_back(group)
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * # Stores the node's non-internal groups only (as an array of Strings).
+   *
+   * var non_internal_groups = []
+   *
+   * for group in get_groups():
+   *
+   *     if not group.begins_with("_"):
+   *
+   *         non_internal_groups.push_back(group)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * // Stores the node's non-internal groups only (as a List of strings).
+   *
+   * List<string> nonInternalGroups = new List<string>();
+   *
+   * foreach (string group in GetGroups())
+   *
+   * {
+   *
+   *     if (!group.BeginsWith("_"))
+   *
+   *         nonInternalGroups.Add(group);
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getGroups(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -932,17 +965,11 @@ public open class Node : Object() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  /**
-   * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree. The top Node is drawn first, then any siblings below the top Node in the hierarchy are successively drawn on top of it. After using `raise`, a Control will be drawn on top of its siblings.
-   */
   public fun raise(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
   }
 
-  /**
-   * Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
-   */
   public fun removeAndSkip(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
@@ -951,7 +978,7 @@ public open class Node : Object() {
   /**
    * Returns the node's order in the scene tree branch. For example, if called on the first child node the position is `0`.
    *
-   * If `include_internal` is `false`, the index won't take internal children into account, i.e. first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
+   * If [includeInternal] is `false`, the index won't take internal children into account, i.e. first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
    */
   public fun getIndex(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
@@ -979,7 +1006,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Similar to [printTree], this prints the tree to stdout. This version displays a more graphical representation similar to what is displayed in the scene inspector. It is useful for inspecting larger trees.
+   * Similar to [printTree], this prints the tree to stdout. This version displays a more graphical representation similar to what is displayed in the Scene Dock. It is useful for inspecting larger trees.
    *
    * **Example output:**
    *
@@ -1006,7 +1033,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Calls the given method (if present) with the arguments given in `args` on this node and recursively on all its children. If the `parent_first` argument is `true`, the method will be called on the current node first, then on all its children. If `parent_first` is `false`, the children will be called first.
+   * Calls the given method (if present) with the arguments given in [args] on this node and recursively on all its children. If the [parentFirst] argument is `true`, the method will be called on the current node first, then on all its children. If [parentFirst] is `false`, the children will be called first.
    */
   public fun propagateCall(
     method: StringName,
@@ -1208,9 +1235,21 @@ public open class Node : Object() {
   /**
    * Creates a new [godot.Tween] and binds it to this node. This is equivalent of doing:
    *
-   * ```
-   * 				get_tree().create_tween().bind_node(self)
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * get_tree().create_tween().bind_node(self)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GetTree().CreateTween().BindNode(this);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -1221,7 +1260,7 @@ public open class Node : Object() {
   /**
    * Duplicates the node, returning a new node.
    *
-   * You can fine-tune the behavior using the `flags` (see [enum DuplicateFlags]).
+   * You can fine-tune the behavior using the [flags] (see [enum DuplicateFlags]).
    *
    * **Note:** It will not work properly if the node contains a script with constructor arguments (i.e. needs to supply arguments to [godot.Object.Init] method). In that case, the node will be duplicated without a script.
    */
@@ -1234,7 +1273,7 @@ public open class Node : Object() {
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
    *
-   * If `keep_groups` is `true`, the `node` is added to the same groups that the replaced node is in.
+   * If [keepGroups] is `true`, the [node] is added to the same groups that the replaced node is in.
    *
    * **Note:** The given node will become the new parent of any child nodes that the replaced node had.
    *
@@ -1265,7 +1304,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sets the editable children state of `node` relative to this node. This method is only intended for use with editor tooling.
+   * Sets the editable children state of [node] relative to this node. This method is only intended for use with editor tooling.
    */
   public fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
@@ -1273,7 +1312,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns `true` if `node` has editable children enabled relative to this node. This method is only intended for use with editor tooling.
+   * Returns `true` if [node] has editable children enabled relative to this node. This method is only intended for use with editor tooling.
    */
   public fun isEditableInstance(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
@@ -1307,7 +1346,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If `recursive`, the given peer is recursively set as the authority for all children of this node.
+   * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If [recursive], the given peer is recursively set as the authority for all children of this node.
    */
   public fun setMultiplayerAuthority(id: Long, recursive: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to recursive)
@@ -1334,7 +1373,18 @@ public open class Node : Object() {
   }
 
   /**
-   * Changes the RPC mode for the given `method` to the given `rpc_mode`, optionally specifying the `transfer_mode` and `channel` (on supported peers). See [enum RPCMode] and [enum TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(auth)`). By default, methods are not exposed to networking (and RPCs).
+   * Changes the RPC mode for the given [method] with the given [config] which should be `null` (to disable) or a [godot.core.Dictionary] in the form:
+   *
+   * ```
+   * 				{
+   * 				    rpc_mode = MultiplayerAPI.RPCMode,
+   * 				    transfer_mode = MultiplayerPeer.TranferMode,
+   * 				    call_local = false,
+   * 				    channel = 0,
+   * 				}
+   * 				```
+   *
+   * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(authority)`). By default, methods are not exposed to networking (and RPCs).
    */
   public fun rpcConfig(
     method: StringName,
@@ -1349,7 +1399,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns an empty [Variant].
+   * Sends a remote procedure call request for the given [method] to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behavior depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns `null`.
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
@@ -1359,7 +1409,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.MultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
+   * Sends a [rpc] to a specific peer identified by [peerId] (see [godot.MultiplayerPeer.setTargetPeer]). Returns `null`.
    */
   public fun rpcId(
     peerId: Long,
@@ -1431,11 +1481,6 @@ public open class Node : Object() {
      * Duplicate the node's scripts.
      */
     DUPLICATE_SCRIPTS(4),
-    /**
-     * Duplicate using instancing.
-     *
-     * An instance stays linked to the original so when the original changes, the instance changes too.
-     */
     DUPLICATE_USE_INSTANCING(8),
     ;
 
@@ -1479,11 +1524,15 @@ public open class Node : Object() {
   public companion object {
     /**
      * Notification received when the node enters a [godot.SceneTree].
+     *
+     * This notification is emitted *before* the related [treeEntered].
      */
     public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
      * Notification received when the node is about to exit a [godot.SceneTree].
+     *
+     * This notification is emitted *after* the related [treeExiting].
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
@@ -1529,9 +1578,6 @@ public open class Node : Object() {
      */
     public final const val NOTIFICATION_UNPARENTED: Long = 19
 
-    /**
-     * Notification received when the node is instantiated.
-     */
     public final const val NOTIFICATION_INSTANCED: Long = 20
 
     /**

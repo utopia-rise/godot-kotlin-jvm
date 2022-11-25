@@ -61,13 +61,6 @@ public open class Shader : Resource() {
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [godot.ShaderMaterial].
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   *
-   * **Note:** If the sampler array is used use `index` to access the specified texture.
-   */
   public fun setDefaultTextureParam(
     `param`: StringName,
     texture: Texture2D,
@@ -78,13 +71,6 @@ public open class Shader : Resource() {
         NIL)
   }
 
-  /**
-   * Returns the texture that is set as default for the specified parameter.
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   *
-   * **Note:** If the sampler array is used use `index` to access the specified texture.
-   */
   public fun getDefaultTextureParam(`param`: StringName, index: Long = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to param, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
@@ -92,11 +78,6 @@ public open class Shader : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
   }
 
-  /**
-   * Returns `true` if the shader has this param defined as a uniform in its code.
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   */
   public fun hasParam(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)

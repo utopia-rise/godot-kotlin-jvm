@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VehicleWheel3D : Node3D() {
   /**
-   * Accelerates the wheel by applying an engine force. The wheel is only speed up if it is in contact with a surface. The [godot.RigidDynamicBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
+   * Accelerates the wheel by applying an engine force. The wheel is only sped up if it is in contact with a surface. The [godot.RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
    *
    * **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
    *
@@ -50,7 +50,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidDynamicBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
+   * Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
    */
   public var brake: Double
     get() {
@@ -64,7 +64,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * The steering angle for the wheel. Setting this to a non-zero value will result in the vehicle turning when it's moving.
+   * The steering angle for the wheel, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving.
    */
   public var steering: Double
     get() {
@@ -207,7 +207,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * The maximum force the spring can resist. This value should be higher than a quarter of the [godot.RigidDynamicBody3D.mass] of the [godot.VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number.
+   * The maximum force the spring can resist. This value should be higher than a quarter of the [godot.RigidBody3D.mass] of the [godot.VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number.
    */
   public var suspensionMaxForce: Double
     get() {

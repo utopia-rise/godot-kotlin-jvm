@@ -67,7 +67,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` of the filesystem is being scanned.
+   * Returns `true` if the filesystem is being scanned.
    */
   public fun isScanning(): Boolean {
     TransferContext.writeArguments()
@@ -102,7 +102,9 @@ public open class EditorFileSystem internal constructor() : Node() {
   }
 
   /**
-   * Update a file information. Call this if an external program (not Godot) modified the file.
+   * Add a file in an existing directory, or schedule file information to be updated on editor restart. Can be used to update text files saved by an external program.
+   *
+   * This will not import the file. To reimport, call [reimportFiles] or [scan] methods.
    */
   public fun updateFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -110,7 +112,7 @@ public open class EditorFileSystem internal constructor() : Node() {
   }
 
   /**
-   * Returns a view into the filesystem at `path`.
+   * Returns a view into the filesystem at [path].
    */
   public fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
     TransferContext.writeArguments(STRING to path)

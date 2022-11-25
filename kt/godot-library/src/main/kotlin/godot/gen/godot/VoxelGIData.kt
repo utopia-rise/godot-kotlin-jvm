@@ -33,7 +33,7 @@ import kotlin.Unit
  *
  * [godot.VoxelGIData] contains baked voxel global illumination for use in a [godot.VoxelGI] node. [godot.VoxelGIData] also offers several properties to adjust the final appearance of the global illumination. These properties can be adjusted at run-time without having to bake the [godot.VoxelGI] node again.
  *
- * **Note:** To prevent text-based scene files (`.tscn`) from growing too much and becoming slow to load and save, always save [godot.VoxelGIData] to an external binary resource file (`.res`) instead of embedding it within the scene. This can be done by clicking the dropdown arrow next to the [godot.VoxelGIData] resource, choosing **Edit**, clicking the floppy disk icon at the top of the inspector then choosing **Save As...**.
+ * **Note:** To prevent text-based scene files (`.tscn`) from growing too much and becoming slow to load and save, always save [godot.VoxelGIData] to an external binary resource file (`.res`) instead of embedding it within the scene. This can be done by clicking the dropdown arrow next to the [godot.VoxelGIData] resource, choosing **Edit**, clicking the floppy disk icon at the top of the Inspector then choosing **Save As...**.
  */
 @GodotBaseType
 public open class VoxelGIData : Resource() {
@@ -97,7 +97,7 @@ public open class VoxelGIData : Resource() {
     }
 
   /**
-   * If indirect lighting looks too flat, try decreasing [propagation] while increasing [energy] at the same time. See also [useTwoBounces] which influences the indirect lighting's effective brightness.
+   * The multiplier to use when light bounces off a surface. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [propagation] while increasing [energy] at the same time. See also [useTwoBounces] which influences the indirect lighting's effective brightness.
    */
   public var propagation: Double
     get() {

@@ -26,24 +26,12 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class MultiplayerSpawner : Node() {
-  /**
-   *
-   */
   public val despawned: Signal2<Long, Node> by signal("sceneId", "node")
 
-  /**
-   *
-   */
   public val spawned: Signal2<Long, Node> by signal("sceneId", "node")
 
-  /**
-   *
-   */
   public var replication: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
@@ -57,9 +45,6 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWNABLE_SCENES, NIL)
     }
 
-  /**
-   *
-   */
   public var spawnPath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -73,9 +58,6 @@ public open class MultiplayerSpawner : Node() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var spawnLimit: Long
     get() {
       TransferContext.writeArguments()
@@ -89,9 +71,6 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
     }
 
-  /**
-   *
-   */
   public var autoSpawn: Boolean
     get() {
       TransferContext.writeArguments()
@@ -109,16 +88,10 @@ public open class MultiplayerSpawner : Node() {
     callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER)
   }
 
-  /**
-   *
-   */
   public open fun _spawnCustom(`data`: Any): Object? {
     throw NotImplementedError("_spawn_custom is not implemented for MultiplayerSpawner")
   }
 
-  /**
-   *
-   */
   public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)

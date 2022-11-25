@@ -96,7 +96,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's cell mode to `mode`. See [enum TreeCellMode] constants.
+   * Sets the given column's cell mode to [mode]. See [enum TreeCellMode] constants.
    */
   public fun setCellMode(column: Long, mode: TreeItem.TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column, LONG to mode.id)
@@ -113,7 +113,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the column `column` is checked. Clears column's indeterminate status.
+   * If `true`, the given [column] is checked. Clears column's indeterminate status.
    */
   public fun setChecked(column: Long, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to checked)
@@ -121,7 +121,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, the column `column` is marked indeterminate.
+   * If `true`, the given [column] is marked [indeterminate].
    *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
@@ -131,7 +131,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the given column is checked.
+   * Returns `true` if the given [column] is checked.
    */
   public fun isChecked(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -140,7 +140,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the given column is indeterminate.
+   * Returns `true` if the given [column] is indeterminate.
    */
   public fun isIndeterminate(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -149,7 +149,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Propagates this item's checked status to its children and parents for the given `column`. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If `emit_signal` is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
+   * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
    */
   public fun propagateCheck(column: Long, emitSignal: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to emitSignal)
@@ -190,9 +190,6 @@ public open class TreeItem internal constructor() : Object() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text.
-   */
   public fun setOpentypeFeature(
     column: Long,
     tag: String,
@@ -202,18 +199,12 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getOpentypeFeature(column: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to column, STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CLEAR_OPENTYPE_FEATURES,
@@ -345,7 +336,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Modulates the given column's icon with `modulate`.
+   * Modulates the given column's icon with [modulate].
    */
   public fun setIconModulate(column: Long, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to column, COLOR to modulate)
@@ -381,7 +372,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE] mode.
    *
-   * If `expr` is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
+   * If [expr] is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
    */
   public fun setRangeConfig(
     column: Long,
@@ -422,9 +413,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's custom draw callback to `callback` method on `object`.
+   * Sets the given column's custom draw callback to [callback] method on [object].
    *
-   * The `callback` should accept two arguments: the [godot.TreeItem] that is drawn and its position and size as a [godot.core.Rect2].
+   * The [callback] should accept two arguments: the [godot.TreeItem] that is drawn and its position and size as a [godot.core.Rect2].
    */
   public fun setCustomDraw(
     column: Long,
@@ -452,7 +443,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if column `column` is selectable.
+   * Returns `true` if the given [column] is selectable.
    */
   public fun isSelectable(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -461,7 +452,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if column `column` is selected.
+   * Returns `true` if the given [column] is selected.
    */
   public fun isSelected(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -470,7 +461,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Selects the column `column`.
+   * Selects the given [column].
    */
   public fun select(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
@@ -486,7 +477,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, column `column` is editable.
+   * If `true`, the given [column] is editable.
    */
   public fun setEditable(column: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enabled)
@@ -494,7 +485,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if column `column` is editable.
+   * Returns `true` if the given [column] is editable.
    */
   public fun isEditable(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -511,7 +502,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the custom color of column `column`.
+   * Returns the custom color of column [column].
    */
   public fun getCustomColor(column: Long): Color {
     TransferContext.writeArguments(LONG to column)
@@ -528,7 +519,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets custom font used to draw text in the column `column`.
+   * Sets custom font used to draw text in the given [column].
    */
   public fun setCustomFont(column: Long, font: Font): Unit {
     TransferContext.writeArguments(LONG to column, OBJECT to font)
@@ -536,7 +527,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns custom font used to draw text in the column `column`.
+   * Returns custom font used to draw text in the column [column].
    */
   public fun getCustomFont(column: Long): Font? {
     TransferContext.writeArguments(LONG to column)
@@ -545,7 +536,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets custom font size used to draw text in the column `column`.
+   * Sets custom font size used to draw text in the given [column].
    */
   public fun setCustomFontSize(column: Long, fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to fontSize)
@@ -553,7 +544,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns custom font size used to draw text in the column `column`.
+   * Returns custom font size used to draw text in the column [column].
    */
   public fun getCustomFontSize(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
@@ -582,7 +573,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the custom background color of column `column`.
+   * Returns the custom background color of column [column].
    */
   public fun getCustomBgColor(column: Long): Color {
     TransferContext.writeArguments(LONG to column)
@@ -609,7 +600,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a button with [godot.Texture2D] `button` at column `column`. The `id` is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be `disabled` and have a `tooltip`.
+   * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
   public fun addButton(
     column: Long,
@@ -623,7 +614,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the number of buttons in column `column`.
+   * Returns the number of buttons in column [column].
    */
   public fun getButtonCount(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
@@ -631,9 +622,6 @@ public open class TreeItem internal constructor() : Object() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns the tooltip string for the button at index `button_idx` in column `column`.
-   */
   public fun getButtonTooltip(column: Long, buttonIdx: Long): String {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON_TOOLTIP, STRING)
@@ -641,7 +629,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the id for the button at index `button_idx` in column `column`.
+   * Returns the id for the button at index [buttonIdx] in column [column].
    */
   public fun getButtonId(column: Long, buttonIdx: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -650,7 +638,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the button index if there is a button with id `id` in column `column`, otherwise returns -1.
+   * Returns the button index if there is a button with id [id] in column [column], otherwise returns -1.
    */
   public fun getButtonById(column: Long, id: Long): Long {
     TransferContext.writeArguments(LONG to column, LONG to id)
@@ -659,7 +647,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the [godot.Texture2D] of the button at index `button_idx` in column `column`.
+   * Returns the [godot.Texture2D] of the button at index [buttonIdx] in column [column].
    */
   public fun getButton(column: Long, buttonIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -668,7 +656,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's button [godot.Texture2D] at index `button_idx` to `button`.
+   * Sets the given column's button [godot.Texture2D] at index [buttonIdx] to [button].
    */
   public fun setButton(
     column: Long,
@@ -680,7 +668,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Removes the button at index `button_idx` in column `column`.
+   * Removes the button at index [buttonIdx] in column [column].
    */
   public fun eraseButton(column: Long, buttonIdx: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -688,7 +676,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, disables the button at index `button_idx` in column `column`.
+   * If `true`, disables the button at index [buttonIdx] in the given [column].
    */
   public fun setButtonDisabled(
     column: Long,
@@ -700,7 +688,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the button at index `button_idx` for the given column is disabled.
+   * Returns `true` if the button at index [buttonIdx] for the given [column] is disabled.
    */
   public fun isButtonDisabled(column: Long, buttonIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to column, LONG to buttonIdx)
@@ -708,17 +696,11 @@ public open class TreeItem internal constructor() : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Sets the given column's tooltip text.
-   */
   public fun setTooltip(column: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TOOLTIP, NIL)
   }
 
-  /**
-   * Returns the given column's tooltip.
-   */
   public fun getTooltip(column: Long): String {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TOOLTIP, STRING)
@@ -743,7 +725,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * If `true`, column `column` is expanded to the right.
+   * If `true`, the given [column] is expanded to the right.
    */
   public fun setExpandRight(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
@@ -762,7 +744,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Creates an item and adds it as a child.
    *
-   * The new item will be inserted as position `idx` (the default value `-1` means the last position), or it will be the last child if `idx` is higher than the child count.
+   * The new item will be inserted as position [idx] (the default value `-1` means the last position), or it will be the last child if [idx] is higher than the child count.
    */
   public fun createChild(idx: Long = -1): TreeItem? {
     TransferContext.writeArguments(LONG to idx)
@@ -780,7 +762,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next TreeItem in the tree or a null object if there is none.
+   * Returns the next sibling TreeItem in the tree or a null object if there is none.
    */
   public fun getNext(): TreeItem? {
     TransferContext.writeArguments()
@@ -789,7 +771,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous TreeItem in the tree or a null object if there is none.
+   * Returns the previous sibling TreeItem in the tree or a null object if there is none.
    */
   public fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
@@ -816,9 +798,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next visible TreeItem in the tree or a null object if there is none.
+   * Returns the next visible sibling TreeItem in the tree or a null object if there is none.
    *
-   * If `wrap` is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
@@ -827,9 +809,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous visible TreeItem in the tree or a null object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
    *
-   * If `wrap` is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
@@ -876,7 +858,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Moves this TreeItem right before the given `item`.
+   * Moves this TreeItem right before the given [item].
    *
    * **Note:** You can't move to the root or move the root.
    */
@@ -886,7 +868,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Moves this TreeItem right after the given `item`.
+   * Moves this TreeItem right after the given [item].
    *
    * **Note:** You can't move to the root or move the root.
    */
@@ -904,7 +886,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Calls the `method` on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
+   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
    */
   public fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())

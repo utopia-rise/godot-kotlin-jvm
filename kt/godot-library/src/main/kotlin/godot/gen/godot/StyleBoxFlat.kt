@@ -35,7 +35,9 @@ import kotlin.Unit
  *
  * - Shadow (with blur and offset)
  *
- * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system. Example:
+ * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system.
+ *
+ * **Example:**
  *
  * ```
  * 		height = 30
@@ -217,7 +219,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the border width to `width` pixels for all sides.
+   * Sets the border width to [width] pixels for all sides.
    */
   public fun setBorderWidthAll(width: Long): Unit {
     TransferContext.writeArguments(LONG to width)
@@ -236,7 +238,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the specified [enum Side]'s border width to `width` pixels.
+   * Sets the specified [enum Side]'s border width to [width] pixels.
    */
   public fun setBorderWidth(margin: Side, width: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to width)
@@ -252,9 +254,6 @@ public open class StyleBoxFlat : StyleBox() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Sets the corner radius for each corner to `radius_top_left`, `radius_top_right`, `radius_bottom_right`, and `radius_bottom_left` pixels.
-   */
   public fun setCornerRadiusIndividual(
     radiusTopLeft: Long,
     radiusTopRight: Long,
@@ -267,7 +266,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the corner radius to `radius` pixels for all corners.
+   * Sets the corner radius to [radius] pixels for all corners.
    */
   public fun setCornerRadiusAll(radius: Long): Unit {
     TransferContext.writeArguments(LONG to radius)
@@ -276,7 +275,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the corner radius to `radius` pixels for the given `corner`. See [enum Corner] for possible values.
+   * Sets the corner radius to [radius] pixels for the given [corner]. See [enum Corner] for possible values.
    */
   public fun setCornerRadius(corner: Corner, radius: Long): Unit {
     TransferContext.writeArguments(LONG to corner.id, LONG to radius)
@@ -284,7 +283,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Returns the given `corner`'s radius. See [enum Corner] for possible values.
+   * Returns the given [corner]'s radius. See [enum Corner] for possible values.
    */
   public fun getCornerRadius(corner: Corner): Long {
     TransferContext.writeArguments(LONG to corner.id)
@@ -294,7 +293,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to `size` pixels for the specified [enum Side].
+   * Sets the expand margin to [size] pixels for the specified [enum Side].
    */
   public fun setExpandMargin(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
@@ -302,7 +301,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to `size` pixels for all margins.
+   * Sets the expand margin to [size] pixels for all margins.
    */
   public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
@@ -310,9 +309,6 @@ public open class StyleBoxFlat : StyleBox() {
         NIL)
   }
 
-  /**
-   * Sets the expand margin for each margin to `size_left`, `size_top`, `size_right`, and `size_bottom` pixels.
-   */
   public fun setExpandMarginIndividual(
     sizeLeft: Double,
     sizeTop: Double,

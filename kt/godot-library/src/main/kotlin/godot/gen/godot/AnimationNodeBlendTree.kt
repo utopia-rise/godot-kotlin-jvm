@@ -54,7 +54,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Adds an [godot.AnimationNode] at the given `position`. The `name` is used to identify the created sub-node later.
+   * Adds an [godot.AnimationNode] at the given [position]. The [name] is used to identify the created sub-node later.
    */
   public fun addNode(
     name: StringName,
@@ -67,7 +67,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the sub-node with the specified `name`.
+   * Returns the sub-node with the specified [name].
    */
   public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -95,7 +95,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if a sub-node with specified `name` exists.
+   * Returns `true` if a sub-node with specified [name] exists.
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -105,7 +105,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Connects the output of an [godot.AnimationNode] as input for another [godot.AnimationNode], at the input port specified by `input_index`.
+   * Connects the output of an [godot.AnimationNode] as input for another [godot.AnimationNode], at the input port specified by [inputIndex].
    */
   public fun connectNode(
     inputNode: StringName,
@@ -136,7 +136,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the sub-node with the specified `name`.
+   * Returns the position of the sub-node with the specified [name].
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

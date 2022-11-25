@@ -46,7 +46,7 @@ public open class BoxContainer internal constructor() : Container() {
   }
 
   /**
-   * Adds a [godot.Control] node to the box as a spacer. If `begin` is `true`, it will insert the [godot.Control] node in front of all other children.
+   * Adds a [godot.Control] node to the box as a spacer. If [begin] is `true`, it will insert the [godot.Control] node in front of all other children.
    */
   public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
@@ -58,15 +58,15 @@ public open class BoxContainer internal constructor() : Container() {
     id: Long
   ) {
     /**
-     *
+     * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
     ALIGNMENT_BEGIN(0),
     /**
-     *
+     * The child controls will be centered in the container.
      */
     ALIGNMENT_CENTER(1),
     /**
-     *
+     * The child controls will be arranged at the end of the container, i.e. bottom if orientation is vertical, right if orientation is horizontal (left for RTL layout).
      */
     ALIGNMENT_END(2),
     ;

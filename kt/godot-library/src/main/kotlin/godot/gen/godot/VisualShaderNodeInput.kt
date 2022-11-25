@@ -34,7 +34,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   public val inputTypeChanged: Signal0 by signal()
 
   /**
-   * One of the several input constants in lower-case style like: "vertex"(`VERTEX`) or "point_size"(`POINT_SIZE`).
+   * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or "point_size" (`POINT_SIZE`).
    */
   public var inputName: StringName
     get() {

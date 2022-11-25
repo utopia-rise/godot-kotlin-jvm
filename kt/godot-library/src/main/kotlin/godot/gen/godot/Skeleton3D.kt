@@ -110,7 +110,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Adds a bone, with name `name`. [getBoneCount] will become the bone index.
+   * Adds a bone, with name [name]. [getBoneCount] will become the bone index.
    */
   public fun addBone(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -118,7 +118,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the bone index that matches `name` as its name.
+   * Returns the bone index that matches [name] as its name.
    */
   public fun findBone(name: String): Long {
     TransferContext.writeArguments(STRING to name)
@@ -127,7 +127,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the name of the bone at index `index`.
+   * Returns the name of the bone at index [boneIdx].
    */
   public fun getBoneName(boneIdx: Long): String {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -144,9 +144,9 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the bone index which is the parent of the bone at `bone_idx`. If -1, then bone has no parent.
+   * Returns the bone index which is the parent of the bone at [boneIdx]. If -1, then bone has no parent.
    *
-   * **Note:** The parent bone returned will always be less than `bone_idx`.
+   * **Note:** The parent bone returned will always be less than [boneIdx].
    */
   public fun getBoneParent(boneIdx: Long): Long {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -155,9 +155,9 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the bone index `parent_idx` as the parent of the bone at `bone_idx`. If -1, then bone has no parent.
+   * Sets the bone index [parentIdx] as the parent of the bone at [boneIdx]. If -1, then bone has no parent.
    *
-   * **Note:** `parent_idx` must be less than `bone_idx`.
+   * **Note:** [parentIdx] must be less than [boneIdx].
    */
   public fun setBoneParent(boneIdx: Long, parentIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx, LONG to parentIdx)
@@ -165,7 +165,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the amount of bones in the skeleton.
+   * Returns the number of bones in the skeleton.
    */
   public fun getBoneCount(): Long {
     TransferContext.writeArguments()
@@ -174,7 +174,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Unparents the bone at `bone_idx` and sets its rest position to that of its parent prior to being reset.
+   * Unparents the bone at [boneIdx] and sets its rest position to that of its parent prior to being reset.
    */
   public fun unparentBoneAndRest(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -183,7 +183,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns an array containing the bone indexes of all the children node of the passed in bone, `bone_idx`.
+   * Returns an array containing the bone indexes of all the children node of the passed in bone, [boneIdx].
    */
   public fun getBoneChildren(boneIdx: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -192,29 +192,16 @@ public open class Skeleton3D : Node3D() {
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
 
-  /**
-   * Sets the children for the passed in bone, `bone_idx`, to the passed-in array of bone indexes, `bone_children`.
-   */
   public fun setBoneChildren(boneIdx: Long, boneChildren: PackedInt32Array): Unit {
     TransferContext.writeArguments(LONG to boneIdx, PACKED_INT_32_ARRAY to boneChildren)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_CHILDREN, NIL)
   }
 
-  /**
-   * Takes the given bone pose/transform and converts it to a world transform, relative to the [godot.Skeleton3D] node.
-   *
-   * This is useful for using the bone transform in calculations with transforms from [godot.Node3D]-based nodes.
-   */
   public fun addBoneChild(boneIdx: Long, childBoneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx, LONG to childBoneIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_ADD_BONE_CHILD, NIL)
   }
 
-  /**
-   * Removes the passed in child bone index, `child_bone_idx`, from the passed-in bone, `bone_idx`, if it exists.
-   *
-   * **Note:** This does not remove the child bone, but instead it removes the connection it has to the parent bone.
-   */
   public fun removeBoneChild(boneIdx: Long, childBoneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx, LONG to childBoneIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_REMOVE_BONE_CHILD, NIL)
@@ -231,7 +218,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the rest transform for a bone `bone_idx`.
+   * Returns the rest transform for a bone [boneIdx].
    */
   public fun getBoneRest(boneIdx: Long): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -241,7 +228,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the rest transform for bone `bone_idx`.
+   * Sets the rest transform for bone [boneIdx].
    */
   public fun setBoneRest(boneIdx: Long, rest: Transform3D): Unit {
     TransferContext.writeArguments(LONG to boneIdx, TRANSFORM3D to rest)
@@ -350,7 +337,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns whether the bone pose for the bone at `bone_idx` is enabled.
+   * Returns whether the bone pose for the bone at [boneIdx] is enabled.
    */
   public fun isBoneEnabled(boneIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -359,7 +346,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Disables the pose for the bone at `bone_idx` if `false`, enables the bone pose if `true`.
+   * Disables the pose for the bone at [boneIdx] if `false`, enables the bone pose if `true`.
    */
   public fun setBoneEnabled(boneIdx: Long, enabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to boneIdx, BOOL to enabled)
@@ -376,11 +363,11 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the global pose transform, `pose`, for the bone at `bone_idx`.
+   * Sets the global pose transform, [pose], for the bone at [boneIdx].
    *
-   * `amount` is the interpolation strength that will be used when applying the pose, and `persistent` determines if the applied pose will remain.
+   * [amount] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
    *
-   * **Note:** The pose transform needs to be a global pose! Use [worldTransformToGlobalPose] to convert a world transform, like one you can get from a [godot.Node3D], to a global pose.
+   * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform
    */
   public fun setBoneGlobalPoseOverride(
     boneIdx: Long,
@@ -394,7 +381,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the global pose override transform for `bone_idx`.
+   * Returns the global pose override transform for [boneIdx].
    */
   public fun getBoneGlobalPoseOverride(boneIdx: Long): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -424,6 +411,8 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
+   * Deprecated. Local pose overrides will be removed.
+   *
    * Removes the local pose override on all bones in the skeleton.
    */
   public fun clearBonesLocalPoseOverride(): Unit {
@@ -433,9 +422,11 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the local pose transform, `pose`, for the bone at `bone_idx`.
+   * Deprecated. Local pose overrides will be removed.
    *
-   * `amount` is the interpolation strength that will be used when applying the pose, and `persistent` determines if the applied pose will remain.
+   * Sets the local pose transform, [pose], for the bone at [boneIdx].
+   *
+   * [amount] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
    *
    * **Note:** The pose transform needs to be a local pose! Use [globalPoseToLocalPose] to convert a global pose to a local pose.
    */
@@ -451,7 +442,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the local pose override transform for `bone_idx`.
+   * Returns the local pose override transform for [boneIdx].
    */
   public fun getBoneLocalPoseOverride(boneIdx: Long): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -470,7 +461,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Force updates the bone transform for the bone at `bone_idx` and all of its children.
+   * Force updates the bone transform for the bone at [boneIdx] and all of its children.
    */
   public fun forceUpdateBoneChildTransform(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -479,6 +470,8 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
+   * Deprecated. Use [godot.Node3D] apis instead.
+   *
    * Takes the passed-in global pose and converts it to a world transform.
    *
    * This can be used to easily convert a global pose from [getBoneGlobalPose] to a global transform usable with a node's transform, like [godot.Node3D.globalTransform] for example.
@@ -491,6 +484,8 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
+   * Deprecated. Use [godot.Node3D] apis instead.
+   *
    * Takes the passed-in global transform and converts it to a global pose.
    *
    * This can be used to easily convert a global transform from [godot.Node3D.globalTransform] to a global pose usable with [setBoneGlobalPoseOverride], for example.
@@ -515,7 +510,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Converts the passed-in local pose to a global pose relative to the inputted bone, `bone_idx`.
+   * Converts the passed-in local pose to a global pose relative to the inputted bone, [boneIdx].
    *
    * This could be used to convert [getBonePose] for use with the [setBoneGlobalPoseOverride] function.
    */
@@ -527,7 +522,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Rotates the given [godot.core.Basis] so that the forward axis of the Basis is facing in the forward direction of the bone at `bone_idx`.
+   * Rotates the given [godot.core.Basis] so that the forward axis of the Basis is facing in the forward direction of the bone at [boneIdx].
    *
    * This is helper function to make using [godot.Transform3D.lookingAt] easier with bone poses.
    */
@@ -562,7 +557,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Adds a collision exception to the physical bone.
    *
-   * Works just like the [godot.RigidDynamicBody3D] node.
+   * Works just like the [godot.RigidBody3D] node.
    */
   public fun physicalBonesAddCollisionException(exception: RID): Unit {
     TransferContext.writeArguments(_RID to exception)
@@ -573,7 +568,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Removes a collision exception to the physical bone.
    *
-   * Works just like the [godot.RigidDynamicBody3D] node.
+   * Works just like the [godot.RigidBody3D] node.
    */
   public fun physicalBonesRemoveCollisionException(exception: RID): Unit {
     TransferContext.writeArguments(_RID to exception)
@@ -582,7 +577,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the modification stack for this skeleton to the passed-in modification stack, `modification_stack`.
+   * Sets the modification stack for this skeleton to the passed-in modification stack, [modificationStack].
    */
   public fun setModificationStack(modificationStack: SkeletonModificationStack3D): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)

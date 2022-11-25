@@ -45,7 +45,7 @@ import kotlin.Unit
  *
  * func _ready():
  *
- *     $LineEdit.connect("text_submitted", self, "_on_text_submitted")
+ *     $LineEdit.text_submitted.connect(self._on_text_submitted)
  *
  *
  *
@@ -77,7 +77,7 @@ import kotlin.Unit
  *
  * {
  *
- *     GetNode("LineEdit").Connect("text_submitted", this, nameof(OnTextEntered));
+ *     GetNode("LineEdit").TextSubmitted += OnTextEntered;
  *
  * }
  *
@@ -124,7 +124,7 @@ public open class Expression : RefCounted() {
   /**
    * Parses the expression and returns an [enum Error] code.
    *
-   * You can optionally specify names of variables that may appear in the expression with `input_names`, so that you can bind them when it gets executed.
+   * You can optionally specify names of variables that may appear in the expression with [inputNames], so that you can bind them when it gets executed.
    */
   public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {

@@ -55,7 +55,7 @@ public open class World2D : Resource() {
     }
 
   /**
-   * Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to `_physics_process(delta)` in the main thread.
+   * Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [godot.Node.PhysicsProcess] in the main thread.
    */
   public val directSpaceState: PhysicsDirectSpaceState2D?
     get() {

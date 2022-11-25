@@ -53,7 +53,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the names of all the classes that directly or indirectly inherit from `class`.
+   * Returns the names of all the classes that directly or indirectly inherit from [class].
    */
   public fun getInheritersFromClass(_class: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -63,7 +63,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the parent class of `class`.
+   * Returns the parent class of [class].
    */
   public fun getParentClass(_class: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -73,7 +73,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether the specified `class` is available or not.
+   * Returns whether the specified [class] is available or not.
    */
   public fun classExists(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -82,7 +82,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether `inherits` is an ancestor of `class` or not.
+   * Returns whether [inherits] is an ancestor of [class] or not.
    */
   public fun isParentClass(_class: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
@@ -91,7 +91,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns `true` if you can instance objects from the specified `class`, `false` in other case.
+   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns `false`.
    */
   public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -100,7 +100,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Creates an instance of `class`.
+   * Creates an instance of [class].
    */
   public fun instantiate(_class: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -109,7 +109,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether `class` or its ancestry has a signal called `signal` or not.
+   * Returns whether [class] or its ancestry has a signal called [signal] or not.
    */
   public fun classHasSignal(_class: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
@@ -118,7 +118,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the `signal` data of `class` or its ancestry. The returned value is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns the [signal] data of [class] or its ancestry. The returned value is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    */
   public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
@@ -128,7 +128,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the signals of `class` or its ancestry if `no_inheritance` is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
+   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
    */
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
@@ -139,7 +139,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the properties of `class` or its ancestry if `no_inheritance` is `false`.
+   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
    */
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Any?> {
@@ -150,7 +150,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of `property` of `class` or its ancestry.
+   * Returns the value of [property] of [object] or its ancestry.
    */
   public fun classGetProperty(_object: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
@@ -159,7 +159,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Sets `property` value of `class` to `value`.
+   * Sets [property] value of [object] to [value].
    */
   public fun classSetProperty(
     _object: Object,
@@ -172,7 +172,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether `class` (or its ancestry if `no_inheritance` is `false`) has a method called `method` or not.
+   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
    */
   public fun classHasMethod(
     _class: StringName,
@@ -185,7 +185,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the methods of `class` or its ancestry if `no_inheritance` is `false`. Every element of the array is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    *
    * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
@@ -198,7 +198,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with the names all the integer constants of `class` or its ancestry.
+   * Returns an array with the names all the integer constants of [class] or its ancestry.
    */
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
@@ -209,7 +209,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether `class` or its ancestry has an integer constant called `name` or not.
+   * Returns whether [class] or its ancestry has an integer constant called [name] or not.
    */
   public fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
@@ -219,7 +219,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of the integer constant `name` of `class` or its ancestry. Always returns 0 when the constant could not be found.
+   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0 when the constant could not be found.
    */
   public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
@@ -229,7 +229,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether `class` or its ancestry has an enum called `name` or not.
+   * Returns whether [class] or its ancestry has an enum called [name] or not.
    */
   public fun classHasEnum(
     _class: StringName,
@@ -242,7 +242,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the enums of `class` or its ancestry.
+   * Returns an array with all the enums of [class] or its ancestry.
    */
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
@@ -253,7 +253,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the keys in `enum` of `class` or its ancestry.
+   * Returns an array with all the keys in [enum] of [class] or its ancestry.
    */
   public fun classGetEnumConstants(
     _class: StringName,
@@ -267,7 +267,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns which enum the integer constant `name` of `class` or its ancestry belongs to.
+   * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
    */
   public fun classGetIntegerConstantEnum(
     _class: StringName,
@@ -281,7 +281,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether this `class` is enabled or not.
+   * Returns whether this [class] is enabled or not.
    */
   public fun isClassEnabled(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)

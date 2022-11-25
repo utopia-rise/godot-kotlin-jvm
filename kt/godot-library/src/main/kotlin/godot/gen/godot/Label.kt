@@ -31,7 +31,7 @@ import kotlin.Unit
  *
  * Label displays plain text on the screen. It gives you control over the horizontal and vertical alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics, or other formatting. For that, use [godot.RichTextLabel] instead.
  *
- * **Note:** Contrarily to most other [godot.Control]s, Label's [godot.Control.mouseFilter] defaults to [godot.Control.MOUSE_FILTER_IGNORE] (i.e. it doesn't react to mouse input events). This implies that a label won't display any configured [godot.Control.hintTooltip], unless you change its mouse filter.
+ * **Note:** Contrarily to most other [godot.Control]s, Label's [godot.Control.mouseFilter] defaults to [godot.Control.MOUSE_FILTER_IGNORE] (i.e. it doesn't react to mouse input events). This implies that a label won't display any configured [godot.Control.tooltipText], unless you change its mouse filter.
  */
 @GodotBaseType
 public open class Label : Control() {
@@ -81,7 +81,7 @@ public open class Label : Control() {
     }
 
   /**
-   * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum AutowrapMode].
+   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
   public var autowrapMode: Long
     get() {
@@ -109,7 +109,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
@@ -167,9 +167,9 @@ public open class Label : Control() {
     }
 
   /**
-   * Restricts the number of characters to display. Set to -1 to disable.
+   * The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.
    *
-   * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
+   * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Long
     get() {
@@ -184,7 +184,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: Long
     get() {
@@ -199,11 +199,6 @@ public open class Label : Control() {
           ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
     }
 
-  /**
-   * Limits the amount of visible characters. If you set `percent_visible` to 0.5, only up to half of the text's characters will display on screen. Useful to animate the text in a dialog box.
-   *
-   * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
-   */
   public var percentVisible: Double
     get() {
       TransferContext.writeArguments()
@@ -279,37 +274,28 @@ public open class Label : Control() {
     callConstructor(ENGINECLASS_LABEL)
   }
 
-  /**
-   * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_CLEAR_OPENTYPE_FEATURES, NIL)
   }
 
   /**
-   * Returns the height of the line `line`.
+   * Returns the height of the line [line].
    *
-   * If `line` is set to `-1`, returns the biggest line height.
+   * If [line] is set to `-1`, returns the biggest line height.
    *
-   * If there're no lines returns font size in pixels.
+   * If there are no lines, returns font size in pixels.
    */
   public fun getLineHeight(line: Long = -1): Long {
     TransferContext.writeArguments(LONG to line)
@@ -318,7 +304,7 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the amount of lines of text the Label has.
+   * Returns the number of lines of text the Label has.
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
@@ -348,25 +334,10 @@ public open class Label : Control() {
   public enum class VisibleCharactersBehavior(
     id: Long
   ) {
-    /**
-     * Trims text before the shaping. e.g, increasing [visibleCharacters] value is visually identical to typing the text.
-     */
     VC_CHARS_BEFORE_SHAPING(0),
-    /**
-     * Displays glyphs that are mapped to the first [visibleCharacters] characters from the beginning of the text.
-     */
     VC_CHARS_AFTER_SHAPING(1),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left or from the right, depending on [godot.Control.layoutDirection] value.
-     */
     VC_GLYPHS_AUTO(2),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left.
-     */
     VC_GLYPHS_LTR(3),
-    /**
-     * Displays [percentVisible] glyphs, starting from the right.
-     */
     VC_GLYPHS_RTL(4),
     ;
 
@@ -383,21 +354,9 @@ public open class Label : Control() {
   public enum class AutowrapMode(
     id: Long
   ) {
-    /**
-     * Autowrap is disabled.
-     */
     AUTOWRAP_OFF(0),
-    /**
-     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available.
-     */
     AUTOWRAP_ARBITRARY(1),
-    /**
-     * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
-     */
     AUTOWRAP_WORD(2),
-    /**
-     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line.
-     */
     AUTOWRAP_WORD_SMART(3),
     ;
 
@@ -414,25 +373,10 @@ public open class Label : Control() {
   public enum class OverrunBehavior(
     id: Long
   ) {
-    /**
-     * No text trimming is performed.
-     */
     OVERRUN_NO_TRIMMING(0),
-    /**
-     * Trims the text per character.
-     */
     OVERRUN_TRIM_CHAR(1),
-    /**
-     * Trims the text per word.
-     */
     OVERRUN_TRIM_WORD(2),
-    /**
-     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_ELLIPSIS(3),
-    /**
-     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_WORD_ELLIPSIS(4),
     ;
 

@@ -15,9 +15,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a phaser audio effect to an Audio bus.
+ * Adds a phaser audio effect to an audio bus.
  *
  * Combines the original signal with a copy that is slightly out of phase with the original.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted signals is controlled using a low-frequency oscillator.
  */

@@ -33,9 +33,9 @@ import kotlin.Unit
  *
  * You can add custom monitors using the [addCustomMonitor] method. Custom monitors are available in **Monitor** tab in the editor's **Debugger** panel together with built-in monitors.
  *
- * **Note:** A few of these monitors are only available in debug mode and will always return 0 when used in a release build.
+ * **Note:** Some of the built-in monitors are only available in debug mode and will always return `0` when used in a project exported in release mode.
  *
- * **Note:** Many of these monitors are not updated in real-time, so there may be a short delay between changes.
+ * **Note:** Some of the built-in monitors are not updated in real-time for performance reasons, so there may be a delay of up to 1 second between changes.
  *
  * **Note:** Custom monitors do not support negative values. Negative values are clamped to 0.
  */
@@ -48,7 +48,7 @@ public object Performance : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns the value of one of the available monitors. You should provide one of the [enum Monitor] constants as the argument, like this:
+   * Returns the value of one of the available built-in monitors. You should provide one of the [enum Monitor] constants as the argument, like this:
    *
    * [codeblocks]
    *
@@ -65,6 +65,8 @@ public object Performance : Object() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * See [getCustomMonitor] to query custom performance monitors' values.
    */
   public fun getMonitor(monitor: Performance.Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
@@ -73,7 +75,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Adds a custom monitor with name same as id. You can specify the category of monitor using '/' in id. If there are more than one '/' then default category is used. Default category is "Custom".
+   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash delimiter, then the default category is used. The default category is `"Custom"`. Prints an error if given [id] is already present.
    *
    * [codeblocks]
    *
@@ -93,7 +95,7 @@ public object Performance : Object() {
    *
    *     # Adds monitor with name "MyName" to category "Custom".
    *
-   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code is valid.
+   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the code is valid.
    *
    *     Performance.add_custom_monitor("MyMonitor", monitor_value)
    *
@@ -101,7 +103,7 @@ public object Performance : Object() {
    *
    *     # Adds monitor with name "MyName" to category "Custom".
    *
-   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids so the code is valid.
+   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different IDs, so the code is valid.
    *
    *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
    *
@@ -169,11 +171,9 @@ public object Performance : Object() {
    *
    * [/codeblocks]
    *
-   * The debugger calls the callable to get the value of custom monitor. The callable must return a number.
+   * The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.
    *
    * Callables are called with arguments supplied in argument array.
-   *
-   * **Note:** It prints an error if given id is already present.
    */
   public fun addCustomMonitor(
     id: StringName,
@@ -185,9 +185,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Removes the custom monitor with given id.
-   *
-   * **Note:** It prints an error if the given id is already absent.
+   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already absent.
    */
   public fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -196,7 +194,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns true if custom monitor with the given id is present otherwise returns false.
+   * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
    */
   public fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -206,9 +204,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the value of custom monitor with given id. The callable is called to get the value of custom monitor.
-   *
-   * **Note:** It prints an error if the given id is absent.
+   * Returns the value of custom monitor with given [id]. The callable is called to get the value of custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
   public fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -217,7 +213,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the last tick in which custom monitor was added/removed.
+   * Returns the last tick in which custom monitor was added/removed (in microseconds since the engine started). This is set to [godot.Time.getTicksUsec] when the monitor is updated.
    */
   public fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
@@ -227,7 +223,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the names of active custom monitors in an array.
+   * Returns the names of active custom monitors in an [godot.Array].
    */
   public fun getCustomMonitorNames(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -240,95 +236,95 @@ public object Performance : Object() {
     id: Long
   ) {
     /**
-     * Number of frames per second.
+     * The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often. *Higher is better.*
      */
     TIME_FPS(0),
     /**
-     * Time it took to complete one frame, in seconds.
+     * Time it took to complete one frame, in seconds. *Lower is better.*
      */
     TIME_PROCESS(1),
     /**
-     * Time it took to complete one physics frame, in seconds.
+     * Time it took to complete one physics frame, in seconds. *Lower is better.*
      */
     TIME_PHYSICS_PROCESS(2),
     /**
-     * Static memory currently used, in bytes. Not available in release builds.
+     * Static memory currently used, in bytes. Not available in release builds. *Lower is better.*
      */
     MEMORY_STATIC(3),
     /**
-     * Available static memory. Not available in release builds.
+     * Available static memory. Not available in release builds. *Lower is better.*
      */
     MEMORY_STATIC_MAX(4),
     /**
-     * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications.
+     * Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications. *Lower is better.*
      */
     MEMORY_MESSAGE_BUFFER_MAX(5),
     /**
-     * Number of objects currently instantiated (including nodes).
+     * Number of objects currently instantiated (including nodes). *Lower is better.*
      */
     OBJECT_COUNT(6),
     /**
-     * Number of resources currently used.
+     * Number of resources currently used. *Lower is better.*
      */
     OBJECT_RESOURCE_COUNT(7),
     /**
-     * Number of nodes currently instantiated in the scene tree. This also includes the root node.
+     * Number of nodes currently instantiated in the scene tree. This also includes the root node. *Lower is better.*
      */
     OBJECT_NODE_COUNT(8),
     /**
-     * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree.
+     * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. *Lower is better.*
      */
     OBJECT_ORPHAN_NODE_COUNT(9),
     /**
-     *
+     * The total number of objects in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling). *Lower is better.*
      */
     RENDER_TOTAL_OBJECTS_IN_FRAME(10),
     /**
-     *
+     * The total number of vertices or indices rendered in the last rendered frame. This metric doesn't include primitives from culled objects (either via hiding nodes, frustum culling or occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is always higher than the actual number of vertices in the scene (typically double or triple the original vertex count). *Lower is better.*
      */
     RENDER_TOTAL_PRIMITIVES_IN_FRAME(11),
     /**
-     *
+     * The total number of draw calls performed in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling), since they do not result in draw calls. *Lower is better.*
      */
     RENDER_TOTAL_DRAW_CALLS_IN_FRAME(12),
     /**
-     * The amount of video memory used, i.e. texture and vertex memory combined.
+     * The amount of video memory used (texture and vertex memory combined, in bytes). Since this metric also includes miscellaneous allocations, this value is always greater than the sum of [RENDER_TEXTURE_MEM_USED] and [RENDER_BUFFER_MEM_USED]. *Lower is better.*
      */
     RENDER_VIDEO_MEM_USED(13),
     /**
-     * The amount of texture memory used.
+     * The amount of texture memory used (in bytes). *Lower is better.*
      */
     RENDER_TEXTURE_MEM_USED(14),
     /**
-     *
+     * The amount of render buffer memory used (in bytes). *Lower is better.*
      */
     RENDER_BUFFER_MEM_USED(15),
     /**
-     * Number of active [godot.RigidDynamicBody2D] nodes in the game.
+     * Number of active [godot.RigidBody2D] nodes in the game. *Lower is better.*
      */
     PHYSICS_2D_ACTIVE_OBJECTS(16),
     /**
-     * Number of collision pairs in the 2D physics engine.
+     * Number of collision pairs in the 2D physics engine. *Lower is better.*
      */
     PHYSICS_2D_COLLISION_PAIRS(17),
     /**
-     * Number of islands in the 2D physics engine.
+     * Number of islands in the 2D physics engine. *Lower is better.*
      */
     PHYSICS_2D_ISLAND_COUNT(18),
     /**
-     * Number of active [godot.RigidDynamicBody3D] and [godot.VehicleBody3D] nodes in the game.
+     * Number of active [godot.RigidBody3D] and [godot.VehicleBody3D] nodes in the game. *Lower is better.*
      */
     PHYSICS_3D_ACTIVE_OBJECTS(19),
     /**
-     * Number of collision pairs in the 3D physics engine.
+     * Number of collision pairs in the 3D physics engine. *Lower is better.*
      */
     PHYSICS_3D_COLLISION_PAIRS(20),
     /**
-     * Number of islands in the 3D physics engine.
+     * Number of islands in the 3D physics engine. *Lower is better.*
      */
     PHYSICS_3D_ISLAND_COUNT(21),
     /**
-     * Output latency of the [godot.AudioServer].
+     * Output latency of the [godot.AudioServer]. *Lower is better.*
      */
     AUDIO_OUTPUT_LATENCY(22),
     /**

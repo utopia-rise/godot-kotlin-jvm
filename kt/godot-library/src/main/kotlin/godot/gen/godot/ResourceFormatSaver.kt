@@ -29,7 +29,7 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Saves the given resource object to a file at the target `path`. `flags` is a bitmask composed with [enum ResourceSaver.SaverFlags] constants.
+   * Saves the given resource object to a file at the target [path]. [flags] is a bitmask composed with [enum ResourceSaver.SaverFlags] constants.
    *
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */

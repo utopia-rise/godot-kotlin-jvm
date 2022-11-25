@@ -32,7 +32,7 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * tool
+ * @tool
  *
  * extends EditorTranslationParserPlugin
  *
@@ -154,7 +154,7 @@ import kotlin.Unit
  *
  * [/codeblocks]
  *
- * **Note:** If you override parsing logic for standard script types (GDScript, C#, etc.), it would be better to load the `path` argument using [godot.ResourceLoader.load]. This is because built-in scripts are loaded as [godot.Resource] type, not [godot.File] type.
+ * **Note:** If you override parsing logic for standard script types (GDScript, C#, etc.), it would be better to load the `path` argument using [godot.ResourceLoader.load]. This is because built-in scripts are loaded as [godot.Resource] type, not [godot.FileAccess] type.
  *
  * For example:
  *

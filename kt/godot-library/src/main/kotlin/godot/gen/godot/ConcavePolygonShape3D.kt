@@ -24,9 +24,11 @@ import kotlin.Unit
  *
  * 3D concave polygon shape resource (also called "trimesh") to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. This shape is created by feeding a list of triangles. Despite its name, [godot.ConcavePolygonShape3D] can also store convex polygon shapes. However, unlike [godot.ConvexPolygonShape3D], [godot.ConcavePolygonShape3D] is *not* limited to storing convex shapes exclusively.
  *
- * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.PhysicsBody3D] nodes like [godot.StaticBody3D] and will not work with [godot.CharacterBody3D] or [godot.RigidDynamicBody3D] with a mode other than Static.
+ * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.PhysicsBody3D] nodes like [godot.StaticBody3D] and will not work with [godot.CharacterBody3D] or [godot.RigidBody3D] with a mode other than Static.
  *
  * **Performance:** Due to its complexity, [godot.ConcavePolygonShape3D] is the slowest collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, using [godot.ConvexPolygonShape3D] will perform better. For dynamic physics bodies that need concave collision, several [godot.ConvexPolygonShape3D]s can be used to represent its collision by using convex decomposition; see [godot.ConvexPolygonShape3D]'s documentation for instructions. However, consider using primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D] first.
+ *
+ * **Warning:** Using this shape for an [godot.Area3D] (via a [godot.CollisionShape3D] node, created e.g. by using the *Create Trimesh Collision Sibling* option in the *Mesh* menu that appears when selecting a [godot.MeshInstance3D] node) may give unexpected results: the area will only detect collisions with the triangle faces in the [godot.ConcavePolygonShape3D] (and not with any "inside" of the shape, for example); moreover it will only detect all such collisions if [backfaceCollision] is `true`.
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {

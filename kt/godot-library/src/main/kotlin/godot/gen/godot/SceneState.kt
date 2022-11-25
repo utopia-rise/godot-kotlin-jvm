@@ -53,7 +53,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the type of the node at `idx`.
+   * Returns the type of the node at [idx].
    */
   public fun getNodeType(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
@@ -63,7 +63,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the name of the node at `idx`.
+   * Returns the name of the node at [idx].
    */
   public fun getNodeName(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
@@ -73,9 +73,9 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the node at `idx`.
+   * Returns the path to the node at [idx].
    *
-   * If `for_parent` is `true`, returns the path of the `idx` node's parent instead.
+   * If [forParent] is `true`, returns the path of the [idx] node's parent instead.
    */
   public fun getNodePath(idx: Long, forParent: Boolean = false): NodePath {
     TransferContext.writeArguments(LONG to idx, BOOL to forParent)
@@ -84,7 +84,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the owner of the node at `idx`, relative to the root node.
+   * Returns the path to the owner of the node at [idx], relative to the root node.
    */
   public fun getNodeOwnerPath(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
@@ -94,7 +94,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if the node at `idx` is an [godot.InstancePlaceholder].
+   * Returns `true` if the node at [idx] is an [godot.InstancePlaceholder].
    */
   public fun isNodeInstancePlaceholder(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -104,7 +104,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the represented scene file if the node at `idx` is an [godot.InstancePlaceholder].
+   * Returns the path to the represented scene file if the node at [idx] is an [godot.InstancePlaceholder].
    */
   public fun getNodeInstancePlaceholder(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -114,7 +114,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a [godot.PackedScene] for the node at `idx` (i.e. the whole branch starting at this node, with its child nodes and resources), or `null` if the node is not an instance.
+   * Returns a [godot.PackedScene] for the node at [idx] (i.e. the whole branch starting at this node, with its child nodes and resources), or `null` if the node is not an instance.
    */
   public fun getNodeInstance(idx: Long): PackedScene? {
     TransferContext.writeArguments(LONG to idx)
@@ -124,7 +124,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the list of group names associated with the node at `idx`.
+   * Returns the list of group names associated with the node at [idx].
    */
   public fun getNodeGroups(idx: Long): PackedStringArray {
     TransferContext.writeArguments(LONG to idx)
@@ -134,7 +134,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the `idx` argument used here and in other methods.
+   * Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the [idx] argument used here and in other methods.
    */
   public fun getNodeIndex(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -143,7 +143,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the number of exported or overridden properties for the node at `idx`.
+   * Returns the number of exported or overridden properties for the node at [idx].
    *
    * The `prop_idx` argument used to query node property data in other `get_node_property_*` methods in the interval `[0, get_node_property_count() - 1]`.
    */
@@ -155,7 +155,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the name of the property at `prop_idx` for the node at `idx`.
+   * Returns the name of the property at [propIdx] for the node at [idx].
    */
   public fun getNodePropertyName(idx: Long, propIdx: Long): StringName {
     TransferContext.writeArguments(LONG to idx, LONG to propIdx)
@@ -165,7 +165,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the value of the property at `prop_idx` for the node at `idx`.
+   * Returns the value of the property at [propIdx] for the node at [idx].
    */
   public fun getNodePropertyValue(idx: Long, propIdx: Long): Any? {
     TransferContext.writeArguments(LONG to idx, LONG to propIdx)
@@ -187,7 +187,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the node that owns the signal at `idx`, relative to the root node.
+   * Returns the path to the node that owns the signal at [idx], relative to the root node.
    */
   public fun getConnectionSource(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
@@ -197,7 +197,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the name of the signal at `idx`.
+   * Returns the name of the signal at [idx].
    */
   public fun getConnectionSignal(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
@@ -207,7 +207,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the node that owns the method connected to the signal at `idx`, relative to the root node.
+   * Returns the path to the node that owns the method connected to the signal at [idx], relative to the root node.
    */
   public fun getConnectionTarget(idx: Long): NodePath {
     TransferContext.writeArguments(LONG to idx)
@@ -217,7 +217,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the method connected to the signal at `idx`.
+   * Returns the method connected to the signal at [idx].
    */
   public fun getConnectionMethod(idx: Long): StringName {
     TransferContext.writeArguments(LONG to idx)
@@ -227,7 +227,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the connection flags for the signal at `idx`. See [enum Object.ConnectFlags] constants.
+   * Returns the connection flags for the signal at [idx]. See [enum Object.ConnectFlags] constants.
    */
   public fun getConnectionFlags(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -237,7 +237,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the list of bound parameters for the signal at `idx`.
+   * Returns the list of bound parameters for the signal at [idx].
    */
   public fun getConnectionBinds(idx: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to idx)
@@ -247,7 +247,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the number of unbound parameters for the signal at `idx`.
+   * Returns the number of unbound parameters for the signal at [idx].
    */
   public fun getConnectionUnbinds(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)

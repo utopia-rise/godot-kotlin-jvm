@@ -75,35 +75,35 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Gets all children nodes in order as a `name: node` dictionary. Only useful when inheriting [godot.AnimationRootNode].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all children nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
   }
 
   /**
-   * Gets the property information for parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a list of the properties on this node. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [godot.Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
   }
 
   /**
-   * Gets a child node by index (used by editors inheriting from [godot.AnimationRootNode]).
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return a child node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
     throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
   }
 
   /**
-   * Gets the default value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return the default value of a [parameter]. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
     throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
   }
 
   /**
-   * User-defined callback called when a custom node is processed. The `time` parameter is a relative delta, unless `seek` is `true`, in which case it is absolute.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to run some code when this node is processed. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute.
    *
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use [getParameter] and [setParameter] to modify local memory.
    *
@@ -114,14 +114,14 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Gets the text caption for this node (used by some editors).
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to override the text caption for this node.
    */
   public open fun _getCaption(): String {
     throw NotImplementedError("_get_caption is not implemented for AnimationNode")
   }
 
   /**
-   * Returns whether you want the blend tree editor to display filter editing on this node.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this node.
    */
   public open fun _hasFilter(): Boolean {
     throw NotImplementedError("_has_filter is not implemented for AnimationNode")
@@ -181,7 +181,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an animation by `blend` amount (name must be valid in the linked [godot.AnimationPlayer]). A `time` and `delta` may be passed, as well as whether `seek` happened.
+   * Blend an animation by [blend] amount (name must be valid in the linked [godot.AnimationPlayer]). A [time] and [delta] may be passed, as well as whether [seeked] happened.
    */
   public fun blendAnimation(
     animation: StringName,
@@ -213,7 +213,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The `time` parameter is a relative delta, unless `seek` is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
+   * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
    */
   public fun blendInput(
     inputIndex: Long,

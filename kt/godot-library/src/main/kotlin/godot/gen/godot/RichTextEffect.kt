@@ -51,7 +51,7 @@ public open class RichTextEffect : Resource() {
   }
 
   /**
-   * Override this method to modify properties in `char_fx`. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text.
+   * Override this method to modify properties in [charFx]. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text.
    */
   public open fun _processCustomFx(charFx: CharFXTransform): Boolean {
     throw NotImplementedError("_process_custom_fx is not implemented for RichTextEffect")

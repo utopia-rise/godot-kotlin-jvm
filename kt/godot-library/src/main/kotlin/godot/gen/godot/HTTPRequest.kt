@@ -40,7 +40,7 @@ import kotlin.Unit
  *
  * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
  *
- * **Warning:** See the notes and warnings on [godot.HTTPClient] for limitations, especially regarding SSL security.
+ * **Warning:** See the notes and warnings on [godot.HTTPClient] for limitations, especially regarding TLS security.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
@@ -58,7 +58,7 @@ import kotlin.Unit
  *
  *     add_child(http_request)
  *
- *     http_request.connect("request_completed", self, "_http_request_completed")
+ *     http_request.request_completed.connect(self._http_request_completed)
  *
  *
  *
@@ -78,7 +78,7 @@ import kotlin.Unit
  *
  *     # The snippet below is provided for reference only.
  *
- *     var body = {"name": "Godette"}
+ *     var body = JSON.new().stringify({"name": "Godette"})
  *
  *     error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
  *
@@ -88,13 +88,15 @@ import kotlin.Unit
  *
  *
  *
- *
- *
  * # Called when the HTTP request is completed.
  *
  * func _http_request_completed(result, response_code, headers, body):
  *
- *     var response = parse_json(body.get_string_from_utf8())
+ *     var json = JSON.new()
+ *
+ *     json.parse(body.get_string_from_utf8())
+ *
+ *     var response = json.get_data()
  *
  *
  *
@@ -116,7 +118,7 @@ import kotlin.Unit
  *
  *     AddChild(httpRequest);
  *
- *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *     httpRequest.RequestCompleted += HttpRequestCompleted;
  *
  *
  *
@@ -140,11 +142,15 @@ import kotlin.Unit
  *
  *     // The snippet below is provided for reference only.
  *
- *     string[] body = { "name", "Godette" };
+ *     string body = new JSON().Stringify(new Godot.Collections.Dictionary
  *
- *     // GDScript to_json is non existent, so we use JSON.Print() here.
+ *     {
  *
- *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, JSON.Print(body));
+ *         { "name", "Godette" }
+ *
+ *     });
+ *
+ *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, body);
  *
  *     if (error != Error.Ok)
  *
@@ -158,17 +164,19 @@ import kotlin.Unit
  *
  *
  *
- *
- *
  * // Called when the HTTP request is completed.
  *
  * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
  *
  * {
  *
- *     // GDScript parse_json is non existent so we have to use JSON.parse, which has a slightly different syntax.
+ *     var json = new JSON();
  *
- *     var response = JSON.Parse(body.GetStringFromUTF8()).Result as Godot.Collections.Dictionary;
+ *     json.Parse(body.GetStringFromUTF8());
+ *
+ *     var response = json.GetData() as Godot.Collections.Dictionary;
+ *
+ *
  *
  *     // Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
  *
@@ -194,7 +202,7 @@ import kotlin.Unit
  *
  *     add_child(http_request)
  *
- *     http_request.connect("request_completed", self, "_http_request_completed")
+ *     http_request.request_completed.connect(self._http_request_completed)
  *
  *
  *
@@ -205,8 +213,6 @@ import kotlin.Unit
  *     if error != OK:
  *
  *         push_error("An error occurred in the HTTP request.")
- *
- *
  *
  *
  *
@@ -230,9 +236,7 @@ import kotlin.Unit
  *
  *
  *
- *     var texture = ImageTexture.new()
- *
- *     texture.create_from_image(image)
+ *     var texture = ImageTexture.create_from_image(image)
  *
  *
  *
@@ -258,7 +262,7 @@ import kotlin.Unit
  *
  *     AddChild(httpRequest);
  *
- *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *     httpRequest.RequestCompleted += HttpRequestCompleted;
  *
  *
  *
@@ -275,8 +279,6 @@ import kotlin.Unit
  *     }
  *
  * }
- *
- *
  *
  *
  *
@@ -441,7 +443,7 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   *
+   * If set to a value greater than `0.0` before the request starts, the HTTP request will time out after `timeout` seconds have passed and the request is not *completed* yet. For small HTTP requests such as REST API usage, set [timeout] to a value between `10.0` and `30.0` to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to `0.0` to prevent the download from failing if it takes too much time.
    */
   public var timeout: Double
     get() {
@@ -463,9 +465,9 @@ public open class HTTPRequest : Node() {
    *
    * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
    *
-   * **Note:** When `method` is [godot.HTTPClient.METHOD_GET], the payload sent via `request_data` might be ignored by the server or even cause the server to reject the request (check [godot.RFC 7231 section 4.3.1](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1) for more details). As a workaround, you can send data as a query string in the URL (see [godot.String.uriEncode] for an example).
+   * **Note:** When [method] is [godot.HTTPClient.METHOD_GET], the payload sent via [requestData] might be ignored by the server or even cause the server to reject the request (check [godot.RFC 7231 section 4.3.1](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1) for more details). As a workaround, you can send data as a query string in the URL (see [godot.String.uriEncode] for an example).
    *
-   * **Note:** It's recommended to use transport encryption (SSL/TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
+   * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
    */
   public fun request(
     url: String,
@@ -515,7 +517,7 @@ public open class HTTPRequest : Node() {
   }
 
   /**
-   * Returns the amount of bytes this HTTPRequest downloaded.
+   * Returns the number of bytes this HTTPRequest downloaded.
    */
   public fun getDownloadedBytes(): Long {
     TransferContext.writeArguments()
@@ -538,7 +540,7 @@ public open class HTTPRequest : Node() {
   /**
    * Sets the proxy server for HTTP requests.
    *
-   * The proxy server is unset if `host` is empty or `port` is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -548,7 +550,7 @@ public open class HTTPRequest : Node() {
   /**
    * Sets the proxy server for HTTPS requests.
    *
-   * The proxy server is unset if `host` is empty or `port` is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -578,9 +580,6 @@ public open class HTTPRequest : Node() {
      * Request failed due to connection (read/write) error.
      */
     RESULT_CONNECTION_ERROR(4),
-    /**
-     * Request failed on SSL handshake.
-     */
     RESULT_SSL_HANDSHAKE_ERROR(5),
     /**
      * Request does not have a response (yet).

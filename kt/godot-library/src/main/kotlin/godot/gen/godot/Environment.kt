@@ -69,9 +69,6 @@ public open class Environment : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL)
     }
 
-  /**
-   * The power of the light emitted by the background.
-   */
   public var backgroundEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -288,9 +285,6 @@ public open class Environment : Resource() {
           NIL)
     }
 
-  /**
-   * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the renderer will automatically determine the exposure setting to adapt to the scene's illumination and the observed light.
-   */
   public var autoExposureEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -304,9 +298,6 @@ public open class Environment : Resource() {
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_ENABLED, NIL)
     }
 
-  /**
-   * The scale of the auto exposure effect. Affects the intensity of auto exposure.
-   */
   public var autoExposureScale: Double
     get() {
       TransferContext.writeArguments()
@@ -320,9 +311,6 @@ public open class Environment : Resource() {
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_GREY, NIL)
     }
 
-  /**
-   * The minimum luminance value for the auto exposure.
-   */
   public var autoExposureMinLuma: Double
     get() {
       TransferContext.writeArguments()
@@ -336,9 +324,6 @@ public open class Environment : Resource() {
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MIN, NIL)
     }
 
-  /**
-   * The maximum luminance value for the auto exposure.
-   */
   public var autoExposureMaxLuma: Double
     get() {
       TransferContext.writeArguments()
@@ -352,9 +337,6 @@ public open class Environment : Resource() {
           ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MAX, NIL)
     }
 
-  /**
-   * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure.
-   */
   public var autoExposureSpeed: Double
     get() {
       TransferContext.writeArguments()
@@ -1189,7 +1171,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The exponential fog density to use. Higher values result in a more dense fog.
+   * The *exponential* fog density to use. Higher values result in a more dense fog. Fog rendering is exponential as in real life.
    */
   public var fogDensity: Double
     get() {
@@ -1204,7 +1186,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Blend factor between the fog's color and the color of the background [godot.Sky]. Must have [backgroundMode] set to [BG_SKY].
+   * If set above `0.0` (exclusive), blends between the fog's color and the color of the background [godot.Sky]. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to [BG_SKY].
    *
    * This is useful to simulate [aerial perspective](https://en.wikipedia.org/wiki/Aerial_perspective) in large scenes with low density fog. However, it is not very useful for high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely from the [godot.Sky]. If set to `0.0`, aerial perspective is disabled.
    */
@@ -1254,6 +1236,8 @@ public open class Environment : Resource() {
 
   /**
    * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts with [godot.FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR single-scattering model based on extinction, scattering, and emission which it exposes to users as density, albedo, and emission.
+   *
+   * **Note:** Volumetric fog is only available in the forward plus renderer. It is not available in the mobile renderer or the compatibility renderer.
    */
   public var volumetricFogEnabled: Boolean
     get() {
@@ -1269,7 +1253,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The base density of the volumetric fog. Set this to the lowest density you want to have globally.
+   * The base *exponential* density of the volumetric fog. Set this to the lowest density you want to have globally. [godot.FogVolume]s can be used to add to or subtract from this density in specific areas. Fog rendering is exponential as in real life.
+   *
+   * A value of `0.0` disables global volumetric fog while allowing [godot.FogVolume]s to display volumetric fog in specific areas.
+   *
+   * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to the lowest non-zero value (`0.0001`) then increase lights' [godot.Light3D.lightVolumetricFogEnergy] to values between `10000` and `100000` to compensate for the very low density.
    */
   public var volumetricFogDensity: Double
     get() {
@@ -1333,7 +1321,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of Global Illumination used in the volumetric fog. A value of `0` means that Global Illumination will not impact the volumetric fog.
+   * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value of `0.0` means that Global Illumination will not impact the volumetric fog. [volumetricFogGiInject] has a small performance cost when set above `0.0`.
+   *
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
+   *
+   * **Note:** Only [godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) are taken into account when using [volumetricFogGiInject]. Global illumination from [godot.LightmapGI], [godot.ReflectionProbe] and SSIL (see [ssilEnabled]) will be ignored by volumetric fog.
    */
   public var volumetricFogGiInject: Double
     get() {
@@ -1349,7 +1341,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The direction of scattered light as it goes through the volumetric fog. A value close `1` means almost all light is scattered forward. A value close to `0` means light is scattered equally in all directions. A value close to `-1` means light is scattered mostly backward. Fog and mist scatter light slightly forward, while smoke scatters light equally in all directions.
+   * The direction of scattered light as it goes through the volumetric fog. A value close to `1.0` means almost all light is scattered forward. A value close to `0.0` means light is scattered equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog and mist scatter light slightly forward, while smoke scatters light equally in all directions.
    */
   public var volumetricFogAnisotropy: Double
     get() {
@@ -1365,7 +1357,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater range, decrease to add more detail when a long range is not needed. For best quality fog, keep this as low as possible.
+   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater range, decrease to add more detail when a long range is not needed. For best quality fog, keep this as low as possible. See also [godot.ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
    */
   public var volumetricFogLength: Double
     get() {
@@ -1397,7 +1389,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of ambient light used in the volumetric fog. A value of `0` means that ambient light will not impact the volumetric fog.
+   * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small performance cost when set above `0.0`.
+   *
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
    */
   public var volumetricFogAmbientInject: Double
     get() {
@@ -1413,7 +1407,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal, however it does lead to moving [godot.FogVolume]s and [godot.Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [godot.FogVolume]s or [godot.Light3D]s too fast.
+   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal; however, it leads to moving [godot.FogVolume]s and [godot.Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [godot.FogVolume]s or [godot.Light3D]s too fast. Short-lived dynamic lighting effects should have [godot.Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
    */
   public var volumetricFogTemporalReprojectionEnabled: Boolean
     get() {
@@ -1532,7 +1526,7 @@ public open class Environment : Resource() {
   }
 
   /**
-   * Sets the intensity of the glow level `idx`. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
+   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
    */
   public fun setGlowLevel(idx: Long, intensity: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to intensity)

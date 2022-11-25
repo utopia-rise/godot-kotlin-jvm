@@ -31,6 +31,8 @@ public open class VisualInstance3D : Node3D() {
    * The render layer(s) this [godot.VisualInstance3D] is drawn on.
    *
    * This object will only be visible for [godot.Camera3D]s whose cull mask includes the render object this [godot.VisualInstance3D] is set to.
+   *
+   * For [godot.Light3D]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific light. For [godot.GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [godot.Decal]s, this can be used to control which [godot.VisualInstance3D]s are affected by a specific decal.
    */
   public var layers: Long
     get() {
@@ -83,7 +85,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [layers], given a `layer_number` between 1 and 20.
+   * Based on [value], enables or disables the specified layer in the [layers], given a [layerNumber] between 1 and 20.
    */
   public fun setLayerMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -101,11 +103,6 @@ public open class VisualInstance3D : Node3D() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns the transformed [AABB] (also known as the bounding box) for this [godot.VisualInstance3D].
-   *
-   * Transformed in this case means the [AABB] plus the position, rotation, and scale of the [godot.Node3D]'s [godot.Transform3D]. See also [getAabb].
-   */
   public fun getTransformedAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -114,7 +111,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Returns the [AABB] (also known as the bounding box) for this [godot.VisualInstance3D]. See also [getTransformedAabb].
+   * Returns the [AABB] (also known as the bounding box) for this [godot.VisualInstance3D].
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()

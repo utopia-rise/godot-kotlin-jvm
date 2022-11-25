@@ -28,7 +28,7 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * tool # Needed so it runs in editor.
+ * @tool # Needed so it runs in editor.
  *
  * extends EditorScenePostImport
  *

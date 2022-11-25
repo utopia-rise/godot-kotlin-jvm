@@ -52,7 +52,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to return the name of an edited handle (handles must have been previously added by [addHandles]). Handles can be named for reference to the user when editing.
    *
-   * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
+   * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleName(id: Long, secondary: Boolean): String {
     throw NotImplementedError("_get_handle_name is not implemented for EditorNode3DGizmo")
@@ -61,7 +61,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to return `true` whenever the given handle should be highlighted in the editor.
    *
-   * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
+   * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _isHandleHighlighted(id: Long, secondary: Boolean): Boolean {
     throw NotImplementedError("_is_handle_highlighted is not implemented for EditorNode3DGizmo")
@@ -70,16 +70,16 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Override this method to return the current value of a handle. This value will be requested at the start of an edit and used as the `restore` argument in [_commitHandle].
    *
-   * The `secondary` argument is `true` when the requested handle is secondary (see [addHandles] for more information).
+   * The [secondary] argument is `true` when the requested handle is secondary (see [addHandles] for more information).
    */
   public open fun _getHandleValue(id: Long, secondary: Boolean): Any? {
     throw NotImplementedError("_get_handle_value is not implemented for EditorNode3DGizmo")
   }
 
   /**
-   * Override this method to update the node properties when the user drags a gizmo handle (previously added with [addHandles]). The provided `point` is the mouse position in screen coordinates and the `camera` can be used to convert it to raycasts.
+   * Override this method to update the node properties when the user drags a gizmo handle (previously added with [addHandles]). The provided [point] is the mouse position in screen coordinates and the [camera] can be used to convert it to raycasts.
    *
-   * The `secondary` argument is `true` when the edited handle is secondary (see [addHandles] for more information).
+   * The [secondary] argument is `true` when the edited handle is secondary (see [addHandles] for more information).
    */
   public open fun _setHandle(
     id: Long,
@@ -90,11 +90,11 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to commit a handle being edited (handles must have been previously added by [addHandles]). This usually means creating an [godot.UndoRedo] action for the change, using the current handle value as "do" and the `restore` argument as "undo".
+   * Override this method to commit a handle being edited (handles must have been previously added by [addHandles]). This usually means creating an [godot.UndoRedo] action for the change, using the current handle value as "do" and the [restore] argument as "undo".
    *
-   * If the `cancel` argument is `true`, the `restore` value should be directly set, without any [godot.UndoRedo] action.
+   * If the [cancel] argument is `true`, the [restore] value should be directly set, without any [godot.UndoRedo] action.
    *
-   * The `secondary` argument is `true` when the committed handle is secondary (see [addHandles] for more information).
+   * The [secondary] argument is `true` when the committed handle is secondary (see [addHandles] for more information).
    */
   public open fun _commitHandle(
     id: Long,
@@ -105,14 +105,14 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse clicks. Given a `camera` and a `point` in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
+   * Override this method to allow selecting subgizmos using mouse clicks. Given a [camera] and a [point] in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
   public open fun _subgizmosIntersectRay(camera: Camera3D, point: Vector2): Long {
     throw NotImplementedError("_subgizmos_intersect_ray is not implemented for EditorNode3DGizmo")
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a `camera` and a `frustum`, this method should return which subgizmos are contained within the frustum. The `frustum` argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
+   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and a [frustum], this method should return which subgizmos are contained within the frustum. The [frustum] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
   public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Any?>):
       PackedInt32Array {
@@ -120,7 +120,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The `transform` is given in the Node3D's local coordinate system.
+   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system.
    */
   public open fun _setSubgizmoTransform(id: Long, transform: Transform3D): Unit {
   }
@@ -133,9 +133,9 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to commit a group of subgizmos being edited (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). This usually means creating an [godot.UndoRedo] action for the change, using the current transforms as "do" and the `restore` transforms as "undo".
+   * Override this method to commit a group of subgizmos being edited (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). This usually means creating an [godot.UndoRedo] action for the change, using the current transforms as "do" and the [restores] transforms as "undo".
    *
-   * If the `cancel` argument is `true`, the `restore` transforms should be directly set, without any [godot.UndoRedo] action.
+   * If the [cancel] argument is `true`, the [restores] transforms should be directly set, without any [godot.UndoRedo] action.
    */
   public open fun _commitSubgizmos(
     ids: PackedInt32Array,
@@ -158,7 +158,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Adds a mesh to the gizmo with the specified `material`, local `transform` and `skeleton`. Call this method during [_redraw].
+   * Adds a mesh to the gizmo with the specified [material], local [transform] and [skeleton]. Call this method during [_redraw].
    */
   public fun addMesh(
     mesh: Mesh,
@@ -171,7 +171,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Adds the specified `segments` to the gizmo's collision shape for picking. Call this method during [_redraw].
+   * Adds the specified [segments] to the gizmo's collision shape for picking. Call this method during [_redraw].
    */
   public fun addCollisionSegments(segments: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to segments)
@@ -202,9 +202,9 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Adds a list of handles (points) which can be used to edit the properties of the gizmo's Node3D. The `ids` argument can be used to specify a custom identifier for each handle, if an empty `Array` is passed, the ids will be assigned automatically from the `handles` argument order.
+   * Adds a list of handles (points) which can be used to edit the properties of the gizmo's Node3D. The [ids] argument can be used to specify a custom identifier for each handle, if an empty `Array` is passed, the ids will be assigned automatically from the [handles] argument order.
    *
-   * The `secondary` argument marks the added handles as secondary, meaning they will normally have less selection priority than regular handles. When the user is holding the shift key secondary handles will switch to have higher priority than regular handles. This change in priority can be used to place multiple handles at the same point while still giving the user control on their selection.
+   * The [secondary] argument marks the added handles as secondary, meaning they will normally have lower selection priority than regular handles. When the user is holding the shift key secondary handles will switch to have higher priority than regular handles. This change in priority can be used to place multiple handles at the same point while still giving the user control on their selection.
    *
    * There are virtual methods which will be called upon editing of these handles. Call this method during [_redraw].
    */
@@ -219,18 +219,12 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)
   }
 
-  /**
-   * Sets the reference [godot.Node3D] node for the gizmo. `node` must inherit from [godot.Node3D].
-   */
   public fun setSpatialNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_SPATIAL_NODE,
         NIL)
   }
 
-  /**
-   * Returns the Node3D node associated with this gizmo.
-   */
   public fun getSpatialNode(): Node3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SPATIAL_NODE,

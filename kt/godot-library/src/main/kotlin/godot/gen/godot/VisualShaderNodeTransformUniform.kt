@@ -16,16 +16,8 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A [godot.Transform3D] uniform for use within the visual shader graph.
- *
- * Translated to `uniform mat4` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
-  /**
-   * Enables usage of the [defaultValue].
-   */
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -39,9 +31,6 @@ public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
     }
 
-  /**
-   * A default value to be assigned within the shader.
-   */
   public var defaultValue: Transform3D
     get() {
       TransferContext.writeArguments()

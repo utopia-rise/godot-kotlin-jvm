@@ -150,7 +150,7 @@ public open class UndoRedo : Object() {
   /**
    * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
    *
-   * The way actions are merged is dictated by the `merge_mode` argument. See [enum MergeMode] for details.
+   * The way actions are merged is dictated by [mergeMode]. See [enum MergeMode] for details.
    */
   public fun createAction(name: String, mergeMode: UndoRedo.MergeMode =
       UndoRedo.MergeMode.MERGE_DISABLE): Unit {
@@ -159,7 +159,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Commit the action. If `execute` is true (default), all "do" methods/properties are called/set when this function is called.
+   * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties are called/set when this function is called.
    */
   public fun commitAction(execute: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to execute)
@@ -176,7 +176,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a method that will be called when the action is committed.
+   * Register a [godot.Callable] that will be called when the action is committed.
    */
   public fun addDoMethod(
     _object: Object,
@@ -188,7 +188,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a method that will be called when the action is undone.
+   * Register a [godot.Callable] that will be called when the action is undone.
    */
   public fun addUndoMethod(
     _object: Object,
@@ -200,7 +200,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a property value change for "do".
+   * Register a [property] that would change its value to [value] when the action is committed.
    */
   public fun addDoProperty(
     _object: Object,
@@ -212,7 +212,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a property value change for "undo".
+   * Register a [property] that would change its value to [value] when the action is undone.
    */
   public fun addUndoProperty(
     _object: Object,
@@ -287,7 +287,7 @@ public open class UndoRedo : Object() {
   /**
    * Clear the undo/redo history and associated references.
    *
-   * Passing `false` to `increase_version` will prevent the version number to be increased from this.
+   * Passing `false` to [increaseVersion] will prevent the version number from increasing when the history is cleared.
    */
   public fun clearHistory(increaseVersion: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to increaseVersion)

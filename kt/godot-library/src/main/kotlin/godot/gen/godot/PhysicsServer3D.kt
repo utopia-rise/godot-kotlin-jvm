@@ -775,7 +775,7 @@ public object PhysicsServer3D : Object() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyApplyImpulse(
     body: RID,
@@ -812,7 +812,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyApplyForce(
     body: RID,
@@ -847,7 +847,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyAddConstantForce(
     body: RID,
@@ -967,7 +967,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0.
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount)
@@ -1024,7 +1024,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body pickable with rays if `enabled` is set.
+   * Sets the body pickable with rays if [enable] is set.
    */
   public fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -1522,13 +1522,7 @@ public object PhysicsServer3D : Object() {
      * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
      */
     BODY_MODE_KINEMATIC(1),
-    /**
-     * Constant for dynamic bodies. In this mode, a body can be pushed by other bodies and has forces applied.
-     */
     BODY_MODE_DYNAMIC(2),
-    /**
-     * Constant for linear dynamic bodies. In this mode, a body is dynamic but can not rotate, and only its linear velocity is affected by external forces.
-     */
     BODY_MODE_DYNAMIC_LINEAR(3),
     ;
 
@@ -1664,7 +1658,7 @@ public object PhysicsServer3D : Object() {
      */
     SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
     /**
-     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the amount of iterations, the more accurate the collisions and constraints will be. However, a greater amount of iterations requires more CPU power, which can decrease performance.
+     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
      */
     SPACE_PARAM_SOLVER_ITERATIONS(7),
     ;

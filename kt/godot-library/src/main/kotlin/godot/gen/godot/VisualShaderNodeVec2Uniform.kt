@@ -16,16 +16,8 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A [godot.core.Vector2] uniform to be used within the visual shader graph.
- *
- * Translated to `uniform vec2` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeVec2Uniform : VisualShaderNodeUniform() {
-  /**
-   * Enables usage of the [defaultValue].
-   */
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -39,9 +31,6 @@ public open class VisualShaderNodeVec2Uniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2UNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
     }
 
-  /**
-   * A default value to be assigned within the shader.
-   */
   public var defaultValue: Vector2
     get() {
       TransferContext.writeArguments()

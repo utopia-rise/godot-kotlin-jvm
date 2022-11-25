@@ -31,11 +31,10 @@ import kotlin.Unit
  * ```
  * 		var rng = RandomNumberGenerator.new()
  * 		func _ready():
- * 		    rng.randomize()
  * 		    var my_random_number = rng.randf_range(-10.0, 10.0)
  * 		```
  *
- * **Note:** The default values of [seed] and [state] properties are pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+ * **Note:** The default values of [seed] and [state] properties are pseudo-random, and change when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
  */
 @GodotBaseType
 public open class RandomNumberGenerator : RefCounted() {
@@ -115,7 +114,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified `mean` and a standard `deviation`. This is also called Gaussian distribution.
+   * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified [mean] and a standard [deviation]. This is also called Gaussian distribution.
    */
   public fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
     TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
@@ -125,7 +124,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a pseudo-random float between `from` and `to` (inclusive).
+   * Returns a pseudo-random float between [from] and [to] (inclusive).
    */
   public fun randfRange(from: Double, to: Double): Double {
     TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
@@ -135,7 +134,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a pseudo-random 32-bit signed integer between `from` and `to` (inclusive).
+   * Returns a pseudo-random 32-bit signed integer between [from] and [to] (inclusive).
    */
   public fun randiRange(from: Long, to: Long): Long {
     TransferContext.writeArguments(LONG to from, LONG to to)

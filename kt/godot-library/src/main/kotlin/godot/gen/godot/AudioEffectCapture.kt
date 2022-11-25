@@ -23,9 +23,14 @@ import kotlin.Unit
 /**
  * Captures audio from an audio bus in real-time.
  *
+ * Tutorials:
+ * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/mic_record](https://github.com/godotengine/godot-demo-projects/tree/master/audio/mic_record)
+ *
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect bus into its internal ring buffer.
  *
- * Application code should consume these audio frames from this ring buffer using [getBuffer] and process it as needed, for example to capture data from a microphone, implement application defined effects, or to transmit audio over the network. When capturing audio data from a microphone, the format of the samples will be stereo 32-bit floating point PCM.
+ * Application code should consume these audio frames from this ring buffer using [getBuffer] and process it as needed, for example to capture data from an [godot.AudioStreamMicrophone], implement application-defined effects, or to transmit audio over the network. When capturing audio data from a microphone, the format of the samples will be stereo 32-bit floating point PCM.
+ *
+ * **Note:** [godot.ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
  */
 @GodotBaseType
 public open class AudioEffectCapture : AudioEffect() {
@@ -50,7 +55,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns `true` if at least `frames` audio frames are available to read in the internal ring buffer.
+   * Returns `true` if at least [frames] audio frames are available to read in the internal ring buffer.
    */
   public fun canGetBuffer(frames: Long): Boolean {
     TransferContext.writeArguments(LONG to frames)
@@ -60,9 +65,9 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Gets the next `frames` audio samples from the internal ring buffer.
+   * Gets the next [frames] audio samples from the internal ring buffer.
    *
-   * Returns a [godot.PackedVector2Array] containing exactly `frames` audio samples if available, or an empty [godot.PackedVector2Array] if insufficient data was available.
+   * Returns a [godot.PackedVector2Array] containing exactly [frames] audio samples if available, or an empty [godot.PackedVector2Array] if insufficient data was available.
    */
   public fun getBuffer(frames: Long): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames)

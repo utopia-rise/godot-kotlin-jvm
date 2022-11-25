@@ -17,17 +17,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Class representing a square mesh.
+ * Class representing a square mesh facing the camera.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/129](https://godotengine.org/asset-library/asset/129)
  *
- * Class representing a square [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Y axes; this default rotation is more suited for use with billboarded materials. Unlike [godot.PlaneMesh], this mesh doesn't provide subdivision options.
+ * Class representing a square [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Y axes; this rotation is more suited for use with billboarded materials. A [godot.QuadMesh] is equivalent to a [godot.PlaneMesh] except its default [godot.PlaneMesh.orientation] is [godot.PlaneMesh.FACE_Z].
  */
 @GodotBaseType
 public open class QuadMesh : PrimitiveMesh() {
   /**
-   * Size on the X and Y axes.
+   *
    */
   public var size: Vector2
     get() {
@@ -40,9 +40,6 @@ public open class QuadMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_SIZE, NIL)
     }
 
-  /**
-   * Offset of the generated Quad. Useful for particles.
-   */
   public var centerOffset: Vector3
     get() {
       TransferContext.writeArguments()

@@ -83,7 +83,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.
    *
-   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instancing chain, a script or a builtin class.
+   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instantiation chain, a script or a builtin class.
    */
   public val propertyPinned: Signal2<StringName, Boolean> by signal("property", "pinned")
 
@@ -217,9 +217,6 @@ public open class EditorProperty internal constructor() : Container() {
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
-  /**
-   * Must be implemented to provide a custom tooltip to the property editor.
-   */
   public fun getTooltipText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_TOOLTIP_TEXT,
@@ -228,7 +225,7 @@ public open class EditorProperty internal constructor() : Container() {
   }
 
   /**
-   *
+   * Forces refresh of the property display.
    */
   public fun updateProperty(): Unit {
     TransferContext.writeArguments()
@@ -244,7 +241,7 @@ public open class EditorProperty internal constructor() : Container() {
   }
 
   /**
-   * Puts the `editor` control below the property label. The control must be previously added using [godot.Node.addChild].
+   * Puts the [editor] control below the property label. The control must be previously added using [godot.Node.addChild].
    */
   public fun setBottomEditor(editor: Control): Unit {
     TransferContext.writeArguments(OBJECT to editor)
@@ -253,7 +250,7 @@ public open class EditorProperty internal constructor() : Container() {
   }
 
   /**
-   * If one or several properties have changed, this must be called. `field` is used in case your editor can modify fields separately (as an example, Vector3.x). The `changing` argument avoids the editor requesting this property to be refreshed (leave as `false` if unsure).
+   * If one or several properties have changed, this must be called. [field] is used in case your editor can modify fields separately (as an example, Vector3.x). The [changing] argument avoids the editor requesting this property to be refreshed (leave as `false` if unsure).
    */
   public fun emitChanged(
     `property`: StringName,

@@ -16,16 +16,8 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A [godot.core.Color] uniform to be used within the visual shader graph.
- *
- * Translated to `uniform vec4` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
-  /**
-   * Enables usage of the [defaultValue].
-   */
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -39,9 +31,6 @@ public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
     }
 
-  /**
-   * A default value to be assigned within the shader.
-   */
   public var defaultValue: Color
     get() {
       TransferContext.writeArguments()

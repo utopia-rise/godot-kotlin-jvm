@@ -124,11 +124,41 @@ public object Engine : Object() {
    *
    * [getPhysicsFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
    *
-   * ```
-   * 				func _physics_process(_delta):
-   * 				    if Engine.get_physics_frames() % 2 == 0:
-   * 				        pass  # Run expensive logic only once every 2 physics frames here.
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _physics_process(_delta):
+   *
+   *     if Engine.get_physics_frames() % 2 == 0:
+   *
+   *         pass  # Run expensive logic only once every 2 physics frames here.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _PhysicsProcess(double delta)
+   *
+   * {
+   *
+   *     base._PhysicsProcess(delta);
+   *
+   *
+   *
+   *     if (Engine.GetPhysicsFrames() % 2 == 0)
+   *
+   *     {
+   *
+   *         // Run expensive logic only once every 2 physics frames here.
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
@@ -141,11 +171,41 @@ public object Engine : Object() {
    *
    * [getProcessFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
    *
-   * ```
-   * 				func _process(_delta):
-   * 				    if Engine.get_process_frames() % 2 == 0:
-   * 				        pass  # Run expensive logic only once every 2 process (render) frames here.
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _process(_delta):
+   *
+   *     if Engine.get_process_frames() % 2 == 0:
+   *
+   *         pass  # Run expensive logic only once every 2 process (render) frames here.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Process(double delta)
+   *
+   * {
+   *
+   *     base._Process(delta);
+   *
+   *
+   *
+   *     if (Engine.GetProcessFrames() % 2 == 0)
+   *
+   *     {
+   *
+   *         // Run expensive logic only once every 2 physics frames here.
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getProcessFrames(): Long {
     TransferContext.writeArguments()
@@ -296,7 +356,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns `true` if a singleton with given `name` exists in global scope.
+   * Returns `true` if a singleton with given [name] exists in global scope.
    */
   public fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -305,7 +365,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns a global singleton with given `name`. Often used for plugins, e.g. GodotPayments.
+   * Returns a global singleton with given [name]. Often used for plugins, e.g. GodotPayments.
    */
   public fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -314,7 +374,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Registers the given object as a singleton, globally available under [name].
    */
   public fun registerSingleton(name: StringName, instance: Object): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
@@ -322,7 +382,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Unregisters the singleton registered under [name]. The singleton object is not freed. Only works with user-defined singletons created with [registerSingleton].
    */
   public fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -330,7 +390,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Returns a list of available global singletons.
    */
   public fun getSingletonList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -340,7 +400,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Registers a [godot.ScriptLanguage] instance to be available with `ScriptServer`.
    */
   public fun registerScriptLanguage(language: ScriptLanguage): Unit {
     TransferContext.writeArguments(OBJECT to language)
@@ -349,7 +409,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Returns the number of available script languages. Use with [getScriptLanguage].
    */
   public fun getScriptLanguageCount(): Long {
     TransferContext.writeArguments()
@@ -359,7 +419,7 @@ public object Engine : Object() {
   }
 
   /**
-   *
+   * Returns an instance of a [godot.ScriptLanguage] with the given index.
    */
   public fun getScriptLanguage(index: Long): ScriptLanguage? {
     TransferContext.writeArguments(LONG to index)
@@ -370,12 +430,33 @@ public object Engine : Object() {
   /**
    * Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
    *
-   * ```
-   * 				if Engine.is_editor_hint():
-   * 				    draw_gizmos()
-   * 				else:
-   * 				    simulate_physics()
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * if Engine.is_editor_hint():
+   *
+   *     draw_gizmos()
+   *
+   * else:
+   *
+   *     simulate_physics()
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * if (Engine.IsEditorHint())
+   *
+   *     DrawGizmos();
+   *
+   * else
+   *
+   *     SimulatePhysics();
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    *
    * See [godot.Running code in the editor]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) in the documentation for more information.
    *

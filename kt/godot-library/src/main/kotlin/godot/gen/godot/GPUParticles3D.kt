@@ -36,7 +36,7 @@ import kotlin.Unit
  *
  * 3D particle node used to create a variety of particle systems and effects. [godot.GPUParticles3D] features an emitter that generates some number of particles at a given rate.
  *
- * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ * Use the `process_material` property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
  */
 @GodotBaseType
 public open class GPUParticles3D : GeometryInstance3D() {
@@ -178,7 +178,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
   public var fixedFps: Long
     get() {
@@ -259,7 +259,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.GPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.GPUParticles3D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -307,7 +307,11 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
+   * If `true`, enables particle trails using a mesh skinning system. Designed to work with [godot.RibbonTrailMesh] and [godot.TubeTrailMesh].
    *
+   * **Note:** [godot.BaseMaterial3D.useParticleTrails] must also be enabled on the particle mesh's material. Otherwise, setting [trailEnabled] to `true` will have no effect.
+   *
+   * **Note:** Unlike [godot.GPUParticles2D], the number of trail sections and subdivisions is set in the [godot.RibbonTrailMesh] or the [godot.TubeTrailMesh]'s properties.
    */
   public var trailEnabled: Boolean
     get() {
@@ -322,9 +326,6 @@ public open class GPUParticles3D : GeometryInstance3D() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
@@ -339,7 +340,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
+   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
    */
   public var processMaterial: Material?
     get() {
@@ -433,7 +434,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the [godot.Mesh] that is drawn at index `pass`.
+   * Sets the [godot.Mesh] that is drawn at index [pass].
    */
   public fun setDrawPassMesh(pass: Long, mesh: Mesh): Unit {
     TransferContext.writeArguments(LONG to pass, OBJECT to mesh)
@@ -460,7 +461,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Emits a single particle. Whether `xform`, `velocity`, `color` and `custom` are applied depends on the value of `flags`. See [enum EmitFlags].
+   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends on the value of [flags]. See [enum EmitFlags].
    */
   public fun emitParticle(
     xform: Transform3D,

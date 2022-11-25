@@ -231,7 +231,7 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   *
+   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
    */
   public fun setStretchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
@@ -240,7 +240,7 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   *
+   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
    */
   public fun getStretchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)

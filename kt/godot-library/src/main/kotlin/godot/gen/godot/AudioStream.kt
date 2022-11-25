@@ -24,7 +24,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
  *
- * Base class for audio streams. Audio streams are used for sound effects and music playback, and support WAV (via [godot.AudioStreamSample]) and OGG (via [godot.AudioStreamOGGVorbis]) file formats.
+ * Base class for audio streams. Audio streams are used for sound effects and music playback, and support WAV (via [godot.AudioStreamWAV]) and Ogg (via [godot.AudioStreamOggVorbis]) file formats.
  */
 @GodotBaseType
 public open class AudioStream : Resource() {
@@ -32,9 +32,6 @@ public open class AudioStream : Resource() {
     callConstructor(ENGINECLASS_AUDIOSTREAM)
   }
 
-  /**
-   *
-   */
   public open fun _instancePlayback(): AudioStreamPlayback? {
     throw NotImplementedError("_instance_playback is not implemented for AudioStream")
   }
@@ -78,9 +75,6 @@ public open class AudioStream : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns an AudioStreamPlayback. Useful for when you want to extend `_instance_playback` but call `instance_playback` from an internally held AudioStream subresource. An example of this can be found in the source files for `AudioStreamRandomPitch::instance_playback`.
-   */
   public fun instancePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,

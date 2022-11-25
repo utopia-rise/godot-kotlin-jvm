@@ -603,7 +603,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Disables shape in body if `disable` is `true`.
+   * Disables shape in body if [disabled] is `true`.
    */
   public fun bodySetShapeDisabled(
     body: RID,
@@ -616,7 +616,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Enables one way collision on body if `enable` is `true`.
+   * Enables one way collision on body if [enable] is `true`.
    */
   public fun bodySetShapeAsOneWayCollision(
     body: RID,
@@ -809,7 +809,7 @@ public object PhysicsServer2D : Object() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyApplyImpulse(
     body: RID,
@@ -835,7 +835,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyApplyForce(
     body: RID,
@@ -870,7 +870,7 @@ public object PhysicsServer2D : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared with `body_set_constant_force(body, Vector2(0, 0))`.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun bodyAddConstantForce(
     body: RID,
@@ -965,7 +965,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0.
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount)
@@ -1250,13 +1250,7 @@ public object PhysicsServer2D : Object() {
      * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
      */
     BODY_MODE_KINEMATIC(1),
-    /**
-     * Constant for dynamic bodies. In this mode, a body can be pushed by other bodies and has forces applied.
-     */
     BODY_MODE_DYNAMIC(2),
-    /**
-     * Constant for linear dynamic bodies. In this mode, a body is dynamic but can not rotate, and only its linear velocity is affected by external forces.
-     */
     BODY_MODE_DYNAMIC_LINEAR(3),
     ;
 
@@ -1407,7 +1401,7 @@ public object PhysicsServer2D : Object() {
      */
     SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS(7),
     /**
-     * Constant to set/get the number of solver iterations for all contacts and constraints. The greater the amount of iterations, the more accurate the collisions will be. However, a greater amount of iterations requires more CPU power, which can decrease performance.
+     * Constant to set/get the number of solver iterations for all contacts and constraints. The greater the number of iterations, the more accurate the collisions will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
      */
     SPACE_PARAM_SOLVER_ITERATIONS(8),
     ;

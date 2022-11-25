@@ -13,14 +13,8 @@ import godot.core.VariantType.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class ProxyTexture : Texture2D() {
-  /**
-   *
-   */
   public var base: Texture2D?
     get() {
       TransferContext.writeArguments()

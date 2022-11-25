@@ -31,11 +31,13 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets a custom initial value to the [godot.PropertyTweener]. Example:
+   * Sets a custom initial value to the [godot.PropertyTweener].
+   *
+   * **Example:**
    *
    * ```
    * 				var tween = get_tree().create_tween()
-   * 				tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100) #this will move the node from position (100, 100) to (200, 100)
+   * 				tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100)) #this will move the node from position (100, 100) to (200, 100)
    * 				```
    */
   public fun from(`value`: Any): PropertyTweener? {
@@ -60,7 +62,9 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * When called, the final value will be used as a relative value instead. Example:
+   * When called, the final value will be used as a relative value instead.
+   *
+   * **Example:**
    *
    * ```
    * 				var tween = get_tree().create_tween()

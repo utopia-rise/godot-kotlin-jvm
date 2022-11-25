@@ -35,7 +35,7 @@ import kotlin.Unit
  * Base class for an XR interface implementation.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
  *
  * This class needs to be implemented to make an AR or VR platform available to Godot and these should be implemented as C++ modules or GDExtension modules. Part of the interface is exposed to GDScript so you can detect, enable and configure an AR or VR platform.
  *
@@ -112,7 +112,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Is `true` if this interface has been initialised.
+   * Is `true` if this interface has been initialized.
    */
   public fun isInitialized(): Boolean {
     TransferContext.writeArguments()
@@ -177,9 +177,9 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Triggers a haptic pulse on a device associated with this interface.
    *
-   * `action_name` is the name of the action for this pulse.
+   * [actionName] is the name of the action for this pulse.
    *
-   * `tracker_name` is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.
+   * [trackerName] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.
    */
   public fun triggerHapticPulse(
     actionName: String,
@@ -215,7 +215,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns an array of vectors that denotes the physical play area mapped to the virtual space around the [godot.XROrigin3D] point. The points form a convex polygon that can be used to react to or visualise the play area. This returns an empty array if this feature is not supported or if the information is not yet available.
+   * Returns an array of vectors that denotes the physical play area mapped to the virtual space around the [godot.XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available.
    */
   public fun getPlayArea(): PackedVector3Array {
     TransferContext.writeArguments()

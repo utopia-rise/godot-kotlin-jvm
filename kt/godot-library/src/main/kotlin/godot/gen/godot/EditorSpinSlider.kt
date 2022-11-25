@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorSpinSlider internal constructor() : Range() {
   /**
-   *
+   * The text that displays to the left of the value.
    */
   public var label: String
     get() {
@@ -54,7 +54,7 @@ public open class EditorSpinSlider internal constructor() : Range() {
     }
 
   /**
-   *
+   * If `true`, the slider can't be interacted with.
    */
   public var readOnly: Boolean
     get() {
@@ -70,7 +70,7 @@ public open class EditorSpinSlider internal constructor() : Range() {
     }
 
   /**
-   *
+   * If `true`, the slider will not draw background.
    */
   public var flat: Boolean
     get() {

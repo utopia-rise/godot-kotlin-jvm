@@ -94,7 +94,9 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Sets the override mode for the BoneAttachment3D node. The override mode defines which of the bone poses the BoneAttachment3D node will override.
+   * Deprecated. Local pose overrides will be removed.
+   *
+   * Sets the override mode for the BoneAttachment3D node (0=global / 1=local). The override mode defines which of the bone poses the BoneAttachment3D node will override.
    */
   public fun setOverrideMode(overrideMode: Long): Unit {
     TransferContext.writeArguments(LONG to overrideMode)
@@ -103,7 +105,9 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Returns the override mode for the BoneAttachment3D node.
+   * Deprecated. Local pose overrides will be removed.
+   *
+   * Returns the override mode for the BoneAttachment3D node (0=global / 1=local).
    */
   public fun getOverrideMode(): Long {
     TransferContext.writeArguments()

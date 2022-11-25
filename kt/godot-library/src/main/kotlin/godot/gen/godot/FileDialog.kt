@@ -78,7 +78,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The file system access scope. See enum `Access` constants.
    *
-   * **Warning:** Currently, in sandboxed environments such as HTML5 builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
+   * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
    */
   public var access: Long
     get() {
@@ -180,11 +180,11 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds `filter` to the list of filters, which restricts what files can be picked.
+   * Adds a comma-delimited file name [filter] option to the [godot.FileDialog] with an optional [description], which restricts what files can be picked.
    *
-   * A `filter` should be of the form `"filename.extension ; Description"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
    *
-   * Example filters: `"*.png ; PNG Images"`, `"project.godot ; Godot Project"`.
+   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
    */
   public fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)

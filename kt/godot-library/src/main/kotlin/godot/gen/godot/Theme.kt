@@ -44,7 +44,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Theme : Resource() {
   /**
-   * The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used.
+   * The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [godot.ThemeDB.fallbackBaseScale]).
    *
    * Use [hasDefaultBaseScale] to check if this value is valid.
    */
@@ -61,7 +61,7 @@ public open class Theme : Resource() {
     }
 
   /**
-   * The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used.
+   * The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [godot.ThemeDB.fallbackFont]).
    *
    * Use [hasDefaultFont] to check if this value is valid.
    */
@@ -77,7 +77,7 @@ public open class Theme : Resource() {
     }
 
   /**
-   * The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used.
+   * The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [godot.ThemeDB.fallbackFontSize]).
    *
    * Values below `0` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to check if this value is valid.
    */
@@ -97,7 +97,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the icon property defined by `name` and `theme_type`. Use [clearIcon] to remove the property.
+   * Creates or changes the value of the icon property defined by [name] and [themeType]. Use [clearIcon] to remove the property.
    */
   public fun setIcon(
     name: StringName,
@@ -109,9 +109,9 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the icon property defined by `name` and `theme_type`, if it exists.
+   * Returns the icon property defined by [name] and [themeType], if it exists.
    *
-   * Returns the engine fallback icon value if the property doesn't exist. Use [hasIcon] to check for existence.
+   * Returns the engine fallback icon value if the property doesn't exist (see [godot.ThemeDB.fallbackIcon]). Use [hasIcon] to check for existence.
    */
   public fun getIcon(name: StringName, themeType: StringName): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -120,7 +120,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the icon property defined by `name` and `theme_type` exists.
+   * Returns `true` if the icon property defined by [name] and [themeType] exists.
    *
    * Returns `false` if it doesn't exist. Use [setIcon] to define it.
    */
@@ -131,7 +131,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the icon property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the icon property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasIcon] to check for existence, and [clearIcon] to remove the existing property.
    */
@@ -145,7 +145,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the icon property defined by `name` and `theme_type`, if it exists.
+   * Removes the icon property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasIcon] to check for existence.
    */
@@ -155,7 +155,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for icon properties defined with `theme_type`. Use [getIconTypeList] to get a list of possible theme type names.
+   * Returns a list of names for icon properties defined with [themeType]. Use [getIconTypeList] to get a list of possible theme type names.
    */
   public fun getIconList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -175,7 +175,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the [godot.StyleBox] property defined by `name` and `theme_type`. Use [clearStylebox] to remove the property.
+   * Creates or changes the value of the [godot.StyleBox] property defined by [name] and [themeType]. Use [clearStylebox] to remove the property.
    */
   public fun setStylebox(
     name: StringName,
@@ -187,9 +187,9 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.StyleBox] property defined by `name` and `theme_type`, if it exists.
+   * Returns the [godot.StyleBox] property defined by [name] and [themeType], if it exists.
    *
-   * Returns the engine fallback stylebox value if the property doesn't exist. Use [hasStylebox] to check for existence.
+   * Returns the engine fallback stylebox value if the property doesn't exist (see [godot.ThemeDB.fallbackStylebox]). Use [hasStylebox] to check for existence.
    */
   public fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -198,7 +198,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the [godot.StyleBox] property defined by `name` and `theme_type` exists.
+   * Returns `true` if the [godot.StyleBox] property defined by [name] and [themeType] exists.
    *
    * Returns `false` if it doesn't exist. Use [setStylebox] to define it.
    */
@@ -209,7 +209,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the [godot.StyleBox] property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the [godot.StyleBox] property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasStylebox] to check for existence, and [clearStylebox] to remove the existing property.
    */
@@ -223,7 +223,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the [godot.StyleBox] property defined by `name` and `theme_type`, if it exists.
+   * Removes the [godot.StyleBox] property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
    */
@@ -233,7 +233,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for [godot.StyleBox] properties defined with `theme_type`. Use [getStyleboxTypeList] to get a list of possible theme type names.
+   * Returns a list of names for [godot.StyleBox] properties defined with [themeType]. Use [getStyleboxTypeList] to get a list of possible theme type names.
    */
   public fun getStyleboxList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -253,7 +253,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the [godot.Font] property defined by `name` and `theme_type`. Use [clearFont] to remove the property.
+   * Creates or changes the value of the [godot.Font] property defined by [name] and [themeType]. Use [clearFont] to remove the property.
    */
   public fun setFont(
     name: StringName,
@@ -265,11 +265,11 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.Font] property defined by `name` and `theme_type`, if it exists.
+   * Returns the [godot.Font] property defined by [name] and [themeType], if it exists.
    *
    * Returns the default theme font if the property doesn't exist and the default theme font is set up (see [defaultFont]). Use [hasFont] to check for existence of the property and [hasDefaultFont] to check for existence of the default theme font.
    *
-   * Returns the engine fallback font value, if neither exist.
+   * Returns the engine fallback font value, if neither exist (see [godot.ThemeDB.fallbackFont]).
    */
   public fun getFont(name: StringName, themeType: StringName): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -278,7 +278,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the [godot.Font] property defined by `name` and `theme_type` exists, or if the default theme font is set up (see [hasDefaultFont]).
+   * Returns `true` if the [godot.Font] property defined by [name] and [themeType] exists, or if the default theme font is set up (see [hasDefaultFont]).
    *
    * Returns `false` if neither exist. Use [setFont] to define the property.
    */
@@ -289,7 +289,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the [godot.Font] property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the [godot.Font] property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFont] to check for existence, and [clearFont] to remove the existing property.
    */
@@ -303,7 +303,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the [godot.Font] property defined by `name` and `theme_type`, if it exists.
+   * Removes the [godot.Font] property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasFont] to check for existence.
    */
@@ -313,7 +313,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for [godot.Font] properties defined with `theme_type`. Use [getFontTypeList] to get a list of possible theme type names.
+   * Returns a list of names for [godot.Font] properties defined with [themeType]. Use [getFontTypeList] to get a list of possible theme type names.
    */
   public fun getFontList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -333,7 +333,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the font size property defined by `name` and `theme_type`. Use [clearFontSize] to remove the property.
+   * Creates or changes the value of the font size property defined by [name] and [themeType]. Use [clearFontSize] to remove the property.
    */
   public fun setFontSize(
     name: StringName,
@@ -345,11 +345,11 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the font size property defined by `name` and `theme_type`, if it exists.
+   * Returns the font size property defined by [name] and [themeType], if it exists.
    *
    * Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [defaultFontSize]). Use [hasFontSize] to check for existence of the property and [hasDefaultFontSize] to check for existence of the default theme font.
    *
-   * Returns the engine fallback font size value, if neither exist.
+   * Returns the engine fallback font size value, if neither exist (see [godot.ThemeDB.fallbackFontSize]).
    */
   public fun getFontSize(name: StringName, themeType: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -358,7 +358,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the font size property defined by `name` and `theme_type` exists, or if the default theme font size is set up (see [hasDefaultFontSize]).
+   * Returns `true` if the font size property defined by [name] and [themeType] exists, or if the default theme font size is set up (see [hasDefaultFontSize]).
    *
    * Returns `false` if neither exist. Use [setFontSize] to define the property.
    */
@@ -369,7 +369,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the font size property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the font size property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
    */
@@ -383,7 +383,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the font size property defined by `name` and `theme_type`, if it exists.
+   * Removes the font size property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
    */
@@ -393,7 +393,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for font size properties defined with `theme_type`. Use [getFontSizeTypeList] to get a list of possible theme type names.
+   * Returns a list of names for font size properties defined with [themeType]. Use [getFontSizeTypeList] to get a list of possible theme type names.
    */
   public fun getFontSizeList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -413,7 +413,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the [godot.core.Color] property defined by `name` and `theme_type`. Use [clearColor] to remove the property.
+   * Creates or changes the value of the [godot.core.Color] property defined by [name] and [themeType]. Use [clearColor] to remove the property.
    */
   public fun setColor(
     name: StringName,
@@ -425,7 +425,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.core.Color] property defined by `name` and `theme_type`, if it exists.
+   * Returns the [godot.core.Color] property defined by [name] and [themeType], if it exists.
    *
    * Returns the default color value if the property doesn't exist. Use [hasColor] to check for existence.
    */
@@ -436,7 +436,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the [godot.core.Color] property defined by `name` and `theme_type` exists.
+   * Returns `true` if the [godot.core.Color] property defined by [name] and [themeType] exists.
    *
    * Returns `false` if it doesn't exist. Use [setColor] to define it.
    */
@@ -447,7 +447,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the [godot.core.Color] property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the [godot.core.Color] property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasColor] to check for existence, and [clearColor] to remove the existing property.
    */
@@ -461,7 +461,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the [godot.core.Color] property defined by `name` and `theme_type`, if it exists.
+   * Removes the [godot.core.Color] property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasColor] to check for existence.
    */
@@ -471,7 +471,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for [godot.core.Color] properties defined with `theme_type`. Use [getColorTypeList] to get a list of possible theme type names.
+   * Returns a list of names for [godot.core.Color] properties defined with [themeType]. Use [getColorTypeList] to get a list of possible theme type names.
    */
   public fun getColorList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -491,7 +491,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the constant property defined by `name` and `theme_type`. Use [clearConstant] to remove the property.
+   * Creates or changes the value of the constant property defined by [name] and [themeType]. Use [clearConstant] to remove the property.
    */
   public fun setConstant(
     name: StringName,
@@ -503,7 +503,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the constant property defined by `name` and `theme_type`, if it exists.
+   * Returns the constant property defined by [name] and [themeType], if it exists.
    *
    * Returns `0` if the property doesn't exist. Use [hasConstant] to check for existence.
    */
@@ -514,7 +514,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the constant property defined by `name` and `theme_type` exists.
+   * Returns `true` if the constant property defined by [name] and [themeType] exists.
    *
    * Returns `false` if it doesn't exist. Use [setConstant] to define it.
    */
@@ -525,7 +525,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the constant property defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the constant property defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasConstant] to check for existence, and [clearConstant] to remove the existing property.
    */
@@ -539,7 +539,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the constant property defined by `name` and `theme_type`, if it exists.
+   * Removes the constant property defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasConstant] to check for existence.
    */
@@ -549,7 +549,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for constant properties defined with `theme_type`. Use [getConstantTypeList] to get a list of possible theme type names.
+   * Returns a list of names for constant properties defined with [themeType]. Use [getConstantTypeList] to get a list of possible theme type names.
    */
   public fun getConstantList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
@@ -602,9 +602,9 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Creates or changes the value of the theme property of `data_type` defined by `name` and `theme_type`. Use [clearThemeItem] to remove the property.
+   * Creates or changes the value of the theme property of [dataType] defined by [name] and [themeType]. Use [clearThemeItem] to remove the property.
    *
-   * Fails if the `value` type is not accepted by `data_type`.
+   * Fails if the [value] type is not accepted by [dataType].
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
@@ -619,9 +619,9 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the theme property of `data_type` defined by `name` and `theme_type`, if it exists.
+   * Returns the theme property of [dataType] defined by [name] and [themeType], if it exists.
    *
-   * Returns the engine fallback icon value if the property doesn't exist. Use [hasThemeItem] to check for existence.
+   * Returns the engine fallback icon value if the property doesn't exist (see [godot.ThemeDB]). Use [hasThemeItem] to check for existence.
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
@@ -636,7 +636,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if the theme property of `data_type` defined by `name` and `theme_type` exists.
+   * Returns `true` if the theme property of [dataType] defined by [name] and [themeType] exists.
    *
    * Returns `false` if it doesn't exist. Use [setThemeItem] to define it.
    *
@@ -653,7 +653,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Renames the theme property of `data_type` defined by `old_name` and `theme_type` to `name`, if it exists.
+   * Renames the theme property of [dataType] defined by [oldName] and [themeType] to [name], if it exists.
    *
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use [hasThemeItem] to check for existence, and [clearThemeItem] to remove the existing property.
    *
@@ -670,7 +670,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Removes the theme property of `data_type` defined by `name` and `theme_type`, if it exists.
+   * Removes the theme property of [dataType] defined by [name] and [themeType], if it exists.
    *
    * Fails if it doesn't exist. Use [hasThemeItem] to check for existence.
    *
@@ -686,7 +686,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of names for properties of `data_type` defined with `theme_type`. Use [getThemeItemTypeList] to get a list of possible theme type names.
+   * Returns a list of names for properties of [dataType] defined with [themeType]. Use [getThemeItemTypeList] to get a list of possible theme type names.
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
@@ -698,7 +698,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of all unique theme type names for `data_type` properties. Use [getTypeList] to get a list of all unique theme types.
+   * Returns a list of all unique theme type names for [dataType] properties. Use [getTypeList] to get a list of all unique theme types.
    *
    * **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
    */
@@ -710,11 +710,11 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Marks `theme_type` as a variation of `base_type`.
+   * Marks [themeType] as a variation of [baseType].
    *
-   * This adds `theme_type` as a suggested option for [godot.Control.themeTypeVariation] on a [godot.Control] that is of the `base_type` class.
+   * This adds [themeType] as a suggested option for [godot.Control.themeTypeVariation] on a [godot.Control] that is of the [baseType] class.
    *
-   * Variations can also be nested, i.e. `base_type` can be another variation. If a chain of variations ends with a `base_type` matching the class of the [godot.Control], the whole chain is going to be suggested as options.
+   * Variations can also be nested, i.e. [baseType] can be another variation. If a chain of variations ends with a [baseType] matching the class of the [godot.Control], the whole chain is going to be suggested as options.
    *
    * **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [godot.ProjectSettings.gui/theme/custom].
    */
@@ -724,7 +724,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if `theme_type` is marked as a variation of `base_type`.
+   * Returns `true` if [themeType] is marked as a variation of [baseType].
    */
   public fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
@@ -733,7 +733,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Unmarks `theme_type` as being a variation of another theme type. See [setTypeVariation].
+   * Unmarks [themeType] as being a variation of another theme type. See [setTypeVariation].
    */
   public fun clearTypeVariation(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
@@ -741,7 +741,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns the name of the base theme type if `theme_type` is a valid variation type. Returns an empty string otherwise.
+   * Returns the name of the base theme type if [themeType] is a valid variation type. Returns an empty string otherwise.
    */
   public fun getTypeVariationBase(themeType: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to themeType)
@@ -751,7 +751,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Returns a list of all type variations for the given `base_type`.
+   * Returns a list of all type variations for the given [baseType].
    */
   public fun getTypeVariationList(baseType: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to baseType)
@@ -789,7 +789,7 @@ public open class Theme : Resource() {
   }
 
   /**
-   * Adds missing and overrides existing definitions with values from the `other` theme resource.
+   * Adds missing and overrides existing definitions with values from the [other] theme resource.
    *
    * **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.
    */

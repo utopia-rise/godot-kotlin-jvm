@@ -31,73 +31,196 @@ import kotlin.Unit
 /**
  * Lightweight object used for general-purpose animation via script, using [godot.Tweener]s.
  *
- * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a range of values. The name *tween* comes from *in-betweening*, an animation technique where you specify *keyframes* and the computer interpolates the frames that appear between them.
+ * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a range of values. The name *tween* comes from *in-betweening*, an animation technique where you specify *keyframes* and the computer interpolates the frames that appear between them. Animating something with a [godot.Tween] is called tweening.
  *
  * [godot.Tween] is more suited than [godot.AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [godot.Tween]; it would be difficult to do the same thing with an [godot.AnimationPlayer] node. Tweens are also more light-weight than [godot.AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a fire-and-forget manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [godot.CallbackTweener] with a delay.
  *
  * A [godot.Tween] can be created by using either [godot.SceneTree.createTween] or [godot.Node.createTween]. [godot.Tween]s created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
  *
- * A [godot.Tween] animation is composed of a sequence of [godot.Tweener]s, which by default are executed one after another. You can create a sequence by appending [godot.Tweener]s to the [godot.Tween]. Animating something with a [godot.Tweener] is called tweening. Example tweening sequence looks like this:
+ * A tween animation is created by adding [godot.Tweener]s to the [godot.Tween] object, using [tweenProperty], [tweenInterval], [tweenCallback] or [tweenMethod]:
  *
- * ```
- * 		var tween = get_tree().create_tween()
- * 		tween.tween_property($Sprite, "modulate", Color.red, 1)
- * 		tween.tween_property($Sprite, "scale", Vector2(), 1)
- * 		tween.tween_callback($Sprite.queue_free)
- * 		```
+ * [codeblocks]
  *
- * This sequence will make the `$Sprite` node turn red, then shrink and finally the [godot.Node.queueFree] is called to remove the sprite. See methods [tweenProperty], [tweenInterval], [tweenCallback] and [tweenMethod] for more usage information.
+ * [gdscript]
  *
- * When a [godot.Tweener] is created with one of the `tween_*` methods, a chained method call can be used to tweak the properties of this [godot.Tweener]. For example, if you want to set different transition type in the above example, you can do:
+ * var tween = get_tree().create_tween()
  *
- * ```
- * 		var tween = get_tree().create_tween()
- * 		tween.tween_property($Sprite, "modulate", Color.red, 1).set_trans(Tween.TRANS_SINE)
- * 		tween.tween_property($Sprite, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
- * 		tween.tween_callback($Sprite.queue_free)
- * 		```
+ * tween.tween_property($Sprite, "modulate", Color.red, 1)
  *
- * Most of the [godot.Tween] methods can be chained this way too. In this example the [godot.Tween] is bound and have set a default transition:
+ * tween.tween_property($Sprite, "scale", Vector2(), 1)
  *
- * ```
- * 		var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
- * 		tween.tween_property($Sprite, "modulate", Color.red, 1)
- * 		tween.tween_property($Sprite, "scale", Vector2(), 1)
- * 		tween.tween_callback($Sprite.queue_free)
- * 		```
+ * tween.tween_callback($Sprite.queue_free)
  *
- * Another interesting use for [godot.Tween]s is animating arbitrary set of objects:
+ * [/gdscript]
  *
- * ```
- * 		var tween = create_tween()
- * 		for sprite in get_children():
- * 		    tween.tween_property(sprite, "position", Vector2(), 1)
- * 		```
+ * [csharp]
+ *
+ * Tween tween = GetTree().CreateTween();
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "modulate", Colors.Red, 1.0f);
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f);
+ *
+ * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
+ *
+ * This sequence will make the `$Sprite` node turn red, then shrink, before finally calling [godot.Node.queueFree] to free the sprite. [godot.Tweener]s are executed one after another by default. This behavior can be changed using [parallel] and [setParallel].
+ *
+ * When a [godot.Tweener] is created with one of the `tween_*` methods, a chained method call can be used to tweak the properties of this [godot.Tweener]. For example, if you want to set a different transition type in the above example, you can use [setTrans]:
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var tween = get_tree().create_tween()
+ *
+ * tween.tween_property($Sprite, "modulate", Color.red, 1).set_trans(Tween.TRANS_SINE)
+ *
+ * tween.tween_property($Sprite, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
+ *
+ * tween.tween_callback($Sprite.queue_free)
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * Tween tween = GetTree().CreateTween();
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "modulate", Colors.Red, 1.0f).SetTrans(Tween.TransitionType.Sine);
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f).SetTrans(Tween.TransitionType.Bounce);
+ *
+ * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
+ *
+ * Most of the [godot.Tween] methods can be chained this way too. In the following example the [godot.Tween] is bound to the running script's node and a default transition is set for its [godot.Tweener]s:
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
+ *
+ * tween.tween_property($Sprite, "modulate", Color.red, 1)
+ *
+ * tween.tween_property($Sprite, "scale", Vector2(), 1)
+ *
+ * tween.tween_callback($Sprite.queue_free)
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * var tween = GetTree().CreateTween().BindNode(this).SetTrans(Tween.TransitionType.Elastic);
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "modulate", Colors.Red, 1.0f);
+ *
+ * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f);
+ *
+ * tween.TweenCallback(new Callable(GetNode("Sprite").QueueFree));
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
+ *
+ * Another interesting use for [godot.Tween]s is animating arbitrary sets of objects:
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var tween = create_tween()
+ *
+ * for sprite in get_children():
+ *
+ *     tween.tween_property(sprite, "position", Vector2(0, 0), 1)
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * Tween tween = CreateTween();
+ *
+ * foreach (Node sprite in GetChildren())
+ *
+ *     tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * In the example above, all children of a node are moved one after another to position (0, 0).
  *
- * Some [godot.Tweener]s use transitions and eases. The first accepts an [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
+ * You should avoid using more than one [godot.Tween] per object's property. If two or more tweens animate one property at the same time, the last one created will take priority and assign the final value. If you want to interrupt and restart an animation, consider assigning the [godot.Tween] to a variable:
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var tween
+ *
+ * func animate():
+ *
+ *     if tween:
+ *
+ *         tween.kill() # Abort the previous animation.
+ *
+ *     tween = create_tween()
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * private Tween tween;
+ *
+ *
+ *
+ * public void Animate()
+ *
+ * {
+ *
+ *     if (tween != null)
+ *
+ *         tween.Kill(); // Abort the previous animation
+ *
+ *     tween = CreateTween();
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
+ *
+ * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
  * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
  *
- * **Note:** All [godot.Tween]s will automatically start by default. To prevent a [godot.Tween] from autostarting, you can call [stop] immediately after it was created.
+ * **Note:** All [godot.Tween]s will automatically start by default. To prevent a [godot.Tween] from autostarting, you can call [stop] immediately after it is created.
+ *
+ * **Note:** [godot.Tween]s are processing after all of nodes in the current frame, i.e. after [godot.Node.Process] or [godot.Node.PhysicsProcess] (depending on [enum TweenProcessMode]).
  */
 @GodotBaseType
 public open class Tween : RefCounted() {
   /**
-   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is not emitted after final loop, use [finished] instead for this case.
+   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is not emitted after the final loop, use [finished] instead for this case.
    */
   public val loopFinished: Signal1<Long> by signal("loopCount")
 
   /**
-   * Emitted when one step of the [godot.Tween] is complete, providing the step index. One step is either a single [godot.Tweener] or a group of [godot.Tweener]s running parallelly.
+   * Emitted when one step of the [godot.Tween] is complete, providing the step index. One step is either a single [godot.Tweener] or a group of [godot.Tweener]s running in parallel.
    */
   public val stepFinished: Signal1<Long> by signal("idx")
 
   /**
    * Emitted when the [godot.Tween] has finished all tweening. Never emitted when the [godot.Tween] is set to infinite looping (see [setLoops]).
    *
-   * **Note:** The [godot.Tween] is removed (invalidated) after this signal is emitted, but it doesn't happen immediately, but on the next processing frame. Calling [stop] inside the signal callback will preserve the [godot.Tween].
+   * **Note:** The [godot.Tween] is removed (invalidated) in the next processing frame after this signal is emitted. Calling [stop] inside the signal callback will prevent the [godot.Tween] from being removed.
    */
   public val finished: Signal0 by signal()
 
@@ -106,25 +229,63 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [godot.PropertyTweener]. This method tweens a `property` of an `object` between an initial value and `final_val` in a span of time equal to `duration`, in seconds. The initial value by default is a value at the time the tweening of the [godot.PropertyTweener] start. For example:
+   * Creates and appends a [godot.PropertyTweener]. This method tweens a [property] of an [object] between an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial value by default is the property's value at the time the tweening of the [godot.PropertyTweener] starts.
    *
-   * ```
-   * 				var tween = create_tween()
-   * 				tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
-   * 				tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
-   * 				```
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = create_tween()
+   *
+   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
+   *
+   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween();
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(100.0f, 200.0f), 1.0f);
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(200.0f, 300.0f), 1.0f);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    *
    * will move the sprite to position (100, 200) and then to (200, 300). If you use [godot.PropertyTweener.from] or [godot.PropertyTweener.fromCurrent], the starting position will be overwritten by the given value instead. See other methods in [godot.PropertyTweener] to see how the tweening can be tweaked further.
    *
    * **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
    *
-   * Example: moving object twice from the same position, with different transition types.
+   * **Example:** Moving an object twice from the same position, with different transition types:
    *
-   * ```
-   * 				var tween = create_tween()
-   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
-   * 				tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = create_tween()
+   *
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
+   *
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween();
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun tweenProperty(
     _object: Object,
@@ -138,27 +299,75 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends an [godot.IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative for using the delay in other [godot.Tweener]s or when there's no animation (in which case the [godot.Tween] acts as a timer). `time` is the length of the interval, in seconds.
+   * Creates and appends an [godot.IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [godot.Tweener]s, or when there's no animation (in which case the [godot.Tween] acts as a timer). [time] is the length of the interval, in seconds.
    *
-   * Example: creating an interval in code execution.
+   * **Example:** Creating an interval in code execution:
    *
-   * ```
-   * 				# ... some code
-   * 				await create_tween().tween_interval(2).finished
-   * 				# ... more code
-   * 				```
+   * [codeblocks]
    *
-   * Example: creating an object that moves back and forth and jumps every few seconds.
+   * [gdscript]
    *
-   * ```
-   * 				var tween = create_tween().set_loops()
-   * 				tween.tween_property($Sprite, "position:x", 200.0, 1).as_relative()
-   * 				tween.tween_callback(jump)
-   * 				tween.tween_interval(2)
-   * 				tween.tween_property($Sprite, "position:x", -200.0, 1).as_relative()
-   * 				tween.tween_callback(jump)
-   * 				tween.tween_interval(2)
-   * 				```
+   * # ... some code
+   *
+   * await create_tween().tween_interval(2).finished
+   *
+   * # ... more code
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * // ... some code
+   *
+   * await ToSignal(CreateTween().TweenInterval(2.0f), Tween.SignalName.Finished);
+   *
+   * // ... more code
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Example:** Creating an object that moves back and forth and jumps every few seconds:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = create_tween().set_loops()
+   *
+   * tween.tween_property($Sprite, "position:x", 200.0, 1).as_relative()
+   *
+   * tween.tween_callback(jump)
+   *
+   * tween.tween_interval(2)
+   *
+   * tween.tween_property($Sprite, "position:x", -200.0, 1).as_relative()
+   *
+   * tween.tween_callback(jump)
+   *
+   * tween.tween_interval(2)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween().SetLoops();
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position:x", 200.0f, 1.0f).AsRelative();
+   *
+   * tween.TweenCallback(new Callable(Jump));
+   *
+   * tween.TweenInterval(2.0f);
+   *
+   * tween.TweenProperty(GetNode("Sprite"), "position:x", -200.0f, 1.0f).AsRelative();
+   *
+   * tween.TweenCallback(new Callable(Jump));
+   *
+   * tween.TweenInterval(2.0f);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
@@ -169,20 +378,55 @@ public open class Tween : RefCounted() {
   /**
    * Creates and appends a [godot.CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [godot.Callable.bind] to bind additional arguments for the call.
    *
-   * Example: object that keeps shooting every 1 second.
+   * **Example:** Object that keeps shooting every 1 second:
    *
-   * ```
-   * 				var tween = get_tree().create_tween().set_loops()
-   * 				tween.tween_callback(shoot).set_delay(1)
-   * 				```
+   * [codeblocks]
    *
-   * Example: turning a sprite red and then blue, with 2 second delay.
+   * [gdscript]
    *
-   * ```
-   * 				var tween = get_tree().create_tween()
-   * 				tween.tween_callback($Sprite.set_modulate.bind(Color.red)).set_delay(2)
-   * 				tween.tween_callback($Sprite.set_modulate.bind(Color.blue)).set_delay(2)
-   * 				```
+   * var tween = get_tree().create_tween().set_loops()
+   *
+   * tween.tween_callback(shoot).set_delay(1)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = GetTree().CreateTween().SetLoops();
+   *
+   * tween.TweenCallback(new Callable(Shoot)).SetDelay(1.0f);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Example:** Turning a sprite red and then blue, with 2 second delay:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = get_tree().create_tween()
+   *
+   * tween.tween_callback($Sprite.set_modulate.bind(Color.red)).set_delay(2)
+   *
+   * tween.tween_callback($Sprite.set_modulate.bind(Color.blue)).set_delay(2)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = GetTree().CreateTween();
+   *
+   * Sprite2D sprite = GetNode<Sprite2D>("Sprite");
+   *
+   * tween.TweenCallback(new Callable(() => sprite.Modulate = Colors.Red)).SetDelay(2.0f);
+   *
+   * tween.TweenCallback(new Callable(() => sprite.Modulate = Colors.Blue)).SetDelay(2.0f);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
@@ -191,25 +435,79 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [godot.MethodTweener]. This method is similar to a combination of [tweenCallback] and [tweenProperty]. It calls a method over time with a tweened value provided as an argument. The value is tweened between `from` and `to` over the time specified by `duration`, in seconds. Use [godot.Callable.bind] to bind additional arguments for the call. You can use [godot.MethodTweener.setEase] and [godot.MethodTweener.setTrans] to tweak the easing and transition of the value or [godot.MethodTweener.setDelay] to delay the tweening.
+   * Creates and appends a [godot.MethodTweener]. This method is similar to a combination of [tweenCallback] and [tweenProperty]. It calls a method over time with a tweened value provided as an argument. The value is tweened between [from] and [to] over the time specified by [duration], in seconds. Use [godot.Callable.bind] to bind additional arguments for the call. You can use [godot.MethodTweener.setEase] and [godot.MethodTweener.setTrans] to tweak the easing and transition of the value or [godot.MethodTweener.setDelay] to delay the tweening.
    *
-   * Example: making a 3D object look from one point to another point.
+   * **Example:** Making a 3D object look from one point to another point:
    *
-   * ```
-   * 				var tween = create_tween()
-   * 				tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The look_at() method takes up vector as second argument.
-   * 				```
+   * [codeblocks]
    *
-   * Example: setting a text of a [godot.Label], using an intermediate method and after a delay.
+   * [gdscript]
    *
-   * ```
-   * 				func _ready():
-   * 				    var tween = create_tween()
-   * 				    tween.tween_method(set_label_text, 0, 10, 1).set_delay(1)
+   * var tween = create_tween()
    *
-   * 				func set_label_text(value: int):
-   * 				    $Label.text = "Counting " + str(value)
-   * 				```
+   * tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The look_at() method takes up vector as second argument.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween();
+   *
+   * tween.TweenMethod(new Callable(() => LookAt(Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // The LookAt() method takes up vector as second argument.
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * **Example:** Setting the text of a [godot.Label], using an intermediate method and after a delay:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _ready():
+   *
+   *     var tween = create_tween()
+   *
+   *     tween.tween_method(set_label_text, 0, 10, 1).set_delay(1)
+   *
+   *
+   *
+   * func set_label_text(value: int):
+   *
+   *     $Label.text = "Counting " + str(value)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Ready()
+   *
+   * {
+   *
+   *     base._Ready();
+   *
+   *
+   *
+   *     Tween tween = CreateTween();
+   *
+   *     tween.TweenMethod(new Callable(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
+   *
+   * }
+   *
+   *
+   *
+   * private void SetLabelText(int value)
+   *
+   * {
+   *
+   *     GetNode<Label>("Label").Text = $"Counting {value}";
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun tweenMethod(
     method: Callable,
@@ -223,11 +521,11 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Processes the [godot.Tween] by given `delta` value, in seconds. Mostly useful when the [godot.Tween] is paused, for controlling it manually. Can also be used to end the [godot.Tween] animation immediately, by using `delta` longer than the whole duration.
+   * Processes the [godot.Tween] by the given [delta] value, in seconds. This is mostly useful for manual control when the [godot.Tween] is paused. It can also be used to end the [godot.Tween] animation immediately, by setting [delta] longer than the whole duration of the [godot.Tween] animation.
    *
    * Returns `true` if the [godot.Tween] still has [godot.Tweener]s that haven't finished.
    *
-   * **Note:** The [godot.Tween] will become invalid after finished, but you can call [stop] after the step, to keep it and reset.
+   * **Note:** The [godot.Tween] will become invalid in the next processing frame after its animation finishes. Calling [stop] after performing [customStep] instead keeps and resets the [godot.Tween].
    */
   public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
@@ -277,7 +575,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Returns whether the [godot.Tween] is valid. A valid [godot.Tween] is a [godot.Tween] contained by the scene tree (i.e. the array from [godot.SceneTree.getProcessedTweens] will contain this [godot.Tween]). [godot.Tween] might become invalid when it has finished tweening or was killed, also when created with `Tween.new()`. Invalid [godot.Tween] can't have [godot.Tweener]s appended, because it can't animate them.
+   * Returns whether the [godot.Tween] is valid. A valid [godot.Tween] is a [godot.Tween] contained by the scene tree (i.e. the array from [godot.SceneTree.getProcessedTweens] will contain this [godot.Tween]). A [godot.Tween] might become invalid when it has finished tweening, is killed, or when created with `Tween.new()`. Invalid [godot.Tween]s can't have [godot.Tweener]s appended.
    */
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
@@ -286,7 +584,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Binds this [godot.Tween] with the given `node`. [godot.Tween]s are processed directly by the [godot.SceneTree], so they run independently of the animated nodes. When you bind a [godot.Node] with the [godot.Tween], the [godot.Tween] will halt the animation when the object is not inside tree and the [godot.Tween] will be automatically killed when the bound object is freed. Also [TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
+   * Binds this [godot.Tween] with the given [node]. [godot.Tween]s are processed directly by the [godot.SceneTree], so they run independently of the animated nodes. When you bind a [godot.Node] with the [godot.Tween], the [godot.Tween] will halt the animation when the object is not inside tree and the [godot.Tween] will be automatically killed when the bound object is freed. Also [TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
    *
    * For a shorter way to create and bind a [godot.Tween], you can use [godot.Node.createTween].
    */
@@ -319,7 +617,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * If `parallel` is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
+   * If [parallel] is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
    */
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
@@ -330,9 +628,9 @@ public open class Tween : RefCounted() {
   /**
    * Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run the animation twice.
    *
-   * Calling this method without arguments will make the [godot.Tween] run infinitely, until it is either killed by [kill] or by freeing bound node, or all the animated objects have been freed (which makes further animation impossible).
+   * Calling this method without arguments will make the [godot.Tween] run infinitely, until either it is killed with [kill], the [godot.Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).
    *
-   * **Warning:** Make sure to always add some duration/delay when using infinite loops. 0-duration looped animations (e.g. single [godot.CallbackTweener] with no delay or [godot.PropertyTweener] with invalid node) are equivalent to infinite `while` loops and will freeze your game. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
+   * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [godot.CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
   public fun setLoops(loops: Long = 0): Tween? {
     TransferContext.writeArguments(LONG to loops)
@@ -368,14 +666,37 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Makes the next [godot.Tweener] run parallelly to the previous one. Example:
+   * Makes the next [godot.Tweener] run parallelly to the previous one.
    *
-   * ```
-   * 				var tween = create_tween()
-   * 				tween.tween_property(...)
-   * 				tween.parallel().tween_property(...)
-   * 				tween.parallel().tween_property(...)
-   * 				```
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = create_tween()
+   *
+   * tween.tween_property(...)
+   *
+   * tween.parallel().tween_property(...)
+   *
+   * tween.parallel().tween_property(...)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween();
+   *
+   * tween.TweenProperty(...);
+   *
+   * tween.Parallel().TweenProperty(...);
+   *
+   * tween.Parallel().TweenProperty(...);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    *
    * All [godot.Tweener]s in the example will run at the same time.
    *
@@ -390,12 +711,33 @@ public open class Tween : RefCounted() {
   /**
    * Used to chain two [godot.Tweener]s after [setParallel] is called with `true`.
    *
-   * ```
-   * 				var tween = create_tween().set_parallel(true)
-   * 				tween.tween_property(...)
-   * 				tween.tween_property(...) # Will run parallelly with above.
-   * 				tween.chain().tween_property(...) # Will run after two above are finished.
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var tween = create_tween().set_parallel(true)
+   *
+   * tween.tween_property(...)
+   *
+   * tween.tween_property(...) # Will run parallelly with above.
+   *
+   * tween.chain().tween_property(...) # Will run after two above are finished.
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Tween tween = CreateTween().SetParallel(true);
+   *
+   * tween.TweenProperty(...);
+   *
+   * tween.TweenProperty(...); // Will run parallelly with above.
+   *
+   * tween.Chain().TweenProperty(...); // Will run after two above are finished.
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun chain(): Tween? {
     TransferContext.writeArguments()
@@ -406,15 +748,15 @@ public open class Tween : RefCounted() {
   /**
    * This method can be used for manual interpolation of a value, when you don't want [godot.Tween] to do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom transition and easing.
    *
-   * `initial_value` is the starting value of the interpolation.
+   * [initialValue] is the starting value of the interpolation.
    *
-   * `delta_value` is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
+   * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
    *
-   * `elapsed_time` is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the `duration`, the interpolated value will be halfway between initial and final values. This value can also be greater than `duration` or lower than 0, which will extrapolate the value.
+   * [elapsedTime] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [duration] or lower than 0, which will extrapolate the value.
    *
-   * `duration` is the total time of the interpolation.
+   * [duration] is the total time of the interpolation.
    *
-   * **Note:** If `duration` is equal to `0`, the method will always return the final value, regardless of `elapsed_time` provided.
+   * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
    */
   public fun interpolateValue(
     initialValue: Any,

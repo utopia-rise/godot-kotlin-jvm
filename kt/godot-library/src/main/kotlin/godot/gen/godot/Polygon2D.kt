@@ -157,9 +157,6 @@ public open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_SKELETON, NIL)
     }
 
-  /**
-   * If `true`, polygon will be inverted, containing the area outside the defined points and extending to the `invert_border`.
-   */
   public var invertEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -172,7 +169,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Added padding applied to the bounding box when using `invert`. Setting this value too small may result in a "Bad Polygon" error.
+   * Added padding applied to the bounding box when [invertEnabled] is set to `true`. Setting this value too small may result in a "Bad Polygon" error.
    */
   public var invertBorder: Double
     get() {
@@ -234,7 +231,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   *
+   * The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [godot.PackedInt32Array] where each [int] is an index to a point in [polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [polygon], using the order they are stored in.
    */
   public var polygons: VariantArray<Any?>
     get() {
@@ -268,7 +265,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * Adds a bone with the specified `path` and `weights`.
+   * Adds a bone with the specified [path] and [weights].
    */
   public fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)

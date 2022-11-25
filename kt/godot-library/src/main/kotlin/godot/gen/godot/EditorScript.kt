@@ -26,7 +26,7 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * tool
+ * @tool
  *
  * extends EditorScript
  *
@@ -67,6 +67,8 @@ import kotlin.Unit
  * [/codeblocks]
  *
  * **Note:** The script is run in the Editor context, which means the output is visible in the console window started with the Editor (stdout) instead of the usual Godot **Output** dock.
+ *
+ * **Note:** EditorScript is [godot.RefCounted], meaning it is destroyed when nothing references it. This can cause errors during asynchronous operations if there are no references to the script.
  */
 @GodotBaseType
 public open class EditorScript internal constructor() : RefCounted() {
@@ -81,7 +83,7 @@ public open class EditorScript internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds `node` as a child of the root node in the editor context.
+   * Adds [node] as a child of the root node in the editor context.
    *
    * **Warning:** The implementation of this method is currently disabled.
    */

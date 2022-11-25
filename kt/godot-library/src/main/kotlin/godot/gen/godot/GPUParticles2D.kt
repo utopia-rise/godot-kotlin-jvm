@@ -37,7 +37,7 @@ import kotlin.Unit
  *
  * 2D particle node used to create a variety of particle systems and effects. [godot.GPUParticles2D] features an emitter that generates some number of particles at a given rate.
  *
- * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ * Use the `process_material` property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
@@ -179,7 +179,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
   public var fixedFps: Long
     get() {
@@ -244,7 +244,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.GPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.GPUParticles2D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -276,7 +276,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * If `true`, enables particle trails using a mesh skinning system.
    *
+   * **Note:** Unlike [godot.GPUParticles3D], the number of trail sections and subdivisions is set with the [trailSections] and [trailSectionSubdivisions] properties.
    */
   public var trailEnabled: Boolean
     get() {
@@ -291,9 +293,6 @@ public open class GPUParticles2D : Node2D() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
@@ -308,7 +307,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   *
+   * The number of sections to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
    */
   public var trailSections: Long
     get() {
@@ -324,7 +323,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   *
+   * The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSections]. Only effective if [trailEnabled] is `true`.
    */
   public var trailSectionSubdivisions: Long
     get() {
@@ -340,7 +339,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
+   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
    */
   public var processMaterial: Material?
     get() {
@@ -392,7 +391,7 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Emits a single particle. Whether `xform`, `velocity`, `color` and `custom` are applied depends on the value of `flags`. See [enum EmitFlags].
+   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends on the value of [flags]. See [enum EmitFlags].
    */
   public fun emitParticle(
     xform: Transform2D,

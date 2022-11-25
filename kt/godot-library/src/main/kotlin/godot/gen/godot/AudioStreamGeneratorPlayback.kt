@@ -46,7 +46,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   }
 
   /**
-   * Returns `true` if a buffer of the size `amount` can be pushed to the audio sample data buffer without overflowing it, `false` otherwise.
+   * Returns `true` if a buffer of the size [amount] can be pushed to the audio sample data buffer without overflowing it, `false` otherwise.
    */
   public fun canPushBuffer(amount: Long): Boolean {
     TransferContext.writeArguments(LONG to amount)
@@ -66,7 +66,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   }
 
   /**
-   * Returns the number of audio data frames left to play. If this returned number reaches `0`, the audio will stop playing until frames are added again. Therefore, make sure your script can always generate and push new audio frames fast enough to avoid audio cracking.
+   * Returns the number of frames that can be pushed to the audio sample data buffer without overflowing it. If the result is `0`, the buffer is full.
    */
   public fun getFramesAvailable(): Long {
     TransferContext.writeArguments()

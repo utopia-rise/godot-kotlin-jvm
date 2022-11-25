@@ -34,19 +34,9 @@ public open class Slider internal constructor() : Range() {
   public val dragStarted: Signal0 by signal()
 
   /**
-   * Emitted when dragging stops. If `value_changed` is true, [godot.Range.value] is different from the value when you started the dragging.
+   * Emitted when dragging stops. If [valueChanged] is true, [godot.Range.value] is different from the value when you started the dragging.
    */
   public val dragEnded: Signal1<Boolean> by signal("valueChanged")
-
-  /**
-   * Emitted when dragging stops. If `value_changed` is true, [godot.Range.value] is different from the value when you started the dragging.
-   */
-  public val dragEnded: Signal1<Boolean> by signal("value_changed")
-
-  /**
-   * Emitted when dragging is started.
-   */
-  public val dragStarted: Signal0 by signal()
 
   /**
    * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.

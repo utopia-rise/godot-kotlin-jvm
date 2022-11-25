@@ -35,7 +35,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. `path` is the path of the file, `type` is the [godot.Resource] represented by the file (e.g. [godot.PackedScene]) and `features` is the list of features for the export.
+   * Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. [path] is the path of the file, [type] is the [godot.Resource] represented by the file (e.g. [godot.PackedScene]) and [features] is the list of features for the export.
    *
    * Calling [skip] inside this callback will make the file not included in the export.
    */
@@ -47,7 +47,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export. `features` is the list of features for the export, `is_debug` is `true` for debug builds, `path` is the target path for the exported project. `flags` is only used when running a runnable profile, e.g. when using native run on Android.
+   * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export. [features] is the list of features for the export, [isDebug] is `true` for debug builds, [path] is the target path for the exported project. [flags] is only used when running a runnable profile, e.g. when using native run on Android.
    */
   public open fun _exportBegin(
     features: PackedStringArray,
@@ -64,7 +64,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds a shared object or a directory containing only shared objects with the given `tags` and destination `path`.
+   * Adds a shared object or a directory containing only shared objects with the given [tags] and destination [path].
    *
    * **Note:** In case of macOS exports, those shared objects will be added to `Frameworks` directory of app bundle.
    *
@@ -81,7 +81,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds a static lib from the given `path` to the iOS project.
+   * Adds a static lib from the given [path] to the iOS project.
    */
   public fun addIosProjectStaticLib(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -90,7 +90,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds a custom file to be exported. `path` is the virtual path that can be used to load the file, `file` is the binary data of the file. If `remap` is `true`, file will not be exported, but instead remapped to the given `path`.
+   * Adds a custom file to be exported. [path] is the virtual path that can be used to load the file, [file] is the binary data of the file. If [remap] is `true`, file will not be exported, but instead remapped to the given [path].
    */
   public fun addFile(
     path: String,
@@ -142,7 +142,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds an iOS bundle file from the given `path` to the exported project.
+   * Adds an iOS bundle file from the given [path] to the exported project.
    */
   public fun addIosBundleFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -159,11 +159,6 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
         NIL)
   }
 
-  /**
-   * Adds file or directory matching `path` to `PlugIns` directory of macOS app bundle.
-   *
-   * **Note:** This is useful only for macOS exports.
-   */
   public fun addOsxPluginFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,

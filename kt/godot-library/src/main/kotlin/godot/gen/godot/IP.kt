@@ -46,7 +46,7 @@ public object IP : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as `ip_type`.
+   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as [ipType].
    */
   public fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
@@ -55,7 +55,7 @@ public object IP : Object() {
   }
 
   /**
-   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on `ip_type`.
+   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on [ipType].
    */
   public fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
       VariantArray<Any?> {
@@ -66,7 +66,7 @@ public object IP : Object() {
   }
 
   /**
-   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as `ip_type`. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
+   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
   public fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
@@ -76,7 +76,7 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue `id`.
+   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [id].
    */
   public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
     TransferContext.writeArguments(LONG to id)
@@ -85,7 +85,7 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's IP address, given its queue `id`. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
+   * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
    */
   public fun getResolveItemAddress(id: Long): String {
     TransferContext.writeArguments(LONG to id)
@@ -104,7 +104,7 @@ public object IP : Object() {
   }
 
   /**
-   * Removes a given item `id` from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
+   * Removes a given item [id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
    */
   public fun eraseResolveItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
@@ -141,7 +141,7 @@ public object IP : Object() {
   }
 
   /**
-   * Removes all of a `hostname`'s cached references. If no `hostname` is given, all cached IP addresses are removed.
+   * Removes all of a [hostname]'s cached references. If no [hostname] is given, all cached IP addresses are removed.
    */
   public fun clearCache(hostname: String = ""): Unit {
     TransferContext.writeArguments(STRING to hostname)

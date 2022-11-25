@@ -84,9 +84,6 @@ public open class Camera3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ENVIRONMENT, NIL)
     }
 
-  /**
-   * The [godot.CameraEffects] to use for this camera.
-   */
   public var effects: CameraEffects?
     get() {
       TransferContext.writeArguments()
@@ -158,6 +155,8 @@ public open class Camera3D : Node3D() {
 
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
+   *
+   * If multiple cameras are in the scene, one will always be made current. For example, if two [godot.Camera3D] nodes are present in the scene and only one is current, setting one camera's [current] to `false` will cause the other camera to be made current.
    */
   public var current: Boolean
     get() {
@@ -195,7 +194,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal and frustum modes. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
+   * The camera's size in meters measured as the diameter of the width or height, depending on [keepAspect]. Only applicable in orthogonal and frustum modes.
    */
   public var size: Double
     get() {
@@ -210,6 +209,8 @@ public open class Camera3D : Node3D() {
 
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
+   *
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   public var frustumOffset: Vector2
     get() {
@@ -256,7 +257,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -276,7 +277,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -294,7 +295,7 @@ public open class Camera3D : Node3D() {
    * 				# This code block is part of a script that inherits from Node3D.
    * 				# `control` is a reference to a node inheriting from Control.
    * 				control.visible = not get_viewport().get_camera_3d().is_position_behind(global_transform.origin)
-   * 				control.rect_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+   * 				control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
    * 				```
    */
   public fun unprojectPosition(worldPoint: Vector3): Vector2 {
@@ -316,7 +317,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns the 3D point in world space that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given `z_depth` distance into the scene away from the camera.
+   * Returns the 3D point in world space that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given [zDepth] distance into the scene away from the camera.
    */
   public fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
@@ -325,7 +326,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a `fov` (field of view) angle in degrees, and the `z_near` and `z_far` clip planes in world space units.
+   * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a [fov] (field of view) angle in degrees, and the [zNear] and [zFar] clip planes in world space units.
    */
   public fun setPerspective(
     fov: Double,
@@ -337,7 +338,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a `size`, and the `z_near` and `z_far` clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
+   * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
    */
   public fun setOrthogonal(
     size: Double,
@@ -349,7 +350,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units.
+   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a [size], an [offset], and the [zNear] and [zFar] clip planes in world space units. See also [frustumOffset].
    */
   public fun setFrustum(
     size: Double,
@@ -370,7 +371,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * If this is the current camera, remove it from being current. If `enable_next` is `true`, request to make the next camera current, if any.
+   * If this is the current camera, remove it from being current. If [enableNext] is `true`, request to make the next camera current, if any.
    */
   public fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
@@ -426,7 +427,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [cullMask], given a `layer_number` between 1 and 20.
+   * Based on [value], enables or disables the specified layer in the [cullMask], given a [layerNumber] between 1 and 20.
    */
   public fun setCullMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -434,7 +435,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [cullMask] is enabled, given a `layer_number` between 1 and 20.
+   * Returns whether or not the specified layer of the [cullMask] is enabled, given a [layerNumber] between 1 and 20.
    */
   public fun getCullMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)

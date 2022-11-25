@@ -14,16 +14,8 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A boolean uniform to be used within the visual shader graph.
- *
- * Translated to `uniform bool` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
-  /**
-   * Enables usage of the [defaultValue].
-   */
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -37,9 +29,6 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
     }
 
-  /**
-   * A default value to be assigned within the shader.
-   */
   public var defaultValue: Boolean
     get() {
       TransferContext.writeArguments()

@@ -15,12 +15,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Sphere-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
+ * Sphere-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
+ *
+ * **Note:** [godot.ParticleProcessMaterial.collisionMode] must be [godot.ParticleProcessMaterial.COLLISION_RIGID] or [godot.ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [godot.GPUParticles3D]'s process material for collision to work.
+ *
+ * **Note:** Particle collision only affects [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
   /**
-   *
+   * The collision sphere's radius in 3D units.
    */
   public var radius: Double
     get() {

@@ -27,17 +27,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   /**
-   * Emitted after script validation. For visual scripts on modification.
+   * Emitted after script validation.
    */
   public val editedScriptChanged: Signal0 by signal()
 
   /**
-   * Emitted when the user request to find and replace text in the file system. Not used by visual scripts.
+   * Emitted when the user request to find and replace text in the file system.
    */
   public val replaceInFilesRequested: Signal1<String> by signal("text")
 
   /**
-   * Emitted when the user request to search text in the file system. Not used by visual scripts.
+   * Emitted when the user request to search text in the file system.
    */
   public val searchInFilesRequested: Signal1<String> by signal("text")
 
@@ -52,7 +52,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   public val requestSaveHistory: Signal0 by signal()
 
   /**
-   * Emitted when the user requests a script.
+   * Emitted when the user requests to view a specific line of a script, similar to [goToMethod].
    */
   public val requestOpenScriptAtLine: Signal2<Object, Long> by signal("script", "line")
 
@@ -62,7 +62,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   public val requestHelp: Signal1<String> by signal("topic")
 
   /**
-   * Emitted after script validation or when the edited resource has changed. Not used by visual scripts.
+   * Emitted after script validation or when the edited resource has changed.
    */
   public val nameChanged: Signal0 by signal()
 
@@ -71,7 +71,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
   }
 
   /**
-   * Returns the underlying [godot.Control] used for editing scripts. This can be either [godot.CodeEdit] (for text scripts) or [godot.GraphEdit] (for visual scripts).
+   * Returns the underlying [godot.Control] used for editing scripts. For text scripts, this is a [godot.CodeEdit].
    */
   public fun getBaseEditor(): Control? {
     TransferContext.writeArguments()

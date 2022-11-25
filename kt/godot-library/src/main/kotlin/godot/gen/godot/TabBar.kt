@@ -272,7 +272,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets a `title` for the tab at index `tab_idx`.
+   * Sets a [title] for the tab at index [tabIdx].
    */
   public fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
@@ -280,7 +280,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the title of the tab at index `tab_idx`.
+   * Returns the title of the tab at index [tabIdx].
    */
   public fun getTabTitle(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -305,9 +305,6 @@ public open class TabBar : Control() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the tab title. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setTabOpentypeFeature(
     tabIdx: Long,
     tag: String,
@@ -318,9 +315,6 @@ public open class TabBar : Control() {
         NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the tab title.
-   */
   public fun getTabOpentypeFeature(tabIdx: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to tabIdx, STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_OPENTYPE_FEATURE,
@@ -328,9 +322,6 @@ public open class TabBar : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features from the tab title.
-   */
   public fun clearTabOpentypeFeatures(tabIdx: Long): Unit {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_CLEAR_TAB_OPENTYPE_FEATURES,
@@ -355,7 +346,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an `icon` for the tab at index `tab_idx`.
+   * Sets an [icon] for the tab at index [tabIdx].
    */
   public fun setTabIcon(tabIdx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
@@ -363,7 +354,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the tab at index `tab_idx` or `null` if the tab has no [godot.Texture2D].
+   * Returns the [godot.Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [godot.Texture2D].
    */
   public fun getTabIcon(tabIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -372,7 +363,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an `icon` for the button of the tab at index `tab_idx` (located to the right, before the close button), making it visible and clickable (See [tabButtonPressed]). Giving it a `null` value will hide the button.
+   * Sets an [icon] for the button of the tab at index [tabIdx] (located to the right, before the close button), making it visible and clickable (See [tabButtonPressed]). Giving it a `null` value will hide the button.
    */
   public fun setTabButtonIcon(tabIdx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
@@ -380,7 +371,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the right button of the tab at index `tab_idx` or `null` if the button has no [godot.Texture2D].
+   * Returns the [godot.Texture2D] for the right button of the tab at index [tabIdx] or `null` if the button has no [godot.Texture2D].
    */
   public fun getTabButtonIcon(tabIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -389,7 +380,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If `disabled` is `true`, disables the tab at index `tab_idx`, making it non-interactable.
+   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
   public fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
@@ -397,7 +388,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index `tab_idx` is disabled.
+   * Returns `true` if the tab at index [tabIdx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -406,7 +397,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If `hidden` is `true`, hides the tab at index `tab_idx`, making it disappear from the tab area.
+   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
   public fun setTabHidden(tabIdx: Long, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to hidden)
@@ -414,7 +405,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index `tab_idx` is hidden.
+   * Returns `true` if the tab at index [tabIdx] is hidden.
    */
   public fun isTabHidden(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -423,7 +414,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Removes the tab at index `tab_idx`.
+   * Removes the tab at index [tabIdx].
    */
   public fun removeTab(tabIdx: Long): Unit {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -439,7 +430,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates `point`. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -484,7 +475,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Moves a tab from `from` to `to`.
+   * Moves a tab from [from] to [to].
    */
   public fun moveTab(from: Long, to: Long): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)

@@ -87,6 +87,8 @@ import kotlin.Unit
  * [/codeblocks]
  *
  * To iterate over all the [godot.TreeItem] objects in a [godot.Tree] object, use [godot.TreeItem.getNext] and [godot.TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [godot.Object.free] on a [godot.TreeItem] to remove it from the [godot.Tree].
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.PopupMenu], [godot.Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class Tree : Control() {
@@ -100,9 +102,6 @@ public open class Tree : Control() {
    */
   public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
 
-  /**
-   * Emitted when a column's title is pressed.
-   */
   public val columnTitlePressed: Signal1<Long> by signal("column")
 
   /**
@@ -120,9 +119,6 @@ public open class Tree : Control() {
    */
   public val itemCollapsed: Signal1<TreeItem> by signal("item")
 
-  /**
-   * Emitted when an item is edited using the right mouse button.
-   */
   public val itemRmbEdited: Signal0 by signal()
 
   /**
@@ -130,9 +126,6 @@ public open class Tree : Control() {
    */
   public val itemEdited: Signal0 by signal()
 
-  /**
-   * Emitted when the right mouse button is pressed if right mouse button selection is active and the tree is empty.
-   */
   public val emptyTreeRmbSelected: Signal1<Vector2> by signal("position")
 
   /**
@@ -145,14 +138,8 @@ public open class Tree : Control() {
    */
   public val itemDoubleClicked: Signal0 by signal()
 
-  /**
-   * Emitted when the right mouse button is pressed in the empty space of the tree.
-   */
   public val emptyRmb: Signal1<Vector2> by signal("position")
 
-  /**
-   * Emitted when an item is selected with the right mouse button.
-   */
   public val itemRmbSelected: Signal1<Vector2> by signal("position")
 
   /**
@@ -165,9 +152,6 @@ public open class Tree : Control() {
    */
   public val cellSelected: Signal0 by signal()
 
-  /**
-   * Emitted when a button on the tree was pressed (see [godot.TreeItem.addButton]).
-   */
   public val buttonPressed: Signal3<TreeItem, Long, Long> by signal("item", "column", "id")
 
   /**
@@ -332,11 +316,11 @@ public open class Tree : Control() {
   }
 
   /**
-   * Creates an item in the tree and adds it as a child of `parent`, which can be either a valid [godot.TreeItem] or `null`.
+   * Creates an item in the tree and adds it as a child of [parent], which can be either a valid [godot.TreeItem] or `null`.
    *
-   * If `parent` is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
+   * If [parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
    *
-   * The new item will be the `idx`th child of parent, or it will be the last child if there are not enough siblings.
+   * The new item will be the [idx]th child of parent, or it will be the last child if there are not enough siblings.
    */
   public fun createItem(parent: TreeItem? = null, idx: Long = -1): TreeItem? {
     TransferContext.writeArguments(OBJECT to parent, LONG to idx)
@@ -363,7 +347,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
+   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [godot.Control.sizeFlagsStretchRatio] (see [setColumnExpandRatio]).
    */
   public fun setColumnExpand(column: Long, expand: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand)
@@ -371,7 +355,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Sets the relative expand ratio for a column. See [setColumnExpand].
    */
   public fun setColumnExpandRatio(column: Long, ratio: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to ratio)
@@ -379,7 +363,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Allows to enable clipping for column's content, making the content size ignored.
    */
   public fun setColumnClipContent(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
@@ -387,7 +371,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns `true` if the column has enabled expanding (see [setColumnExpand]).
    */
   public fun isColumnExpanding(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -396,7 +380,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns `true` if the column has enabled clipping (see [setColumnClipContent]).
    */
   public fun isColumnClippingContent(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -406,7 +390,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Returns the expand ratio assigned to the column.
    */
   public fun getColumnExpandRatio(column: Long): Long {
     TransferContext.writeArguments(LONG to column)
@@ -426,7 +410,7 @@ public open class Tree : Control() {
   /**
    * Returns the next selected [godot.TreeItem] after the given one, or `null` if the end is reached.
    *
-   * If `from` is `null`, this returns the first selected item.
+   * If [from] is `null`, this returns the first selected item.
    */
   public fun getNextSelected(from: TreeItem): TreeItem? {
     TransferContext.writeArguments(OBJECT to from)
@@ -546,7 +530,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified [godot.TreeItem]. If `column` is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
+   * Returns the rectangle area for the specified [godot.TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
   public fun getItemAreaRect(item: TreeItem, column: Long = -1): Rect2 {
     TransferContext.writeArguments(OBJECT to item, LONG to column)
@@ -564,7 +548,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the column index at `position`, or -1 if no item is there.
+   * Returns the column index at [position], or -1 if no item is there.
    */
   public fun getColumnAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -573,7 +557,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the drop section at `position`, or -100 if no item is there.
+   * Returns the drop section at [position], or -100 if no item is there.
    *
    * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.
    *
@@ -587,7 +571,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the button id at `position`, or -1 if no button is there.
+   * Returns the button id at [position], or -1 if no button is there.
    */
   public fun getButtonIdAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -644,9 +628,6 @@ public open class Tree : Control() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the column title.
-   */
   public fun setColumnTitleOpentypeFeature(
     column: Long,
     tag: String,
@@ -657,9 +638,6 @@ public open class Tree : Control() {
         ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the column title.
-   */
   public fun getColumnTitleOpentypeFeature(column: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to column, STRING to tag)
     TransferContext.callMethod(rawPtr,
@@ -667,9 +645,6 @@ public open class Tree : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features from the item's text.
-   */
   public fun clearColumnTitleOpentypeFeatures(column: Long): Unit {
     TransferContext.writeArguments(LONG to column)
     TransferContext.callMethod(rawPtr,

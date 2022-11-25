@@ -138,9 +138,6 @@ public open class TextParagraph : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_ALIGNMENT, NIL)
     }
 
-  /**
-   * Line breaking and alignment rules. For more info see [godot.TextServer].
-   */
   public var flags: Long
     get() {
       TransferContext.writeArguments()
@@ -153,7 +150,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
@@ -262,7 +259,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, `key` must be unique. In the text, object is represented as `length` object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
   public fun addObject(
     key: Any,
@@ -441,18 +438,12 @@ public open class TextParagraph : RefCounted() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Returns extra spacing at the top of the line. See [godot.Font.spacingTop].
-   */
   public fun getSpacingTop(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_TOP, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns extra spacing at the bottom of the line. See [godot.Font.spacingBottom].
-   */
   public fun getSpacingBottom(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_GET_SPACING_BOTTOM,
@@ -481,7 +472,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw all lines of the text and drop cap into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun draw(
     canvas: RID,
@@ -494,7 +485,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawOutline(
     canvas: RID,
@@ -508,7 +499,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw single line of text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawLine(
     canvas: RID,
@@ -521,7 +512,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw outline of the single line of text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw outline of the single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawLineOutline(
     canvas: RID,
@@ -536,7 +527,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw drop cap into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawDropcap(
     canvas: RID,
@@ -548,7 +539,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw drop cap outline into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawDropcapOutline(
     canvas: RID,
@@ -573,25 +564,10 @@ public open class TextParagraph : RefCounted() {
   public enum class OverrunBehavior(
     id: Long
   ) {
-    /**
-     * No text trimming is performed.
-     */
     OVERRUN_NO_TRIMMING(0),
-    /**
-     * Trims the text per character.
-     */
     OVERRUN_TRIM_CHAR(1),
-    /**
-     * Trims the text per word.
-     */
     OVERRUN_TRIM_WORD(2),
-    /**
-     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_ELLIPSIS(3),
-    /**
-     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_WORD_ELLIPSIS(4),
     ;
 

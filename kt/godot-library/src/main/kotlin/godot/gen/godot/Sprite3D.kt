@@ -41,7 +41,7 @@ public open class Sprite3D : SpriteBase3D() {
   public val textureChanged: Signal0 by signal()
 
   /**
-   * [godot.Texture2D] object to draw.
+   * [godot.Texture2D] object to draw. If [godot.GeometryInstance3D.materialOverride] is used, this will be overridden. The size information is still used.
    */
   public var texture: Texture?
     get() {
@@ -112,7 +112,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   *
+   * If `true`, the sprite will use [regionRect] and display only the specified part of its texture.
    */
   public var regionEnabled: Boolean
     get() {

@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VehicleBody3D : RigidDynamicBody3D() {
   /**
-   * Accelerates the vehicle by applying an engine force. The vehicle is only speed up if the wheels that have [godot.VehicleWheel3D.useAsTraction] set to `true` and are in contact with a surface. The [godot.RigidDynamicBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
+   * Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [godot.VehicleWheel3D.useAsTraction] set to `true` and are in contact with a surface. The [godot.RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
    *
    * **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
    *
@@ -49,7 +49,7 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
     }
 
   /**
-   * Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidDynamicBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
+   * Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [godot.RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking.
    */
   public var brake: Double
     get() {
@@ -63,7 +63,7 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
     }
 
   /**
-   * The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
+   * The steering angle for the vehicle, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [godot.VehicleWheel3D.useAsSteering] set to `true` will automatically be rotated.
    */
   public var steering: Double
     get() {

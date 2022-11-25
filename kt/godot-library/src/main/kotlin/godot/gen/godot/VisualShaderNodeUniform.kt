@@ -16,16 +16,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A base type for the uniforms within the visual shader graph.
- *
- * A uniform represents a variable in the shader which is set externally, i.e. from the [godot.ShaderMaterial]. Uniforms are exposed as properties in the [godot.ShaderMaterial] and can be assigned from the inspector or from a script.
- */
 @GodotBaseType
 public open class VisualShaderNodeUniform internal constructor() : VisualShaderNode() {
-  /**
-   * Name of the uniform, by which it can be accessed through the [godot.ShaderMaterial] properties.
-   */
   public var uniformName: StringName
     get() {
       TransferContext.writeArguments()
@@ -39,9 +31,6 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORM_SET_UNIFORM_NAME, NIL)
     }
 
-  /**
-   *
-   */
   public var qualifier: Long
     get() {
       TransferContext.writeArguments()
@@ -62,21 +51,9 @@ public open class VisualShaderNodeUniform internal constructor() : VisualShaderN
   public enum class Qualifier(
     id: Long
   ) {
-    /**
-     *
-     */
     QUAL_NONE(0),
-    /**
-     *
-     */
     QUAL_GLOBAL(1),
-    /**
-     *
-     */
     QUAL_INSTANCE(2),
-    /**
-     * Represents the size of the [enum Qualifier] enum.
-     */
     QUAL_MAX(3),
     ;
 

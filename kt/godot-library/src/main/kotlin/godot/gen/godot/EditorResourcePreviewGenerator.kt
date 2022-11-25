@@ -26,7 +26,7 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
   }
 
   /**
-   * Returns `true` if your generator supports the resource of type `type`.
+   * Returns `true` if your generator supports the resource of type [type].
    */
   public open fun _handles(type: String): Boolean {
     throw NotImplementedError("_handles is not implemented for EditorResourcePreviewGenerator")

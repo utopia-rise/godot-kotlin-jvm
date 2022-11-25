@@ -48,6 +48,8 @@ import kotlin.Unit
  * Item text only supports single-line strings, newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
  *
  * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ *
+ * **Incremental search:** Like [godot.PopupMenu] and [godot.Tree], [godot.ItemList] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class ItemList : Control() {
@@ -149,7 +151,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextParagraph.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
@@ -284,7 +286,7 @@ public open class ItemList : Control() {
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
    *
-   * Specify an `icon`, or use `null` as the `icon` for a list item with no icon.
+   * Specify an [icon], or use `null` as the [icon] for a list item with no icon.
    *
    * If selectable is `true`, the list item will be selectable.
    */
@@ -360,9 +362,6 @@ public open class ItemList : Control() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setItemOpentypeFeature(
     idx: Long,
     tag: String,
@@ -373,9 +372,6 @@ public open class ItemList : Control() {
         NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getItemOpentypeFeature(idx: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to idx, STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_OPENTYPE_FEATURE,
@@ -383,9 +379,6 @@ public open class ItemList : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features from the item's text.
-   */
   public fun clearItemOpentypeFeatures(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
@@ -519,7 +512,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the background color of the item specified by `idx` index to the specified [godot.core.Color].
+   * Sets the background color of the item specified by [idx] index to the specified [godot.core.Color].
    */
   public fun setItemCustomBgColor(idx: Long, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customBgColor)
@@ -528,7 +521,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom background color of the item specified by `idx` index.
+   * Returns the custom background color of the item specified by [idx] index.
    */
   public fun getItemCustomBgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -538,7 +531,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the foreground color of the item specified by `idx` index to the specified [godot.core.Color].
+   * Sets the foreground color of the item specified by [idx] index to the specified [godot.core.Color].
    */
   public fun setItemCustomFgColor(idx: Long, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customFgColor)
@@ -547,7 +540,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom foreground color of the item specified by `idx` index.
+   * Returns the custom foreground color of the item specified by [idx] index.
    */
   public fun getItemCustomFgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -638,7 +631,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Moves item from index `from_idx` to `to_idx`.
+   * Moves item from index [fromIdx] to [toIdx].
    */
   public fun moveItem(fromIdx: Long, toIdx: Long): Unit {
     TransferContext.writeArguments(LONG to fromIdx, LONG to toIdx)
@@ -646,7 +639,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Removes the item specified by `idx` index from the list.
+   * Removes the item specified by [idx] index from the list.
    */
   public fun removeItem(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
@@ -679,9 +672,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the item index at the given `position`.
+   * Returns the item index at the given [position].
    *
-   * When there is no item at that point, -1 will be returned if `exact` is `true`, and the closest item index will be returned otherwise.
+   * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest item index will be returned otherwise.
    */
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)

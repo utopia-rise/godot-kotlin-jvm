@@ -64,6 +64,8 @@ public open class Node2D : CanvasItem() {
 
   /**
    * The node's scale. Unscaled value: `(1, 1)`.
+   *
+   * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    */
   public var scale: Vector2
     get() {
@@ -77,7 +79,9 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
+   * Slants the node.
    *
+   * **Note:** Skew is X axis only.
    */
   public var skew: Double
     get() {
@@ -215,7 +219,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's X axis based on the [godot.Node.Process]'s `delta`. If `scaled` is `false`, normalizes the movement.
+   * Applies a local translation on the node's X axis based on the [godot.Node.Process]'s [delta]. If [scaled] is `false`, normalizes the movement.
    */
   public fun moveLocalX(delta: Double, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta, BOOL to scaled)
@@ -223,7 +227,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's Y axis based on the [godot.Node.Process]'s `delta`. If `scaled` is `false`, normalizes the movement.
+   * Applies a local translation on the node's Y axis based on the [godot.Node.Process]'s [delta]. If [scaled] is `false`, normalizes the movement.
    */
   public fun moveLocalY(delta: Double, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta, BOOL to scaled)
@@ -231,7 +235,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Translates the node by the given `offset` in local coordinates.
+   * Translates the node by the given [offset] in local coordinates.
    */
   public fun translate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
@@ -239,7 +243,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Adds the `offset` vector to the node's global position.
+   * Adds the [offset] vector to the node's global position.
    */
   public fun globalTranslate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
@@ -247,7 +251,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Multiplies the current scale by the `ratio` vector.
+   * Multiplies the current scale by the [ratio] vector.
    */
   public fun applyScale(ratio: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to ratio)
@@ -255,7 +259,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Rotates the node so it points towards the `point`, which is expected to use global coordinates.
+   * Rotates the node so it points towards the [point], which is expected to use global coordinates.
    */
   public fun lookAt(point: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -263,7 +267,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Returns the angle between the node and the `point` in radians.
+   * Returns the angle between the node and the [point] in radians.
    *
    * [godot.Illustration of the returned angle.](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png)
    */

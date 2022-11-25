@@ -16,12 +16,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
  *
+ * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
+ *
+ * Unlike [godot.GPUParticlesAttractorBox3D], [godot.GPUParticlesAttractorVectorField3D] uses a [texture] to affect attraction strength within the box. This can be used to create complex attraction scenarios where particles travel in different directions depending on their location. This can be useful for weather effects such as sandstorms.
+ *
+ * **Note:** Particle attractors only affect [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D() {
   /**
-   *
+   * The extents of the vector field box in 3D units.
    */
   public var extents: Vector3
     get() {
@@ -37,7 +43,9 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
     }
 
   /**
+   * The 3D texture to be used. Values are linearly interpolated between the texture's pixels.
    *
+   * **Note:** To get better performance, the 3D texture's resolution should reflect the [extents] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.
    */
   public var texture: Texture3D?
     get() {

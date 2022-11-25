@@ -20,7 +20,7 @@ import kotlin.Unit
 /**
  * Data buffer stream peer.
  *
- * Data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.File] can be used directly.
+ * Data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
  *
  * A [godot.StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
  */
@@ -47,7 +47,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   * Moves the cursor to the specified position. `position` must be a valid index of [dataArray].
+   * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
   public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)

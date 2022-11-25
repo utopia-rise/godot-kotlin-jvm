@@ -38,21 +38,25 @@ import kotlin.Unit
  * If no maximum size is set, or if it is set to 0, the [godot.PopupMenu] height will be limited by its parent rect.
  *
  * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
+ *
+ * **Incremental search:** Like [godot.ItemList] and [godot.Tree], [godot.PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
   /**
-   * Emitted when an item of some `index` is pressed or its accelerator is activated.
+   * Emitted when an item of some [index] is pressed or its accelerator is activated.
    */
   public val indexPressed: Signal1<Long> by signal("index")
 
   /**
-   * Emitted when user navigated to an item of some `id` using `ui_up` or `ui_down` action.
+   * Emitted when the user navigated to an item of some [id] using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input action.
    */
   public val idFocused: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when an item of some `id` is pressed or its accelerator is activated.
+   * Emitted when an item of some [id] is pressed or its accelerator is activated.
+   *
+   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.
    */
   public val idPressed: Signal1<Long> by signal("id")
 
@@ -153,11 +157,11 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item with text `label`.
+   * Adds a new item with text [label].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    *
-   * **Note:** The provided `id` is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
+   * **Note:** The provided [id] is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
   public fun addItem(
     label: String,
@@ -169,9 +173,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item with text `label` and icon `texture`.
+   * Adds a new item with text [label] and icon [texture].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    */
   public fun addIconItem(
     texture: Texture2D,
@@ -184,9 +188,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item with text `label`.
+   * Adds a new checkable item with text [label].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -200,9 +204,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item with text `label` and icon `texture`.
+   * Adds a new checkable item with text [label] and icon [texture].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -217,9 +221,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new radio check button with text `label`.
+   * Adds a new radio check button with text [label].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -247,11 +251,11 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new multistate item with text `label`.
+   * Adds a new multistate item with text [label].
    *
-   * Contrarily to normal binary items, multistate items can have more than two states, as defined by `max_states`. Each press or activate of the item will increase the state by one. The default value is defined by `default_state`.
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
    *
-   * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    */
   public fun addMultistateItem(
     label: String,
@@ -267,7 +271,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a [godot.Shortcut].
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   public fun addShortcut(
     shortcut: Shortcut,
@@ -279,9 +283,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item and assigns the specified [godot.Shortcut] and icon `texture` to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
+   * Adds a new item and assigns the specified [godot.Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   public fun addIconShortcut(
     texture: Texture2D,
@@ -296,7 +300,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item and assigns the specified [godot.Shortcut] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -310,9 +314,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item and assigns the specified [godot.Shortcut] and icon `texture` to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
+   * Adds a new checkable item and assigns the specified [godot.Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -330,7 +334,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new radio check button and assigns a [godot.Shortcut] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
@@ -359,9 +363,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The `submenu` argument is the name of the child [godot.PopupMenu] node that will be shown when the item is clicked.
+   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument is the name of the child [godot.PopupMenu] node that will be shown when the item is clicked.
    *
-   * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   public fun addSubmenuItem(
     label: String,
@@ -373,7 +377,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the text of the item at the given `index`.
+   * Sets the text of the item at the given [index].
    */
   public fun setItemText(index: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to text)
@@ -389,9 +393,6 @@ public open class PopupMenu : Popup() {
         NIL)
   }
 
-  /**
-   * Sets OpenType feature `tag` for the item's text. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setItemOpentypeFeature(
     index: Long,
     tag: String,
@@ -411,7 +412,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Replaces the [godot.Texture2D] icon of the item at the given `index`.
+   * Replaces the [godot.Texture2D] icon of the item at the given [index].
    */
   public fun setItemIcon(index: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to index, OBJECT to icon)
@@ -419,7 +420,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the checkstate status of the item at the given `index`.
+   * Sets the checkstate status of the item at the given [index].
    */
   public fun setItemChecked(index: Long, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to checked)
@@ -427,9 +428,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the `id` of the item at the given `index`.
+   * Sets the [id] of the item at the given [index].
    *
-   * The `id` is used in [idPressed] and [idFocused] signals.
+   * The [id] is used in [idPressed] and [idFocused] signals.
    */
   public fun setItemId(index: Long, id: Long): Unit {
     TransferContext.writeArguments(LONG to index, LONG to id)
@@ -437,7 +438,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the accelerator of the item at the given `index`. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+   * Sets the accelerator of the item at the given [index]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    */
   public fun setItemAccelerator(index: Long, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index, LONG to accel.id)
@@ -453,7 +454,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Enables/disables the item at the given `index`. When it is disabled, it can't be selected and its action can't be invoked.
+   * Enables/disables the item at the given [index]. When it is disabled, it can't be selected and its action can't be invoked.
    */
   public fun setItemDisabled(index: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to disabled)
@@ -461,7 +462,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the submenu of the item at the given `index`. The submenu is the name of a child [godot.PopupMenu] node that would be shown when the item is clicked.
+   * Sets the submenu of the item at the given [index]. The submenu is the name of a child [godot.PopupMenu] node that would be shown when the item is clicked.
    */
   public fun setItemSubmenu(index: Long, submenu: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to submenu)
@@ -469,7 +470,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Mark the item at the given `index` as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text.
+   * Mark the item at the given [index] as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text.
    */
   public fun setItemAsSeparator(index: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to enable)
@@ -478,7 +479,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets whether the item at the given `index` has a checkbox. If `false`, sets the type of the item to plain text.
+   * Sets whether the item at the given [index] has a checkbox. If `false`, sets the type of the item to plain text.
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
@@ -489,7 +490,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the type of the item at the given `index` to radio button. If `false`, sets the type of the item to plain text.
+   * Sets the type of the item at the given [index] to radio button. If `false`, sets the type of the item to plain text.
    */
   public fun setItemAsRadioCheckable(index: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to enable)
@@ -498,7 +499,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the [godot.String] tooltip of the item at the given `index`.
+   * Sets the [godot.String] tooltip of the item at the given [index].
    */
   public fun setItemTooltip(index: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to index, STRING to tooltip)
@@ -506,7 +507,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets a [godot.Shortcut] for the item at the given `index`.
+   * Sets a [godot.Shortcut] for the item at the given [index].
    */
   public fun setItemShortcut(
     index: Long,
@@ -526,7 +527,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Disables the [godot.Shortcut] of the item at the given `index`.
+   * Disables the [godot.Shortcut] of the item at the given [index].
    */
   public fun setItemShortcutDisabled(index: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index, BOOL to disabled)
@@ -535,7 +536,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Toggles the check state of the item at the given `index`.
+   * Toggles the check state of the item at the given [index].
    */
   public fun toggleItemChecked(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -552,7 +553,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the text of the item at the given `index`.
+   * Returns the text of the item at the given [index].
    */
   public fun getItemText(index: Long): String {
     TransferContext.writeArguments(LONG to index)
@@ -570,9 +571,6 @@ public open class PopupMenu : Popup() {
     return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Returns OpenType feature `tag` of the item's text.
-   */
   public fun getItemOpentypeFeature(index: Long, tag: String): Long {
     TransferContext.writeArguments(LONG to index, STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_OPENTYPE_FEATURE,
@@ -580,9 +578,6 @@ public open class PopupMenu : Popup() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features form the item's text.
-   */
   public fun clearItemOpentypeFeatures(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -599,7 +594,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the icon of the item at the given `index`.
+   * Returns the icon of the item at the given [index].
    */
   public fun getItemIcon(index: Long): Texture2D? {
     TransferContext.writeArguments(LONG to index)
@@ -608,7 +603,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given `index` is checked.
+   * Returns `true` if the item at the given [index] is checked.
    */
   public fun isItemChecked(index: Long): Boolean {
     TransferContext.writeArguments(LONG to index)
@@ -617,7 +612,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the id of the item at the given `index`. `id` can be manually assigned, while index can not.
+   * Returns the id of the item at the given [index]. `id` can be manually assigned, while index can not.
    */
   public fun getItemId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
@@ -626,7 +621,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the index of the item containing the specified `id`. Index is automatically assigned to each item by the engine and can not be set manually.
+   * Returns the index of the item containing the specified [id]. Index is automatically assigned to each item by the engine and can not be set manually.
    */
   public fun getItemIndex(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
@@ -635,7 +630,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the accelerator of the item at the given `index`. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+   * Returns the accelerator of the item at the given [index]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    */
   public fun getItemAccelerator(index: Long): Key {
     TransferContext.writeArguments(LONG to index)
@@ -654,7 +649,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given `index` is disabled. When it is disabled it can't be selected, or its action invoked.
+   * Returns `true` if the item at the given [index] is disabled. When it is disabled it can't be selected, or its action invoked.
    *
    * See [setItemDisabled] for more info on how to disable an item.
    */
@@ -665,7 +660,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the submenu name of the item at the given `index`. See [addSubmenuItem] for more info on how to add a submenu.
+   * Returns the submenu name of the item at the given [index]. See [addSubmenuItem] for more info on how to add a submenu.
    */
   public fun getItemSubmenu(index: Long): String {
     TransferContext.writeArguments(LONG to index)
@@ -683,7 +678,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given `index` is checkable in some way, i.e. if it has a checkbox or radio button.
+   * Returns `true` if the item at the given [index] is checkable in some way, i.e. if it has a checkbox or radio button.
    *
    * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
@@ -694,7 +689,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given `index` has radio button-style checkability.
+   * Returns `true` if the item at the given [index] has radio button-style checkability.
    *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    */
@@ -716,7 +711,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the tooltip associated with the item at the given `index`.
+   * Returns the tooltip associated with the item at the given [index].
    */
   public fun getItemTooltip(index: Long): String {
     TransferContext.writeArguments(LONG to index)
@@ -725,7 +720,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the [godot.Shortcut] associated with the item at the given `index`.
+   * Returns the [godot.Shortcut] associated with the item at the given [index].
    */
   public fun getItemShortcut(index: Long): Shortcut? {
     TransferContext.writeArguments(LONG to index)
@@ -733,17 +728,11 @@ public open class PopupMenu : Popup() {
     return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
   }
 
-  /**
-   * Sets the currently focused item as the given `index`.
-   */
   public fun setCurrentIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_CURRENT_INDEX, NIL)
   }
 
-  /**
-   * Returns the index of the currently focused item. Returns `-1` if no item is focused.
-   */
   public fun getCurrentIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_CURRENT_INDEX, LONG)
@@ -751,7 +740,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Moves the scroll view to make the item at the given `index` visible.
+   * Moves the scroll view to make the item at the given [index] visible.
    */
   public fun scrollToItem(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -759,7 +748,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Removes the item at the given `index` from the menu.
+   * Removes the item at the given [index] from the menu.
    *
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
@@ -769,9 +758,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a separator between items. Separators also occupy an index, which you can set by using the `id` parameter.
+   * Adds a separator between items. Separators also occupy an index, which you can set by using the [id] parameter.
    *
-   * A `label` can optionally be provided, which will appear at the center of the separator.
+   * A [label] can optionally be provided, which will appear at the center of the separator.
    */
   public fun addSeparator(label: String = "", id: Long = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id)

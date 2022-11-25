@@ -114,9 +114,9 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label `text` and a custom `action` to the dialog and returns the created button. `action` will be passed to the [customAction] signal when pressed.
+   * Adds a button with label [text] and a custom [action] to the dialog and returns the created button. [action] will be passed to the [customAction] signal when pressed.
    *
-   * If `true`, `right` will place the button to the right of any sibling buttons.
+   * If `true`, [right] will place the button to the right of any sibling buttons.
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
@@ -131,7 +131,7 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label `name` and a cancel action to the dialog and returns the created button.
+   * Adds a button with label [name] and a cancel action to the dialog and returns the created button.
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
@@ -143,7 +143,7 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Removes the `button` from the dialog. Does NOT free the `button`. The `button` must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the `button` will no longer emit this dialog's [customAction] or [cancelled] signals.
+   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button] will no longer emit this dialog's [customAction] or [cancelled] signals.
    */
   public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)

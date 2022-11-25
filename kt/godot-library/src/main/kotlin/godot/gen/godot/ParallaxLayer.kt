@@ -59,6 +59,8 @@ public open class ParallaxLayer : Node2D() {
 
   /**
    * The ParallaxLayer's [godot.Texture2D] mirroring. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture2D] will not be mirrored.
+   *
+   * If the length of the viewport axis is bigger than twice the mirrored axis size, it will not repeat infinitely, as the parallax layer only draws 2 instances of the texture at any one time.
    */
   public var motionMirroring: Vector2
     get() {

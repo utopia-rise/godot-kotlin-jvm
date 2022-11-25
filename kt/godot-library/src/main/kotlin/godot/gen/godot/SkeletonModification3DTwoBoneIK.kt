@@ -155,7 +155,7 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone name, `bone_name`, of the first bone. When possible, this will also update the `bone_index` of the first bone based on data provided by the [godot.Skeleton3D].
+   * Sets the bone name, [boneName], of the first bone. When possible, this will also update the `bone_index` of the first bone based on data provided by the [godot.Skeleton3D].
    */
   public fun setJointOneBoneName(boneName: String): Unit {
     TransferContext.writeArguments(STRING to boneName)
@@ -174,7 +174,7 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone index, `bone_index`, of the first bone. When possible, this will also update the `bone_name` of the first bone based on data provided by the [godot.Skeleton3D].
+   * Sets the bone index, [boneIdx], of the first bone. When possible, this will also update the `bone_name` of the first bone based on data provided by the [godot.Skeleton3D].
    */
   public fun setJointOneBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)
@@ -212,7 +212,7 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone name, `bone_name`, of the second bone. When possible, this will also update the `bone_index` of the second bone based on data provided by the [godot.Skeleton3D].
+   * Sets the bone name, [boneName], of the second bone. When possible, this will also update the `bone_index` of the second bone based on data provided by the [godot.Skeleton3D].
    */
   public fun setJointTwoBoneName(boneName: String): Unit {
     TransferContext.writeArguments(STRING to boneName)
@@ -231,7 +231,7 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
   }
 
   /**
-   * Sets the bone index, `bone_index`, of the second bone. When possible, this will also update the `bone_name` of the second bone based on data provided by the [godot.Skeleton3D].
+   * Sets the bone index, [boneIdx], of the second bone. When possible, this will also update the `bone_name` of the second bone based on data provided by the [godot.Skeleton3D].
    */
   public fun setJointTwoBoneIdx(boneIdx: Long): Unit {
     TransferContext.writeArguments(LONG to boneIdx)

@@ -112,7 +112,7 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
@@ -127,7 +127,7 @@ public object Input : Object() {
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
@@ -140,7 +140,7 @@ public object Input : Object() {
   /**
    * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -151,7 +151,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -162,7 +162,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [getActionStrength] instead.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -283,7 +283,7 @@ public object Input : Object() {
   }
 
   /**
-   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. `weak_magnitude` is the strength of the weak motor (between 0 and 1) and `strong_magnitude` is the strength of the strong motor (between 0 and 1). `duration` is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
+   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
@@ -306,11 +306,15 @@ public object Input : Object() {
   }
 
   /**
-   * Vibrate Android and iOS devices.
+   * Vibrate handheld devices.
+   *
+   * **Note:** This method is implemented on Android, iOS, and Web.
    *
    * **Note:** For Android, it requires enabling the `VIBRATE` permission in the export preset.
    *
    * **Note:** For iOS, specifying the duration is supported in iOS 13 and later.
+   *
+   * **Note:** Some web browsers such as Safari and Firefox for Android do not support this method.
    */
   public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)
@@ -414,7 +418,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together.
+   * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [godot.DisplayServer.mouseGetButtonState].
    */
   public fun getMouseButtonMask(): MouseButton {
     TransferContext.writeArguments()
@@ -422,17 +426,11 @@ public object Input : Object() {
     return MouseButton.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Sets the mouse mode. See the constants for more information.
-   */
   public fun setMouseMode(mode: Input.MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
   }
 
-  /**
-   * Returns the mouse mode. See the constants for more information.
-   */
   public fun getMouseMode(): Input.MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
@@ -442,7 +440,7 @@ public object Input : Object() {
   /**
    * Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the currently focused Window Manager game window.
    *
-   * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to `MOUSE_MODE_CONFINED` or `MOUSE_MODE_CONFINED_HIDDEN`.
+   * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to [MOUSE_MODE_CONFINED] or [MOUSE_MODE_CONFINED_HIDDEN].
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -495,9 +493,9 @@ public object Input : Object() {
   /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.
    *
-   * `image`'s size must be lower than 256×256.
+   * [image]'s size must be lower than 256×256.
    *
-   * `hotspot` must be within `image`'s size.
+   * [hotspot] must be within [image]'s size.
    *
    * **Note:** [godot.AnimatedTexture]s aren't supported as custom mouse cursors. If using an [godot.AnimatedTexture], only the first frame will be displayed.
    *
@@ -515,7 +513,7 @@ public object Input : Object() {
   /**
    * Feeds an [godot.InputEvent] to the game. Can be used to artificially trigger input events from code. Also generates [godot.Node.Input] calls.
    *
-   * Example:
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -550,11 +548,6 @@ public object Input : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_PARSE_INPUT_EVENT, NIL)
   }
 
-  /**
-   * Enables or disables the accumulation of similar input events sent by the operating system. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
-   *
-   * Input accumulation is enabled by default. It can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
-   */
   public fun setUseAccumulatedInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
@@ -562,7 +555,7 @@ public object Input : Object() {
   }
 
   /**
-   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([setUseAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
+   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([useAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
    *
    * The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.
    */
@@ -628,11 +621,11 @@ public object Input : Object() {
      */
     CURSOR_CROSS(3),
     /**
-     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
+     * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
      */
     CURSOR_WAIT(4),
     /**
-     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
+     * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
      */
     CURSOR_BUSY(5),
     /**

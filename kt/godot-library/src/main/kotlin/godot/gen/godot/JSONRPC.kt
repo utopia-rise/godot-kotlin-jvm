@@ -47,7 +47,7 @@ public open class JSONRPC : Object() {
    *
    * To add new supported methods extend the JSONRPC class and call [processAction] on your subclass.
    *
-   * `action`: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
+   * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
   public fun processAction(action: Any, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
@@ -67,11 +67,11 @@ public open class JSONRPC : Object() {
   /**
    * Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the expectation of a response. The ID field is used for the server to specify which exact request it is responding to.
    *
-   * - `method`: Name of the method being called.
+   * - [method]: Name of the method being called.
    *
-   * - `params`: An array or dictionary of parameters being passed to the method.
+   * - [params]: An array or dictionary of parameters being passed to the method.
    *
-   * - `id`: Uniquely identifies this request. The server is expected to send a response with the same ID.
+   * - [id]: Uniquely identifies this request. The server is expected to send a response with the same ID.
    */
   public fun makeRequest(
     method: String,
@@ -86,9 +86,9 @@ public open class JSONRPC : Object() {
   /**
    * When a server has received and processed a request, it is expected to send a response. If you did not want a response then you need to have sent a Notification instead.
    *
-   * - `result`: The return value of the function which was called.
+   * - [result]: The return value of the function which was called.
    *
-   * - `id`: The ID of the request this response is targeted to.
+   * - [id]: The ID of the request this response is targeted to.
    */
   public fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
@@ -99,9 +99,9 @@ public open class JSONRPC : Object() {
   /**
    * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.
    *
-   * - `method`: Name of the method being called.
+   * - [method]: Name of the method being called.
    *
-   * - `params`: An array or dictionary of parameters being passed to the method.
+   * - [params]: An array or dictionary of parameters being passed to the method.
    */
   public fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
@@ -113,11 +113,11 @@ public open class JSONRPC : Object() {
   /**
    * Creates a response which indicates a previous reply has failed in some way.
    *
-   * - `code`: The error code corresponding to what kind of error this is. See the [enum ErrorCode] constants.
+   * - [code]: The error code corresponding to what kind of error this is. See the [enum ErrorCode] constants.
    *
-   * - `message`: A custom message about this error.
+   * - [message]: A custom message about this error.
    *
-   * - `id`: The request this error is a response to.
+   * - [id]: The request this error is a response to.
    */
   public fun makeResponseError(
     code: Long,

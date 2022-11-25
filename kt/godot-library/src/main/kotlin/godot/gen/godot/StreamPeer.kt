@@ -58,7 +58,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum @GlobalScope.Error] code.
+   * Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code.
    */
   public fun putData(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -67,7 +67,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum @GlobalScope.Error] code and an integer, describing how much data was actually sent.
+   * Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent.
    */
   public fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -76,7 +76,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the `bytes` argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum @GlobalScope.Error] code and a data array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum Error] code and a data array.
    */
   public fun getData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
@@ -85,7 +85,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum @GlobalScope.Error] code, and a data array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum Error] code, and a data array.
    */
   public fun getPartialData(bytes: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes)
@@ -94,7 +94,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the amount of bytes this [godot.StreamPeer] has available.
+   * Returns the number of bytes this [godot.StreamPeer] has available.
    */
   public fun getAvailableBytes(): Long {
     TransferContext.writeArguments()
@@ -236,7 +236,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Puts a Variant into the stream. If `full_objects` is `true` encoding objects is allowed (and can potentially include code).
+   * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can potentially include code).
    */
   public fun putVar(`value`: Any, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
@@ -334,7 +334,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets an ASCII string with byte-length `bytes` from the stream. If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putString].
+   * Gets an ASCII string with byte-length [bytes] from the stream. If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putString].
    */
   public fun getString(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
@@ -343,7 +343,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets an UTF-8 string with byte-length `bytes` from the stream (this decodes the string sent as UTF-8). If `bytes` is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
+   * Gets an UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
    */
   public fun getUtf8String(bytes: Long = -1): String {
     TransferContext.writeArguments(LONG to bytes)
@@ -352,7 +352,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets a Variant from the stream. If `allow_objects` is `true`, decoding objects is allowed.
+   * Gets a Variant from the stream. If [allowObjects] is `true`, decoding objects is allowed.
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */

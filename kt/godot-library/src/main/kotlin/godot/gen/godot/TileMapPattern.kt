@@ -35,7 +35,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Sets the tile indentifiers for the cell at coordinates `coords`. See [godot.TileMap.setCell].
+   * Sets the tile indentifiers for the cell at coordinates [coords]. See [godot.TileMap.setCell].
    */
   public fun setCell(
     coords: Vector2i,
@@ -65,7 +65,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile source ID of the cell at `coords`.
+   * Returns the tile source ID of the cell at [coords].
    */
   public fun getCellSourceId(coords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -75,7 +75,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile atlas coordinates ID of the cell at `coords`.
+   * Returns the tile atlas coordinates ID of the cell at [coords].
    */
   public fun getCellAtlasCoords(coords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -85,7 +85,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile alternative ID of the cell at `coords`.
+   * Returns the tile alternative ID of the cell at [coords].
    */
   public fun getCellAlternativeTile(coords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to coords)

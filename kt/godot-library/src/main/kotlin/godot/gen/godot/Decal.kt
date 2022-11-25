@@ -31,6 +31,8 @@ import kotlin.Unit
  * They are made of an [AABB] and a group of [godot.Texture2D]s specifying [godot.core.Color], normal, ORM (ambient occlusion, roughness, metallic), and emission. Decals are projected within their [AABB] so altering the orientation of the Decal affects the direction in which they are projected. By default, Decals are projected down (i.e. from positive Y to negative Y).
  *
  * The [godot.Texture2D]s associated with the Decal are automatically stored in a texture atlas which is used for drawing the decals so all decals can be drawn at once. Godot uses clustered decals, meaning they are stored in cluster data and drawn when the mesh is drawn, they are not drawn as a post-processing effect after.
+ *
+ * **Note:** Decals cannot affect an underlying material's transparency, regardless of its transparency mode (alpha blend, alpha scissor, alpha hash, opaque pre-pass). This means translucent or transparent areas of a material will remain translucent or transparent even if an opaque decal is applied on them.
  */
 @GodotBaseType
 public open class Decal : VisualInstance3D() {
@@ -49,7 +51,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Energy multiplier for the emission texture. This will make the decal emit light at a higher intensity.
+   * Energy multiplier for the emission texture. This will make the decal emit light at a higher or lower intensity, independently of the albedo color. See also [modulate].
    */
   public var emissionEnergy: Double
     get() {
@@ -63,7 +65,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Changes the [godot.core.Color] of the Decal by multiplying it with this value.
+   * Changes the [godot.core.Color] of the Decal by multiplying the albedo and emission colors with this value. The alpha component is only taken into account when multiplying the albedo color, not the emission color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity independently of each other.
    */
   public var modulate: Color
     get() {
@@ -77,7 +79,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Blends the albedo [godot.core.Color] of the decal with albedo [godot.core.Color] of the underlying mesh.
+   * Blends the albedo [godot.core.Color] of the decal with albedo [godot.core.Color] of the underlying mesh. This can be set to `0.0` to create a decal that only affects normal or ORM. In this case, an albedo texture is still required as its alpha channel will determine where the normal and ORM will be overridden. See also [modulate].
    */
   public var albedoMix: Double
     get() {
@@ -92,6 +94,8 @@ public open class Decal : VisualInstance3D() {
 
   /**
    * Fades the Decal if the angle between the Decal's [AABB] and the target surface becomes too large. A value of `0` projects the Decal regardless of angle, a value of `1` limits the Decal to surfaces that are nearly perpendicular.
+   *
+   * **Note:** Setting [normalFade] to a value greater than `0.0` has a small performance cost due to the added normal angle computations.
    */
   public var normalFade: Double
     get() {
@@ -105,7 +109,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
+   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`). See also [lowerFade].
    */
   public var upperFade: Double
     get() {
@@ -119,7 +123,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB].
+   * Sets the curve over which the decal will fade as the surface gets further from the center of the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`). See also [upperFade].
    */
   public var lowerFade: Double
     get() {
@@ -133,7 +137,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * If `true`, decals will smoothly fade away when far from the active [godot.Camera3D] starting at [distanceFadeBegin]. The Decal will fade out over [distanceFadeLength], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active Decals in a scene and thus improve performance.
+   * If `true`, decals will smoothly fade away when far from the active [godot.Camera3D] starting at [distanceFadeBegin]. The Decal will fade out over [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active Decals in a scene and thus improve performance.
    */
   public var distanceFadeEnabled: Boolean
     get() {
@@ -149,7 +153,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Distance from the camera at which the Decal begins to fade away.
+   * The distance from the camera at which the Decal begins to fade away (in 3D units).
    */
   public var distanceFadeBegin: Double
     get() {
@@ -165,7 +169,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   /**
-   * Distance over which the Decal fades. The Decal becomes slowly more transparent over this distance and is completely invisible at the end.
+   * The distance over which the Decal fades (in 3D units). The Decal becomes slowly more transparent over this distance and is completely invisible at the end. Higher values result in a smoother fade-out transition, which is more suited when the camera moves fast.
    */
   public var distanceFadeLength: Double
     get() {

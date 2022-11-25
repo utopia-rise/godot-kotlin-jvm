@@ -40,27 +40,31 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject2D internal constructor() : Node2D() {
   /**
-   * Emitted when the mouse pointer exits any of this object's shapes. `shape_idx` is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   * Emitted when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */
   public val mouseShapeExited: Signal1<Long> by signal("shapeIdx")
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this signal to be emitted.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
    */
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. `shape_idx` is the child index of the newly entered [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   * Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [shapeIdx] is the child index of the newly entered [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */
   public val mouseShapeEntered: Signal1<Long> by signal("shapeIdx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject2D] won't cause this signal to be emitted.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one `collision_layer` bit to be set. See [_inputEvent] for details.
+   * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
   public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
 
@@ -137,7 +141,9 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Accepts unhandled [godot.InputEvent]s. Requires [inputPickable] to be `true`. `shape_idx` is the child index of the clicked [godot.Shape2D]. Connect to the `input_event` signal to easily pick up these events.
+   * Accepts unhandled [godot.InputEvent]s. [shapeIdx] is the child index of the clicked [godot.Shape2D]. Connect to the `input_event` signal to easily pick up these events.
+   *
+   * **Note:** [_inputEvent] requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */
   public open fun _inputEvent(
     viewport: Viewport,
@@ -156,7 +162,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionLayer], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -165,7 +171,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
@@ -175,7 +181,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -184,7 +190,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
@@ -271,7 +277,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * If `enable` is `true`, collisions for the shape owner originating from this [godot.CollisionObject2D] will not be reported to collided with [godot.CollisionObject2D]s.
+   * If [enable] is `true`, collisions for the shape owner originating from this [godot.CollisionObject2D] will not be reported to collided with [godot.CollisionObject2D]s.
    */
   public fun shapeOwnerSetOneWayCollision(ownerId: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to ownerId, BOOL to enable)
@@ -290,7 +296,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Sets the `one_way_collision_margin` of the shape owner identified by given `owner_id` to `margin` pixels.
+   * Sets the `one_way_collision_margin` of the shape owner identified by given [ownerId] to [margin] pixels.
    */
   public fun shapeOwnerSetOneWayCollisionMargin(ownerId: Long, margin: Double): Unit {
     TransferContext.writeArguments(LONG to ownerId, DOUBLE to margin)
@@ -299,7 +305,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the `one_way_collision_margin` of the shape owner identified by given `owner_id`.
+   * Returns the `one_way_collision_margin` of the shape owner identified by given [ownerId].
    */
   public fun getShapeOwnerOneWayCollisionMargin(ownerId: Long): Double {
     TransferContext.writeArguments(LONG to ownerId)

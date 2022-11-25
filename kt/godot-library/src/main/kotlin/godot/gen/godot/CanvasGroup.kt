@@ -17,7 +17,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Merges several 2D nodes into a single draw operation.
  *
+ * Child [godot.CanvasItem] nodes of a [godot.CanvasGroup] are drawn as a single object. It allows to e.g. draw overlapping translucent 2D nodes without blending (set [godot.CanvasItem.selfModulate] property of [godot.CanvasGroup] to achieve this effect).
+ *
+ * **Note:** Since [godot.CanvasGroup] and [godot.CanvasItem.clipChildren] both utilize the backbuffer, children of a [godot.CanvasGroup] who have their [godot.CanvasItem.clipChildren] set to anything other than [godot.CanvasItem.CLIP_CHILDREN_DISABLED] will not function correctly.
  */
 @GodotBaseType
 public open class CanvasGroup : Node2D() {

@@ -66,7 +66,7 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * If implemented, gets the dependencies of a given resource. If `add_types` is `true`, paths should be appended `::TypeName`, where `TypeName` is the class name of the dependency.
+   * If implemented, gets the dependencies of a given resource. If [addTypes] is `true`, paths should be appended `::TypeName`, where `TypeName` is the class name of the dependency.
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just return `"Resource"` for them.
    */
@@ -75,7 +75,7 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * If implemented, renames dependencies within the given resource and saves it. `renames` is a dictionary `{ String => String }` mapping old dependency paths to new paths.
+   * If implemented, renames dependencies within the given resource and saves it. [renames] is a dictionary `{ String => String }` mapping old dependency paths to new paths.
    *
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
@@ -91,9 +91,9 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, `original_path` will target the source file. Returns a [godot.Resource] object on success, or an [enum Error] constant in case of failure.
+   * Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, [originalPath] will target the source file. Returns a [godot.Resource] object on success, or an [enum Error] constant in case of failure.
    *
-   * The `cache_mode` property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
+   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
    */
   public open fun _load(
     path: String,

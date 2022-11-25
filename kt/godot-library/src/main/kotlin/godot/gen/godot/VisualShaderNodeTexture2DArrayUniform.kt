@@ -10,9 +10,6 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArrayUniform : VisualShaderNodeTextureUniform() {
   public override fun __new(): Unit {

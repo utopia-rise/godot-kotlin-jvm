@@ -26,6 +26,8 @@ import kotlin.Unit
  * A color interpolator resource which can be used to generate colors between user-defined color points.
  *
  * Given a set of colors, this resource will interpolate them in order. This means that if you have color 1, color 2 and color 3, the gradient will interpolate from color 1 to color 2 and from color 2 to color 3. The gradient will initially have 2 colors (black and white), one (black) at gradient lower offset 0 and the other (white) at the gradient higher offset 1.
+ *
+ * See also [godot.Curve] which supports more complex easing methods, but does not support colors.
  */
 @GodotBaseType
 public open class Gradient : Resource() {
@@ -88,7 +90,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Removes the color at the index `point`.
+   * Removes the color at the index [point].
    */
   public fun removePoint(point: Long): Unit {
     TransferContext.writeArguments(LONG to point)
@@ -96,7 +98,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Sets the offset for the gradient color at index `point`.
+   * Sets the offset for the gradient color at index [point].
    */
   public fun setOffset(point: Long, offset: Double): Unit {
     TransferContext.writeArguments(LONG to point, DOUBLE to offset)
@@ -104,7 +106,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the offset of the gradient color at index `point`.
+   * Returns the offset of the gradient color at index [point].
    */
   public fun getOffset(point: Long): Double {
     TransferContext.writeArguments(LONG to point)
@@ -121,7 +123,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Sets the color of the gradient color at index `point`.
+   * Sets the color of the gradient color at index [point].
    */
   public fun setColor(point: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to point, COLOR to color)
@@ -129,7 +131,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the color of the gradient color at index `point`.
+   * Returns the color of the gradient color at index [point].
    */
   public fun getColor(point: Long): Color {
     TransferContext.writeArguments(LONG to point)
@@ -137,9 +139,6 @@ public open class Gradient : Resource() {
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
 
-  /**
-   * Returns the interpolated color specified by `offset`.
-   */
   public fun interpolate(offset: Double): Color {
     TransferContext.writeArguments(DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_INTERPOLATE, COLOR)

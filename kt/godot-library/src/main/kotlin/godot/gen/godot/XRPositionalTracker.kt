@@ -36,7 +36,7 @@ import kotlin.Unit
  * A tracked object.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
  *
  * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
  *
@@ -165,7 +165,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns `true` if the bound `tracker` is available and is currently tracking the bound `pose`.
+   * Returns `true` if the tracker is available and is currently tracking the bound [name] pose.
    */
   public fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -174,7 +174,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns the current [godot.XRPose] state object for the bound `pose`.
+   * Returns the current [godot.XRPose] state object for the bound [name] pose.
    */
   public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)

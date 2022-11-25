@@ -29,7 +29,11 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/2d_sprite_animation.html]($DOCS_URL/tutorials/2d/2d_sprite_animation.html)
  *
- * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
+ * [godot.AnimatedSprite3D] is similar to the [godot.Sprite3D] node, except it carries multiple textures as animation [frames]. Animations are created using a [godot.SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [godot.SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
+ *
+ * After setting up [frames], [play] may be called. It's also possible to select an [animation] and toggle [playing], even within the editor.
+ *
+ * To pause the current animation, call [stop] or set [playing] to `false`. Alternatively, setting [speedScale] to `0` also preserves the current frame's elapsed time.
  */
 @GodotBaseType
 public open class AnimatedSprite3D : SpriteBase3D() {
@@ -94,7 +98,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Plays the animation named `anim`. If no `anim` is provided, the current animation is played.
+   * Plays the animation named [anim]. If no [anim] is provided, the current animation is played. If [backwards] is `true`, the animation is played in reverse.
    */
   public fun play(anim: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -102,16 +106,15 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Stops the current animation (does not reset the frame counter).
+   * Stops the current [animation] at the current [frame].
+   *
+   * **Note:** This method resets the current frame's elapsed time. If this behavior is undesired, consider setting [speedScale] to `0`, instead.
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_STOP, NIL)
   }
 
-  /**
-   * Returns `true` if an animation is currently being played.
-   */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_IS_PLAYING, BOOL)

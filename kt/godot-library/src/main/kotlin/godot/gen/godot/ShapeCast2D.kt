@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * Immediate collision overlaps can be done with the [targetPosition] set to `Vector2(0, 0)` and by calling [forceShapecastUpdate] within the same **physics_frame**. This also helps to overcome some limitations of [godot.Area2D] when used as a continuous detection area, often requiring waiting a couple of frames before collision information is available to [godot.Area2D] nodes, and when using the signals creates unnecessary complexity.
  *
- * The node can detect multiple collision objects, but usually the first detected collision
+ * The node can detect multiple collision objects, but it's usually used to detect the first collision.
  *
  * **Note:** shape casting is more computationally expensive compared to ray casting.
  */
@@ -51,7 +51,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   /**
-   * Any [godot.Shape2D] derived shape used for collision queries.
+   * The [godot.Shape2D]-derived shape to be used for collision queries.
    */
   public var shape: Shape2D?
     get() {
@@ -207,7 +207,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Returns the [godot.Object] of one of the multiple collisions at `index`, or `null` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the collided [godot.Object] of one of the multiple collisions at [index], or `null` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getCollider(index: Long): Object? {
     TransferContext.writeArguments(LONG to index)
@@ -216,7 +216,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Returns the shape ID of one of the multiple collisions at `index` that the shape intersects, or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getColliderShape(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
@@ -226,7 +226,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Returns the collision point containing one of the multiple collisions at `index` at which the shape intersects the object.
+   * Returns the collision point of one of the multiple collisions at [index] where the shape intersects the colliding object.
    *
    * **Note:** this point is in the **global** coordinate system.
    */
@@ -238,7 +238,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Returns the normal containing one of the multiple collisions at `index` of the intersecting object.
+   * Returns the normal of one of the multiple collisions at [index] of the intersecting object.
    */
   public fun getCollisionNormal(index: Long): Vector2 {
     TransferContext.writeArguments(LONG to index)
@@ -248,7 +248,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * The fraction of the motion (between 0 and 1) of how far the shape can move without triggering a collision. The motion is determined by [targetPosition].
+   * The fraction from the [godot.ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape can move without triggering a collision.
    */
   public fun getClosestCollisionSafeFraction(): Double {
     TransferContext.writeArguments()
@@ -258,7 +258,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * The fraction of the motion (between 0 and 1) when the shape triggers a collision. The motion is determined by [targetPosition].
+   * The fraction from the [godot.ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape must move to trigger a collision.
    */
   public fun getClosestCollisionUnsafeFraction(): Double {
     TransferContext.writeArguments()
@@ -309,7 +309,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -318,7 +318,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)

@@ -47,9 +47,6 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES, NIL)
     }
 
-  /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values.
-   */
   public var samplePartitionType_samplePartitionType: Long
     get() {
       TransferContext.writeArguments()
@@ -63,9 +60,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
     }
 
-  /**
-   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
-   */
   public var geometry_parsedGeometryType: Long
     get() {
       TransferContext.writeArguments()
@@ -79,11 +73,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_PARSED_GEOMETRY_TYPE, NIL)
     }
 
-  /**
-   * The physics layers to scan for static colliders.
-   *
-   * Only used when [geometry/parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
-   */
   public var geometry_collisionMask: Long
     get() {
       TransferContext.writeArguments()
@@ -97,9 +86,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
-   */
   public var geometry_sourceGeometryMode: Long
     get() {
       TransferContext.writeArguments()
@@ -113,11 +99,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GEOMETRY_MODE, NIL)
     }
 
-  /**
-   * The name of the group to scan for geometry.
-   *
-   * Only used when [geometry/sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
-   */
   public var geometry_sourceGroupName: String
     get() {
       TransferContext.writeArguments()
@@ -131,9 +112,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GROUP_NAME, NIL)
     }
 
-  /**
-   * The XZ plane cell size to use for fields.
-   */
   public var cell_size: Double
     get() {
       TransferContext.writeArguments()
@@ -146,9 +124,6 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_CELL_SIZE, NIL)
     }
 
-  /**
-   * The Y axis cell size to use for fields.
-   */
   public var cell_height: Double
     get() {
       TransferContext.writeArguments()
@@ -162,11 +137,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The minimum floor to ceiling height that will still allow the floor area to be considered walkable.
-   *
-   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/height].
-   */
   public var agent_height: Double
     get() {
       TransferContext.writeArguments()
@@ -180,11 +150,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
-   *
-   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/size].
-   */
   public var agent_radius: Double
     get() {
       TransferContext.writeArguments()
@@ -198,11 +163,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The minimum ledge height that is considered to still be traversable.
-   *
-   * **Note:** While baking, this value will be rounded down to the nearest multiple of [cell/height].
-   */
   public var agent_maxClimb: Double
     get() {
       TransferContext.writeArguments()
@@ -216,9 +176,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_CLIMB, NIL)
     }
 
-  /**
-   * The maximum slope that is considered walkable, in degrees.
-   */
   public var agent_maxSlope: Double
     get() {
       TransferContext.writeArguments()
@@ -232,11 +189,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_SLOPE, NIL)
     }
 
-  /**
-   * The minimum size of a region for it to be created.
-   *
-   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form isolated island areas. For example, a value of 8 will set the number of cells to 64.
-   */
   public var region_minSize: Double
     get() {
       TransferContext.writeArguments()
@@ -250,11 +202,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MIN_SIZE, NIL)
     }
 
-  /**
-   * Any regions with a size smaller than this will be merged with larger regions if possible.
-   *
-   * **Note:** This value will be squared to calculate the number of cells. For example, a value of 20 will set the number of cells to 400.
-   */
   public var region_mergeSize: Double
     get() {
       TransferContext.writeArguments()
@@ -268,11 +215,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MERGE_SIZE, NIL)
     }
 
-  /**
-   * The maximum allowed length for contour edges along the border of the mesh.
-   *
-   * **Note:** While baking, this value will be rounded up to the nearest multiple of [cell/size].
-   */
   public var edge_maxLength: Double
     get() {
       TransferContext.writeArguments()
@@ -286,9 +228,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_EDGE_MAX_LENGTH, NIL)
     }
 
-  /**
-   * The maximum distance a simplfied contour's border edges should deviate the original raw contour.
-   */
   public var edge_maxError: Double
     get() {
       TransferContext.writeArguments()
@@ -302,9 +241,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
-   */
   public var polygon_vertsPerPoly: Double
     get() {
       TransferContext.writeArguments()
@@ -318,9 +254,6 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  /**
-   * The sampling distance to use when generating the detail mesh, in cell unit.
-   */
   public var detail_sampleDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -334,9 +267,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_DISTANCE, NIL)
     }
 
-  /**
-   * The maximum distance the detail mesh surface should deviate from heightfield, in cell unit.
-   */
   public var detail_sampleMaxError: Double
     get() {
       TransferContext.writeArguments()
@@ -350,9 +280,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_MAX_ERROR, NIL)
     }
 
-  /**
-   * If `true`, marks non-walkable spans as walkable if their maximum is within [agent/maxClimb] of a walkable neighbor.
-   */
   public var filter_lowHangingObstacles: Boolean
     get() {
       TransferContext.writeArguments()
@@ -366,9 +293,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LOW_HANGING_OBSTACLES, NIL)
     }
 
-  /**
-   * If `true`, marks spans that are ledges as non-walkable.
-   */
   public var filter_ledgeSpans: Boolean
     get() {
       TransferContext.writeArguments()
@@ -382,9 +306,6 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LEDGE_SPANS, NIL)
     }
 
-  /**
-   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than [agent/height].
-   */
   public var filter_filterWalkableLowHeightSpans: Boolean
     get() {
       TransferContext.writeArguments()
@@ -403,7 +324,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [geometry/collisionMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -412,7 +333,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [geometry/collisionMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
@@ -459,6 +380,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [godot.Mesh].
+   *
+   * **Note:** The given [mesh] must be of type [godot.Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
@@ -474,7 +397,7 @@ public open class NavigationMesh : Resource() {
      */
     PARSED_GEOMETRY_MESH_INSTANCES(0),
     /**
-     * Parses [godot.StaticBody3D] colliders as geometry. The collider should be in any of the layers specified by [geometry/collisionMask].
+     * Parses [godot.StaticBody3D] colliders as geometry. The collider should be in any of the layers specified by [geometryCollisionMask].
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
@@ -536,11 +459,11 @@ public open class NavigationMesh : Resource() {
      */
     SOURCE_GEOMETRY_NAVMESH_CHILDREN(0),
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometry/sourceGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
     /**
-     * Uses nodes in a group for geometry. The group is specified by [geometry/sourceGroupName].
+     * Uses nodes in a group for geometry. The group is specified by [geometrySourceGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
     /**

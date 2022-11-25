@@ -232,7 +232,9 @@ public open class Sprite2D : Node2D() {
   }
 
   /**
-   * Returns a [godot.core.Rect2] representing the Sprite2D's boundary in local coordinates. Can be used to detect if the Sprite2D was clicked. Example:
+   * Returns a [godot.core.Rect2] representing the Sprite2D's boundary in local coordinates. Can be used to detect if the Sprite2D was clicked.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *

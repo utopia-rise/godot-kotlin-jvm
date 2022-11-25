@@ -33,14 +33,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Container and player of [godot.Animation] resources.
+ * Player of [godot.Animation] resources.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * An animation player is used for general-purpose playback of [godot.Animation] resources. It contains a dictionary of animations (referenced by name) and custom blend times between their transitions. Additionally, animations can be played and blended in different channels.
+ * An animation player is used for general-purpose playback of [godot.Animation] resources. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
  *
- * [godot.AnimationPlayer] is more suited than [godot.Tween] for animations where you know the final values in advance. For example, fading a screen in and out is more easily done with an [godot.AnimationPlayer] node thanks to the animation tools provided by the editor. That particular example can also be implemented with a [godot.Tween] node, but it requires doing everything by code.
+ * Some methods and properties use a single key to reference an animation directly. These keys are formatted as the key for the library, followed by a forward slash, then the key for the animation within the library, for example `"movement/run"`. If the library's key is an empty string (known as the default library), the forward slash is omitted, being the same key used by the library.
+ *
+ * [godot.AnimationPlayer] is more suited than [godot.Tween] for animations where you know the final values in advance. For example, fading a screen in and out is more easily done with an [godot.AnimationPlayer] node thanks to the animation tools provided by the editor. That particular example can also be implemented with a [godot.Tween], but it requires doing everything by code.
  *
  * Updating the target properties of animations occurs at process time.
  */
@@ -57,14 +59,16 @@ public open class AnimationPlayer : Node() {
   public val animationStarted: Signal1<StringName> by signal("animName")
 
   /**
-   * Emitted when a queued animation plays after the previous animation was finished. See [queue].
+   * Emitted when a queued animation plays after the previous animation finished. See [queue].
    *
-   * **Note:** The signal is not emitted when the animation is changed via [play] or from [godot.AnimationTree].
+   * **Note:** The signal is not emitted when the animation is changed via [play] or by an [godot.AnimationTree].
    */
   public val animationChanged: Signal2<StringName, StringName> by signal("oldName", "newName")
 
   /**
    * Notifies when an animation finished playing.
+   *
+   * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal1<StringName> by signal("animName")
 
@@ -84,9 +88,9 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The name of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [play] for more information on playing animations.
+   * The key of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [play] for more information on playing animations.
    *
-   * **Note:** while this property appears in the inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
+   * **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
    */
   public var currentAnimation: StringName
     get() {
@@ -102,7 +106,7 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * If playing, the current animation; otherwise, the animation last played. When set, would change the animation, but would not play it unless currently playing. See also [currentAnimation].
+   * If playing, the the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
   public var assignedAnimation: StringName
     get() {
@@ -118,7 +122,7 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The name of the animation to play when the scene loads.
+   * The key of the animation to play when the scene loads.
    */
   public var autoplay: StringName
     get() {
@@ -133,9 +137,9 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * This is used by the editor. If set to `true`, the scene will be saved with the effects of the reset animation applied (as if it had been seeked to time 0), then reverted after saving.
+   * This is used by the editor. If set to `true`, the scene will be saved with the effects of the reset animation (the animation with the key `"RESET"`) applied as if it had been seeked to time 0, with the editor keeping the values that the scene had before saving.
    *
-   * In other words, the saved scene file will contain the "default pose", as defined by the reset animation, if any, with the editor keeping the values that the nodes had before saving.
+   * This makes it more convenient to preview and edit animations in the editor, as changes to the scene will not be saved as long as they are set in the reset animation.
    */
   public var resetOnSave: Boolean
     get() {
@@ -151,7 +155,7 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The length (in seconds) of the currently being played animation.
+   * The length (in seconds) of the currently playing animation.
    */
   public val currentAnimationLength: Double
     get() {
@@ -219,7 +223,7 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The speed scaling ratio. For instance, if this value is 1, then the animation plays at normal speed. If it's 0.5, then it plays at half speed. If it's 2, then it plays at double speed.
+   * The speed scaling ratio. For example, if this value is 1, then the animation plays at normal speed. If it's 0.5, then it plays at half speed. If it's 2, then it plays at double speed.
    */
   public var playbackSpeed: Double
     get() {
@@ -273,7 +277,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.Animation] with key `name`.
+   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.Animation] with key [name].
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -282,7 +286,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the [godot.Animation] with the key `name`. If the animation does not exist, `null` is returned and an error is logged.
+   * Returns the [godot.Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
    */
   public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -292,7 +296,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the list of stored animation names.
+   * Returns the list of stored animation keys.
    */
   public fun getAnimationList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -302,7 +306,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Triggers the `anim_to` animation when the `anim_from` animation completes.
+   * Triggers the [animTo] animation when the [animFrom] animation completes.
    */
   public fun animationSetNext(animFrom: StringName, animTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
@@ -311,7 +315,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the name of the next animation in the queue.
+   * Returns the key of the animation which is queued to play after the [animFrom] animation.
    */
   public fun animationGetNext(animFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animFrom)
@@ -321,7 +325,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Specifies a blend time (in seconds) between two animations, referenced by their names.
+   * Specifies a blend time (in seconds) between two animations, referenced by their keys.
    */
   public fun setBlendTime(
     animFrom: StringName,
@@ -333,7 +337,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Gets the blend time (in seconds) between two animations, referenced by their names.
+   * Gets the blend time (in seconds) between two animations, referenced by their keys.
    */
   public fun getBlendTime(animFrom: StringName, animTo: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
@@ -343,9 +347,9 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Plays the animation with key `name`. Custom blend times and speed can be set. If `custom_speed` is negative and `from_end` is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. Custom blend times and speed can be set. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
-   * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation `name`, or with no `name` parameter, the assigned animation will resume playing if it was paused, or restart if it was stopped (see [stop] for both pause and stop). If the animation was already playing, it will keep playing.
+   * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused, or restart if it was stopped (see [stop] for both pause and stop). If the animation was already playing, it will keep playing.
    *
    * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
    */
@@ -360,7 +364,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Plays the animation with key `name` in reverse.
+   * Plays the animation with key [name] in reverse.
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
@@ -370,9 +374,9 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Stops or pauses the currently playing animation. If `reset` is `true`, the animation position is reset to `0` and the playback speed is reset to `1.0`.
+   * Stops or pauses the currently playing animation. If [reset] is `true`, the animation position is reset to `0` and the playback speed is reset to `1.0`.
    *
-   * If `reset` is `false`, the [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
+   * If [reset] is `false`, the [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
    */
   public fun stop(reset: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to reset)
@@ -399,7 +403,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns a list of the animation names that are currently queued to play.
+   * Returns a list of the animation keys that are currently queued to play.
    */
   public fun getQueue(): PackedStringArray {
     TransferContext.writeArguments()
@@ -427,7 +431,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the name of `animation` or an empty string if not found.
+   * Returns the key of [animation] or an empty [godot.StringName] if not found.
    */
   public fun findAnimation(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
@@ -445,7 +449,9 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Seeks the animation to the `seconds` point in time (in seconds). If `update` is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and `seconds` are skipped.
+   * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and [seconds] are skipped.
+   *
+   * **Note:** Seeking to the end of the animation doesn't emit [animationFinished]. If you want to skip animation and emit the signal, use [advance].
    */
   public fun seek(seconds: Double, update: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to seconds, BOOL to update)
@@ -453,7 +459,7 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Shifts position in the animation timeline and immediately updates the animation. `delta` is the time in seconds to shift. Events between the current frame and `delta` are handled.
+   * Shifts position in the animation timeline and immediately updates the animation. [delta] is the time in seconds to shift. Events between the current frame and [delta] are handled.
    */
   public fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)

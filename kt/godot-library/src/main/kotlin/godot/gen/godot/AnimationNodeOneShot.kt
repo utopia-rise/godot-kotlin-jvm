@@ -124,9 +124,6 @@ public open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_RANDOM_DELAY, NIL)
     }
 
-  /**
-   *
-   */
   public var sync: Boolean
     get() {
       TransferContext.writeArguments()

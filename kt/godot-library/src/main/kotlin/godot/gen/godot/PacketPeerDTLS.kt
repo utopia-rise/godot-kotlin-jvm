@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
- * **Warning:** SSL/TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
+ * **Warning:** TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
  */
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
@@ -47,7 +47,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Connects a `peer` beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). If `validate_certs` is `true`, [godot.PacketPeerDTLS] will validate that the certificate presented by the remote peer and match it with the `for_hostname` argument. You can specify a custom [godot.X509Certificate] to use for validation via the `valid_certificate` argument.
+   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). If [validateCerts] is `true`, [godot.PacketPeerDTLS] will validate that the certificate presented by the remote peer and match it with the [forHostname] argument. You can specify a custom [godot.X509Certificate] to use for validation via the [validCertificate] argument.
    */
   public fun connectToPeer(
     packetPeer: PacketPeerUDP,

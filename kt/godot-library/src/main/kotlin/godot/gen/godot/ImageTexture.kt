@@ -28,10 +28,8 @@ import kotlin.Unit
  * A [godot.Texture2D] based on an [godot.Image]. For an image to be displayed, an [godot.ImageTexture] has to be created from it using the [createFromImage] method:
  *
  * ```
- * 		var texture = ImageTexture.new()
- * 		var image = Image.new()
- * 		image.load("res://icon.png")
- * 		texture.create_from_image(image)
+ * 		var image = Image.load_from_file("res://icon.svg")
+ * 		var texture = ImageTexture.create_from_image(image)
  * 		$Sprite2D.texture = texture
  * 		```
  *
@@ -40,7 +38,7 @@ import kotlin.Unit
  * **Warning:** Prefer to load imported textures with [@GDScript.load] over loading them from within the filesystem dynamically with [godot.Image.load], as it may not work in exported projects:
  *
  * ```
- * 		var texture = load("res://icon.png")
+ * 		var texture = load("res://icon.svg")
  * 		$Sprite2D.texture = texture
  * 		```
  *
@@ -49,7 +47,7 @@ import kotlin.Unit
  * **Note:** The image can be retrieved from an imported texture using the [godot.Texture2D.getImage] method, which returns a copy of the image:
  *
  * ```
- * 		var texture = load("res://icon.png")
+ * 		var texture = load("res://icon.svg")
  * 		var image : Image = texture.get_image()
  * 		```
  *
@@ -64,7 +62,7 @@ public open class ImageTexture : Texture2D() {
   }
 
   /**
-   * Initializes the texture by allocating and setting the data from an [godot.Image].
+   * Creates a new [godot.ImageTexture] and initializes it by allocating and setting the data from an [godot.Image].
    */
   public fun createFromImage(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
@@ -83,9 +81,9 @@ public open class ImageTexture : Texture2D() {
   /**
    * Replaces the texture's data with a new [godot.Image].
    *
-   * **Note:** The texture has to be initialized first with the [createFromImage] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration, otherwise it has to be re-created with the [createFromImage] method.
+   * **Note:** The texture has to be created using [createFromImage] or initialized first with the [setImage] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration.
    *
-   * Use this method over [createFromImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
+   * Use this method over [setImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
    */
   public fun update(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)

@@ -78,7 +78,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
    *
-   * If `use_space` is true, use a space instead of the letter T in the middle.
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character instead of the letter T.
    */
   public fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false): String {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
@@ -165,7 +165,7 @@ public object Time : Object() {
   }
 
   /**
-   * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
+   * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, `second`, and `dst` (Daylight Savings Time).
    */
   public fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
@@ -175,9 +175,9 @@ public object Time : Object() {
   }
 
   /**
-   * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, and `dst` (Daylight Savings Time).
+   * Returns the current date as a dictionary of keys: `year`, `month`, `day`, and `weekday`.
    *
-   * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
   public fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
@@ -189,7 +189,7 @@ public object Time : Object() {
   /**
    * Returns the current time as a dictionary of keys: `hour`, `minute`, and `second`.
    *
-   * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
   public fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
@@ -201,9 +201,9 @@ public object Time : Object() {
   /**
    * Returns the current date and time as an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
    *
-   * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    *
-   * If `use_space` is true, use a space instead of the letter T in the middle.
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character instead of the letter T.
    */
   public fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
@@ -215,7 +215,7 @@ public object Time : Object() {
   /**
    * Returns the current date as an ISO 8601 date string (YYYY-MM-DD).
    *
-   * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
   public fun getDateStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
@@ -227,7 +227,7 @@ public object Time : Object() {
   /**
    * Returns the current time as an ISO 8601 time string (HH:MM:SS).
    *
-   * The returned values are in the system's local time when `utc` is false, otherwise they are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in UTC.
    */
   public fun getTimeStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)

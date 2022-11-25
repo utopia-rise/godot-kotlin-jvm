@@ -32,7 +32,9 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
  *
- * Operating System functions. OS wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, date and time, timers, environment variables, execution of binaries, command line, etc.
+ * Operating System functions. [OS] wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, delays, environment variables, execution of binaries, command line, etc.
+ *
+ * **Note:** In Godot 4, [OS] functions related to window management were moved to the [godot.DisplayServer] singleton.
  */
 @GodotBaseType
 public object OS : Object() {
@@ -45,7 +47,7 @@ public object OS : Object() {
   /**
    * Returns an array of MIDI device names.
    *
-   * The returned array will be empty if the system MIDI driver has not previously been initialised with [openMidiInputs].
+   * The returned array will be empty if the system MIDI driver has not previously been initialized with [openMidiInputs].
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
@@ -130,7 +132,7 @@ public object OS : Object() {
   /**
    * Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
    *
-   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [getProcessorName] returns an empty string.
+   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, Web and UWP, [getProcessorName] returns an empty string.
    */
   public fun getProcessorName(): String {
     TransferContext.writeArguments()
@@ -150,9 +152,9 @@ public object OS : Object() {
   }
 
   /**
-   * Executes a command. The file specified in `path` must exist and be executable. Platform path resolution will be used. The `arguments` are used in the given order and separated by a space. If an `output` [godot.Array] is provided, the complete shell output of the process will be appended as a single [godot.String] element in `output`. If `read_stderr` is `true`, the output to the standard error stream will be included too.
+   * Executes a command. The file specified in [path] must exist and be executable. Platform path resolution will be used. The [arguments] are used in the given order and separated by a space. If an [output] [godot.Array] is provided, the complete shell output of the process will be appended as a single [godot.String] element in [output]. If [readStderr] is `true`, the output to the standard error stream will be included too.
    *
-   * On Windows, if `open_console` is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.
+   * On Windows, if [openConsole] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.
    *
    * If the command is successfully executed, the method will return the exit code of the command, or `-1` if it fails.
    *
@@ -204,11 +206,11 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    *
-   * **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in `path`, `/c` as the first argument, and the desired command as the second argument.
+   * **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in [path], `/c` as the first argument, and the desired command as the second argument.
    *
-   * **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in `path`, `-Command` as the first argument, and the desired command as the second argument.
+   * **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in [path], `-Command` as the first argument, and the desired command as the second argument.
    *
-   * **Note:** To execute a Unix shell built-in command, specify shell executable name in `path`, `-c` as the first argument, and the desired command as the second argument.
+   * **Note:** To execute a Unix shell built-in command, specify shell executable name in [path], `-c` as the first argument, and the desired command as the second argument.
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export.
    */
@@ -225,9 +227,9 @@ public object OS : Object() {
   }
 
   /**
-   * Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in `path` must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The `arguments` are used in the given order and separated by a space.
+   * Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [arguments] are used in the given order and separated by a space.
    *
-   * On Windows, if `open_console` is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.
+   * On Windows, if [openConsole] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.
    *
    * If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [kill]). If the process creation fails, the method will return `-1`.
    *
@@ -266,7 +268,7 @@ public object OS : Object() {
   }
 
   /**
-   * Creates a new instance of Godot that runs independently. The `arguments` are used in the given order and separated by a space.
+   * Creates a new instance of Godot that runs independently. The [arguments] are used in the given order and separated by a space.
    *
    * If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [kill]). If the process creation fails, the method will return `-1`.
    *
@@ -279,7 +281,7 @@ public object OS : Object() {
   }
 
   /**
-   * Kill (terminate) the process identified by the given process ID (`pid`), e.g. the one returned by [execute] in non-blocking mode. See also [crash].
+   * Kill (terminate) the process identified by the given process ID ([pid]), e.g. the one returned by [execute] in non-blocking mode. See also [crash].
    *
    * **Note:** This method can also be used to kill processes that were not spawned by the game.
    *
@@ -298,11 +300,11 @@ public object OS : Object() {
    *
    * - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official Godot website.
    *
-   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.Customizing `mailto:` Links](https://blog.escapecreative.com/customizing-mailto-links/) for a list of fields that can be added.
+   * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [godot.RFC 2368 - The `mailto` URL scheme](https://datatracker.ietf.org/doc/html/rfc2368) for a list of fields that can be added.
    *
    * Use [godot.ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path for use with this method.
    *
-   * **Note:** This method is implemented on Android, iOS, HTML5, Linux, macOS and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux, macOS and Windows.
    */
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
@@ -324,7 +326,7 @@ public object OS : Object() {
   /**
    * Returns the value of an environment variable. Returns an empty string if the environment variable doesn't exist.
    *
-   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
    */
   public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
@@ -333,9 +335,9 @@ public object OS : Object() {
   }
 
   /**
-   * Sets the value of the environment variable `variable` to `value`. The environment variable will be set for the Godot process and any process executed with [execute] after running [setEnvironment]. The environment variable will *not* persist to processes run after the Godot process was terminated.
+   * Sets the value of the environment variable [variable] to [value]. The environment variable will be set for the Godot process and any process executed with [execute] after running [setEnvironment]. The environment variable will *not* persist to processes run after the Godot process was terminated.
    *
-   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
    */
   public fun setEnvironment(variable: String, `value`: String): Boolean {
     TransferContext.writeArguments(STRING to variable, STRING to value)
@@ -344,9 +346,9 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the environment variable with the name `variable` exists.
+   * Returns `true` if the environment variable with the name [variable] exists.
    *
-   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive on all platforms except Windows.
    */
   public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
@@ -369,7 +371,7 @@ public object OS : Object() {
    *
    * On iOS, this is `"iOS"`.
    *
-   * On the web, this is `"HTML5"`.
+   * On the web, this is `"Web"`.
    *
    * **Note:** Custom builds of the engine may support additional platforms, such as consoles, yielding other return values.
    *
@@ -399,7 +401,7 @@ public object OS : Object() {
    *
    *         print("iOS")
    *
-   *     "HTML5":
+   *     "Web":
    *
    *         print("Web")
    *
@@ -451,7 +453,7 @@ public object OS : Object() {
    *
    *         break;
    *
-   *     case "HTML5":
+   *     case "Web":
    *
    *         GD.Print("Web");
    *
@@ -494,6 +496,14 @@ public object OS : Object() {
    *
    *         arguments[key_value[0].lstrip("--")] = key_value[1]
    *
+   *     else:
+   *
+   *         # Options without an argument will be present in the dictionary,
+   *
+   *         # with the value set to an empty string.
+   *
+   *         arguments[argument.lstrip("--")] = ""
+   *
    * [/gdscript]
    *
    * [csharp]
@@ -514,11 +524,25 @@ public object OS : Object() {
    *
    *     }
    *
+   *     else
+   *
+   *     {
+   *
+   *         // Options without an argument will be present in the dictionary,
+   *
+   *         // with the value set to an empty string.
+   *
+   *         arguments[keyValue[0].LStrip("--")] = "";
+   *
+   *     }
+   *
    * }
    *
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** Passing custom user arguments directly is not recommended, as the engine may discard or modify them. Instead, the best way is to use the standard UNIX double dash (`--`) and then pass custom arguments, which the engine itself will ignore. These can be read via [getCmdlineUserArgs].
    */
   public fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
@@ -528,7 +552,7 @@ public object OS : Object() {
   }
 
   /**
-   * Delays execution of the current thread by `usec` microseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
+   * Delays execution of the current thread by [usec] microseconds. [usec] must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
    *
    * **Note:** [delayUsec] is a *blocking* way to delay code execution. To delay code execution in a non-blocking way, see [godot.SceneTree.createTimer]. Awaiting with [godot.SceneTree.createTimer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [godot.EditorPlugin]s and [godot.EditorScript]s).
    *
@@ -540,7 +564,7 @@ public object OS : Object() {
   }
 
   /**
-   * Delays execution of the current thread by `msec` milliseconds. `msec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
+   * Delays execution of the current thread by [msec] milliseconds. [msec] must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    *
    * **Note:** [delayMsec] is a *blocking* way to delay code execution. To delay code execution in a non-blocking way, see [godot.SceneTree.createTimer]. Awaiting with [godot.SceneTree.createTimer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [godot.EditorPlugin]s and [godot.EditorScript]s).
    *
@@ -593,7 +617,7 @@ public object OS : Object() {
   }
 
   /**
-   * If `true`, the `user://` file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the HTML5 platform, where this persistence may be unavailable.
+   * If `true`, the `user://` file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the Web platform, where this persistence may be unavailable.
    */
   public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
@@ -610,9 +634,6 @@ public object OS : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns `true` if the current host platform is using multiple threads.
-   */
   public fun canUseThreads(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CAN_USE_THREADS, BOOL)
@@ -632,39 +653,21 @@ public object OS : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Dumps the memory allocation ringlist to a file (only works in debug).
-   *
-   * Entry format per line: "Address - Size - Description".
-   */
   public fun dumpMemoryToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_MEMORY_TO_FILE, NIL)
   }
 
-  /**
-   * Dumps all used resources to file (only works in debug).
-   *
-   * Entry format per line: "Resource Type : Resource Location".
-   *
-   * At the end of the file is a statistic of all used Resource Types.
-   */
   public fun dumpResourcesToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DUMP_RESOURCES_TO_FILE, NIL)
   }
 
-  /**
-   * Shows all resources currently used by the game.
-   */
   public fun printResourcesInUse(short: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to short)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_IN_USE, NIL)
   }
 
-  /**
-   * Shows all resources in the game. Optionally, the list can be written to a file by specifying a file path in `tofile`.
-   */
   public fun printAllResources(tofile: String = ""): Unit {
     TransferContext.writeArguments(STRING to tofile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_RESOURCES, NIL)
@@ -726,7 +729,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user configuration directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
+   * Returns the *global* user configuration directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -737,7 +740,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* user data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
+   * Returns the *global* user data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -748,7 +751,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the *global* cache data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
+   * Returns the *global* cache data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
    *
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
@@ -763,7 +766,7 @@ public object OS : Object() {
    *
    * **Note:** This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [getUniqueId] for security purposes.
    *
-   * **Note:** Returns an empty string on HTML5 and UWP, as this method isn't implemented on those platforms yet.
+   * **Note:** Returns an empty string on Web and UWP, as this method isn't implemented on those platforms yet.
    */
   public fun getUniqueId(): String {
     TransferContext.writeArguments()
@@ -771,17 +774,11 @@ public object OS : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Shows the list of loaded textures sorted by size in memory.
-   */
   public fun printAllTexturesBySize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_ALL_TEXTURES_BY_SIZE, NIL)
   }
 
-  /**
-   * Shows the number of resources loaded by the game of the given types.
-   */
   public fun printResourcesByType(types: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to types)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_PRINT_RESOURCES_BY_TYPE, NIL)
@@ -817,7 +814,7 @@ public object OS : Object() {
   }
 
   /**
-   * Enables backup saves if `enabled` is `true`.
+   * Enables backup saves if [enabled] is `true`.
    */
   public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -857,7 +854,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags]($DOCS_URL/getting_started/workflow/export/feature_tags.html) documentation for more details.
+   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags]($DOCS_URL/tutorials/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
    */
@@ -902,13 +899,7 @@ public object OS : Object() {
   public enum class VideoDriver(
     id: Long
   ) {
-    /**
-     * The Vulkan rendering backend. It requires Vulkan 1.0 support and automatically uses features from Vulkan 1.1 and 1.2 if available.
-     */
     VIDEO_DRIVER_VULKAN(0),
-    /**
-     * The OpenGL 3 rendering backend. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL ES 3.0 on mobile devices, and WebGL 2.0 on HTML5.
-     */
     VIDEO_DRIVER_OPENGL_3(1),
     ;
 

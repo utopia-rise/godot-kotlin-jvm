@@ -33,7 +33,7 @@ import kotlin.Unit
  *
  * This node is intended to be a simple helper to get things going quickly, but more functionality may be desired to change how the camera works. To make your own custom camera node, inherit it from [godot.Node2D] and change the transform of the canvas by setting [godot.Viewport.canvasTransform] in [godot.Viewport] (you can obtain the current [godot.Viewport] by using [godot.Node.getViewport]).
  *
- * Note that the [godot.Camera2D] node's `position` doesn't represent the actual position of the screen, which may differ due to applied smoothing or limits. You can use [getCameraScreenCenter] to get the real position.
+ * Note that the [godot.Camera2D] node's `position` doesn't represent the actual position of the screen, which may differ due to applied smoothing or limits. You can use [getScreenCenterPosition] to get the real position.
  */
 @GodotBaseType
 public open class Camera2D : Node2D() {
@@ -65,9 +65,6 @@ public open class Camera2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ANCHOR_MODE, NIL)
     }
 
-  /**
-   * If `true`, the camera view rotates with the target.
-   */
   public var rotating: Boolean
     get() {
       TransferContext.writeArguments()
@@ -141,7 +138,7 @@ public open class Camera2D : Node2D() {
   /**
    * If `true`, the camera smoothly stops when reaches its limits.
    *
-   * This property has no effect if [smoothingEnabled] is `false`.
+   * This property has no effect if [positionSmoothingEnabled] is `false`.
    *
    * **Note:** To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke [resetSmoothing].
    */
@@ -158,9 +155,6 @@ public open class Camera2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_SMOOTHING_ENABLED, NIL)
     }
 
-  /**
-   * If `true`, the camera smoothly moves towards the target at [smoothingSpeed].
-   */
   public var smoothingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -174,9 +168,6 @@ public open class Camera2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ENABLE_FOLLOW_SMOOTHING, NIL)
     }
 
-  /**
-   * Speed in pixels per second of the camera's smoothing effect when [smoothingEnabled] is `true`.
-   */
   public var smoothingSpeed: Double
     get() {
       TransferContext.writeArguments()
@@ -344,11 +335,6 @@ public open class Camera2D : Node2D() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Returns the camera's `position` (the tracked point the camera attempts to follow), relative to the origin.
-   *
-   * **Note:** The returned value is not the same as [godot.Node2D.position] or [godot.Node2D.globalPosition], as it is affected by the `drag` properties.
-   */
   public fun getCameraPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
@@ -356,11 +342,6 @@ public open class Camera2D : Node2D() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  /**
-   * Returns the location of the [godot.Camera2D]'s screen-center, relative to the origin.
-   *
-   * **Note:** The real `position` of the camera may be different, see [getCameraPosition].
-   */
   public fun getCameraScreenCenter(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
@@ -379,7 +360,7 @@ public open class Camera2D : Node2D() {
   /**
    * Sets the camera's position immediately to its current smoothing destination.
    *
-   * This method has no effect if [smoothingEnabled] is `false`.
+   * This method has no effect if [positionSmoothingEnabled] is `false`.
    */
   public fun resetSmoothing(): Unit {
     TransferContext.writeArguments()

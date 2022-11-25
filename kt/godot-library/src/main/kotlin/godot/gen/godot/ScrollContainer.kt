@@ -27,9 +27,9 @@ import kotlin.Unit
  *
  * A ScrollContainer node meant to contain a [godot.Control] child.
  *
- * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.minimumSize] of the Control relative to the ScrollContainer.
+ * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.customMinimumSize] of the Control relative to the ScrollContainer.
  *
- * Works great with a [godot.Panel] control. You can set `EXPAND` on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
+ * Works great with a [godot.Panel] control. You can set [godot.Control.SIZE_EXPAND] on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
  */
 @GodotBaseType
 public open class ScrollContainer : Container() {
@@ -122,7 +122,7 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   *
+   * Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive.
    */
   public var scrollDeadzone: Long
     get() {
@@ -165,7 +165,7 @@ public open class ScrollContainer : Container() {
   }
 
   /**
-   * Ensures the given `control` is visible (must be a direct or indirect child of the ScrollContainer). Used by [followFocus].
+   * Ensures the given [control] is visible (must be a direct or indirect child of the ScrollContainer). Used by [followFocus].
    *
    * **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [godot.SceneTree.processFrame]:
    *

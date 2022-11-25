@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CylinderMesh : PrimitiveMesh() {
   /**
-   * Top radius of the cylinder. If set to `0.0`, the top faces will not be generated, resulting in a conic shape.
+   * Top radius of the cylinder. If set to `0.0`, the top faces will not be generated, resulting in a conic shape. See also [capTop].
    */
   public var topRadius: Double
     get() {
@@ -39,7 +39,7 @@ public open class CylinderMesh : PrimitiveMesh() {
     }
 
   /**
-   * Bottom radius of the cylinder. If set to `0.0`, the bottom faces will not be generated, resulting in a conic shape.
+   * Bottom radius of the cylinder. If set to `0.0`, the bottom faces will not be generated, resulting in a conic shape. See also [capBottom].
    */
   public var bottomRadius: Double
     get() {

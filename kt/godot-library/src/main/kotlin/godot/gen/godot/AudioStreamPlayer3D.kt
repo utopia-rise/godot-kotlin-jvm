@@ -31,11 +31,11 @@ import kotlin.Unit
  *
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
- * By default, audio is heard from the camera position. This can be changed by adding a [godot.AudioListener3D] node to the scene and enabling it by calling [godot.AudioListener3D.makeCurrent] on it.
+ * By default, audio is heard from the camera position. This can be changed by adding an [godot.AudioListener3D] node to the scene and enabling it by calling [godot.AudioListener3D.makeCurrent] on it.
  *
  * See also [godot.AudioStreamPlayer] to play a sound non-positionally.
  *
- * **Note:** Hiding an [godot.AudioStreamPlayer3D] node does not disable its audio output. To temporarily disable an [godot.AudioStreamPlayer3D]'s audio output, set [unitDb] to a very low value like `-100` (which isn't audible to human hearing).
+ * **Note:** Hiding an [godot.AudioStreamPlayer3D] node does not disable its audio output. To temporarily disable an [godot.AudioStreamPlayer3D]'s audio output, set [volumeDb] to a very low value like `-100` (which isn't audible to human hearing).
  */
 @GodotBaseType
 public open class AudioStreamPlayer3D : Node3D() {
@@ -76,9 +76,6 @@ public open class AudioStreamPlayer3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_ATTENUATION_MODEL, NIL)
     }
 
-  /**
-   * The base sound level unaffected by dampening, in decibels.
-   */
   public var unitDb: Double
     get() {
       TransferContext.writeArguments()
@@ -141,7 +138,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * If `true`, audio is playing.
+   * If `true`, audio is playing or is queued to be played (see [play]).
    */
   public val playing: Boolean
     get() {
@@ -217,6 +214,8 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   /**
    * The bus on which this audio is playing.
+   *
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public var bus: StringName
     get() {
@@ -349,7 +348,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   /**
-   * Plays the audio from the given position `from_position`, in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)

@@ -95,6 +95,8 @@ import kotlin.Unit
  * In 3D, all visible objects are comprised of a resource and an instance. A resource can be a mesh, a particle system, a light, or any other 3D object. In order to be visible resources must be attached to an instance using [instanceSetBase]. The instance must also be attached to the scenario using [instanceSetScenario] in order to be visible.
  *
  * In 2D, all visible objects are some form of canvas item. In order to be visible, a canvas item needs to be the child of a canvas attached to a viewport, or it needs to be the child of another canvas item that is eventually attached to the canvas.
+ *
+ * **Headless mode:** Starting the engine with the `--headless` [command line argument]($DOCS_URL/tutorials/editor/command_line_tutorial.html) disables all rendering and window management functions. Most functions from [godot.RenderingServer] will return dummy values in this case.
  */
 @GodotBaseType
 public object RenderingServer : Object() {
@@ -400,9 +402,6 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Returns the parameters of a shader.
-   */
   public fun shaderGetParamList(shader: RID): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to shader)
     TransferContext.callMethod(rawPtr,
@@ -410,9 +409,6 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  /**
-   *
-   */
   public fun shaderGetParamDefault(shader: RID, `param`: StringName): Any? {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to param)
     TransferContext.callMethod(rawPtr,
@@ -420,11 +416,6 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  /**
-   * Sets a shader's default texture. Overwrites the texture given by name.
-   *
-   * **Note:** If the sampler array is used use `index` to access the specified texture.
-   */
   public fun shaderSetDefaultTextureParam(
     shader: RID,
     `param`: StringName,
@@ -436,11 +427,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADER_SET_DEFAULT_TEXTURE_PARAM, NIL)
   }
 
-  /**
-   * Returns a default texture from a shader searched by name.
-   *
-   * **Note:** If the sampler array is used use `index` to access the specified texture.
-   */
   public fun shaderGetDefaultTextureParam(
     shader: RID,
     `param`: StringName,
@@ -1253,18 +1239,12 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_PROJECTORS_SET_FILTER, NIL)
   }
 
-  /**
-   *
-   */
   public fun shadowsQualitySet(quality: RenderingServer.ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SHADOWS_QUALITY_SET,
         NIL)
   }
 
-  /**
-   *
-   */
   public fun directionalShadowQualitySet(quality: RenderingServer.ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr,
@@ -1534,7 +1514,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `half_resolution` is `true`, renders [godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) buffers at halved resolution (e.g. 960×540 when the viewport size is 1920×1080). This improves performance significantly when VoxelGI or SDFGI is enabled, at the cost of artifacts that may be visible on polygon edges. The loss in quality becomes less noticeable as the viewport resolution increases. [godot.LightmapGI] rendering is not affected by this setting. See also [godot.ProjectSettings.rendering/globalIllumination/gi/useHalfResolution].
+   * If [halfResolution] is `true`, renders [godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) buffers at halved resolution (e.g. 960×540 when the viewport size is 1920×1080). This improves performance significantly when VoxelGI or SDFGI is enabled, at the cost of artifacts that may be visible on polygon edges. The loss in quality becomes less noticeable as the viewport resolution increases. [godot.LightmapGI] rendering is not affected by this setting. See also [godot.ProjectSettings.rendering/globalIllumination/gi/useHalfResolution].
    */
   public fun giSetUseHalfResolution(halfResolution: Boolean): Unit {
     TransferContext.writeArguments(BOOL to halfResolution)
@@ -2234,7 +2214,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shape of the fog volume to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX], or [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
+   * Sets the shape of the fog volume to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
   public fun fogVolumeSetShape(fogVolume: RID, shape: RenderingServer.FogVolumeShape): Unit {
     TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
@@ -2243,7 +2223,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the size of the fog volume when shape is [FOG_VOLUME_SHAPE_ELLIPSOID] or [FOG_VOLUME_SHAPE_BOX].
+   * Sets the size of the fog volume when shape is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
    */
   public fun fogVolumeSetExtents(fogVolume: RID, extents: Vector3): Unit {
     TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to extents)
@@ -2355,7 +2335,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets camera to use frustum projection. This mode allows adjusting the `offset` argument to create "tilted frustum" effects.
+   * Sets camera to use frustum projection. This mode allows adjusting the [offset] argument to create "tilted frustum" effects.
    */
   public fun cameraSetFrustum(
     camera: RID,
@@ -2396,9 +2376,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_SET_ENVIRONMENT, NIL)
   }
 
-  /**
-   *
-   */
   public fun cameraSetCameraEffects(camera: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to effects)
     TransferContext.callMethod(rawPtr,
@@ -2467,7 +2444,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Copies the viewport to a region of the screen specified by `rect`. If [viewportSetRenderDirectToScreen] is `true`, then the viewport does not use a framebuffer and the contents of the viewport are rendered directly to screen. However, note that the root viewport is drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to an area that does not cover the area that you have attached this viewport to.
+   * Copies the viewport to a region of the screen specified by [rect]. If [viewportSetRenderDirectToScreen] is `true`, then the viewport does not use a framebuffer and the contents of the viewport are rendered directly to screen. However, note that the root viewport is drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to an area that does not cover the area that you have attached this viewport to.
    *
    * For example, you can set the root viewport to not render at all with the following code:
    *
@@ -2487,7 +2464,7 @@ public object RenderingServer : Object() {
    *
    * [/codeblocks]
    *
-   * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For a further optimization see, [viewportSetRenderDirectToScreen].
+   * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [viewportSetRenderDirectToScreen].
    */
   public fun viewportAttachToScreen(
     viewport: RID,
@@ -2538,9 +2515,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_FSR_SHARPNESS, NIL)
   }
 
-  /**
-   * Affects the final texture sharpness by reading from a lower or higher mipmap. Negative values make textures sharper, while positive values make textures blurrier. When using FSR, this value is used to adjust the mipmap bias calculated internally which is based on the selected quality. The formula for this is `-log2(1.0 / scale) + mipmap_bias`
-   */
   public fun viewportSetFsrMipmapBias(viewport: RID, mipmapBias: Double): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to mipmapBias)
     TransferContext.callMethod(rawPtr,
@@ -2698,7 +2672,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the stacking order for a viewport's canvas.
    *
-   * `layer` is the actual canvas layer, while `sublayer` specifies the stacking order of the canvas among those in the same layer.
+   * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas among those in the same layer.
    */
   public fun viewportSetCanvasStacking(
     viewport: RID,
@@ -2742,9 +2716,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SDF_OVERSIZE_AND_SCALE, NIL)
   }
 
-  /**
-   * Sets the size of the shadow atlas's images (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
-   */
   public fun viewportSetShadowAtlasSize(
     viewport: RID,
     size: Long,
@@ -2755,9 +2726,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_SHADOW_ATLAS_SIZE, NIL)
   }
 
-  /**
-   * Sets the shadow atlas quadrant's subdivision.
-   */
   public fun viewportSetShadowAtlasQuadrantSubdivision(
     viewport: RID,
     quadrant: Long,
@@ -2769,9 +2737,6 @@ public object RenderingServer : Object() {
         NIL)
   }
 
-  /**
-   * Sets the anti-aliasing mode. See [enum ViewportMSAA] for options.
-   */
   public fun viewportSetMsaa(viewport: RID, msaa: RenderingServer.ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA,
@@ -3274,7 +3239,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution of the volumetric fog's froxel buffer. `size` is modified by the screen's aspect ratio and then used to set the width and height of the buffer. While `depth` is directly used to set the depth of the buffer.
+   * Sets the resolution of the volumetric fog's froxel buffer. [size] is modified by the screen's aspect ratio and then used to set the width and height of the buffer. While [depth] is directly used to set the depth of the buffer.
    */
   public fun environmentSetVolumetricFogVolumeSize(size: Long, depth: Long): Unit {
     TransferContext.writeArguments(LONG to size, LONG to depth)
@@ -3337,9 +3302,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SUB_SURFACE_SCATTERING_SET_SCALE, NIL)
   }
 
-  /**
-   *
-   */
   public fun cameraEffectsCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -3347,9 +3309,6 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  /**
-   *
-   */
   public fun cameraEffectsSetDofBlurQuality(quality: RenderingServer.DOFBlurQuality,
       useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
@@ -3357,18 +3316,12 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR_QUALITY, NIL)
   }
 
-  /**
-   *
-   */
   public fun cameraEffectsSetDofBlurBokehShape(shape: RenderingServer.DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR_BOKEH_SHAPE, NIL)
   }
 
-  /**
-   *
-   */
   public fun cameraEffectsSetDofBlur(
     cameraEffects: RID,
     farEnable: Boolean,
@@ -3384,9 +3337,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CAMERA_EFFECTS_SET_DOF_BLUR, NIL)
   }
 
-  /**
-   *
-   */
   public fun cameraEffectsSetCustomExposure(
     cameraEffects: RID,
     enable: Boolean,
@@ -3429,9 +3379,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_SCENARIO_SET_FALLBACK_ENVIRONMENT, NIL)
   }
 
-  /**
-   *
-   */
   public fun scenarioSetCameraEffects(scenario: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to effects)
     TransferContext.callMethod(rawPtr,
@@ -3547,11 +3494,11 @@ public object RenderingServer : Object() {
   /**
    * Sets the transparency for the given geometry instance. Equivalent to [godot.GeometryInstance3D.transparency].
    *
-   * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting `transparency` to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
+   * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [transparency] to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
    *
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
    *
-   * **Note:** `transparency` is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
+   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
    */
   public fun instanceGeometrySetTransparency(instance: RID, transparency: Double): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to transparency)
@@ -4659,9 +4606,6 @@ public object RenderingServer : Object() {
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_SET_SHADOW_TEXTURE_SIZE, NIL)
   }
 
-  /**
-   *
-   */
   public fun globalVariableAdd(
     name: StringName,
     type: RenderingServer.GlobalVariableType,
@@ -4672,18 +4616,12 @@ public object RenderingServer : Object() {
         NIL)
   }
 
-  /**
-   *
-   */
   public fun globalVariableRemove(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_REMOVE, NIL)
   }
 
-  /**
-   *
-   */
   public fun globalVariableGetList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -4691,27 +4629,18 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
   }
 
-  /**
-   *
-   */
   public fun globalVariableSet(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_SET,
         NIL)
   }
 
-  /**
-   *
-   */
   public fun globalVariableSetOverride(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_SET_OVERRIDE, NIL)
   }
 
-  /**
-   *
-   */
   public fun globalVariableGet(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_GLOBAL_VARIABLE_GET,
@@ -4719,9 +4648,6 @@ public object RenderingServer : Object() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  /**
-   *
-   */
   public fun globalVariableGetType(name: StringName): RenderingServer.GlobalVariableType {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
@@ -4802,7 +4728,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a mesh of a sphere with the given amount of horizontal and vertical subdivisions.
+   * Returns a mesh of a sphere with the given number of horizontal and vertical subdivisions.
    */
   public fun makeSphereMesh(
     latitudes: Long,
@@ -4845,7 +4771,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a boot image. The color defines the background color. If `scale` is `true`, the image will be scaled to fit the screen size. If `use_filter` is `true`, the image will be scaled with linear interpolation. If `use_filter` is `false`, the image will be scaled with nearest-neighbor interpolation.
+   * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor interpolation.
    */
   public fun setBootImage(
     image: Image,
@@ -4876,7 +4802,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns `true` if the OS supports a certain feature. Features might be `s3tc`, `etc`, and `etc2`.
+   * Returns `true` if the OS supports a certain [feature]. Features might be `s3tc`, `etc`, and `etc2`.
    */
   public fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
@@ -4934,7 +4860,9 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns the global RenderingDevice.
    *
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -4944,7 +4872,9 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
    *
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -5551,9 +5481,6 @@ public object RenderingServer : Object() {
      *
      */
     CANVAS_GROUP_MODE_DISABLED(0),
-    /**
-     *
-     */
     CANVAS_GROUP_MODE_OPAQUE(1),
     /**
      *
@@ -5643,23 +5570,23 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     *
+     * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
      */
     DECAL_FILTER_NEAREST(0),
     /**
-     *
+     * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
      */
     DECAL_FILTER_NEAREST_MIPMAPS(1),
     /**
-     *
+     * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
      */
     DECAL_FILTER_LINEAR(2),
     /**
-     *
+     * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
      */
     DECAL_FILTER_LINEAR_MIPMAPS(3),
     /**
-     *
+     * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     DECAL_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(4),
     ;
@@ -6450,7 +6377,7 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     * [godot.FogVolume] will be shaped like an ellipsoid.
+     * [godot.FogVolume] will be shaped like an ellipsoid (stretched sphere).
      */
     FOG_VOLUME_SHAPE_ELLIPSOID(0),
     /**
@@ -6625,23 +6552,23 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     *
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_NEAREST(0),
     /**
-     *
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS(1),
     /**
-     *
+     * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_LINEAR(2),
     /**
-     *
+     * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS(3),
     /**
-     *
+     * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(4),
     ;
@@ -7337,11 +7264,11 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     * The light's energy.
+     * The light's energy multiplier.
      */
     LIGHT_PARAM_ENERGY(0),
     /**
-     *
+     * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_INDIRECT_ENERGY]).
      */
     LIGHT_PARAM_INDIRECT_ENERGY(1),
     /**
@@ -7404,9 +7331,6 @@ public object RenderingServer : Object() {
      * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
      */
     LIGHT_PARAM_SHADOW_BLUR(16),
-    /**
-     *
-     */
     LIGHT_PARAM_SHADOW_VOLUMETRIC_FOG_FADE(17),
     /**
      *

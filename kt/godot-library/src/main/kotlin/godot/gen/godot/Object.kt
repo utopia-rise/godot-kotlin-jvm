@@ -57,7 +57,7 @@ import kotlin.reflect.KCallable
  *
  * Every class which is not a built-in type inherits from this class.
  *
- * You can construct Objects from scripting languages, using `Object.new()` in GDScript, `new Object` in C#, or the "Construct Object" node in VisualScript.
+ * You can construct Objects from scripting languages, using `Object.new()` in GDScript, or `new Object` in C#.
  *
  * Objects do not manage memory. If a class inherits from Object, you will have to delete instances of it manually. To do so, call the [free] method from your script or delete the instance from C++.
  *
@@ -414,7 +414,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object inherits from the given `class`. See also [getClass].
+   * Returns `true` if the object inherits from the given [class]. See also [getClass].
    *
    * **Note:** [isClass] does not take `class_name` declarations into account. If the object has a `class_name` defined, [isClass] will return `false` for that name.
    */
@@ -425,7 +425,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the given property. If the `property` does not exist or the given value's type doesn't match, nothing will happen.
+   * Assigns a new value to the given property. If the [property] does not exist or the given value's type doesn't match, nothing will happen.
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
@@ -435,7 +435,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the [Variant] value of the given `property`. If the `property` doesn't exist, this will return `null`.
+   * Returns the [Variant] value of the given [property]. If the [property] doesn't exist, this will return `null`.
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
@@ -446,7 +446,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new value to the property identified by the [godot.core.NodePath]. The node path should be relative to the current object and can use the colon character (`:`) to access nested properties. Example:
+   * Assigns a new value to the property identified by the [propertyPath]. The path should be a [godot.core.NodePath] relative to the current object and can use the colon character (`:`) to access nested properties.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -482,7 +484,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Gets the object's property indexed by the given [godot.core.NodePath]. The node path should be relative to the current object and can use the colon character (`:`) to access nested properties. Examples: `"position:x"` or `"material:next_pass:blend_mode"`.
+   * Gets the object's property indexed by the given [propertyPath]. The path should be a [godot.core.NodePath] relative to the current object and can use the colon character (`:`) to access nested properties.
+   *
+   * **Examples:** `"position:x"` or `"material:next_pass:blend_mode"`.
    *
    * **Note:** Even though the method takes [godot.core.NodePath] argument, it doesn't support actual paths to [godot.Node]s in the scene tree, only colon-separated sub-property paths. For the purpose of nodes, use [godot.Node.getNodeAndResource] instead.
    */
@@ -515,7 +519,7 @@ public open class Object : KtObject() {
   /**
    * Send a given notification to the object, which will also trigger a call to the [_notification] method of all classes that the object inherits from.
    *
-   * If `reversed` is `true`, [_notification] is called first on the object's own class, and then up to its successive parent classes. If `reversed` is `false`, [_notification] is called first on the highest ancestor ([godot.Object] itself), and then down to its successive inheriting classes.
+   * If [reversed] is `true`, [_notification] is called first on the object's own class, and then up to its successive parent classes. If [reversed] is `false`, [_notification] is called first on the highest ancestor ([godot.Object] itself), and then down to its successive inheriting classes.
    */
   public fun notification(what: Long, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what, BOOL to reversed)
@@ -566,7 +570,9 @@ public open class Object : KtObject() {
   /**
    * Adds, changes or removes a given entry in the object's metadata. Metadata are serialized and can take any [Variant] value.
    *
-   * To remove a given entry from the object's metadata, use [removeMeta]. Metadata is also removed if its value is set to `null`. This means you can also use `set_meta("name", null)` to remove metadata for `"name"`.
+   * To remove a given entry from the object's metadata, use [removeMeta]. Metadata is also removed if its value is set to `null`. This means you can also use `set_meta("name", null)` to remove metadata for `"name"`. See also [hasMeta] and [getMeta].
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
    */
   public fun setMeta(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -574,7 +580,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Removes a given entry from the object's metadata. See also [setMeta].
+   * Removes a given entry from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
    */
   public fun removeMeta(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -582,9 +590,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's metadata entry for the given `name`.
+   * Returns the object's metadata entry for the given [name].
    *
-   * Throws error if the entry does not exist, unless `default` is not `null` (in which case the default value will be returned).
+   * Throws error if the entry does not exist, unless [default] is not `null` (in which case the default value will be returned). See also [hasMeta], [setMeta] and [removeMeta].
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
    */
   public fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
@@ -593,7 +603,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if a metadata entry is found with the given `name`.
+   * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta], [setMeta] and [removeMeta].
+   *
+   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited.
    */
   public fun hasMeta(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -612,7 +624,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds a user-defined `signal`. Arguments are optional, but can be added as an [godot.Array] of dictionaries, each containing `name: String` and `type: int` (see [enum Variant.Type]) entries.
+   * Adds a user-defined [signal]. Arguments are optional, but can be added as an [godot.Array] of dictionaries, each containing `name: String` and `type: int` (see [enum Variant.Type]) entries.
    */
   public fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
@@ -621,7 +633,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given user-defined `signal` exists. Only signals added using [addUserSignal] are taken into account.
+   * Returns `true` if the given user-defined [signal] exists. Only signals added using [addUserSignal] are taken into account.
    */
   public fun hasUserSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -630,7 +642,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Emits the given `signal`. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+   * Emits the given [signal]. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -659,7 +673,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the `method` on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+   * Calls the [method] on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -690,7 +706,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the `method` on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+   * Calls the [method] on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -731,7 +749,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the `method` on the object and returns the result. Contrarily to [call], this method does not support a variable number of arguments but expects all parameters to be via a single [godot.Array].
+   * Calls the [method] on the object and returns the result. Contrarily to [call], this method does not support a variable number of arguments but expects all parameters to be via a single [godot.Array].
    *
    * [codeblocks]
    *
@@ -760,7 +778,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object contains the given `method`.
+   * Returns `true` if the object contains the given [method].
    */
   public fun hasMethod(method: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to method)
@@ -769,7 +787,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given `signal` exists.
+   * Returns `true` if the given [signal] exists.
    */
   public fun hasSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -787,7 +805,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns an [godot.Array] of connections for the given `signal`.
+   * Returns an [godot.Array] of connections for the given [signal].
    */
   public fun getSignalConnectionList(signal: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to signal)
@@ -815,9 +833,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Connects a `signal` to a `callable`. Pass optional `binds` to the call as an [godot.Array] of parameters. These parameters will be passed to the [godot.Callable]'s method after any parameter used in the call to [emitSignal]. Use `flags` to set deferred or one-shot connections. See [enum ConnectFlags] constants.
-   *
-   * **Note:** This method is the legacy implementation for connecting signals. The recommended modern approach is to use [godot.Signal.connect] and to use [godot.Callable.bind] to add and validate parameter binds. Both syntaxes are shown below.
+   * Connects a [signal] to a [callable]. Use [flags] to set deferred or one-shot connections. See [enum ConnectFlags] constants.
    *
    * A signal can only be connected once to a [godot.Callable]. It will print an error if already connected, unless the signal was connected with [CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [isConnected] to check for existing connections.
    *
@@ -1095,7 +1111,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Disconnects a `signal` from a given `callable`.
+   * Disconnects a [signal] from a given [callable].
    *
    * If you try to disconnect a connection that does not exist, the method will print an error. Use [isConnected] to ensure that the connection exists.
    */
@@ -1105,7 +1121,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if a connection exists for a given `signal` and `callable`.
+   * Returns `true` if a connection exists for a given [signal] and [callable].
    */
   public fun isConnected(signal: StringName, callable: Callable): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
@@ -1159,7 +1175,7 @@ public open class Object : KtObject() {
   /**
    * Translates a message using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
    *
-   * Only works if message translation is enabled (which it is by default), otherwise it returns the `message` unchanged. See [setMessageTranslation].
+   * Only works if message translation is enabled (which it is by default), otherwise it returns the [message] unchanged. See [setMessageTranslation].
    *
    * See [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html) for examples of the usage of this method.
    */
@@ -1172,9 +1188,9 @@ public open class Object : KtObject() {
   /**
    * Translates a message involving plurals using translation catalogs configured in the Project Settings. An additional context could be used to specify the translation context.
    *
-   * Only works if message translation is enabled (which it is by default), otherwise it returns the `message` or `plural_message` unchanged. See [setMessageTranslation].
+   * Only works if message translation is enabled (which it is by default), otherwise it returns the [message] or [pluralMessage] unchanged. See [setMessageTranslation].
    *
-   * The number `n` is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
    *
    * **Note:** Negative and floating-point values usually represent physical entities for which singular and plural don't clearly apply. In such cases, use [tr].
    *
@@ -1211,9 +1227,6 @@ public open class Object : KtObject() {
      * Persisting connections are saved when the object is serialized to file.
      */
     CONNECT_PERSIST(2),
-    /**
-     * One-shot connections disconnect themselves after emission.
-     */
     CONNECT_ONESHOT(4),
     /**
      * Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.

@@ -62,7 +62,7 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Creates a new PCK file with the name `pck_name`. The `.pck` file extension isn't added automatically, so it should be part of `pck_name` (even though it's not required).
+   * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added automatically, so it should be part of [pckName] (even though it's not required).
    */
   public fun pckStart(
     pckName: String,
@@ -76,7 +76,7 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Adds the `source_path` file to the current PCK package at the `pck_path` internal path (should start with `res://`).
+   * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should start with `res://`).
    */
   public fun addFile(
     pckPath: String,
@@ -89,7 +89,7 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Writes the files specified using all [addFile] calls since the last flush. If `verbose` is `true`, a list of files added will be printed to the console for easier debugging.
+   * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is `true`, a list of files added will be printed to the console for easier debugging.
    */
   public fun flush(verbose: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to verbose)

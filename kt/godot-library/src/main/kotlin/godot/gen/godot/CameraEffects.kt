@@ -16,18 +16,8 @@ import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * Contains camera-specific effects such as depth of field and exposure override.
- *
- * Contains camera-specific effects such as depth of field and exposure override.
- *
- * See also [godot.Environment] for general 3D environment settings.
- */
 @GodotBaseType
 public open class CameraEffects : Resource() {
-  /**
-   * If `true`, enables the depth-of-field far blur effect. This has a significant performance cost. Consider disabling it in scenes where there are no far away objects.
-   */
   public var dofBlurFarEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -41,9 +31,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_ENABLED, NIL)
     }
 
-  /**
-   * The distance from the camera where the far blur effect affects the rendering.
-   */
   public var dofBlurFarDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -57,9 +44,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_DISTANCE, NIL)
     }
 
-  /**
-   * The length of the transition between the no-blur area and far blur.
-   */
   public var dofBlurFarTransition: Double
     get() {
       TransferContext.writeArguments()
@@ -73,9 +57,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_FAR_TRANSITION, NIL)
     }
 
-  /**
-   * If `true`, enables the depth-of-field near blur effect. This has a significant performance cost. Consider disabling it in scenes where there are no nearby objects.
-   */
   public var dofBlurNearEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -89,9 +70,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_ENABLED, NIL)
     }
 
-  /**
-   * Distance from the camera where the near blur effect affects the rendering.
-   */
   public var dofBlurNearDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -105,9 +83,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_DISTANCE, NIL)
     }
 
-  /**
-   * The length of the transition between the near blur and no-blur area.
-   */
   public var dofBlurNearTransition: Double
     get() {
       TransferContext.writeArguments()
@@ -121,9 +96,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_DOF_BLUR_NEAR_TRANSITION, NIL)
     }
 
-  /**
-   * The amount of blur for both near and far depth-of-field effects. The amount of blur increases the radius of the blur effect, making the affected area blurrier. However, If the amount is too high, you might start to see lines appearing, especially when using a low quality blur.
-   */
   public var dofBlurAmount: Double
     get() {
       TransferContext.writeArguments()
@@ -137,9 +109,6 @@ public open class CameraEffects : Resource() {
           NIL)
     }
 
-  /**
-   * If `true`, overrides the manual or automatic exposure defined in the [godot.Environment] with the value in [overrideExposure].
-   */
   public var overrideExposureEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -153,9 +122,6 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE_ENABLED, NIL)
     }
 
-  /**
-   * The exposure override value to use. Higher values will result in a brighter scene. Only effective if [overrideExposureEnabled] is `true`.
-   */
   public var overrideExposure: Double
     get() {
       TransferContext.writeArguments()

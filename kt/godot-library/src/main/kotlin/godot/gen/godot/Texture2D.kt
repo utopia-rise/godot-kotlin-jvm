@@ -44,35 +44,37 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   *
+   * Called when the [godot.Texture2D]'s width is queried.
    */
   public open fun _getWidth(): Long {
     throw NotImplementedError("_get_width is not implemented for Texture2D")
   }
 
   /**
-   *
+   * Called when the [godot.Texture2D]'s height is queried.
    */
   public open fun _getHeight(): Long {
     throw NotImplementedError("_get_height is not implemented for Texture2D")
   }
 
   /**
-   *
+   * Called when a pixel's opaque state in the [godot.Texture2D] is queried at the specified `(x, y)` position.
    */
   public open fun _isPixelOpaque(x: Long, y: Long): Boolean {
     throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
   }
 
   /**
-   *
+   * Called when the presence of an alpha channel in the [godot.Texture2D] is queried.
    */
   public open fun _hasAlpha(): Boolean {
     throw NotImplementedError("_has_alpha is not implemented for Texture2D")
   }
 
   /**
+   * Called when the entire [godot.Texture2D] is requested to be drawn over a [godot.CanvasItem], with the top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
+   * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _draw(
     toCanvasItem: RID,
@@ -83,7 +85,9 @@ public open class Texture2D : Texture() {
   }
 
   /**
+   * Called when the [godot.Texture2D] is requested to be drawn onto [godot.CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
+   * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRect(
     toCanvasItem: RID,
@@ -95,7 +99,9 @@ public open class Texture2D : Texture() {
   }
 
   /**
+   * Called when a part of the [godot.Texture2D] specified by [srcRect]'s coordinates is requested to be drawn onto [godot.CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
    *
+   * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRectRegion(
     tpCanvasItem: RID,
@@ -108,7 +114,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns the texture width.
+   * Returns the texture width in pixels.
    */
   public fun getWidth(): Long {
     TransferContext.writeArguments()
@@ -117,7 +123,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns the texture height.
+   * Returns the texture height in pixels.
    */
   public fun getHeight(): Long {
     TransferContext.writeArguments()
@@ -126,7 +132,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns the texture size.
+   * Returns the texture size in pixels.
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
@@ -144,7 +150,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API at the specified `position`.
+   * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API at the specified [position].
    */
   public fun draw(
     canvasItem: RID,
@@ -186,7 +192,9 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D]. [godot.Image]s can be accessed and manipulated directly.
+   * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D] (a new [godot.Image] is created each time). [godot.Image]s can be accessed and manipulated directly.
+   *
+   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.
    */
   public fun getImage(): Image? {
     TransferContext.writeArguments()

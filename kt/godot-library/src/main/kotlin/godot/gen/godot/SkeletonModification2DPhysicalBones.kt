@@ -23,11 +23,13 @@ import kotlin.Unit
  * A modification that applies the transforms of [godot.PhysicalBone2D] nodes to [godot.Bone2D] nodes.
  *
  * This modification takes the transforms of [godot.PhysicalBone2D] nodes and applies them to [godot.Bone2D] nodes. This allows the [godot.Bone2D] nodes to react to physics thanks to the linked [godot.PhysicalBone2D] nodes.
+ *
+ * Experimental. Physical bones may be changed in the future to perform the position update of [godot.Bone2D] on their own.
  */
 @GodotBaseType
 public open class SkeletonModification2DPhysicalBones : SkeletonModification2D() {
   /**
-   * The amount of [godot.PhysicalBone2D] nodes linked in this modification.
+   * The number of [godot.PhysicalBone2D] nodes linked in this modification.
    */
   public var physicalBoneChainLength: Long
     get() {
@@ -49,7 +51,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   /**
-   * Sets the [godot.PhysicalBone2D] node at `joint_idx`.
+   * Sets the [godot.PhysicalBone2D] node at [jointIdx].
    *
    * **Note:** This is just the index used for this modification, not the bone index used in the [godot.Skeleton2D].
    */
@@ -60,7 +62,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   /**
-   * Returns the [godot.PhysicalBone2D] node at `joint_idx`.
+   * Returns the [godot.PhysicalBone2D] node at [jointIdx].
    */
   public fun getPhysicalBoneNode(jointIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to jointIdx)

@@ -58,11 +58,6 @@ public open class VisualShader : Shader() {
           NIL)
     }
 
-  /**
-   * The Godot version this [godot.VisualShader] was designed for, in the form of a [godot.core.Dictionary] with `major` and `minor` keys with integer values. Example: `{"major": 4, "minor": 0}`
-   *
-   * This is used by the editor to convert visual shaders from older Godot versions.
-   */
   public var engineVersion: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
@@ -89,7 +84,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Adds the specified node to the shader.
+   * Adds the specified [node] to the shader.
    */
   public fun addNode(
     type: VisualShader.Type,
@@ -102,7 +97,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Returns the shader node instance with specified `type` and `id`.
+   * Returns the shader node instance with specified [type] and [id].
    */
   public fun getNode(type: VisualShader.Type, id: Long): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id)
@@ -329,9 +324,6 @@ public open class VisualShader : Shader() {
      *
      */
     VARYING_TYPE_VECTOR_3D(2),
-    /**
-     *
-     */
     VARYING_TYPE_COLOR(3),
     /**
      *

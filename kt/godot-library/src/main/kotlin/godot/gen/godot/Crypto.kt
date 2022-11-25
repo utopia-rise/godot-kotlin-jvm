@@ -150,8 +150,6 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class Crypto : RefCounted() {
@@ -160,7 +158,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates a [godot.PackedByteArray] of cryptographically secure random bytes with given `size`.
+   * Generates a [godot.PackedByteArray] of cryptographically secure random bytes with given [size].
    */
   public fun generateRandomBytes(size: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to size)
@@ -170,7 +168,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates an RSA [godot.CryptoKey] that can be used for creating self-signed certificates and passed to [godot.StreamPeerSSL.acceptStream].
+   * Generates an RSA [godot.CryptoKey] that can be used for creating self-signed certificates and passed to [godot.StreamPeerTLS.acceptStream].
    */
   public fun generateRsa(size: Long): CryptoKey? {
     TransferContext.writeArguments(LONG to size)
@@ -179,7 +177,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates a self-signed [godot.X509Certificate] from the given [godot.CryptoKey] and `issuer_name`. The certificate validity will be defined by `not_before` and `not_after` (first valid date and last valid date). The `issuer_name` must contain at least "CN=" (common name, i.e. the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the country the organization is based in).
+   * Generates a self-signed [godot.X509Certificate] from the given [godot.CryptoKey] and [issuerName]. The certificate validity will be defined by [notBefore] and [notAfter] (first valid date and last valid date). The [issuerName] must contain at least "CN=" (common name, i.e. the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the country the organization is based in).
    *
    * A small example to generate an RSA key and a X509 self-signed certificate.
    *
@@ -228,7 +226,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Sign a given `hash` of type `hash_type` with the provided private `key`.
+   * Sign a given [hash] of type [hashType] with the provided private [key].
    */
   public fun sign(
     hashType: HashingContext.HashType,
@@ -241,7 +239,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Verify that a given `signature` for `hash` of type `hash_type` against the provided public `key`.
+   * Verify that a given [signature] for [hash] of type [hashType] against the provided public [key].
    */
   public fun verify(
     hashType: HashingContext.HashType,
@@ -255,7 +253,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Encrypt the given `plaintext` with the provided public `key`.
+   * Encrypt the given [plaintext] with the provided public [key].
    *
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
@@ -266,7 +264,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Decrypt the given `ciphertext` with the provided private `key`.
+   * Decrypt the given [ciphertext] with the provided private [key].
    *
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
@@ -277,7 +275,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates an [HMAC](https://en.wikipedia.org/wiki/HMAC) digest of `msg` using `key`. The `hash_type` parameter is the hashing algorithm that is used for the inner and outer hashes.
+   * Generates an [HMAC](https://en.wikipedia.org/wiki/HMAC) digest of [msg] using [key]. The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
    *
    * Currently, only [godot.HashingContext.HASH_SHA256] and [godot.HashingContext.HASH_SHA1] are supported.
    */

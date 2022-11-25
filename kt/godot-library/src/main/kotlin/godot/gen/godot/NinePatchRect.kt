@@ -116,7 +116,7 @@ public open class NinePatchRect : Control() {
   }
 
   /**
-   * Sets the size of the margin on the specified [enum Side] to `value` pixels.
+   * Sets the size of the margin on the specified [enum Side] to [value] pixels.
    */
   public fun setPatchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)

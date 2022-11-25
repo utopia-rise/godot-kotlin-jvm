@@ -103,9 +103,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINERASTERIZATIONSTATE_SET_FRONT_FACE, NIL)
     }
 
-  /**
-   *
-   */
   public var depthBiasEnable: Boolean
     get() {
       TransferContext.writeArguments()

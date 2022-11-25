@@ -21,18 +21,12 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCENEREPLICATIONCONFIG)
   }
 
-  /**
-   *
-   */
   public fun getProperties(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -40,27 +34,18 @@ public open class SceneReplicationConfig : Resource() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  /**
-   *
-   */
   public fun addProperty(path: NodePath, index: Long = -1): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_ADD_PROPERTY,
         NIL)
   }
 
-  /**
-   *
-   */
   public fun removeProperty(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_REMOVE_PROPERTY, NIL)
   }
 
-  /**
-   *
-   */
   public fun propertyGetIndex(path: NodePath): Long {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
@@ -68,9 +53,6 @@ public open class SceneReplicationConfig : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   *
-   */
   public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
@@ -78,18 +60,12 @@ public open class SceneReplicationConfig : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   *
-   */
   public fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_SPAWN, NIL)
   }
 
-  /**
-   *
-   */
   public fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
@@ -97,9 +73,6 @@ public open class SceneReplicationConfig : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   *
-   */
   public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr,

@@ -126,8 +126,6 @@ import kotlin.Unit
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class HashingContext : RefCounted() {
@@ -136,7 +134,7 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Starts a new hash computation of the given `type` (e.g. [godot.HASH_SHA256] to start computation of a SHA-256).
+   * Starts a new hash computation of the given [type] (e.g. [godot.HASH_SHA256] to start computation of a SHA-256).
    */
   public fun start(type: HashingContext.HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
@@ -145,7 +143,7 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Updates the computation with the given `chunk` of data.
+   * Updates the computation with the given [chunk] of data.
    */
   public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)

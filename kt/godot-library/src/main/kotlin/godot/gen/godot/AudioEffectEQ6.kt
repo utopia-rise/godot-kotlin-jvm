@@ -11,9 +11,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a 6-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 32 Hz to 10000 Hz.
+ * Adds a 6-band equalizer audio effect to an audio bus. Gives you control over frequencies from 32 Hz to 10000 Hz.
  *
  * Each frequency can be modulated between -60/+24 dB.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Frequency bands:
  *

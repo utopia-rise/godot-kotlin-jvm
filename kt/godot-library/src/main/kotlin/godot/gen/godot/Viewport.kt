@@ -107,7 +107,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the viewport will use the [godot.World3D] defined in [world3d].
+   * If `true`, the viewport will use a unique copy of the [godot.World3D] defined in [world3d].
    */
   public var ownWorld3d: Boolean
     get() {
@@ -167,7 +167,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the the first parent viewport that is set to handle input locally.
    *
+   * A [godot.SubViewportContainer] will automatically set this property to `false` for the [godot.Viewport] contained inside of it.
+   *
+   * See also [setInputAsHandled] and [isInputHandled].
    */
   public var handleInputLocally: Boolean
     get() {
@@ -214,9 +218,6 @@ public open class Viewport internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL, NIL)
     }
 
-  /**
-   * The multisample anti-aliasing mode. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive.
-   */
   public var msaa: Long
     get() {
       TransferContext.writeArguments()
@@ -244,7 +245,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is *not* affected by debanding unless the [godot.Environment.backgroundMode] is [godot.Environment.BG_CANVAS]. See also [godot.ProjectSettings.rendering/antiAliasing/quality/useDebanding].
    *
+   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
    */
   public var useDebanding: Boolean
     get() {
@@ -327,7 +330,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [godot.ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [godot.ProjectSettings.rendering/antiAliasing/quality/msaa] for multi-sample antialiasing, which is significantly cheaper but only smoothens the edges of polygons.
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [godot.ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [godot.ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.
    *
    * When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
    *
@@ -346,11 +349,6 @@ public open class Viewport internal constructor() : Node() {
           NIL)
     }
 
-  /**
-   * Affects the final texture sharpness by reading from a lower or higher mipmap when using FSR. Mipmap bias does nothing when FSR is not being used. Negative values make textures sharper, while positive values make textures blurrier. This value is used to adjust the mipmap bias calculated internally which is based on the selected quality. The formula for this is `-log2(1.0 / scale) + mipmap_bias`. This updates the rendering server's mipmap bias when called
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrMipmapBias] project setting.
-   */
   public var fsrMipmapBias: Double
     get() {
       TransferContext.writeArguments()
@@ -518,11 +516,6 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL)
     }
 
-  /**
-   * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
-   *
-   * **Note:** If this is set to 0, shadows won't be visible.
-   */
   public var shadowAtlasSize: Long
     get() {
       TransferContext.writeArguments()
@@ -536,9 +529,6 @@ public open class Viewport internal constructor() : Node() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var shadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
@@ -552,9 +542,6 @@ public open class Viewport internal constructor() : Node() {
           NIL)
     }
 
-  /**
-   * The subdivision amount of the first quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad0: Long
     get() {
       TransferContext.writeArguments(LONG to 0)
@@ -563,9 +550,6 @@ public open class Viewport internal constructor() : Node() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the second quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad1: Long
     get() {
       TransferContext.writeArguments(LONG to 1)
@@ -574,9 +558,6 @@ public open class Viewport internal constructor() : Node() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the third quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad2: Long
     get() {
       TransferContext.writeArguments(LONG to 2)
@@ -585,9 +566,6 @@ public open class Viewport internal constructor() : Node() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  /**
-   * The subdivision amount of the fourth quadrant on the shadow atlas.
-   */
   public val shadowAtlasQuad3: Long
     get() {
       TransferContext.writeArguments(LONG to 3)
@@ -696,7 +674,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the viewport is currently embedding windows.
+   *
    */
   public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
@@ -704,7 +682,19 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Triggers the given [event] in this [godot.Viewport]. This can be used to pass an [godot.InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
    *
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
+   *
+   * While this method serves a similar purpose as [godot.Input.parseInputEvent], it does not remap the specified [event] based on project settings like [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   *
+   * Calling this method will propagate calls to child nodes for following methods in the given order:
+   *
+   * - [godot.Node.Input]
+   *
+   * - [godot.Control.GuiInput] for [godot.Control] nodes
+   *
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    */
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
@@ -712,7 +702,23 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Triggers the given [godot.InputEvent] in this [godot.Viewport]. This can be used to pass input events between viewports, or to locally apply inputs that were sent over the network or saved to a file.
    *
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
+   *
+   * While this method serves a similar purpose as [godot.Input.parseInputEvent], it does not remap the specified [event] based on project settings like [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   *
+   * Calling this method will propagate calls to child nodes for following methods in the given order:
+   *
+   * - [godot.Node.ShortcutInput]
+   *
+   * - [godot.Node.UnhandledInput]
+   *
+   * - [godot.Node.UnhandledKeyInput]
+   *
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
+   *
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
    */
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
@@ -794,9 +800,6 @@ public open class Viewport internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
-  /**
-   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
-   */
   public fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
       subdiv: Viewport.ShadowAtlasQuadrantSubdiv): Unit {
     TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
@@ -813,7 +816,11 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Returns whether the current [godot.InputEvent] has been handled. Input events are not handled until [setInputAsHandled] has been called during the lifetime of an [godot.InputEvent].
    *
+   * This is usually done as part of input handling methods like [godot.Node.Input], [godot.Control.GuiInput] or others, as well as in corresponding signal handlers.
+   *
+   * If [handleInputLocally] is set to `false`, this method will try finding the first parent viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
   public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
@@ -1191,15 +1198,15 @@ public open class Viewport internal constructor() : Node() {
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
     /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
     /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
     /**
-     * Represents the size of the [enum ShadowAtlasQuadrantSubdiv] enum.
+     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;

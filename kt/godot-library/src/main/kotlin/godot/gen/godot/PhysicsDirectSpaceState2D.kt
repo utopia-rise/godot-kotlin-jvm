@@ -44,7 +44,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    *
-   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
@@ -91,7 +91,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    *
-   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
   public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
       VariantArray<Any?> {
