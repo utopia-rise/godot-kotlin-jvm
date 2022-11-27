@@ -311,13 +311,13 @@ class Invocation : Node3D() {
 	var utf8String = ""
 
 	@RegisterSignal
-	val signalNoParam by signal()
+	val noParam by signal()
 
 	@RegisterSignal
-	val signalOneParam by signal<Boolean>("refresh")
+	val oneParam by signal<Boolean>("refresh")
 
 	@RegisterSignal
-	val signalTwoParam by signal<String, Invocation>("str", "inv")
+	val twoParam by signal<String, Invocation>("str", "inv")
 
 	@RegisterFunction
 	fun intValue(value: Int) = value
@@ -377,17 +377,17 @@ class Invocation : Node3D() {
 		val path = NodePath("CanvasLayer/Button")
 		val getNode2 = getNodeAs<Button>(path)
 
-		signalNoParam.connect(invocation, invocation::hookNoParam)
-		signalOneParam.connect(invocation, invocation::hookOneParam)
-		signalTwoParam.connect(invocation, invocation::hookTwoParam)
+		noParam.connect(invocation, invocation::hookNoParam)
+		oneParam.connect(invocation, invocation::hookOneParam)
+		twoParam.connect(invocation, invocation::hookTwoParam)
 
 		(getNodeOrNull(path) as Button?)?.pressed?.connect(
 			invocation,
 			invocation::hookNoParam
 		)
-		signalNoParam.emit()
-		signalOneParam.emit(false)
-		signalTwoParam.emit("My Awesome param !", this)
+		noParam.emit()
+		oneParam.emit(false)
+		twoParam.emit("My Awesome param !", this)
 
 		println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
 		resourceTest = NavigationMesh()

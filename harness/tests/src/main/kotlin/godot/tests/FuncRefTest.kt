@@ -14,7 +14,7 @@ import godot.signals.signal
 class FuncRefTest : Node() {
 
     @RegisterSignal
-    val signalTest by signal()
+    val test by signal()
 
     @RegisterProperty
     var blubb: Boolean = false
@@ -30,7 +30,7 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     override fun _ready() {
-        signalTest.connect(this, ::testSignalCallback)
+        test.connect(this, ::testSignalCallback)
     }
 
     @Rpc
@@ -41,7 +41,7 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     fun testSignalCall() {
-        signalTest.emit()
+        test.emit()
     }
 
     @RegisterFunction

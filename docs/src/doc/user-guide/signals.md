@@ -1,21 +1,26 @@
-Use the delegate `signal` to create a signal and annotate it with `@RegisterSignal`. Note that the name of the signal must start with `signal` (see [API differences](api-differences.md) section for an explanation). This module only supports signals with at most 10 parameters at the moment.
+Use the delegate `signal` to create a signal and annotate it with `@RegisterSignal`.
+
+!!! warning Signal parameter count
+    In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. At the moment, you can create signals and expose them to Godot with at most 10 parameters.  
+    If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions (see the section [Naming](#naming) below for details).
+
 
 ```kotlin
 @RegisterClass
 class RotatingCube: Spatial() {
     @RegisterSignal
-    val signalReverseChanged by signal<Boolean>("reverse")
+    val reverseChanged by signal<Boolean>("reverse")
 }
 ```
 
 ## Naming
-For consistency with Godot's style, the `signal` prefix is dropped during registration and the name of your signal is converted to snake_case. The signal `signalHelloThere` is known as `hello_there` in GDScript.
+For consistency with Godot's style, the name of your signal is converted to snake_case. The signal `helloThere` is known as `hello_there` in GDScript.
 
 ## Emitting
 Every signal has a `emit` method which can be used to emit it in a typesafe way.
 
 ```kotlin
-signalReverseChanged.emit(false)
+reverseChanged.emit(false)
 ```
 
 ## Subscribing
@@ -35,7 +40,7 @@ class AnotherObject: Object() {
     val targetObject = SomeObject()
 
     init {
-        signalReverseChanged.connect(targetObject, targetObject::onReverseChanged)
+        reverseChanged.connect(targetObject, targetObject::onReverseChanged)
     }
 }
 ```
