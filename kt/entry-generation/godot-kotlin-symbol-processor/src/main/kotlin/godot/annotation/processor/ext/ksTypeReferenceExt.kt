@@ -16,7 +16,7 @@ fun KSTypeReference.mapToType(): Type {
     val superTypes = when (val declaration = resolvedType.declaration) {
         is KSClassDeclaration -> declaration.superTypes.mapNotNull { it.mapToType() }.toList()
         is KSTypeAlias -> listOfNotNull(declaration.type.mapToType())
-        else -> throw IllegalStateException("Unknown declaration type $declaration for type reference")
+        else -> listOf()
     }
 
     val typeKind = when ((resolvedType.declaration as? KSClassDeclaration)?.classKind) {
@@ -30,9 +30,10 @@ fun KSTypeReference.mapToType(): Type {
     }
 
     return Type(
-        fqName,
-        typeKind,
-        resolvedType.isMarkedNullable,
-        superTypes
-    ) { resolvedType.arguments.mapNotNull { it.type?.mapToType() } }
+        fqName = fqName,
+        kind = typeKind,
+        isNullable = resolvedType.isMarkedNullable,
+        supertypes = superTypes,
+        arguments = { resolvedType.arguments.mapNotNull { it.type?.mapToType() } }
+    )
 }

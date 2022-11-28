@@ -7,7 +7,7 @@ class ConstructorArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): B
     override fun execute() {
         sourceFiles
             .flatMap { it.registeredClasses }
-            .flatMap { it.constructors }
+            .flatMap { it.registeredConstructors }
             .forEach { registeredConstructor ->
                 if (registeredConstructor.parameters.size > 5) {
                     logger.error("RegisteredConstructor ${registeredConstructor.fqName} has more than 5 arguments")

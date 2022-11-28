@@ -8,7 +8,7 @@ class DefaultConstructorCheck(logger: Logger, sourceFiles: List<SourceFile>): Ba
         sourceFiles
             .flatMap { it.registeredClasses }
             .forEach { registeredClass ->
-                if (registeredClass.constructors.none { it.parameters.isEmpty() }) {
+                if (registeredClass.registeredConstructors.none { it.parameters.isEmpty() }) {
                     logger.error("RegisteredClass ${registeredClass.fqName} does not have a public default constructor")
                 }
             }

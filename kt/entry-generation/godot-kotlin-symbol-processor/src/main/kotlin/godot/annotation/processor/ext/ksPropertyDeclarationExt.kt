@@ -4,21 +4,22 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.Modifier
+import godot.annotation.RegisterProperty
 import godot.annotation.processor.compiler.PsiProvider
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.model.EnumAnnotation
-import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.EnumHintStringAnnotation
 import godot.entrygenerator.model.EnumListHintStringAnnotation
+import godot.entrygenerator.model.Property
 import godot.entrygenerator.model.PropertyAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
 
-fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPropertyDeclaration>): RegisteredProperty {
+fun KSPropertyDeclaration.mapToProperty(declaredProperties: List<KSPropertyDeclaration>): Property {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for a registered property declaration cannot be null"
     }
-    val annotations = annotations
+    val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? PropertyAnnotation }
         .toMutableList()
         .also { declaredAnnotations ->
@@ -35,10 +36,10 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
 
     val typeDeclaration = type.resolve().declaration
     if (
-        !annotations.hasAnnotation<EnumAnnotation>() &&
+        !mappedAnnotations.hasAnnotation<EnumAnnotation>() &&
         (typeDeclaration as? KSClassDeclaration)?.classKind == ClassKind.ENUM_CLASS
     ) {
-        annotations.add(
+        mappedAnnotations.add(
             EnumHintStringAnnotation(
                 typeDeclaration
                     .declarations
@@ -50,12 +51,12 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
         )
     }
     if (
-        !annotations.hasAnnotation<EnumAnnotation>() &&
+        !mappedAnnotations.hasAnnotation<EnumAnnotation>() &&
         typeDeclaration.qualifiedName?.asString()?.startsWith("kotlin.collections") == true
     ) {
         val containingTypeDeclaration = (type.resolve().arguments.firstOrNull()?.type?.resolve()?.declaration as? KSClassDeclaration)
         if (containingTypeDeclaration?.classKind == ClassKind.ENUM_CLASS) {
-            annotations.add(
+            mappedAnnotations.add(
                 EnumListHintStringAnnotation( //here we already know it has to be a enumList as enumFlags are already covered in the annotation resolving
                     containingTypeDeclaration
                         .declarations
@@ -77,15 +78,28 @@ fun KSPropertyDeclaration.mapToRegisteredProperty(declaredProperties: List<KSPro
         "${findOverridee()?.qualifiedName?.asString()}"
     } else fqName
 
-    return RegisteredProperty(
-        fqName,
-        mappedType,
-        isMutable,
-        modifiers.contains(Modifier.LATEINIT),
-        findOverridee() != null,
-        annotations.toList()
-    ) {
-        PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
+    val isRegistered = annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName }
+
+    return if (isRegistered) {
+        RegisteredProperty(
+            fqName,
+            mappedType,
+            isMutable,
+            modifiers.contains(Modifier.LATEINIT),
+            findOverridee() != null,
+            mappedAnnotations.toList()
+        ) {
+            PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
+        }
+    } else {
+        Property(
+            fqName,
+            mappedType,
+            isMutable,
+            modifiers.contains(Modifier.LATEINIT),
+            findOverridee() != null,
+            mappedAnnotations.toList()
+        )
     }
 }
 

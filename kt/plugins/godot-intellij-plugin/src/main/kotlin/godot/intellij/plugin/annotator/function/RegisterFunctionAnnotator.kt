@@ -31,9 +31,9 @@ class RegisterFunctionAnnotator : Annotator {
                     functionNotRegisteredQuickFix
                 )
                 overriddenRegisteredAbstractFunctionNotRegistered(element) -> holder.registerProblem(
-                    GodotPluginBundle.message("problem.function.overriddenAbstractFunctionNotRegistered"),
-                    element.nameIdentifier ?: element.navigationElement,
-                    functionNotRegisteredQuickFix,
+                    message = GodotPluginBundle.message("problem.function.overriddenFunctionNotRegistered"),
+                    errorLocation = element.nameIdentifier ?: element.navigationElement,
+                    quickFix = functionNotRegisteredQuickFix,
                     problemHighlightType = ProblemHighlightType.WEAK_WARNING
                 )
             }

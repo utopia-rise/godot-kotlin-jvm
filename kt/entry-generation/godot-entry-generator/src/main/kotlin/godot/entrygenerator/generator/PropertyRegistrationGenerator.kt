@@ -32,31 +32,40 @@ object PropertyRegistrationGenerator {
         classRegistrarBuilder: TypeSpec.Builder
     ) {
         registeredClass
-            .properties
+            .registeredProperties
             .forEach { registeredProperty ->
                 when {
                     registeredProperty.type.kind == TypeKind.ENUM_CLASS -> registerEnum(
-                        registeredProperty,
-                        className,
-                        registerClassControlFlow,
-                        classRegistrarBuilder
+                        containingRegisteredClass = registeredClass,
+                        registeredProperty = registeredProperty,
+                        className = className,
+                        registerClassControlFlow = registerClassControlFlow,
+                        classRegistrarBuilder = classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
-                        registeredProperty,
-                        className,
-                        registerClassControlFlow,
-                        classRegistrarBuilder
+                        containingRegisteredClass = registeredClass,
+                        registeredProperty = registeredProperty,
+                        className = className,
+                        registerClassControlFlow = registerClassControlFlow,
+                        classRegistrarBuilder = classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
-                        registeredProperty,
-                        className,
-                        registerClassControlFlow,
-                        classRegistrarBuilder
+                        containingRegisteredClass = registeredClass,
+                        registeredProperty = registeredProperty,
+                        className = className,
+                        registerClassControlFlow = registerClassControlFlow,
+                        classRegistrarBuilder = classRegistrarBuilder
                     )
-                    else -> registerProperty(registeredProperty, className, registerClassControlFlow, classRegistrarBuilder)
+                    else -> registerProperty(
+                        containingRegisteredClass = registeredClass,
+                        registeredProperty = registeredProperty,
+                        className = className,
+                        registerClassControlFlow = registerClassControlFlow,
+                        classRegistrarBuilder = classRegistrarBuilder
+                    )
                 }
             }
     }
@@ -66,19 +75,28 @@ object PropertyRegistrationGenerator {
         classRegistrarBuilder: TypeSpec.Builder
     ) {
         registeredClass
-            .properties
+            .registeredProperties
             .forEach { registeredProperty ->
-                generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+                generateAndProvideDefaultValueProvider(
+                    containingRegisteredClass = registeredClass,
+                    registeredProperty = registeredProperty,
+                    classRegistrarBuilder = classRegistrarBuilder
+                )
             }
     }
 
     private fun registerProperty(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProviderVariableName = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+        val defaultValueProviderVariableName = generateAndProvideDefaultValueProvider(
+            containingRegisteredClass = containingRegisteredClass,
+            registeredProperty = registeredProperty,
+            classRegistrarBuilder = classRegistrarBuilder
+        )
         val typeFqNameWithNullability = if (registeredProperty.type.isNullable) {
             "${registeredProperty.type.fqName}?"
         } else {
@@ -103,12 +121,17 @@ object PropertyRegistrationGenerator {
     }
 
     private fun registerEnumList(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(
+            containingRegisteredClass = containingRegisteredClass,
+            registeredProperty = registeredProperty,
+            classRegistrarBuilder = classRegistrarBuilder
+        )
 
         registerClassControlFlow
             .addStatement(
@@ -124,12 +147,17 @@ object PropertyRegistrationGenerator {
     }
 
     private fun registerEnumFlag(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(
+            containingRegisteredClass = containingRegisteredClass,
+            registeredProperty = registeredProperty,
+            classRegistrarBuilder = classRegistrarBuilder
+        )
 
         registerClassControlFlow
             .addStatement(
@@ -145,12 +173,17 @@ object PropertyRegistrationGenerator {
     }
 
     private fun registerEnum(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(
+            containingRegisteredClass = containingRegisteredClass,
+            registeredProperty = registeredProperty,
+            classRegistrarBuilder = classRegistrarBuilder
+        )
 
         registerClassControlFlow
             .addStatement(
@@ -192,11 +225,12 @@ object PropertyRegistrationGenerator {
     }
 
     private fun generateAndProvideDefaultValueProvider(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         classRegistrarBuilder: TypeSpec.Builder
     ): String {
         return if (shouldBeVisibleInEditor(registeredProperty) && !registeredProperty.isLateinit) {
-            generateDefaultValueProvider(registeredProperty, classRegistrarBuilder)
+            generateDefaultValueProvider(containingRegisteredClass, registeredProperty, classRegistrarBuilder)
             "${registeredProperty.name}DefaultValueProvider"
         } else {
             "{·null·}"
@@ -204,6 +238,7 @@ object PropertyRegistrationGenerator {
     }
 
     private fun generateDefaultValueProvider(
+        containingRegisteredClass: RegisteredClass,
         registeredProperty: RegisteredProperty,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
@@ -236,7 +271,16 @@ object PropertyRegistrationGenerator {
             .addModifiers(KModifier.OPEN)
             .initializer("{·${defaultValueStringTemplate.replace(" ", "·")}·}", *defaultValueStringTemplateValues)
 
-        if (registeredProperty.isOverridee) {
+        val overridesPropertyFromInterface = containingRegisteredClass
+            .supertypes
+            .filter { clazz -> clazz.isInterface }
+            .flatMap { clazz -> clazz.properties }
+            .any { propertyInInterface -> propertyInInterface.name == registeredProperty.name }
+
+        // issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/371
+        // we don't override default value providers of properties from interfaces as interfaces don't get a ClassRegistrar
+        // hence we don't have anything to override in the first place
+        if (registeredProperty.isOverridee && !overridesPropertyFromInterface) {
             defaultValuePropertySpec.addModifiers(KModifier.OVERRIDE)
         }
 

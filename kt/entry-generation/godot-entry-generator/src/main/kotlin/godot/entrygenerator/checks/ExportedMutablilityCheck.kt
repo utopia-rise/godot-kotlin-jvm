@@ -8,7 +8,7 @@ class ExportedMutablilityCheck(logger: Logger, sourceFiles: List<SourceFile>): B
     override fun execute() {
         sourceFiles
             .flatMap { it.registeredClasses }
-            .flatMap { it.properties }
+            .flatMap { it.registeredProperties }
             .filter { registeredProperty -> registeredProperty.annotations.filterIsInstance<ExportAnnotation>().isNotEmpty() }
             .forEach { exportedProperty ->
                 if (!exportedProperty.isMutable) {

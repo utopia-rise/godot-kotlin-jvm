@@ -3,12 +3,12 @@ package godot.annotation.processor.ext
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
-import com.google.devtools.ksp.isAbstract
 import com.google.devtools.ksp.isPublic
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
-import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.entrygenerator.model.ClassAnnotation
@@ -56,19 +56,15 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
         .toList()
 
-    val registeredFunctions = getAllFunctions()
-        .mapNotNull { it.mapToRegisteredFunction() }
+    val functions = getAllFunctions()
+        .mapNotNull { it.mapToFunction() }
         .toList()
 
     val declaredProperties = getDeclaredProperties()
     val allProperties = getAllProperties()
-    val registeredProperties = allProperties
-        .filter { property ->
-            property.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } ||
-                property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
-        }
+    val properties = allProperties
         .map {
-            it.mapToRegisteredProperty(declaredProperties.toList())
+            it.mapToProperty(declaredProperties.toList())
         }
         .toList()
     val registeredSignals = allProperties
@@ -79,52 +75,64 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         .toList()
 
     val shouldBeRegistered = annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName } ||
-        isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
+        isAbstractAndContainsRegisteredMembers(
+            registeredFunctions = functions.filterIsInstance<RegisteredFunction>(),
+            registeredProperties = properties.filterIsInstance<RegisteredProperty>(),
+            registeredSignals = registeredSignals
+        ) ||
         isAbstractAndInheritsGodotBaseClass()
 
+    val constructors = getConstructors()
+        .filter { it.isPublic() }
+        .filter { constructor ->
+            constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
+                constructor.parameters.isEmpty()
+        }
+        .map { it.mapToConstructor(isParentClassRegistered = shouldBeRegistered) }
+        .toList()
+
     return if (shouldBeRegistered) {
-
-        val registeredConstructors = getConstructors()
-            .filter { it.isPublic() }
-            .filter { constructor ->
-                constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
-                    constructor.parameters.isEmpty()
-            }
-            .map { it.mapToRegisteredConstructor() }
-            .toList()
-
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
             resPath = getResPath(CompilerDataProvider.srcDirs, projectDir),
             annotations = mappedAnnotations,
-            constructors = registeredConstructors,
-            functions = registeredFunctions,
+            constructors = constructors,
+            functions = functions,
             signals = registeredSignals,
-            properties = registeredProperties,
-            isAbstract = isAbstract()
+            properties = properties,
+            isAbstract = isAbstractClass(),
+            isInterface = isInterface(),
         )
     } else {
         Clazz(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            annotations = mappedAnnotations
+            annotations = mappedAnnotations,
+            constructors = constructors,
+            functions = functions,
+            properties = properties,
+            isAbstract = isAbstractClass(),
+            isInterface = isInterface(),
         )
     }
 }
+
+private fun KSClassDeclaration.isAbstractClass(): Boolean = this.modifiers.contains(Modifier.ABSTRACT)
+private fun KSClassDeclaration.isInterface(): Boolean = this.classKind == ClassKind.INTERFACE
 
 fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
     registeredFunctions: List<RegisteredFunction>,
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
 ): Boolean {
-    return isAbstract() && (registeredFunctions.isNotEmpty() || registeredProperties.isNotEmpty() || registeredSignals.isNotEmpty())
+    return isAbstractClass() && (registeredFunctions.isNotEmpty() || registeredProperties.isNotEmpty() || registeredSignals.isNotEmpty())
 }
 
 // issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/365
 // also register empty abstract classes which inherit from a godot base class as child class registrars will reference the class registrar of this class
 fun KSClassDeclaration.isAbstractAndInheritsGodotBaseClass(): Boolean {
-    return isAbstract()
+    return isAbstractClass()
         && superTypes
         .any { supertype ->
             supertype

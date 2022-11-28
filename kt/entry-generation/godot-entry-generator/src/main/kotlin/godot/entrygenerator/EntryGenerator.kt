@@ -5,6 +5,7 @@ import godot.entrygenerator.checks.ConstructorArgCountCheck
 import godot.entrygenerator.checks.ConstructorOverloadingCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.ExportedMutablilityCheck
+import godot.entrygenerator.checks.OverideeRegisteredCheck
 import godot.entrygenerator.checks.PackageSameAsFileNameCheck
 import godot.entrygenerator.checks.SignalNamePrefixCheck
 import godot.entrygenerator.checks.SignalTypeCheck
@@ -33,10 +34,10 @@ object EntryGenerator {
 
         with(MainEntryFileBuilder) {
             sourceFiles.forEach { sourceFile ->
-                sourceFile.registeredClasses.forEach { registeredClass ->
+                sourceFile.registeredClasses.forEach { clazz ->
                     registerClassRegistrar(
                         ClassRegistrarFileBuilder(
-                            registeredClass,
+                            clazz,
                             appendableProvider
                         )
                     )
@@ -64,5 +65,7 @@ object EntryGenerator {
         SignalTypeCheck(logger, sourceFiles).execute()
 
         ExportedMutablilityCheck(logger, sourceFiles).execute()
+
+        OverideeRegisteredCheck(logger, sourceFiles).execute()
     }
 }

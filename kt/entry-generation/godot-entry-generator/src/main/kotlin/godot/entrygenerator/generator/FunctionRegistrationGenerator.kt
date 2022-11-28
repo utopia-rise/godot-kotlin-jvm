@@ -13,7 +13,7 @@ import godot.entrygenerator.model.RpcMode
 
 object FunctionRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
-        registeredClass.functions.forEach { registeredFunction ->
+        registeredClass.registeredFunctions.forEach { registeredFunction ->
             registerClassControlFlow
                 .addStatement(
                     getFunctionTemplateString(registeredFunction),
