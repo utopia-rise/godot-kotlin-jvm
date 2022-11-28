@@ -22,6 +22,10 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: android-export-${{ inputs.target }}-binary-arm64
+    - name: Download android ${{ inputs.target }} export x86_64 binary
+      uses: actions/download-artifact@v3
+      with:
+        name: android-export-${{ inputs.target }}-binary-x86_64
     - name: Build android ${{ inputs.target }} export template
       shell: bash
       run: |
