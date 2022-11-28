@@ -3,8 +3,8 @@ package godot.tests
 import godot.Button
 import godot.NavigationMesh
 import godot.Node3D
-import godot.XRServer
 import godot.Object
+import godot.XRServer
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
@@ -54,6 +54,7 @@ enum class TestEnum {
 
 @RegisterClass
 class Invocation : Node3D() {
+    // fake change
 	@Export
 	@RegisterProperty
 	lateinit var button: Button
