@@ -70,16 +70,24 @@ var Logger = load('res://addons/gut/logger.gd') # everything should use get_logg
 var _lgr = null
 
 var _test_mode = false
+
 var AutoFree = load('res://addons/gut/autofree.gd')
+var Comparator = load('res://addons/gut/comparator.gd')
+var CompareResult = load('res://addons/gut/compare_result.gd')
+var DiffTool = load('res://addons/gut/diff_tool.gd')
 var Doubler = load('res://addons/gut/doubler.gd')
 var Gut = load('res://addons/gut/gut.gd')
 var HookScript = load('res://addons/gut/hook_script.gd')
+var InputFactory = load("res://addons/gut/input_factory.gd")
+var InputSender = load("res://addons/gut/input_sender.gd")
+var JunitXmlExport = load('res://addons/gut/junit_xml_export.gd')
 var MethodMaker = load('res://addons/gut/method_maker.gd')
 var OneToMany = load('res://addons/gut/one_to_many.gd')
 var OrphanCounter = load('res://addons/gut/orphan_counter.gd')
 var ParameterFactory = load('res://addons/gut/parameter_factory.gd')
 var ParameterHandler = load('res://addons/gut/parameter_handler.gd')
 var Printers = load('res://addons/gut/printers.gd')
+var ResultExporter = load('res://addons/gut/result_exporter.gd')
 var Spy = load('res://addons/gut/spy.gd')
 var Strutils = load('res://addons/gut/strutils.gd')
 var Stubber = load('res://addons/gut/stubber.gd')
@@ -90,18 +98,68 @@ var TestCollector = load('res://addons/gut/test_collector.gd')
 var ThingCounter = load('res://addons/gut/thing_counter.gd')
 
 # Source of truth for the GUT version
-var version = '7.0.0'
+var version = '7.4.1'
 # The required Godot version as an array.
 var req_godot = [3, 2, 0]
 # Used for doing file manipulation stuff so as to not keep making File instances.
 # could be a bit of overkill but who cares.
 var _file_checker = File.new()
+# Online fetch of the latest version available on github
+var latest_version = null
+var should_display_latest_version = false
+
+
+# These methods all call super implicitly.  Stubbing them to call super causes
+# super to be called twice.
+var non_super_methods = [
+	"_init",
+	"_ready",
+	"_notification",
+	"_enter_world",
+	"_exit_world",
+	"_process",
+	"_physics_process",
+	"_exit_tree",
+	"_gui_input	",
+]
+
+
+func _ready() -> void:
+	_http_request_latest_version()
+
+func _http_request_latest_version() -> void:
+	var http_request = HTTPRequest.new()
+	http_request.name = "http_request"
+	add_child(http_request)
+	http_request.connect("request_completed", self, "_on_http_request_latest_version_completed")
+	# Perform a GET request. The URL below returns JSON as of writing.
+	var error = http_request.request("https://api.github.com/repos/bitwes/Gut/releases/latest")
+
+func _on_http_request_latest_version_completed(result, response_code, headers, body):
+	if not result == HTTPRequest.RESULT_SUCCESS:
+		return
+
+	var response = parse_json(body.get_string_from_utf8())
+	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+	if response:
+		if response.get("html_url"):
+			latest_version = Array(response.html_url.split("/")).pop_back().right(1)
+			if latest_version != version:
+				should_display_latest_version = true
+
+
 
 const GUT_METADATA = '__gut_metadata_'
 
 enum DOUBLE_STRATEGY{
 	FULL,
 	PARTIAL
+}
+
+enum DIFF {
+	DEEP,
+	SHALLOW,
+	SIMPLE
 }
 
 # ------------------------------------------------------------------------------
@@ -118,7 +176,7 @@ func get_version_text():
 # Returns a nice string for erroring out when we have a bad Godot version.
 # ------------------------------------------------------------------------------
 func get_bad_version_text():
-	var ver = join_array(req_godot, '.')
+	var ver = PoolStringArray(req_godot).join('.')
 	var info = Engine.get_version_info()
 	var gd_version = str(info.major, '.', info.minor, '.', info.patch)
 	return 'GUT ' + version + ' requires Godot ' + ver + ' or greater.  Godot version is ' + gd_version
@@ -127,12 +185,47 @@ func get_bad_version_text():
 # ------------------------------------------------------------------------------
 # Checks the Godot version against req_godot array.
 # ------------------------------------------------------------------------------
-func is_version_ok():
-	var info = Engine.get_version_info()
-	var is_ok = info.major >= req_godot[0] and \
-			info.minor >= req_godot[1] and \
-			info.patch >= req_godot[2]
-	return is_ok
+func is_version_ok(engine_info=Engine.get_version_info(),required=req_godot):
+	var is_ok = null
+	var engine_array = [engine_info.major, engine_info.minor, engine_info.patch]
+
+	var idx = 0
+	while(is_ok == null and idx < engine_array.size()):
+		if(int(engine_array[idx]) > int(required[idx])):
+			is_ok = true
+		elif(int(engine_array[idx]) < int(required[idx])):
+			is_ok = false
+
+		idx += 1
+
+	# still null means each index was the same.
+	return nvl(is_ok, true)
+
+
+func godot_version(engine_info=Engine.get_version_info()):
+	return str(engine_info.major, '.', engine_info.minor, '.', engine_info.patch)
+
+
+func is_godot_version(expected, engine_info=Engine.get_version_info()):
+	var engine_array = [engine_info.major, engine_info.minor, engine_info.patch]
+	var expected_array = expected.split('.')
+
+	if(expected_array.size() > engine_array.size()):
+		return false
+
+	var is_version = true
+	var i = 0
+	while(i < expected_array.size() and i < engine_array.size() and is_version):
+		if(expected_array[i] == str(engine_array[i])):
+			i += 1
+		else:
+			is_version = false
+
+	return is_version
+
+
+func is_godot_version_gte(expected, engine_info=Engine.get_version_info()):
+	return is_version_ok(engine_info, expected.split('.'))
 
 
 # ------------------------------------------------------------------------------
@@ -149,32 +242,6 @@ func get_logger():
 			_lgr = Logger.new()
 		return _lgr
 
-
-# ------------------------------------------------------------------------------
-# Returns an array created by splitting the string by the delimiter
-# ------------------------------------------------------------------------------
-func split_string(to_split, delim):
-	var to_return = []
-
-	var loc = to_split.find(delim)
-	while(loc != -1):
-		to_return.append(to_split.substr(0, loc))
-		to_split = to_split.substr(loc + 1, to_split.length() - loc)
-		loc = to_split.find(delim)
-	to_return.append(to_split)
-	return to_return
-
-
-# ------------------------------------------------------------------------------
-# Returns a string containing all the elements in the array separated by delim
-# ------------------------------------------------------------------------------
-func join_array(a, delim):
-	var to_return = ''
-	for i in range(a.size()):
-		to_return += str(a[i])
-		if(i != a.size() -1):
-			to_return += str(delim)
-	return to_return
 
 
 # ------------------------------------------------------------------------------
@@ -217,6 +284,18 @@ func is_double(obj):
 
 
 # ------------------------------------------------------------------------------
+# Checks if the passed in is an instance of a class
+# ------------------------------------------------------------------------------
+func is_instance(obj):
+	return typeof(obj) == TYPE_OBJECT and !obj.has_method('new') and !obj.has_method('instance')
+
+# ------------------------------------------------------------------------------
+# Checks if the passed in is a GDScript
+# ------------------------------------------------------------------------------
+func is_gdscript(obj):
+	return typeof(obj) == TYPE_OBJECT and str(obj).begins_with('[GDScript:')
+
+# ------------------------------------------------------------------------------
 # Returns an array of values by calling get(property) on each element in source
 # ------------------------------------------------------------------------------
 func extract_property_from_array(source, property):
@@ -243,6 +322,7 @@ func write_file(path, content):
 		f.store_string(content)
 		f.close()
 
+	return result
 
 # ------------------------------------------------------------------------------
 # true if what is passed in is null or an empty string.
@@ -258,7 +338,10 @@ func is_null_or_empty(text):
 func get_native_class_name(thing):
 	var to_return = null
 	if(is_native_class(thing)):
-		to_return = thing.new().get_class()
+		var newone = thing.new()
+		to_return = newone.get_class()
+		if(!newone is Reference):
+			newone.free()
 	return to_return
 
 
@@ -310,3 +393,23 @@ func search_array(ar, prop_method, value):
 		return ar[idx]
 	else:
 		return null
+
+
+func are_datatypes_same(got, expected):
+	return !(typeof(got) != typeof(expected) and got != null and expected != null)
+
+
+func pretty_print(dict):
+	print(str(JSON.print(dict, ' ')))
+
+
+func get_script_text(obj):
+	return obj.get_script().get_source_code()
+
+
+func get_singleton_by_name(name):
+	var source = str("var singleton = ", name)
+	var script = GDScript.new()
+	script.set_source_code(source)
+	script.reload()
+	return script.new().singleton

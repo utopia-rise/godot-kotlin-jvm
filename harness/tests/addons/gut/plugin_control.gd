@@ -69,13 +69,10 @@ export var _yield_between_tests = true
 # development to prevent any breaking changes and will likely be removed in
 # the future.
 export var _disable_strict_datatype_checks = false
-# The prefix used to find test methods.
-export var _test_prefix = 'test_'
 # The prefix used to find test scripts.
 export var _file_prefix = 'test_'
-# The file extension for test scripts (I don't think you can change this and
-# everythign work).
-export var _file_extension = '.gd'
+# The suffix used to find test scripts.
+export var _file_suffix = '.gd'
 # The prefix used to find Inner Test Classes.
 export var _inner_class_prefix = 'Test'
 # The directory GUT will use to write any temporary files.  This isn't used
@@ -104,6 +101,10 @@ export(int, 'FULL', 'PARTIAL') var _double_strategy = 1
 export(String, FILE) var _pre_run_script = ''
 # Path and filename to the script to run after all tests are run.
 export(String, FILE) var _post_run_script = ''
+# Path to the file that gut will export results to in the junit xml format
+export(String, FILE) var _junit_xml_file = ''
+# Flag to include a timestamp in the filename of _junit_xml_file
+export(bool) var _junit_xml_timestamp = false
 # ------------------------------------------------------------------------------
 
 
@@ -177,9 +178,7 @@ func _setup_gut():
 	_gut._tests_like = _tests_like
 	_gut._inner_class_name = _inner_class_name
 
-	_gut._test_prefix = _test_prefix
 	_gut._file_prefix = _file_prefix
-	_gut._file_extension = _file_extension
 	_gut._inner_class_prefix = _inner_class_prefix
 	_gut._temp_directory = _temp_directory
 
@@ -193,6 +192,8 @@ func _setup_gut():
 	_gut.set_post_run_script(_post_run_script)
 	_gut.set_color_output(_color_output)
 	_gut.show_orphans(_show_orphans)
+	_gut.set_junit_xml_file(_junit_xml_file)
+	_gut.set_junit_xml_timestamp(_junit_xml_timestamp)
 
 	get_parent().add_child(_gut)
 

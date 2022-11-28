@@ -4,6 +4,7 @@ var _utils = load('res://addons/gut/utils.gd').get_instance()
 # name for the types that corosponds with the type constants defined in the
 # engine.
 var types = {}
+var NativeScriptClass = null
 
 func _init_types_dictionary():
 	types[TYPE_NIL] = 'TYPE_NIL'
@@ -45,6 +46,10 @@ var _str_ignore_types = [
 
 func _init():
 	_init_types_dictionary()
+	# NativeScript does not exist when GDNative is not included in the build
+	if(type_exists('NativeScript')):
+		var getter = load('res://addons/gut/get_native_script.gd')
+		NativeScriptClass = getter.get_it()
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -72,6 +77,10 @@ func _get_obj_filename(thing):
 			# If it isn't a packed scene and it doesn't have a script then
 			# we do nothing.  This just read better.
 			pass
+	elif(NativeScriptClass != null and thing.get_script() is NativeScriptClass):
+		# Work with GDNative scripts:
+		# inst2dict fails with "Not a script with an instance" on GDNative script instances
+		filename = _get_filename(thing.get_script().resource_path)
 	elif(!_utils.is_native_class(thing)):
 		var dict = inst2dict(thing)
 		filename = _get_filename(dict['@path'])
@@ -95,6 +104,11 @@ func type2str(thing):
 		# will pass typeof(thing) == TYPE_OBJECT check so this has to be
 		# before that.
 		str_thing = str(null)
+	elif(typeof(thing) == TYPE_REAL):
+		if(!'.' in str_thing):
+			str_thing += '.0'
+	elif(typeof(thing) == TYPE_STRING):
+		str_thing = str('"', thing, '"')
 	elif(typeof(thing) in _str_ignore_types):
 		# do nothing b/c we already have str(thing) in
 		# to_return.  I think this just reads a little
@@ -107,8 +121,15 @@ func type2str(thing):
 			var double_path = _get_filename(thing.__gut_metadata_.path)
 			if(thing.__gut_metadata_.subpath != ''):
 				double_path += str('/', thing.__gut_metadata_.subpath)
+			elif(thing.__gut_metadata_.from_singleton != ''):
+				double_path = thing.__gut_metadata_.from_singleton + " Singleton"
 
-			str_thing += '(double of ' + double_path + ')'
+			var double_type = "double"
+			if(thing.__gut_metadata_.is_partial):
+				double_type = "partial-double"
+
+			str_thing += str("(", double_type, " of ", double_path, ")")
+
 			filename = null
 	elif(types.has(typeof(thing))):
 		if(!str_thing.begins_with('(')):
@@ -118,3 +139,39 @@ func type2str(thing):
 	if(filename != null):
 		str_thing += str('(', filename, ')')
 	return str_thing
+
+# ------------------------------------------------------------------------------
+# Returns the string truncated with an '...' in it.  Shows the start and last
+# 10 chars.  If the string is  smaller than max_size the entire string is
+# returned.  If max_size is -1 then truncation is skipped.
+# ------------------------------------------------------------------------------
+func truncate_string(src, max_size):
+	var to_return = src
+	if(src.length() > max_size - 10 and max_size != -1):
+		to_return = str(src.substr(0, max_size - 10), '...',  src.substr(src.length() - 10, src.length()))
+	return to_return
+
+
+func _get_indent_text(times, pad):
+	var to_return = ''
+	for i in range(times):
+		to_return += pad
+
+	return to_return
+
+func indent_text(text, times, pad):
+	if(times == 0):
+		return text
+
+	var to_return = text
+	var ending_newline = ''
+
+	if(text.ends_with("\n")):
+		ending_newline = "\n"
+		to_return = to_return.left(to_return.length() -1)
+
+	var padding = _get_indent_text(times, pad)
+	to_return = to_return.replace("\n", "\n" + padding)
+	to_return += ending_newline
+
+	return padding + to_return
