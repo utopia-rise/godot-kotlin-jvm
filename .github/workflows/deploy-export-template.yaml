@@ -13,7 +13,7 @@ jobs:
   deploy-export-template:
     strategy:
       matrix:
-        name: [ Linux-release, OSX-x64-release, OSX-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Linux-debug, OSX-x64-debug, OSX-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug ]
+        name: [ Linux-release, OSX-x64-release, OSX-arm64-release, Windows-release, Android-armv7-release, Android-armv8-release, Android-x86_64-release, Linux-debug, OSX-x64-debug, OSX-arm64-debug, Windows-debug, Android-armv7-debug, Android-armv8-debug, Android-x86_64-debug ]
         include:
           - name: Linux-release
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
@@ -60,6 +60,14 @@ jobs:
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/release/arm64-v8a/
             target: release
+          - name: Android-x86_64-release
+            os: ubuntu-latest
+            platform: android
+            binary: android_release.apk
+            cat_command: cat
+            arch: x86_64
+            output_folder: platform/android/java/lib/libs/release/x86_64/
+            target: release
           - name: Linux-debug
             # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
             os: ubuntu-20.04
@@ -104,6 +112,14 @@ jobs:
             cat_command: cat
             arch: arm64v8
             output_folder: platform/android/java/lib/libs/debug/arm64-v8a/
+            target: release_debug
+          - name: Android-x86_64-debug
+            os: ubuntu-latest
+            platform: android
+            binary: android_debug.apk
+            cat_command: cat
+            arch: x86_64
+            output_folder: platform/android/java/lib/libs/debug/x86_64/
             target: release_debug
     runs-on: ${{ matrix.os }}
     steps:
