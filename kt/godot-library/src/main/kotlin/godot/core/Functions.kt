@@ -17,8 +17,10 @@ enum class PropertyHint {
     FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
     LAYERS_2D_RENDER,
     LAYERS_2D_PHYSICS,
+    LAYERS_2D_NAVIGATION,
     LAYERS_3D_RENDER,
     LAYERS_3D_PHYSICS,
+    LAYERS_3D_NAVIGATION,
     FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
     DIR, ///< a directory path must be passed
     GLOBAL_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
@@ -43,6 +45,7 @@ enum class PropertyHint {
     OBJECT_TOO_BIG, ///< object is too big to send
     NODE_PATH_VALID_TYPES,
     SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
+    ENUM_SUGGESTION,
     MAX,
     // When updating PropertyHint, also sync the hardcoded list in VisualScriptEditorVariableEdit
 };
