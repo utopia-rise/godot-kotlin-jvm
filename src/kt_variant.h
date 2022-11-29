@@ -131,6 +131,30 @@ namespace ktvariant {
         append_vector2(des, src_transform_2d.get_origin());
     }
 
+    static inline void append_vector4(SharedBuffer* des, const Vector4& from) {
+        des->increment_position(encode_float(from.x, des->get_cursor()));
+        des->increment_position(encode_float(from.y, des->get_cursor()));
+        des->increment_position(encode_float(from.z, des->get_cursor()));
+        des->increment_position(encode_float(from.w, des->get_cursor()));
+    }
+
+    static void to_kvariant_fromVECTOR4(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::VECTOR4);
+        append_vector4(des, src);
+    }
+
+    static inline void append_vector4i(SharedBuffer* des, const Vector4i& from) {
+        des->increment_position(encode_uint32(from.x, des->get_cursor()));
+        des->increment_position(encode_uint32(from.y, des->get_cursor()));
+        des->increment_position(encode_uint32(from.z, des->get_cursor()));
+        des->increment_position(encode_uint32(from.w, des->get_cursor()));
+    }
+
+    static void to_kvariant_fromVECTOR4I(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::VECTOR4I);
+        append_vector4i(des, src);
+    }
+
     static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant& src) {
         Plane src_plane{src.operator Plane()};
         set_variant_type(des, Variant::Type::PLANE);
@@ -275,6 +299,8 @@ namespace ktvariant {
         to_kt_array[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
         to_kt_array[Variant::VECTOR3I] = to_kvariant_fromVECTOR3I;
         to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
+        to_kt_array[Variant::VECTOR4] = to_kvariant_fromVECTOR4;
+        to_kt_array[Variant::VECTOR4I] = to_kvariant_fromVECTOR4I;
         to_kt_array[Variant::PLANE] = to_kvariant_fromPLANE;
         to_kt_array[Variant::QUATERNION] = to_kvariant_fromQUATERNION;
         to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
@@ -423,6 +449,38 @@ namespace ktvariant {
         return Variant(transform2d);
     }
 
+    static inline Vector4 to_godot_vector4(SharedBuffer* byte_buffer) {
+        float x{decode_float(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
+        float y{decode_float(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
+        float z{decode_float(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
+        float w{decode_float(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
+        return {x, y, z, w};
+    }
+
+    static Variant from_kvariant_tokVector4Value(SharedBuffer* byte_buffer) {
+        return Variant(to_godot_vector4(byte_buffer));
+    }
+
+    static inline Vector4i to_godot_vector4i(SharedBuffer* byte_buffer) {
+        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto z{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        auto w{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(INT_SIZE);
+        return {x, y, z, w};
+    }
+
+    static Variant from_kvariant_tokVector4iValue(SharedBuffer* byte_buffer) {
+        return Variant(to_godot_vector4i(byte_buffer));
+    }
+
     static Variant from_kvariant_tokPlaneValue(SharedBuffer* byte_buffer) {
         Vector3 norm{to_godot_vector3(byte_buffer)};
         float d{decode_float(byte_buffer->get_cursor())};
@@ -520,6 +578,8 @@ namespace ktvariant {
         to_gd_array[Variant::VECTOR3] = from_kvariant_tokVector3Value;
         to_gd_array[Variant::VECTOR3I] = from_kvariant_tokVector3iValue;
         to_gd_array[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
+        to_gd_array[Variant::VECTOR4] = from_kvariant_tokVector4Value;
+        to_gd_array[Variant::VECTOR4I] = from_kvariant_tokVector4iValue;
         to_gd_array[Variant::PLANE] = from_kvariant_tokPlaneValue;
         to_gd_array[Variant::QUATERNION] = from_kvariant_tokQuaternionValue;
         to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
