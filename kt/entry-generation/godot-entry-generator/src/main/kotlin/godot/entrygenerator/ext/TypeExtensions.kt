@@ -54,7 +54,7 @@ fun Type.toTypeName(): TypeName = ClassName(
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
     "godot.core.GodotArray", "godot.core.VariantArray" -> true
-    else -> supertypes.any { it.fqName == "godot.core.GodotArray" || it.fqName == "godot.core.VariantArray" }
+    else -> supertypes.any { it.isCompatibleList() }
 }
 
 fun Type.isReference(): Boolean = fqName == "godot.Reference" ||
@@ -62,6 +62,9 @@ fun Type.isReference(): Boolean = fqName == "godot.Reference" ||
         .supertypes
         .map { it.fqName }
         .any { it == "godot.Reference" }
+    || this
+    .supertypes
+    .any { it.isReference() }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     "kotlin.Int",
