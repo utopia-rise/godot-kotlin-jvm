@@ -53,7 +53,7 @@ fun Type.toTypeName(): TypeName = ClassName(
 )
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
-    "godot.core.GodotArray", "godot.core.VariantArray" -> true
+    "godot.core.VariantArray" -> true
     else -> supertypes.any { it.isCompatibleList() }
 }
 
