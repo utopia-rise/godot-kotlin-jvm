@@ -245,8 +245,9 @@ public open class Light2D internal constructor() : Node2D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LIGHT2D, scriptIndex)
+    return true
   }
 
   /**

@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Enables certain nodes only when approximately visible.
@@ -62,8 +62,9 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_NODE_PATH, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
+    return true
   }
 
   public enum class EnableMode(

@@ -65,8 +65,9 @@ public open class Material : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_SET_NEXT_PASS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MATERIAL, scriptIndex)
+    return true
   }
 
   /**

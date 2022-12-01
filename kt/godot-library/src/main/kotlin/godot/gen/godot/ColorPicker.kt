@@ -161,8 +161,9 @@ public open class ColorPicker : BoxContainer() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COLORPICKER, scriptIndex)
+    return true
   }
 
   /**

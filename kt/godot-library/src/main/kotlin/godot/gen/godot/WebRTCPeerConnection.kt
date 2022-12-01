@@ -22,6 +22,7 @@ import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -36,8 +37,9 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)
+    return true
   }
 
   public fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {

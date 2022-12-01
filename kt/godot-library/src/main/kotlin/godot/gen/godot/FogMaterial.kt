@@ -13,10 +13,10 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [godot.Material] used with a [godot.FogVolume] to draw things with the volumetric fog effect.
@@ -117,8 +117,9 @@ public open class FogMaterial : Material() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FOGMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

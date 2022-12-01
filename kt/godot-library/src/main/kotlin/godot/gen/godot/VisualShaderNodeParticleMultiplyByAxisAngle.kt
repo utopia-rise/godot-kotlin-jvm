@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -38,8 +37,9 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE, scriptIndex)
+    return true
   }
 
   public companion object

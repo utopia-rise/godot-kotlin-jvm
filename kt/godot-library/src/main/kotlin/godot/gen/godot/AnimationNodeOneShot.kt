@@ -17,7 +17,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Plays an animation once in [godot.AnimationNodeBlendTree].
@@ -138,8 +137,9 @@ public open class AnimationNodeOneShot : AnimationNode() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT, scriptIndex)
+    return true
   }
 
   public enum class MixMode(

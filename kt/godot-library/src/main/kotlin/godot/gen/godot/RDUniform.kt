@@ -15,6 +15,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -53,8 +54,9 @@ public open class RDUniform : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_BINDING, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
+    return true
   }
 
   /**

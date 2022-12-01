@@ -15,9 +15,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFMesh : Resource() {
@@ -57,8 +57,9 @@ public open class GLTFMesh : Resource() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFMESH, scriptIndex)
+    return true
   }
 
   public companion object

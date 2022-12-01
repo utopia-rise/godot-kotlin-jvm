@@ -344,8 +344,9 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_SET_CONSTANT_TORQUE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RIGIDDYNAMICBODY3D, scriptIndex)
+    return true
   }
 
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {

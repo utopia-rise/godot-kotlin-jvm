@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstract class for all Tweeners used by [godot.Tween].
@@ -25,8 +25,9 @@ public open class Tweener internal constructor() : RefCounted() {
    */
   public val finished: Signal0 by signal()
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TWEENER, scriptIndex)
+    return true
   }
 
   public companion object

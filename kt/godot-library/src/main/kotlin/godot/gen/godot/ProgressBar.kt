@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * General-purpose progress bar.
@@ -35,8 +34,9 @@ public open class ProgressBar : Range() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
+    return true
   }
 
   public companion object

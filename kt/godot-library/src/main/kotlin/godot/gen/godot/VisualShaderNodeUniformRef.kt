@@ -11,9 +11,9 @@ import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeUniformRef : VisualShaderNode() {
@@ -30,8 +30,9 @@ public open class VisualShaderNodeUniformRef : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORMREF_SET_UNIFORM_NAME, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUNIFORMREF, scriptIndex)
+    return true
   }
 
   public companion object

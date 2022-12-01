@@ -21,7 +21,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamSample : AudioStream() {
@@ -112,8 +111,9 @@ public open class AudioStreamSample : AudioStream() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_STEREO, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAMSAMPLE, scriptIndex)
+    return true
   }
 
   public fun saveToWav(path: String): GodotError {

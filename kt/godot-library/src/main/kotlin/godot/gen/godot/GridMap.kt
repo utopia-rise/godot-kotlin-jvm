@@ -171,8 +171,9 @@ public open class GridMap : Node3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GRIDMAP, scriptIndex)
+    return true
   }
 
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {

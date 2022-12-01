@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Cylinder shape for 3D collisions.
@@ -59,8 +59,9 @@ public open class CylinderShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

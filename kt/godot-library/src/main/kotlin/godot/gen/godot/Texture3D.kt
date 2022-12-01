@@ -20,7 +20,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for 3-dimensionnal textures.
@@ -33,8 +32,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture3D : Texture() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTURE3D, scriptIndex)
+    return true
   }
 
   /**

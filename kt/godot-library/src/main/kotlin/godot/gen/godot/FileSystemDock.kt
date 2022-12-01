@@ -15,6 +15,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -57,8 +58,9 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public val fileRemoved: Signal1<String> by signal("file")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FILESYSTEMDOCK, scriptIndex)
+    return true
   }
 
   /**

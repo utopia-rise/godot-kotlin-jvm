@@ -46,8 +46,9 @@ public open class ShaderMaterial : Material() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SHADERMATERIAL, scriptIndex)
+    return true
   }
 
   public fun setShaderParam(`param`: StringName, `value`: Any): Unit {

@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -121,8 +122,9 @@ public open class LinkButton : BaseButton() {
           ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LINKBUTTON, scriptIndex)
+    return true
   }
 
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {

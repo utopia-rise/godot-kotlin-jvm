@@ -388,8 +388,9 @@ public open class ParticlesMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLLISION_USE_SCALE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PARTICLESMATERIAL, scriptIndex)
+    return true
   }
 
   public fun setParamMin(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {

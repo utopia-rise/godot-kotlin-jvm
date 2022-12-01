@@ -177,8 +177,9 @@ public open class CanvasLayer : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT_SCALE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CANVASLAYER, scriptIndex)
+    return true
   }
 
   /**

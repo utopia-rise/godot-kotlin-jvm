@@ -13,10 +13,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
@@ -59,8 +59,9 @@ public open class MultiplayerSynchronizer : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_CONFIG, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
+    return true
   }
 
   public companion object

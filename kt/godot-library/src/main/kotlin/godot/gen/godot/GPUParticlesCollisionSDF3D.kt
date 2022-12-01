@@ -14,11 +14,11 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Baked signed distance field 3D particle attractor affecting [godot.GPUParticles3D] nodes.
@@ -101,8 +101,9 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D_SET_TEXTURE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D, scriptIndex)
+    return true
   }
 
   public enum class Resolution(

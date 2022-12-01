@@ -11,9 +11,9 @@ import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptSceneNode : VisualScriptNode() {
@@ -30,8 +30,9 @@ public open class VisualScriptSceneNode : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSCENENODE_SET_NODE_PATH, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTSCENENODE, scriptIndex)
+    return true
   }
 
   public companion object

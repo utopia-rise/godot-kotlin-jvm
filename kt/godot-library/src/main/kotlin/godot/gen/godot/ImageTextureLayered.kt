@@ -16,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -28,8 +29,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImageTextureLayered internal constructor() : TextureLayered() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_IMAGETEXTURELAYERED, scriptIndex)
+    return true
   }
 
   /**

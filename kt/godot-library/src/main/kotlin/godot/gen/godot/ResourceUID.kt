@@ -37,11 +37,10 @@ public object ResourceUID : Object() {
    */
   public final const val INVALID_ID: Long = -1
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCEUID)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Converts the given UID to a `uid://` string value.

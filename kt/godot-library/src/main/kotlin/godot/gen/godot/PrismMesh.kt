@@ -13,11 +13,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Class representing a prism-shaped [godot.PrimitiveMesh].
@@ -103,8 +103,9 @@ public open class PrismMesh : PrimitiveMesh() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PRISMMESH, scriptIndex)
+    return true
   }
 
   public companion object

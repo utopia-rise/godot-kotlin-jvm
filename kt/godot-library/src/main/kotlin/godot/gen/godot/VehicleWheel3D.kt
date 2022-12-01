@@ -16,7 +16,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Physics object that simulates the behavior of a wheel.
@@ -255,8 +254,9 @@ public open class VehicleWheel3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_DAMPING_RELAXATION, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VEHICLEWHEEL3D, scriptIndex)
+    return true
   }
 
   /**

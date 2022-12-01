@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GDScriptEditorTranslationParserPlugin internal constructor() :
     EditorTranslationParserPlugin() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GDSCRIPTEDITORTRANSLATIONPARSERPLUGIN, scriptIndex)
+    return true
   }
 
   public companion object

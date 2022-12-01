@@ -64,8 +64,9 @@ public open class MenuButton : Button() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MENUBUTTON, scriptIndex)
+    return true
   }
 
   /**

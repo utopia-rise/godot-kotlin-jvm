@@ -80,8 +80,9 @@ public open class VoxelGI : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_PROBE_DATA, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VOXELGI, scriptIndex)
+    return true
   }
 
   /**

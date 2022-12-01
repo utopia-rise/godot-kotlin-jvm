@@ -12,10 +12,10 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -54,8 +54,9 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_SET_CONSTANT_ID, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

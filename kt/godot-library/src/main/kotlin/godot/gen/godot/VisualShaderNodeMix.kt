@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Linearly interpolates between two values within the visual shader graph.
@@ -38,8 +38,9 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEMIX, scriptIndex)
+    return true
   }
 
   public enum class OpType(

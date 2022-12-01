@@ -101,8 +101,9 @@ public open class SpringArm3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_MARGIN, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPRINGARM3D, scriptIndex)
+    return true
   }
 
   /**

@@ -31,8 +31,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ENETCONNECTION, scriptIndex)
+    return true
   }
 
   public fun createHostBound(

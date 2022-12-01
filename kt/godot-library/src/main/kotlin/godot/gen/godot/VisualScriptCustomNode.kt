@@ -15,12 +15,12 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptCustomNode : VisualScriptNode() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE, scriptIndex)
+    return true
   }
 
   public open fun _getOutputSequencePortCount(): Long {

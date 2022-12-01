@@ -17,7 +17,6 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for audio streams.
@@ -29,8 +28,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioStream : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)
+    return true
   }
 
   public open fun _instancePlayback(): AudioStreamPlayback? {

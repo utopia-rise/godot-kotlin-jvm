@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Physically based rendering (PBR) material that can be applied to 3D objects.
@@ -21,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STANDARDMATERIAL3D, scriptIndex)
+    return true
   }
 
   public companion object

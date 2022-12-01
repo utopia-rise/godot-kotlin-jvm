@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -23,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RDShaderSPIRV : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
+    return true
   }
 
   /**

@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -33,8 +34,9 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public val selectionChanged: Signal0 by signal()
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSELECTION, scriptIndex)
+    return true
   }
 
   /**

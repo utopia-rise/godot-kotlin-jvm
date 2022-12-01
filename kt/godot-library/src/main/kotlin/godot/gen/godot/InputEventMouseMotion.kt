@@ -12,10 +12,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Input event type for mouse motion events.
@@ -95,8 +95,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_VELOCITY, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION, scriptIndex)
+    return true
   }
 
   public companion object

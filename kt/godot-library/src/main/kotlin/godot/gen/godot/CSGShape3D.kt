@@ -97,8 +97,9 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CSGSHAPE3D, scriptIndex)
+    return true
   }
 
   public fun isRootShape(): Boolean {

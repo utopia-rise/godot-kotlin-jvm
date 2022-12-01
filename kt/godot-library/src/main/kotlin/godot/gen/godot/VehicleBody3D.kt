@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Physics body that simulates the behavior of a car.
@@ -78,8 +78,9 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -18,7 +18,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A control used to edit properties of an object.
@@ -84,8 +83,9 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
    */
   public val propertyToggled: Signal2<String, Boolean> by signal("property", "checked")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORINSPECTOR, scriptIndex)
+    return true
   }
 
   public companion object

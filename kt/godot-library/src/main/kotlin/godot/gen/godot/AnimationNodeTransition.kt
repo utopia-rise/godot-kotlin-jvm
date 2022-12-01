@@ -575,8 +575,9 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION, scriptIndex)
+    return true
   }
 
   /**

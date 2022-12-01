@@ -272,8 +272,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D, scriptIndex)
+    return true
   }
 
   public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {

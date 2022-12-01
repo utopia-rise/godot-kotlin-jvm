@@ -22,7 +22,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * 2D sprite node in a 3D world.
@@ -140,8 +139,9 @@ public open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_REGION_RECT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPRITE3D, scriptIndex)
+    return true
   }
 
   public companion object

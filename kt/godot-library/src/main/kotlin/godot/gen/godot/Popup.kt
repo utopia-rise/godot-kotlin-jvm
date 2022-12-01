@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Popup is a base window container for popup-like subwindows.
@@ -25,8 +25,9 @@ public open class Popup : Window() {
    */
   public val popupHide: Signal0 by signal()
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_POPUP, scriptIndex)
+    return true
   }
 
   public companion object

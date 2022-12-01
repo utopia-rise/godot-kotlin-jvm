@@ -7,14 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class CSGCombiner3D : CSGShape3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CSGCOMBINER3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -19,6 +19,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_IMMEDIATEMESH, scriptIndex)
+    return true
   }
 
   /**

@@ -19,7 +19,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunctionCall : VisualScriptNode() {
@@ -153,8 +152,9 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_RPC_CALL_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL, scriptIndex)
+    return true
   }
 
   public enum class RPCCallMode(

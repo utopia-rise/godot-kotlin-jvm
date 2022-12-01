@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
@@ -97,8 +96,9 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINTUNIFORM, scriptIndex)
+    return true
   }
 
   public enum class Hint(

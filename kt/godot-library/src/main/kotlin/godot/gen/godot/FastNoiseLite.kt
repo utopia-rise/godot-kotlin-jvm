@@ -20,7 +20,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
@@ -316,8 +315,9 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_GAIN, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FASTNOISELITE, scriptIndex)
+    return true
   }
 
   public enum class DomainWarpType(

@@ -168,8 +168,9 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_MAX_DISTANCE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
+    return true
   }
 
   /**

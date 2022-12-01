@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A boolean constant to be used within the visual shader graph.
@@ -40,8 +39,9 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT_SET_CONSTANT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

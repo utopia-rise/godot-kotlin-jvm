@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Reference frame for GUI.
@@ -74,8 +73,9 @@ public open class ReferenceRect : Control() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REFERENCERECT, scriptIndex)
+    return true
   }
 
   public companion object

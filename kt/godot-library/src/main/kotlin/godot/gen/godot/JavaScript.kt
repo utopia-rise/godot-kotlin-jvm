@@ -33,11 +33,10 @@ import kotlin.Unit
 public object JavaScript : Object() {
   public val pwaUpdateAvailable: Signal0 by signal()
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVASCRIPT)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)

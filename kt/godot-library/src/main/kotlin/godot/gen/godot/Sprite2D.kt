@@ -24,7 +24,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * General-purpose sprite node.
@@ -217,8 +216,9 @@ public open class Sprite2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_REGION_FILTER_CLIP_ENABLED, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPRITE2D, scriptIndex)
+    return true
   }
 
   /**

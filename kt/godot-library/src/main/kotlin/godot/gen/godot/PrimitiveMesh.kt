@@ -19,7 +19,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
@@ -76,8 +75,9 @@ public open class PrimitiveMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
+    return true
   }
 
   /**

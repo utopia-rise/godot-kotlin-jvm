@@ -13,10 +13,10 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [godot.Sky] [godot.Material] used for a physically based sky.
@@ -199,8 +199,9 @@ public open class PhysicalSkyMaterial : Material() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

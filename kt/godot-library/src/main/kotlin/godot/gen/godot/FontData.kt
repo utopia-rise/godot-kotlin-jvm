@@ -236,8 +236,9 @@ public open class FontData : Resource() {
           ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_OPENTYPE_FEATURE_OVERRIDES, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONTDATA, scriptIndex)
+    return true
   }
 
   public fun loadBitmapFont(path: String): GodotError {

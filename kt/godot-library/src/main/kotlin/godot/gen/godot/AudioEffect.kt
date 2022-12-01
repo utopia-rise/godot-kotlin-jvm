@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Audio effect for audio.
@@ -22,8 +22,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffect : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECT, scriptIndex)
+    return true
   }
 
   /**

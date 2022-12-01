@@ -26,8 +26,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ENETPACKETPEER, scriptIndex)
+    return true
   }
 
   public fun peerDisconnect(`data`: Long = 0): Unit {

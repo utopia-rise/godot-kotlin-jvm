@@ -166,8 +166,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPRITEBASE3D, scriptIndex)
+    return true
   }
 
   /**

@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds a low-shelf filter to the audio bus.
@@ -21,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffectLowShelfFilter : AudioEffectFilter() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTLOWSHELFFILTER, scriptIndex)
+    return true
   }
 
   public companion object

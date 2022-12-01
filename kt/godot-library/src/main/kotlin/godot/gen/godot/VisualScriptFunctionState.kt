@@ -24,8 +24,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunctionState : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE, scriptIndex)
+    return true
   }
 
   public fun connectToSignal(

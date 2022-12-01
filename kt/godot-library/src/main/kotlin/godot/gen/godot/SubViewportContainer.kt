@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Control for holding [godot.SubViewport]s.
@@ -64,8 +63,9 @@ public open class SubViewportContainer : Container() {
           ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH_SHRINK, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SUBVIEWPORTCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

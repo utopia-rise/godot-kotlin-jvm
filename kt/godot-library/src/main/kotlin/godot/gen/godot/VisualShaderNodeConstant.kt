@@ -7,17 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A base type for the constants within the visual shader graph.
  */
 @GodotBaseType
 public open class VisualShaderNodeConstant internal constructor() : VisualShaderNode() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODECONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

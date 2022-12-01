@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Node that instances a [godot.MultiMesh] in 2D.
@@ -80,8 +80,9 @@ public open class MultiMeshInstance2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_SET_NORMAL_MAP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE2D, scriptIndex)
+    return true
   }
 
   public companion object

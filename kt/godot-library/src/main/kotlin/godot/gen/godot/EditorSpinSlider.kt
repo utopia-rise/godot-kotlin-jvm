@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Godot editor's control for editing numeric values.
@@ -84,8 +83,9 @@ public open class EditorSpinSlider internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSPINSLIDER, scriptIndex)
+    return true
   }
 
   public companion object

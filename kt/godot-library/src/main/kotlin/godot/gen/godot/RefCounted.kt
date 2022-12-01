@@ -12,7 +12,6 @@ import godot.core.VariantType.BOOL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for reference-counted objects.
@@ -30,8 +29,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RefCounted : Object() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
+    return true
   }
 
   /**

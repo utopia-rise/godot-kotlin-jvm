@@ -588,8 +588,9 @@ public open class CPUParticles3D : GeometryInstance3D() {
           ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR_INITIAL_RAMP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CPUPARTICLES3D, scriptIndex)
+    return true
   }
 
   /**

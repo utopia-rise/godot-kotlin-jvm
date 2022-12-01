@@ -11,9 +11,9 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Flat plane shape for use with occlusion culling in [godot.OccluderInstance3D].
@@ -38,8 +38,9 @@ public open class QuadOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADOCCLUDER3D_SET_SIZE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_QUADOCCLUDER3D, scriptIndex)
+    return true
   }
 
   public companion object

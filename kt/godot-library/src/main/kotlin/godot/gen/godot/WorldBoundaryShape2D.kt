@@ -12,10 +12,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * World boundary (infinite plane) shape resource for 2D physics.
@@ -58,8 +58,9 @@ public open class WorldBoundaryShape2D : Shape2D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE2D, scriptIndex)
+    return true
   }
 
   public companion object

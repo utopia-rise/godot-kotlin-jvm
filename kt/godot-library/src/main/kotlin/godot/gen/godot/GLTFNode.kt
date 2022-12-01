@@ -23,7 +23,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFNode : Resource() {
@@ -171,8 +170,9 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_LIGHT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
+    return true
   }
 
   public companion object

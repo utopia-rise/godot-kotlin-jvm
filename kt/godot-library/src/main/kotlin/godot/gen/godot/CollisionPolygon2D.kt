@@ -19,7 +19,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Defines a 2D collision polygon.
@@ -112,8 +111,9 @@ public open class CollisionPolygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
+    return true
   }
 
   public enum class BuildMode(

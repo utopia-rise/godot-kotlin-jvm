@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Composes a [godot.core.Vector2], [godot.core.Vector3] or 4D vector (represented as a [godot.Quaternion]) from scalars within the visual shader graph.
@@ -18,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorCompose : VisualShaderNodeVectorBase() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORCOMPOSE, scriptIndex)
+    return true
   }
 
   public companion object

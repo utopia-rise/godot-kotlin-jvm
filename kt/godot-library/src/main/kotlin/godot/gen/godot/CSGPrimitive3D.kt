@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
@@ -30,8 +29,9 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -67,8 +67,9 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
    */
   public val scriptCreated: Signal1<Script> by signal("script")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG, scriptIndex)
+    return true
   }
 
   /**

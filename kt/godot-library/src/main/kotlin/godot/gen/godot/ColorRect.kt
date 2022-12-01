@@ -11,9 +11,9 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Colored rectangle.
@@ -55,8 +55,9 @@ public open class ColorRect : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORRECT_SET_COLOR, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COLORRECT, scriptIndex)
+    return true
   }
 
   public companion object

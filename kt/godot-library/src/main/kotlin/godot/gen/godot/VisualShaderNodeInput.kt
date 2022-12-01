@@ -14,10 +14,10 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Represents the input shader parameter within the visual shader graph.
@@ -50,8 +50,9 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_SET_INPUT_NAME, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
+    return true
   }
 
   /**

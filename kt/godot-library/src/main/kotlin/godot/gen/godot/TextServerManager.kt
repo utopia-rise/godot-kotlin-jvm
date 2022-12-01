@@ -18,6 +18,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -43,11 +44,10 @@ public object TextServerManager : Object() {
    */
   public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Registers an [godot.TextServer] interface.

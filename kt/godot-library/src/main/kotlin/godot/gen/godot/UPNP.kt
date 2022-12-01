@@ -58,8 +58,9 @@ public open class UPNP : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_IPV6, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_UPNP, scriptIndex)
+    return true
   }
 
   public fun getDeviceCount(): Long {

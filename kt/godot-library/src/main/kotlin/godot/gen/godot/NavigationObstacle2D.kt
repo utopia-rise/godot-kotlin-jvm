@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * 2D Obstacle used in navigation for collision avoidance.
@@ -58,8 +57,9 @@ public open class NavigationObstacle2D : Node() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE2D, scriptIndex)
+    return true
   }
 
   public companion object

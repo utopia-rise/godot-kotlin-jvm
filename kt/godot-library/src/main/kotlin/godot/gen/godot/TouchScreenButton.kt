@@ -20,7 +20,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Button for touch screen devices for gameplay use.
@@ -187,8 +186,9 @@ public open class TouchScreenButton : Node2D() {
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_VISIBILITY_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
+    return true
   }
 
   /**

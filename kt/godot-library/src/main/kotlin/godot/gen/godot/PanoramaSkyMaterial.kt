@@ -14,7 +14,6 @@ import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A [godot.Material] used with [godot.Sky] to draw a background texture.
@@ -59,8 +58,9 @@ public open class PanoramaSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTERING_ENABLED, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

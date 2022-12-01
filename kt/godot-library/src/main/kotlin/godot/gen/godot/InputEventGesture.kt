@@ -11,9 +11,9 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for touch control gestures.
@@ -36,8 +36,9 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTGESTURE, scriptIndex)
+    return true
   }
 
   public companion object

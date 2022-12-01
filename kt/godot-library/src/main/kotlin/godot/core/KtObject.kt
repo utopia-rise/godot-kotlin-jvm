@@ -38,25 +38,19 @@ abstract class KtObject {
             rawPtr = config.ptr
             __id = config.id
             config.reset()
-        } else {
-            // user types shouldn't override this method
-            // inheritance in Godot is faked, a script is attached to an Object allow
-            // the script to see all methods of the owning Object.
-            // For user types, we need to make sure to attach this script to the Object
-            // rawPtr is pointing to.
-            val scriptIndex = TypeManager.userTypeToId[this::class]?: -1
-            __new(scriptIndex)
-        }
-
-        if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
+            //Singletons are never initialized from here.
             GarbageCollector.registerObject(this)
+        } else {
+            val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
+            //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
+            if (new(scriptIndex)) {
+                //Singletons return false and shouldn't be registered
+                GarbageCollector.registerObject(this)
+            }
         }
     }
 
-    @Suppress("FunctionName")
-    open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
-
-    abstract fun __new(scriptIndex: Int)
+    protected abstract fun new(scriptIndex: Int): Boolean
 
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
         TransferContext.createNativeObject(classIndex, this, this::class.java.classLoader, scriptIndex)

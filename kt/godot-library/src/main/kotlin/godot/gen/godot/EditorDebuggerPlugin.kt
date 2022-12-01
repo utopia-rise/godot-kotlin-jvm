@@ -118,8 +118,9 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
 
   public val continued: Signal0 by signal()
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN, scriptIndex)
+    return true
   }
 
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {

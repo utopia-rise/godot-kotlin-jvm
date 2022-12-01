@@ -16,7 +16,6 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -53,8 +52,9 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_SET_AABB, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER3D, scriptIndex)
+    return true
   }
 
   /**

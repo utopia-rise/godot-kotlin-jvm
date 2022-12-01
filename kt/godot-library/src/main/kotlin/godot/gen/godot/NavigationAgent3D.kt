@@ -199,8 +199,9 @@ public open class NavigationAgent3D : Node() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
+    return true
   }
 
   /**

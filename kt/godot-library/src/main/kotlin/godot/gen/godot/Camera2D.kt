@@ -298,8 +298,9 @@ public open class Camera2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_MARGIN_DRAWING_ENABLED, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
+    return true
   }
 
   /**

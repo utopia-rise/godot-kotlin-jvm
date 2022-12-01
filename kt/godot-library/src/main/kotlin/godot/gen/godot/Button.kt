@@ -218,8 +218,9 @@ public open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_BUTTON, scriptIndex)
+    return true
   }
 
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {

@@ -16,11 +16,11 @@ import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class RegExMatch : RefCounted() {
@@ -45,8 +45,9 @@ public open class RegExMatch : RefCounted() {
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
+    return true
   }
 
   public fun getGroupCount(): Long {

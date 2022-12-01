@@ -24,7 +24,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 3D body motion test.
@@ -149,8 +148,9 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_OBJECTS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
+    return true
   }
 
   public companion object

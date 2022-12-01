@@ -124,8 +124,9 @@ public open class MultiplayerAPI : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_PATH, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERAPI, scriptIndex)
+    return true
   }
 
   public fun sendBytes(

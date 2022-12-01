@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFAccessor : Resource() {
@@ -193,8 +192,9 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_VALUES_BYTE_OFFSET, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFACCESSOR, scriptIndex)
+    return true
   }
 
   public companion object

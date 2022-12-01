@@ -80,8 +80,9 @@ public open class SplitContainer internal constructor() : Container() {
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
+    return true
   }
 
   /**

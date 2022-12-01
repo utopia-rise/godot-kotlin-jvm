@@ -13,10 +13,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Interpolates an [godot.Object]'s property over time.
@@ -27,8 +27,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
+    return true
   }
 
   /**

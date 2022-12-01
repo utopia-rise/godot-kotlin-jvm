@@ -38,8 +38,9 @@ public open class StreamPeerSSL : StreamPeer() {
           ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STREAMPEERSSL, scriptIndex)
+    return true
   }
 
   public fun poll(): Unit {

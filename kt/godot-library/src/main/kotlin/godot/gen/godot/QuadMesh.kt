@@ -13,9 +13,9 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Class representing a square mesh facing the camera.
@@ -53,8 +53,9 @@ public open class QuadMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_CENTER_OFFSET, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_QUADMESH, scriptIndex)
+    return true
   }
 
   public companion object

@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamMP3 : AudioStream() {
@@ -57,8 +56,9 @@ public open class AudioStreamMP3 : AudioStream() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAMMP3, scriptIndex)
+    return true
   }
 
   public companion object

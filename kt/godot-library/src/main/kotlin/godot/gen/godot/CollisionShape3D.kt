@@ -59,8 +59,9 @@ public open class CollisionShape3D : Node3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COLLISIONSHAPE3D, scriptIndex)
+    return true
   }
 
   /**

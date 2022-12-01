@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Blends two of three animations additively inside of an [godot.AnimationNodeBlendTree].
@@ -46,8 +45,9 @@ public open class AnimationNodeAdd3 : AnimationNode() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODEADD3, scriptIndex)
+    return true
   }
 
   public companion object

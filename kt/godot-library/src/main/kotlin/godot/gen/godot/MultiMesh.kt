@@ -157,8 +157,9 @@ public open class MultiMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIMESH, scriptIndex)
+    return true
   }
 
   /**

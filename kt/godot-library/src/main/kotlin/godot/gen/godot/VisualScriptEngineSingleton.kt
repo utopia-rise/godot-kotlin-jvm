@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptEngineSingleton : VisualScriptNode() {
@@ -30,8 +30,9 @@ public open class VisualScriptEngineSingleton : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTENGINESINGLETON_SET_SINGLETON, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTENGINESINGLETON, scriptIndex)
+    return true
   }
 
   public companion object

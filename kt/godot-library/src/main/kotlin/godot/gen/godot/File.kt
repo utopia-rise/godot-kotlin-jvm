@@ -42,8 +42,9 @@ public open class File : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_SET_BIG_ENDIAN, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FILE, scriptIndex)
+    return true
   }
 
   public fun openEncrypted(

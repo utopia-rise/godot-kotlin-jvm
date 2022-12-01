@@ -76,8 +76,9 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_TARGET_NODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DLOOKAT, scriptIndex)
+    return true
   }
 
   /**

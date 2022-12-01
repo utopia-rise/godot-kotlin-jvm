@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Physics body for 3D physics which moves only by script or animation. Useful for moving platforms and doors.
@@ -45,8 +44,9 @@ public open class AnimatableBody3D : StaticBody3D() {
           ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY3D_SET_SYNC_TO_PHYSICS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATABLEBODY3D, scriptIndex)
+    return true
   }
 
   public companion object

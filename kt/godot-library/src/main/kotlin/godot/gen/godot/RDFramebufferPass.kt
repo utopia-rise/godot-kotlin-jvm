@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Framebuffer pass attachment description.
@@ -106,8 +106,9 @@ public open class RDFramebufferPass : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_DEPTH_ATTACHMENT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDFRAMEBUFFERPASS, scriptIndex)
+    return true
   }
 
   public companion object {

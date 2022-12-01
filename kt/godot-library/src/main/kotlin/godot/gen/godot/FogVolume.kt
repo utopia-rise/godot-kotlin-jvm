@@ -13,10 +13,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A node used to add local fog with the volumetric fog effect.
@@ -75,8 +75,9 @@ public open class FogVolume : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FOGVOLUME_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FOGVOLUME, scriptIndex)
+    return true
   }
 
   public companion object

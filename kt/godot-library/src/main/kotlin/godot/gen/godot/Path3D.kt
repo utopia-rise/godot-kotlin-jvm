@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Contains a [godot.Curve3D] path for [godot.PathFollow3D] nodes to follow.
@@ -44,8 +44,9 @@ public open class Path3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH3D_SET_CURVE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PATH3D, scriptIndex)
+    return true
   }
 
   public companion object

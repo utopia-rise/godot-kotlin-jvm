@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -30,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorScenePostImportPlugin internal constructor() : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN, scriptIndex)
+    return true
   }
 
   /**

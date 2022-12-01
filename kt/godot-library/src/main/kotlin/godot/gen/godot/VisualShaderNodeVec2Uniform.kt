@@ -15,7 +15,6 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeVec2Uniform : VisualShaderNodeUniform() {
@@ -45,8 +44,9 @@ public open class VisualShaderNodeVec2Uniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2UNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC2UNIFORM, scriptIndex)
+    return true
   }
 
   public companion object

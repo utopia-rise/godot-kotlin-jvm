@@ -25,7 +25,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSpawner : Node() {
@@ -85,8 +84,9 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
+    return true
   }
 
   public open fun _spawnCustom(`data`: Any): Object? {

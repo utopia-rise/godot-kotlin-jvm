@@ -21,12 +21,12 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NOISE, scriptIndex)
+    return true
   }
 
   public fun getNoise1d(x: Double): Double {

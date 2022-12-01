@@ -21,7 +21,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Captures its surroundings to create fast, accurate reflections from a given point.
@@ -252,8 +251,9 @@ public open class ReflectionProbe : VisualInstance3D() {
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_COLOR_ENERGY, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REFLECTIONPROBE, scriptIndex)
+    return true
   }
 
   public enum class AmbientMode(

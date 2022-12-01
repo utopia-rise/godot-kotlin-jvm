@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Height map shape resource for 3D physics.
@@ -74,8 +74,9 @@ public open class HeightMapShape3D : Shape3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_HEIGHTMAPSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

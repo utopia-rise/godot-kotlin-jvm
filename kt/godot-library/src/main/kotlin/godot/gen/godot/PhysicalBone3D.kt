@@ -282,8 +282,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_CAN_SLEEP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICALBONE3D, scriptIndex)
+    return true
   }
 
   /**

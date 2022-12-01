@@ -142,8 +142,9 @@ public open class VoxelGIData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_INTERIOR, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VOXELGIDATA, scriptIndex)
+    return true
   }
 
   /**

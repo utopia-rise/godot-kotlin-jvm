@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Defines a 2D polygon for LightOccluder2D.
@@ -74,8 +73,9 @@ public open class OccluderPolygon2D : Resource() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OCCLUDERPOLYGON2D, scriptIndex)
+    return true
   }
 
   public enum class CullMode(

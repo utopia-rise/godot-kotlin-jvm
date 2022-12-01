@@ -49,8 +49,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RENDERINGDEVICE, scriptIndex)
+    return true
   }
 
   /**

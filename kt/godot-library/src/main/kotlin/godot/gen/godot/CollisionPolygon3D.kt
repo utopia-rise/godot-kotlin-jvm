@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Editor-only node for defining a collision polygon in 3D space.
@@ -93,8 +92,9 @@ public open class CollisionPolygon3D : Node3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON3D, scriptIndex)
+    return true
   }
 
   public companion object

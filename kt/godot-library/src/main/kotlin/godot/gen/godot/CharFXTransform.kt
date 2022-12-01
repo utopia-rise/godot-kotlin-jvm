@@ -28,7 +28,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
@@ -215,8 +214,9 @@ public open class CharFXTransform : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
+    return true
   }
 
   public companion object

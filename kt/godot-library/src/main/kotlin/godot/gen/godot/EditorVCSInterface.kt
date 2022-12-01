@@ -29,8 +29,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorVCSInterface internal constructor() : Object() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORVCSINTERFACE, scriptIndex)
+    return true
   }
 
   public fun isAddonReady(): Boolean {

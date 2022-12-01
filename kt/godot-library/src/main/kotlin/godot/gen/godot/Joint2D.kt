@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base node for all joint constraints in 2D physics.
@@ -86,8 +85,9 @@ public open class Joint2D internal constructor() : Node2D() {
           ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
+    return true
   }
 
   public companion object

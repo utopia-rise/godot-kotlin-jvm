@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds a delay audio effect to an audio bus. Plays input signal back after a period of time.
@@ -199,8 +198,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_LOWPASS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTDELAY, scriptIndex)
+    return true
   }
 
   public companion object

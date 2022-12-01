@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Physics body for 3D physics which is static or moves only by script. Useful for floor and walls.
@@ -84,8 +84,9 @@ public open class StaticBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STATICBODY3D, scriptIndex)
+    return true
   }
 
   public companion object

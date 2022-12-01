@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Dialog for confirmation of actions.
@@ -38,8 +38,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ConfirmationDialog : AcceptDialog() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CONFIRMATIONDIALOG, scriptIndex)
+    return true
   }
 
   /**

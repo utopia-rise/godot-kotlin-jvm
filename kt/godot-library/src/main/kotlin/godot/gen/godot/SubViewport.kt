@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Creates a sub-view into the screen.
@@ -105,8 +104,9 @@ public open class SubViewport : Viewport() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SUBVIEWPORT, scriptIndex)
+    return true
   }
 
   public enum class ClearMode(

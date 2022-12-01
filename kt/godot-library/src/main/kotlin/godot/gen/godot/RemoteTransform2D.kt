@@ -106,8 +106,9 @@ public open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_SCALE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REMOTETRANSFORM2D, scriptIndex)
+    return true
   }
 
   /**

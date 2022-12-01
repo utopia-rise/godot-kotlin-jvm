@@ -18,7 +18,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class CSGSphere3D : CSGPrimitive3D() {
@@ -80,8 +79,9 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CSGSPHERE3D, scriptIndex)
+    return true
   }
 
   public companion object

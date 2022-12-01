@@ -227,8 +227,9 @@ public open class TextureProgressBar : Range() {
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
+    return true
   }
 
   /**

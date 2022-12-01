@@ -14,11 +14,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Texture with optional normal and specular maps for use in 2D rendering.
@@ -143,8 +143,9 @@ public open class CanvasTexture : Texture2D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CANVASTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

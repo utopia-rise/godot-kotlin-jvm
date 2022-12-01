@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Contains a [godot.Curve2D] path for [godot.PathFollow2D] nodes to follow.
@@ -37,8 +37,9 @@ public open class Path2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_SET_CURVE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PATH2D, scriptIndex)
+    return true
   }
 
   public companion object

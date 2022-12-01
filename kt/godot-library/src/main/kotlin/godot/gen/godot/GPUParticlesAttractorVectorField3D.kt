@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
@@ -61,8 +61,9 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_SET_TEXTURE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
+    return true
   }
 
   public companion object

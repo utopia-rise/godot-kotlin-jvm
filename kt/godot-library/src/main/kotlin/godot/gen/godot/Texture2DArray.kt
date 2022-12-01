@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.
@@ -22,8 +22,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
+    return true
   }
 
   public companion object

@@ -15,7 +15,6 @@ import godot.core.VariantType.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
@@ -45,8 +44,9 @@ public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM, scriptIndex)
+    return true
   }
 
   public companion object

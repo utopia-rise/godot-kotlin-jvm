@@ -11,9 +11,9 @@ import godot.core.Plane
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PLANE
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * World boundary (infinite plane) shape resource for 3D physics.
@@ -40,8 +40,9 @@ public open class WorldBoundaryShape3D : Shape3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

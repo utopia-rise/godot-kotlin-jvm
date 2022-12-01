@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A camera node with a few overrules for AR/VR applied, such as location tracking.
@@ -23,8 +23,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class XRCamera3D : Camera3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_XRCAMERA3D, scriptIndex)
+    return true
   }
 
   public companion object

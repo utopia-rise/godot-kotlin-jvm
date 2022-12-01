@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -73,8 +72,9 @@ public open class InputEventAction : InputEvent() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
+    return true
   }
 
   public companion object

@@ -15,7 +15,6 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A node used to create a parallax scrolling background.
@@ -120,8 +119,9 @@ public open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PARALLAXBACKGROUND, scriptIndex)
+    return true
   }
 
   public companion object

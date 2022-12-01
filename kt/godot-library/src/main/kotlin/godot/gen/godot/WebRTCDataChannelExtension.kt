@@ -17,8 +17,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBRTCDATACHANNELEXTENSION, scriptIndex)
+    return true
   }
 
   public open fun _getAvailablePacketCount(): Long {

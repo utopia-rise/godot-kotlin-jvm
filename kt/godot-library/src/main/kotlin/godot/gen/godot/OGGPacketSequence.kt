@@ -13,10 +13,10 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class OGGPacketSequence : Resource() {
@@ -59,8 +59,9 @@ public open class OGGPacketSequence : Resource() {
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_SAMPLING_RATE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_OGGPACKETSEQUENCE, scriptIndex)
+    return true
   }
 
   public fun getLength(): Double {

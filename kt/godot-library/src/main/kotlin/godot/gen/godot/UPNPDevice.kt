@@ -17,7 +17,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class UPNPDevice : RefCounted() {
@@ -95,8 +94,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_SET_IGD_STATUS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_UPNPDEVICE, scriptIndex)
+    return true
   }
 
   public fun isValidGateway(): Boolean {

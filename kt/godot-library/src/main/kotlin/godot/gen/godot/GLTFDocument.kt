@@ -19,11 +19,11 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFDocument : Resource() {
@@ -39,8 +39,9 @@ public open class GLTFDocument : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_EXTENSIONS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
+    return true
   }
 
   public fun appendFromFile(

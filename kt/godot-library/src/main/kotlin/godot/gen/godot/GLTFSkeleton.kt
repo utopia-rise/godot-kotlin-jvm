@@ -18,10 +18,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
@@ -75,8 +75,9 @@ public open class GLTFSkeleton : Resource() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFSKELETON, scriptIndex)
+    return true
   }
 
   public fun getGodotSkeleton(): Skeleton3D? {

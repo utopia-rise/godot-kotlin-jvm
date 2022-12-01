@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Holds an [godot.Object], but does not contribute to the reference count if the object is a reference.
@@ -21,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class WeakRef : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEAKREF, scriptIndex)
+    return true
   }
 
   /**

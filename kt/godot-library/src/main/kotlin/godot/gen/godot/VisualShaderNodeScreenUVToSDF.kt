@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A function to convert screen UV to an SDF (signed-distance field), to be used within the visual shader graph.
@@ -18,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeScreenUVToSDF : VisualShaderNode() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODESCREENUVTOSDF, scriptIndex)
+    return true
   }
 
   public companion object

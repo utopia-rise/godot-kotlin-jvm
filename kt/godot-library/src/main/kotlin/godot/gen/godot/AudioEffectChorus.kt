@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -335,8 +336,9 @@ public open class AudioEffectChorus : AudioEffect() {
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTCHORUS, scriptIndex)
+    return true
   }
 
   /**

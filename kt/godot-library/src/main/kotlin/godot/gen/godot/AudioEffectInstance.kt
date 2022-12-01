@@ -11,15 +11,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTINSTANCE, scriptIndex)
+    return true
   }
 
   /**

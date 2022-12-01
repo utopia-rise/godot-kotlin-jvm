@@ -22,7 +22,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 2D body motion test.
@@ -131,8 +130,9 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D_SET_EXCLUDE_OBJECTS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D, scriptIndex)
+    return true
   }
 
   public companion object

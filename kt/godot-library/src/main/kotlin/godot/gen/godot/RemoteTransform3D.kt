@@ -106,8 +106,9 @@ public open class RemoteTransform3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM3D_SET_UPDATE_SCALE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REMOTETRANSFORM3D, scriptIndex)
+    return true
   }
 
   /**

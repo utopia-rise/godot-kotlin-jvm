@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Keeps children controls centered.
@@ -41,8 +40,9 @@ public open class CenterContainer : Container() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CENTERCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

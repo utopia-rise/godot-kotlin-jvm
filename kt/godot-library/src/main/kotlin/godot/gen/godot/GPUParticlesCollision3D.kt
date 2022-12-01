@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstract class for 3D particle collision shapes affecting [godot.GPUParticles3D] nodes.
@@ -52,8 +52,9 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISION3D_SET_CULL_MASK, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
+    return true
   }
 
   public companion object

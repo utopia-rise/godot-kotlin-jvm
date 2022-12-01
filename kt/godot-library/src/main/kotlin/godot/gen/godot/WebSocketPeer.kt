@@ -23,8 +23,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebSocketPeer : PacketPeer() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBSOCKETPEER, scriptIndex)
+    return true
   }
 
   public fun getWriteMode(): WebSocketPeer.WriteMode {

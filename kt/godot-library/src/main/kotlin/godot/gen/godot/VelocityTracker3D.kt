@@ -32,8 +32,9 @@ public open class VelocityTracker3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_SET_TRACK_PHYSICS_STEP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VELOCITYTRACKER3D, scriptIndex)
+    return true
   }
 
   public fun updatePosition(position: Vector3): Unit {

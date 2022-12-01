@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Texture provided by a [godot.CameraFeed].
@@ -73,8 +72,9 @@ public open class CameraTexture : Texture2D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CAMERATEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

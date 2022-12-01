@@ -66,8 +66,9 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_TRUSTED_SSL_CERTIFICATE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBSOCKETCLIENT, scriptIndex)
+    return true
   }
 
   public fun connectToUrl(

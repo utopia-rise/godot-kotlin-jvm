@@ -17,7 +17,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -198,8 +197,9 @@ public open class RDPipelineRasterizationState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINERASTERIZATIONSTATE_SET_PATCH_CONTROL_POINTS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE, scriptIndex)
+    return true
   }
 
   public companion object

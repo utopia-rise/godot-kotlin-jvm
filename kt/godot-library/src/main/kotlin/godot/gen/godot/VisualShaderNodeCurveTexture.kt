@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Performs a [godot.CurveTexture] lookup within the visual shader graph.
@@ -37,8 +37,9 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_SET_TEXTURE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODECURVETEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

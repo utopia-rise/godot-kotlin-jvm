@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * 6-sided texture typically used in 3D rendering.
@@ -24,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Cubemap : ImageTextureLayered() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CUBEMAP, scriptIndex)
+    return true
   }
 
   public companion object

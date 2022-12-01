@@ -12,10 +12,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * One-shot timer.
@@ -80,8 +80,9 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_SET_TIME_LEFT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCENETREETIMER, scriptIndex)
+    return true
   }
 
   public companion object

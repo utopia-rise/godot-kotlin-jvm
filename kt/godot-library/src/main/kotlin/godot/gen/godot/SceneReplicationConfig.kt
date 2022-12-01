@@ -24,8 +24,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCENEREPLICATIONCONFIG, scriptIndex)
+    return true
   }
 
   public fun getProperties(): VariantArray<Any?> {

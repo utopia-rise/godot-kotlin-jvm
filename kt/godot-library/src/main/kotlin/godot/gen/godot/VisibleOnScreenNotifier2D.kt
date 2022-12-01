@@ -17,7 +17,6 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Detects when the node extents are visible on screen.
@@ -57,8 +56,9 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER2D_SET_RECT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER2D, scriptIndex)
+    return true
   }
 
   /**

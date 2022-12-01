@@ -12,14 +12,15 @@ import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GDScript : Script() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GDSCRIPT, scriptIndex)
+    return true
   }
 
   public fun new(vararg __var_args: Any?): Any? {

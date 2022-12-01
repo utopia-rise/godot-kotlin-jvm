@@ -117,8 +117,9 @@ public open class AnimationTree : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_ROOT_MOTION_TRACK, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONTREE, scriptIndex)
+    return true
   }
 
   /**

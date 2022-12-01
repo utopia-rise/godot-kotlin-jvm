@@ -27,7 +27,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 2D shape physics query.
@@ -238,8 +237,9 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D, scriptIndex)
+    return true
   }
 
   public companion object

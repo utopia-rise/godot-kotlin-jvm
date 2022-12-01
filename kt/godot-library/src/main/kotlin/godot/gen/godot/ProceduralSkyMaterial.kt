@@ -13,10 +13,10 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A [godot.Material] used with [godot.Sky] to generate a background based on user input parameters.
@@ -215,8 +215,9 @@ public open class ProceduralSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_CURVE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PROCEDURALSKYMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

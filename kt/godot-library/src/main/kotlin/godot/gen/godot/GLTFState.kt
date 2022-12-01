@@ -27,7 +27,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFState : Resource() {
@@ -292,8 +291,9 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ANIMATIONS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFSTATE, scriptIndex)
+    return true
   }
 
   public fun getAnimationPlayersCount(idx: Long): Long {

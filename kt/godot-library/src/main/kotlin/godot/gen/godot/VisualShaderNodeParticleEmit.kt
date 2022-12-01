@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -36,8 +36,9 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT_SET_FLAGS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT, scriptIndex)
+    return true
   }
 
   public enum class EmitFlags(

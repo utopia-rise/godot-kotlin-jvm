@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Default environment properties for the entire scene (post-processing effects, lighting and background settings).
@@ -57,8 +57,9 @@ public open class WorldEnvironment : Node() {
           ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_EFFECTS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
+    return true
   }
 
   public companion object

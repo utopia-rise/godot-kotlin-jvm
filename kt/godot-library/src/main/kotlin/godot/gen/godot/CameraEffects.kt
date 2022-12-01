@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class CameraEffects : Resource() {
@@ -136,8 +135,9 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CAMERAEFFECTS, scriptIndex)
+    return true
   }
 
   public companion object

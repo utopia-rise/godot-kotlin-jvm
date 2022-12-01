@@ -11,10 +11,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Interpolates an abstract value and supplies it to a method called over time.
@@ -25,8 +25,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MethodTweener : Tweener() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_METHODTWEENER, scriptIndex)
+    return true
   }
 
   /**

@@ -11,9 +11,9 @@ import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Flat 2D polygon shape for use with occlusion culling in [godot.OccluderInstance3D].
@@ -42,8 +42,9 @@ public open class PolygonOccluder3D : Occluder3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_POLYGONOCCLUDER3D, scriptIndex)
+    return true
   }
 
   public companion object

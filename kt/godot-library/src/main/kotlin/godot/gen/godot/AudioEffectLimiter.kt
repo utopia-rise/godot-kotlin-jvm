@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds a soft-clip limiter audio effect to an Audio bus.
@@ -91,8 +91,9 @@ public open class AudioEffectLimiter : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTLIMITER_SET_SOFT_CLIP_RATIO, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOEFFECTLIMITER, scriptIndex)
+    return true
   }
 
   public companion object

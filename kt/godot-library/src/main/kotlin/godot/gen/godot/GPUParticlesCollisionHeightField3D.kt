@@ -19,7 +19,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
@@ -118,8 +117,9 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D, scriptIndex)
+    return true
   }
 
   public enum class Resolution(

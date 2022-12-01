@@ -20,7 +20,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -91,8 +90,9 @@ public open class RDPipelineColorBlendState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_SET_ATTACHMENTS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATE, scriptIndex)
+    return true
   }
 
   public companion object

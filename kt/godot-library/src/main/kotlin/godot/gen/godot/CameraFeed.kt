@@ -21,7 +21,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device.
@@ -61,8 +60,9 @@ public open class CameraFeed : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
+    return true
   }
 
   /**

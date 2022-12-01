@@ -15,11 +15,11 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Result from a 2D body motion test.
@@ -28,8 +28,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONRESULT2D, scriptIndex)
+    return true
   }
 
   /**

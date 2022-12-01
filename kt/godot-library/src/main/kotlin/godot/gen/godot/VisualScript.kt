@@ -36,8 +36,9 @@ import kotlin.Unit
 public open class VisualScript : Script() {
   public val nodePortsChanged: Signal1<Long> by signal("id")
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPT, scriptIndex)
+    return true
   }
 
   public fun addFunction(name: StringName, funcNodeId: Long): Unit {

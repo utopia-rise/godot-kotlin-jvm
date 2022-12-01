@@ -4195,8 +4195,9 @@ public open class AnimatedTexture : Texture2D() {
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATEDTEXTURE, scriptIndex)
+    return true
   }
 
   /**

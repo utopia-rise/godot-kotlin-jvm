@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A material for physics properties.
@@ -84,8 +83,9 @@ public open class PhysicsMaterial : Resource() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

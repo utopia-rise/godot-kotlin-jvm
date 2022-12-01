@@ -18,7 +18,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A 2D node that can be used for physically aware bones in 2D.
@@ -113,8 +112,9 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_FOLLOW_BONE_WHEN_SIMULATING, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICALBONE2D, scriptIndex)
+    return true
   }
 
   /**

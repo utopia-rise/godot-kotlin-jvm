@@ -53,8 +53,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK, scriptIndex)
+    return true
   }
 
   /**

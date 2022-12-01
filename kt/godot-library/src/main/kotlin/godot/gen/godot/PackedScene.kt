@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * An abstraction of a serialized scene.
@@ -161,8 +160,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PACKEDSCENE, scriptIndex)
+    return true
   }
 
   /**

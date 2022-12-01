@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A wrapper class for web native JavaScript objects.
@@ -48,8 +48,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_JAVASCRIPTOBJECT, scriptIndex)
+    return true
   }
 
   public companion object

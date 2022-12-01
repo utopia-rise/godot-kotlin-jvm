@@ -96,8 +96,9 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_FLIP_BEND_DIRECTION, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK, scriptIndex)
+    return true
   }
 
   /**

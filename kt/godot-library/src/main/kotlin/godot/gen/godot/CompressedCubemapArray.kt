@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Array of 6-sided textures typically used in 3D rendering, optionally compressed.
@@ -32,8 +32,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CompressedCubemapArray : CompressedTextureLayered() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_COMPRESSEDCUBEMAPARRAY, scriptIndex)
+    return true
   }
 
   public companion object

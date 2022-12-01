@@ -12,15 +12,15 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class EditorResourceConversionPlugin internal constructor() : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN, scriptIndex)
+    return true
   }
 
   /**

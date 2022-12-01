@@ -493,8 +493,9 @@ public open class CPUParticles2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_COLOR_INITIAL_RAMP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CPUPARTICLES2D, scriptIndex)
+    return true
   }
 
   /**

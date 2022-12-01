@@ -127,8 +127,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
+    return true
   }
 
   public fun isSessionSupported(sessionMode: String): Unit {

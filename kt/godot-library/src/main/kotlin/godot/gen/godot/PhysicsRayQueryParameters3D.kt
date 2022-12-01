@@ -20,7 +20,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 3D ray physics query.
@@ -157,8 +156,9 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_BACK_FACES, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D, scriptIndex)
+    return true
   }
 
   public companion object

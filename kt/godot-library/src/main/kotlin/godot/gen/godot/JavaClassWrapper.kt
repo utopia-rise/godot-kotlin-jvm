@@ -10,21 +10,20 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    *

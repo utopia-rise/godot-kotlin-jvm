@@ -32,8 +32,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_POLYGONPATHFINDER, scriptIndex)
+    return true
   }
 
   /**

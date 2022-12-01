@@ -199,8 +199,9 @@ public open class Decal : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_CULL_MASK, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_DECAL, scriptIndex)
+    return true
   }
 
   /**

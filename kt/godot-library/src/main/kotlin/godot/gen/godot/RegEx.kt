@@ -27,8 +27,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class RegEx : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_REGEX, scriptIndex)
+    return true
   }
 
   public fun clear(): Unit {

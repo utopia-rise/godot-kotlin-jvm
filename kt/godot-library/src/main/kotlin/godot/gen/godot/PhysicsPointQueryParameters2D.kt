@@ -20,7 +20,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 2D point physics query.
@@ -127,8 +126,9 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D, scriptIndex)
+    return true
   }
 
   public companion object

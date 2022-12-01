@@ -11,9 +11,9 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A [godot.core.Color] constant to be used within the visual shader graph.
@@ -40,8 +40,9 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORCONSTANT_SET_CONSTANT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

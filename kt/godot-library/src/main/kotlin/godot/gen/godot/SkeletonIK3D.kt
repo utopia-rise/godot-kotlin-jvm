@@ -214,8 +214,9 @@ public open class SkeletonIK3D : Node() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SKELETONIK3D, scriptIndex)
+    return true
   }
 
   /**

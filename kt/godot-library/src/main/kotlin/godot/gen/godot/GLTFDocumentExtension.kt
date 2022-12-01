@@ -19,14 +19,16 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
+    return true
   }
 
   public fun getImportSettingKeys(): VariantArray<Any?> {

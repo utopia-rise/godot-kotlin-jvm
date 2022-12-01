@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Input animation to use in an [godot.AnimationNodeBlendTree].
@@ -59,8 +59,9 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_SET_PLAY_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION, scriptIndex)
+    return true
   }
 
   public enum class PlayMode(

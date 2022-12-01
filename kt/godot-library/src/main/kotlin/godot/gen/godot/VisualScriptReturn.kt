@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptReturn : VisualScriptNode() {
@@ -45,8 +44,9 @@ public open class VisualScriptReturn : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRETURN_SET_RETURN_TYPE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTRETURN, scriptIndex)
+    return true
   }
 
   public companion object

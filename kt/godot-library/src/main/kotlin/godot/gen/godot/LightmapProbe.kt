@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Represents a single manually placed probe for dynamic object lighting with [godot.LightmapGI].
@@ -20,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class LightmapProbe : Node3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LIGHTMAPPROBE, scriptIndex)
+    return true
   }
 
   public companion object

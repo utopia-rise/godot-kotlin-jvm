@@ -19,7 +19,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [godot.StyleBox] that displays a single line.
@@ -99,8 +98,9 @@ public open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_STYLEBOXLINE, scriptIndex)
+    return true
   }
 
   public companion object

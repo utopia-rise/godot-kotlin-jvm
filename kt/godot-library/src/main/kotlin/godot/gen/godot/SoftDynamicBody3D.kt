@@ -174,8 +174,9 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
           ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DISABLE_MODE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SOFTDYNAMICBODY3D, scriptIndex)
+    return true
   }
 
   public fun getPhysicsRid(): RID {

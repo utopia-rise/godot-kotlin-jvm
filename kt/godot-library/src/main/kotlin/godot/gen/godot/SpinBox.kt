@@ -143,8 +143,9 @@ public open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPINBOX, scriptIndex)
+    return true
   }
 
   /**

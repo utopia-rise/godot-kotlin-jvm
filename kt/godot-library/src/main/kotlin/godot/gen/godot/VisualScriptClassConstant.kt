@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptClassConstant : VisualScriptNode() {
@@ -43,8 +43,9 @@ public open class VisualScriptClassConstant : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCLASSCONSTANT_SET_CLASS_CONSTANT, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSCRIPTCLASSCONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

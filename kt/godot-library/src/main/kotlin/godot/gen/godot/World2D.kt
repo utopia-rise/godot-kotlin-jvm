@@ -11,9 +11,9 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Class that has everything pertaining to a 2D world.
@@ -66,8 +66,9 @@ public open class World2D : Resource() {
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -34,13 +34,6 @@ class GenerationService(
 
         classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
-        classTypeBuilder.addFunction(
-            FunSpec.builder("____DO_NOT_TOUCH_THIS_isSingleton____")
-                .addModifiers(KModifier.OVERRIDE)
-                .addStatement("return true")
-                .build()
-        )
-
         return generateCommonsForClass(classTypeBuilder, singletonClass, classTypeBuilder)
     }
 
@@ -689,12 +682,16 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateClassConstructor(classIndexName: String) {
         addFunction(
-            FunSpec.builder("__new")
+            FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
+                .returns(Boolean::class)
                 .addStatement(
                     "callConstructor(%M, scriptIndex)",
                     MemberName(godotApiPackage, classIndexName),
+                )
+                .addStatement(
+                    "return true"
                 )
                 .build()
         )
@@ -702,13 +699,17 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateSingletonConstructor(classIndexName: String) {
         addFunction(
-            FunSpec.builder("__new")
+            FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
+                .returns(Boolean::class)
                 .addStatement(
                     "rawPtr = %T.getSingleton(%M)",
                     TRANSFER_CONTEXT,
                     MemberName(godotApiPackage, classIndexName),
+                )
+                .addStatement(
+                    "return false"
                 )
                 .build()
         )

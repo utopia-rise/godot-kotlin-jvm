@@ -12,9 +12,9 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Convex polygon shape resource for 3D physics.
@@ -46,8 +46,9 @@ public open class ConvexPolygonShape3D : Shape3D() {
           NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

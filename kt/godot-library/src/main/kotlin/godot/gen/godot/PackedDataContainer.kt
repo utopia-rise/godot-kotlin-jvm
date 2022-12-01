@@ -13,18 +13,19 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINER, scriptIndex)
+    return true
   }
 
   /**

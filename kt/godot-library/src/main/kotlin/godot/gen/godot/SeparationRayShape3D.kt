@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Separation ray shape resource for 3D physics.
@@ -60,8 +59,9 @@ public open class SeparationRayShape3D : Shape3D() {
           ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_SET_SLIDE_ON_SLOPE, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -26,8 +26,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GENERIC6DOFJOINT3D, scriptIndex)
+    return true
   }
 
   /**

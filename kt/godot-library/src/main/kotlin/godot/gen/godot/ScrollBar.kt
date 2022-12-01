@@ -12,10 +12,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for scroll bars.
@@ -43,8 +43,9 @@ public open class ScrollBar internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_SET_CUSTOM_STEP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
+    return true
   }
 
   public companion object

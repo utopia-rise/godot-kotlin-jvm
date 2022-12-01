@@ -15,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A node that controls how the object faces the camera to be used within the visual shader graph.
@@ -56,8 +55,9 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_KEEP_SCALE_ENABLED, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBILLBOARD, scriptIndex)
+    return true
   }
 
   public enum class BillboardType(

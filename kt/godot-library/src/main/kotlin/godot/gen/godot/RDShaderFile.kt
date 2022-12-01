@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -40,8 +41,9 @@ public open class RDShaderFile : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BASE_ERROR, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RDSHADERFILE, scriptIndex)
+    return true
   }
 
   /**

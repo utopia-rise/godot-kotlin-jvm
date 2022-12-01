@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A spotlight, such as a reflector spotlight or a lantern.
@@ -21,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SPOTLIGHT3D, scriptIndex)
+    return true
   }
 
   public companion object

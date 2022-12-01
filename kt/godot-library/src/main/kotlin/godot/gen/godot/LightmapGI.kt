@@ -20,7 +20,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Computes and stores baked lightmaps for fast global illumination.
@@ -244,8 +243,9 @@ public open class LightmapGI : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_LIGHT_DATA, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_LIGHTMAPGI, scriptIndex)
+    return true
   }
 
   public enum class BakeQuality(

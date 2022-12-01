@@ -9,18 +9,19 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Reference-counted version of [godot.PackedDataContainer].
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF, scriptIndex)
+    return true
   }
 
   /**

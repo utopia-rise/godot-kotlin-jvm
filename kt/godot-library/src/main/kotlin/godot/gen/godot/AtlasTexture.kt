@@ -16,7 +16,6 @@ import godot.core.VariantType.RECT2
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A texture that crops out part of another Texture2D.
@@ -86,8 +85,9 @@ public open class AtlasTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
     }
 
-  public override fun __new(scriptIndex: Int): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ATLASTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object
