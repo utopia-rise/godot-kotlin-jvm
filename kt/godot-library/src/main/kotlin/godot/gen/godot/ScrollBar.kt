@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -42,8 +43,8 @@ public open class ScrollBar internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_SET_CUSTOM_STEP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCROLLBAR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
   }
 
   public companion object

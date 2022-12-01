@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -77,8 +78,8 @@ public open class MeshInstance2D : Node2D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHINSTANCE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MESHINSTANCE2D, scriptIndex)
   }
 
   public companion object

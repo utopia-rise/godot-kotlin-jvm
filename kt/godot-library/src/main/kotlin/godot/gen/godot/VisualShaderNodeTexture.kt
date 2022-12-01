@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,8 +71,8 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_SET_TEXTURE_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE, scriptIndex)
   }
 
   public enum class TextureType(

@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -36,7 +37,7 @@ public object ResourceUID : Object() {
    */
   public final const val INVALID_ID: Long = -1
 
-  public override fun __new(): Unit {
+  public override fun __new(scriptIndex: Int): Unit {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCEUID)
   }
 

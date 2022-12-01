@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -112,8 +113,8 @@ public open class TubeTrailMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_CURVE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TUBETRAILMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_TUBETRAILMESH, scriptIndex)
   }
 
   public companion object

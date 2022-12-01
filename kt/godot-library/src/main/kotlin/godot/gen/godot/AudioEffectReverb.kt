@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -145,8 +146,8 @@ public open class AudioEffectReverb : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_WET, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTREVERB)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTREVERB, scriptIndex)
   }
 
   public companion object

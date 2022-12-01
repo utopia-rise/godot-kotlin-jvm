@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -56,8 +57,8 @@ public open class VisualScriptComment : VisualScriptNode() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCOMMENT_SET_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTCOMMENT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTCOMMENT, scriptIndex)
   }
 
   public companion object

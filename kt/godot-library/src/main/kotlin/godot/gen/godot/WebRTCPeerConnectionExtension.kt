@@ -11,6 +11,7 @@ import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -19,8 +20,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION, scriptIndex)
   }
 
   public open fun _getConnectionState(): Long {

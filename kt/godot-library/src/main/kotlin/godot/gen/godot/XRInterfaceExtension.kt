@@ -27,6 +27,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -40,8 +41,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACEEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_XRINTERFACEEXTENSION, scriptIndex)
   }
 
   /**

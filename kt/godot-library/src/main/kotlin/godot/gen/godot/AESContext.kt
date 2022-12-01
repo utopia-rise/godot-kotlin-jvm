@@ -168,8 +168,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AESContext : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AESCONTEXT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AESCONTEXT, scriptIndex)
   }
 
   /**

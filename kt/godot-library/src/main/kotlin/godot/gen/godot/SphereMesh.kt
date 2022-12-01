@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -100,8 +101,8 @@ public open class SphereMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_IS_HEMISPHERE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPHEREMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPHEREMESH, scriptIndex)
   }
 
   public companion object

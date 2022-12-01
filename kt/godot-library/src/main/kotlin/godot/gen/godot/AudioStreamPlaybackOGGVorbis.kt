@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamPlaybackOGGVorbis : AudioStreamPlaybackResampled() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKOGGVORBIS)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKOGGVORBIS, scriptIndex)
   }
 
   public companion object

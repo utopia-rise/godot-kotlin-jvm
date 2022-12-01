@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -124,8 +125,8 @@ public open class VisualScriptPropertySet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYSET_SET_ASSIGN_OP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYSET)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYSET, scriptIndex)
   }
 
   public enum class AssignOp(

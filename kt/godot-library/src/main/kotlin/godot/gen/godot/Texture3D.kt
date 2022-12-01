@@ -33,8 +33,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture3D : Texture() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_TEXTURE3D, scriptIndex)
   }
 
   /**

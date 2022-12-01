@@ -13,6 +13,7 @@ import godot.core.StringName
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -24,8 +25,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ScriptExtension : Script() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPTEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SCRIPTEXTENSION, scriptIndex)
   }
 
   /**

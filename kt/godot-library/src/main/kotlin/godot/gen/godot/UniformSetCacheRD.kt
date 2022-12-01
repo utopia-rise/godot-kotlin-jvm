@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class UniformSetCacheRD internal constructor() : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_UNIFORMSETCACHERD)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_UNIFORMSETCACHERD, scriptIndex)
   }
 
   public companion object

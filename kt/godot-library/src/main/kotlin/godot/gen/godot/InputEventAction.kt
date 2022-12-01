@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -72,8 +73,8 @@ public open class InputEventAction : InputEvent() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTACTION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
   }
 
   public companion object

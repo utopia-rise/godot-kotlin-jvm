@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -100,8 +101,8 @@ public open class TextureRect : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_V, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURERECT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
   }
 
   public enum class StretchMode(

@@ -17,6 +17,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -81,8 +82,8 @@ public open class ColorPickerButton : Button() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLORPICKERBUTTON)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLORPICKERBUTTON, scriptIndex)
   }
 
   /**

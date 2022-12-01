@@ -17,6 +17,7 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -52,8 +53,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK, scriptIndex)
   }
 
   /**

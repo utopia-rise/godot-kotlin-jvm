@@ -16,6 +16,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -27,8 +28,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONRESULT2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONRESULT2D, scriptIndex)
   }
 
   /**

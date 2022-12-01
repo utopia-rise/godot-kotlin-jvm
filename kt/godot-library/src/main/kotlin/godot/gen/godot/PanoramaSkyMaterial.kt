@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -58,8 +59,8 @@ public open class PanoramaSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTERING_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PANORAMASKYMATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
   }
 
   public companion object

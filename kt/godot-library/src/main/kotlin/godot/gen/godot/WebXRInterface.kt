@@ -19,6 +19,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -126,8 +127,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBXRINTERFACE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
   }
 
   public fun isSessionSupported(sessionMode: String): Unit {

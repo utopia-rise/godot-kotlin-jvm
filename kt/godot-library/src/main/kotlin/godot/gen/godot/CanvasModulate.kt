@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,8 +36,8 @@ public open class CanvasModulate : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASMODULATE_SET_COLOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASMODULATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CANVASMODULATE, scriptIndex)
   }
 
   public companion object

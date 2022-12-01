@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -60,8 +61,8 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_SET_TEXTURE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
   }
 
   public companion object

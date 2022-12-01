@@ -22,6 +22,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,8 +32,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POLYGONPATHFINDER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_POLYGONPATHFINDER, scriptIndex)
   }
 
   /**

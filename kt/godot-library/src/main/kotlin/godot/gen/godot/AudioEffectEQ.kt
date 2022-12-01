@@ -12,6 +12,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTEQ)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTEQ, scriptIndex)
   }
 
   /**

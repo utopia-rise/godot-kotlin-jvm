@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -68,8 +69,8 @@ public open class ImporterMeshInstance3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_SET_SKELETON_PATH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMPORTERMESHINSTANCE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_IMPORTERMESHINSTANCE3D, scriptIndex)
   }
 
   public companion object

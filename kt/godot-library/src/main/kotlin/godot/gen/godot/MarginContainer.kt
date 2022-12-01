@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -58,8 +59,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MarginContainer : Container() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MARGINCONTAINER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MARGINCONTAINER, scriptIndex)
   }
 
   public companion object

@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -95,8 +96,8 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK_SET_FLIP_BEND_DIRECTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK, scriptIndex)
   }
 
   /**

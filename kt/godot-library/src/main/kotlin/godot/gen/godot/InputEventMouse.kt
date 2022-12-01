@@ -12,6 +12,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -77,8 +78,8 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_GLOBAL_POSITION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTMOUSE, scriptIndex)
   }
 
   public companion object

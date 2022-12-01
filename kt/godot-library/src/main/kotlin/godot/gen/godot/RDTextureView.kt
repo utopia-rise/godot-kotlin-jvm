@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -91,8 +92,8 @@ public open class RDTextureView : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_SWIZZLE_A, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDTEXTUREVIEW)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDTEXTUREVIEW, scriptIndex)
   }
 
   public companion object

@@ -19,6 +19,7 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -34,8 +35,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MeshLibrary : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHLIBRARY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MESHLIBRARY, scriptIndex)
   }
 
   /**

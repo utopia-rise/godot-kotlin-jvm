@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,8 +27,8 @@ public open class ProxyTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXYTEXTURE_SET_BASE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PROXYTEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PROXYTEXTURE, scriptIndex)
   }
 
   public companion object

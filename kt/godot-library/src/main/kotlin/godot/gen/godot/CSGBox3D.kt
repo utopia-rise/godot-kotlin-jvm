@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -39,8 +40,8 @@ public open class CSGBox3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGBOX3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGBOX3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGBOX3D, scriptIndex)
   }
 
   public companion object

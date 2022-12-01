@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -19,8 +20,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, scriptIndex)
   }
 
   /**

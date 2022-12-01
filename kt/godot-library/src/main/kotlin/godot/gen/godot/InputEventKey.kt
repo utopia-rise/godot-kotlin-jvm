@@ -101,8 +101,8 @@ public open class InputEventKey : InputEventWithModifiers() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_ECHO, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTKEY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTKEY, scriptIndex)
   }
 
   /**

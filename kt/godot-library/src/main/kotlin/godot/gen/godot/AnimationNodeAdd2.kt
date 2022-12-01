@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +38,8 @@ public open class AnimationNodeAdd2 : AnimationNode() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEADD2)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODEADD2, scriptIndex)
   }
 
   public companion object

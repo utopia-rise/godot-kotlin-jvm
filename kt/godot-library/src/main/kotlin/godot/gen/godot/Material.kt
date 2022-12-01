@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -64,8 +65,8 @@ public open class Material : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_SET_NEXT_PASS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MATERIAL, scriptIndex)
   }
 
   /**

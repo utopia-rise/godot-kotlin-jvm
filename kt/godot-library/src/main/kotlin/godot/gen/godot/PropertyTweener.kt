@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import kotlin.Any
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PROPERTYTWEENER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
   }
 
   /**

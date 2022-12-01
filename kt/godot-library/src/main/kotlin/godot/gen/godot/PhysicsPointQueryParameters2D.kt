@@ -17,6 +17,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -126,8 +127,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D, scriptIndex)
   }
 
   public companion object

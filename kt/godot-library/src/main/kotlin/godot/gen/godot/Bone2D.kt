@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM2D
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -47,8 +48,8 @@ public open class Bone2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_REST, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BONE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_BONE2D, scriptIndex)
   }
 
   /**

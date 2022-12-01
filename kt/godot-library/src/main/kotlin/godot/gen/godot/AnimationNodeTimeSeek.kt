@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -60,8 +61,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeTimeSeek : AnimationNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK, scriptIndex)
   }
 
   public companion object

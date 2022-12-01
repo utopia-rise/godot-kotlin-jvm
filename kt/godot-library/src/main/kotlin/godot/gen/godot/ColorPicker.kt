@@ -18,6 +18,7 @@ import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -160,8 +161,8 @@ public open class ColorPicker : BoxContainer() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLORPICKER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLORPICKER, scriptIndex)
   }
 
   /**

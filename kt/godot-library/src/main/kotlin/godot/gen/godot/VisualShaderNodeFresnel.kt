@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -17,8 +18,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeFresnel : VisualShaderNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL, scriptIndex)
   }
 
   public companion object

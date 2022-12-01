@@ -17,6 +17,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -156,8 +157,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D_SET_HIT_BACK_FACES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D, scriptIndex)
   }
 
   public companion object

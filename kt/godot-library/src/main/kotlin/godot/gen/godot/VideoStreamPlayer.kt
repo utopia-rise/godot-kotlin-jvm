@@ -20,6 +20,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -199,8 +200,8 @@ public open class VideoStreamPlayer : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
   }
 
   /**

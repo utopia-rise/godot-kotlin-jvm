@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,8 +36,8 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMAGNIFYGESTURE_SET_FACTOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE, scriptIndex)
   }
 
   public companion object

@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -29,8 +30,8 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGPRIMITIVE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
   }
 
   public companion object

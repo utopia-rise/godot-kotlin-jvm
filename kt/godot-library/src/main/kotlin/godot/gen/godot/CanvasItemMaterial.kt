@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -127,8 +128,8 @@ public open class CanvasItemMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_LOOP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASITEMMATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CANVASITEMMATERIAL, scriptIndex)
   }
 
   public enum class LightMode(

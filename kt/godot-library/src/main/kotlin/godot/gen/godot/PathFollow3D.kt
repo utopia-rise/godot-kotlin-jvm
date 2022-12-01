@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -128,8 +129,8 @@ public open class PathFollow3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_LOOP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PATHFOLLOW3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PATHFOLLOW3D, scriptIndex)
   }
 
   public enum class RotationMode(

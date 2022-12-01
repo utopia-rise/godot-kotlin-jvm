@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -41,8 +42,8 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONBOX3D_SET_EXTENTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONBOX3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONBOX3D, scriptIndex)
   }
 
   public companion object

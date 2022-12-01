@@ -22,6 +22,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -117,8 +118,8 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
 
   public val continued: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN, scriptIndex)
   }
 
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {

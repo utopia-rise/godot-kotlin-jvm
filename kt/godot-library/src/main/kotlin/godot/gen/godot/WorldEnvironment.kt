@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -56,8 +57,8 @@ public open class WorldEnvironment : Node() {
           ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_EFFECTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WORLDENVIRONMENT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
   }
 
   public companion object

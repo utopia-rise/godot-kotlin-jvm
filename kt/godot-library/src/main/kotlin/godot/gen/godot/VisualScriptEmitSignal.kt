@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,8 +30,8 @@ public open class VisualScriptEmitSignal : VisualScriptNode() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTEMITSIGNAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTEMITSIGNAL, scriptIndex)
   }
 
   public companion object

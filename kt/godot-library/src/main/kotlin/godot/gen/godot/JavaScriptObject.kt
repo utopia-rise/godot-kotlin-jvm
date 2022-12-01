@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -47,8 +48,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JAVASCRIPTOBJECT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_JAVASCRIPTOBJECT, scriptIndex)
   }
 
   public companion object

@@ -12,6 +12,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -84,8 +85,8 @@ public open class BoxMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_DEPTH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BOXMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_BOXMESH, scriptIndex)
   }
 
   public companion object

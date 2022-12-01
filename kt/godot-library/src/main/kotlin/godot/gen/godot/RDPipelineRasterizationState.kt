@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -197,8 +198,8 @@ public open class RDPipelineRasterizationState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINERASTERIZATIONSTATE_SET_PATCH_CONTROL_POINTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE, scriptIndex)
   }
 
   public companion object

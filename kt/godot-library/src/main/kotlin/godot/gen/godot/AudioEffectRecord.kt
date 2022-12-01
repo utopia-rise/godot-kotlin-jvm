@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,8 +47,8 @@ public open class AudioEffectRecord : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_SET_FORMAT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTRECORD)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTRECORD, scriptIndex)
   }
 
   /**

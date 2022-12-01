@@ -14,6 +14,7 @@ import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -83,8 +84,8 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
    */
   public val propertyToggled: Signal2<String, Boolean> by signal("property", "checked")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORINSPECTOR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_EDITORINSPECTOR, scriptIndex)
   }
 
   public companion object

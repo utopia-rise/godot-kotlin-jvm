@@ -18,6 +18,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -81,8 +82,8 @@ public open class SkeletonModification3DLookAt : SkeletonModification3D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DLOOKAT_SET_TARGET_NODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DLOOKAT, scriptIndex)
   }
 
   /**

@@ -12,6 +12,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -76,8 +77,8 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_FFT_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER, scriptIndex)
   }
 
   public enum class FFTSize(

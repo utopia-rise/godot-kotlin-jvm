@@ -39,8 +39,8 @@ public open class GLTFDocument : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_EXTENSIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFDOCUMENT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
   }
 
   public fun appendFromFile(

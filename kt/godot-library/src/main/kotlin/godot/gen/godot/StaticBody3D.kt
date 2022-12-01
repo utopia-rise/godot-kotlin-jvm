@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -83,8 +84,8 @@ public open class StaticBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STATICBODY3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_STATICBODY3D, scriptIndex)
   }
 
   public companion object

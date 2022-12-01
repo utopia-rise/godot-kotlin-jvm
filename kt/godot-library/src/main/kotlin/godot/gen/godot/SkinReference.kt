@@ -11,6 +11,7 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -19,8 +20,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKINREFERENCE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SKINREFERENCE, scriptIndex)
   }
 
   /**

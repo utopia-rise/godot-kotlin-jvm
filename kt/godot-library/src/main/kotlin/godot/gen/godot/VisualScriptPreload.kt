@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,8 +29,8 @@ public open class VisualScriptPreload : VisualScriptNode() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTPRELOAD)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTPRELOAD, scriptIndex)
   }
 
   public companion object

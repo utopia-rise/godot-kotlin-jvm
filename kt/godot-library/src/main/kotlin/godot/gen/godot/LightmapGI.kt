@@ -17,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -243,8 +244,8 @@ public open class LightmapGI : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_LIGHT_DATA, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPGI)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_LIGHTMAPGI, scriptIndex)
   }
 
   public enum class BakeQuality(

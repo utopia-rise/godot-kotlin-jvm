@@ -14,6 +14,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -198,8 +199,8 @@ public open class PhysicalSkyMaterial : Material() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL, scriptIndex)
   }
 
   public companion object

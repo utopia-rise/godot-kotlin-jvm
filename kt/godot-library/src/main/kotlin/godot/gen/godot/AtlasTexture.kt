@@ -14,6 +14,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -85,8 +86,8 @@ public open class AtlasTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ATLASTEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ATLASTEXTURE, scriptIndex)
   }
 
   public companion object

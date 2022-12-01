@@ -21,6 +21,7 @@ import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -148,8 +149,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_OBJECTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
   }
 
   public companion object

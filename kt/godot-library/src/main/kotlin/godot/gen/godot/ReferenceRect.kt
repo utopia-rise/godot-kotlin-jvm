@@ -15,6 +15,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -73,8 +74,8 @@ public open class ReferenceRect : Control() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REFERENCERECT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_REFERENCERECT, scriptIndex)
   }
 
   public companion object

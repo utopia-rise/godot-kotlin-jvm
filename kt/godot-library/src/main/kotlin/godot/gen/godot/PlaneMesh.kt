@@ -14,6 +14,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -88,8 +89,8 @@ public open class PlaneMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_CENTER_OFFSET, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PLANEMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PLANEMESH, scriptIndex)
   }
 
   public companion object

@@ -25,6 +25,7 @@ import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -214,8 +215,8 @@ public open class CharFXTransform : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CHARFXTRANSFORM)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
   }
 
   public companion object

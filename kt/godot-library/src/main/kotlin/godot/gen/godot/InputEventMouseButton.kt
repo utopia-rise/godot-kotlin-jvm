@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -90,8 +91,8 @@ public open class InputEventMouseButton : InputEventMouse() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_DOUBLE_CLICK, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
   }
 
   public companion object

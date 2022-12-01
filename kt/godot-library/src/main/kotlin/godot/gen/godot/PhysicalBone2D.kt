@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -112,8 +113,8 @@ public open class PhysicalBone2D : RigidDynamicBody2D() {
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_FOLLOW_BONE_WHEN_SIMULATING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICALBONE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICALBONE2D, scriptIndex)
   }
 
   /**

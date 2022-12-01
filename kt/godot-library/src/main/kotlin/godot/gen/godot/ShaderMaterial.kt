@@ -17,6 +17,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -45,8 +46,8 @@ public open class ShaderMaterial : Material() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SHADERMATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SHADERMATERIAL, scriptIndex)
   }
 
   public fun setShaderParam(`param`: StringName, `value`: Any): Unit {

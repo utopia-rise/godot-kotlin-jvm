@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -94,8 +95,8 @@ public open class InputEventMouseMotion : InputEventMouse() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_VELOCITY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION, scriptIndex)
   }
 
   public companion object

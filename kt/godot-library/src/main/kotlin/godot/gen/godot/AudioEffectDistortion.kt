@@ -12,6 +12,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -110,8 +111,8 @@ public open class AudioEffectDistortion : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_POST_GAIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION, scriptIndex)
   }
 
   public enum class Mode(

@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -79,8 +80,8 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGSPHERE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGSPHERE3D, scriptIndex)
   }
 
   public companion object

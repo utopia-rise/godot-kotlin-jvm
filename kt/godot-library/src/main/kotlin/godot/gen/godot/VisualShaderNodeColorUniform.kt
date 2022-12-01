@@ -13,6 +13,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -44,8 +45,8 @@ public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM, scriptIndex)
   }
 
   public companion object

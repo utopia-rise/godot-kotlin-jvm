@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -38,8 +39,8 @@ public open class OmniLight3D : Light3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_SET_SHADOW_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OMNILIGHT3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_OMNILIGHT3D, scriptIndex)
   }
 
   public enum class ShadowMode(

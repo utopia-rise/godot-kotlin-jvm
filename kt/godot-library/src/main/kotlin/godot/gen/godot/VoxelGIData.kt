@@ -22,6 +22,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -141,8 +142,8 @@ public open class VoxelGIData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_INTERIOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VOXELGIDATA)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VOXELGIDATA, scriptIndex)
   }
 
   /**

@@ -61,8 +61,8 @@ public open class CameraFeed : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAMERAFEED)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
   }
 
   /**

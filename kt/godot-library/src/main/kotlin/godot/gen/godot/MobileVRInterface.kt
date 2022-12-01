@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -101,8 +102,8 @@ public open class MobileVRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_K2, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MOBILEVRINTERFACE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MOBILEVRINTERFACE, scriptIndex)
   }
 
   public companion object

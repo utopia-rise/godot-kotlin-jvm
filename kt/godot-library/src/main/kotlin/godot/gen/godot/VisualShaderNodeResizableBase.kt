@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +38,8 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODERESIZABLEBASE_SET_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODERESIZABLEBASE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODERESIZABLEBASE, scriptIndex)
   }
 
   public companion object

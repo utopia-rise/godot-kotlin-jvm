@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -64,8 +65,8 @@ public open class AudioStreamGenerator : AudioStream() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR, scriptIndex)
   }
 
   public companion object

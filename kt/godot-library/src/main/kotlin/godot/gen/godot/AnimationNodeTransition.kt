@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -574,8 +575,8 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION, scriptIndex)
   }
 
   /**

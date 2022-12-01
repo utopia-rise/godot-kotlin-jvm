@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -51,8 +52,8 @@ public open class CapsuleShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_SET_HEIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAPSULESHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CAPSULESHAPE2D, scriptIndex)
   }
 
   public companion object

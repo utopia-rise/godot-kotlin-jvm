@@ -7,14 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class EditorSceneFormatImporterFBX internal constructor() : EditorSceneFormatImporter()
     {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERFBX)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERFBX, scriptIndex)
   }
 
   public companion object

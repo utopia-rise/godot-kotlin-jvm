@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,8 +30,8 @@ public open class VisualScriptMathConstant : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_SET_MATH_CONSTANT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTMATHCONSTANT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTMATHCONSTANT, scriptIndex)
   }
 
   public enum class MathConstant(

@@ -26,6 +26,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -170,8 +171,8 @@ public open class GridMap : Node3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRIDMAP)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GRIDMAP, scriptIndex)
   }
 
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {

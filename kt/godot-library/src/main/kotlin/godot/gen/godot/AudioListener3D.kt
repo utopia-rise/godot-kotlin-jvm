@@ -13,6 +13,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOLISTENER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOLISTENER3D, scriptIndex)
   }
 
   /**

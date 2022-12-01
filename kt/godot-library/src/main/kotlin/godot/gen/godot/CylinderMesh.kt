@@ -12,6 +12,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -98,8 +99,8 @@ public open class CylinderMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_RINGS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CYLINDERMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CYLINDERMESH, scriptIndex)
   }
 
   public companion object

@@ -18,6 +18,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -42,7 +43,7 @@ public object TextServerManager : Object() {
    */
   public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
 
-  public override fun __new(): Unit {
+  public override fun __new(scriptIndex: Int): Unit {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
   }
 

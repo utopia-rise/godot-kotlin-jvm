@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -41,8 +42,8 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D, scriptIndex)
   }
 
   public companion object

@@ -13,6 +13,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -61,8 +62,8 @@ public open class ConcavePolygonShape3D : Shape3D() {
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D, scriptIndex)
   }
 
   public companion object

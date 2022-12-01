@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -58,8 +59,8 @@ public open class CollisionShape3D : Node3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLLISIONSHAPE3D, scriptIndex)
   }
 
   /**

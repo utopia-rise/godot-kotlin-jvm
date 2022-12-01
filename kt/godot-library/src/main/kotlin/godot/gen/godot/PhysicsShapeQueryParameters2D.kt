@@ -24,6 +24,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -237,8 +238,8 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D, scriptIndex)
   }
 
   public companion object

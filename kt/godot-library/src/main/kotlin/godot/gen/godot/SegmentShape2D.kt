@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -51,8 +52,8 @@ public open class SegmentShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_B, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SEGMENTSHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SEGMENTSHAPE2D, scriptIndex)
   }
 
   public companion object

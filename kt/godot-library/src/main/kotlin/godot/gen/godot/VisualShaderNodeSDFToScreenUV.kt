@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -17,8 +18,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeSDFToScreenUV : VisualShaderNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESDFTOSCREENUV)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODESDFTOSCREENUV, scriptIndex)
   }
 
   public companion object

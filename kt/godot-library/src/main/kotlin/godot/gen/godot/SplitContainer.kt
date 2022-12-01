@@ -14,6 +14,7 @@ import godot.core.VariantType.NIL
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -79,8 +80,8 @@ public open class SplitContainer internal constructor() : Container() {
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPLITCONTAINER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
   }
 
   /**

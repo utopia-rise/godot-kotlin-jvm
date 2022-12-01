@@ -37,8 +37,8 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBRTCDATACHANNEL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBRTCDATACHANNEL, scriptIndex)
   }
 
   public fun poll(): GodotError {

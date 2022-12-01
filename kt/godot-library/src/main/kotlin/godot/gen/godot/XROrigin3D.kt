@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -47,8 +48,8 @@ public open class XROrigin3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_WORLD_SCALE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRORIGIN3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
   }
 
   public companion object

@@ -18,6 +18,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -251,8 +252,8 @@ public open class ReflectionProbe : VisualInstance3D() {
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_COLOR_ENERGY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REFLECTIONPROBE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_REFLECTIONPROBE, scriptIndex)
   }
 
   public enum class AmbientMode(

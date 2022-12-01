@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -150,8 +151,8 @@ public open class AudioEffectCompressor : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCOMPRESSOR_SET_SIDECHAIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
   }
 
   public companion object

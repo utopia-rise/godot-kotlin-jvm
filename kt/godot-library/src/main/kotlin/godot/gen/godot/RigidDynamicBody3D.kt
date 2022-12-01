@@ -27,6 +27,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -343,8 +344,8 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_SET_CONSTANT_TORQUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RIGIDDYNAMICBODY3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RIGIDDYNAMICBODY3D, scriptIndex)
   }
 
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {

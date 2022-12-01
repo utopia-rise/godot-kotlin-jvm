@@ -22,6 +22,7 @@ import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.TRANSFORM3D
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -156,8 +157,8 @@ public open class MultiMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MULTIMESH, scriptIndex)
   }
 
   /**

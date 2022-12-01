@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -39,8 +40,8 @@ public open class RDShaderFile : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BASE_ERROR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDSHADERFILE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDSHADERFILE, scriptIndex)
   }
 
   /**

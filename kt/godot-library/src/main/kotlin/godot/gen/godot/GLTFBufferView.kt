@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -79,8 +80,8 @@ public open class GLTFBufferView : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_INDICES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFBUFFERVIEW)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFBUFFERVIEW, scriptIndex)
   }
 
   public companion object

@@ -27,8 +27,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBRTCMULTIPLAYERPEER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBRTCMULTIPLAYERPEER, scriptIndex)
   }
 
   public fun initialize(

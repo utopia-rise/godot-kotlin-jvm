@@ -20,28 +20,16 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             (void*) TransferContext::icall
     };
 
-    jni::JNativeMethod icall_static_method{
-            const_cast<char*>("icallStatic"),
-            const_cast<char*>("(II)V"),
-            (void*) TransferContext::icall_static
-    };
-
-    jni::JNativeMethod invoke_ctor_method{
-            const_cast<char*>("invokeConstructor"),
-            const_cast<char*>("(I)V"),
-            (void*) TransferContext::invoke_constructor
+    jni::JNativeMethod create_native_objectmethod{
+            const_cast<char*>("createNativeObject"),
+            const_cast<char*>("(IJJI)V"),
+            (void *) TransferContext::create_native_object
     };
 
     jni::JNativeMethod get_singleton_method{
             const_cast<char*>("getSingleton"),
             const_cast<char*>("(I)J"),
             (void*) TransferContext::get_singleton
-    };
-
-    jni::JNativeMethod set_script_method{
-            const_cast<char*>("setScript"),
-            const_cast<char*>("(JILgodot/core/KtObject;Ljava/lang/ClassLoader;)V"),
-            (void*) TransferContext::set_script
     };
 
     jni::JNativeMethod free_object_method{
@@ -52,10 +40,8 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
-    methods.push_back(icall_static_method);
-    methods.push_back(invoke_ctor_method);
+    methods.push_back(create_native_objectmethod);
     methods.push_back(get_singleton_method);
-    methods.push_back(set_script_method);
     methods.push_back(free_object_method);
     jni::Env env{jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
@@ -196,8 +182,13 @@ void TransferContext::icall(
 #endif
 }
 
-void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object,
-                                         jboolean user_defined) {
+void TransferContext::create_native_object(
+        JNIEnv* p_raw_env,
+        jint p_class_index,
+        jobject p_object,
+        jobject p_class_loader,
+        jint p_script_index) {
+
     const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instantiate(class_name);
 
@@ -208,10 +199,15 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
-    //We don't set a binding if it's user defined because the script is already fulfilling that purpose.
-    if (!static_cast<bool>(user_defined)) {
-        KtObject* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+    KtObject* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+    int script_index {static_cast<int>(p_class_index)};
+    if (script_index == -1) {
         KotlinBindingManager::set_instance_binding(ptr, kt_object);
+    } else {
+        Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[script_index]};
+        ScriptInstance* script{
+                new KotlinInstance(kt_object, ptr, kotlin_script->get_kotlin_class(), kotlin_script.ptr())};
+        ptr->set_script_instance(script);
     }
 
     if (ptr->is_ref_counted()) {
@@ -233,21 +229,6 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
     return reinterpret_cast<uintptr_t>(
             Engine::get_singleton()->get_singleton_object(
                     GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]));
-}
-
-void TransferContext::set_script(
-        JNIEnv* p_raw_env,
-        jobject p_instance,
-        jlong p_raw_ptr,
-        jint p_class_index,
-        jobject p_object,
-        jobject p_class_loader) {
-    Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
-    auto* owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-    auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
-    ScriptInstance* script{
-            new KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr())};
-    owner->set_script_instance(script);
 }
 
 void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

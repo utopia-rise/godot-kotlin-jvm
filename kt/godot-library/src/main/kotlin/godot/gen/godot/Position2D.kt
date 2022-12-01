@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class Position2D : Node2D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POSITION2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_POSITION2D, scriptIndex)
   }
 
   public companion object

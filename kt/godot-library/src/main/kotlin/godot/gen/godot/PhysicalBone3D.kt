@@ -18,6 +18,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -281,8 +282,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_CAN_SLEEP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICALBONE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICALBONE3D, scriptIndex)
   }
 
   /**

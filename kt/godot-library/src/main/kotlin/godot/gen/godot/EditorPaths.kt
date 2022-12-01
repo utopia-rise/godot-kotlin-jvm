@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.STRING
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,8 +30,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorPaths internal constructor() : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORPATHS)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_EDITORPATHS, scriptIndex)
   }
 
   /**

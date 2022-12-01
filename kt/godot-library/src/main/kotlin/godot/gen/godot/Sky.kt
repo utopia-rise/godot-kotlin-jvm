@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -68,8 +69,8 @@ public open class Sky : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_SET_RADIANCE_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SKY, scriptIndex)
   }
 
   public enum class ProcessMode(

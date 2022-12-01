@@ -27,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class NativeExtension : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NATIVEEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NATIVEEXTENSION, scriptIndex)
   }
 
   /**

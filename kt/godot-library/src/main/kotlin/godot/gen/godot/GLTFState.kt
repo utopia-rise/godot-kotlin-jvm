@@ -23,6 +23,7 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -291,8 +292,8 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_ANIMATIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFSTATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFSTATE, scriptIndex)
   }
 
   public fun getAnimationPlayersCount(idx: Long): Long {

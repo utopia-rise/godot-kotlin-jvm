@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioListener2D : Node2D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOLISTENER2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOLISTENER2D, scriptIndex)
   }
 
   /**

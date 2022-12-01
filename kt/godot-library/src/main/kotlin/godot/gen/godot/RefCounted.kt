@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -29,11 +30,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RefCounted : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REFCOUNTED)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 
   /**
    * Initializes the internal reference counter. Use this only if you really know what you are doing.

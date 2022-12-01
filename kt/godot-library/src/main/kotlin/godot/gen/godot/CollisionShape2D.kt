@@ -14,6 +14,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -94,8 +95,8 @@ public open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLLISIONSHAPE2D, scriptIndex)
   }
 
   public companion object

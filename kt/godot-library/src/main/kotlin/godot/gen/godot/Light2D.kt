@@ -16,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -244,8 +245,8 @@ public open class Light2D internal constructor() : Node2D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHT2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_LIGHT2D, scriptIndex)
   }
 
   /**

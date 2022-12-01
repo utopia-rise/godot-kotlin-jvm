@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +38,8 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_SET_CONSTANT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT, scriptIndex)
   }
 
   public companion object

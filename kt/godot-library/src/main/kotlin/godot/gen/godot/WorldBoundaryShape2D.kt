@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -57,8 +58,8 @@ public open class WorldBoundaryShape2D : Shape2D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE2D, scriptIndex)
   }
 
   public companion object

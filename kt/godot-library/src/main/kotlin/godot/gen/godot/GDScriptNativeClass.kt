@@ -10,13 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import kotlin.Any
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class GDScriptNativeClass internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GDSCRIPTNATIVECLASS)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GDSCRIPTNATIVECLASS, scriptIndex)
   }
 
   public fun new(): Any? {

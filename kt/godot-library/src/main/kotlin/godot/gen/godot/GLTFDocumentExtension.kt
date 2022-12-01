@@ -25,8 +25,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
   }
 
   public fun getImportSettingKeys(): VariantArray<Any?> {

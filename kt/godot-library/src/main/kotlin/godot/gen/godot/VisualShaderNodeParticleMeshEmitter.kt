@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,8 +71,8 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_SURFACE_INDEX, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER, scriptIndex)
   }
 
   public companion object

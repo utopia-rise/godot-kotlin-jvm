@@ -40,16 +40,12 @@ abstract class KtObject {
             config.reset()
         } else {
             // user types shouldn't override this method
-            __new()
             // inheritance in Godot is faked, a script is attached to an Object allow
             // the script to see all methods of the owning Object.
             // For user types, we need to make sure to attach this script to the Object
             // rawPtr is pointing to.
-            val classIndex = TypeManager.userTypeToId[this::class]
-            // If user type
-            if (classIndex != null) {
-                TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
-            }
+            val scriptIndex = TypeManager.userTypeToId[this::class]?: -1
+            __new(scriptIndex)
         }
 
         if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
@@ -60,7 +56,15 @@ abstract class KtObject {
     @Suppress("FunctionName")
     open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
 
-    abstract fun __new()
+    abstract fun __new(scriptIndex: Int)
+
+    internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
+        TransferContext.createNativeObject(classIndex, this, this::class.java.classLoader, scriptIndex)
+        val buffer = TransferContext.buffer
+        rawPtr = buffer.long
+        __id = ObjectID(buffer.long)
+        buffer.rewind()
+    }
 
     open fun _onDestroy() = Unit
 

@@ -11,6 +11,7 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -65,8 +66,8 @@ public open class World2D : Resource() {
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WORLD2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
   }
 
   public companion object

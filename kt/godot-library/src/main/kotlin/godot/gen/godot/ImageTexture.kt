@@ -57,8 +57,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMAGETEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_IMAGETEXTURE, scriptIndex)
   }
 
   /**

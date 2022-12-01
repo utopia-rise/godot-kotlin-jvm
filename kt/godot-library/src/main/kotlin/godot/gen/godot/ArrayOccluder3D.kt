@@ -13,6 +13,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -50,8 +51,8 @@ public open class ArrayOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_INDICES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ARRAYOCCLUDER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ARRAYOCCLUDER3D, scriptIndex)
   }
 
   /**

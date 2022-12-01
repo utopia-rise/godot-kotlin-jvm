@@ -20,6 +20,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -116,8 +117,8 @@ public open class AnimationTree : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_ROOT_MOTION_TRACK, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONTREE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONTREE, scriptIndex)
   }
 
   /**

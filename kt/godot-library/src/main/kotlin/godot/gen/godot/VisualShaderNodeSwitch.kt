@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -37,8 +38,8 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESWITCH_SET_OP_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH, scriptIndex)
   }
 
   public enum class OpType(

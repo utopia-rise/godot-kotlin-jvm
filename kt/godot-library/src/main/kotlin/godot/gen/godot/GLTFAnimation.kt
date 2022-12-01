@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -27,8 +28,8 @@ public open class GLTFAnimation : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFANIMATION_SET_LOOP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFANIMATION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFANIMATION, scriptIndex)
   }
 
   public companion object

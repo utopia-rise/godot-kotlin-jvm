@@ -161,8 +161,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKEDSCENE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PACKEDSCENE, scriptIndex)
   }
 
   /**

@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -139,8 +140,8 @@ public open class PathFollow2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_LOOKAHEAD, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PATHFOLLOW2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PATHFOLLOW2D, scriptIndex)
   }
 
   public companion object

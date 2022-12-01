@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -66,8 +67,8 @@ public open class MeshTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_IMAGE_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHTEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MESHTEXTURE, scriptIndex)
   }
 
   public companion object

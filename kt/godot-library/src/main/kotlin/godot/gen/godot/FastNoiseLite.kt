@@ -17,6 +17,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -315,8 +316,8 @@ public open class FastNoiseLite : Noise() {
           ENGINEMETHOD_ENGINECLASS_FASTNOISELITE_SET_DOMAIN_WARP_FRACTAL_GAIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FASTNOISELITE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_FASTNOISELITE, scriptIndex)
   }
 
   public enum class DomainWarpType(

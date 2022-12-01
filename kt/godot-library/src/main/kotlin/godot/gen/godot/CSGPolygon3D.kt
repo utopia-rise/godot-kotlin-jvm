@@ -19,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -219,8 +220,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGPOLYGON3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGPOLYGON3D, scriptIndex)
   }
 
   public enum class PathIntervalType(

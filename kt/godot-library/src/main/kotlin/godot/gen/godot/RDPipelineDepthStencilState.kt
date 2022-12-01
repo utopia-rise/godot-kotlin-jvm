@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -359,8 +360,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_REFERENCE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, scriptIndex)
   }
 
   public companion object

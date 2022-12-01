@@ -19,6 +19,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -226,8 +227,8 @@ public open class TextureProgressBar : Range() {
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
   }
 
   /**

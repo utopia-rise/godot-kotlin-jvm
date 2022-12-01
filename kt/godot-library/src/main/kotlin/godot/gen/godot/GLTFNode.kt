@@ -20,6 +20,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -170,8 +171,8 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_LIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFNODE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
   }
 
   public companion object

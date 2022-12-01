@@ -14,6 +14,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,8 +67,8 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
    */
   public val scriptCreated: Signal1<Script> by signal("script")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG, scriptIndex)
   }
 
   /**

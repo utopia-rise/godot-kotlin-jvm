@@ -112,8 +112,8 @@ public open class AudioStreamSample : AudioStream() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_STEREO, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMSAMPLE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAMSAMPLE, scriptIndex)
   }
 
   public fun saveToWav(path: String): GodotError {

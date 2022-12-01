@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -113,8 +114,8 @@ public open class NavigationPolygon : Resource() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON, scriptIndex)
   }
 
   /**

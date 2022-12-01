@@ -123,8 +123,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHDATATOOL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MESHDATATOOL, scriptIndex)
   }
 
   /**

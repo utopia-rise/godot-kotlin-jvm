@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -144,8 +145,8 @@ public open class GradientTexture2D : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE2D_SET_REPEAT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRADIENTTEXTURE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
   }
 
   public enum class Fill(

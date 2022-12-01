@@ -11,6 +11,7 @@ import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -44,8 +45,8 @@ public open class ViewportTexture : Texture2D() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_SET_VIEWPORT_PATH_IN_SCENE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIEWPORTTEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
   }
 
   public companion object

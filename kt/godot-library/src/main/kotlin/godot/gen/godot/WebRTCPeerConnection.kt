@@ -36,8 +36,8 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)
   }
 
   public fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {

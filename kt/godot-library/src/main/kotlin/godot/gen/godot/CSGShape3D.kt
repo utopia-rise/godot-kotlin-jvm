@@ -17,6 +17,7 @@ import godot.core.VariantType.NIL
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -96,8 +97,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGSHAPE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGSHAPE3D, scriptIndex)
   }
 
   public fun isRootShape(): Boolean {

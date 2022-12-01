@@ -12,6 +12,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,8 +54,8 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_SET_CONSTANT_ID, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
   }
 
   public companion object

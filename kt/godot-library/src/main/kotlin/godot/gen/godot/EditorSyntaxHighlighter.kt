@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlighter() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER, scriptIndex)
   }
 
   /**

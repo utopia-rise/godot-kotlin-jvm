@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptComposeArray : VisualScriptLists() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTCOMPOSEARRAY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTCOMPOSEARRAY, scriptIndex)
   }
 
   public companion object

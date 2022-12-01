@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -75,8 +76,8 @@ public open class PrimitiveMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PRIMITIVEMESH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
   }
 
   /**

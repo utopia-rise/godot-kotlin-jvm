@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +38,8 @@ public open class CircleShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CIRCLESHAPE2D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CIRCLESHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CIRCLESHAPE2D, scriptIndex)
   }
 
   public companion object

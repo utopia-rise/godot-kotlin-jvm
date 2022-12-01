@@ -23,8 +23,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKEDDATACONTAINER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PACKEDDATACONTAINER, scriptIndex)
   }
 
   /**

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,8 +30,8 @@ public open class VisualScriptDeconstruct : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_SET_DECONSTRUCT_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTDECONSTRUCT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTDECONSTRUCT, scriptIndex)
   }
 
   public companion object

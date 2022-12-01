@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -135,8 +136,8 @@ public open class CameraEffects : Resource() {
           ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_SET_OVERRIDE_EXPOSURE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAMERAEFFECTS)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CAMERAEFFECTS, scriptIndex)
   }
 
   public companion object

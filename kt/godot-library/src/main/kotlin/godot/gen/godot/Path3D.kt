@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -43,8 +44,8 @@ public open class Path3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH3D_SET_CURVE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PATH3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PATH3D, scriptIndex)
   }
 
   public companion object

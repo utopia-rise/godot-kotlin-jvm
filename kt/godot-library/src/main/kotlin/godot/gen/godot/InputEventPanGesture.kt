@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,8 +36,8 @@ public open class InputEventPanGesture : InputEventGesture() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTPANGESTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_INPUTEVENTPANGESTURE, scriptIndex)
   }
 
   public companion object

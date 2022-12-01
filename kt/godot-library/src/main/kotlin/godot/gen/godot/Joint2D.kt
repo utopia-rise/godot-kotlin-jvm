@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -85,8 +86,8 @@ public open class Joint2D internal constructor() : Node2D() {
           ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JOINT2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
   }
 
   public companion object

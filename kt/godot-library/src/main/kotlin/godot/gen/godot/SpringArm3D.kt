@@ -17,6 +17,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -100,8 +101,8 @@ public open class SpringArm3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_MARGIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPRINGARM3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPRINGARM3D, scriptIndex)
   }
 
   /**

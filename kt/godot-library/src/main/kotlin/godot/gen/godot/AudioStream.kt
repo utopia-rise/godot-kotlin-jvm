@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -28,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioStream : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAM)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)
   }
 
   public open fun _instancePlayback(): AudioStreamPlayback? {

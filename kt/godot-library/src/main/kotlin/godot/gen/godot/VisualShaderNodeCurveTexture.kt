@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -36,8 +37,8 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_SET_TEXTURE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECURVETEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECURVETEXTURE, scriptIndex)
   }
 
   public companion object

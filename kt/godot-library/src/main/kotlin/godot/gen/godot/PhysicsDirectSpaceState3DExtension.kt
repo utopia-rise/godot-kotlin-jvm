@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -18,8 +19,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
   }
 
   /**

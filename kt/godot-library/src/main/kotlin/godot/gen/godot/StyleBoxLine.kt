@@ -16,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -98,8 +99,8 @@ public open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STYLEBOXLINE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_STYLEBOXLINE, scriptIndex)
   }
 
   public companion object

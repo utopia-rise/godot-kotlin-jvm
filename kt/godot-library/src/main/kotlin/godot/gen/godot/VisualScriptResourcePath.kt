@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,8 +30,8 @@ public open class VisualScriptResourcePath : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTRESOURCEPATH_SET_RESOURCE_PATH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTRESOURCEPATH)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTRESOURCEPATH, scriptIndex)
   }
 
   public companion object

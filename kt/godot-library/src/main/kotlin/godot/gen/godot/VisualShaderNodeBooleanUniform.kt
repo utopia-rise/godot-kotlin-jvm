@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -42,8 +43,8 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM, scriptIndex)
   }
 
   public companion object

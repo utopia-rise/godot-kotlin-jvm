@@ -13,6 +13,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -105,8 +106,8 @@ public open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_SCALE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REMOTETRANSFORM2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_REMOTETRANSFORM2D, scriptIndex)
   }
 
   /**

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,8 +54,8 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_SET_DESCRIPTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
   }
 
   public companion object

@@ -14,6 +14,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -66,8 +67,8 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
    */
   public val nameChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPTEDITORBASE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SCRIPTEDITORBASE, scriptIndex)
   }
 
   /**

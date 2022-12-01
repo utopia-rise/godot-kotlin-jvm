@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,8 +54,8 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_FUNCTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
   }
 
   public enum class Function(

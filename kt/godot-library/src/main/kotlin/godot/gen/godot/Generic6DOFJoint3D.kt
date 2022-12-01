@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -25,8 +26,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GENERIC6DOFJOINT3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GENERIC6DOFJOINT3D, scriptIndex)
   }
 
   /**

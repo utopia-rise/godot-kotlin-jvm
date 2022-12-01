@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,8 +36,8 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_SET_MODE_2D, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
   }
 
   public companion object

@@ -24,6 +24,7 @@ import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -173,8 +174,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
           ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_SET_DISABLE_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SOFTDYNAMICBODY3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SOFTDYNAMICBODY3D, scriptIndex)
   }
 
   public fun getPhysicsRid(): RID {

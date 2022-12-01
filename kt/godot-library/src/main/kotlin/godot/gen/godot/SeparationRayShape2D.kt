@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -59,8 +60,8 @@ public open class SeparationRayShape2D : Shape2D() {
           ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE2D_SET_SLIDE_ON_SLOPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE2D, scriptIndex)
   }
 
   public companion object

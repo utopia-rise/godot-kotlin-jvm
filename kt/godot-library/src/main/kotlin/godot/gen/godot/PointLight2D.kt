@@ -14,6 +14,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -82,8 +83,8 @@ public open class PointLight2D : Light2D() {
       super.setHeight(value)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POINTLIGHT2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_POINTLIGHT2D, scriptIndex)
   }
 
   public companion object

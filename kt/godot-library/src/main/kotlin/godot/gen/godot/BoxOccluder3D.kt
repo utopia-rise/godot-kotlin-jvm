@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +38,8 @@ public open class BoxOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_SET_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BOXOCCLUDER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_BOXOCCLUDER3D, scriptIndex)
   }
 
   public companion object

@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -79,8 +80,8 @@ public open class VoxelGI : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_SET_PROBE_DATA, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VOXELGI)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VOXELGI, scriptIndex)
   }
 
   /**

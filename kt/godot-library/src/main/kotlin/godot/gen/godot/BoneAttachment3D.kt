@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -61,8 +62,8 @@ public open class BoneAttachment3D : Node3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BONEATTACHMENT3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
   }
 
   /**

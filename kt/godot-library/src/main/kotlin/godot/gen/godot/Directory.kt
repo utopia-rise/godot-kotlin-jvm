@@ -50,8 +50,8 @@ public open class Directory : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_HIDDEN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_DIRECTORY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_DIRECTORY, scriptIndex)
   }
 
   public fun `open`(path: String): GodotError {

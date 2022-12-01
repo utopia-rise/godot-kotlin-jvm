@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -24,8 +25,8 @@ public open class OpenXRInterface : XRInterface() {
 
   public val sessionVisible: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OPENXRINTERFACE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
   }
 
   public companion object

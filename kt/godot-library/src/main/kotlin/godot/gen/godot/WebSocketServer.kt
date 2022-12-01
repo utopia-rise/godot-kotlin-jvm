@@ -104,8 +104,8 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_HANDSHAKE_TIMEOUT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBSOCKETSERVER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBSOCKETSERVER, scriptIndex)
   }
 
   public fun isListening(): Boolean {

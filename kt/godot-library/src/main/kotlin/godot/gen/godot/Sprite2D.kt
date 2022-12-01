@@ -21,6 +21,7 @@ import godot.core.Vector2i
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -216,8 +217,8 @@ public open class Sprite2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_REGION_FILTER_CLIP_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPRITE2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPRITE2D, scriptIndex)
   }
 
   /**

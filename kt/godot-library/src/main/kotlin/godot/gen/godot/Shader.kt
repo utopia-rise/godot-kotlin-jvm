@@ -48,8 +48,8 @@ public open class Shader : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SHADER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SHADER, scriptIndex)
   }
 
   /**

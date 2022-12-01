@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Cubemap : ImageTextureLayered() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CUBEMAP)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CUBEMAP, scriptIndex)
   }
 
   public companion object

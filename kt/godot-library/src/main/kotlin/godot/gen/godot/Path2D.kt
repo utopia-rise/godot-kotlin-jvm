@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -36,8 +37,8 @@ public open class Path2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH2D_SET_CURVE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PATH2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PATH2D, scriptIndex)
   }
 
   public companion object

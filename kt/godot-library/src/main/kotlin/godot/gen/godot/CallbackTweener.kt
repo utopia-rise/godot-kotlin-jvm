@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CALLBACKTWEENER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CALLBACKTWEENER, scriptIndex)
   }
 
   /**

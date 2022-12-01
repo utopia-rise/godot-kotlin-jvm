@@ -14,6 +14,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -214,8 +215,8 @@ public open class ProceduralSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SUN_CURVE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PROCEDURALSKYMATERIAL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PROCEDURALSKYMATERIAL, scriptIndex)
   }
 
   public companion object

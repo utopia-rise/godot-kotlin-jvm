@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -75,8 +76,8 @@ public open class LightOccluder2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_LIGHT_MASK, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHTOCCLUDER2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_LIGHTOCCLUDER2D, scriptIndex)
   }
 
   public companion object

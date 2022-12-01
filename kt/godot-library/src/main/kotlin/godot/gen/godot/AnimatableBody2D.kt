@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -41,8 +42,8 @@ public open class AnimatableBody2D : StaticBody2D() {
           ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_SET_SYNC_TO_PHYSICS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATABLEBODY2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATABLEBODY2D, scriptIndex)
   }
 
   public companion object

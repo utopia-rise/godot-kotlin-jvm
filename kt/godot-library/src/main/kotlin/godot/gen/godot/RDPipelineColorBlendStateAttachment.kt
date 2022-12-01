@@ -12,6 +12,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -205,8 +206,8 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_SET_WRITE_A, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT, scriptIndex)
   }
 
   /**

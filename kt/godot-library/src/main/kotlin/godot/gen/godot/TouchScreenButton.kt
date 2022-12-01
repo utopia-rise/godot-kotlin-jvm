@@ -17,6 +17,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -186,8 +187,8 @@ public open class TouchScreenButton : Node2D() {
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_VISIBILITY_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TOUCHSCREENBUTTON)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
   }
 
   /**

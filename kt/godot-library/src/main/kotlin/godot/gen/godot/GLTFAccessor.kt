@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_FLOAT_64_ARRAY
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -192,8 +193,8 @@ public open class GLTFAccessor : Resource() {
           ENGINEMETHOD_ENGINECLASS_GLTFACCESSOR_SET_SPARSE_VALUES_BYTE_OFFSET, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFACCESSOR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GLTFACCESSOR, scriptIndex)
   }
 
   public companion object

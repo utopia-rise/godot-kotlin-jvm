@@ -14,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -30,8 +31,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SYNTAXHIGHLIGHTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SYNTAXHIGHLIGHTER, scriptIndex)
   }
 
   /**

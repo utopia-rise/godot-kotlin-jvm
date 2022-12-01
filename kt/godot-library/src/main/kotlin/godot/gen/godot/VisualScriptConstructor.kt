@@ -13,6 +13,7 @@ import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -45,8 +46,8 @@ public open class VisualScriptConstructor : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTCONSTRUCTOR_SET_CONSTRUCTOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR, scriptIndex)
   }
 
   public companion object

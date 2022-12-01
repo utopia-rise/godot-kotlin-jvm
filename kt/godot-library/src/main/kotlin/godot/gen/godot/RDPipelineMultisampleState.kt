@@ -17,6 +17,7 @@ import godot.core.VariantType.NIL
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -122,8 +123,8 @@ public open class RDPipelineMultisampleState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_MASKS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINEMULTISAMPLESTATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDPIPELINEMULTISAMPLESTATE, scriptIndex)
   }
 
   public companion object

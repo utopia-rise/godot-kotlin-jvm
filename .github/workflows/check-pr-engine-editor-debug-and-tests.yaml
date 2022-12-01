@@ -107,7 +107,7 @@ jobs:
       - name: Build with editor debug
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }} dev_build=yes
+          sconsflags: arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
           platform: ${{ matrix.platform }}
           target: editor
       - name: Upload MacOs binary
@@ -115,7 +115,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: macos-editor-debug-app-${{ matrix.arch }}
-          path: bin/godot.macos.editor.${{ matrix.arch }}
+          path: bin/godot.macos.editor.dev.${{ matrix.arch }}
   create-macos-universal:
     needs: [build-editor-debug]
     strategy:

@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -111,8 +112,8 @@ public open class CollisionPolygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONPOLYGON2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
   }
 
   public enum class BuildMode(

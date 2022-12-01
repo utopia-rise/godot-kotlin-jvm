@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -92,8 +93,8 @@ public open class CollisionPolygon3D : Node3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONPOLYGON3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_COLLISIONPOLYGON3D, scriptIndex)
   }
 
   public companion object

@@ -13,6 +13,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Any
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -41,8 +42,8 @@ public open class OpenXRIPBinding : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_SET_PATHS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OPENXRIPBINDING)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_OPENXRIPBINDING, scriptIndex)
   }
 
   public companion object

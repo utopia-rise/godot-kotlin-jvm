@@ -96,7 +96,6 @@ class GenerationService(
 
         if (name == KotlinTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
-            classTypeBuilder.generateConstructorMethod()
             classTypeBuilder.generateSignalExtensions()
         }
         if (name == "Node") {
@@ -550,31 +549,6 @@ class GenerationService(
         return generatedFunBuilder.build()
     }
 
-    private fun TypeSpec.Builder.generateConstructorMethod() {
-        val constructorFun = FunSpec.builder("callConstructor")
-            .addModifiers(KModifier.INLINE)
-            .addModifiers(KModifier.INTERNAL)
-            .addParameter(
-                ParameterSpec.builder("classIndex", Int::class)
-                    .build()
-            )
-            .addStatement(
-                "%T.invokeConstructor(classIndex)",
-                TRANSFER_CONTEXT
-            )
-            .addStatement(
-                "val buffer = %T.buffer",
-                TRANSFER_CONTEXT
-            )
-            .addStatement("rawPtr = buffer.long")
-            .addStatement(
-                "__id = %T(buffer.long)",
-                OBJECT_ID
-            )
-            .addStatement("buffer.rewind()")
-        addFunction(constructorFun.build())
-    }
-
     private fun TypeSpec.Builder.generateSignalExtensions() {
 
         fun List<TypeVariableName>.toParameterTypes() = this.map {
@@ -717,9 +691,10 @@ class GenerationService(
         addFunction(
             FunSpec.builder("__new")
                 .addModifiers(KModifier.OVERRIDE)
+                .addParameter("scriptIndex", Int::class)
                 .addStatement(
-                    "callConstructor(%M)",
-                    MemberName(godotApiPackage, classIndexName)
+                    "callConstructor(%M, scriptIndex)",
+                    MemberName(godotApiPackage, classIndexName),
                 )
                 .build()
         )
@@ -729,10 +704,11 @@ class GenerationService(
         addFunction(
             FunSpec.builder("__new")
                 .addModifiers(KModifier.OVERRIDE)
+                .addParameter("scriptIndex", Int::class)
                 .addStatement(
                     "rawPtr = %T.getSingleton(%M)",
                     TRANSFER_CONTEXT,
-                    MemberName(godotApiPackage, classIndexName)
+                    MemberName(godotApiPackage, classIndexName),
                 )
                 .build()
         )

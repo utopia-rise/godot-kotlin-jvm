@@ -23,8 +23,8 @@ import kotlin.Unit
 public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerPeer() {
   public val peerPacket: Signal1<Long> by signal("peerSource")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER, scriptIndex)
   }
 
   public fun setBuffers(

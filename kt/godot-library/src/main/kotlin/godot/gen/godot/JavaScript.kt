@@ -33,7 +33,7 @@ import kotlin.Unit
 public object JavaScript : Object() {
   public val pwaUpdateAvailable: Signal0 by signal()
 
-  public override fun __new(): Unit {
+  public override fun __new(scriptIndex: Int): Unit {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_JAVASCRIPT)
   }
 

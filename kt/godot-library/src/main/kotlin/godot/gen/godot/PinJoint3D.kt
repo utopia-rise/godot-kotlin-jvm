@@ -12,6 +12,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PINJOINT3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PINJOINT3D, scriptIndex)
   }
 
   /**

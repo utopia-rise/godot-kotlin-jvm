@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -20,8 +21,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OPTIMIZEDTRANSLATION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_OPTIMIZEDTRANSLATION, scriptIndex)
   }
 
   /**

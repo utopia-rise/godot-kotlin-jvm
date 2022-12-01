@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -90,8 +91,8 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGCYLINDER3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGCYLINDER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CSGCYLINDER3D, scriptIndex)
   }
 
   public companion object

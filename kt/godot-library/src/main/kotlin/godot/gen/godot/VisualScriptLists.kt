@@ -12,6 +12,7 @@ import godot.core.VariantType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -19,8 +20,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptLists internal constructor() : VisualScriptNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTLISTS)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTLISTS, scriptIndex)
   }
 
   public fun addInputDataPort(

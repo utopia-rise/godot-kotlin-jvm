@@ -20,6 +20,7 @@ import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -271,8 +272,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D, scriptIndex)
   }
 
   public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {

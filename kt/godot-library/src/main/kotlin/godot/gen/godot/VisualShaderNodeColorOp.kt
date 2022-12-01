@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -37,8 +38,8 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLOROP_SET_OPERATOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLOROP)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOLOROP, scriptIndex)
   }
 
   public enum class Operator(

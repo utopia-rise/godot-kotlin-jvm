@@ -11,6 +11,7 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -39,8 +40,8 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORCONSTANT_SET_CONSTANT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT, scriptIndex)
   }
 
   public companion object

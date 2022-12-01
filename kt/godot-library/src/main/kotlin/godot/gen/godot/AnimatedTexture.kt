@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -4194,8 +4195,8 @@ public open class AnimatedTexture : Texture2D() {
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATEDTEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATEDTEXTURE, scriptIndex)
   }
 
   /**

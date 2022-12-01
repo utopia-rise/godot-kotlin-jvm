@@ -45,8 +45,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
       return TransferContext.readReturnValue(OBJECT, true) as ENetConnection?
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ENETMULTIPLAYERPEER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ENETMULTIPLAYERPEER, scriptIndex)
   }
 
   public fun createServer(

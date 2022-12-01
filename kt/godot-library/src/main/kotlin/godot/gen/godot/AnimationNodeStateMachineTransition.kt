@@ -18,6 +18,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -148,8 +149,8 @@ public open class AnimationNodeStateMachineTransition : Resource() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_DISABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
   }
 
   public enum class SwitchMode(

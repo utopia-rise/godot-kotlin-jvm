@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -54,8 +55,8 @@ public open class BackBufferCopy : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_RECT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BACKBUFFERCOPY)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_BACKBUFFERCOPY, scriptIndex)
   }
 
   public enum class CopyMode(

@@ -19,6 +19,7 @@ import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -139,8 +140,8 @@ public open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_REGION_RECT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPRITE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPRITE3D, scriptIndex)
   }
 
   public companion object

@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -111,8 +112,8 @@ public open class NoiseTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NOISETEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NOISETEXTURE, scriptIndex)
   }
 
   public companion object

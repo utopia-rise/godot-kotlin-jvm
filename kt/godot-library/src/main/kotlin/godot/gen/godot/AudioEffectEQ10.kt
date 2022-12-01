@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -44,8 +45,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffectEQ10 : AudioEffectEQ() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTEQ10)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTEQ10, scriptIndex)
   }
 
   public companion object

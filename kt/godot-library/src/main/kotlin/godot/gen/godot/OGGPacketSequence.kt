@@ -14,6 +14,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Any
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -58,8 +59,8 @@ public open class OGGPacketSequence : Resource() {
           ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_SAMPLING_RATE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OGGPACKETSEQUENCE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_OGGPACKETSEQUENCE, scriptIndex)
   }
 
   public fun getLength(): Double {

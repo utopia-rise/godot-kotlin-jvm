@@ -18,14 +18,15 @@ import godot.core.Vector2
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NOISE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NOISE, scriptIndex)
   }
 
   public fun getNoise1d(x: Double): Double {

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -39,8 +40,8 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESMOOTHSTEP_SET_OP_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESMOOTHSTEP)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODESMOOTHSTEP, scriptIndex)
   }
 
   public enum class OpType(

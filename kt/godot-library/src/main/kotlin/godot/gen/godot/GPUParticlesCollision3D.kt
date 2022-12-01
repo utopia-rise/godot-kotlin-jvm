@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -51,8 +52,8 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISION3D_SET_CULL_MASK, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
   }
 
   public companion object

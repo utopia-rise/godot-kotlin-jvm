@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -18,8 +19,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptCustomNode : VisualScriptNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE, scriptIndex)
   }
 
   public open fun _getOutputSequencePortCount(): Long {

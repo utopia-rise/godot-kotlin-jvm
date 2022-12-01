@@ -28,7 +28,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object NativeExtensionManager : Object() {
-  public override fun __new(): Unit {
+  public override fun __new(scriptIndex: Int): Unit {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_NATIVEEXTENSIONMANAGER)
   }
 

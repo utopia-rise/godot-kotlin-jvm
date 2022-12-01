@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -61,8 +62,8 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER3D_SET_ENABLE_NODE_PATH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
   }
 
   public enum class EnableMode(

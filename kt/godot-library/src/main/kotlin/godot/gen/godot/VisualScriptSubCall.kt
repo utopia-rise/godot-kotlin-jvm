@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptSubCall : VisualScriptNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL, scriptIndex)
   }
 
   public companion object

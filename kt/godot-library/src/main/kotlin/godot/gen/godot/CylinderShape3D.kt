@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -58,8 +59,8 @@ public open class CylinderShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CYLINDERSHAPE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
   }
 
   public companion object

@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -35,8 +36,8 @@ public open class RDShaderSource : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSOURCE_SET_LANGUAGE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDSHADERSOURCE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_RDSHADERSOURCE, scriptIndex)
   }
 
   /**

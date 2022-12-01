@@ -13,6 +13,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -70,8 +71,8 @@ public open class CanvasGroup : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_SET_USE_MIPMAPS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASGROUP)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
   }
 
   public companion object

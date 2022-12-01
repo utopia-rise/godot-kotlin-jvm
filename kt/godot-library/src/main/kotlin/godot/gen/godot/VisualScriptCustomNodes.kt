@@ -13,6 +13,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -21,7 +22,7 @@ import kotlin.Unit
 public object VisualScriptCustomNodes : Object() {
   public val customNodesUpdated: Signal0 by signal()
 
-  public override fun __new(): Unit {
+  public override fun __new(scriptIndex: Int): Unit {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_VISUALSCRIPTCUSTOMNODES)
   }
 

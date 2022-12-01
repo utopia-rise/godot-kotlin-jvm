@@ -15,6 +15,7 @@ import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -56,8 +57,8 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER2D_SET_RECT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER2D, scriptIndex)
   }
 
   /**

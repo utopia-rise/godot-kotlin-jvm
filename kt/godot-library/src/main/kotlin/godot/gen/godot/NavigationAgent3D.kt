@@ -23,6 +23,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -198,8 +199,8 @@ public open class NavigationAgent3D : Node() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONAGENT3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
   }
 
   /**

@@ -26,8 +26,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Mutex : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MUTEX)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MUTEX, scriptIndex)
   }
 
   /**

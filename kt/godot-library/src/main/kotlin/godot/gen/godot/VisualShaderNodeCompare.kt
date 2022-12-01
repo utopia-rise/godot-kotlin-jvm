@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -69,8 +70,8 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_CONDITION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOMPARE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOMPARE, scriptIndex)
   }
 
   public enum class ComparisonType(

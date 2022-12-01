@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -16,8 +17,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBRTCDATACHANNELEXTENSION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_WEBRTCDATACHANNELEXTENSION, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Long {

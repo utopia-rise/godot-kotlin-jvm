@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -126,8 +127,8 @@ public open class XRPose : RefCounted() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRPOSE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_XRPOSE, scriptIndex)
   }
 
   /**

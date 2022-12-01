@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -42,8 +43,8 @@ public open class Container : Control() {
    */
   public val sortChildren: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONTAINER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CONTAINER, scriptIndex)
   }
 
   /**

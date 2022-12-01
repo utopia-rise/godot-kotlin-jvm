@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -58,8 +59,8 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_SET_PLAY_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION, scriptIndex)
   }
 
   public enum class PlayMode(

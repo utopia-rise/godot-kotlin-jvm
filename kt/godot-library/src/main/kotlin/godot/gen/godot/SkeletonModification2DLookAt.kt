@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -75,8 +76,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_TARGET_NODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DLOOKAT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DLOOKAT, scriptIndex)
   }
 
   /**

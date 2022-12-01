@@ -12,6 +12,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import kotlin.Any
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -45,8 +46,8 @@ public open class ConvexPolygonShape3D : Shape3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE3D, scriptIndex)
   }
 
   public companion object

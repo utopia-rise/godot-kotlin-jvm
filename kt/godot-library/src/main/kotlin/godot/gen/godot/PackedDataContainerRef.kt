@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -18,8 +19,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF, scriptIndex)
   }
 
   /**

@@ -17,6 +17,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -297,8 +298,8 @@ public open class Camera2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_MARGIN_DRAWING_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAMERA2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
   }
 
   /**

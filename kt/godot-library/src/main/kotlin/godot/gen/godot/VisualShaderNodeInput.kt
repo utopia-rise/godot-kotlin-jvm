@@ -14,6 +14,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -49,8 +50,8 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_SET_INPUT_NAME, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
   }
 
   /**

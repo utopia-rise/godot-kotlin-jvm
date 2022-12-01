@@ -17,14 +17,15 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunctionState : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE, scriptIndex)
   }
 
   public fun connectToSignal(

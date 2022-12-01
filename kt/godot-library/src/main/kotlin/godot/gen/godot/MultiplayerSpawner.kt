@@ -21,6 +21,7 @@ import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -84,8 +85,8 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
   }
 
   public open fun _spawnCustom(`data`: Any): Object? {

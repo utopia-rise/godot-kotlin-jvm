@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -67,8 +68,8 @@ public open class CurveTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CURVETEXTURE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CURVETEXTURE, scriptIndex)
   }
 
   public enum class TextureMode(

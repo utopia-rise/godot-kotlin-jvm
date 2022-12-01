@@ -24,6 +24,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -167,8 +168,8 @@ public open class NavigationAgent2D : Node() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_MAX_DISTANCE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONAGENT2D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
   }
 
   /**

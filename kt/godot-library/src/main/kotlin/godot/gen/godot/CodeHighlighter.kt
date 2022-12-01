@@ -17,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -140,8 +141,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CODEHIGHLIGHTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CODEHIGHLIGHTER, scriptIndex)
   }
 
   /**

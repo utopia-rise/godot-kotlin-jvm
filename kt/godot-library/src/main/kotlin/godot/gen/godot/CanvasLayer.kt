@@ -23,6 +23,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -176,8 +177,8 @@ public open class CanvasLayer : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT_SCALE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASLAYER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_CANVASLAYER, scriptIndex)
   }
 
   /**

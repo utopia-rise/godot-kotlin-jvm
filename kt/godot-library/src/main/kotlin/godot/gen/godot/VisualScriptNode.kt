@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,8 +24,8 @@ import kotlin.Unit
 public open class VisualScriptNode internal constructor() : Resource() {
   public val portsChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTNODE)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSCRIPTNODE, scriptIndex)
   }
 
   public fun getVisualScript(): VisualScript? {

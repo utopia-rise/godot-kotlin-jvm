@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -88,8 +89,8 @@ public open class AudioStreamRandomizer : AudioStream() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_VOLUME_OFFSET_DB, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMRANDOMIZER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOSTREAMRANDOMIZER, scriptIndex)
   }
 
   /**

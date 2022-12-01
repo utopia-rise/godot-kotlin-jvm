@@ -14,6 +14,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -104,8 +105,8 @@ public open class SubViewport : Viewport() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SUBVIEWPORT)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SUBVIEWPORT, scriptIndex)
   }
 
   public enum class ClearMode(

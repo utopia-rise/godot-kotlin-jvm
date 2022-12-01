@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeCubemapUniform : VisualShaderNodeTextureUniform() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAPUNIFORM)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAPUNIFORM, scriptIndex)
   }
 
   public companion object

@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -38,8 +39,8 @@ public open class SphereOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREOCCLUDER3D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPHEREOCCLUDER3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_SPHEREOCCLUDER3D, scriptIndex)
   }
 
   public companion object

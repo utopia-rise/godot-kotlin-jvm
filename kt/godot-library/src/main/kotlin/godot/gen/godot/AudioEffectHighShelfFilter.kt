@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -20,8 +21,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffectHighShelfFilter : AudioEffectFilter() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTHIGHSHELFFILTER)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_AUDIOEFFECTHIGHSHELFFILTER, scriptIndex)
   }
 
   public companion object

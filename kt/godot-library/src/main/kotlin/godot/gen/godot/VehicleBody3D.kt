@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -77,8 +78,8 @@ public open class VehicleBody3D : RigidDynamicBody3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VEHICLEBODY3D)
+  public override fun __new(scriptIndex: Int): Unit {
+    callConstructor(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
   }
 
   public companion object
