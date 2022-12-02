@@ -1,4 +1,4 @@
-$1 -d -s --path $PWD addons/gut/gut_cmdln.gd | ( no_error="false"; jvm_closed="false"; while read -r line
+$1 -d -s --headless --path $PWD addons/gut/gut_cmdln.gd | ( no_error="false"; jvm_closed="false"; while read -r line
 do
     echo "$line"
     if echo "$line" | grep -q "Failing asserts:  0"; then
