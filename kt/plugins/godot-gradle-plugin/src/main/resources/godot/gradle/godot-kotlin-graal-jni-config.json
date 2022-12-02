@@ -64,7 +64,7 @@
     ]
   },
   {
-    "name":"godot.core.GarbageCollector",
+    "name":"godot.core.memory.GarbageCollector",
     "fields":[{"name":"INSTANCE"}],
     "methods":[
       {"name":"cleanUp","parameterTypes":[] },
@@ -74,7 +74,7 @@
     ]
   },
   {
-    "name" : "godot.core.GarbageCollector$MemoryBridge",
+    "name" : "godot.core.memory.GarbageCollector$MemoryBridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],

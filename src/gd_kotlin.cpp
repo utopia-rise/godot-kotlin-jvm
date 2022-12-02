@@ -312,9 +312,9 @@ void GDKotlin::init() {
     }
 
     //Garbage Collector
-    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+    jni::JClass garbage_collector_cls{env.load_class("godot.core.memory.GarbageCollector", class_loader)};
     jni::FieldId garbage_collector_instance_field{
-            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/GarbageCollector;")
     };
     jni::JObject garbage_collector_instance{
             garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
@@ -398,10 +398,10 @@ void GDKotlin::finish() {
     bootstrap = nullptr;
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector",
+        jni::JClass garbage_collector_cls{env.load_class("godot.core.memory.GarbageCollector",
                                                          ClassLoader::get_default_loader())};
         jni::FieldId garbage_collector_instance_field{
-                garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+                garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/GarbageCollector;")
         };
         jni::JObject garbage_collector_instance{
                 garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)

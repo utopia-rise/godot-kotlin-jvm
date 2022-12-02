@@ -2,7 +2,7 @@
 #define GODOT_JVM_CONSTANTS_H
 
 namespace bridges {
-    static const char* MEMORY_BRIDGE_CLASS_NAME = "godot.core.GarbageCollector$MemoryBridge";
+    static const char* MEMORY_BRIDGE_CLASS_NAME = "godot.core.memory.GarbageCollector$MemoryBridge";
 
     static const char* GD_PRINT_BRIDGE_CLASS_NAME = "godot.global.GDPrint$Bridge";
 

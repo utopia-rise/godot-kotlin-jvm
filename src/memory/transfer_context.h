@@ -34,6 +34,7 @@ public:
                       jint expectedReturnType);
 
     static void create_native_object(JNIEnv* p_raw_env,
+                                     jobject instance,
                                      jint p_class_index,
                                      jobject p_object,
                                      jobject p_class_loader,

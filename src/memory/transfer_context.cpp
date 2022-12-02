@@ -22,7 +22,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     jni::JNativeMethod create_native_objectmethod{
             const_cast<char*>("createNativeObject"),
-            const_cast<char*>("(IJJI)V"),
+            const_cast<char*>("(ILgodot/core/KtObject;Ljava/lang/ClassLoader;I)V"),
             (void *) TransferContext::create_native_object
     };
 
@@ -184,6 +184,7 @@ void TransferContext::icall(
 
 void TransferContext::create_native_object(
         JNIEnv* p_raw_env,
+        jobject instance,
         jint p_class_index,
         jobject p_object,
         jobject p_class_loader,
