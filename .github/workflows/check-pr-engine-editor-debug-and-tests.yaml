@@ -115,7 +115,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: macos-editor-debug-app-${{ matrix.arch }}
-          path: bin/godot.macos.editor.dev.${{ matrix.arch }}
+          path: bin/godot.macos.editor.${{ matrix.arch }}
   create-macos-universal:
     needs: [build-editor-debug]
     strategy:
