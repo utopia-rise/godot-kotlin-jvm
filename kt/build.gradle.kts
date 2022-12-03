@@ -36,7 +36,8 @@ tasks {
             val fromTag = tags.getOrNull(1)
             val toTag = tags.getOrNull(0)
             val changeLogPrefix = """
-                The pre built engines are the zip files.  
+                The files prefixed with `godot-kotlin-jvm_editor_` are the editors.
+                `godot-kotlin-jvm_editor_server_*.zip` is a headless editor which you can use for CI/CD.
                 The other files are export templates needed for exporting your game. See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use them.
                 
                 **Changelog:**
