@@ -192,6 +192,15 @@ namespace ktvariant {
         append_vector3(des, src_transform.origin);
     }
 
+    static void to_kvariant_fromPROJECTION(SharedBuffer* des, const Variant& src) {
+        Projection src_projection {src.operator Projection()};
+        set_variant_type(des, Variant::Type::PROJECTION);
+        append_vector4(des, src_projection.columns[0]);
+        append_vector4(des, src_projection.columns[1]);
+        append_vector4(des, src_projection.columns[2]);
+        append_vector4(des, src_projection.columns[3]);
+    }
+
     static void to_kvariant_fromCOLOR(SharedBuffer* des, const Variant& src) {
         Color src_color {src.operator Color()};
         set_variant_type(des, Variant::Type::COLOR);
@@ -284,6 +293,7 @@ namespace ktvariant {
         to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
         to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
+        to_kt_array[Variant::PROJECTION] = to_kvariant_fromPROJECTION;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
         to_kt_array[Variant::STRING_NAME] = to_kvariant_from_CALLABLE;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
@@ -399,11 +409,11 @@ namespace ktvariant {
 
     static inline Vector3 to_godot_vector3(SharedBuffer* byte_buffer) {
         float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float z {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return {x, y, z};
     }
 
@@ -435,13 +445,13 @@ namespace ktvariant {
 
     static inline Vector4 to_godot_vector4(SharedBuffer* byte_buffer) {
         float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float z {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float w {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return {x, y, z, w};
     }
 
@@ -507,6 +517,12 @@ namespace ktvariant {
         return Variant(Transform3D(basis, origin));
     }
 
+    static Variant from_kvariant_tokProjectionValue(SharedBuffer* byte_buffer) {
+        return Variant(
+          Projection(to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer))
+        );
+    }
+
     static Variant from_kvariant_tokColorValue(SharedBuffer* byte_buffer) {
         float r {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
@@ -552,6 +568,7 @@ namespace ktvariant {
         to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
         to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
         to_gd_array[Variant::TRANSFORM3D] = from_kvariant_tokTransform3DValue;
+        to_gd_array[Variant::PROJECTION] = from_kvariant_tokProjectionValue;
         to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
         to_gd_array[Variant::CALLABLE] = from_kvariant_tokVariantNativeCoreTypeValue<Callable>;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
