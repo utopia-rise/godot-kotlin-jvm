@@ -104,16 +104,33 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
     constructor(projection: Projection) : this(projection.columns)
 
+    /**
+     * Returns the column of the Projection with the given index.
+     *
+     * Indices are in the following order: x, y, z, w.
+     */
     operator fun get(n: Int): Vector4 {
         if (n > 3 || n < 0) throw IndexOutOfBoundsException()
         return columns[n]
     }
 
+    /**
+     * Sets the column of the Projection with the given index.
+     *
+     * Indices are in the following order: x, y, z, w.
+     */
     operator fun set(n: Int, vector: Vector4) {
         if (n > 3 || n < 0) throw IndexOutOfBoundsException()
         columns[n] = vector
     }
 
+    /**
+     * Returns a scalar value that is the signed factor by which areas are scaled by this matrix. If the sign is
+     * negative, the matrix flips the orientation of the area.
+     *
+     * The determinant can be used to calculate the invertibility of a matrix or solve linear systems of equations
+     * involving the matrix, among other applications.
+     */
     fun determinant() = (
             columns[0][3] * columns[1][2] * columns[2][1] * columns[3][0] - columns[0][2] * columns[1][3] * columns[2][1] * columns[3][0] -
                     columns[0][3] * columns[1][1] * columns[2][2] * columns[3][0] + columns[0][1] * columns[1][3] * columns[2][2] * columns[3][0] +
@@ -396,10 +413,20 @@ class Projection private constructor(val columns: Array<Vector4>) {
         columns[3][2] = -2 * znear * zfar / deltaZ
     }
 
+    /**
+     * Returns a Projection with the near clipping distance adjusted to be new_znear.
+     *
+     * Note: The original Projection must be a perspective projection.
+     */
     fun perspectiveZnearAdjusted(pNewZnear: RealT) = Projection(this).also {
         it.adjustPerspectiveZnear(pNewZnear)
     }
 
+    /**
+     * Returns the clipping plane of this Projection whose index is given by plane.
+     *
+     * plane should be equal to one of PLANE_NEAR, PLANE_FAR, PLANE_LEFT, PLANE_TOP, PLANE_RIGHT, or PLANE_BOTTOM.
+     */
     @Suppress("DuplicatedCode")
     fun getProjectionPlane(pPlane: Planes): Plane {
         val newPlane = when (pPlane) {
@@ -432,14 +459,24 @@ class Projection private constructor(val columns: Array<Vector4>) {
         return newPlane
     }
 
+    /**
+     * Returns a copy of this Projection with the signs of the values of the Y column flipped.
+     */
     fun flippedY() = Projection(this).also {
         it.flipY()
     }
 
+    /**
+     * Returns a Projection with the X and Y values from the given Vector2 added to the first and second values of the
+     * final column respectively.
+     */
     fun jitterOffseted(pOffset: Vector2) = Projection(this).also {
         it.addJitterOffset(pOffset)
     }
 
+    /**
+     * Returns the distance for this Projection beyond which positions are clipped.
+     */
     @Suppress("MemberVisibilityCanBePrivate")
     fun getZFar(): RealT {
         val newPlane = _farPlane
@@ -450,6 +487,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         return newPlane.d
     }
 
+    /**
+     * Returns the distance for this Projection before which positions are clipped.
+     */
     @Suppress("MemberVisibilityCanBePrivate")
     fun getZNear(): RealT {
         val newPlane = Plane(
@@ -463,11 +503,17 @@ class Projection private constructor(val columns: Array<Vector4>) {
         return newPlane.d
     }
 
+    /**
+     * Returns the X:Y aspect ratio of this Projection's viewport.
+     */
     fun getAspect(): RealT {
         val vpHe = getViewportHalfExtents()
         return vpHe.x / vpHe.y
     }
 
+    /**
+     * Returns the horizontal field of view of the projection (in degrees).
+     */
     fun getFov(): RealT {
         val rightPlane = _rightPlane
         rightPlane.normalize()
@@ -482,6 +528,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         }
     }
 
+    /**
+     * Returns true if this Projection performs an orthogonal projection.
+     */
     @Suppress("MemberVisibilityCanBePrivate")
     fun isOrthogonal() = columns[3][3] == 1.0
 
@@ -561,6 +610,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         }
     }
 
+    /**
+     * Returns the dimensions of the viewport plane that this Projection projects positions onto, divided by two.
+     */
     @Suppress("MemberVisibilityCanBePrivate", "DuplicatedCode")
     fun getViewportHalfExtents(): Vector2 {
 
@@ -585,6 +637,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         return if (res == null) Vector2() else Vector2(res.x, res.y)
     }
 
+    /**
+     * Returns the dimensions of the far clipping plane of the projection, divided by two.
+     */
     @Suppress("DuplicatedCode")
     fun getFarPlaneHalfExtents(): Vector2 {
 
@@ -746,6 +801,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         }
     }
 
+    /**
+     * Returns a Projection that performs the inverse of this Projection's projective transformation.
+     */
     fun inverse() = Projection(this).also {
         it.invert()
     }
@@ -823,6 +881,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         columns[2][2] = scale.z
     }
 
+    /**
+     * Returns the number of pixels with the given pixel width displayed per meter, after this Projection is applied.
+     */
     fun getPixelPerMeter(pixelWidth: Int): Int {
         val result = xform(Vector3(1, 0, -1))
         return ((result.x * 0.5 + 0.5) * pixelWidth).toInt()
@@ -835,6 +896,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         }
     }
 
+    /**
+     * Returns the factor by which the visible level of detail is scaled by this Projection.
+     */
     fun getLodMultiplier() = if (isOrthogonal()) {
         getViewportHalfExtents().x
     } else {
@@ -843,6 +907,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
         1.0 / (zNear / width)
     }
 
+    /**
+     * Returns a Projection that applies the combined transformations of this Projection and right.
+     */
     operator fun times(matrix: Projection): Projection {
         val newMatrix = Projection()
 
@@ -859,6 +926,12 @@ class Projection private constructor(val columns: Array<Vector4>) {
         return newMatrix
     }
 
+    /**
+     * Returns true if the projections are equal.
+     *
+     * Note: Due to floating-point precision errors, this may return false, even if the projections are virtually equal.
+     * An isEqualApprox method may be added in a future version of Godot.
+     */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -913,19 +986,41 @@ class Projection private constructor(val columns: Array<Vector4>) {
     }
 
     companion object {
+        /**
+         * Creates a new `Projection` that projects positions from a depth range of -1 to 1 to one that ranges from
+         * 0 to 1, and flips the projected positions vertically, according to flip_y.
+         */
         fun createDepthCorrection(pFlipY: Boolean) = Projection().also {
             it.setDepthCorrection(pFlipY)
         }
 
+        /**
+         * Creates a new Projection that projects positions into the given Rect2.
+         */
         fun createLightAtlasRect(pRect: Rect2) = Projection().also {
             it.setLightAtlasRect(pRect)
         }
 
+        /**
+         * Creates a new Projection that projects positions using a perspective projection with the given Y-axis field
+         * of view (in degrees), X:Y aspect ratio, and clipping planes.
+         *
+         * flipFov determines whether the projection's field of view is flipped over its diagonal.
+         */
         fun createPerspective(pFovyDegrees: RealT, aspect: RealT, zNear: RealT, zFar: RealT, flipFov: Boolean) =
             Projection().also {
                 it.setPerspective(pFovyDegrees, aspect, zNear, zFar, flipFov)
             }
 
+        /**
+         * Creates a new Projection that projects positions using a perspective projection with the given Y-axis field
+         * of view (in degrees), X:Y aspect ratio, anxd clipping distances. The projection is adjusted for a head-mounted
+         * display with the given distance between eyes and distance to a point that can be focused on.
+         *
+         * eye creates the projection for the left eye when set to 1, or the right eye when set to 2.
+         *
+         * flipFov determines whether the projection's field of view is flipped over its diagonal.
+         */
         fun createPerspectiveHmd(
             pFovyDegrees: RealT,
             aspect: RealT,
@@ -948,6 +1043,13 @@ class Projection private constructor(val columns: Array<Vector4>) {
             )
         }
 
+        /**
+         * Creates a new Projection for projecting positions onto a head-mounted display with the given X:Y aspect
+         * ratio, distance between eyes, display width, distance to lens, oversampling factor, and depth clipping
+         * planes.
+         *
+         * eye creates the projection for the left eye when set to 1, or the right eye when set to 2.
+         */
         fun createForHmd(
             pEye: Int,
             pAspect: RealT,
@@ -961,21 +1063,40 @@ class Projection private constructor(val columns: Array<Vector4>) {
             it.setForHmd(pEye, pAspect, pIntraocularDist, pDisplayWidth, pDisplayToLens, pOversample, pZNear, pZFar)
         }
 
+        /**
+         * Creates a new Projection that projects positions using an orthogonal projection with the given clipping
+         * planes.
+         */
         fun createOrthogonal(pLeft: RealT, pRight: RealT, pBottom: RealT, pTop: RealT, pZnear: RealT, pZfar: RealT) =
             Projection().also {
                 it.setOrthogonal(pLeft, pRight, pBottom, pTop, pZnear, pZfar)
             }
 
+        /**
+         * Creates a new Projection that projects positions using an orthogonal projection with the given size, X:Y
+         * aspect ratio, and clipping planes.
+         *
+         * flipFov determines whether the projection's field of view is flipped over its diagonal.
+         */
         fun createOrthogonalAspect(pSize: RealT, pAspect: RealT, pZnear: RealT, pZfar: RealT, pFlipFov: Boolean) =
             Projection().also {
                 it.setOrthogonal(pSize, pAspect, pZnear, pZfar, pFlipFov)
             }
 
+        /**
+         * Creates a new Projection that projects positions in a frustum with the given clipping planes.
+         */
         fun createFrustrum(left: RealT, right: RealT, bottom: RealT, top: RealT, near: RealT, far: RealT) =
             Projection().also {
                 it.setFrustrum(left, right, bottom, top, near, far)
             }
 
+        /**
+         * Creates a new Projection that projects positions in a frustum with the given size, X:Y aspect ratio, offset,
+         * and clipping planes.
+         *
+         * flipFov determines whether the projection's field of view is flipped over its diagonal.
+         */
         fun createFrustrumAspect(
             pSize: RealT,
             aspect: RealT,
@@ -987,11 +1108,17 @@ class Projection private constructor(val columns: Array<Vector4>) {
             it.setFrustrum(pSize, aspect, offset, near, far, flipFov)
         }
 
+        /**
+         * Creates a new Projection that scales a given projection to fit around a given AABB in projection space.
+         */
         fun createFitAabb(pAabb: AABB) = Projection().also {
             it.scaleTranslateToFit(pAabb)
         }
 
-
+        /**
+         * Returns the vertical field of view of the projection (in degrees) associated with the given horizontal field
+         * of view (in degrees) and aspect ratio.
+         */
         fun getFovy(fovx: RealT, aspect: RealT): RealT = Math.toDegrees(
             atan(
                 aspect * tan(Math.toRadians(fovx) * 0.5)
