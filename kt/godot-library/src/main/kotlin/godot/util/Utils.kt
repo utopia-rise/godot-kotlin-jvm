@@ -35,6 +35,9 @@ internal inline fun Number.toGodotReal(): Float = this.toFloat()
 @PublishedApi
 internal inline fun Float.toGodotReal(): Float = this
 
+@Suppress("NOTHING_TO_INLINE")
+inline fun Int.toNaturalT(): NaturalT = this.toLong()
+
 /**
  * Because of float precision, it's hard to obtain two perfectly equal real numbers.
  * They are considered equal if the difference is smaller than CMP_EPSILON
@@ -53,4 +56,26 @@ fun isEqualApprox(a: RealT, b: RealT, epsilon: RealT = CMP_EPSILON): Boolean {
         tolerance = epsilon
     }
     return abs(a - b) < tolerance
+}
+
+fun lerp(from: Float, to: Float, weight: Float) = from + (to - from) * weight
+fun lerp(from: Double, to: Double, weight: Double) = from + (to - from) * weight
+
+fun cubicInterpolateInTime(
+    from: RealT,
+    to: RealT,
+    pre: RealT,
+    post: RealT,
+    weight: RealT,
+    toT: RealT,
+    preT: RealT,
+    postT: RealT
+) : RealT {
+    val t = lerp(0.0, toT, weight)
+    val a1 = lerp(pre, from, if (preT == 0.0) 0.0 else (t - preT) / -preT)
+    val a2 = lerp(from, to, if (toT == 0.0) 0.5 else t / toT)
+    val a3 = lerp(to, post, if (postT - toT == 0.0) 1.0 else (t - toT) / (postT - toT))
+    val b1 = lerp(a1, a2, if (toT - preT == 0.0) 0.0 else (t - preT) / (toT - preT))
+    val b2 = lerp(a2, a3, if (postT == 0.0) 1.0 else t / postT)
+    return lerp(b1, b2, if (toT == 0.0) 0.5 else t / toT)
 }

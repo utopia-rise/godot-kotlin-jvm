@@ -138,6 +138,51 @@ class Vector3(
     }
 
     /**
+     * Cubically interpolates between this vector and b using pre_a and post_b as handles, and returns the result at
+     * position weight. weight is on the range of 0.0 to 1.0, representing the amount of interpolation.
+     */
+    fun cubicInterpolateInTime(
+        b: Vector3,
+        preA: Vector3,
+        postB: Vector3,
+        weight: RealT,
+        bT: RealT,
+        preAT: RealT,
+        postBT: RealT
+    ) = Vector3(this).also {
+        it.x = cubicInterpolateInTime(
+            it.x,
+            b.x,
+            preA.x,
+            postB.x,
+            weight,
+            bT,
+            preAT,
+            postBT
+        )
+        it.y = cubicInterpolateInTime(
+            it.y,
+            b.y,
+            preA.y,
+            postB.y,
+            weight,
+            bT,
+            preAT,
+            postBT
+        )
+        it.z = cubicInterpolateInTime(
+            it.z,
+            b.z,
+            preA.z,
+            postB.z,
+            weight,
+            bT,
+            preAT,
+            postBT
+        )
+    }
+
+    /**
      * Returns the normalized vector pointing from this vector to b.
      */
     fun directionTo(other: Vector3): Vector3 {
@@ -194,6 +239,16 @@ class Vector3(
             y
         ) && isEqualApprox(other.z, z)
     }
+
+    /**
+     * Returns true if this vector's values are approximately zero
+     */
+    fun isZeroApprox() = isEqualApprox(ZERO)
+
+    /**
+     * Returns true if this vector is finite, by calling @GlobalScope.is_finite on each component.
+     */
+    fun isFinite() = x.isFinite() && y.isFinite() && z.isFinite()
 
     /**
      * Returns true if the vector is normalized.
