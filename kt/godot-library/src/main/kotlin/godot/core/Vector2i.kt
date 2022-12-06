@@ -7,6 +7,14 @@ class Vector2i(
     var x: Int,
     var y: Int
 ) : Comparable<Vector2i>, CoreType {
+    var width: Int
+        get() = x
+        set(value) { x = value }
+
+    var height: Int
+        get() = y
+        set(value) { y = value }
+
     //CONSTANTS
     enum class Axis(val value: Int) {
         X(0),
