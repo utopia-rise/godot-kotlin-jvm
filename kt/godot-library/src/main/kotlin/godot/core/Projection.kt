@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.global.GD
 import godot.global.GD.acos
 import godot.global.GD.atan
@@ -11,48 +12,12 @@ import kotlin.math.abs
 
 
 @Suppress("unused")
-class Projection private constructor(val columns: Array<Vector4>) {
-
-    private val _leftPlane: Plane
-        get() = Plane(
-            columns[0].w + columns[0].x,
-            columns[1].w + columns[1].x,
-            columns[2].w + columns[2].x,
-            columns[3].w + columns[3].x
-        )
-
-    private val _rightPlane: Plane
-        get() = Plane(
-            columns[0].w - columns[0].x,
-            columns[1].w - columns[1].x,
-            columns[2].w - columns[2].x,
-            -columns[3].w + columns[3].x
-        )
-
-    private val _topPlane: Plane
-        get() = Plane(
-            columns[0].w - columns[0].y,
-            columns[1].w - columns[1].y,
-            columns[2].w - columns[2].y,
-            columns[3].w - columns[3].y
-        )
-
-    private val _bottomPlane: Plane
-        get() = Plane(
-            columns[0].w + columns[0].y,
-            columns[1].w + columns[1].y,
-            columns[2].w + columns[2].y,
-            columns[3].w + columns[3].y
-        )
-
-    private val _farPlane: Plane
-        get() = Plane(
-            columns[0].w - columns[0].z,
-            columns[1].w - columns[1].z,
-            columns[2].w - columns[2].z,
-            columns[3].w - columns[3].z
-        )
-
+class Projection(
+    p_x: Vector4,
+    p_y: Vector4,
+    p_z: Vector4,
+    p_w: Vector4
+) {
     enum class Planes {
         PLANE_NEAR,
         PLANE_FAR,
@@ -62,56 +27,187 @@ class Projection private constructor(val columns: Array<Vector4>) {
         PLANE_BOTTOM
     }
 
-    constructor() : this(
-        arrayOf(
-            Vector4(1, 0, 0, 0),
-            Vector4(0, 1, 0, 0),
-            Vector4(0, 0, 1, 0),
-            Vector4(0, 0, 0, 1)
-        )
-    )
+    @PublishedApi
+    internal var _x = Vector4(p_x)
 
-    constructor(x: Vector4, y: Vector4, z: Vector4, w: Vector4) : this(arrayOf(x, y, z, w))
+    @PublishedApi
+    internal var _y = Vector4(p_y)
+
+    @PublishedApi
+    internal var _z = Vector4(p_z)
+
+    @PublishedApi
+    internal var _w = Vector4(p_w)
 
     constructor(tranform: Transform3D) : this(
-        arrayOf(
-            Vector4(
-                tranform.basis.x.x,
-                tranform.basis.y.x,
-                tranform.basis.z.x,
-                0
-            ),
-            Vector4(
-                tranform.basis.x.y,
-                tranform.basis.y.y,
-                tranform.basis.z.y,
-                0
-            ),
-            Vector4(
-                tranform.basis.x.z,
-                tranform.basis.y.z,
-                tranform.basis.z.z,
-                0
-            ),
-            Vector4(
-                tranform.origin.x,
-                tranform.origin.y,
-                tranform.origin.z,
-                1
-            )
+        Vector4(
+            tranform.basis.x.x,
+            tranform.basis.y.x,
+            tranform.basis.z.x,
+            0
+        ),
+        Vector4(
+            tranform.basis.x.y,
+            tranform.basis.y.y,
+            tranform.basis.z.y,
+            0
+        ),
+        Vector4(
+            tranform.basis.x.z,
+            tranform.basis.y.z,
+            tranform.basis.z.z,
+            0
+        ),
+        Vector4(
+            tranform.origin.x,
+            tranform.origin.y,
+            tranform.origin.z,
+            1
         )
     )
 
-    constructor(projection: Projection) : this(projection.columns)
+    constructor(projection: Projection) : this(
+        projection._x,
+        projection._y,
+        projection._z,
+        projection._w
+    )
+
+    constructor() : this(
+        Vector4(1, 0, 0, 0),
+        Vector4(0, 1, 0, 0),
+        Vector4(0, 0, 1, 0),
+        Vector4(0, 0, 0, 1)
+    )
+
+    private val _leftPlane: Plane
+        get() = Plane(
+            _x.w + _x.x,
+            _y.w + _y.x,
+            _z.w + _z.x,
+            _w.w + _w.x
+        )
+
+    private val _rightPlane: Plane
+        get() = Plane(
+            _x.w - _x.x,
+            _y.w - _y.x,
+            _z.w - _z.x,
+            -_w.w + _w.x
+        )
+
+    private val _topPlane: Plane
+        get() = Plane(
+            _x.w - _x.y,
+            _y.w - _y.y,
+            _z.w - _z.y,
+            _w.w - _w.y
+        )
+
+    private val _bottomPlane: Plane
+        get() = Plane(
+            _x.w + _x.y,
+            _y.w + _y.y,
+            _z.w + _z.y,
+            _w.w + _w.y
+        )
+
+    private val _farPlane: Plane
+        get() = Plane(
+            _x.w - _x.z,
+            _y.w - _y.z,
+            _z.w - _z.z,
+            _w.w - _w.z
+        )
+
+    //PROPERTIES
+    /** Return a copy of the x Vector4
+     *
+     *
+     * **Warning**: Writing `x.x = 2` will only modify a copy, not the actual object.
+     * To modify it, use [x] method.
+     *
+     * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
+     * */
+    var x
+        get() = Vector4(_x)
+        set(value) {
+            _x = Vector4(value)
+        }
+
+    @CoreTypeHelper
+    inline fun <T> x(block: Vector4.() -> T): T {
+        return _x.block()
+    }
+
+    /** Return a copy of the y Vector4
+     *
+     *
+     * **Warning**: Writing `y.x = 2` will only modify a copy, not the actual object.
+     * To modify it, use [y] method.
+     *
+     * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
+     * */
+    var y
+        get() = Vector4(_y)
+        set(value) {
+            _y = Vector4(value)
+        }
+
+    @CoreTypeHelper
+    inline fun <T> y(block: Vector4.() -> T): T {
+        return _y.block()
+    }
+
+    /** Return a copy of the z Vector4
+     *
+     *
+     * **Warning**: Writing `z.x = 2` will only modify a copy, not the actual object.
+     * To modify it, use [z] method.
+     *
+     * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
+     * */
+    var z
+        get() = Vector4(_z)
+        set(value) {
+            _z = Vector4(value)
+        }
+
+    @CoreTypeHelper
+    inline fun <T> z(block: Vector4.() -> T): T {
+        return _z.block()
+    }
+
+    /** Return a copy of the w Vector4
+     *
+     *
+     * **Warning**: Writing `w.x = 2` will only modify a copy, not the actual object.
+     * To modify it, use [w] method.
+     *
+     * See: [Documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types)
+     * */
+    var w
+        get() = Vector4(_w)
+        set(value) {
+            _w = Vector4(value)
+        }
+
+    @CoreTypeHelper
+    inline fun <T> w(block: Vector4.() -> T): T {
+        return _w.block()
+    }
 
     /**
      * Returns the column of the Projection with the given index.
      *
      * Indices are in the following order: x, y, z, w.
      */
-    operator fun get(n: Int): Vector4 {
-        if (n > 3 || n < 0) throw IndexOutOfBoundsException()
-        return columns[n]
+    operator fun get(n: Int) = when(n) {
+        0 -> x
+        1 -> y
+        2 -> z
+        3 -> w
+        else -> throw IndexOutOfBoundsException()
     }
 
     /**
@@ -120,8 +216,13 @@ class Projection private constructor(val columns: Array<Vector4>) {
      * Indices are in the following order: x, y, z, w.
      */
     operator fun set(n: Int, vector: Vector4) {
-        if (n > 3 || n < 0) throw IndexOutOfBoundsException()
-        columns[n] = vector
+        when (n) {
+            0 -> _x = vector
+            1 -> _y = vector
+            2 -> _z = vector
+            3 -> _w = vector
+            else -> throw IndexOutOfBoundsException()
+        }
     }
 
     /**
@@ -132,92 +233,90 @@ class Projection private constructor(val columns: Array<Vector4>) {
      * involving the matrix, among other applications.
      */
     fun determinant() = (
-            columns[0][3] * columns[1][2] * columns[2][1] * columns[3][0] - columns[0][2] * columns[1][3] * columns[2][1] * columns[3][0] -
-                    columns[0][3] * columns[1][1] * columns[2][2] * columns[3][0] + columns[0][1] * columns[1][3] * columns[2][2] * columns[3][0] +
-                    columns[0][2] * columns[1][1] * columns[2][3] * columns[3][0] - columns[0][1] * columns[1][2] * columns[2][3] * columns[3][0] -
-                    columns[0][3] * columns[1][2] * columns[2][0] * columns[3][1] + columns[0][2] * columns[1][3] * columns[2][0] * columns[3][1] +
-                    columns[0][3] * columns[1][0] * columns[2][2] * columns[3][1] - columns[0][0] * columns[1][3] * columns[2][2] * columns[3][1] -
-                    columns[0][2] * columns[1][0] * columns[2][3] * columns[3][1] + columns[0][0] * columns[1][2] * columns[2][3] * columns[3][1] +
-                    columns[0][3] * columns[1][1] * columns[2][0] * columns[3][2] - columns[0][1] * columns[1][3] * columns[2][0] * columns[3][2] -
-                    columns[0][3] * columns[1][0] * columns[2][1] * columns[3][2] + columns[0][0] * columns[1][3] * columns[2][1] * columns[3][2] +
-                    columns[0][1] * columns[1][0] * columns[2][3] * columns[3][2] - columns[0][0] * columns[1][1] * columns[2][3] * columns[3][2] -
-                    columns[0][2] * columns[1][1] * columns[2][0] * columns[3][3] + columns[0][1] * columns[1][2] * columns[2][0] * columns[3][3] +
-                    columns[0][2] * columns[1][0] * columns[2][1] * columns[3][3] - columns[0][0] * columns[1][2] * columns[2][1] * columns[3][3] -
-                    columns[0][1] * columns[1][0] * columns[2][2] * columns[3][3] + columns[0][0] * columns[1][1] * columns[2][2] * columns[3][3]
+            _x.w * _y.z * _z.y * _w.x - _x.z * _y.w * _z.y * _w.x -
+                    _x.w * _y.y * _z.z * _w.x + _x.y * _y.w * _z.z * _w.x +
+                    _x.z * _y.y * _z.w * _w.x - _x.y * _y.z * _z.w * _w.x -
+                    _x.w * _y.z * _z.x * _w.y + _x.z * _y.w * _z.x * _w.y +
+                    _x.w * _y.x * _z.z * _w.y - _x.x * _y.w * _z.z * _w.y -
+                    _x.z * _y.x * _z.w * _w.y + _x.x * _y.z * _z.w * _w.y +
+                    _x.w * _y.y * _z.x * _w.z - _x.y * _y.w * _z.x * _w.z -
+                    _x.w * _y.x * _z.y * _w.z + _x.x * _y.w * _z.y * _w.z +
+                    _x.y * _y.x * _z.w * _w.z - _x.x * _y.y * _z.w * _w.z -
+                    _x.z * _y.y * _z.x * _w.w + _x.y * _y.z * _z.x * _w.w +
+                    _x.z * _y.x * _z.y * _w.w - _x.x * _y.z * _z.y * _w.w -
+                    _x.y * _y.x * _z.z * _w.w + _x.x * _y.y * _z.z * _w.w
             ).toFloat()
 
     @Suppress("MemberVisibilityCanBePrivate")
     fun setIdentity() {
-        for (i in 0..3) {
-            for (j in 0..3) {
-                columns[i][j] = if (i == j) 1.0 else 0.0
-            }
-        }
+        _x = Vector4(1, 0, 0, 0)
+        _y = Vector4(0, 1, 0, 0)
+        _z = Vector4(0, 0, 1, 0)
+        _w = Vector4(0, 0, 0, 1)
     }
 
     fun setZero() {
-        for (i in 0..3) {
-            for (j in 0..3) {
-                columns[i][j] = 0.0
-            }
-        }
+        _x = Vector4(0, 0, 0, 0)
+        _y = Vector4(0, 0, 0, 0)
+        _z = Vector4(0, 0, 0, 0)
+        _w = Vector4(0, 0, 0, 0)
     }
 
     fun setLightBias() {
-        columns[0].x = 0.5
-        columns[0].y = 0.0
-        columns[0].z = 0.0
-        columns[0].w = 0.0
-        columns[1].x = 0.0
-        columns[1].y = 0.5
-        columns[1].z = 0.0
-        columns[1].w = 0.0
-        columns[2].x = 0.0
-        columns[2].y = 0.0
-        columns[2].z = 0.5
-        columns[2].w = 0.0
-        columns[3].x = 0.5
-        columns[3].y = 0.5
-        columns[3].z = 0.5
-        columns[3].w = 1.0
+        _x.x = 0.5
+        _x.y = 0.0
+        _x.z = 0.0
+        _x.w = 0.0
+        _y.x = 0.0
+        _y.y = 0.5
+        _y.z = 0.0
+        _y.w = 0.0
+        _z.x = 0.0
+        _z.y = 0.0
+        _z.z = 0.5
+        _z.w = 0.0
+        _w.x = 0.5
+        _w.y = 0.5
+        _w.z = 0.5
+        _w.w = 1.0
     }
 
     fun setDepthCorrection(flipY: Boolean) {
-        columns[0].x = 1.0
-        columns[0].y = 0.0
-        columns[0].z = 0.0
-        columns[0].w = 0.0
-        columns[1].x = 0.0
-        columns[1].y = if (flipY) -1.0 else 1.0
-        columns[1].z = 0.0
-        columns[1].w = 0.0
-        columns[2].x = 0.0
-        columns[2].y = 0.0
-        columns[2].z = 0.5
-        columns[2].w = 0.0
-        columns[3].x = 0.0
-        columns[3].y = 0.0
-        columns[3].z = 0.5
-        columns[3].w = 1.0
+        _x.x = 1.0
+        _x.y = 0.0
+        _x.z = 0.0
+        _x.w = 0.0
+        _y.x = 0.0
+        _y.y = if (flipY) -1.0 else 1.0
+        _y.z = 0.0
+        _y.w = 0.0
+        _z.x = 0.0
+        _z.y = 0.0
+        _z.z = 0.5
+        _z.w = 0.0
+        _w.x = 0.0
+        _w.y = 0.0
+        _w.z = 0.5
+        _w.w = 1.0
     }
 
     fun setLightAtlasRect(p_rect: Rect2) {
-        columns[0].x = p_rect.size.x
-        columns[0].y = 0.0
-        columns[0].z = 0.0
-        columns[0].w = 0.0
-        columns[1].x = 0.0
-        columns[1].y = p_rect.size.y
-        columns[1].z = 0.0
-        columns[1].w = 0.0
-        columns[2].x = 0.0
-        columns[2].y = 0.0
-        columns[2].z = 1.0
-        columns[2].w = 0.0
-        columns[3].x = p_rect.position.x
-        columns[3].y = p_rect.position.y
-        columns[3].z = 0.0
-        columns[3].w = 1.0
+        _x.x = p_rect.size.x
+        _x.y = 0.0
+        _x.z = 0.0
+        _x.w = 0.0
+        _y.x = 0.0
+        _y.y = p_rect.size.y
+        _y.z = 0.0
+        _y.w = 0.0
+        _z.x = 0.0
+        _z.y = 0.0
+        _z.z = 1.0
+        _z.w = 0.0
+        _w.x = p_rect.position.x
+        _w.y = p_rect.position.y
+        _w.z = 0.0
+        _w.w = 1.0
     }
 
     fun setPerspective(pFovyDegrees: RealT, aspect: RealT, zNear: RealT, zFar: RealT, flipFov: Boolean) {
@@ -235,12 +334,12 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
         setIdentity()
 
-        columns[0][0] = cotangent / aspect
-        columns[1][1] = cotangent
-        columns[2][2] = -(zFar + zNear) / deltaZ
-        columns[2][3] = -1.0
-        columns[3][2] = -2 * zNear * zFar / deltaZ
-        columns[3][3] = 0.0
+        _x.x = cotangent / aspect
+        _y.y = cotangent
+        _z.z = -(zFar + zNear) / deltaZ
+        _z.w = -1.0
+        _w.z = -2 * zNear * zFar / deltaZ
+        _w.w = 0.0
     }
 
     fun setPerspective(
@@ -285,7 +384,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
         setFrustrum(left, right, -ymax, ymax, zNear, zFar)
 
         val cm = Projection()
-        cm.columns[3].x = modelTranslation
+        cm._w.x = modelTranslation
         set(this * cm)
     }
 
@@ -300,7 +399,6 @@ class Projection private constructor(val columns: Array<Vector4>) {
         pZFar: RealT
     ) {
         // we first calculate our base frustum on our values without taking our lens magnification into account.
-        // we first calculate our base frustum on our values without taking our lens magnification into account.
         var f1: RealT = pIntraocularDist * 0.5 / pDisplayToLens
         var f2: RealT = (pDisplayWidth - pIntraocularDist) * 0.5 / pDisplayToLens
         var f3: RealT = pDisplayWidth / 4.0 / pDisplayToLens
@@ -314,8 +412,6 @@ class Projection private constructor(val columns: Array<Vector4>) {
         f1 += add
         f2 += add
         f3 *= pOversample
-
-        // always apply KEEP_WIDTH aspect ratio
 
         // always apply KEEP_WIDTH aspect ratio
         f3 /= pAspect
@@ -338,13 +434,13 @@ class Projection private constructor(val columns: Array<Vector4>) {
     fun setOrthogonal(pLeft: RealT, pRight: RealT, pBottom: RealT, pTop: RealT, pZnear: RealT, pZfar: RealT) {
         setIdentity()
 
-        columns[0][0] = 2.0 / (pRight - pLeft)
-        columns[3][0] = -((pRight + pLeft) / (pRight - pLeft))
-        columns[1][1] = 2.0 / (pTop - pBottom)
-        columns[3][1] = -((pTop + pBottom) / (pTop - pBottom))
-        columns[2][2] = -2.0 / (pZfar - pZnear)
-        columns[3][2] = -((pZfar + pZnear) / (pZfar - pZnear))
-        columns[3][3] = 1.0
+        _x.x = 2.0 / (pRight - pLeft)
+        _w.x = -((pRight + pLeft) / (pRight - pLeft))
+        _y.y = 2.0 / (pTop - pBottom)
+        _w.y = -((pTop + pBottom) / (pTop - pBottom))
+        _z.z = -2.0 / (pZfar - pZnear)
+        _w.z = -((pZfar + pZnear) / (pZfar - pZnear))
+        _w.w = 1.0
     }
 
     fun setOrthogonal(pSize: RealT, pAspect: RealT, pZnear: RealT, pZfar: RealT, pFlipFov: Boolean) {
@@ -368,22 +464,22 @@ class Projection private constructor(val columns: Array<Vector4>) {
         val b = (top + bottom) / (top - bottom)
         val c = -(far + near) / (far - near)
         val d = -2 * far * near / (far - near)
-        columns[0].x = x
-        columns[0].y = 0.0
-        columns[0].z = 0.0
-        columns[0].w = 0.0
-        columns[1].x = 0.0
-        columns[1].y = y
-        columns[1].z = 0.0
-        columns[1].w = 0.0
-        columns[2].x = a
-        columns[2].y = b
-        columns[2].z = c
-        columns[2].w = -1.0
-        columns[3].x = 0.0
-        columns[3].y = 0.0
-        columns[3].z = d
-        columns[3].w = 0.0
+        _x.x = x
+        _x.y = 0.0
+        _x.z = 0.0
+        _x.w = 0.0
+        _y.x = 0.0
+        _y.y = y
+        _y.z = 0.0
+        _y.w = 0.0
+        _z.x = a
+        _z.y = b
+        _z.z = c
+        _z.w = -1.0
+        _w.x = 0.0
+        _w.y = 0.0
+        _w.z = d
+        _w.w = 0.0
     }
 
     fun setFrustrum(pSize: RealT, aspect: RealT, offset: Vector2, near: RealT, far: RealT, flipFov: Boolean) {
@@ -409,32 +505,32 @@ class Projection private constructor(val columns: Array<Vector4>) {
         val znear: RealT = p_new_znear
 
         val deltaZ: RealT = zfar - znear
-        columns[2][2] = -(zfar + znear) / deltaZ
-        columns[3][2] = -2 * znear * zfar / deltaZ
+        _z.z = -(zfar + znear) / deltaZ
+        _w.z = -2 * znear * zfar / deltaZ
     }
 
     /**
-     * Returns a Projection with the near clipping distance adjusted to be new_znear.
+     * Returns a Projection with the near clipping distance adjusted to be [newZnear].
      *
-     * Note: The original Projection must be a perspective projection.
+     * **Note**: The original Projection must be a perspective projection.
      */
-    fun perspectiveZnearAdjusted(pNewZnear: RealT) = Projection(this).also {
-        it.adjustPerspectiveZnear(pNewZnear)
+    fun perspectiveZnearAdjusted(newZnear: RealT) = Projection(this).also {
+        it.adjustPerspectiveZnear(newZnear)
     }
 
     /**
-     * Returns the clipping plane of this Projection whose index is given by plane.
+     * Returns the clipping plane of this Projection whose index is given by [plane].
      *
-     * plane should be equal to one of PLANE_NEAR, PLANE_FAR, PLANE_LEFT, PLANE_TOP, PLANE_RIGHT, or PLANE_BOTTOM.
+     * [plane] should be equal to one of PLANE_NEAR, PLANE_FAR, PLANE_LEFT, PLANE_TOP, PLANE_RIGHT, or PLANE_BOTTOM.
      */
     @Suppress("DuplicatedCode")
-    fun getProjectionPlane(pPlane: Planes): Plane {
-        val newPlane = when (pPlane) {
+    fun getProjectionPlane(plane: Planes): Plane {
+        val newPlane = when (plane) {
             Planes.PLANE_NEAR -> Plane(
-                columns[0].w + columns[0].z,
-                columns[1].w + columns[1].z,
-                columns[2].w + columns[2].z,
-                columns[3].w + columns[3].z
+                _x.w + _x.z,
+                _y.w + _y.z,
+                _z.w + _z.z,
+                _w.w + _w.z
             )
 
             Planes.PLANE_FAR -> _farPlane
@@ -443,12 +539,11 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
             Planes.PLANE_TOP -> _topPlane
 
-            //TODO: is there a godot bug on last member of plane here ?
             Planes.PLANE_RIGHT -> Plane(
-                columns[0].w - columns[0].x,
-                columns[1].w - columns[1].x,
-                columns[2].w - columns[2].x,
-                columns[3].w - columns[3].x
+                _x.w - _x.x,
+                _y.w - _y.x,
+                _z.w - _z.x,
+                _w.w - _w.x
             )
 
             Planes.PLANE_BOTTOM -> _bottomPlane
@@ -467,7 +562,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
     }
 
     /**
-     * Returns a Projection with the X and Y values from the given Vector2 added to the first and second values of the
+     * Returns a Projection with the X and Y values from the given [Vector2] added to the first and second values of the
      * final column respectively.
      */
     fun jitterOffseted(pOffset: Vector2) = Projection(this).also {
@@ -493,10 +588,10 @@ class Projection private constructor(val columns: Array<Vector4>) {
     @Suppress("MemberVisibilityCanBePrivate")
     fun getZNear(): RealT {
         val newPlane = Plane(
-            columns[0].w + columns[0].z,
-            columns[1].w + columns[1].z,
-            columns[2].w + columns[2].z,
-            -columns[3].w - columns[3].z
+            _x.w + _x.z,
+            _y.w + _y.z,
+            _z.w + _z.z,
+            -_w.w - _w.z
         )
 
         newPlane.normalize()
@@ -518,7 +613,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
         val rightPlane = _rightPlane
         rightPlane.normalize()
 
-        return if (columns[2].x == 0.0 && columns[2].y == 0.0) {
+        return if (_z.x == 0.0 && _z.y == 0.0) {
             Math.toDegrees(acos(abs(rightPlane.normal.x))) * 2.0
         } else {
             val leftPlane = _leftPlane
@@ -529,18 +624,18 @@ class Projection private constructor(val columns: Array<Vector4>) {
     }
 
     /**
-     * Returns true if this Projection performs an orthogonal projection.
+     * Returns `true` if this Projection performs an orthogonal projection.
      */
     @Suppress("MemberVisibilityCanBePrivate")
-    fun isOrthogonal() = columns[3][3] == 1.0
+    fun isOrthogonal() = _w.w == 1.0
 
     @Suppress("MemberVisibilityCanBePrivate")
     fun getProjectionPlanes(pTransform: Transform3D): Array<Plane> {
         val nearPlane = Plane(
-            columns[0].w + columns[0].z,
-            columns[1].w + columns[1].z,
-            columns[2].w + columns[2].z,
-            columns[3].w + columns[3].z
+            _x.w + _x.z,
+            _y.w + _y.z,
+            _z.w + _z.z,
+            _w.w + _w.z
         )
 
         nearPlane.normal = -nearPlane._normal
@@ -562,10 +657,10 @@ class Projection private constructor(val columns: Array<Vector4>) {
         topPlane.normalize()
 
         val rightPlane = Plane(
-            columns[0].w - columns[0].x,
-            columns[1].w - columns[1].x,
-            columns[2].w - columns[2].x,
-            columns[3].w - columns[3].x
+            _x.w - _x.x,
+            _y.w - _y.x,
+            _z.w - _z.x,
+            _w.w - _w.x
         )
 
         rightPlane.normal = -rightPlane.normal
@@ -618,10 +713,10 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
         ////--- Near Plane ---///////
         val nearPlane = Plane(
-            columns[0].w + columns[0].z,
-            columns[1].w + columns[1].z,
-            columns[2].w + columns[2].z,
-            -columns[3].w - columns[3].z
+            _x.w + _x.z,
+            _y.w + _y.z,
+            _z.w + _z.z,
+            -_w.w - _w.z
         )
         nearPlane.normalize()
 
@@ -645,10 +740,10 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
         ////--- Far Plane ---///////
         val farPlane = Plane(
-            columns[0].w - columns[0].z,
-            columns[1].w - columns[1].z,
-            columns[2].w - columns[2].z,
-            -columns[3].w + columns[3].z
+            _x.w - _x.z,
+            _y.w - _y.z,
+            _z.w - _z.z,
+            -_w.w + _w.z
         )
         farPlane.normalize()
 
@@ -681,7 +776,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
         while (k < 4) {
             /** Locate k'th pivot element  */
-            pivotValue = columns[k][k]
+            pivotValue = this[k][k]
             /** Initialize for search  */
             pivotRows[k] = k
             pivotColumns[k] = k
@@ -689,10 +784,11 @@ class Projection private constructor(val columns: Array<Vector4>) {
             while (i < 4) {
                 j = k
                 while (j < 4) {
-                    if (abs(columns[i][j]) > abs(pivotValue)) {
+                    val element = this[i][j]
+                    if (abs(element) > abs(pivotValue)) {
                         pivotRows[k] = i
                         pivotColumns[k] = j
-                        pivotValue = columns[i][j]
+                        pivotValue = element
                     }
                     j++
                 }
@@ -702,8 +798,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
             /** Product of pivots, gives determinant when finished  */
             determinant *= pivotValue
             if (GD.isZeroApprox(determinant)) {
-                return
-                /** Matrix is singular (zero determinant).  */
+                return /** Matrix is singular (zero determinant).  */
             }
 
             /** "Interchange" rows (with sign change stuff)  */
@@ -712,9 +807,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
                 /** If rows are different  */
                 j = 0
                 while (j < 4) {
-                    hold = -columns[k][j]
-                    columns[k][j] = columns[i][j]
-                    columns[i][j] = hold
+                    hold = -this[k][j]
+                    setMatrixElement(k, j, this[i][j])
+                    setMatrixElement(i, j, hold)
                     j++
                 }
             }
@@ -725,9 +820,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
                 /** If columns are different  */
                 i = 0
                 while (i < 4) {
-                    hold = -columns[i][k]
-                    columns[i][k] = columns[i][j]
-                    columns[i][j] = hold
+                    hold = -this[i][k]
+                    setMatrixElement(i, k, this[i][j])
+                    setMatrixElement(i, j, hold)
                     i++
                 }
             }
@@ -736,7 +831,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
             i = 0
             while (i < 4) {
                 if (i != k) {
-                    columns[i][k] /= -pivotValue
+                    setMatrixElement(i, k, this[i][k] / -pivotValue)
                 }
                 i++
             }
@@ -744,11 +839,11 @@ class Projection private constructor(val columns: Array<Vector4>) {
             /** Reduce the matrix  */
             i = 0
             while (i < 4) {
-                hold = columns[i][k]
+                hold = this[i][k]
                 j = 0
                 while (j < 4) {
                     if (i != k && j != k) {
-                        columns[i][j] += hold * columns[k][j]
+                        setMatrixElement(i, j, this[i][j] + (hold * this[k][j]))
                     }
                     j++
                 }
@@ -759,13 +854,13 @@ class Projection private constructor(val columns: Array<Vector4>) {
             j = 0
             while (j < 4) {
                 if (j != k) {
-                    columns[k][j] /= pivotValue
+                    setMatrixElement(k, j, this[k][j] / pivotValue)
                 }
                 j++
             }
 
             /** Replace pivot by reciprocal (at last we can touch it).  */
-            columns[k][k] = 1.0 / pivotValue
+            setMatrixElement(k, k, 1.0 / pivotValue)
             k++
         }
 
@@ -779,9 +874,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
             if (i != k) { /* If rows are different */
                 j = 0
                 while (j < 4) {
-                    hold = columns[k][j]
-                    columns[k][j] = -columns[i][j]
-                    columns[i][j] = hold
+                    hold = this[k][j]
+                    setMatrixElement(k, j, -this[i][j])
+                    setMatrixElement(i, j, hold)
                     j++
                 }
             }
@@ -791,9 +886,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
             if (j != k) { /* If columns are different */
                 i = 0
                 while (i < 4) {
-                    hold = columns[i][k]
-                    columns[i][k] = -columns[i][j]
-                    columns[i][j] = hold
+                    hold = this[i][k]
+                    setMatrixElement(i, k, -this[i][j])
+                    setMatrixElement(i, j, hold)
                     i++
                 }
             }
@@ -810,75 +905,75 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
     fun xform4(plane: Plane) = Plane(
         Vector3(
-            columns[0][0] * plane.normal.x + columns[1][0] * plane.normal.y + columns[2][0] * plane.normal.z + columns[3][0] * plane.d,
-            columns[0][1] * plane.normal.x + columns[1][1] * plane.normal.y + columns[2][1] * plane.normal.z + columns[3][1] * plane.d,
-            columns[0][2] * plane.normal.x + columns[1][2] * plane.normal.y + columns[2][2] * plane.normal.z + columns[3][2] * plane.d
+            _x.x * plane.normal.x + _y.x * plane.normal.y + _z.x * plane.normal.z + _w.x * plane.d,
+            _x.y * plane.normal.x + _y.y * plane.normal.y + _z.y * plane.normal.z + _w.y * plane.d,
+            _x.z * plane.normal.x + _y.z * plane.normal.y + _z.z * plane.normal.z + _w.z * plane.d
         ),
-        columns[0][3] * plane.normal.x + columns[1][3] * plane.normal.y + columns[2][3] * plane.normal.z + columns[3][3] * plane.d
+        _x.w * plane.normal.x + _y.w * plane.normal.y + _z.w * plane.normal.z + _w.w * plane.d
     )
 
     fun xform(vec3: Vector3): Vector3 {
         val ret = Vector3(
-            columns[0][0] * vec3.x + columns[1][0] * vec3.y + columns[2][0] * vec3.z + columns[3][0],
-            columns[0][1] * vec3.x + columns[1][1] * vec3.y + columns[2][1] * vec3.z + columns[3][1],
-            columns[0][2] * vec3.x + columns[1][2] * vec3.y + columns[2][2] * vec3.z + columns[3][2]
+            _x.x * vec3.x + _y.x * vec3.y + _z.x * vec3.z + _w.x,
+            _x.y * vec3.x + _y.y * vec3.y + _z.y * vec3.z + _w.y,
+            _x.z * vec3.x + _y.z * vec3.y + _z.z * vec3.z + _w.z
         )
-        val w: RealT = columns[0][3] * vec3.x + columns[1][3] * vec3.y + columns[2][3] * vec3.z + columns[3][3]
+        val w: RealT = _x.w * vec3.x + _y.w * vec3.y + _z.w * vec3.z + _w.w
         return ret / w
     }
 
     @Suppress("DuplicatedCode")
     fun xform(vec4: Vector4) = Vector4(
-        columns[0][0] * vec4.x + columns[1][0] * vec4.y + columns[2][0] * vec4.z + columns[3][0] * vec4.w,
-        columns[0][1] * vec4.x + columns[1][1] * vec4.y + columns[2][1] * vec4.z + columns[3][1] * vec4.w,
-        columns[0][2] * vec4.x + columns[1][2] * vec4.y + columns[2][2] * vec4.z + columns[3][2] * vec4.w,
-        columns[0][3] * vec4.x + columns[1][3] * vec4.y + columns[2][3] * vec4.z + columns[3][3] * vec4.w
+        _x.x * vec4.x + _y.x * vec4.y + _z.x * vec4.z + _w.x * vec4.w,
+        _x.y * vec4.x + _y.y * vec4.y + _z.y * vec4.z + _w.y * vec4.w,
+        _x.z * vec4.x + _y.z * vec4.y + _z.z * vec4.z + _w.z * vec4.w,
+        _x.w * vec4.x + _y.w * vec4.y + _z.w * vec4.z + _w.w * vec4.w
     )
 
     @Suppress("DuplicatedCode")
     fun xformInv(vec4: Vector4) = Vector4(
-        columns[0][0] * vec4.x + columns[0][1] * vec4.y + columns[0][2] * vec4.z + columns[0][3] * vec4.w,
-        columns[1][0] * vec4.x + columns[1][1] * vec4.y + columns[1][2] * vec4.z + columns[1][3] * vec4.w,
-        columns[2][0] * vec4.x + columns[2][1] * vec4.y + columns[2][2] * vec4.z + columns[2][3] * vec4.w,
-        columns[3][0] * vec4.x + columns[3][1] * vec4.y + columns[3][2] * vec4.z + columns[3][3] * vec4.w
+        _x.x * vec4.x + _x.y * vec4.y + _x.z * vec4.z + _x.w * vec4.w,
+        _y.x * vec4.x + _y.y * vec4.y + _y.z * vec4.z + _y.w * vec4.w,
+        _z.x * vec4.x + _z.y * vec4.y + _z.z * vec4.z + _z.w * vec4.w,
+        _w.x * vec4.x + _w.y * vec4.y + _w.z * vec4.z + _w.w * vec4.w
     )
 
     fun scaleTranslateToFit(pAabb: AABB) {
         val min: Vector3 = pAabb.position
         val max: Vector3 = pAabb.position + pAabb.size
 
-        columns[0][0] = 2 / (max.x - min.x)
-        columns[1][0] = 0.0
-        columns[2][0] = 0.0
-        columns[3][0] = -(max.x + min.x) / (max.x - min.x)
+        _x.x = 2 / (max.x - min.x)
+        _y.x = 0.0
+        _z.x = 0.0
+        _w.x = -(max.x + min.x) / (max.x - min.x)
 
-        columns[0][1] = 0.0
-        columns[1][1] = 2 / (max.y - min.y)
-        columns[2][1] = 0.0
-        columns[3][1] = -(max.y + min.y) / (max.y - min.y)
+        _x.y = 0.0
+        _y.y = 2 / (max.y - min.y)
+        _z.y = 0.0
+        _w.y = -(max.y + min.y) / (max.y - min.y)
 
-        columns[0][2] = 0.0
-        columns[1][2] = 0.0
-        columns[2][2] = 2 / (max.z - min.z)
-        columns[3][2] = -(max.z + min.z) / (max.z - min.z)
+        _x.z = 0.0
+        _y.z = 0.0
+        _z.z = 2 / (max.z - min.z)
+        _w.z = -(max.z + min.z) / (max.z - min.z)
 
-        columns[0][3] = 0.0
-        columns[1][3] = 0.0
-        columns[2][3] = 0.0
-        columns[3][3] = 1.0
+        _x.w = 0.0
+        _y.w = 0.0
+        _z.w = 0.0
+        _w.w = 1.0
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
     fun addJitterOffset(pOffset: Vector2) {
-        columns[3][0] += pOffset.x
-        columns[3][1] += pOffset.y
+        _w.x += pOffset.x
+        _w.y += pOffset.y
     }
 
     fun makeScale(scale: Vector3) {
         setIdentity()
-        columns[0][0] = scale.x
-        columns[1][1] = scale.y
-        columns[2][2] = scale.z
+        _x.x = scale.x
+        _y.y = scale.y
+        _z.z = scale.z
     }
 
     /**
@@ -892,7 +987,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
     @Suppress("MemberVisibilityCanBePrivate")
     fun flipY() {
         for (i in 0..3) {
-            columns[1][i] = -columns[1][i]
+            _y[i] = -_y[i]
         }
     }
 
@@ -908,7 +1003,7 @@ class Projection private constructor(val columns: Array<Vector4>) {
     }
 
     /**
-     * Returns a Projection that applies the combined transformations of this Projection and right.
+     * Returns a Projection that applies the combined transformations of this Projection and `right`.
      */
     operator fun times(matrix: Projection): Projection {
         val newMatrix = Projection()
@@ -917,9 +1012,9 @@ class Projection private constructor(val columns: Array<Vector4>) {
             for (i in 0..3) {
                 var ab: RealT = 0.0
                 for (k in 0..3) {
-                    ab += columns[k][i] * matrix.columns[j][k]
+                    ab += this[k][i] * matrix[j][k]
                 }
-                newMatrix.columns[j][i] = ab
+                newMatrix.setMatrixElement(j, i, ab)
             }
         }
 
@@ -927,10 +1022,10 @@ class Projection private constructor(val columns: Array<Vector4>) {
     }
 
     /**
-     * Returns true if the projections are equal.
+     * Returns `true` if the projections are equal.
      *
-     * Note: Due to floating-point precision errors, this may return false, even if the projections are virtually equal.
-     * An isEqualApprox method may be added in a future version of Godot.
+     * Note: Due to floating-point precision errors, this may return `false`, even if the projections are virtually equal.
+     * An `isEqualApprox` method may be added in a future version of Godot.
      */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -938,51 +1033,79 @@ class Projection private constructor(val columns: Array<Vector4>) {
 
         other as Projection
 
-        if (!columns.contentEquals(other.columns)) return false
+        if (_x != other._x) return false
+        if (_y != other._y) return false
+        if (_z != other._z) return false
+        if (_w != other._w) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return columns.contentHashCode()
+        var result = _x.hashCode()
+        result = 31 * result + _y.hashCode()
+        result = 31 * result + _z.hashCode()
+        result = 31 * result + _w.hashCode()
+        return result
     }
 
     fun toTransform3D(): Transform3D {
         val transform = Transform3D()
 
-        transform.basis._x[0] = columns[0].x
-        transform.basis._y[0] = columns[0].y
-        transform.basis._z[0] = columns[0].z
+        transform.basis._x.x = _x.x
+        transform.basis._y.x = _x.y
+        transform.basis._z.x = _x.z
 
-        transform.basis._x[1] = columns[1].x
-        transform.basis._y[1] = columns[1].y
-        transform.basis._z[1] = columns[1].z
+        transform.basis._x.y = _y.x
+        transform.basis._y.y = _y.y
+        transform.basis._z.y = _y.z
 
-        transform.basis._x[2] = columns[2].x
-        transform.basis._y[2] = columns[2].y
-        transform.basis._z[2] = columns[2].z
+        transform.basis._x.z = _z.x
+        transform.basis._y.z = _z.y
+        transform.basis._z.z = _z.z
 
-        transform.origin.x = columns[3].x
-        transform.origin.y = columns[3].y
-        transform.origin.z = columns[3].z
+        transform.origin.x = _w.x
+        transform.origin.y = _w.y
+        transform.origin.z = _w.z
 
         return transform
     }
 
     override fun toString() = buildString {
-        for (i in 0..3) {
-            for (j in 0..3) {
-                append(if (j > 0) ", " else "\n")
-                append(columns[i][j])
-            }
-        }
+        appendLine("(")
+        append("\t")
+        appendLine(_x)
+        append("\t")
+        appendLine(_y)
+        append("\t")
+        appendLine(_z)
+        append("\t")
+        appendLine(_w)
+        appendLine(")")
     }
 
     private fun set(projection: Projection) {
-        this.columns[0] = projection.columns[0]
-        this.columns[1] = projection.columns[1]
-        this.columns[2] = projection.columns[2]
-        this.columns[3] = projection.columns[3]
+        this._x = projection._x
+        this._y = projection._y
+        this._z = projection._z
+        this._w = projection._w
+    }
+
+    private fun setMatrixElement(i: Int, j: Int, value: RealT) {
+        val row = when(i) {
+            0 -> _x
+            1 -> _y
+            2 -> _z
+            3 -> _w
+            else -> throw IndexOutOfBoundsException()
+        }
+        when(j) {
+            0 -> row.x = value
+            1 -> row.y = value
+            2 -> row.z = value
+            3 -> row.w = value
+            else -> throw IndexOutOfBoundsException()
+        }
     }
 
     companion object {

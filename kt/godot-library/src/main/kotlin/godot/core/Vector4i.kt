@@ -48,6 +48,8 @@ class Vector4i(
     constructor(vec: Vector4i) :
             this(vec.x, vec.y, vec.z, vec.w)
 
+    constructor(vec: Vector4) : this(vec.x, vec.y, vec.z, vec.w)
+
     constructor(x: Number, y: Number, z: Number, w: Number) :
             this(x.toInt(), y.toInt(), z.toInt(), w.toInt())
 

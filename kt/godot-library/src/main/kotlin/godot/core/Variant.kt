@@ -429,10 +429,10 @@ enum class VariantType(
         { buffer: ByteBuffer, any: Any ->
             require(any is Projection)
             buffer.variantType = PROJECTION.ordinal
-            buffer.vector4 = any.columns[0]
-            buffer.vector4 = any.columns[1]
-            buffer.vector4 = any.columns[2]
-            buffer.vector4 = any.columns[3]
+            buffer.vector4 = any._x
+            buffer.vector4 = any._y
+            buffer.vector4 = any._z
+            buffer.vector4 = any._w
         }
     ),
 
