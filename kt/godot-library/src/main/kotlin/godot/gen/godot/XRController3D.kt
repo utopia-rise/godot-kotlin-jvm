@@ -31,7 +31,7 @@ import kotlin.Unit
  * A spatial node representing a spatially-tracked controller.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
  *
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
  *
@@ -68,7 +68,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns `true` if the button with the given `name` is pressed.
+   * Returns `true` if the button with the given [name] is pressed.
    */
   public fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -78,7 +78,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a numeric value for the input with the given `name`. This is used for triggers and grip sensors.
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
    */
   public fun getValue(name: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -87,7 +87,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [godot.core.Vector2] for the input with the given `name`. This is used for thumbsticks and thumbpads found on many controllers.
+   * Returns a [godot.core.Vector2] for the input with the given [name]. This is used for thumbsticks and thumbpads found on many controllers.
    */
   public fun getAxis(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

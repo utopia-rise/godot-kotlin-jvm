@@ -174,7 +174,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself.
    */
   public var fixedFps: Long
     get() {
@@ -205,7 +205,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.CPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.CPUParticles3D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -332,6 +332,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   *
+   * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [emissionColors] will have no visible effect.
    */
   public var emissionColors: PackedColorArray
     get() {
@@ -534,7 +536,9 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's initial color. To have particle display color in a [godot.BaseMaterial3D] make sure to set [godot.BaseMaterial3D.vertexColorUseAsAlbedo] to `true`.
+   * Each particle's initial color.
+   *
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    */
   public var color: Color
     get() {
@@ -549,6 +553,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
+   *
+   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorRamp] will have no visible effect.
    */
   public var colorRamp: Gradient?
     get() {
@@ -565,6 +571,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
+   *
+   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorInitialRamp] will have no visible effect.
    */
   public var colorInitialRamp: Gradient?
     get() {
@@ -592,7 +600,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the minimum value for the given parameter
+   * Sets the minimum value for the given parameter.
    */
   public fun setParamMin(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
@@ -600,7 +608,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Returns the minimum value range for the given parameter.
    */
   public fun getParamMin(`param`: CPUParticles3D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
@@ -610,7 +618,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the maximum value for the given parameter
+   * Sets the maximum value for the given parameter.
    */
   public fun setParamMax(`param`: CPUParticles3D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
@@ -618,7 +626,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   *
+   * Returns the maximum value range for the given parameter.
    */
   public fun getParamMax(`param`: CPUParticles3D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
@@ -665,7 +673,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets this node's properties to match a given [godot.GPUParticles3D] node with an assigned [godot.ParticlesMaterial].
+   * Sets this node's properties to match a given [godot.GPUParticles3D] node with an assigned [godot.ParticleProcessMaterial].
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)

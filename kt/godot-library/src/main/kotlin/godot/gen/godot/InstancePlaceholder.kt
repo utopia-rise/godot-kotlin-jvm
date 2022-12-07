@@ -33,7 +33,9 @@ public open class InstancePlaceholder internal constructor() : Node() {
   }
 
   /**
+   * Returns the list of properties that will be applied to the node when [createInstance] is called.
    *
+   * If [withOrder] is `true`, a key named `.order` (note the leading period) is added to the dictionary. This `.order` key is an [godot.Array] of [godot.String] property names specifying the order in which properties will be applied (with index 0 being the first).
    */
   public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
@@ -43,7 +45,9 @@ public open class InstancePlaceholder internal constructor() : Node() {
   }
 
   /**
-   * Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
+   * Call this method to actually load in the node. The created node will be placed as a sibling *above* the [godot.InstancePlaceholder] in the scene tree. The [godot.Node]'s reference is also returned for convenience.
+   *
+   * **Note:** [createInstance] is not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
   public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)

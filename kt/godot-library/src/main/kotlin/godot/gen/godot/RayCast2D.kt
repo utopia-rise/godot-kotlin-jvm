@@ -252,7 +252,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -261,7 +261,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)

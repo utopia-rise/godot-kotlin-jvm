@@ -78,11 +78,6 @@ public open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_EDIT_ALPHA, NIL)
     }
 
-  /**
-   * If `true`, allows editing the color with Hue/Saturation/Value sliders.
-   *
-   * **Note:** Cannot be enabled if raw mode is on.
-   */
   public var hsvMode: Boolean
     get() {
       TransferContext.writeArguments()
@@ -94,11 +89,6 @@ public open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_HSV_MODE, NIL)
     }
 
-  /**
-   * If `true`, allows the color R, G, B component values to go beyond 1.0, which can be used for certain special operations that require it (like tinting without darkening or rendering sprites in HDR).
-   *
-   * **Note:** Cannot be enabled if HSV mode is on.
-   */
   public var rawMode: Boolean
     get() {
       TransferContext.writeArguments()
@@ -141,9 +131,6 @@ public open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PICKER_SHAPE, NIL)
     }
 
-  /**
-   * If `true`, the "add preset" button is enabled.
-   */
   public var presetsEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -158,7 +145,7 @@ public open class ColorPicker : BoxContainer() {
     }
 
   /**
-   * If `true`, saved color presets are visible.
+   * If `true`, the Swatches and Recent Colors presets are visible.
    */
   public var presetsVisible: Boolean
     get() {

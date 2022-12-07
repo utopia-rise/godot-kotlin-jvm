@@ -31,17 +31,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * High-level multiplayer API.
+ * High-level multiplayer API interface.
  *
- * This class implements the high-level multiplayer API. See also [godot.MultiplayerPeer].
+ * Base class for high-level multiplayer API implementations. See also [godot.MultiplayerPeer].
  *
- * By default, [godot.SceneTree] has a reference to this class that is used to provide multiplayer capabilities (i.e. RPCs) across the whole scene.
+ * By default, [godot.SceneTree] has a reference to an implementation of this class and uses it to provide multiplayer capabilities (i.e. RPCs) across the whole scene.
  *
  * It is possible to override the MultiplayerAPI instance used by specific tree branches by calling the [godot.SceneTree.setMultiplayer] method, effectively allowing to run both client and server in the same scene.
  *
- * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ * It is also possible to extend or replace the default implementation via scripting or native extensions. See [godot.MultiplayerAPIExtension] for details about extensions, [godot.SceneMultiplayer] for the details about the default implementation.
  */
 @GodotBaseType
 public open class MultiplayerAPI : RefCounted() {
@@ -50,9 +48,6 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public val connectedToServer: Signal0 by signal()
 
-  /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] receives a `packet` with custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
-   */
   public val peerPacket: Signal2<Long, PackedByteArray> by signal("id", "packet")
 
   /**
@@ -75,11 +70,6 @@ public open class MultiplayerAPI : RefCounted() {
    */
   public val serverDisconnected: Signal0 by signal()
 
-  /**
-   * If `true`, the MultiplayerAPI will allow encoding and decoding of object during RPCs.
-   *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
-   */
   public var allowObjectDecoding: Boolean
     get() {
       TransferContext.writeArguments()
@@ -93,9 +83,6 @@ public open class MultiplayerAPI : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ALLOW_OBJECT_DECODING, NIL)
     }
 
-  /**
-   * If `true`, the MultiplayerAPI's [multiplayerPeer] refuses new incoming connections.
-   */
   public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
@@ -125,11 +112,6 @@ public open class MultiplayerAPI : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_MULTIPLAYER_PEER, NIL)
     }
 
-  /**
-   * The root path to use for RPCs and replication. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.
-   *
-   * This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.
-   */
   public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -146,9 +128,6 @@ public open class MultiplayerAPI : RefCounted() {
     callConstructor(ENGINECLASS_MULTIPLAYERAPI)
   }
 
-  /**
-   * Sends the given raw `bytes` to a specific peer identified by `id` (see [godot.MultiplayerPeer.setTargetPeer]). Default ID is `0`, i.e. broadcast to all peers.
-   */
   public fun sendBytes(
     bytes: PackedByteArray,
     id: Long = 0,
@@ -210,9 +189,6 @@ public open class MultiplayerAPI : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_POLL, NIL)
   }
 
-  /**
-   * Clears the current MultiplayerAPI network state (you shouldn't call this unless you know what you are doing).
-   */
   public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_CLEAR, NIL)

@@ -54,12 +54,12 @@ public open class EditorPlugin internal constructor() : Node() {
   public val sceneChanged: Signal1<Node> by signal("sceneRoot")
 
   /**
-   *
+   * Emitted when any project setting has changed.
    */
   public val projectSettingsChanged: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the given [resource] was saved on disc.
    */
   public val resourceSaved: Signal1<Resource> by signal("resource")
 
@@ -68,13 +68,15 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Called when there is a root node in the current edited scene, [_handles] is implemented and an [godot.InputEvent] happens in the 2D viewport. Intercepts the [godot.InputEvent], if `return true` [godot.EditorPlugin] consumes the `event`, otherwise forwards `event` to other Editor classes. Example:
+   * Called when there is a root node in the current edited scene, [_handles] is implemented and an [godot.InputEvent] happens in the 2D viewport. Intercepts the [godot.InputEvent], if `return true` [godot.EditorPlugin] consumes the [event], otherwise forwards [event] to other Editor classes.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
    * [gdscript]
    *
-   * # Prevents the InputEvent to reach other Editor classes.
+   * # Prevents the InputEvent from reaching other Editor classes.
    *
    * func _forward_canvas_gui_input(event):
    *
@@ -84,7 +86,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [csharp]
    *
-   * // Prevents the InputEvent to reach other Editor classes.
+   * // Prevents the InputEvent from reaching other Editor classes.
    *
    * public override bool ForwardCanvasGuiInput(InputEvent @event)
    *
@@ -98,7 +100,9 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [/codeblocks]
    *
-   * Must `return false` in order to forward the [godot.InputEvent] to other Editor classes. Example:
+   * Must `return false` in order to forward the [godot.InputEvent] to other Editor classes.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -219,13 +223,15 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Called when there is a root node in the current edited scene, [_handles] is implemented and an [godot.InputEvent] happens in the 3D viewport. Intercepts the [godot.InputEvent], if `return true` [godot.EditorPlugin] consumes the `event`, otherwise forwards `event` to other Editor classes. Example:
+   * Called when there is a root node in the current edited scene, [_handles] is implemented, and an [godot.InputEvent] happens in the 3D viewport. The return value decides whether the [godot.InputEvent] is consumed or forwarded to other [godot.EditorPlugin]s. See [enum AfterGUIInput] for options.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
    * [gdscript]
    *
-   * # Prevents the InputEvent to reach other Editor classes.
+   * # Prevents the InputEvent from reaching other Editor classes.
    *
    * func _forward_3d_gui_input(camera, event):
    *
@@ -235,9 +241,9 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [csharp]
    *
-   * // Prevents the InputEvent to reach other Editor classes.
+   * // Prevents the InputEvent from reaching other Editor classes.
    *
-   * public override bool _Forward3dGuiInput(Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Camera3D camera, InputEvent @event)
    *
    * {
    *
@@ -249,7 +255,9 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * [/codeblocks]
    *
-   * Must `return false` in order to forward the [godot.InputEvent] to other Editor classes. Example:
+   * Must `return EditorPlugin.AFTER_GUI_INPUT_PASS` in order to forward the [godot.InputEvent] to other Editor classes.
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -259,7 +267,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * func _forward_3d_gui_input(camera, event):
    *
-   *     return event is InputEventMouseMotion
+   *     return EditorPlugin.AFTER_GUI_INPUT_STOP if event is InputEventMouseMotion else EditorPlugin.AFTER_GUI_INPUT_PASS
    *
    * [/gdscript]
    *
@@ -267,11 +275,11 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * // Consumes InputEventMouseMotion and forwards other InputEvent types.
    *
-   * public override bool _Forward3dGuiInput(Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Camera3D camera, InputEvent @event)
    *
    * {
    *
-   *     return @event is InputEventMouseMotion;
+   *     return @event is InputEventMouseMotion ? EditorPlugin.AFTER_GUI_INPUT_STOP : EditorPlugin.AFTER_GUI_INPUT_PASS;
    *
    * }
    *
@@ -306,9 +314,9 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *         update_overlays()
    *
-   *         return true
+   *         return EditorPlugin.AFTER_GUI_INPUT_STOP
    *
-   *     return false
+   *     return EditorPlugin.AFTER_GUI_INPUT_PASS
    *
    * [/gdscript]
    *
@@ -326,7 +334,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *
    *
-   * public override bool _Forward3dGuiInput(Godot.Camera3D camera, InputEvent @event)
+   * public override EditorPlugin.AfterGUIInput _Forward3dGuiInput(Godot.Camera3D camera, InputEvent @event)
    *
    * {
    *
@@ -338,11 +346,11 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *         UpdateOverlays();
    *
-   *         return true;
+   *         return EditorPlugin.AFTER_GUI_INPUT_STOP;
    *
    *     }
    *
-   *     return false;
+   *     return EditorPlugin.AFTER_GUI_INPUT_PASS;
    *
    * [/csharp]
    *
@@ -387,7 +395,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *     # Or use a built-in icon:
    *
-   *     return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+   *     return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
    *
    * [/gdscript]
    *
@@ -403,7 +411,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *     // Or use a built-in icon:
    *
-   *     return GetEditorInterface().GetBaseControl().GetIcon("Node", "EditorIcons");
+   *     return GetEditorInterface().GetBaseControl().GetThemeIcon("Node", "EditorIcons");
    *
    * }
    *
@@ -417,6 +425,31 @@ public open class EditorPlugin internal constructor() : Node() {
 
   /**
    * Returns `true` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script** and **AssetLib**).
+   *
+   * When the plugin's workspace is selected, other main screen plugins will be hidden, but your plugin will not appear automatically. It needs to be added as a child of [godot.EditorInterface.getBaseControl] and made visible inside [_makeVisible].
+   *
+   * Use [_getPluginName] and [_getPluginIcon] to customize the plugin button's appearance.
+   *
+   * ```
+   * 				var plugin_control
+   *
+   * 				func _enter_tree():
+   * 				    plugin_control = preload("my_plugin_control.tscn").instantiate()
+   * 				    get_editor_interface().get_editor_main_screen().add_child(plugin_control)
+   * 				    plugin_control.hide()
+   *
+   * 				func _has_main_screen():
+   * 				    return true
+   *
+   * 				func _make_visible(visible):
+   * 				    plugin_control.visible = visible
+   *
+   * 				func _get_plugin_name():
+   * 				    return "My Super Cool Plugin 3000"
+   *
+   * 				func _get_plugin_icon():
+   * 				    return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+   * 				```
    */
   public open fun _hasMainScreen(): Boolean {
     throw NotImplementedError("_has_main_screen is not implemented for EditorPlugin")
@@ -444,14 +477,34 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Gets the state of your plugin editor. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns).
+   * Override this method to provide a state data you want to be saved, like view position, grid settings, folding, etc. This is used when saving the scene (so state is kept when opening it again) and for switching tabs (so state can be restored when the tab returns). This data is automatically saved for each scene in an `editstate` file in the editor metadata folder. If you want to store global (scene-independent) editor data for your plugin, you can use [_getWindowLayout] instead.
+   *
+   * Use [_setState] to restore your saved state.
+   *
+   * **Note:** This method should not be used to save important settings that should persist with the project.
+   *
+   * **Note:** You must implement [_getPluginName] for the state to be stored and restored correctly.
+   *
+   * ```
+   * 				func _get_state():
+   * 				    var state = {"zoom": zoom, "preferred_color": my_color}
+   * 				    return state
+   * 				```
    */
   public open fun _getState(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_state is not implemented for EditorPlugin")
   }
 
   /**
-   * Restore the state saved by [_getState].
+   * Restore the state saved by [_getState]. This method is called when the current scene tab is changed in the editor.
+   *
+   * **Note:** Your plugin must implement [_getPluginName], otherwise it will not be recognized and this method will not be called.
+   *
+   * ```
+   * 				func _set_state(data):
+   * 				    zoom = data.get("zoom", 1.0)
+   * 				    preferred_color = data.get("my_color", Color.white)
+   * 				```
    */
   public open fun _setState(state: Dictionary<Any?, Any?>): Unit {
   }
@@ -484,13 +537,27 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Restore the plugin GUI layout saved by [_getWindowLayout].
+   * Restore the plugin GUI layout and data saved by [_getWindowLayout]. This method is called for every plugin on editor startup. Use the provided [configuration] file to read your saved data.
+   *
+   * ```
+   * 				func _set_window_layout(configuration):
+   * 				    $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2())
+   * 				    $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.white)
+   * 				```
    */
   public open fun _setWindowLayout(configuration: ConfigFile): Unit {
   }
 
   /**
-   * Gets the GUI layout of the plugin. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed(For example changing the position of a dock).
+   * Override this method to provide the GUI layout of the plugin or any other data you want to be stored. This is used to save the project's editor layout when [queueSaveLayout] is called or the editor layout was changed (for example changing the position of a dock). The data is stored in the `editor_layout.cfg` file in the editor metadata directory.
+   *
+   * Use [_setWindowLayout] to restore your saved layout.
+   *
+   * ```
+   * 				func _get_window_layout(configuration):
+   * 				    configuration.set_value("MyPlugin", "window_position", $Window.position)
+   * 				    configuration.set_value("MyPlugin", "icon_color", $Icon.modulate)
+   * 				```
    */
   public open fun _getWindowLayout(configuration: ConfigFile): Unit {
   }
@@ -582,7 +649,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Adds a custom menu item to **Project > Tools** named `name`. When clicked, the provided `callable` will be called.
+   * Adds a custom menu item to **Project > Tools** named [name]. When clicked, the provided [callable] will be called.
    */
   public fun addToolMenuItem(name: String, callable: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to callable)
@@ -591,7 +658,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Adds a custom [godot.PopupMenu] submenu under **Project > Tools >** `name`. Use `remove_tool_menu_item(name)` on plugin clean up to remove the menu.
+   * Adds a custom [godot.PopupMenu] submenu under **Project > Tools >** [name]. Use `remove_tool_menu_item(name)` on plugin clean up to remove the menu.
    */
   public fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to submenu)
@@ -600,7 +667,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Removes a menu `name` from **Project > Tools**.
+   * Removes a menu [name] from **Project > Tools**.
    */
   public fun removeToolMenuItem(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -616,6 +683,8 @@ public open class EditorPlugin internal constructor() : Node() {
    * You can use the virtual method [_handles] to check if your custom object is being edited by checking the script or using the `is` keyword.
    *
    * During run-time, this will be a simple object with a script so this function does not need to be called then.
+   *
+   * **Note:** Custom types added this way are not true classes. They are just a helper to create a node with specific script.
    */
   public fun addCustomType(
     type: String,
@@ -637,7 +706,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Adds a script at `path` to the Autoload list as `name`.
+   * Adds a script at [path] to the Autoload list as [name].
    */
   public fun addAutoloadSingleton(name: String, path: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to path)
@@ -646,7 +715,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Removes an Autoload `name` from the list.
+   * Removes an Autoload [name] from the list.
    */
   public fun removeAutoloadSingleton(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -738,7 +807,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Registers a new [godot.EditorImportPlugin]. Import plugins are used to import custom and unsupported assets as a custom [godot.Resource] type.
    *
-   * If `first_priority` is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
+   * If [firstPriority] is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    *
    * **Note:** If you want to import custom 3D asset formats use [addSceneFormatImporterPlugin] instead.
    *
@@ -761,7 +830,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Registers a new [godot.EditorSceneFormatImporter]. Scene importers are used to import custom 3D asset formats as scenes.
    *
-   * If `first_priority` is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
+   * If [firstPriority] is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
   public fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
       firstPriority: Boolean = false): Unit {
@@ -782,7 +851,7 @@ public open class EditorPlugin internal constructor() : Node() {
   /**
    * Add a [godot.EditorScenePostImportPlugin]. These plugins allow customizing the import process of 3D assets by adding new options to the import dialogs.
    *
-   * If `first_priority` is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
+   * If [firstPriority] is `true`, the new import plugin is inserted first in the list and takes precedence over pre-existing plugins.
    */
   public fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
       firstPriority: Boolean = false): Unit {
@@ -819,20 +888,12 @@ public open class EditorPlugin internal constructor() : Node() {
         NIL)
   }
 
-  /**
-   * Registers a new [godot.EditorNode3DGizmoPlugin]. Gizmo plugins are used to add custom gizmos to the 3D preview viewport for a [godot.Node3D].
-   *
-   * See [addInspectorPlugin] for an example of how to register a plugin.
-   */
   public fun addSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SPATIAL_GIZMO_PLUGIN, NIL)
   }
 
-  /**
-   * Removes a gizmo plugin registered by [addSpatialGizmoPlugin].
-   */
   public fun removeSpatialGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
     TransferContext.callMethod(rawPtr,
@@ -912,7 +973,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Gets the Editor's dialogue used for making scripts.
+   * Gets the Editor's dialog used for making scripts.
    *
    * **Note:** Users can configure it before use.
    *
@@ -947,35 +1008,35 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     *
+     * Dock slot, left side, upper-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_UL(0),
     /**
-     *
+     * Dock slot, left side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_LEFT_BL(1),
     /**
-     *
+     * Dock slot, left side, upper-right (in default layout includes Scene and Import docks).
      */
     DOCK_SLOT_LEFT_UR(2),
     /**
-     *
+     * Dock slot, left side, bottom-right (in default layout includes FileSystem dock).
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     *
+     * Dock slot, right side, upper-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
-     *
+     * Dock slot, right side, bottom-left (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     *
+     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**
-     *
+     * Dock slot, right side, bottom-right (empty in default layout).
      */
     DOCK_SLOT_RIGHT_BR(7),
     /**
@@ -998,51 +1059,48 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     *
+     * Main editor toolbar, next to play buttons.
      */
     CONTAINER_TOOLBAR(0),
     /**
-     *
+     * The toolbar that appears when 3D editor is active.
      */
     CONTAINER_SPATIAL_EDITOR_MENU(1),
     /**
-     *
+     * Left sidebar of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_LEFT(2),
     /**
-     *
+     * Right sidebar of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_RIGHT(3),
     /**
-     *
+     * Bottom panel of the 3D editor.
      */
     CONTAINER_SPATIAL_EDITOR_BOTTOM(4),
     /**
-     *
+     * The toolbar that appears when 2D editor is active.
      */
     CONTAINER_CANVAS_EDITOR_MENU(5),
     /**
-     *
+     * Left sidebar of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_SIDE_LEFT(6),
     /**
-     *
+     * Right sidebar of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_SIDE_RIGHT(7),
     /**
-     *
+     * Bottom panel of the 2D editor.
      */
     CONTAINER_CANVAS_EDITOR_BOTTOM(8),
-    /**
-     *
-     */
     CONTAINER_PROPERTY_EDITOR_BOTTOM(9),
     /**
-     *
+     * Tab of Project Settings dialog, to the left of other tabs.
      */
     CONTAINER_PROJECT_SETTING_TAB_LEFT(10),
     /**
-     *
+     * Tab of Project Settings dialog, to the right of other tabs.
      */
     CONTAINER_PROJECT_SETTING_TAB_RIGHT(11),
     ;

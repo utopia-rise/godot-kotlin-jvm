@@ -108,7 +108,7 @@ public open class SkeletonModification3D : Resource() {
   }
 
   /**
-   * Takes a angle and clamps it so it is within the passed-in `min` and `max` range. `invert` will inversely clamp the angle, clamping it to the range outside of the given bounds.
+   * Takes a angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public fun clampAngle(
     angle: Double,

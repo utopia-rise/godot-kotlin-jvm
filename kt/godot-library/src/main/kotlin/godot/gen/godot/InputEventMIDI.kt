@@ -145,11 +145,11 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * Returns a value indicating the type of message for this MIDI signal. This is a member of the [enum @GlobalScope.MIDIMessage] enum.
+   * Returns a value indicating the type of message for this MIDI signal. This is a member of the [enum MIDIMessage] enum.
    *
    * For MIDI messages between 0x80 and 0xEF, only the left half of the bits are returned as this value, as the other part is the channel (ex: 0x94 becomes 0x9). For MIDI messages from 0xF0 to 0xFF, the value is returned as-is.
    *
-   * Notes will return `MIDI_MESSAGE_NOTE_ON` when activated, but they might not always return `MIDI_MESSAGE_NOTE_OFF` when deactivated, therefore your code should treat the input as stopped if some period of time has passed.
+   * Notes will return [MIDI_MESSAGE_NOTE_ON] when activated, but they might not always return [MIDI_MESSAGE_NOTE_OFF] when deactivated, therefore your code should treat the input as stopped if some period of time has passed.
    *
    * For more information, see the MIDI message status byte list chart linked above.
    */
@@ -179,7 +179,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice.
+   * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice. Note that some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with zero velocity and expect this to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message, but device implementations vary so Godot reports event data exactly as received.
    */
   public var velocity: Long
     get() {
@@ -223,7 +223,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is `MIDI_MESSAGE_CONTROL_CHANGE`, this indicates the controller number, otherwise this is zero. Controllers include devices such as pedals and levers.
+   * If the message is [MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller number, otherwise this is zero. Controllers include devices such as pedals and levers.
    */
   public var controllerNumber: Long
     get() {
@@ -239,7 +239,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is `MIDI_MESSAGE_CONTROL_CHANGE`, this indicates the controller value, otherwise this is zero. Controllers include devices such as pedals and levers.
+   * If the message is [MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller value, otherwise this is zero. Controllers include devices such as pedals and levers.
    */
   public var controllerValue: Long
     get() {

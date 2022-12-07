@@ -21,9 +21,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ProgressBar : Range() {
-  /**
-   * If `true`, the fill percentage is displayed on the bar.
-   */
   public var percentVisible: Boolean
     get() {
       TransferContext.writeArguments()

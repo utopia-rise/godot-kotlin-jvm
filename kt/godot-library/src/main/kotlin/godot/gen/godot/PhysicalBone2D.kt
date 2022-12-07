@@ -22,7 +22,7 @@ import kotlin.Unit
 /**
  * A 2D node that can be used for physically aware bones in 2D.
  *
- * The `PhysicalBone2D` node is a [godot.RigidDynamicBody2D]-based node that can be used to make [godot.Bone2D] nodes in a [godot.Skeleton2D] react to physics. This node is very similar to the [godot.PhysicalBone3D] node, just for 2D instead of 3D.
+ * The `PhysicalBone2D` node is a [godot.RigidBody2D]-based node that can be used to make [godot.Bone2D] nodes in a [godot.Skeleton2D] react to physics. This node is very similar to the [godot.PhysicalBone3D] node, just for 2D instead of 3D.
  *
  * **Note:** To have the Bone2D nodes visually follow the `PhysicalBone2D` node, use a [godot.SkeletonModification2DPhysicalBones] modification on the [godot.Skeleton2D] node with the [godot.Bone2D] nodes.
  *

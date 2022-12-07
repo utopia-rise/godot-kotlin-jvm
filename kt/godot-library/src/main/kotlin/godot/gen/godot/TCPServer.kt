@@ -36,13 +36,13 @@ public open class TCPServer : RefCounted() {
   }
 
   /**
-   * Listen on the `port` binding to `bind_address`.
+   * Listen on the [port] binding to [bindAddress].
    *
-   * If `bind_address` is set as `"*"` (default), the server will listen on all available addresses (both IPv4 and IPv6).
+   * If [bindAddress] is set as `"*"` (default), the server will listen on all available addresses (both IPv4 and IPv6).
    *
-   * If `bind_address` is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.
+   * If [bindAddress] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.
    *
-   * If `bind_address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
   public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)

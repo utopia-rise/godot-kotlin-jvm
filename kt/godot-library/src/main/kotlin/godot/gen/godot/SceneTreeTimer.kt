@@ -55,7 +55,7 @@ import kotlin.Unit
  *
  * [/codeblocks]
  *
- * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.Reference].
+ * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.RefCounted].
  */
 @GodotBaseType
 public open class SceneTreeTimer internal constructor() : RefCounted() {

@@ -59,7 +59,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether any [godot.InputEvent] in [events] equals `event`.
+   * Returns whether any [godot.InputEvent] in [events] equals [event].
    */
   public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)

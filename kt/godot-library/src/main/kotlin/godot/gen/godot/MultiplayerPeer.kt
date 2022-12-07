@@ -23,42 +23,33 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A high-level network interface to simplify multiplayer interactions.
+ * Abstract class for specialized [godot.PacketPeer]s used by the [godot.MultiplayerAPI].
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/537](https://godotengine.org/asset-library/asset/537)
  *
- * Manages the connection to multiplayer peers. Assigns unique IDs to each client connected to the server. See also [godot.MultiplayerAPI].
+ * Manages the connection with one or more remote peers acting as server or client and assigning unique IDs to each of them. See also [godot.MultiplayerAPI].
  *
- * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
+ * **Note:** The [godot.MultiplayerAPI] protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class MultiplayerPeer internal constructor() : PacketPeer() {
-  /**
-   * Emitted when a connection attempt fails.
-   */
   public val connectionFailed: Signal0 by signal()
 
-  /**
-   * Emitted when a connection attempt succeeds.
-   */
   public val connectionSucceeded: Signal0 by signal()
 
   /**
-   * Emitted by the server when a client disconnects.
+   * Emitted when a remote peer has disconnected.
    */
   public val peerDisconnected: Signal1<Long> by signal("id")
 
   /**
-   * Emitted by the server when a client connects.
+   * Emitted when a remote peer connects.
    */
   public val peerConnected: Signal1<Long> by signal("id")
 
-  /**
-   * Emitted by clients when the server disconnects.
-   */
   public val serverDisconnected: Signal0 by signal()
 
   /**
@@ -78,7 +69,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   /**
-   * The manner in which to send packets to the `target_peer`. See [enum TransferMode].
+   * The manner in which to send packets to the target peer. See [enum TransferMode], and the [setTargetPeer] method.
    */
   public var transferMode: Long
     get() {
@@ -118,7 +109,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Sets the peer to which packets will be sent.
    *
-   * The `id` can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers, [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that specific peer, a negative peer ID to send to all peers except that one. By default, the target peer is [TARGET_PEER_BROADCAST].
+   * The [id] can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers, [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that specific peer, a negative peer ID to send to all peers except that one. By default, the target peer is [TARGET_PEER_BROADCAST].
    */
   public fun setTargetPeer(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
@@ -127,7 +118,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the ID of the [godot.MultiplayerPeer] who sent the most recent packet.
+   * Returns the ID of the [godot.MultiplayerPeer] who sent the next available packet. See [godot.PacketPeer.getAvailablePacketCount].
    */
   public fun getPacketPeer(): Long {
     TransferContext.writeArguments()
@@ -177,15 +168,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     id: Long
   ) {
     /**
-     * The ongoing connection disconnected.
+     * The MultiplayerPeer is disconnected.
      */
     CONNECTION_DISCONNECTED(0),
     /**
-     * A connection attempt is ongoing.
+     * The MultiplayerPeer is currently connecting to a server.
      */
     CONNECTION_CONNECTING(1),
     /**
-     * The connection attempt succeeded.
+     * This MultiplayerPeer is connected.
      */
     CONNECTION_CONNECTED(2),
     ;
@@ -202,12 +193,12 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   public companion object {
     /**
-     * Packets are sent to the server and then redistributed to other peers.
+     * Packets are sent to all connected peers.
      */
     public final const val TARGET_PEER_BROADCAST: Long = 0
 
     /**
-     * Packets are sent to the server alone.
+     * Packets are sent to the remote peer acting as server.
      */
     public final const val TARGET_PEER_SERVER: Long = 1
   }

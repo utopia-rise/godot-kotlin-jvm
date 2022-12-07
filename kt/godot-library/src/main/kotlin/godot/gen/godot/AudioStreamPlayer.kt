@@ -164,6 +164,8 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * Bus on which this audio is playing.
+   *
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public var bus: StringName
     get() {
@@ -182,7 +184,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Plays the audio from the given `from_position`, in seconds.
+   * Plays the audio from the given [fromPosition], in seconds.
    */
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)

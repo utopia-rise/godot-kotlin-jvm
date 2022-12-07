@@ -60,7 +60,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Adds a new node to the graph. The `position` is used for display in the editor.
+   * Adds a new node to the graph. The [position] is used for display in the editor.
    */
   public fun addNode(
     name: StringName,

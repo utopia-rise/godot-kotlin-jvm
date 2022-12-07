@@ -32,11 +32,7 @@ import kotlin.Unit
  *
  * Each tile can also have a size in the grid coordinates, making it more or less cells in the atlas.
  *
- *
- *
  * Alternatives version of a tile can be created using [createAlternativeTile], which are then indexed using an alternative ID. The main tile (the one in the grid), is accessed with an alternative ID equal to 0.
- *
- *
  *
  * Each tile alternate has a set of properties that is defined by the source's [godot.TileSet] layers. Those properties are stored in a TileData object that can be accessed and modified using [getTileData].
  *
@@ -131,7 +127,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Creates a new tile at coords `atlas_coords` with size `size`.
+   * Creates a new tile at coordinates [atlasCoords] with the given [size].
    */
   public fun createTile(atlasCoords: Vector2i, size: Vector2i = Vector2i(1, 1)): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size)
@@ -139,7 +135,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Remove a tile and its alternative at coordinates `atlas_coords`.
+   * Remove a tile and its alternative at coordinates [atlasCoords].
    */
   public fun removeTile(atlasCoords: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -147,9 +143,9 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Move the tile and its alternatives at the `atlas_coords` coordinates to the `new_atlas_coords` coordinates with the `new_size` size. This functions will fail if a tile is already present in the given area.
+   * Move the tile and its alternatives at the [atlasCoords] coordinates to the [newAtlasCoords] coordinates with the [newSize] size. This functions will fail if a tile is already present in the given area.
    *
-   * If `new_atlas_coords` is `Vector2i(-1, -1)`, keeps the tile's coordinates. If `new_size` is `Vector2i(-1, -1)`, keeps the tile's size.
+   * If [newAtlasCoords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [newSize] is `Vector2i(-1, -1)`, keeps the tile's size.
    *
    * To avoid an error, first check if a move is possible using [hasRoomForTile].
    */
@@ -164,7 +160,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the size of the tile (in the grid coordinates system) at coordinates `atlas_coords`.
+   * Returns the size of the tile (in the grid coordinates system) at coordinates [atlasCoords].
    */
   public fun getTileSizeInAtlas(atlasCoords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -174,7 +170,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If `ignored_tile` is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties.
+   * Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [ignoredTile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties.
    */
   public fun hasRoomForTile(
     atlasCoords: Vector2i,
@@ -191,7 +187,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: `texture`, `margins`, `separation` or `texture_region_size`. This can be used to undo changes that would have caused tiles data loss.
+   * Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [texture], [margins], [separation] or [textureRegionSize]. This can be used to undo changes that would have caused tiles data loss.
    */
   public fun getTilesToBeRemovedOnChange(
     texture: Texture2D,
@@ -207,7 +203,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * If there is a tile covering the `atlas_coords` coordinates, returns the top-left coordinates of the tile (thus its coordinate ID). Returns `Vector2i(-1, -1)` otherwise.
+   * If there is a tile covering the [atlasCoords] coordinates, returns the top-left coordinates of the tile (thus its coordinate ID). Returns `Vector2i(-1, -1)` otherwise.
    */
   public fun getTileAtCoords(atlasCoords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -217,7 +213,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets the number of columns in the animation layout of the tile at coordinates `atlas_coords`. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas.
+   * Sets the number of columns in the animation layout of the tile at coordinates [atlasCoords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas.
    */
   public fun setTileAnimationColumns(atlasCoords: Vector2i, frameColumns: Long): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameColumns)
@@ -226,7 +222,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns how many columns the tile at `atlas_coords` has in its animation layout.
+   * Returns how many columns the tile at [atlasCoords] has in its animation layout.
    */
   public fun getTileAnimationColumns(atlasCoords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -236,7 +232,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates `atlas_coords` has.
+   * Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates [atlasCoords] has.
    */
   public fun setTileAnimationSeparation(atlasCoords: Vector2i, separation: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to separation)
@@ -245,7 +241,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the separation (as in the atlas grid) between each frame of an animated tile at coordinates `atlas_coords`.
+   * Returns the separation (as in the atlas grid) between each frame of an animated tile at coordinates [atlasCoords].
    */
   public fun getTileAnimationSeparation(atlasCoords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -255,7 +251,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets the animation speed of the tile at coordinates `atlas_coords` has.
+   * Sets the animation speed of the tile at coordinates [atlasCoords] has.
    */
   public fun setTileAnimationSpeed(atlasCoords: Vector2i, speed: Double): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, DOUBLE to speed)
@@ -264,7 +260,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the animation speed of the tile at coordinates `atlas_coords`.
+   * Returns the animation speed of the tile at coordinates [atlasCoords].
    */
   public fun getTileAnimationSpeed(atlasCoords: Vector2i): Double {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -274,7 +270,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets how many animation frames the tile at coordinates `atlas_coords` has.
+   * Sets how many animation frames the tile at coordinates [atlasCoords] has.
    */
   public fun setTileAnimationFramesCount(atlasCoords: Vector2i, framesCount: Long): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to framesCount)
@@ -283,7 +279,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns how many animation frames has the tile at coordinates `atlas_coords`.
+   * Returns how many animation frames has the tile at coordinates [atlasCoords].
    */
   public fun getTileAnimationFramesCount(atlasCoords: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -293,7 +289,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets the animation frame duration of frame `frame_index` for the tile at coordinates `atlas_coords`.
+   * Sets the animation frame [duration] of frame [frameIndex] for the tile at coordinates [atlasCoords].
    */
   public fun setTileAnimationFrameDuration(
     atlasCoords: Vector2i,
@@ -306,7 +302,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the animation frame duration of frame `frame_index` for the tile at coordinates `atlas_coords`.
+   * Returns the animation frame duration of frame [frameIndex] for the tile at coordinates [atlasCoords].
    */
   public fun getTileAnimationFrameDuration(atlasCoords: Vector2i, frameIndex: Long): Double {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frameIndex)
@@ -316,7 +312,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the sum of the sum of the frame durations of the tile at coordinates `atlas_coords`. This value needs to be divided by the animation speed to get the actual animation loop duration.
+   * Returns the sum of the sum of the frame durations of the tile at coordinates [atlasCoords]. This value needs to be divided by the animation speed to get the actual animation loop duration.
    */
   public fun getTileAnimationTotalDuration(atlasCoords: Vector2i): Double {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -326,9 +322,9 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Creates an alternative tile for the tile at coords `atlas_coords`. If `alternative_id_override` is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.
+   * Creates an alternative tile for the tile at coordinates [atlasCoords]. If [alternativeIdOverride] is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.
    *
-   * Returns the new alternative identifier, or -1 if the alternative could not be created with a provided `alternative_id_override`.
+   * Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [alternativeIdOverride].
    */
   public fun createAlternativeTile(atlasCoords: Vector2i, alternativeIdOverride: Long = -1): Long {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeIdOverride)
@@ -338,9 +334,9 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Remove a tile's alternative with alternative ID `alternative_tile`.
+   * Remove a tile's alternative with alternative ID [alternativeTile].
    *
-   * Calling this function with `alternative_tile` equals to 0 will fail, as the base tile alternative cannot be removed.
+   * Calling this function with [alternativeTile] equals to 0 will fail, as the base tile alternative cannot be removed.
    */
   public fun removeAlternativeTile(atlasCoords: Vector2i, alternativeTile: Long): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile)
@@ -349,9 +345,9 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Change a tile's alternative ID from `alternative_tile` to `new_id`.
+   * Change a tile's alternative ID from [alternativeTile] to [newId].
    *
-   * Calling this function with `alternative_id` equals to 0 will fail, as the base tile alternative cannot be moved.
+   * Calling this function with [newId] of 0 will fail, as the base tile alternative cannot be moved.
    */
   public fun setAlternativeTileId(
     atlasCoords: Vector2i,
@@ -394,7 +390,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns a tile's texture region in the atlas texture. For animated tiles, a `frame` argument might be provided for the different frames of the animation.
+   * Returns a tile's texture region in the atlas texture. For animated tiles, a [frame] argument might be provided for the different frames of the animation.
    */
   public fun getTileTextureRegion(atlasCoords: Vector2i, frame: Long = 0): Rect2i {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to frame)
@@ -414,7 +410,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the region of the tile at coordinates `atlas_coords` for frame `frame` inside the texture returned by [getRuntimeTexture].
+   * Returns the region of the tile at coordinates [atlasCoords] for the given [frame] inside the texture returned by [getRuntimeTexture].
    *
    * **Note:** If [useTexturePadding] is `false`, returns the same as [getTileTextureRegion].
    */

@@ -208,9 +208,6 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_is_placeholder_fallback_enabled is not implemented for ScriptExtension")
   }
 
-  /**
-   *
-   */
   public open fun _getRpcMethods(): VariantArray<Any?> {
     throw NotImplementedError("_get_rpc_methods is not implemented for ScriptExtension")
   }

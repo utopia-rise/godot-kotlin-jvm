@@ -34,6 +34,8 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
  * Canvas drawing layer. [godot.CanvasItem] nodes that are direct or indirect children of a [godot.CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [godot.CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
+ *
+ * Embedded [godot.Window]s are placed in layer 1024. CanvasItems in layer 1025 or above appear in front of embedded windows, CanvasItems in layer 1023 or below appear behind embedded windows.
  */
 @GodotBaseType
 public open class CanvasLayer : Node() {
@@ -145,9 +147,6 @@ public open class CanvasLayer : Node() {
           NIL)
     }
 
-  /**
-   * Sets the layer to follow the viewport in order to simulate a pseudo 3D effect.
-   */
   public var followViewportEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -162,7 +161,7 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * Scales the layer when using [followViewportEnable]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
+   * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
    */
   public var followViewportScale: Double
     get() {

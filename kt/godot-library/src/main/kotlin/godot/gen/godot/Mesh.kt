@@ -156,7 +156,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the smallest [AABB] enclosing this mesh in local space. Not affected by `custom_aabb`. See also [godot.VisualInstance3D.getTransformedAabb].
+   * Returns the smallest [AABB] enclosing this mesh in local space. Not affected by `custom_aabb`.
    *
    * **Note:** This is only implemented for [godot.ArrayMesh] and [godot.PrimitiveMesh].
    */
@@ -168,7 +168,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the amount of surfaces that the [godot.Mesh] holds.
+   * Returns the number of surfaces that the [godot.Mesh] holds.
    */
   public fun getSurfaceCount(): Long {
     TransferContext.writeArguments()
@@ -224,9 +224,9 @@ public open class Mesh : Resource() {
   /**
    * Calculate a [godot.ConvexPolygonShape3D] from the mesh.
    *
-   * If `clean` is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
    *
-   * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
   public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): Shape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
@@ -256,7 +256,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Generate a [godot.TriangleMesh] from the mesh.
+   * Generate a [godot.TriangleMesh] from the mesh. Considers only surfaces using one of these primitive types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -291,35 +291,35 @@ public open class Mesh : Resource() {
     id: Long
   ) {
     /**
-     *
+     * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded as [godot.PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA8_UNORM(0),
     /**
-     *
+     * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as [godot.PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA8_SNORM(1),
     /**
-     *
+     * Indicates this custom channel contains half precision float colors, encoded as [godot.PackedByteArray]. Only red and green channels are used.
      */
     ARRAY_CUSTOM_RG_HALF(2),
     /**
-     *
+     * Indicates this custom channel contains half precision float colors, encoded as [godot.PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA_HALF(3),
     /**
-     *
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red green channel is used.
      */
     ARRAY_CUSTOM_R_FLOAT(4),
     /**
-     *
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only red and green channels are used.
      */
     ARRAY_CUSTOM_RG_FLOAT(5),
     /**
-     *
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only red, green and blue channels are used.
      */
     ARRAY_CUSTOM_RGB_FLOAT(6),
     /**
-     *
+     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array].
      */
     ARRAY_CUSTOM_RGBA_FLOAT(7),
     /**
@@ -401,19 +401,19 @@ public open class Mesh : Resource() {
      */
     ARRAY_FORMAT_TEX_UV2(32),
     /**
-     *
+     * Mesh array contains custom channel index 0.
      */
     ARRAY_FORMAT_CUSTOM0(64),
     /**
-     *
+     * Mesh array contains custom channel index 1.
      */
     ARRAY_FORMAT_CUSTOM1(128),
     /**
-     *
+     * Mesh array contains custom channel index 2.
      */
     ARRAY_FORMAT_CUSTOM2(256),
     /**
-     *
+     * Mesh array contains custom channel index 3.
      */
     ARRAY_FORMAT_CUSTOM3(512),
     /**
@@ -429,39 +429,39 @@ public open class Mesh : Resource() {
      */
     ARRAY_FORMAT_INDEX(4096),
     /**
-     *
+     * Mask of mesh channels permitted in blend shapes.
      */
     ARRAY_FORMAT_BLEND_SHAPE_MASK(7),
     /**
-     *
+     * Shift of first custom channel.
      */
     ARRAY_FORMAT_CUSTOM_BASE(13),
     /**
-     *
+     * Number of format bits per custom channel. See [enum ArrayCustomFormat].
      */
     ARRAY_FORMAT_CUSTOM_BITS(3),
     /**
-     *
+     * Amount to shift [enum ArrayCustomFormat] for custom channel index 0.
      */
     ARRAY_FORMAT_CUSTOM0_SHIFT(13),
     /**
-     *
+     * Amount to shift [enum ArrayCustomFormat] for custom channel index 1.
      */
     ARRAY_FORMAT_CUSTOM1_SHIFT(16),
     /**
-     *
+     * Amount to shift [enum ArrayCustomFormat] for custom channel index 2.
      */
     ARRAY_FORMAT_CUSTOM2_SHIFT(19),
     /**
-     *
+     * Amount to shift [enum ArrayCustomFormat] for custom channel index 3.
      */
     ARRAY_FORMAT_CUSTOM3_SHIFT(22),
     /**
-     *
+     * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT constants. See [enum ArrayCustomFormat].
      */
     ARRAY_FORMAT_CUSTOM_MASK(7),
     /**
-     *
+     * Shift of first compress flag. Compress flags should be passed to [godot.ArrayMesh.addSurfaceFromArrays] and [godot.SurfaceTool.commit].
      */
     ARRAY_COMPRESS_FLAGS_BASE(25),
     /**
@@ -469,11 +469,11 @@ public open class Mesh : Resource() {
      */
     ARRAY_FLAG_USE_2D_VERTICES(33554432),
     /**
-     *
+     * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
      */
     ARRAY_FLAG_USE_DYNAMIC_UPDATE(67108864),
     /**
-     *
+     * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
      */
     ARRAY_FLAG_USE_8_BONE_WEIGHTS(134217728),
     ;
@@ -516,19 +516,19 @@ public open class Mesh : Resource() {
      */
     ARRAY_TEX_UV2(5),
     /**
-     *
+     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM0_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM0(6),
     /**
-     *
+     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM1_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM1(7),
     /**
-     *
+     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM2_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM2(8),
     /**
-     *
+     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> [godot.ARRAY_FORMAT_CUSTOM3_SHIFT]) & [ARRAY_FORMAT_CUSTOM_MASK])` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_UNORM], [ARRAY_CUSTOM_RG_HALF] or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM3(9),
     /**

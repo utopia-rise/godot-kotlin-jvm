@@ -63,7 +63,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns `true` if this shape is colliding with another.
    *
-   * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
+   * This method needs the transformation matrix for this shape ([localXform]), the shape to check collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
   public fun collide(
     localXform: Transform2D,
@@ -78,7 +78,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns whether this shape would collide with another, if a given movement was applied.
    *
-   * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
+   * This method needs the transformation matrix for this shape ([localXform]), the movement to test on this shape ([localMotion]), the shape to check collisions with ([withShape]), the transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object ([shapeMotion]).
    */
   public fun collideWithMotion(
     localXform: Transform2D,
@@ -95,11 +95,11 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns a list of contact point pairs where this shape touches another.
    *
-   * If there are no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of `with_shape`.
+   * If there are no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [withShape].
    *
    * A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.
    *
-   * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
+   * This method needs the transformation matrix for this shape ([localXform]), the shape to check collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
   public fun collideAndGetContacts(
     localXform: Transform2D,
@@ -115,11 +115,11 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns a list of contact point pairs where this shape would touch another, if a given movement was applied.
    *
-   * If there would be no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of `with_shape`.
+   * If there would be no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [withShape].
    *
    * A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.
    *
-   * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
+   * This method needs the transformation matrix for this shape ([localXform]), the movement to test on this shape ([localMotion]), the shape to check collisions with ([withShape]), the transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object ([shapeMotion]).
    */
   public fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
@@ -135,7 +135,7 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   /**
-   * Draws a solid shape onto a [godot.CanvasItem] with the [godot.RenderingServer] API filled with the specified `color`. The exact drawing method is specific for each shape and cannot be configured.
+   * Draws a solid shape onto a [godot.CanvasItem] with the [godot.RenderingServer] API filled with the specified [color]. The exact drawing method is specific for each shape and cannot be configured.
    */
   public fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)

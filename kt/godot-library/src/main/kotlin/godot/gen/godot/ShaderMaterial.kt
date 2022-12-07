@@ -49,20 +49,12 @@ public open class ShaderMaterial : Material() {
     callConstructor(ENGINECLASS_SHADERMATERIAL)
   }
 
-  /**
-   * Changes the value set for this material of a uniform in the shader.
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   */
   public fun setShaderParam(`param`: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
         NIL)
   }
 
-  /**
-   * Returns the current value set for this material of a uniform in the shader.
-   */
   public fun getShaderParam(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
@@ -70,9 +62,6 @@ public open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  /**
-   * Returns `true` if the property identified by `name` can be reverted to a default value.
-   */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
@@ -80,9 +69,6 @@ public open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns the default value of the material property with given `name`.
-   */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,

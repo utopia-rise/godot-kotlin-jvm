@@ -61,7 +61,7 @@ import kotlin.Unit
  *
  * [/codeblocks]
  *
- * **Example of saving a node with different owners:** The following example creates 3 objects: [godot.Node2D] (`node`), [godot.RigidDynamicBody2D] (`body`) and [godot.CollisionObject2D] (`collision`). `collision` is a child of `body` which is a child of `node`. Only `body` is owned by `node` and `pack` will therefore only save those two nodes, but not `collision`.
+ * **Example of saving a node with different owners:** The following example creates 3 objects: [godot.Node2D] (`node`), [godot.RigidBody2D] (`body`) and [godot.CollisionObject2D] (`collision`). `collision` is a child of `body` which is a child of `node`. Only `body` is owned by `node` and `pack` will therefore only save those two nodes, but not `collision`.
  *
  * [codeblocks]
  *
@@ -71,7 +71,7 @@ import kotlin.Unit
  *
  * var node = Node2D.new()
  *
- * var body = RigidDynamicBody2D.new()
+ * var body = RigidBody2D.new()
  *
  * var collision = CollisionShape2D.new()
  *
@@ -99,7 +99,7 @@ import kotlin.Unit
  *
  * if result == OK:
  *
- *     var error = ResourceSaver.save("res://path/name.tscn", scene)  # Or "user://..."
+ *     var error = ResourceSaver.save(scene, "res://path/name.tscn")  # Or "user://..."
  *
  *     if error != OK:
  *
@@ -113,7 +113,7 @@ import kotlin.Unit
  *
  * var node = new Node2D();
  *
- * var body = new RigidDynamicBody2D();
+ * var body = new RigidBody2D();
  *
  * var collision = new CollisionShape2D();
  *
@@ -143,7 +143,7 @@ import kotlin.Unit
  *
  * {
  *
- *     Error error = ResourceSaver.Save("res://path/name.tscn", scene); // Or "user://..."
+ *     Error error = ResourceSaver.Save(scene, "res://path/name.tscn"); // Or "user://..."
  *
  *     if (error != Error.Ok)
  *
@@ -175,7 +175,7 @@ public open class PackedScene : Resource() {
   }
 
   /**
-   * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_INSTANCED] notification on the root node.
+   * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
    */
   public fun instantiate(editState: PackedScene.GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {

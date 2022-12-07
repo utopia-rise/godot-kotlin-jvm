@@ -69,7 +69,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Sets the default value for the selected input `port`.
+   * Sets the default [value] for the selected input [port].
    */
   public fun setInputPortDefaultValue(
     port: Long,
@@ -82,7 +82,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Returns the default value of the input `port`.
+   * Returns the default value of the input [port].
    */
   public fun getInputPortDefaultValue(port: Long): Any? {
     TransferContext.writeArguments(LONG to port)
@@ -92,7 +92,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Removes the default value of the input `port`.
+   * Removes the default value of the input [port].
    */
   public fun removeInputPortDefaultValue(port: Long): Unit {
     TransferContext.writeArguments(LONG to port)

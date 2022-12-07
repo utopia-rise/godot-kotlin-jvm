@@ -104,6 +104,8 @@ import kotlin.Unit
  *
  *     public AESContext Aes = new AESContext();
  *
+ *
+ *
  *     public override void _Ready()
  *
  *     {
@@ -171,7 +173,7 @@ public open class AESContext : RefCounted() {
   }
 
   /**
-   * Start the AES context in the given `mode`. A `key` of either 16 or 32 bytes must always be provided, while an `iv` (initialization vector) of exactly 16 bytes, is only needed when `mode` is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
+   * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   public fun start(
     mode: AESContext.Mode,
@@ -184,9 +186,9 @@ public open class AESContext : RefCounted() {
   }
 
   /**
-   * Run the desired operation for this AES context. Will return a [godot.PackedByteArray] containing the result of encrypting (or decrypting) the given `src`. See [start] for mode of operation.
+   * Run the desired operation for this AES context. Will return a [godot.PackedByteArray] containing the result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
    *
-   * **Note:** The size of `src` must be a multiple of 16. Apply some padding if needed.
+   * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
   public fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)

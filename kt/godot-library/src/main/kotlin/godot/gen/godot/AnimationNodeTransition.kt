@@ -30,6 +30,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeTransition : AnimationNode() {
+  /**
+   * The number of enabled input ports for this node.
+   */
   public var enabledInputs: Long
     get() {
       TransferContext.writeArguments()

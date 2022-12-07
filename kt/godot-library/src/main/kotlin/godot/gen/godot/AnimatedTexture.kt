@@ -24,7 +24,7 @@ import kotlin.Unit
  *
  * [godot.AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be chained automatically with a predefined delay for each frame. Unlike [godot.AnimationPlayer] or [godot.AnimatedSprite2D], it isn't a [godot.Node], but has the advantage of being usable anywhere a [godot.Texture2D] resource can be used, e.g. in a [godot.TileSet].
  *
- * The playback of the animation is controlled by the [fps] property as well as each frame's optional delay (see [setFrameDelay]). The animation loops, i.e. it will restart at frame 0 automatically after playing the last frame.
+ * The playback of the animation is controlled by the [speedScale] property, as well as each frame's duration (see [setFrameDuration]). The animation loops, i.e. it will restart at frame 0 automatically after playing the last frame.
  *
  * [godot.AnimatedTexture] currently requires all frame textures to have the same size, otherwise the bigger ones will be cropped to match the smallest one.
  *
@@ -76,9 +76,6 @@ public open class AnimatedTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_PAUSE, NIL)
     }
 
-  /**
-   * If `true`, the animation will only play once and will not loop back to the first frame after reaching the end. Note that reaching the end will not set [pause] to `true`.
-   */
   public var oneshot: Boolean
     get() {
       TransferContext.writeArguments()
@@ -90,11 +87,6 @@ public open class AnimatedTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_ONESHOT, NIL)
     }
 
-  /**
-   * Animation speed in frames per second. This value defines the default time interval between two frames of the animation, and thus the overall duration of the animation loop based on the [frames] property. A value of 0 means no predefined number of frames per second, the animation will play according to each frame's frame delay (see [setFrameDelay]).
-   *
-   * For example, an animation with 8 frames, no frame delay and a `fps` value of 2 will run for 4 seconds, with each frame lasting 0.5 seconds.
-   */
   public var fps: Double
     get() {
       TransferContext.writeArguments()
@@ -4217,18 +4209,6 @@ public open class AnimatedTexture : Texture2D() {
         NIL)
   }
 
-  /**
-   * Sets an additional delay (in seconds) between this frame and the next one, that will be added to the time interval defined by [fps]. By default, frames have no delay defined. If a delay value is defined, the final time interval between this frame and the next will be `1.0 / fps + delay`.
-   *
-   * For example, for an animation with 3 frames, 2 FPS and a frame delay on the second frame of 1.2, the resulting playback will be:
-   *
-   * ```
-   * 				Frame 0: 0.5 s (1 / fps)
-   * 				Frame 1: 1.7 s (1 / fps + 1.2)
-   * 				Frame 2: 0.5 s (1 / fps)
-   * 				Total duration: 2.7 s
-   * 				```
-   */
   public fun setFrameDelay(frame: Long, delay: Double): Unit {
     TransferContext.writeArguments(LONG to frame, DOUBLE to delay)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_FRAME_DELAY,

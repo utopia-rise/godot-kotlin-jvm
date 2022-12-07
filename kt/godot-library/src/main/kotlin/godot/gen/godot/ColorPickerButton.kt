@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.minimumSize] to a big enough value to give the button enough space.
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.customMinimumSize] to a big enough value to give the button enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {

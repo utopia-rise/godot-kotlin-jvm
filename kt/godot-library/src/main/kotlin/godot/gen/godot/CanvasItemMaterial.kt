@@ -56,7 +56,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * If `true`, enable spritesheet-based animation features when assigned to [godot.GPUParticles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticlesMaterial.animSpeedMax] or [godot.CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   * If `true`, enable spritesheet-based animation features when assigned to [godot.GPUParticles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticleProcessMaterial.animSpeedMax] or [godot.CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
    *
    * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
    */

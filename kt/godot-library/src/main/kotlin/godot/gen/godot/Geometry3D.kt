@@ -39,7 +39,7 @@ public object Geometry3D : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by `extents`, which represents one (positive) corner of the box (i.e. half its actual size).
+   * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by [extents], which represents one (positive) corner of the box (i.e. half its actual size).
    */
   public fun buildBoxPlanes(extents: Vector3): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR3 to extents)
@@ -48,7 +48,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Returns an array of [godot.core.Plane]s closely bounding a faceted cylinder centered at the origin with radius `radius` and height `height`. The parameter `sides` defines how many planes will be generated for the round part of the cylinder. The parameter `axis` describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
+   * Returns an array of [godot.core.Plane]s closely bounding a faceted cylinder centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the round part of the cylinder. The parameter [axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
    */
   public fun buildCylinderPlanes(
     radius: Double,
@@ -63,7 +63,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Returns an array of [godot.core.Plane]s closely bounding a faceted capsule centered at the origin with radius `radius` and height `height`. The parameter `sides` defines how many planes will be generated for the side part of the capsule, whereas `lats` gives the number of latitudinal steps at the bottom and top of the capsule. The parameter `axis` describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
+   * Returns an array of [godot.core.Plane]s closely bounding a faceted capsule centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the side part of the capsule, whereas [lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
    */
   public fun buildCapsulePlanes(
     radius: Double,
@@ -79,7 +79,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Given the two 3D segments (`p1`, `p2`) and (`q1`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.PackedVector3Array] that contains this point on (`p1`, `p2`) as well the accompanying point on (`q1`, `q2`).
+   * Given the two 3D segments ([p1], [p2]) and ([q1], [q2]), finds those two points on the two segments that are closest to each other. Returns a [godot.PackedVector3Array] that contains this point on ([p1], [p2]) as well the accompanying point on ([q1], [q2]).
    */
   public fun getClosestPointsBetweenSegments(
     p1: Vector3,
@@ -95,7 +95,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Returns the 3D point on the 3D segment (`s1`, `s2`) that is closest to `point`. The returned point will always be inside the specified segment.
+   * Returns the 3D point on the 3D segment ([s1], [s2]) that is closest to [point]. The returned point will always be inside the specified segment.
    */
   public fun getClosestPointToSegment(
     point: Vector3,
@@ -109,7 +109,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Returns the 3D point on the 3D line defined by (`s1`, `s2`) that is closest to `point`. The returned point can be inside the segment (`s1`, `s2`) or outside of it, i.e. somewhere on the line extending from the segment.
+   * Returns the 3D point on the 3D line defined by ([s1], [s2]) that is closest to [point]. The returned point can be inside the segment ([s1], [s2]) or outside of it, i.e. somewhere on the line extending from the segment.
    */
   public fun getClosestPointToSegmentUncapped(
     point: Vector3,
@@ -123,7 +123,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Tests if the 3D ray starting at `from` with the direction of `dir` intersects the triangle specified by `a`, `b` and `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
+   * Tests if the 3D ray starting at [from] with the direction of [dir] intersects the triangle specified by [a], [b] and [c]. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, returns `null`.
    */
   public fun rayIntersectsTriangle(
     from: Vector3,
@@ -139,7 +139,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Tests if the segment (`from`, `to`) intersects the triangle `a`, `b`, `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
+   * Tests if the segment ([from], [to]) intersects the triangle [a], [b], [c]. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsTriangle(
     from: Vector3,
@@ -155,7 +155,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Checks if the segment (`from`, `to`) intersects the sphere that is located at `sphere_position` and has radius `sphere_radius`. If no, returns an empty [godot.PackedVector3Array]. If yes, returns a [godot.PackedVector3Array] containing the point of intersection and the sphere's normal at the point of intersection.
+   * Checks if the segment ([from], [to]) intersects the sphere that is located at [spherePosition] and has radius [sphereRadius]. If no, returns an empty [godot.PackedVector3Array]. If yes, returns a [godot.PackedVector3Array] containing the point of intersection and the sphere's normal at the point of intersection.
    */
   public fun segmentIntersectsSphere(
     from: Vector3,
@@ -170,7 +170,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Checks if the segment (`from`, `to`) intersects the cylinder with height `height` that is centered at the origin and has radius `radius`. If no, returns an empty [godot.PackedVector3Array]. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection.
+   * Checks if the segment ([from], [to]) intersects the cylinder with height [height] that is centered at the origin and has radius [radius]. If no, returns an empty [godot.PackedVector3Array]. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection.
    */
   public fun segmentIntersectsCylinder(
     from: Vector3,
@@ -185,7 +185,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Given a convex hull defined though the [godot.core.Plane]s in the array `planes`, tests if the segment (`from`, `to`) intersects with that hull. If an intersection is found, returns a [godot.PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise, returns an empty array.
+   * Given a convex hull defined though the [godot.core.Plane]s in the array [planes], tests if the segment ([from], [to]) intersects with that hull. If an intersection is found, returns a [godot.PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise, returns an empty array.
    */
   public fun segmentIntersectsConvex(
     from: Vector3,
@@ -199,7 +199,7 @@ public object Geometry3D : Object() {
   }
 
   /**
-   * Clips the polygon defined by the points in `points` against the `plane` and returns the points of the clipped polygon.
+   * Clips the polygon defined by the points in [points] against the [plane] and returns the points of the clipped polygon.
    */
   public fun clipPolygon(points: PackedVector3Array, plane: Plane): PackedVector3Array {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)

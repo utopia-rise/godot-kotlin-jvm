@@ -131,7 +131,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * Sets the margin to `size` pixels for the specified [enum Side].
+   * Sets the margin to [size] pixels for the specified [enum Side].
    */
   public fun setMarginSize(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
@@ -150,7 +150,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to `size` pixels for the specified [enum Side].
+   * Sets the expand margin to [size] pixels for the specified [enum Side].
    */
   public fun setExpandMarginSize(margin: Side, size: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size)
@@ -159,7 +159,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to `size` pixels for all margins.
+   * Sets the expand margin to [size] pixels for all margins.
    */
   public fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
@@ -167,9 +167,6 @@ public open class StyleBoxTexture : StyleBox() {
         ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
   }
 
-  /**
-   * Sets the expand margin for each margin to `size_left`, `size_top`, `size_right`, and `size_bottom` pixels.
-   */
   public fun setExpandMarginIndividual(
     sizeLeft: Double,
     sizeTop: Double,

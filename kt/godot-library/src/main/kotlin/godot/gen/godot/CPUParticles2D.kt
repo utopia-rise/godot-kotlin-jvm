@@ -177,7 +177,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
   public var fixedFps: Long
     get() {
@@ -208,7 +208,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.CPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.CPUParticles2D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -395,7 +395,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   *
+   * If `true`, the scale curve will be split into x and y components. See [scaleCurveX] and [scaleCurveY].
    */
   public var splitScale: Boolean
     get() {
@@ -411,7 +411,9 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
+   * Each particle's horizontal scale will vary along this [godot.Curve].
    *
+   * [splitScale] must be enabled.
    */
   public var scaleCurveX: Curve?
     get() {
@@ -427,7 +429,9 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
+   * Each particle's vertical scale will vary along this [godot.Curve].
    *
+   * [splitScale] must be enabled.
    */
   public var scaleCurveY: Curve?
     get() {
@@ -501,7 +505,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   *
+   * Sets the minimum value for the given parameter.
    */
   public fun setParamMin(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
@@ -509,7 +513,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   *
+   * Returns the minimum value range for the given parameter.
    */
   public fun getParamMin(`param`: CPUParticles2D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
@@ -519,7 +523,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   *
+   * Sets the maximum value for the given parameter.
    */
   public fun setParamMax(`param`: CPUParticles2D.Parameter, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
@@ -527,7 +531,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   *
+   * Returns the maximum value range for the given parameter.
    */
   public fun getParamMax(`param`: CPUParticles2D.Parameter): Double {
     TransferContext.writeArguments(LONG to param.id)
@@ -574,7 +578,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * Sets this node's properties to match a given [godot.GPUParticles2D] node with an assigned [godot.ParticlesMaterial].
+   * Sets this node's properties to match a given [godot.GPUParticles2D] node with an assigned [godot.ParticleProcessMaterial].
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)

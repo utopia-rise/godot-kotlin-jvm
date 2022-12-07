@@ -37,7 +37,7 @@ import kotlin.Unit
  * Server for AR and VR features.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
  *
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
  */
@@ -98,7 +98,7 @@ public object XRServer : Object() {
   /**
    * This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.
    *
-   * For platforms that do not offer spatial tracking, our origin point (0,0,0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.
+   * For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.
    *
    * For platforms that do offer spatial tracking, our origin point depends very much on the system. For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other platforms, it's often the location of the tracking camera.
    *
@@ -106,7 +106,7 @@ public object XRServer : Object() {
    *
    * For this method to produce usable results, tracking information must be available. This often takes a few frames after starting your game.
    *
-   * You should call this method after a few seconds have passed. For instance, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
+   * You should call this method after a few seconds have passed. For example, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
    */
   public fun centerOnHmd(rotationMode: XRServer.RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
@@ -141,7 +141,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Removes this interface.
+   * Removes this [interface].
    */
   public fun removeInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -149,7 +149,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns the interface registered at a given index in our list of interfaces.
+   * Returns the interface registered at the given [idx] index in the list of interfaces.
    */
   public fun getInterface(idx: Long): XRInterface? {
     TransferContext.writeArguments(LONG to idx)
@@ -167,7 +167,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Finds an interface by its name. For instance, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it.
+   * Finds an interface by its [name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it.
    */
   public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
@@ -184,7 +184,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Removes this positional tracker.
+   * Removes this positional [tracker].
    */
   public fun removeTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
@@ -192,7 +192,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns a dictionary of trackers for this type.
+   * Returns a dictionary of trackers for [trackerTypes].
    */
   public fun getTrackers(trackerTypes: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes)
@@ -201,7 +201,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns the positional tracker with this name.
+   * Returns the positional tracker with the given [trackerName].
    */
   public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)

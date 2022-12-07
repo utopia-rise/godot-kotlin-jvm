@@ -17,14 +17,8 @@ import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
-  /**
-   *
-   */
   public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -38,9 +32,6 @@ public open class MultiplayerSynchronizer : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_ROOT_PATH, NIL)
     }
 
-  /**
-   *
-   */
   public var replicationInterval: Double
     get() {
       TransferContext.writeArguments()
@@ -54,9 +45,6 @@ public open class MultiplayerSynchronizer : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_INTERVAL, NIL)
     }
 
-  /**
-   *
-   */
   public var resource: SceneReplicationConfig?
     get() {
       TransferContext.writeArguments()

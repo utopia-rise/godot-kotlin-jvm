@@ -75,7 +75,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
-   * Override this method to define the amount of input ports of the associated custom node.
+   * Override this method to define the number of input ports of the associated custom node.
    *
    * Defining this method is **required**. If not overridden, the node has no input ports.
    */
@@ -102,7 +102,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
-   * Override this method to define the amount of output ports of the associated custom node.
+   * Override this method to define the number of output ports of the associated custom node.
    *
    * Defining this method is **required**. If not overridden, the node has no output ports.
    */
@@ -131,11 +131,11 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   /**
    * Override this method to define the actual shader code of the associated custom node. The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).
    *
-   * The `input_vars` and `output_vars` arrays contain the string names of the various input and output variables, as defined by `_get_input_*` and `_get_output_*` virtual methods in this class.
+   * The [inputVars] and [outputVars] arrays contain the string names of the various input and output variables, as defined by `_get_input_*` and `_get_output_*` virtual methods in this class.
    *
    * The output ports can be assigned values in the shader code. For example, `return output_vars[0] + " = " + input_vars[0] + ";"`.
    *
-   * You can customize the generated code based on the shader `mode` (see [enum Shader.Mode]) and/or `type` (see [enum VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] (see [enum Shader.Mode]) and/or [type] (see [enum VisualShader.Type]).
    *
    * Defining this method is **required**.
    */
@@ -153,7 +153,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * If there are multiple custom nodes of different types which use this feature the order of each insertion is undefined.
    *
-   * You can customize the generated code based on the shader `mode` (see [enum Shader.Mode]) and/or `type` (see [enum VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] (see [enum Shader.Mode]) and/or [type] (see [enum VisualShader.Type]).
    *
    * Defining this method is **optional**.
    */
@@ -166,7 +166,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Be careful with this functionality as it can cause name conflicts with other custom nodes, so be sure to give the defined entities unique names.
    *
-   * You can customize the generated code based on the shader `mode` (see [enum Shader.Mode]).
+   * You can customize the generated code based on the shader [mode] (see [enum Shader.Mode]).
    *
    * Defining this method is **optional**.
    */
@@ -184,7 +184,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
-   * Override this method to prevent the node to be visible in the member dialog for the certain `mode` (see [enum Shader.Mode]) and/or `type` (see [enum VisualShader.Type]).
+   * Override this method to prevent the node to be visible in the member dialog for the certain [mode] (see [enum Shader.Mode]) and/or [type] (see [enum VisualShader.Type]).
    *
    * Defining this method is **optional**. If not overridden, it's `true`.
    */

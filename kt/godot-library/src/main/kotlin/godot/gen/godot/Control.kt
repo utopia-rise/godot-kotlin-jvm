@@ -54,17 +54,17 @@ import kotlin.Unit
  *
  * **User Interface nodes and input**
  *
- * Godot sends input events to the scene's root node first, by calling [godot.Node.Input]. [godot.Node.Input] forwards the event down the node tree to the nodes under the mouse cursor, or on keyboard focus. To do so, it calls `MainLoop._input_event`.
+ * Godot propagates input events via viewports. Each [godot.Viewport] is responsible for propagating [godot.InputEvent]s to their child nodes. As the [godot.SceneTree.root] is a [godot.Window], this already happens automatically for all UI elements in your game.
  *
- * **FIXME:** No longer valid after DisplayServer split and Input refactoring.
+ * Input events are propagated through the [godot.SceneTree] from the root node to all child nodes by calling [godot.Node.Input]. For UI elements specifically, it makes more sense to override the virtual method [_guiInput], which filters out unrelated input events, such as by checking z-order, [mouseFilter], focus, or if the event was inside of the control's bounding box.
  *
  * Call [acceptEvent] so no other node receives the event. Once you accept an input, it becomes handled so [godot.Node.UnhandledInput] will not process it.
  *
- * Only one [godot.Control] node can be in keyboard focus. Only the node in focus will receive keyboard events. To get the focus, call [grabFocus]. [godot.Control] nodes lose focus when another node grabs it, or if you hide the node in focus.
+ * Only one [godot.Control] node can be in focus. Only the node in focus will receive events. To get the focus, call [grabFocus]. [godot.Control] nodes lose focus when another node grabs it, or if you hide the node in focus.
  *
  * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [godot.Control] node to ignore mouse or touch events. You'll need it if you place an icon on top of a button.
  *
- * [godot.Theme] resources change the Control's appearance. If you change the [godot.Theme] on a [godot.Control] node, it affects all of its children. To override some of the theme's parameters, call one of the `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the inspector.
+ * [godot.Theme] resources change the Control's appearance. If you change the [godot.Theme] on a [godot.Control] node, it affects all of its children. To override some of the theme's parameters, call one of the `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the Inspector.
  *
  * **Note:** Theme items are *not* [godot.Object] properties. This means you can't access their values using [godot.Object.get] and [godot.Object.set]. Instead, use the `get_theme_*` and `add_theme_*_override` methods provided by this class.
  */
@@ -86,7 +86,7 @@ public open class Control : CanvasItem() {
   public val mouseExited: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
@@ -96,7 +96,7 @@ public open class Control : CanvasItem() {
   public val guiInput: Signal1<InputEvent> by signal("event")
 
   /**
-   * Emitted when the node gains keyboard focus.
+   * Emitted when the node gains focus.
    */
   public val focusEntered: Signal0 by signal()
 
@@ -123,7 +123,7 @@ public open class Control : CanvasItem() {
   public val sizeFlagsChanged: Signal0 by signal()
 
   /**
-   * Emitted when the node loses keyboard focus.
+   * Emitted when the node loses focus.
    */
   public val focusExited: Signal0 by signal()
 
@@ -142,6 +142,9 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_CLIP_CONTENTS, NIL)
     }
 
+  /**
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
+   */
   public var customMinimumSize: Vector2
     get() {
       TransferContext.writeArguments()
@@ -221,7 +224,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's global position, relative to the world (usually to the top-left corner of the window).
+   * The node's global position, relative to the world (usually to the [godot.CanvasLayer]).
    */
   public val globalPosition: Vector2
     get() {
@@ -246,9 +249,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [hintTooltip] will also scale according to this value.
+   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
    *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
+   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
@@ -335,47 +338,6 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_AUTO_TRANSLATE, NIL)
     }
 
-  /**
-   * Changes the tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE]. You can change the time required for the tooltip to appear with `gui/timers/tooltip_delay_sec` option in Project Settings.
-   *
-   * The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [_makeCustomTooltip]. The default tooltip includes a [godot.PopupPanel] and [godot.Label] whose theme properties can be customized using [godot.Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * var style_box = StyleBoxFlat.new()
-   *
-   * style_box.set_bg_color(Color(1, 1, 0))
-   *
-   * style_box.set_border_width_all(2)
-   *
-   * # We assume here that the `theme` property has been assigned a custom Theme beforehand.
-   *
-   * theme.set_stylebox("panel", "TooltipPanel", style_box)
-   *
-   * theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * var styleBox = new StyleBoxFlat();
-   *
-   * styleBox.SetBgColor(new Color(1, 1, 0));
-   *
-   * styleBox.SetBorderWidthAll(2);
-   *
-   * // We assume here that the `Theme` property has been assigned a custom Theme beforehand.
-   *
-   * Theme.SetStyleBox("panel", "TooltipPanel", styleBox);
-   *
-   * Theme.SetColor("font_color", "TooltipLabel", new Color(0, 1, 1));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   */
   public var hintTooltip: String
     get() {
       throw
@@ -387,7 +349,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give keyboard focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the `ui_focus_next` input action.
+   * Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [godot.ProjectSettings.input/uiFocusNext] input action.
    *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
    */
@@ -403,7 +365,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give keyboard focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the `ui_focus_prev` input action.
+   * Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [godot.ProjectSettings.input/uiFocusPrev] input action.
    *
    * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
    */
@@ -420,7 +382,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard signals.
+   * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
    */
   public var focusMode: Long
     get() {
@@ -506,7 +468,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns whether the given `point` is inside this control.
+   * Virtual method to be implemented by the user. Returns whether the given [position] is inside this control.
    *
    * If not overridden, default behavior is checking if the point is within control's Rect.
    *
@@ -519,7 +481,7 @@ public open class Control : CanvasItem() {
   /**
    * User defined BiDi algorithm override function.
    *
-   * Returns `Array` of `Vector2i` text ranges, in the left-to-right order. Ranges should cover full source `text` without overlaps. BiDi algorithm will be used on each range separately.
+   * Returns an [godot.Array] of [godot.Vector2i] text ranges, in the left-to-right order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Any?> {
@@ -527,7 +489,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [minimumSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
+   * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
    *
    * If not overridden, defaults to [godot.Vector2.ZERO].
    *
@@ -538,7 +500,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [_canDropData] and [_dropData]. `position` is local to this control. Drag may be forced with [forceDrag].
+   * Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [_canDropData] and [_dropData]. [atPosition] is local to this control. Drag may be forced with [forceDrag].
    *
    * A preview that will follow the mouse that should represent the data can be set with [setDragPreview]. A good time to set the preview is in this method.
    *
@@ -579,7 +541,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Godot calls this method to test if `data` from a control's [_getDragData] can be dropped at `position`. `position` is local to this control.
+   * Godot calls this method to test if [data] from a control's [_getDragData] can be dropped at [atPosition]. [atPosition] is local to this control.
    *
    * This method should only be used to test the data. Process the data in [_dropData].
    *
@@ -620,7 +582,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Godot calls this method to pass you the `data` from a control's [_getDragData] result. Godot first calls [_canDropData] to test if `data` is allowed to drop at `position` where `position` is local to this control.
+   * Godot calls this method to pass you the [data] from a control's [_getDragData] result. Godot first calls [_canDropData] to test if [data] is allowed to drop at [atPosition] where [atPosition] is local to this control.
    *
    * [codeblocks]
    *
@@ -662,17 +624,17 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. The `for_text` includes the contents of the [hintTooltip] property.
+   * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. The [forText] includes the contents of the [tooltipText] property.
    *
    * The returned node must be of type [godot.Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.
    *
-   * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [hintTooltip] for an example).
+   * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [tooltipText] for an example).
    *
-   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [minimumSize] to some non-zero value.
+   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [customMinimumSize] to some non-zero value.
    *
    * **Note:** The node (and any relevant children) should be [godot.CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.
    *
-   * Example of usage with a custom-constructed node:
+   * **Example of usage with a custom-constructed node:**
    *
    * [codeblocks]
    *
@@ -706,7 +668,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    *
-   * Example of usage with a custom scene instance:
+   * **Example of usage with a custom scene instance:**
    *
    * [codeblocks]
    *
@@ -747,7 +709,7 @@ public open class Control : CanvasItem() {
   /**
    * Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [acceptEvent].
    *
-   * Example: clicking a control.
+   * **Example usage for clicking a control:**
    *
    * [codeblocks]
    *
@@ -817,7 +779,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the minimum size for this control. See [minimumSize].
+   * Returns the minimum size for this control. See [customMinimumSize].
    */
   public fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -826,7 +788,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns combined minimum size from [minimumSize] and [getMinimumSize].
+   * Returns combined minimum size from [customMinimumSize] and [getMinimumSize].
    */
   public fun getCombinedMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -836,9 +798,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchors to a `preset` from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
+   * Sets the anchors to a [preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
    *
-   * If `keep_offsets` is `true`, control's position will also be updated.
+   * If [keepOffsets] is `true`, control's position will also be updated.
    */
   public fun setAnchorsPreset(preset: Control.LayoutPreset, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to preset.id, BOOL to keepOffsets)
@@ -846,11 +808,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the offsets to a `preset` from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
+   * Sets the offsets to a [preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
    *
-   * Use parameter `resize_mode` with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [godot.Control]. Constant size will be ignored if used with presets that change size, e.g. `PRESET_LEFT_WIDE`.
+   * Use parameter [resizeMode] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [godot.Control]. Constant size will be ignored if used with presets that change size, e.g. [PRESET_LEFT_WIDE].
    *
-   * Use parameter `margin` to determine the gap between the [godot.Control] and the edges.
+   * Use parameter [margin] to determine the gap between the [godot.Control] and the edges.
    */
   public fun setOffsetsPreset(
     preset: Control.LayoutPreset,
@@ -875,11 +837,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchor for the specified [enum Side] to `anchor`. A setter method for [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
+   * Sets the anchor for the specified [enum Side] to [anchor]. A setter method for [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
    *
-   * If `keep_offset` is `true`, offsets aren't updated after this operation.
+   * If [keepOffset] is `true`, offsets aren't updated after this operation.
    *
-   * If `push_opposite_anchor` is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If `push_opposite_anchor` was `false`, the left anchor would get value 0.5.
+   * If [pushOppositeAnchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [pushOppositeAnchor] was `false`, the left anchor would get value 0.5.
    */
   public fun setAnchor(
     side: Side,
@@ -901,7 +863,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the offset for the specified [enum Side] to `offset`. A setter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
+   * Sets the offset for the specified [enum Side] to [offset]. A setter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
    */
   public fun setOffset(side: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to side.id, DOUBLE to offset)
@@ -947,9 +909,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [position] to given `position`.
+   * Sets the [position] to given [position].
    *
-   * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   public fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
@@ -959,7 +921,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets the size (see [size]).
    *
-   * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   public fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to size, BOOL to keepOffsets)
@@ -975,9 +937,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [globalPosition] to given `position`.
+   * Sets the [globalPosition] to given [position].
    *
-   * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
@@ -1017,7 +979,7 @@ public open class Control : CanvasItem() {
    *
    * Equals to [globalPosition] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
    *
-   * Example usage for showing a popup:
+   * **Example usage for showing a popup:**
    *
    * ```
    * 				popup_menu.position = get_screen_position() + get_local_mouse_position()
@@ -1042,7 +1004,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the top-left corner of the screen. See [position] and [size].
+   * Returns the position and size of the control relative to the [godot.CanvasLayer]. See [globalPosition] and [size].
    */
   public fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1061,6 +1023,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
+   *
+   * **Note**: Using this method together with [godot.Callable.callDeferred] makes it more reliable, especially when called inside [godot.Node.Ready].
    */
   public fun grabFocus(): Unit {
     TransferContext.writeArguments()
@@ -1068,7 +1032,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Give up the focus. No other control will be able to receive keyboard input.
+   * Give up the focus. No other control will be able to receive input.
    */
   public fun releaseFocus(): Unit {
     TransferContext.writeArguments()
@@ -1114,7 +1078,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme icon with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
    *
    * See also [getThemeIcon].
    */
@@ -1125,7 +1089,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.StyleBox] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
+   * Creates a local override for a theme [godot.StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
    *
    * See also [getThemeStylebox].
    *
@@ -1186,7 +1150,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.Font] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
+   * Creates a local override for a theme [godot.Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
    *
    * See also [getThemeFont].
    */
@@ -1197,7 +1161,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme font size with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
+   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
    *
    * See also [getThemeFontSize].
    */
@@ -1208,7 +1172,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.core.Color] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
+   * Creates a local override for a theme [godot.core.Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
    *
    * See also [getThemeColor].
    *
@@ -1257,7 +1221,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme constant with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
    *
    * See also [getThemeConstant].
    */
@@ -1268,7 +1232,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme icon with the specified `name` previously added by [addThemeIconOverride] or via the Inspector dock.
+   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
    */
   public fun removeThemeIconOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1277,7 +1241,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.StyleBox] with the specified `name` previously added by [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [godot.StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
    */
   public fun removeThemeStyleboxOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1286,7 +1250,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.Font] with the specified `name` previously added by [addThemeFontOverride] or via the Inspector dock.
+   * Removes a local override for a theme [godot.Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
    */
   public fun removeThemeFontOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1295,7 +1259,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme font size with the specified `name` previously added by [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
    */
   public fun removeThemeFontSizeOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1304,7 +1268,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.core.Color] with the specified `name` previously added by [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [godot.core.Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
    */
   public fun removeThemeColorOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1313,7 +1277,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme constant with the specified `name` previously added by [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
    */
   public fun removeThemeConstantOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1322,7 +1286,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified `name` and `theme_type`.
+   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1333,7 +1297,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified `name` and `theme_type`.
+   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1344,7 +1308,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified `name` and `theme_type`.
+   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1355,7 +1319,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a font size from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font size item with the specified `name` and `theme_type`.
+   * Returns a font size from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font size item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1366,9 +1330,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified `name` and `theme_type`. If `theme_type` is omitted the class name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.
+   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified [name] and [themeType]. If [themeType] is omitted the class name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.
    *
-   * For the current control its local overrides are considered first (see [addThemeColorOverride]), then its assigned [theme]. After the current control, each parent control and its assigned [theme] are considered; controls without a [theme] assigned are skipped. If no matching [godot.Theme] is found in the tree, a custom project [godot.Theme] (see [godot.ProjectSettings.gui/theme/custom]) and the default [godot.Theme] are used.
+   * For the current control its local overrides are considered first (see [addThemeColorOverride]), then its assigned [theme]. After the current control, each parent control and its assigned [theme] are considered; controls without a [theme] assigned are skipped. If no matching [godot.Theme] is found in the tree, the custom project [godot.Theme] (see [godot.ProjectSettings.gui/theme/custom]) and the default [godot.Theme] are used (see [godot.ThemeDB]).
    *
    * [codeblocks]
    *
@@ -1413,7 +1377,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified `name` and `theme_type`.
+   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1424,7 +1388,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeIconOverride].
    */
@@ -1436,7 +1400,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeStyleboxOverride].
    */
@@ -1448,7 +1412,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.Font] with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.Font] with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeFontOverride].
    */
@@ -1460,7 +1424,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeFontSizeOverride].
    */
@@ -1472,7 +1436,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeColorOverride].
    */
@@ -1484,7 +1448,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified `name` in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [godot.Control] node.
    *
    * See [addThemeConstantOverride].
    */
@@ -1496,7 +1460,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1507,7 +1471,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1518,7 +1482,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1529,7 +1493,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font size item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font size item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1540,7 +1504,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1551,7 +1515,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified `name` and `theme_type`.
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified [name] and [themeType].
    *
    * See [getThemeColor] for details.
    */
@@ -1607,7 +1571,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the tooltip, which will appear when the cursor is resting over this control. See [hintTooltip].
+   * Returns the tooltip text [atPosition] in local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [tooltipText].
+   *
+   * **Note:** This method can be overridden to customize its behavior. If this method returns an empty [godot.String], no tooltip is displayed.
    */
   public fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
@@ -1625,7 +1591,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchor for the specified [enum Side] to the [godot.Control] at `neighbor` node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
+   * Sets the anchor for the specified [enum Side] to the [godot.Control] at [neighbor] node path. A setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
    */
   public fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
     TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)
@@ -1643,7 +1609,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing `data` and `preview`. Drag will start even if the mouse is neither over nor pressed on this control.
+   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [data] and [preview]. Drag will start even if the mouse is neither over nor pressed on this control.
    *
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive drop data.
    */
@@ -1685,7 +1651,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forwards the handling of this control's drag and drop to `target` object.
+   * Forwards the handling of this control's drag and drop to [target] object.
    *
    * Forwarding can be implemented in the target object similar to the methods [_getDragData], [_canDropData], and [_dropData] but with two differences:
    *
@@ -1882,7 +1848,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Moves the mouse cursor to `position`, relative to [position] of this [godot.Control].
+   * Moves the mouse cursor to [position], relative to [position] of this [godot.Control].
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -1890,7 +1856,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [minimumSize] directly calls this method automatically.
+   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize] directly calls this method automatically.
    */
   public fun updateMinimumSize(): Unit {
     TransferContext.writeArguments()
@@ -1941,7 +1907,7 @@ public open class Control : CanvasItem() {
      */
     FOCUS_CLICK(1),
     /**
-     * The node can grab focus on mouse click or using the arrows and the Tab keys on the keyboard. Use with [focusMode].
+     * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [focusMode].
      */
     FOCUS_ALL(2),
     ;
@@ -2079,7 +2045,7 @@ public open class Control : CanvasItem() {
      */
     MOUSE_FILTER_STOP(0),
     /**
-     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. Even if no control handled it at all, the event will still be handled automatically, so unhandled input will not be fired.
+     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.UnhandledInput] for further processing.
      */
     MOUSE_FILTER_PASS(1),
     /**
@@ -2118,11 +2084,11 @@ public open class Control : CanvasItem() {
      */
     CURSOR_CROSS(3),
     /**
-     * Show the system's wait mouse cursor, often an hourglass, when the user hovers the node.
+     * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
     CURSOR_WAIT(4),
     /**
-     * Show the system's busy mouse cursor when the user hovers the node. Often an hourglass.
+     * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass.
      */
     CURSOR_BUSY(5),
     /**
@@ -2312,9 +2278,6 @@ public open class Control : CanvasItem() {
      * Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [setAnchorsPreset].
      */
     PRESET_HCENTER_WIDE(14),
-    /**
-     * Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [godot.Control] will fit its parent control. This is equivalent to the "Full Rect" layout option in the editor. Use with [setAnchorsPreset].
-     */
     PRESET_WIDE(15),
     ;
 
@@ -2355,7 +2318,17 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_FOCUS_EXIT: Long = 44
 
     /**
-     * Sent when the node's [theme] changes, right before Godot redraws the control. Happens when you call one of the `add_theme_*_override` methods.
+     * Sent when the node needs to refresh its theme items. This happens in one of the following cases:
+     *
+     * - The [theme] property is changed on this node or any of its ancestors.
+     *
+     * - The [themeTypeVariation] property is changed on this node.
+     *
+     * - One of the node's theme property overrides is changed.
+     *
+     * - The node enters the scene tree.
+     *
+     * **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 

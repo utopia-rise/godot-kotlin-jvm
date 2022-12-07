@@ -17,7 +17,7 @@ import kotlin.Unit
 /**
  * A custom visual shader graph expression written in Godot Shading Language.
  *
- * Custom Godot Shading Language expression, with a custom amount of input and output ports.
+ * Custom Godot Shading Language expression, with a custom number of input and output ports.
  *
  * The provided code is directly injected into the graph's matching shader function (`vertex`, `fragment`, or `light`), so it cannot be used to declare functions, varyings, uniforms, or global constants. See [godot.VisualShaderNodeGlobalExpression] for such global definitions.
  */

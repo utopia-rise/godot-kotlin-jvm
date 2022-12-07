@@ -48,6 +48,8 @@ import kotlin.Unit
  *
  * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
  *
+ * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for the main caret, or greater than `0` for secondary carets.
+ *
  * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast as it would normally do. This also works in the Godot script editor.
  */
 @GodotBaseType
@@ -65,7 +67,7 @@ public open class TextEdit : Control() {
   /**
    * Emitted immediately when the text changes.
    *
-   * When text is added `from_line` will be less then `to_line`. On a remove `to_line` will be less then `from_line`.
+   * When text is added [fromLine] will be less then [toLine]. On a remove [toLine] will be less then [fromLine].
    */
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
@@ -275,9 +277,6 @@ public open class TextEdit : Control() {
           NIL)
     }
 
-  /**
-   * If `true`, custom `font_selected_color` will be used for selected text.
-   */
   public var overrideSelectedFontColor: Boolean
     get() {
       TransferContext.writeArguments()
@@ -516,9 +515,6 @@ public open class TextEdit : Control() {
           NIL)
     }
 
-  /**
-   * Duration (in seconds) of a caret's blinking cycle.
-   */
   public var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
@@ -605,7 +601,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Override this method to define what happens when the types in the provided key `unicode`.
+   * Override this method to define what happens when the user types in the provided key [unicodeChar].
    */
   public open fun _handleUnicodeInput(unicodeChar: Long): Unit {
   }
@@ -651,26 +647,17 @@ public open class TextEdit : Control() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_OPENTYPE_FEATURE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_CLEAR_OPENTYPE_FEATURES,
@@ -722,7 +709,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the amount of total lines in the text.
+   * Returns the number of lines in the text.
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
@@ -748,7 +735,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the width in pixels of the `wrap_index` on `line`.
+   * Returns the width in pixels of the [wrapIndex] on [line].
    */
   public fun getLineWidth(line: Long, wrapIndex: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
@@ -766,7 +753,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the amount of spaces and `tab * tab_size` before the first char.
+   * Returns the number of spaces and `tab * tab_size` before the first char.
    */
   public fun getIndentLevel(line: Long): Long {
     TransferContext.writeArguments(LONG to line)
@@ -793,7 +780,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Inserts a new line with `text` at `line`.
+   * Inserts a new line with [text] at [line].
    */
   public fun insertLineAt(line: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to line, STRING to text)
@@ -834,7 +821,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the count to the next visible line from `line` to `line + visible_amount`. Can also count backwards. For example if a [godot.TextEdit] has 5 lines with lines 2 and 3 hidden, calling this with `line = 1, visible_amount = 1` would return 3.
+   * Returns the count to the next visible line from [line] to `line + visible_amount`. Can also count backwards. For example if a [godot.TextEdit] has 5 lines with lines 2 and 3 hidden, calling this with `line = 1, visible_amount = 1` would return 3.
    */
   public fun getNextVisibleLineOffsetFrom(line: Long, visibleAmount: Long): Long {
     TransferContext.writeArguments(LONG to line, LONG to visibleAmount)
@@ -983,7 +970,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the search flags. This is used with [setSearchText] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum.
+   * Sets the search [flags]. This is used with [setSearchText] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum.
    */
   public fun setSearchFlags(flags: Long): Unit {
     TransferContext.writeArguments(LONG to flags)
@@ -1062,7 +1049,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the word at `position`.
+   * Returns the word at [position].
    */
   public fun getWordAtPos(position: Vector2): String {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -1071,7 +1058,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line. If `allow_out_of_bounds` is `false` and the position is not over the text, both vector values will be set to `-1`.
+   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both vector values will be set to `-1`.
    */
   public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
     TransferContext.writeArguments(VECTOR2I to position, BOOL to allowOutOfBounds)
@@ -1081,7 +1068,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position for the given `line` and `column`. If `x` or `y` of the returned vector equal `-1`, the position is outside of the viewable area of the control.
+   * Returns the local position for the given [line] and [column]. If `x` or `y` of the returned vector equal `-1`, the position is outside of the viewable area of the control.
    *
    * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn] to get the top side position.
    */
@@ -1093,7 +1080,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position and size for the grapheme at the given `line` and `column`. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of the control.
+   * Returns the local position and size for the grapheme at the given [line] and [column]. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of the control.
    *
    * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike [getPosAtLineColumn] which returns the bottom side.
    */
@@ -1105,7 +1092,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the equivalent minimap line at `position`
+   * Returns the equivalent minimap line at [position]
    */
   public fun getMinimapLineAtPos(position: Vector2i): Long {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -1124,7 +1111,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the mouse is over selection. If `edges` is `true`, the edges are considered part of the selection.
+   * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered part of the selection.
    */
   public fun isMouseOverSelection(edges: Boolean): Boolean {
     TransferContext.writeArguments(BOOL to edges)
@@ -1153,11 +1140,13 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Moves the caret to the specified `line` index.
+   * Moves the caret to the specified [line] index.
    *
-   * If `adjust_viewport` is `true`, the viewport will center at the caret position after the move occurs.
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
    *
-   * If `can_be_hidden` is `true`, the specified `line` can be hidden.
+   * If [canBeHidden] is `true`, the specified `line` can be hidden.
+   *
+   * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
   public fun setCaretLine(
     line: Long,
@@ -1179,9 +1168,11 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Moves the caret to the specified `column` index.
+   * Moves the caret to the specified [column] index.
    *
-   * If `adjust_viewport` is `true`, the viewport will center at the caret position after the move occurs.
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
+   *
+   * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
    */
   public fun setCaretColumn(column: Long, adjustViewport: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to adjustViewport)
@@ -1402,7 +1393,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the scroll position for `wrap_index` of `line`.
+   * Returns the scroll position for [wrapIndex] of [line].
    */
   public fun getScrollPosForLine(line: Long, wrapIndex: Long = 0): Double {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
@@ -1412,7 +1403,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the `wrap_index` of `line` at the top of the viewport.
+   * Positions the [wrapIndex] of [line] at the top of the viewport.
    */
   public fun setLineAsFirstVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
@@ -1431,7 +1422,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the `wrap_index` of `line` at the center of the viewport.
+   * Positions the [wrapIndex] of [line] at the center of the viewport.
    */
   public fun setLineAsCenterVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
@@ -1440,7 +1431,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the `wrap_index` of `line` at the bottom of the viewport.
+   * Positions the [wrapIndex] of [line] at the bottom of the viewport.
    */
   public fun setLineAsLastVisible(line: Long, wrapIndex: Long = 0): Unit {
     TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
@@ -1489,7 +1480,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the total amount of lines that could be draw.
+   * Returns the number of lines that may be drawn.
    */
   public fun getTotalVisibleLineCount(): Long {
     TransferContext.writeArguments()
@@ -1517,7 +1508,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the total amount of lines that can be draw on the minimap.
+   * Returns the number of lines that may be drawn on the minimap.
    */
   public fun getMinimapVisibleLines(): Long {
     TransferContext.writeArguments()
@@ -1527,7 +1518,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Register a new gutter to this [godot.TextEdit]. Use `at` to have a specific gutter order. A value of `-1` appends the gutter to the right.
+   * Register a new gutter to this [godot.TextEdit]. Use [at] to have a specific gutter order. A value of `-1` appends the gutter to the right.
    */
   public fun addGutter(at: Long = -1): Unit {
     TransferContext.writeArguments(LONG to at)
@@ -1543,7 +1534,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the total amount of gutters registered.
+   * Returns the number of gutters registered.
    */
   public fun getGutterCount(): Long {
     TransferContext.writeArguments()
@@ -1656,7 +1647,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Merge the gutters from `from_line` into `to_line`. Only overwritable gutters will be copied.
+   * Merge the gutters from [fromLine] into [toLine]. Only overwritable gutters will be copied.
    */
   public fun mergeGutters(fromLine: Long, toLine: Long): Unit {
     TransferContext.writeArguments(LONG to fromLine, LONG to toLine)
@@ -1683,7 +1674,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the metadata for `gutter` on `line`.
+   * Sets the metadata for [gutter] on [line] to [metadata].
    */
   public fun setLineGutterMetadata(
     line: Long,
@@ -1696,7 +1687,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the metadata currently in `gutter` at `line`.
+   * Returns the metadata currently in [gutter] at [line].
    */
   public fun getLineGutterMetadata(line: Long, gutter: Long): Any? {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
@@ -1706,7 +1697,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the text for `gutter` on `line`.
+   * Sets the text for [gutter] on [line] to [text].
    */
   public fun setLineGutterText(
     line: Long,
@@ -1718,7 +1709,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text currently in `gutter` at `line`.
+   * Returns the text currently in [gutter] at [line].
    */
   public fun getLineGutterText(line: Long, gutter: Long): String {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
@@ -1728,7 +1719,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the icon for `gutter` on `line`.
+   * Sets the icon for [gutter] on [line] to [icon].
    */
   public fun setLineGutterIcon(
     line: Long,
@@ -1740,7 +1731,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the icon currently in `gutter` at `line`.
+   * Returns the icon currently in [gutter] at [line].
    */
   public fun getLineGutterIcon(line: Long, gutter: Long): Texture2D? {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
@@ -1750,7 +1741,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the color for `gutter` on `line`.
+   * Sets the color for [gutter] on [line] to [color].
    */
   public fun setLineGutterItemColor(
     line: Long,
@@ -1763,7 +1754,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the color currently in `gutter` at `line`.
+   * Returns the color currently in [gutter] at [line].
    */
   public fun getLineGutterItemColor(line: Long, gutter: Long): Color {
     TransferContext.writeArguments(LONG to line, LONG to gutter)
@@ -1773,7 +1764,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the `gutter` on `line` as clickable.
+   * If [clickable] is `true`, makes the [gutter] on [line] clickable. See [gutterClicked].
    */
   public fun setLineGutterClickable(
     line: Long,

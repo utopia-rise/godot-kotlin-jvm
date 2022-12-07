@@ -57,7 +57,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Shows the given property on the given `object` in the editor's Inspector dock. If `inspector_only` is `true`, plugins will not attempt to edit `object`.
+   * Shows the given property on the given [object] in the editor's Inspector dock. If [inspectorOnly] is `true`, plugins will not attempt to edit [object].
    */
   public fun inspectObject(
     _object: Object,
@@ -267,13 +267,6 @@ public open class EditorInterface internal constructor() : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
   }
 
-  /**
-   * Returns the main editor control. Use this as a parent for main screens.
-   *
-   * **Note:** This returns the main editor control containing the whole editor, not the 2D or 3D viewports specifically.
-   *
-   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
-   */
   public fun getEditorMainControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -292,16 +285,13 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Selects the file, with the path provided by `file`, in the FileSystem dock.
+   * Selects the file, with the path provided by [file], in the FileSystem dock.
    */
   public fun selectFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
   }
 
-  /**
-   * Returns the path of the directory currently selected in the [godot.FileSystemDock]. If a file is selected, its base directory will be returned using [godot.String.getBaseDir] instead.
-   */
   public fun getSelectedPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATH,
@@ -332,7 +322,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   *
+   * Returns the [godot.EditorPaths] singleton.
    */
   public fun getEditorPaths(): EditorPaths? {
     TransferContext.writeArguments()
@@ -363,7 +353,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the specified `plugin` is enabled. The plugin name is the same as its directory name.
+   * Returns `true` if the specified [plugin] is enabled. The plugin name is the same as its directory name.
    */
   public fun isPluginEnabled(plugin: String): Boolean {
     TransferContext.writeArguments(STRING to plugin)
@@ -385,7 +375,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Saves the scene. Returns either `OK` or `ERR_CANT_CREATE` (see [@GlobalScope] constants).
+   * Saves the scene. Returns either [OK] or [ERR_CANT_CREATE].
    */
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
@@ -394,7 +384,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Saves the scene as a file at `path`.
+   * Saves the scene as a file at [path].
    */
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
@@ -402,7 +392,7 @@ public open class EditorInterface internal constructor() : Node() {
   }
 
   /**
-   * Sets the editor's current main screen to the one specified in `name`. `name` must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
+   * Sets the editor's current main screen to the one specified in [name]. [name] must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
    */
   public fun setMainScreenEditor(name: String): Unit {
     TransferContext.writeArguments(STRING to name)

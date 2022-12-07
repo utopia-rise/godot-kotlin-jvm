@@ -47,6 +47,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   /**
    * [godot.Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
+   *
+   * **Note:** Unlike [godot.BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [godot.ProjectSettings.rendering/textures/lightProjectors/filter].
    */
   public var lightProjector: Texture2D?
     get() {
@@ -173,8 +175,6 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * The distance from the camera at which the light's shadow cuts off (in 3D units). Set this to a value lower than [distanceFadeBegin] + [distanceFadeLength] to further improve performance, as shadow rendering is often more expensive than light rendering itself.
    *
    * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D], and only when [shadowEnabled] is `true`.
-   *
-   * **Note:** Due to a rendering engine limitation, shadows will be disabled instantly instead of fading smoothly according to [distanceFadeLength]. This may result in visible pop-in depending on the scene topography.
    */
   public var distanceFadeShadow: Double
     get() {
@@ -190,7 +190,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Distance over which the light fades. The light's energy is progressively reduced over this distance and is completely invisible at the end.
+   * Distance over which the light and its shadow fades. The light's energy and shadow's opacity is progressively reduced over this distance and is completely invisible at the end.
    *
    * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
    */
@@ -342,9 +342,6 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * Constant for accessing [shadowBlur].
      */
     PARAM_SHADOW_BLUR(16),
-    /**
-     *
-     */
     PARAM_SHADOW_VOLUMETRIC_FOG_FADE(17),
     /**
      * Constant for accessing [shadowTransmittanceBias].

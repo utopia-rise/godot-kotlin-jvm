@@ -89,6 +89,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.
+   *
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugCollisionsHint] while the project is running will not have the desired effect.
    */
   public var debugCollisionsHint: Boolean
     get() {
@@ -105,6 +107,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * If `true`, navigation polygons will be visible when running the game from the editor for debugging purposes.
+   *
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugNavigationHint] while the project is running will not have the desired effect.
    */
   public var debugNavigationHint: Boolean
     get() {
@@ -220,28 +224,24 @@ public open class SceneTree : MainLoop() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * If `true`, the application automatically accepts quitting. Enabled by default.
-   *
-   * For mobile platforms, see [setQuitOnGoBack].
-   */
   public fun setAutoAcceptQuit(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_AUTO_ACCEPT_QUIT, NIL)
   }
 
-  /**
-   * If `true`, the application quits automatically on going back (e.g. on Android). Enabled by default.
-   *
-   * To handle 'Go Back' button when this option is disabled, use [godot.DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
-   */
   public fun setQuitOnGoBack(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_QUIT_ON_GO_BACK, NIL)
   }
 
   /**
-   * Returns a [godot.SceneTreeTimer] which will [godot.SceneTreeTimer.timeout] after the given time in seconds elapsed in this [godot.SceneTree]. If `process_always` is set to `false`, pausing the [godot.SceneTree] will also pause the timer.
+   * Returns a [godot.SceneTreeTimer] which will [godot.SceneTreeTimer.timeout] after the given time in seconds elapsed in this [godot.SceneTree].
+   *
+   * If `process_always` is set to `false`, pausing the [godot.SceneTree] will also pause the timer.
+   *
+   * If `process_in_physics` is set to `true`, will update the [godot.SceneTreeTimer] during the physics frame instead of the process frame (fixed framerate processing).
+   *
+   * If `ignore_time_scale` is set to `true`, will ignore [godot.Engine.timeScale] and update the [godot.SceneTreeTimer] with the actual frame delta.
    *
    * Commonly used to create a one-shot delay timer as in the following example:
    *
@@ -323,7 +323,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Quits the application at the end of the current iteration. Argument `exit_code` can optionally be given (defaulting to 0) to customize the exit status code.
+   * Quits the application at the end of the current iteration. Argument [exitCode] can optionally be given (defaulting to 0) to customize the exit status code.
    *
    * By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an error.
    *
@@ -345,16 +345,14 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls `method` on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to `method` by specifying them at the end of the method call.
+   * Calls [method] on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.
    *
    * ```
    * 				# Call the method in a deferred manner and in reverse order.
    * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
    * 				```
    *
-   * **Note:** Due to design limitations, [callGroupFlags] will fail silently if one of the arguments is `null`.
-   *
-   * **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the `flags` argument, methods will be called with a one-frame delay in a way similar to [godot.Object.setDeferred].
+   * **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [flags] argument, methods will be called with a one-frame delay in a way similar to [godot.Object.setDeferred].
    */
   public fun callGroupFlags(
     flags: Long,
@@ -367,9 +365,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the `group`, respecting the given [enum GroupCallFlags].
+   * Sends the given notification to all members of the [group], respecting the given [enum GroupCallFlags].
    *
-   * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the `flags` argument, notifications will be sent with a one-frame delay in a way similar to using `Object.call_deferred("notification", ...)`.
+   * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent with a one-frame delay in a way similar to using `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
     callFlags: Long,
@@ -381,9 +379,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given `property` to `value` on all members of the given group, respecting the given [enum GroupCallFlags].
+   * Sets the given [property] to [value] on all members of the given group, respecting the given [enum GroupCallFlags].
    *
-   * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the `flags` argument, properties will be set with a one-frame delay in a way similar to [godot.Object.callDeferred].
+   * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set with a one-frame delay in a way similar to [godot.Object.callDeferred].
    */
   public fun setGroupFlags(
     callFlags: Long,
@@ -396,9 +394,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls `method` on each member of the given group. You can pass arguments to `method` by specifying them at the end of the method call.
-   *
-   * **Note:** Due to design limitations, [callGroup] will fail silently if one of the arguments is `null`.
+   * Calls [method] on each member of the given group. You can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.
    *
    * **Note:** [callGroup] will call methods immediately on all members at once, which can cause stuttering if an expensive method is called on lots of members. To wait for one frame after [callGroup] was called, use [callGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
@@ -412,7 +408,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the `group`.
+   * Sends the given notification to all members of the [group].
    *
    * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification lots of members. To wait for one frame, use [notifyGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
@@ -422,7 +418,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given `property` to `value` on all members of the given group.
+   * Sets the given [property] to [value] on all members of the given group.
    *
    * **Note:** [setGroup] will set the property immediately on all members at once, which can cause stuttering if a property with an expensive setter is set on lots of members. To wait for one frame, use [setGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
@@ -454,26 +450,12 @@ public open class SceneTree : MainLoop() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
-  /**
-   * Changes the running scene to the one at the given `path`, after loading it into a [godot.PackedScene] and creating a new instance.
-   *
-   * Returns [OK] on success, [ERR_CANT_OPEN] if the `path` cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
-   *
-   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeScene] call.
-   */
   public fun changeScene(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Changes the running scene to a new instance of the given [godot.PackedScene].
-   *
-   * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
-   *
-   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneTo] call.
-   */
   public fun changeSceneTo(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO, LONG)

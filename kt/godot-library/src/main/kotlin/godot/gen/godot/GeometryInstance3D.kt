@@ -120,7 +120,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
+   * Changes how quickly the mesh transitions to a lower level of detail.  A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.
    *
+   * Useful for testing level of detail transitions in the editor.
    */
   public var lodBias: Double
     get() {
@@ -136,7 +138,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   *
+   * If `true`, disables occlusion culling for this instance.  Useful for gizmos that must be rendered even when occlusion culling is in use.
    */
   public var ignoreOcclusionCulling: Boolean
     get() {
@@ -273,18 +275,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
     callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D)
   }
 
-  /**
-   *
-   */
   public fun setShaderInstanceUniform(uniform: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to uniform, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_SHADER_INSTANCE_UNIFORM, NIL)
   }
 
-  /**
-   *
-   */
   public fun getShaderInstanceUniform(uniform: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to uniform)
     TransferContext.callMethod(rawPtr,

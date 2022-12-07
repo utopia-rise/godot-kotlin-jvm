@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorResourcePreview internal constructor() : Node() {
   /**
-   * Emitted if a preview was invalidated (changed). `path` corresponds to the path of the preview.
+   * Emitted if a preview was invalidated (changed). [path] corresponds to the path of the preview.
    */
   public val previewInvalidated: Signal1<String> by signal("path")
 
@@ -40,9 +40,9 @@ public open class EditorResourcePreview internal constructor() : Node() {
   }
 
   /**
-   * Queue a resource file located at `path` for preview. Once the preview is ready, the `receiver`'s `receiver_func` will be called. The `receiver_func` must take the following four arguments: [godot.String] path, [godot.Texture2D] preview, [godot.Texture2D] thumbnail_preview, [Variant] userdata. `userdata` can be anything, and will be returned when `receiver_func` is called.
+   * Queue a resource file located at [path] for preview. Once the preview is ready, the [receiver]'s [receiverFunc] will be called. The [receiverFunc] must take the following four arguments: [godot.String] path, [godot.Texture2D] preview, [godot.Texture2D] thumbnail_preview, [Variant] userdata. [userdata] can be anything, and will be returned when [receiverFunc] is called.
    *
-   * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
+   * **Note:** If it was not possible to create the preview the [receiverFunc] will still be called, but the preview will be null.
    */
   public fun queueResourcePreview(
     path: String,
@@ -56,9 +56,9 @@ public open class EditorResourcePreview internal constructor() : Node() {
   }
 
   /**
-   * Queue the `resource` being edited for preview. Once the preview is ready, the `receiver`'s `receiver_func` will be called. The `receiver_func` must take the following four arguments: [godot.String] path, [godot.Texture2D] preview, [godot.Texture2D] thumbnail_preview, [Variant] userdata. `userdata` can be anything, and will be returned when `receiver_func` is called.
+   * Queue the [resource] being edited for preview. Once the preview is ready, the [receiver]'s [receiverFunc] will be called. The [receiverFunc] must take the following four arguments: [godot.String] path, [godot.Texture2D] preview, [godot.Texture2D] thumbnail_preview, [Variant] userdata. [userdata] can be anything, and will be returned when [receiverFunc] is called.
    *
-   * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
+   * **Note:** If it was not possible to create the preview the [receiverFunc] will still be called, but the preview will be null.
    */
   public fun queueEditedResourcePreview(
     resource: Resource,

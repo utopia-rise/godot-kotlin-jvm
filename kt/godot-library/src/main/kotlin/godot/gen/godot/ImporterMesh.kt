@@ -36,8 +36,6 @@ import kotlin.Unit
  *
  * ImporterMesh is a type of [godot.Resource] analogous to [godot.ArrayMesh]. It contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
  *
- *
- *
  * Unlike its runtime counterpart, [godot.ImporterMesh] contains mesh data before various import steps, such as lod and shadow mesh generation, have taken place. Modify surface data by calling [clear], followed by [addSurface] for each surface.
  */
 @GodotBaseType
@@ -96,9 +94,9 @@ public open class ImporterMesh : Resource() {
   /**
    * Creates a new surface, analogous to [godot.ArrayMesh.addSurfaceFromArrays].
    *
-   * Surfaces are created to be rendered using a `primitive`, which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
+   * Surfaces are created to be rendered using a [primitive], which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
    *
-   * The `arrays` argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
+   * The [arrays] argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
    */
   public fun addSurface(
     primitive: Mesh.PrimitiveType,
@@ -114,7 +112,7 @@ public open class ImporterMesh : Resource() {
   }
 
   /**
-   * Returns the amount of surfaces that the mesh holds.
+   * Returns the number of surfaces that the mesh holds.
    */
   public fun getSurfaceCount(): Long {
     TransferContext.writeArguments()
@@ -164,7 +162,7 @@ public open class ImporterMesh : Resource() {
   }
 
   /**
-   * Returns the amount of lods that the mesh holds on a given surface.
+   * Returns the number of lods that the mesh holds on a given surface.
    */
   public fun getSurfaceLodCount(surfaceIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfaceIdx)
@@ -235,7 +233,7 @@ public open class ImporterMesh : Resource() {
    *
    * This method caches the returned mesh, and subsequent calls will return the cached data until [clear] is called.
    *
-   * If not yet cached and `base_mesh` is provided, `base_mesh` will be used and mutated.
+   * If not yet cached and [baseMesh] is provided, [baseMesh] will be used and mutated.
    */
   public fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)

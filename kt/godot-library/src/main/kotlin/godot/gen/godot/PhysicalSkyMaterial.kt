@@ -156,9 +156,6 @@ public open class PhysicalSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_GROUND_COLOR, NIL)
     }
 
-  /**
-   * Sets the exposure of the sky. Higher exposure values make the entire sky brighter.
-   */
   public var exposure: Double
     get() {
       TransferContext.writeArguments()
@@ -172,9 +169,6 @@ public open class PhysicalSkyMaterial : Material() {
           NIL)
     }
 
-  /**
-   * The amount of dithering to use. Dithering helps reduce banding that appears from the smooth changes in color in the sky. Use the lowest value possible for your given sky settings, as higher amounts may add fuzziness to the sky.
-   */
   public var ditherStrength: Double
     get() {
       TransferContext.writeArguments()

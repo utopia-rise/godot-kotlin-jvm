@@ -35,7 +35,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/scripting/index.html]($DOCS_URL/tutorials/scripting/index.html)
  *
- * A class stored as a resource. A script extends the functionality of all objects that instance it.
+ * A class stored as a resource. A script extends the functionality of all objects that instantiate it.
  *
  * This is the base class for all scripts and should not be used directly. Trying to create a new script with this class will result in an error.
  *
@@ -71,7 +71,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if `base_object` is an instance of this script.
+   * Returns `true` if [baseObject] is an instance of this script.
    */
   public fun instanceHas(baseObject: Object): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)

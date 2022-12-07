@@ -33,7 +33,7 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Adds a resource to the preloader with the given `name`. If a resource with the given `name` already exists, the new resource will be renamed to "`name` N" where N is an incrementing number starting from 2.
+   * Adds a resource to the preloader with the given [name]. If a resource with the given [name] already exists, the new resource will be renamed to "[name] N" where N is an incrementing number starting from 2.
    */
   public fun addResource(name: StringName, resource: Resource): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
@@ -41,7 +41,7 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Removes the resource associated to `name` from the preloader.
+   * Removes the resource associated to [name] from the preloader.
    */
   public fun removeResource(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -50,7 +50,7 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Renames a resource inside the preloader from `name` to `newname`.
+   * Renames a resource inside the preloader from [name] to [newname].
    */
   public fun renameResource(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
@@ -59,7 +59,7 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Returns `true` if the preloader contains a resource associated to `name`.
+   * Returns `true` if the preloader contains a resource associated to [name].
    */
   public fun hasResource(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -69,7 +69,7 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Returns the resource associated to `name`.
+   * Returns the resource associated to [name].
    */
   public fun getResource(name: StringName): Resource? {
     TransferContext.writeArguments(STRING_NAME to name)

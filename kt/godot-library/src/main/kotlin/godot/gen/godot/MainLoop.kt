@@ -142,7 +142,7 @@ public open class MainLoop : Object() {
   }
 
   /**
-   * Called each physics frame with the time since the last physics frame as argument (`delta`, in seconds). Equivalent to [godot.Node.PhysicsProcess].
+   * Called each physics frame with the time since the last physics frame as argument ([delta], in seconds). Equivalent to [godot.Node.PhysicsProcess].
    *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    */

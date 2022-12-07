@@ -19,12 +19,15 @@ import kotlin.Unit
 /**
  * Adds a chorus audio effect.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
+ *
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source and manipulate it through the filter.
  */
 @GodotBaseType
 public open class AudioEffectChorus : AudioEffect() {
   /**
-   * The amount of voices in the effect.
+   * The number of voices in the effect.
    */
   public var voiceCount: Long
     get() {

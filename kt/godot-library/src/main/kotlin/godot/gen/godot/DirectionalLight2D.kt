@@ -16,7 +16,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
+ * Directional light from a distance.
  *
+ * A directional light is a type of [godot.Light2D] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene (for example: to model sunlight or moonlight).
  */
 @GodotBaseType
 public open class DirectionalLight2D : Light2D() {
@@ -34,7 +36,7 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   /**
-   *
+   * Maximum distance this light covers. Increasing this value will make directional shadows visible from further away, at the cost of lower overall shadow detail and performance (due to more objects being included in shadow rendering).
    */
   public var maxDistance: Double
     get() {

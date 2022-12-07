@@ -24,7 +24,7 @@ import kotlin.Unit
  *
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other [godot.Resource].
  *
- * They can be used to generate a self-signed [godot.X509Certificate] via [godot.Crypto.generateSelfSignedCertificate] and as private key in [godot.StreamPeerSSL.acceptStream] along with the appropriate certificate.
+ * They can be used to generate a self-signed [godot.X509Certificate] via [godot.Crypto.generateSelfSignedCertificate] and as private key in [godot.StreamPeerTLS.acceptStream] along with the appropriate certificate.
  */
 @GodotBaseType
 public open class CryptoKey : Resource() {
@@ -33,9 +33,9 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Saves a key to the given `path`. If `public_only` is `true`, only the public key will be saved.
+   * Saves a key to the given [path]. If [publicOnly] is `true`, only the public key will be saved.
    *
-   * **Note:** `path` should be a "*.pub" file if `public_only` is `true`, a "*.key" file otherwise.
+   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   public fun save(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
@@ -44,9 +44,9 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from `path`. If `public_only` is `true`, only the public key will be loaded.
+   * Loads a key from [path]. If [publicOnly] is `true`, only the public key will be loaded.
    *
-   * **Note:** `path` should be a "*.pub" file if `public_only` is `true`, a "*.key" file otherwise.
+   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   public fun load(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
@@ -64,7 +64,7 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Returns a string containing the key in PEM format. If `public_only` is `true`, only the public key will be included.
+   * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public key will be included.
    */
   public fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
@@ -73,7 +73,7 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from the given `string`. If `public_only` is `true`, only the public key will be loaded.
+   * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be loaded.
    */
   public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)

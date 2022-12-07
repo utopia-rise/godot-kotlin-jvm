@@ -93,7 +93,7 @@ public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Triggers a haptic pulse on a device associated with this interface.
    *
-   * `action_name` is the name of the action for this pulse.
+   * [actionName] is the name of the action for this pulse.
    */
   public fun triggerHapticPulse(
     actionName: String,

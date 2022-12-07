@@ -37,7 +37,7 @@ public open class OccluderInstance3D : Node3D() {
   /**
    * The occluder resource for this [godot.OccluderInstance3D]. You can generate an occluder resource by selecting an [godot.OccluderInstance3D] node then using the **Bake Occluders** button at the top of the editor.
    *
-   * You can also draw your own 2D occluder polygon by adding a new [godot.PolygonOccluder3D] resource to the [occluder] property in the inspector.
+   * You can also draw your own 2D occluder polygon by adding a new [godot.PolygonOccluder3D] resource to the [occluder] property in the Inspector.
    *
    * Alternatively, you can select a primitive occluder to use: [godot.QuadOccluder3D], [godot.BoxOccluder3D] or [godot.SphereOccluder3D].
    */
@@ -55,7 +55,7 @@ public open class OccluderInstance3D : Node3D() {
     }
 
   /**
-   * The visual layers to account for when baking for occluders. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated occluder mesh. By default, all objects are taken into account for the occluder baking.
+   * The visual layers to account for when baking for occluders. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated occluder mesh. By default, all objects with *opaque* materials are taken into account for the occluder baking.
    *
    * To improve performance and avoid artifacts, it is recommended to exclude dynamic objects, small objects and fixtures from the baking process by moving them to a separate visual layer and excluding this layer in [bakeMask].
    */
@@ -99,7 +99,7 @@ public open class OccluderInstance3D : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [bakeMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
    */
   public fun setBakeMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -108,7 +108,7 @@ public open class OccluderInstance3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getBakeMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)

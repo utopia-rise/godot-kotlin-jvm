@@ -17,12 +17,10 @@ import kotlin.Unit
 /**
  * Adds a reverberation audio effect to an Audio bus.
  *
- * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
- *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Simulates rooms of different sizes. Its parameters can be adjusted to simulate the sound of a specific room.
+ * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
  */
 @GodotBaseType
 public open class AudioEffectReverb : AudioEffect() {

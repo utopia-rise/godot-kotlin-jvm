@@ -89,12 +89,11 @@ import kotlin.Unit
  * [/codeblocks]
  *
  * Animations are just data containers, and must be added to nodes such as an [godot.AnimationPlayer] to be played back. Animation tracks have different types, each with its own set of dedicated methods. Check [enum TrackType] to see available types.
+ *
+ * **Note:** For 3D position/rotation/scale, using the dedicated [godot.TYPE_POSITION_3D], [godot.TYPE_ROTATION_3D] and [godot.TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
  */
 @GodotBaseType
 public open class Animation : Resource() {
-  /**
-   * Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
-   */
   public val tracksChanged: Signal0 by signal()
 
   /**
@@ -225,7 +224,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Changes the index position of track `idx` to the one defined in `to_idx`.
+   * Changes the index position of track [trackIdx] to the one defined in [toIdx].
    */
   public fun trackMoveTo(trackIdx: Long, toIdx: Long): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to toIdx)
@@ -233,7 +232,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Swaps the track `idx`'s index position with the track `with_idx`.
+   * Swaps the track [trackIdx]'s index position with the track [withIdx].
    */
   public fun trackSwap(trackIdx: Long, withIdx: Long): Unit {
     TransferContext.writeArguments(LONG to trackIdx, LONG to withIdx)
@@ -266,7 +265,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at index `idx` is enabled.
+   * Returns `true` if the track at index [trackIdx] is enabled.
    */
   public fun trackIsEnabled(trackIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to trackIdx)
@@ -275,7 +274,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   *
+   * Inserts a key in a given 3D position track. Returns the key index.
    */
   public fun positionTrackInsertKey(
     trackIdx: Long,
@@ -289,7 +288,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   *
+   * Inserts a key in a given 3D rotation track. Returns the key index.
    */
   public fun rotationTrackInsertKey(
     trackIdx: Long,
@@ -303,7 +302,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   *
+   * Inserts a key in a given 3D scale track. Returns the key index.
    */
   public fun scaleTrackInsertKey(
     trackIdx: Long,
@@ -317,7 +316,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   *
+   * Inserts a key in a given blend shape track. Returns the key index.
    */
   public fun blendShapeTrackInsertKey(
     trackIdx: Long,
@@ -331,7 +330,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Insert a generic key in a given track.
+   * Inserts a generic key in a given track. Returns the key index.
    */
   public fun trackInsertKey(
     trackIdx: Long,
@@ -352,7 +351,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Removes a key at `time` in a given track.
+   * Removes a key at [time] in a given track.
    */
   public fun trackRemoveKeyAtTime(trackIdx: Long, time: Double): Unit {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time)
@@ -408,7 +407,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the amount of keys in a given track.
+   * Returns the number of keys in a given track.
    */
   public fun trackGetKeyCount(trackIdx: Long): Long {
     TransferContext.writeArguments(LONG to trackIdx)
@@ -469,7 +468,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * If `true`, the track at `idx` wraps the interpolation loop.
+   * If `true`, the track at [trackIdx] wraps the interpolation loop.
    */
   public fun trackSetInterpolationLoopWrap(trackIdx: Long, interpolation: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx, BOOL to interpolation)
@@ -478,7 +477,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at `idx` wraps the interpolation loop. New tracks wrap the interpolation loop by default.
+   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the interpolation loop by default.
    */
   public fun trackGetInterpolationLoopWrap(trackIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to trackIdx)
@@ -488,7 +487,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   *
+   * Returns `true` if the track is compressed, `false` otherwise. See also [compress].
    */
   public fun trackIsCompressed(trackIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to trackIdx)
@@ -530,7 +529,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given time (in seconds). The `track_idx` must be the index of a value track.
+   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index of a value track.
    */
   public fun valueTrackInterpolate(trackIdx: Long, timeSec: Double): Any? {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
@@ -574,9 +573,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a Bezier Track key at the given `time` in seconds. The `track_idx` must be the index of a Bezier Track.
+   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of a Bezier Track.
    *
-   * `in_handle` is the left-side weight of the added Bezier curve point, `out_handle` is the right-side one, while `value` is the actual value at this point.
+   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the right-side one, while [value] is the actual value at this point.
    */
   public fun bezierTrackInsertKey(
     trackIdx: Long,
@@ -593,7 +592,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the value of the key identified by `key_idx` to the given value. The `track_idx` must be the index of a Bezier Track.
+   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackSetKeyValue(
     trackIdx: Long,
@@ -606,7 +605,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the in handle of the key identified by `key_idx` to value `in_handle`. The `track_idx` must be the index of a Bezier Track.
+   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackSetKeyInHandle(
     trackIdx: Long,
@@ -620,7 +619,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the out handle of the key identified by `key_idx` to value `out_handle`. The `track_idx` must be the index of a Bezier Track.
+   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackSetKeyOutHandle(
     trackIdx: Long,
@@ -634,7 +633,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the value of the key identified by `key_idx`. The `track_idx` must be the index of a Bezier Track.
+   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackGetKeyValue(trackIdx: Long, keyIdx: Long): Double {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
@@ -644,7 +643,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the in handle of the key identified by `key_idx`. The `track_idx` must be the index of a Bezier Track.
+   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackGetKeyInHandle(trackIdx: Long, keyIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
@@ -654,7 +653,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the out handle of the key identified by `key_idx`. The `track_idx` must be the index of a Bezier Track.
+   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackGetKeyOutHandle(trackIdx: Long, keyIdx: Long): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
@@ -664,7 +663,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given `time` (in seconds). The `track_idx` must be the index of a Bezier Track.
+   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the index of a Bezier Track.
    */
   public fun bezierTrackInterpolate(trackIdx: Long, time: Double): Double {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time)
@@ -674,9 +673,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts an Audio Track key at the given `time` in seconds. The `track_idx` must be the index of an Audio Track.
+   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of an Audio Track.
    *
-   * `stream` is the [godot.AudioStream] resource to play. `start_offset` is the number of seconds cut off at the beginning of the audio stream, while `end_offset` is at the ending.
+   * [stream] is the [godot.AudioStream] resource to play. [startOffset] is the number of seconds cut off at the beginning of the audio stream, while [endOffset] is at the ending.
    */
   public fun audioTrackInsertKey(
     trackIdx: Long,
@@ -692,7 +691,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the stream of the key identified by `key_idx` to value `stream`. The `track_idx` must be the index of an Audio Track.
+   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the index of an Audio Track.
    */
   public fun audioTrackSetKeyStream(
     trackIdx: Long,
@@ -705,7 +704,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the start offset of the key identified by `key_idx` to value `offset`. The `track_idx` must be the index of an Audio Track.
+   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
    */
   public fun audioTrackSetKeyStartOffset(
     trackIdx: Long,
@@ -718,7 +717,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the end offset of the key identified by `key_idx` to value `offset`. The `track_idx` must be the index of an Audio Track.
+   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
    */
   public fun audioTrackSetKeyEndOffset(
     trackIdx: Long,
@@ -731,7 +730,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the audio stream of the key identified by `key_idx`. The `track_idx` must be the index of an Audio Track.
+   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    */
   public fun audioTrackGetKeyStream(trackIdx: Long, keyIdx: Long): Resource? {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
@@ -741,7 +740,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the start offset of the key identified by `key_idx`. The `track_idx` must be the index of an Audio Track.
+   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    *
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
@@ -753,7 +752,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the end offset of the key identified by `key_idx`. The `track_idx` must be the index of an Audio Track.
+   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
    *
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
@@ -764,9 +763,6 @@ public open class Animation : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Changes the handle mode of the keyframe at the given `index`. See [enum HandleMode] for possible values. The `track_idx` must be the index of a Bezier Track.
-   */
   public fun bezierTrackSetKeyHandleMode(
     trackIdx: Long,
     keyIdx: Long,
@@ -778,9 +774,6 @@ public open class Animation : Resource() {
         ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_HANDLE_MODE, NIL)
   }
 
-  /**
-   * Returns the handle mode of the key identified by `index`. See [enum HandleMode] for possible values. The `track_idx` must be the index of a Bezier Track.
-   */
   public fun bezierTrackGetKeyHandleMode(trackIdx: Long, keyIdx: Long): Long {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
     TransferContext.callMethod(rawPtr,
@@ -789,7 +782,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a key with value `animation` at the given `time` (in seconds). The `track_idx` must be the index of an Animation Track.
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
    */
   public fun animationTrackInsertKey(
     trackIdx: Long,
@@ -803,7 +796,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the key identified by `key_idx` to value `animation`. The `track_idx` must be the index of an Animation Track.
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of an Animation Track.
    */
   public fun animationTrackSetKeyAnimation(
     trackIdx: Long,
@@ -816,7 +809,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the animation name at the key identified by `key_idx`. The `track_idx` must be the index of an Animation Track.
+   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index of an Animation Track.
    */
   public fun animationTrackGetKeyAnimation(trackIdx: Long, keyIdx: Long): StringName {
     TransferContext.writeArguments(LONG to trackIdx, LONG to keyIdx)
@@ -834,7 +827,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Adds a new track that is a copy of the given track from `to_animation`.
+   * Adds a new track that is a copy of the given track from [toAnimation].
    */
   public fun copyTrack(trackIdx: Long, toAnimation: Animation): Unit {
     TransferContext.writeArguments(LONG to trackIdx, OBJECT to toAnimation)
@@ -842,7 +835,9 @@ public open class Animation : Resource() {
   }
 
   /**
+   * Compress the animation and all its tracks in-place. This will make [trackIsCompressed] return `true` once called on this [godot.Animation]. Compressed tracks require less memory to be played, and are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D software. Compression is lossy, but the difference is usually not noticeable in real world conditions.
    *
+   * **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.
    */
   public fun compress(
     pageSize: Long = 8192,
@@ -884,23 +879,23 @@ public open class Animation : Resource() {
     id: Long
   ) {
     /**
-     * Value tracks set values in node properties, but only those which can be Interpolated.
+     * Value tracks set values in node properties, but only those which can be interpolated. For 3D position/rotation/scale, using the dedicated [godot.TYPE_POSITION_3D], [godot.TYPE_ROTATION_3D] and [godot.TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
      */
     TYPE_VALUE(0),
     /**
-     *
+     * 3D position track (values are stored in [godot.core.Vector3]s).
      */
     TYPE_POSITION_3D(1),
     /**
-     *
+     * 3D rotation track (values are stored in [godot.Quaternion]s).
      */
     TYPE_ROTATION_3D(2),
     /**
-     *
+     * 3D scale track (values are stored in [godot.core.Vector3]s).
      */
     TYPE_SCALE_3D(3),
     /**
-     *
+     * Blend shape track.
      */
     TYPE_BLEND_SHAPE(4),
     /**
@@ -965,13 +960,7 @@ public open class Animation : Resource() {
   public enum class HandleMode(
     id: Long
   ) {
-    /**
-     * Assigning the free handle mode to a Bezier Track's keyframe allows you to edit the keyframe's left and right handles independently from one another.
-     */
     HANDLE_MODE_FREE(0),
-    /**
-     * Assigning the balanced handle mode to a Bezier Track's keyframe makes it so the two handles of the keyframe always stay aligned when changing either the keyframe's left or right handle.
-     */
     HANDLE_MODE_BALANCED(1),
     ;
 
@@ -997,7 +986,7 @@ public open class Animation : Resource() {
      */
     INTERPOLATION_LINEAR(1),
     /**
-     * Cubic interpolation.
+     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
      */
     INTERPOLATION_CUBIC(2),
     ;

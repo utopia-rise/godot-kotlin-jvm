@@ -18,7 +18,7 @@ import kotlin.Unit
  * The origin point in AR/VR.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
  *
  * This is a special node within the AR/VR system that maps the physical location of the center of our tracking space to the virtual location within our game world.
  *

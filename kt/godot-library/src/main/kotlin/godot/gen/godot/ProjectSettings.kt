@@ -217,7 +217,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS `path`. See also [globalizePath].
+   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS [path]. See also [globalizePath].
    */
   public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
@@ -227,7 +227,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the absolute, native OS path corresponding to the localized `path` (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) to see what those paths convert to. See also [localizePath].
+   * Returns the absolute, native OS path corresponding to the localized [path] (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) to see what those paths convert to. See also [localizePath].
    *
    * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
    *
@@ -242,7 +242,7 @@ public object ProjectSettings : Object() {
    * 				    # `path` will contain the absolute path to `hello.txt` next to the executable.
    * 				    # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
    * 				    # but is close enough in spirit.
-   * 				    path = OS.get_executable_path().get_base_dir().plus_file("hello.txt")
+   * 				    path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
    * 				```
    */
   public fun globalizePath(path: String): String {
@@ -264,11 +264,11 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Loads the contents of the .pck or .zip file specified by `pack` into the resource filesystem (`res://`). Returns `true` on success.
+   * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem (`res://`). Returns `true` on success.
    *
-   * **Note:** If a file from `pack` shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from `pack` unless `replace_files` is set to `false`.
+   * **Note:** If a file from [pack] shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is set to `false`.
    *
-   * **Note:** The optional `offset` parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
+   * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
    */
   public fun loadResourcePack(
     pack: String,
@@ -281,9 +281,6 @@ public object ProjectSettings : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns `true` if the specified property exists and its initial value differs from the current value.
-   */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_CAN_REVERT,
@@ -291,9 +288,6 @@ public object ProjectSettings : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns the specified property's initial value. Returns `null` if the property does not exist.
-   */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_GET_REVERT,

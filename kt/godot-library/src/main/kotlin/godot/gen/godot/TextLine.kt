@@ -119,7 +119,7 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   *
+   * Sets text alignment within the line as if the line was horizontal.
    */
   public var alignment: Long
     get() {
@@ -135,7 +135,7 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Line Alignment rules. For more info see [godot.TextServer].
+   * Line alignment rules. For more info see [godot.TextServer].
    */
   public var flags: Long
     get() {
@@ -149,7 +149,7 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the text line's set width. See [enum OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the text line's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: Long
     get() {
@@ -203,7 +203,7 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, `key` must be unique. In the text, object is represented as `length` object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
   public fun addObject(
     key: Any,
@@ -321,7 +321,7 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun draw(
     canvas: RID,
@@ -333,7 +333,7 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with `color`. `pos` specifies the top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   public fun drawOutline(
     canvas: RID,
@@ -357,25 +357,10 @@ public open class TextLine : RefCounted() {
   public enum class OverrunBehavior(
     id: Long
   ) {
-    /**
-     * No text trimming is performed.
-     */
     OVERRUN_NO_TRIMMING(0),
-    /**
-     * Trims the text per character.
-     */
     OVERRUN_TRIM_CHAR(1),
-    /**
-     * Trims the text per word.
-     */
     OVERRUN_TRIM_WORD(2),
-    /**
-     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_ELLIPSIS(3),
-    /**
-     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
-     */
     OVERRUN_TRIM_WORD_ELLIPSIS(4),
     ;
 

@@ -16,16 +16,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A scalar integer uniform to be used within the visual shader graph.
- *
- * Translated to `uniform int` in the shader language.
- */
 @GodotBaseType
 public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
-  /**
-   * A hint applied to the uniform, which controls the values it can take when set through the inspector.
-   */
   public var hint: Long
     get() {
       TransferContext.writeArguments()
@@ -39,9 +31,6 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_HINT, NIL)
     }
 
-  /**
-   * Maximum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
-   */
   public var min: Long
     get() {
       TransferContext.writeArguments()
@@ -55,9 +44,6 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_MIN, NIL)
     }
 
-  /**
-   * Minimum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
-   */
   public var max: Long
     get() {
       TransferContext.writeArguments()
@@ -71,9 +57,6 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_MAX, NIL)
     }
 
-  /**
-   * Step (increment) value for the range hint with step. Used if [hint] is set to [HINT_RANGE_STEP].
-   */
   public var step: Long
     get() {
       TransferContext.writeArguments()
@@ -87,9 +70,6 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_STEP, NIL)
     }
 
-  /**
-   * Enables usage of the [defaultValue].
-   */
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -103,9 +83,6 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_SET_DEFAULT_VALUE_ENABLED, NIL)
     }
 
-  /**
-   * A default value to be assigned within the shader.
-   */
   public var defaultValue: Long
     get() {
       TransferContext.writeArguments()
@@ -126,21 +103,9 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
   public enum class Hint(
     id: Long
   ) {
-    /**
-     * No hint used.
-     */
     HINT_NONE(0),
-    /**
-     * A range hint for scalar value, which limits possible input values between [min] and [max]. Translated to `hint_range(min, max)` in shader code.
-     */
     HINT_RANGE(1),
-    /**
-     * A range hint for scalar value with step, which limits possible input values between [min] and [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader code.
-     */
     HINT_RANGE_STEP(2),
-    /**
-     * Represents the size of the [enum Hint] enum.
-     */
     HINT_MAX(3),
     ;
 

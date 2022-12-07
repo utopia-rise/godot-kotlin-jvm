@@ -113,7 +113,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * Show or hide the TileMap's collision shapes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings.
+   * Show or hide the TileMap's navigation meshes. If set to [VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings.
    */
   public var navigationVisibilityMode: Long
     get() {
@@ -133,7 +133,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Should return `true` if the tile at coordinates `coords[/coords] on layer `layer` requires a runtime update.
+   * Should return `true` if the tile at coordinates [coords] on layer [layer] requires a runtime update.
    *
    * **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
    */
@@ -144,11 +144,11 @@ public open class TileMap : Node2D() {
   /**
    * Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.
    *
-   * This method is only called if [_useTileDataRuntimeUpdate] is implemented and returns `true` for the given tile `coords[/coords] and `layer`.
+   * This method is only called if [_useTileDataRuntimeUpdate] is implemented and returns `true` for the given tile [coords] and [layer].
    *
-   * **Warning:** The `tile_data` object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+   * **Warning:** The [tileData] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
    *
-   * **Note:** If the properties of `tile_data` object should change over time, use [forceUpdate] to trigger a TileMap update.
+   * **Note:** If the properties of [tileData] object should change over time, use [forceUpdate] to trigger a TileMap update.
    */
   public open fun _tileDataRuntimeUpdate(
     layer: Long,
@@ -158,7 +158,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   *
+   * Returns the number of layers in the TileMap.
    */
   public fun getLayersCount(): Long {
     TransferContext.writeArguments()
@@ -167,7 +167,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Adds a layer at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a layer at the given position [toPosition] in the array. If [toPosition] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array.
    */
   public fun addLayer(toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to toPosition)
@@ -175,7 +175,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Moves the layer at index `layer_index` to the given position `to_position` in the array.
+   * Moves the layer at index [layer] to the given position [toPosition] in the array.
    */
   public fun moveLayer(layer: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to toPosition)
@@ -183,7 +183,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Removes the layer at index `layer`.
+   * Removes the layer at index [layer].
    */
   public fun removeLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
@@ -192,6 +192,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layer's name. This is mostly useful in the editor.
+   *
+   * If `layer` is negative, the layers are accessed from the last one.
    */
   public fun setLayerName(layer: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to layer, STRING to name)
@@ -208,7 +210,9 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Enables or disables the layer `layer`. A disabled layer is not processed at all (no rendering, no physics, etc...).
+   * Enables or disables the layer [layer]. A disabled layer is not processed at all (no rendering, no physics, etc...).
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerEnabled(layer: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enabled)
@@ -226,6 +230,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
+   *
+   * If `layer` is negative, the layers are accessed from the last one.
    */
   public fun setLayerModulate(layer: Long, enabled: Color): Unit {
     TransferContext.writeArguments(LONG to layer, COLOR to enabled)
@@ -245,6 +251,8 @@ public open class TileMap : Node2D() {
    * Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.
    *
    * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behvaior.
+   *
+   * If `layer` is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortEnabled(layer: Long, ySortEnabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to ySortEnabled)
@@ -266,6 +274,8 @@ public open class TileMap : Node2D() {
    * Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.
    *
    * This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
+   *
+   * If `layer` is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortOrigin(layer: Long, ySortOrigin: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to ySortOrigin)
@@ -285,6 +295,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
+   *
+   * If `layer` is negative, the layers are accessed from the last one.
    */
   public fun setLayerZIndex(layer: Long, zIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layer, LONG to zIndex)
@@ -301,13 +313,13 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Sets the tile indentifiers for the cell on layer `layer` at coordinates `coords`. Each tile of the [godot.TileSet] is identified using three parts:
+   * Sets the tile indentifiers for the cell on layer [layer] at coordinates [coords]. Each tile of the [godot.TileSet] is identified using three parts:
    *
-   * - The source identifier `source_id` identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
+   * - The source identifier [sourceId] identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
    *
-   * - The atlas coordinates identifier `atlas_coords` identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should be 0),
+   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should be 0),
    *
-   * - The alternative tile identifier `alternative_tile` identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
+   * - The alternative tile identifier [alternativeTile] identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
    */
   public fun setCell(
     layer: Long,
@@ -321,7 +333,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Erases the cell on layer `layer` at coordinates `coords`.
+   * Erases the cell on layer [layer] at coordinates [coords].
    */
   public fun eraseCell(layer: Long, coords: Vector2i): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords)
@@ -329,7 +341,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile source ID of the cell on layer `layer` at coordinates `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellSourceId(
     layer: Long,
@@ -342,7 +354,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile atlas coordinates ID of the cell on layer `layer` at coordinates `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellAtlasCoords(
     layer: Long,
@@ -356,7 +368,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile alternative ID of the cell on layer `layer` at `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
   public fun getCellAlternativeTile(
     layer: Long,
@@ -389,7 +401,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns for the given coordinate `coords_in_pattern` in a [godot.TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the `position_in_tilemap` coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`
+   * Returns for the given coordinate [coordsInPattern] in a [godot.TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [positionInTilemap] coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`
    */
   public fun mapPattern(
     positionInTilemap: Vector2i,
@@ -402,7 +414,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Paste the given [godot.TileMapPattern] at the given `position` and `layer` in the tile map.
+   * Paste the given [godot.TileMapPattern] at the given [position] and [layer] in the tile map.
    */
   public fun setPattern(
     layer: Long,
@@ -413,11 +425,6 @@ public open class TileMap : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
   }
 
-  /**
-   * Updates all the cells in the `cells` coordinates array and replace them by tiles that matches the surrounding cells terrains. Only cells form the given `terrain_set` are considered.
-   *
-   * If `ignore_empty_terrains` is true, zones with no terrain defined are ignored to select the tiles.
-   */
   public fun setCellsFromSurroundingTerrains(
     layer: Long,
     cells: VariantArray<Any?>,
@@ -454,11 +461,11 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Triggers an update of the TileMap. If `layer` is provided, only updates the given layer.
+   * Triggers an update of the TileMap. If [layer] is provided, only updates the given layer.
    *
    * **Note:** The TileMap node updates automatically when one of its properties is modified. A manual update is only needed if runtime modifications (implemented in [_tileDataRuntimeUpdate]) need to be applied.
    *
-   * **Warning:** Updating the TileMap is a performance demanding task. Limit occurrences of those updates to the minimum and limit the amount tiles they impact (by segregating tiles updated often to a dedicated layer for example).
+   * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and the tiles they impact (by placing frequently updated tiles in a dedicated layer for example).
    */
   public fun forceUpdate(layer: Long = -1): Unit {
     TransferContext.writeArguments(LONG to layer)
@@ -466,7 +473,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the list of all neighbourings cells to the one at `coords`
+   * Returns the list of all neighbourings cells to the one at [coords]
    */
   public fun getSurroundingTiles(coords: Vector2i): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -493,20 +500,12 @@ public open class TileMap : Node2D() {
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
-  /**
-   * Returns a local position of the center of the cell at the given tilemap (grid-based) coordinates.
-   *
-   * **Note:** This doesn't correspond to the visual position of the tile, i.e. it ignores the [godot.TileData.textureOffset] property of individual tiles.
-   */
   public fun mapToWorld(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  /**
-   * Returns the tilemap (grid-based) coordinates corresponding to the given local position.
-   */
   public fun worldToMap(worldPosition: Vector2): Vector2i {
     TransferContext.writeArguments(VECTOR2 to worldPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2I)
@@ -514,7 +513,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the neighboring cell to the one at coordinates `coords`, identified by the `neighbor` direction. This method takes into account the different layouts a TileMap can take.
+   * Returns the neighboring cell to the one at coordinates [coords], identified by the [neighbor] direction. This method takes into account the different layouts a TileMap can take.
    */
   public fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)

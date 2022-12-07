@@ -36,17 +36,21 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
   /**
-   * Emitted when the mouse pointer exits all this object's shapes.
+   * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
    */
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Emitted when the mouse pointer enters any of this object's shapes.
+   * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   *
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject2D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject2D] is overlapping the [godot.CollisionObject2D] in question.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the object receives an unhandled [godot.InputEvent]. `position` is the location in world space of the mouse pointer on the surface of the shape with index `shape_idx` and `normal` is the normal vector of the surface at that point.
+   * Emitted when the object receives an unhandled [godot.InputEvent]. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point.
    */
   public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
       "event", "position", "normal", "shapeIdx")
@@ -140,7 +144,9 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Receives unhandled [godot.InputEvent]s. `position` is the location in world space of the mouse pointer on the surface of the shape with index `shape_idx` and `normal` is the normal vector of the surface at that point. Connect to the [inputEvent] signal to easily pick up these events.
+   * Receives unhandled [godot.InputEvent]s. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point. Connect to the [inputEvent] signal to easily pick up these events.
+   *
+   * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */
   public open fun _inputEvent(
     camera: Camera3D,
@@ -152,7 +158,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionLayer], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -161,7 +167,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)
@@ -171,7 +177,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Based on `value`, enables or disables the specified layer in the [collisionMask], given a `layer_number` between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
@@ -180,7 +186,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a `layer_number` between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Long): Boolean {
     TransferContext.writeArguments(LONG to layerNumber)

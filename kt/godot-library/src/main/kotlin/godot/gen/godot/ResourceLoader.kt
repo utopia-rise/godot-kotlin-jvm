@@ -37,6 +37,8 @@ import kotlin.Unit
  * Singleton used to load resource files from the filesystem.
  *
  * It uses the many [godot.ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.
+ *
+ * **Note:** You have to import the files into the engine first to load them using [load]. If you want to load [godot.Image]s at run-time, you may use [godot.Image.load]. If you want to import audio files, you can use the snippet described in [godot.AudioStreamMP3.data].
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
@@ -47,7 +49,9 @@ public object ResourceLoader : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Loads the resource using threads. If `use_sub_threads` is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
+   * Loads the resource using threads. If [useSubThreads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
+   *
+   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
    */
   public fun loadThreadedRequest(
     path: String,
@@ -61,9 +65,9 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the resource at `path`. See [enum ThreadLoadStatus] for possible return values.
+   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the resource at [path]. See [enum ThreadLoadStatus] for possible return values.
    *
-   * An array variable can optionally be passed via `progress`, and will return a one-element array containing the percentage of completion of the threaded loading.
+   * An array variable can optionally be passed via [progress], and will return a one-element array containing the percentage of completion of the threaded loading.
    */
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
@@ -86,13 +90,13 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Loads a resource at the given `path`, caching the result for further access.
+   * Loads a resource at the given [path], caching the result for further access.
    *
    * The registered [godot.ResourceFormatLoader]s are queried sequentially to find the first one which can handle the file's extension, and then attempt loading. If loading fails, the remaining ResourceFormatLoaders are also attempted.
    *
-   * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
+   * An optional [typeHint] can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    *
-   * The `cache_mode` property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
+   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
    *
    * Returns an empty resource if no [godot.ResourceFormatLoader] could handle the file.
    *
@@ -129,7 +133,7 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns the dependencies for the resource at the given `path`.
+   * Returns the dependencies for the resource at the given [path].
    */
   public fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)
@@ -139,7 +143,7 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns whether a cached resource is available for the given `path`.
+   * Returns whether a cached resource is available for the given [path].
    *
    * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] method will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
    */
@@ -150,9 +154,9 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns whether a recognized resource exists for the given `path`.
+   * Returns whether a recognized resource exists for the given [path].
    *
-   * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
+   * An optional [typeHint] can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    */
   public fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)

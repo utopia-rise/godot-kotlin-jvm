@@ -181,9 +181,6 @@ public open class RichTextLabel : Control() {
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SELECTION_ENABLED, NIL)
     }
 
-  /**
-   * If `true`, the label uses the custom font color.
-   */
   public var overrideSelectedFontColor: Boolean
     get() {
       TransferContext.writeArguments()
@@ -262,7 +259,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum AutowrapMode].
+   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
   public var autowrapMode: Long
     get() {
@@ -278,9 +275,9 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The restricted number of characters to display in the label. If `-1`, all characters will be displayed.
+   * The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.
    *
-   * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
+   * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Long
     get() {
@@ -296,7 +293,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: Long
     get() {
@@ -311,11 +308,6 @@ public open class RichTextLabel : Control() {
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
     }
 
-  /**
-   * The range of characters to display, as a [float] between 0.0 and 1.0. When assigned an out of range value, it's the same as assigning 1.0.
-   *
-   * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
-   */
   public var percentVisible: Double
     get() {
       TransferContext.writeArguments()
@@ -415,9 +407,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an image's opening and closing tags to the tag stack, optionally providing a `width` and `height` to resize the image and a `color` to tint the image.
+   * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the image.
    *
-   * If `width` or `height` is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
+   * If [width] or [height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
+   *
+   * If [width] and [height] are not set, but [region] is, the region's rect will be used.
    */
   public fun addImage(
     image: Texture2D,
@@ -441,7 +435,7 @@ public open class RichTextLabel : Control() {
   /**
    * Removes a line of content from the label. Returns `true` if the line exists.
    *
-   * The `line` argument is the index of the line to remove, it can take values in the interval `[0, get_line_count() - 1]`.
+   * The [line] argument is the index of the line to remove, it can take values in the interval `[0, get_line_count() - 1]`.
    */
   public fun removeLine(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
@@ -458,16 +452,13 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font_size]` tag to the tag stack. Overrides default font size for its duration.
+   *
    */
   public fun pushFontSize(fontSize: Long): Unit {
     TransferContext.writeArguments(LONG to fontSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_SIZE, NIL)
   }
 
-  /**
-   * Adds a `[ot_feature]` tag to the tag stack. Overrides default OpenType font feature for its duration.
-   */
   public fun pushFontFeatures(opentypeFeatures: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to opentypeFeatures)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_FONT_FEATURES,
@@ -555,7 +546,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an `[indent]` tag to the tag stack. Multiplies `level` by current [tabSize] to determine new margin length.
+   * Adds an `[indent]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
    */
   public fun pushIndent(level: Long): Unit {
     TransferContext.writeArguments(LONG to level)
@@ -563,7 +554,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds `[ol]` or `[ul]` tag to the tag stack. Multiplies `level` by current [tabSize] to determine new margin length.
+   * Adds `[ol]` or `[ul]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
    */
   public fun pushList(
     level: Long,
@@ -633,11 +624,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Edits the selected column's expansion options. If `expand` is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.
+   * Edits the selected column's expansion options. If [expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.
    *
    * For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.
    *
-   * If `expand` is `false`, the column will not contribute to the total ratio.
+   * If [expand] is `false`, the column will not contribute to the total ratio.
    */
   public fun setTableColumnExpand(
     column: Long,
@@ -737,7 +728,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match `line`.
+   * Scrolls the window's top line to match [line].
    */
   public fun scrollToLine(line: Long): Unit {
     TransferContext.writeArguments(LONG to line)
@@ -745,7 +736,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match first line of the `paragraph`.
+   * Scrolls the window's top line to match first line of the [paragraph].
    */
   public fun scrollToParagraph(paragraph: Long): Unit {
     TransferContext.writeArguments(LONG to paragraph)
@@ -792,7 +783,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses `bbcode` and adds tags to the tag stack as needed.
+   * Parses [bbcode] and adds tags to the tag stack as needed.
    *
    * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [text] instead of using [appendText].
    */
@@ -803,6 +794,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the line number of the character position provided.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getCharacterLine(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
@@ -813,6 +806,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the paragraph number of the character position provided.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getCharacterParagraph(character: Long): Long {
     TransferContext.writeArguments(LONG to character)
@@ -833,6 +828,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getLineCount(): Long {
     TransferContext.writeArguments()
@@ -842,6 +839,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the number of visible lines.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getVisibleLineCount(): Long {
     TransferContext.writeArguments()
@@ -862,6 +861,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getVisibleParagraphCount(): Long {
     TransferContext.writeArguments()
@@ -872,6 +873,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the height of the content.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getContentHeight(): Long {
     TransferContext.writeArguments()
@@ -882,6 +885,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the width of the content.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getContentWidth(): Long {
     TransferContext.writeArguments()
@@ -892,6 +897,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the line found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getLineOffset(line: Long): Double {
     TransferContext.writeArguments(LONG to line)
@@ -902,6 +909,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
   public fun getParagraphOffset(paragraph: Long): Double {
     TransferContext.writeArguments(LONG to paragraph)
@@ -911,7 +920,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses BBCode parameter `expressions` into a dictionary.
+   * Parses BBCode parameter [expressions] into a dictionary.
    */
   public fun parseExpressionsForValues(expressions: PackedStringArray): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
@@ -921,7 +930,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Installs a custom effect. `effect` should be a valid [godot.RichTextEffect].
+   * Installs a custom effect. [effect] should be a valid [godot.RichTextEffect].
    */
   public fun installEffect(effect: Any): Unit {
     TransferContext.writeArguments(ANY to effect)
@@ -931,25 +940,10 @@ public open class RichTextLabel : Control() {
   public enum class VisibleCharactersBehavior(
     id: Long
   ) {
-    /**
-     * Trims text before the shaping. e.g, increasing [visibleCharacters] value is visually identical to typing the text.
-     */
     VC_CHARS_BEFORE_SHAPING(0),
-    /**
-     * Displays glyphs that are mapped to the first [visibleCharacters] characters from the beginning of the text.
-     */
     VC_CHARS_AFTER_SHAPING(1),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left or from the right, depending on [godot.Control.layoutDirection] value.
-     */
     VC_GLYPHS_AUTO(2),
-    /**
-     * Displays [percentVisible] glyphs, starting from the left.
-     */
     VC_GLYPHS_LTR(3),
-    /**
-     * Displays [percentVisible] glyphs, starting from the right.
-     */
     VC_GLYPHS_RTL(4),
     ;
 
@@ -997,21 +991,9 @@ public open class RichTextLabel : Control() {
   public enum class AutowrapMode(
     id: Long
   ) {
-    /**
-     * Autowrap is disabled.
-     */
     AUTOWRAP_OFF(0),
-    /**
-     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available.
-     */
     AUTOWRAP_ARBITRARY(1),
-    /**
-     * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
-     */
     AUTOWRAP_WORD(2),
-    /**
-     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line.
-     */
     AUTOWRAP_WORD_SMART(3),
     ;
 

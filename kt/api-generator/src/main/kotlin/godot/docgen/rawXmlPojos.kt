@@ -252,6 +252,21 @@ private fun String.replaceCodeReferences(): String {
             tmpString = tmpString.replace(oldFunctionReference, "[$newFunctionReference]") //nulls already filtered
         }
 
+    //parameters
+    //example: [param right]
+    "\\[param .+?(?=])]".toRegex()
+        .findAll(tmpString)
+        .map { it.value }
+        .map { oldParameterReference ->
+            //extracts parameter name from match. example: right in the case of [param right]
+            val parameterName = "(?<=\\[param ).+?(?=])".toRegex().find(oldParameterReference)?.value
+            oldParameterReference to parameterName?.convertToCamelCase()
+        }
+        .filter { it.second != null }
+        .forEach { (oldParameterReference, newParameterReference) ->
+            tmpString = tmpString.replace(oldParameterReference, "[$newParameterReference]") //nulls already filtered
+        }
+
     return tmpString
 }
 

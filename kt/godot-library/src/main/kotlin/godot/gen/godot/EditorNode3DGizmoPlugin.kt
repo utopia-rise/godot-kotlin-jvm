@@ -30,11 +30,11 @@ import kotlin.Unit
  * Used by the editor to define Node3D gizmo types.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/plugins/editor/spatial_gizmos.html]($DOCS_URL/tutorials/plugins/editor/spatial_gizmos.html)
+ * [$DOCS_URL/tutorials/plugins/editor/3d_gizmos.html]($DOCS_URL/tutorials/plugins/editor/3d_gizmos.html)
  *
  * [godot.EditorNode3DGizmoPlugin] allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorNode3DGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorNode3DGizmo] type. See the tutorial in the documentation for more info.
  *
- * To use [godot.EditorNode3DGizmoPlugin], register it using the [godot.EditorPlugin.addSpatialGizmoPlugin] method first.
+ * To use [godot.EditorNode3DGizmoPlugin], register it using the [godot.EditorPlugin.addNode3dGizmoPlugin] method first.
  */
 @GodotBaseType
 public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
@@ -93,7 +93,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to provide gizmo's handle names. The `secondary` argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information). Called for this plugin's active gizmos.
+   * Override this method to provide gizmo's handle names. The [secondary] argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information). Called for this plugin's active gizmos.
    */
   public open fun _getHandleName(
     gizmo: EditorNode3DGizmo,
@@ -104,7 +104,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to return `true` whenever to given handle should be highlighted in the editor. The `secondary` argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information). Called for this plugin's active gizmos.
+   * Override this method to return `true` whenever to given handle should be highlighted in the editor. The [secondary] argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information). Called for this plugin's active gizmos.
    */
   public open fun _isHandleHighlighted(
     gizmo: EditorNode3DGizmo,
@@ -117,7 +117,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Override this method to return the current value of a handle. This value will be requested at the start of an edit and used as the `restore` argument in [_commitHandle].
    *
-   * The `secondary` argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
+   * The [secondary] argument is `true` when the requested handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
    *
    * Called for this plugin's active gizmos.
    */
@@ -130,9 +130,9 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to update the node's properties when the user drags a gizmo handle (previously added with [godot.EditorNode3DGizmo.addHandles]). The provided `point` is the mouse position in screen coordinates and the `camera` can be used to convert it to raycasts.
+   * Override this method to update the node's properties when the user drags a gizmo handle (previously added with [godot.EditorNode3DGizmo.addHandles]). The provided [screenPos] is the mouse position in screen coordinates and the [camera] can be used to convert it to raycasts.
    *
-   * The `secondary` argument is `true` when the edited handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
+   * The [secondary] argument is `true` when the edited handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
    *
    * Called for this plugin's active gizmos.
    */
@@ -146,11 +146,11 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to commit a handle being edited (handles must have been previously added by [godot.EditorNode3DGizmo.addHandles] during [_redraw]). This usually means creating an [godot.UndoRedo] action for the change, using the current handle value as "do" and the `restore` argument as "undo".
+   * Override this method to commit a handle being edited (handles must have been previously added by [godot.EditorNode3DGizmo.addHandles] during [_redraw]). This usually means creating an [godot.UndoRedo] action for the change, using the current handle value as "do" and the [restore] argument as "undo".
    *
-   * If the `cancel` argument is `true`, the `restore` value should be directly set, without any [godot.UndoRedo] action.
+   * If the [cancel] argument is `true`, the [restore] value should be directly set, without any [godot.UndoRedo] action.
    *
-   * The `secondary` argument is `true` when the committed handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
+   * The [secondary] argument is `true` when the committed handle is secondary (see [godot.EditorNode3DGizmo.addHandles] for more information).
    *
    * Called for this plugin's active gizmos.
    */
@@ -164,7 +164,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse clicks. Given a `camera` and a `point` in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos]. Called for this plugin's active gizmos.
+   * Override this method to allow selecting subgizmos using mouse clicks. Given a [camera] and a [screenPos] in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos]. Called for this plugin's active gizmos.
    */
   public open fun _subgizmosIntersectRay(
     gizmo: EditorNode3DGizmo,
@@ -175,7 +175,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a `camera` and a `frustum`, this method should return which subgizmos are contained within the frustum. The `frustum` argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].  Called for this plugin's active gizmos.
+   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and [frustumPlanes], this method should return which subgizmos are contained within the frustums. The [frustumPlanes] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].  Called for this plugin's active gizmos.
    */
   public open fun _subgizmosIntersectFrustum(
     gizmo: EditorNode3DGizmo,
@@ -193,7 +193,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The `transform` is given in the Node3D's local coordinate system.  Called for this plugin's active gizmos.
+   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system.  Called for this plugin's active gizmos.
    */
   public open fun _setSubgizmoTransform(
     gizmo: EditorNode3DGizmo,
@@ -203,9 +203,9 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   }
 
   /**
-   * Override this method to commit a group of subgizmos being edited (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). This usually means creating an [godot.UndoRedo] action for the change, using the current transforms as "do" and the `restore` transforms as "undo".
+   * Override this method to commit a group of subgizmos being edited (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). This usually means creating an [godot.UndoRedo] action for the change, using the current transforms as "do" and the [restores] transforms as "undo".
    *
-   * If the `cancel` argument is `true`, the `restore` transforms should be directly set, without any [godot.UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.
+   * If the [cancel] argument is `true`, the [restores] transforms should be directly set, without any [godot.UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.
    */
   public open fun _commitSubgizmos(
     gizmo: EditorNode3DGizmo,

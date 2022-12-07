@@ -83,9 +83,6 @@ public open class Curve : Resource() {
     callConstructor(ENGINECLASS_CURVE)
   }
 
-  /**
-   * Returns the number of points describing the curve.
-   */
   public fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_GET_POINT_COUNT, LONG)
@@ -124,7 +121,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the curve coordinates for the point at `index`.
+   * Returns the curve coordinates for the point at [index].
    */
   public fun getPointPosition(index: Long): Vector2 {
     TransferContext.writeArguments(LONG to index)
@@ -133,7 +130,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Assigns the vertical position `y` to the point at `index`.
+   * Assigns the vertical position [y] to the point at [index].
    */
   public fun setPointValue(index: Long, y: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to y)
@@ -149,18 +146,12 @@ public open class Curve : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns the Y value for the point that would exist at the X position `offset` along the curve.
-   */
   public fun interpolate(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  /**
-   * Returns the Y value for the point that would exist at the X position `offset` along the curve using the baked cache. Bakes the curve's points if not already baked.
-   */
   public fun interpolateBaked(offset: Double): Double {
     TransferContext.writeArguments(DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_INTERPOLATE_BAKED, DOUBLE)
@@ -168,7 +159,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the left tangent angle (in degrees) for the point at `index`.
+   * Returns the left tangent angle (in degrees) for the point at [index].
    */
   public fun getPointLeftTangent(index: Long): Double {
     TransferContext.writeArguments(LONG to index)
@@ -178,7 +169,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the right tangent angle (in degrees) for the point at `index`.
+   * Returns the right tangent angle (in degrees) for the point at [index].
    */
   public fun getPointRightTangent(index: Long): Double {
     TransferContext.writeArguments(LONG to index)
@@ -188,7 +179,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the left [enum TangentMode] for the point at `index`.
+   * Returns the left [enum TangentMode] for the point at [index].
    */
   public fun getPointLeftMode(index: Long): Curve.TangentMode {
     TransferContext.writeArguments(LONG to index)
@@ -197,7 +188,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the right [enum TangentMode] for the point at `index`.
+   * Returns the right [enum TangentMode] for the point at [index].
    */
   public fun getPointRightMode(index: Long): Curve.TangentMode {
     TransferContext.writeArguments(LONG to index)
@@ -206,7 +197,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the left tangent angle for the point at `index` to `tangent`.
+   * Sets the left tangent angle for the point at [index] to [tangent].
    */
   public fun setPointLeftTangent(index: Long, tangent: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
@@ -214,7 +205,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the right tangent angle for the point at `index` to `tangent`.
+   * Sets the right tangent angle for the point at [index] to [tangent].
    */
   public fun setPointRightTangent(index: Long, tangent: Double): Unit {
     TransferContext.writeArguments(LONG to index, DOUBLE to tangent)
@@ -222,7 +213,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the left [enum TangentMode] for the point at `index` to `mode`.
+   * Sets the left [enum TangentMode] for the point at [index] to [mode].
    */
   public fun setPointLeftMode(index: Long, mode: Curve.TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
@@ -230,7 +221,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the right [enum TangentMode] for the point at `index` to `mode`.
+   * Sets the right [enum TangentMode] for the point at [index] to [mode].
    */
   public fun setPointRightMode(index: Long, mode: Curve.TangentMode): Unit {
     TransferContext.writeArguments(LONG to index, LONG to mode.id)
@@ -238,7 +229,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Removes points that are closer than `CMP_EPSILON` (0.00001) units to their neighbor on the curve.
+   * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value) away from their neighbor on the curve.
    */
   public fun cleanDupes(): Unit {
     TransferContext.writeArguments()

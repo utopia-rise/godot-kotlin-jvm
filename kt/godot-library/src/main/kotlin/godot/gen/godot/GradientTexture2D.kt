@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
 /**
  * Gradient-filled 2D texture.
  *
- * The texture uses a [godot.Gradient] to fill the texture data in 2D space. The gradient is filled according to the specified [fill] and [repeat] types using colors obtained from the gradient. The texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width] and [height]).
+ * The texture uses a [godot.Gradient] to fill the texture data in 2D space. The gradient is filled according to the specified [fill] and [repeat] types using colors obtained from the gradient. The texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width] and [height]). See also [godot.GradientTexture1D], [godot.CurveTexture] and [godot.CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture2D : Texture2D() {

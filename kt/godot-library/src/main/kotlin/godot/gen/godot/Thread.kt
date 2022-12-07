@@ -41,7 +41,11 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Starts a new [godot.Thread] that calls `callable` with `userdata` passed as an argument. Even if no userdata is passed, `callable` must accept one argument and it will be null. The `priority` of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
+   * Starts a new [godot.Thread] that calls [callable].
+   *
+   * If the method takes some arguments, you can pass them using [godot.Callable.bind].
+   *
+   * The [priority] of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */

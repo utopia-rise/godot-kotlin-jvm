@@ -43,7 +43,7 @@ public object Geometry2D : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns `true` if `point` is inside the circle or if it's located exactly *on* the circle's boundary, otherwise returns `false`.
+   * Returns `true` if [point] is inside the circle or if it's located exactly *on* the circle's boundary, otherwise returns `false`.
    */
   public fun isPointInCircle(
     point: Vector2,
@@ -56,7 +56,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two segments ([fromA], [toA]) and ([fromB], [toB]) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsSegment(
     fromA: Vector2,
@@ -71,7 +71,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two lines (`from_a`, `dir_a`) and (`from_b`, `dir_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
+   * Checks if the two lines ([fromA], [dirA]) and ([fromB], [dirB]) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns `null`.
    *
    * **Note:** The lines are specified using direction vectors, not end points.
    */
@@ -88,7 +88,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Given the two 2D segments (`p1`, `q1`) and (`p2`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.PackedVector2Array] that contains this point on (`p1`, `q1`) as well the accompanying point on (`p2`, `q2`).
+   * Given the two 2D segments ([p1], [q1]) and ([p2], [q2]), finds those two points on the two segments that are closest to each other. Returns a [godot.PackedVector2Array] that contains this point on ([p1], [q1]) as well the accompanying point on ([p2], [q2]).
    */
   public fun getClosestPointsBetweenSegments(
     p1: Vector2,
@@ -104,7 +104,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns the 2D point on the 2D segment (`s1`, `s2`) that is closest to `point`. The returned point will always be inside the specified segment.
+   * Returns the 2D point on the 2D segment ([s1], [s2]) that is closest to [point]. The returned point will always be inside the specified segment.
    */
   public fun getClosestPointToSegment(
     point: Vector2,
@@ -118,7 +118,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns the 2D point on the 2D line defined by (`s1`, `s2`) that is closest to `point`. The returned point can be inside the segment (`s1`, `s2`) or outside of it, i.e. somewhere on the line extending from the segment.
+   * Returns the 2D point on the 2D line defined by ([s1], [s2]) that is closest to [point]. The returned point can be inside the segment ([s1], [s2]) or outside of it, i.e. somewhere on the line extending from the segment.
    */
   public fun getClosestPointToSegmentUncapped(
     point: Vector2,
@@ -132,7 +132,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns if `point` is inside the triangle specified by `a`, `b` and `c`.
+   * Returns if [point] is inside the triangle specified by [a], [b] and [c].
    */
   public fun pointIsInsideTriangle(
     point: Vector2,
@@ -147,7 +147,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns `true` if `polygon`'s vertices are ordered in clockwise order, otherwise returns `false`.
+   * Returns `true` if [polygon]'s vertices are ordered in clockwise order, otherwise returns `false`.
    */
   public fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
@@ -157,7 +157,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns `true` if `point` is inside `polygon` or if it's located exactly *on* polygon's boundary, otherwise returns `false`.
+   * Returns `true` if [point] is inside [polygon] or if it's located exactly *on* polygon's boundary, otherwise returns `false`.
    */
   public fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
@@ -167,7 +167,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
+   * Triangulates the polygon specified by the points in [polygon]. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into [polygon] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
    */
   public fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
@@ -177,7 +177,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Triangulates the area specified by discrete set of `points` such that no point is inside the circumcircle of any resulting triangle. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `points` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
+   * Triangulates the area specified by discrete set of [points] such that no point is inside the circumcircle of any resulting triangle. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into [points] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
    */
   public fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
@@ -197,7 +197,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Merges (combines) `polygon_a` and `polygon_b` and returns an array of merged polygons. This performs [OPERATION_UNION] between polygons.
+   * Merges (combines) [polygonA] and [polygonB] and returns an array of merged polygons. This performs [OPERATION_UNION] between polygons.
    *
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -209,9 +209,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Clips `polygon_a` against `polygon_b` and returns an array of clipped polygons. This performs [OPERATION_DIFFERENCE] between polygons. Returns an empty array if `polygon_b` completely overlaps `polygon_a`.
+   * Clips [polygonA] against [polygonB] and returns an array of clipped polygons. This performs [OPERATION_DIFFERENCE] between polygons. Returns an empty array if [polygonB] completely overlaps [polygonA].
    *
-   * If `polygon_b` is enclosed by `polygon_a`, returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
+   * If [polygonB] is enclosed by [polygonA], returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
    */
   public fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<Any?> {
@@ -221,7 +221,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Intersects `polygon_a` with `polygon_b` and returns an array of intersected polygons. This performs [OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.
+   * Intersects [polygonA] with [polygonB] and returns an array of intersected polygons. This performs [OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -234,7 +234,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Mutually excludes common area defined by intersection of `polygon_a` and `polygon_b` (see [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.
+   * Mutually excludes common area defined by intersection of [polygonA] and [polygonB] (see [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -246,7 +246,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Clips `polyline` against `polygon` and returns an array of clipped polylines. This performs [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
+   * Clips [polyline] against [polygon] and returns an array of clipped polylines. This performs [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
    */
   public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
       VariantArray<Any?> {
@@ -257,7 +257,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Intersects `polyline` with `polygon` and returns an array of intersected polylines. This performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
+   * Intersects [polyline] with [polygon] and returns an array of intersected polylines. This performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
    */
   public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<Any?> {
@@ -268,9 +268,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Inflates or deflates `polygon` by `delta` units (pixels). If `delta` is positive, makes the polygon grow outward. If `delta` is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if `delta` is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.
+   * Inflates or deflates [polygon] by [delta] units (pixels). If [delta] is positive, makes the polygon grow outward. If [delta] is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if [delta] is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.
    *
-   * Each polygon's vertices will be rounded as determined by `join_type`, see [enum PolyJoinType].
+   * Each polygon's vertices will be rounded as determined by [joinType], see [enum PolyJoinType].
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    *
@@ -317,11 +317,11 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Inflates or deflates `polyline` by `delta` units (pixels), producing polygons. If `delta` is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If `delta` is negative, returns an empty array.
+   * Inflates or deflates [polyline] by [delta] units (pixels), producing polygons. If [delta] is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If [delta] is negative, returns an empty array.
    *
-   * Each polygon's vertices will be rounded as determined by `join_type`, see [enum PolyJoinType].
+   * Each polygon's vertices will be rounded as determined by [joinType], see [enum PolyJoinType].
    *
-   * Each polygon's endpoints will be rounded as determined by `end_type`, see [enum PolyEndType].
+   * Each polygon's endpoints will be rounded as determined by [endType], see [enum PolyEndType].
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -337,7 +337,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a vector of [godot.core.Vector2] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.core.Vector2].
+   * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a [godot.PackedVector2Array] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.Vector2i].
    */
   public fun makeAtlas(sizes: PackedVector2Array): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)

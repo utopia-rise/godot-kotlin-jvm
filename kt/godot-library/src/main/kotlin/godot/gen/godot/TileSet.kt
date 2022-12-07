@@ -41,8 +41,6 @@ import kotlin.Unit
  *
  * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID and their alternative tile ID.
  *
- *
- *
  * A TileSet can be configured so that its tiles expose more or less properties. To do so, the TileSet resources uses property layers, that you can add or remove depending on your needs.
  *
  * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer an mask), you may add several TileSet physics layers for each type of collision you need.
@@ -136,7 +134,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [godot.TileSetSource] to the TileSet. If `atlas_source_id_override` is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
+   * Adds a [godot.TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
    *
    * The function returns the added source source ID or -1 if the source could not be added.
    */
@@ -172,7 +170,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the source ID for source with index `index`.
+   * Returns the source ID for source with index [index].
    */
   public fun getSourceId(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
@@ -190,7 +188,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [godot.TileSetSource] with ID `source_id`.
+   * Returns the [godot.TileSetSource] with ID [sourceId].
    */
   public fun getSource(sourceId: Long): TileSetSource? {
     TransferContext.writeArguments(LONG to sourceId)
@@ -209,7 +207,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds an occlusion layer to the TileSet at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
@@ -219,7 +217,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the occlusion layer at index `layer_index` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveOcclusionLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
@@ -227,7 +225,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the occlusion layer at index `layer_index`. Also updates the atlas tiles accordingly.
+   * Removes the occlusion layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeOcclusionLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
@@ -283,7 +281,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a physics layer to the TileSet at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
@@ -293,7 +291,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the physics layer at index `layer_index` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun movePhysicsLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
@@ -301,7 +299,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the physics layer at index `layer_index`. Also updates the atlas tiles accordingly.
+   * Removes the physics layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removePhysicsLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
@@ -377,7 +375,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain set at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
   public fun addTerrainSet(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
@@ -385,7 +383,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain set at index `terrain_set` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveTerrainSet(terrainSet: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
@@ -393,7 +391,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the terrain set at index `terrain_set`. Also updates the atlas tiles accordingly.
+   * Removes the terrain set at index [terrainSet]. Also updates the atlas tiles accordingly.
    */
   public fun removeTerrainSet(terrainSet: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet)
@@ -427,7 +425,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain to the given terrain set `terrain_set` at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
   public fun addTerrain(terrainSet: Long, toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
@@ -435,7 +433,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain at index `terrain_index` for terrain set `terrain_set` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveTerrain(
     terrainSet: Long,
@@ -447,7 +445,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the terrain at index `terrain_index` in the given terrain set `terrain_set`. Also updates the atlas tiles accordingly.
+   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates the atlas tiles accordingly.
    */
   public fun removeTerrain(terrainSet: Long, terrainIndex: Long): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to terrainIndex)
@@ -507,7 +505,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a navigation layer to the TileSet at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
@@ -517,7 +515,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the navigation layer at index `layer_index` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveNavigationLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
@@ -525,7 +523,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the navigation layer at index `layer_index`. Also updates the atlas tiles accordingly.
+   * Removes the navigation layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeNavigationLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
@@ -563,7 +561,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a custom data layer to the TileSet at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    *
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
@@ -573,7 +571,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the custom data layer at index `layer_index` to the given position `to_position` in the array. Also updates the atlas tiles accordingly.
+   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveCustomDataLayer(layerIndex: Long, toPosition: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex, LONG to toPosition)
@@ -581,7 +579,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the custom data layer at index `layer_index`. Also updates the atlas tiles accordingly.
+   * Removes the custom data layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeCustomDataLayer(layerIndex: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex)
@@ -780,7 +778,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given `index`.
+   * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
    */
   public fun addPattern(pattern: TileMapPattern, index: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to pattern, LONG to index)
@@ -789,7 +787,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [godot.TileMapPattern] at the given `index`.
+   * Returns the [godot.TileMapPattern] at the given [index].
    */
   public fun getPattern(index: Long = -1): TileMapPattern? {
     TransferContext.writeArguments(LONG to index)
@@ -822,7 +820,7 @@ public open class TileSet : Resource() {
      */
     TILE_LAYOUT_STACKED(0),
     /**
-     * Same as `TILE_LAYOUT_STAKED`, but the first half-offset is negative instead of positive.
+     * Same as [TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive.
      */
     TILE_LAYOUT_STACKED_OFFSET(1),
     /**

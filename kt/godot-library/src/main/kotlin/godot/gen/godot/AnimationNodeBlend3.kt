@@ -32,9 +32,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeBlend3 : AnimationNode() {
-  /**
-   * If `true`, sets the `optimization` to `false` when calling [godot.AnimationNode.blendInput], forcing the blended animations to update every frame.
-   */
   public var sync: Boolean
     get() {
       TransferContext.writeArguments()

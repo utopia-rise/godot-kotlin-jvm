@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Plugin for adding custom property editors on inspector.
+ * Plugin for adding custom property editors on the inspector.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/plugins/editor/inspector_plugins.html]($DOCS_URL/tutorials/plugins/editor/inspector_plugins.html)
@@ -55,25 +55,25 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Called to allow adding controls at the beginning of the property list for `object`.
+   * Called to allow adding controls at the beginning of the property list for [object].
    */
   public open fun _parseBegin(_object: Object): Unit {
   }
 
   /**
-   * Called to allow adding controls at the beginning of a category in the property list for `object`.
+   * Called to allow adding controls at the beginning of a category in the property list for [object].
    */
   public open fun _parseCategory(_object: Object, category: String): Unit {
   }
 
   /**
-   * Called to allow adding controls at the beginning of a group or a sub-group in the property list for `object`.
+   * Called to allow adding controls at the beginning of a group or a sub-group in the property list for [object].
    */
   public open fun _parseGroup(_object: Object, group: String): Unit {
   }
 
   /**
-   * Called to allow adding property-specific editors to the property list for `object`. The added editor control must extend [godot.EditorProperty]. Returning `true` removes the built-in editor for this property, otherwise allows to insert a custom editor before the built-in one.
+   * Called to allow adding property-specific editors to the property list for [object]. The added editor control must extend [godot.EditorProperty]. Returning `true` removes the built-in editor for this property, otherwise allows to insert a custom editor before the built-in one.
    */
   public open fun _parseProperty(
     _object: Object,
@@ -88,7 +88,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Called to allow adding controls at the end of the property list for `object`.
+   * Called to allow adding controls at the end of the property list for [object].
    */
   public open fun _parseEnd(_object: Object): Unit {
   }
@@ -103,7 +103,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds a property editor for an individual property. The `editor` control must extend [godot.EditorProperty].
+   * Adds a property editor for an individual property. The [editor] control must extend [godot.EditorProperty].
    */
   public fun addPropertyEditor(`property`: String, editor: Control): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor)
@@ -112,7 +112,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds an editor that allows modifying multiple properties. The `editor` control must extend [godot.EditorProperty].
+   * Adds an editor that allows modifying multiple properties. The [editor] control must extend [godot.EditorProperty].
    */
   public fun addPropertyEditorForMultipleProperties(
     label: String,

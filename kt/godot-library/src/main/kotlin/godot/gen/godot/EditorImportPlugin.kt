@@ -36,7 +36,7 @@ import kotlin.Unit
  *
  * [gdscript]
  *
- * tool
+ * @tool
  *
  * extends EditorImportPlugin
  *
@@ -106,7 +106,7 @@ import kotlin.Unit
  *
  *     var filename = save_path + "." + _get_save_extension()
  *
- *     return ResourceSaver.save(filename, mesh)
+ *     return ResourceSaver.save(mesh, filename)
  *
  * [/gdscript]
  *
@@ -224,7 +224,7 @@ import kotlin.Unit
  *
  *         String filename = savePath + "." + GetSaveExtension();
  *
- *         return (int)ResourceSaver.Save(filename, mesh);
+ *         return (int)ResourceSaver.Save(mesh, filename);
  *
  *     }
  *
@@ -370,7 +370,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   }
 
   /**
-   * Imports `source_file` into `save_path` with the import `options` specified. The `platform_variants` and `gen_files` arrays will be modified by this function.
+   * Imports [sourceFile] into [savePath] with the import [options] specified. The [platformVariants] and [genFiles] arrays will be modified by this function.
    *
    * This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.
    */

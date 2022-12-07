@@ -105,7 +105,11 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Set to [godot.SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
    *
+   * By default, only 4 bone influences are used ([godot.SKIN_4_WEIGHTS])
+   *
+   * **Note:** This function takes an enum, not the exact number of weights.
    */
   public fun setSkinWeightCount(count: SurfaceTool.SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
@@ -114,7 +118,11 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * By default, returns [godot.SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
    *
+   * Returns [godot.SKIN_8_WEIGHTS] if up to 8 influences are used.
+   *
+   * **Note:** This function returns an enum, not the exact number of weights.
    */
   public fun getSkinWeightCount(): SurfaceTool.SkinWeightCount {
     TransferContext.writeArguments()
@@ -124,7 +132,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Sets the color format for this custom [channelIndex]. Use [CUSTOM_MAX] to disable.
    *
+   * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
   public fun setCustomFormat(index: Long, format: SurfaceTool.CustomFormat): Unit {
     TransferContext.writeArguments(LONG to index, LONG to format.id)
@@ -132,7 +142,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   *
+   * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
   public fun getCustomFormat(index: Long): SurfaceTool.CustomFormat {
     TransferContext.writeArguments(LONG to index)
@@ -199,7 +209,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies an array of bones to use for the *next* vertex. `bones` must contain 4 integers.
+   * Specifies an array of bones to use for the *next* vertex. [bones] must contain 4 integers.
    */
   public fun setBones(bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
@@ -207,7 +217,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies weight values to use for the *next* vertex. `weights` must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies weight values to use for the *next* vertex. [weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
   public fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
@@ -215,7 +225,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Sets the custom value on this vertex for [channelIndex].
    *
+   * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will ignore other color channels.
    */
   public fun setCustom(index: Long, custom: Color): Unit {
     TransferContext.writeArguments(LONG to index, COLOR to custom)
@@ -248,7 +260,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Adds an index to index array if you are using indexed vertices. Does not need to be called before adding vertices.
+   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
   public fun addIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -272,9 +284,11 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates normals from vertices so you do not have to do it manually. If `flip` is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
+   * Generates normals from vertices so you do not have to do it manually. If [flip] is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
    *
    * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
+   *
+   * **Note:** [generateNormals] takes smooth groups into account. If you don't specify any smooth group for each vertex, [generateNormals] will smooth normals for you.
    */
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
@@ -290,7 +304,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   *
+   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
   public fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
@@ -298,9 +312,6 @@ public open class SurfaceTool : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE, NIL)
   }
 
-  /**
-   *
-   */
   public fun getMaxAxisLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_MAX_AXIS_LENGTH,
@@ -309,7 +320,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    *
+   * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
   public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)
@@ -326,9 +339,6 @@ public open class SurfaceTool : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
   }
 
-  /**
-   *
-   */
   public fun getPrimitive(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE, LONG)
@@ -379,7 +389,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns a constructed [godot.ArrayMesh] from current information passed in. If an existing [godot.ArrayMesh] is passed in as an argument, will add an extra surface to the existing [godot.ArrayMesh].
    *
-   * **FIXME:** Document possible values for `flags`, it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
+   * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
   public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
@@ -400,39 +410,39 @@ public open class SurfaceTool : RefCounted() {
     id: Long
   ) {
     /**
-     *
+     * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
     CUSTOM_RGBA8_UNORM(0),
     /**
-     *
+     * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
     CUSTOM_RGBA8_SNORM(1),
     /**
-     *
+     * Stores data passed to [setCustom] as half precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_HALF].
      */
     CUSTOM_RG_HALF(2),
     /**
-     *
+     * Stores data passed to [setCustom] as half precision floats and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
     CUSTOM_RGBA_HALF(3),
     /**
-     *
+     * Stores data passed to [setCustom] as full precision floats, and uses only red color channel. See [godot.Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
     CUSTOM_R_FLOAT(4),
     /**
-     *
+     * Stores data passed to [setCustom] as full precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
     CUSTOM_RG_FLOAT(5),
     /**
-     *
+     * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue color channels. See [godot.Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
     CUSTOM_RGB_FLOAT(6),
     /**
-     *
+     * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
     CUSTOM_RGBA_FLOAT(7),
     /**
-     *
+     * Used to indicate a disabled custom channel.
      */
     CUSTOM_MAX(8),
     ;
@@ -451,11 +461,11 @@ public open class SurfaceTool : RefCounted() {
     id: Long
   ) {
     /**
-     *
+     * Each individual vertex can be influenced by only 4 bone weights.
      */
     SKIN_4_WEIGHTS(0),
     /**
-     *
+     * Each individual vertex can be influenced by up to 8 bone weights.
      */
     SKIN_8_WEIGHTS(1),
     ;

@@ -47,7 +47,7 @@ public open class Container : Control() {
   }
 
   /**
-   * Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the inspector dock.
+   * Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.
    *
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */
@@ -56,7 +56,7 @@ public open class Container : Control() {
   }
 
   /**
-   * Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the inspector dock.
+   * Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.
    *
    * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
    */

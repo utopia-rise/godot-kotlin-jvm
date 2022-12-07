@@ -43,9 +43,6 @@ public open class WorldEnvironment : Node() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()

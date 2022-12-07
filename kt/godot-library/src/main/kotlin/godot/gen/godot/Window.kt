@@ -41,47 +41,51 @@ import kotlin.Unit
 /**
  * Base class for all windows.
  *
- * A node that creates a window.
+ * A node that creates a window. The window can either be a native system window or embedded inside another [godot.Window] (see [godot.Viewport.guiEmbedSubwindows]).
+ *
+ * At runtime, [godot.Window]s will not close automatically when requested. You need to handle it manually using [closeRequested] (this applies both to clicking close button and clicking outside popup).
  */
 @GodotBaseType
 public open class Window : Viewport() {
   /**
-   *
+   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
    */
   public val mouseExited: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the [godot.Window] gains focus.
    */
   public val focusEntered: Signal0 by signal()
 
   /**
-   *
+   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [godot.Node.NOTIFICATION_WM_GO_BACK_REQUEST].
    */
   public val goBackRequested: Signal0 by signal()
 
   /**
+   * Emitted when the [godot.Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
    *
+   * This signal can be used to handle window closing, e.g. by connecting it to [hide].
    */
   public val closeRequested: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the [godot.Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
   public val windowInput: Signal1<InputEvent> by signal("event")
 
   /**
-   *
+   * Emitted right after [popup] call, before the [godot.Window] appears or does anything.
    */
   public val aboutToPopup: Signal0 by signal()
 
@@ -103,17 +107,17 @@ public open class Window : Viewport() {
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 
   /**
-   *
+   * Emitted when [godot.Window] is made visible or disappears.
    */
   public val visibilityChanged: Signal0 by signal()
 
   /**
-   *
+   * Emitted when the [godot.Window] loses its focus.
    */
   public val focusExited: Signal0 by signal()
 
   /**
-   * The window's title.
+   * The window's title. If the [godot.Window] is non-embedded, title styles set in [godot.Theme] will have no effect.
    */
   public var title: String
     get() {
@@ -157,7 +161,7 @@ public open class Window : Viewport() {
   /**
    * Set's the window's current mode.
    *
-   * **Note:** Fullscreen mode is not exclusive fullscreen on Windows and Linux.
+   * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
    */
   public var mode: Long
     get() {
@@ -199,7 +203,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the window's size will automatically update when a child node is added or removed, ignoring [minSize] if the new size is bigger.
    *
+   * If `false`, you need to call [childControlsChanged] manually.
    */
   public var wrapControls: Boolean
     get() {
@@ -213,7 +219,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the [godot.Window] is transient, i.e. it's considered a child of another [godot.Window]. Transient window is will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    *
+   * Note that behavior might be different depending on the platform.
    */
   public var transient: Boolean
     get() {
@@ -227,7 +235,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the [godot.Window] will be in exclusive mode. Exclusive windows are always on top of their parent and will block all input going to the parent [godot.Window].
    *
+   * Needs [transient] enabled to work.
    */
   public var exclusive: Boolean
     get() {
@@ -241,7 +251,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If non-zero, the [godot.Window] can't be resized to be smaller than this size.
    *
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
    */
   public var minSize: Vector2i
     get() {
@@ -255,7 +267,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If non-zero, the [godot.Window] can't be resized to be bigger than this size.
    *
+   * **Note:** This property will be ignored if the value is lower than [minSize].
    */
   public var maxSize: Vector2i
     get() {
@@ -269,7 +283,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   *
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
    */
   public var contentScaleSize: Vector2i
     get() {
@@ -285,7 +299,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   *
+   * Specifies how the content is scaled when the [godot.Window] is resized.
    */
   public var contentScaleMode: Long
     get() {
@@ -301,7 +315,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   *
+   * Specifies how the content's aspect behaves when the [godot.Window] is resized. The base aspect is determined by [contentScaleSize].
    */
   public var contentScaleAspect: Long
     get() {
@@ -317,7 +331,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   *
+   * Specifies the base scale of [godot.Window]'s content when its [size] is equal to [contentScaleSize].
    */
   public var contentScaleFactor: Double
     get() {
@@ -333,7 +347,9 @@ public open class Window : Viewport() {
     }
 
   /**
+   * The [godot.Theme] resource that determines the style of the underlying [godot.Control] nodes.
    *
+   * [godot.Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
     get() {
@@ -347,7 +363,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   *
+   * The name of a theme type variation used by this [godot.Window] to look up its own theme items. See [godot.Control.themeTypeVariation] for more details.
    */
   public var themeTypeVariation: String
     get() {
@@ -406,7 +422,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if the flag is set.
+   * Returns `true` if the [flag] is set.
    */
   public fun getFlag(flag: Window.Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
@@ -415,7 +431,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if the window can be maximized (the maximize button is enabled).
    */
   public fun isMaximizeAllowed(): Boolean {
     TransferContext.writeArguments()
@@ -424,7 +440,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Tells the OS that the [godot.Window] needs an attention. This makes the window stand out in some way depending on the system, e.g. it might blink on the task bar.
    */
   public fun requestAttention(): Unit {
     TransferContext.writeArguments()
@@ -432,7 +448,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Moves the [godot.Window] on top of other windows and focuses it.
    */
   public fun moveToForeground(): Unit {
     TransferContext.writeArguments()
@@ -440,7 +456,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Hides the window. This is not the same as minimized state. Hidden window can't be interacted with and needs to be made visible with [show].
    */
   public fun hide(): Unit {
     TransferContext.writeArguments()
@@ -448,7 +464,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Makes the [godot.Window] appear. This enables interactions with the [godot.Window] and doesn't change any of its property other than visibility (unlike e.g. [popup]).
    */
   public fun show(): Unit {
     TransferContext.writeArguments()
@@ -482,7 +498,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * If [active] is `true`, enables system's native IME (Input Method Editor).
    */
   public fun setImeActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
@@ -490,7 +506,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Moves IME to the given position.
    */
   public fun setImePosition(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -507,7 +523,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the combined minimum size from the child [godot.Control] nodes of the window.
+   * Returns the combined minimum size from the child [godot.Control] nodes of the window. Use [childControlsChanged] to update it when children nodes have changed.
    */
   public fun getContentsMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -517,7 +533,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Enables font oversampling. This makes fonts look better when they are scaled up.
    */
   public fun setUseFontOversampling(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -526,7 +542,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if font oversampling is enabled. See [setUseFontOversampling].
    */
   public fun isUsingFontOversampling(): Boolean {
     TransferContext.writeArguments()
@@ -536,7 +552,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Requests an update of the [godot.Window] size to fit underlying [godot.Control] nodes.
    */
   public fun childControlsChanged(): Unit {
     TransferContext.writeArguments()
@@ -544,7 +560,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the icon at [name] if the theme has [themeType].
    *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -553,7 +571,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the [godot.StyleBox] at [name] if the theme has [themeType].
    *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -562,7 +582,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the [godot.Font] at `name` if the theme has `theme_type`.
+   * Returns the [godot.Font] at [name] if the theme has [themeType].
+   *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -571,7 +593,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the font size at `name` if the theme has `theme_type`.
+   * Returns the font size at [name] if the theme has [themeType].
+   *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -580,7 +604,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the [godot.core.Color] at [name] if the theme has [themeType].
    *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -589,7 +615,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the constant at [name] if the theme has [themeType].
    *
+   * See [godot.Control.getThemeColor] for more details.
    */
   public fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -598,7 +626,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if icon with [name] is in [themeType].
    */
   public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -607,7 +635,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if [godot.StyleBox] with [name] is in [themeType].
    */
   public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -616,9 +644,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if [godot.Font] with `name` is in `theme_type`.
-   *
-   * Returns `false` if the theme does not have `theme_type`.
+   * Returns `true` if [godot.Font] with [name] is in [themeType].
    */
   public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -627,9 +653,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if font size with `name` is in `theme_type`.
-   *
-   * Returns `false` if the theme does not have `theme_type`.
+   * Returns `true` if font size with [name] is in [themeType].
    */
   public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -638,7 +662,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if [godot.core.Color] with [name] is in [themeType].
    */
   public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -647,7 +671,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Returns `true` if constant with [name] is in [themeType].
    */
   public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -656,7 +680,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the default base scale defined in the attached [godot.Theme].
    *
+   * See [godot.Theme.defaultBaseScale] for more details.
    */
   public fun getThemeDefaultBaseScale(): Double {
     TransferContext.writeArguments()
@@ -666,7 +692,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the default [godot.Font] defined in the attached [godot.Theme].
    *
+   * See [godot.Theme.defaultFont] for more details.
    */
   public fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
@@ -676,7 +704,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the default font size defined in the attached [godot.Theme].
    *
+   * See [godot.Theme.defaultFontSize] for more details.
    */
   public fun getThemeDefaultFontSize(): Long {
     TransferContext.writeArguments()
@@ -712,7 +742,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Shows the [godot.Window] and makes it transient (see [transient]). If [rect] is provided, it will be set as the [godot.Window]'s size.
    *
+   * Fails if called on the main window.
    */
   public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
@@ -720,7 +752,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Popups the [godot.Window] with a position shifted by parent [godot.Window]'s position.
    *
+   * If the [godot.Window] is embedded, has the same effect as [popup].
    */
   public fun popupOnParent(parentRect: Rect2i): Unit {
     TransferContext.writeArguments(RECT2I to parentRect)
@@ -728,7 +762,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   *
+   * Popups the [godot.Window] centered inside its parent [godot.Window] and sets its size as a [ratio] of parent's size.
    */
   public fun popupCenteredRatio(ratio: Double = 0.8): Unit {
     TransferContext.writeArguments(DOUBLE to ratio)
@@ -736,7 +770,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Popups the [godot.Window] at the center of the current screen, with optionally given minimum size.
    *
+   * If the [godot.Window] is embedded, it will be centered in the parent [godot.Viewport] instead.
    */
   public fun popupCentered(minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
@@ -744,7 +780,9 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Popups the [godot.Window] centered inside its parent [godot.Window].
    *
+   * `fallback_ratio` determines the maximum size of the [godot.Window], in relation to its parent.
    */
   public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Double = 0.75):
       Unit {
@@ -756,23 +794,23 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     *
+     * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
     CONTENT_SCALE_ASPECT_IGNORE(0),
     /**
-     *
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
      */
     CONTENT_SCALE_ASPECT_KEEP(1),
     /**
-     *
+     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
      */
     CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
     /**
-     *
+     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
      */
     CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
     /**
-     *
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the to-left corner and add an extra visible area in the stretched space.
      */
     CONTENT_SCALE_ASPECT_EXPAND(4),
     ;
@@ -791,31 +829,33 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     * The window's ability to be resized.
+     * The window can't be resizing by dragging its resize grip. It's still possible to resize the window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
      */
     FLAG_RESIZE_DISABLED(0),
     /**
-     * Borderless window.
+     * The window do not have native title bar and other decorations. This flag is ignored for full-screen windows. Set with [borderless].
      */
     FLAG_BORDERLESS(1),
     /**
-     * Flag for making the window always on top of all other windows.
+     * The window is floating on top of all other windows. This flag is ignored for full-screen windows. Set with [alwaysOnTop].
      */
     FLAG_ALWAYS_ON_TOP(2),
     /**
+     * The window background can be transparent.
      *
+     * **Note:** This flag has no effect if [godot.ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`. Set with [transparent].
      */
     FLAG_TRANSPARENT(3),
     /**
-     *
+     * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set with [unfocusable].
      */
     FLAG_NO_FOCUS(4),
     /**
-     *
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have `transient parent` set (see [transient]).
      */
     FLAG_POPUP(5),
     /**
-     *
+     * Max value of the [enum Flags].
      */
     FLAG_MAX(6),
     ;
@@ -834,29 +874,29 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     * Windowed mode.
+     * Windowed mode, i.e. [godot.Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
     MODE_WINDOWED(0),
     /**
-     * Minimized window mode.
+     * Minimized window mode, i.e. [godot.Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
     MODE_MINIMIZED(1),
     /**
-     * Maximized window mode.
+     * Maximized window mode, i.e. [godot.Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
     MODE_MAXIMIZED(2),
     /**
-     * Fullscreen window mode. Note that this is not *exclusive* fullscreen. On Windows and Linux, a borderless window is used to emulate fullscreen. On macOS, a new desktop is used to display the running project.
+     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
      *
-     * Regardless of the platform, enabling fullscreen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling fullscreen mode.
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     MODE_FULLSCREEN(3),
     /**
-     * Exclusive fullscreen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
+     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
      *
-     * Only one window in exclusive fullscreen mode can be visible on a given screen at a time. If multiple windows are in exclusive fullscreen mode for the same screen, the last one being set to this mode takes precedence.
+     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
      *
-     * Regardless of the platform, enabling fullscreen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling fullscreen mode.
+     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     MODE_EXCLUSIVE_FULLSCREEN(4),
     ;
@@ -906,15 +946,15 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     *
+     * The content will not be scaled to match the [godot.Window]'s size.
      */
     CONTENT_SCALE_MODE_DISABLED(0),
     /**
-     *
+     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
     CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
     /**
-     *
+     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
     CONTENT_SCALE_MODE_VIEWPORT(2),
     ;
@@ -931,7 +971,7 @@ public open class Window : Viewport() {
 
   public companion object {
     /**
-     *
+     * Emitted when [godot.Window]'s visibility changes, right before [visibilityChanged].
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 30
   }

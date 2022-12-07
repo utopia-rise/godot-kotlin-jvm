@@ -41,7 +41,7 @@ import kotlin.Unit
 /**
  * Multiline text control intended for editing code.
  *
- * CodeEdit is a specialised [godot.TextEdit] designed for editing plain text code files. It contains a bunch of features commonly found in code editors such as line numbers, line folding, code completion, indent management and string / comment management.
+ * CodeEdit is a specialized [godot.TextEdit] designed for editing plain text code files. It contains a bunch of features commonly found in code editors such as line numbers, line folding, code completion, indent management and string / comment management.
  *
  * **Note:** By default [godot.CodeEdit] always use left-to-right text direction to correctly display source code.
  */
@@ -276,7 +276,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Size of tabs, if `indent_use_spaces` is enabled the amount of spaces to use.
+   * Size of tabs, if `indent_use_spaces` is enabled the number of spaces to use.
    */
   public var indentSize: Long
     get() {
@@ -390,21 +390,21 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Override this method to define how the selected entry should be inserted. If `replace` is true, any existing text should be replaced.
+   * Override this method to define how the selected entry should be inserted. If [replace] is true, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what happens when the user requests code completion. If `force` is true, any checks should be bypassed.
+   * Override this method to define what happens when the user requests code completion. If [force] is true, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what items in `candidates` should be displayed.
+   * Override this method to define what items in [candidates] should be displayed.
    *
-   * Both `candidates` and the return is a [godot.Array] of [godot.core.Dictionary], see [getCodeCompletionOption] for [godot.core.Dictionary] content.
+   * Both [candidates] and the return is a [godot.Array] of [godot.core.Dictionary], see [getCodeCompletionOption] for [godot.core.Dictionary] content.
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Any?>):
       VariantArray<Any?> {
@@ -455,7 +455,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if open key `open_key` exists.
+   * Returns `true` if open key [openKey] exists.
    */
   public fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
@@ -465,7 +465,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if close key `close_key` exists.
+   * Returns `true` if close key [closeKey] exists.
    */
   public fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
@@ -475,7 +475,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the matching auto brace close key for `open_key`.
+   * Gets the matching auto brace close key for [openKey].
    */
   public fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
@@ -676,7 +676,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the string delimiter with `start_key`.
+   * Removes the string delimiter with [startKey].
    */
   public fun removeStringDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -685,7 +685,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if string `start_key` exists.
+   * Returns `true` if string [startKey] exists.
    */
   public fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -703,7 +703,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns the delimiter index if `line` `column` is in a string. If `column` is not provided, will return the delimiter index if the entire `line` is a string. Otherwise `-1`.
+   * Returns the delimiter index if [line] [column] is in a string. If [column] is not provided, will return the delimiter index if the entire [line] is a string. Otherwise `-1`.
    */
   public fun isInString(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
@@ -728,7 +728,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the comment delimiter with `start_key`.
+   * Removes the comment delimiter with [startKey].
    */
   public fun removeCommentDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -737,7 +737,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if comment `start_key` exists.
+   * Returns `true` if comment [startKey] exists.
    */
   public fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -756,7 +756,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns delimiter index if `line` `column` is in a comment. If `column` is not provided, will return delimiter index if the entire `line` is a comment. Otherwise `-1`.
+   * Returns delimiter index if [line] [column] is in a comment. If [column] is not provided, will return delimiter index if the entire [line] is a comment. Otherwise `-1`.
    */
   public fun isInComment(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
@@ -785,7 +785,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If `line` `column` is in a string or comment, returns the start position of the region. If not or no start could be found, both [godot.core.Vector2] values will be `-1`.
+   * If [line] [column] is in a string or comment, returns the start position of the region. If not or no start could be found, both [godot.core.Vector2] values will be `-1`.
    */
   public fun getDelimiterStartPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
@@ -795,7 +795,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If `line` `column` is in a string or comment, returns the end position of the region. If not or no end could be found, both [godot.core.Vector2] values will be `-1`.
+   * If [line] [column] is in a string or comment, returns the end position of the region. If not or no end could be found, both [godot.core.Vector2] values will be `-1`.
    */
   public fun getDelimiterEndPosition(line: Long, column: Long): Vector2 {
     TransferContext.writeArguments(LONG to line, LONG to column)
@@ -832,7 +832,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Emits [codeCompletionRequested], if `force` is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
+   * Emits [codeCompletionRequested], if [force] is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
    */
   public fun requestCodeCompletion(force: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to force)
@@ -859,7 +859,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the autoccomplete menu to popup, if `force` is `true`.
+   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the autoccomplete menu to popup, if [force] is `true`.
    *
    * **Note:** This will replace all current candidates.
    */
@@ -880,7 +880,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the completion option at `index`. The return [godot.core.Dictionary] has the following key-values:
+   * Gets the completion option at [index]. The return [godot.core.Dictionary] has the following key-values:
    *
    * `kind`: [enum CodeCompletionKind]
    *
@@ -921,7 +921,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Inserts the selected entry into the text. If `replace` is true, any existing text is replaced rather then merged.
+   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather then merged.
    */
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to replace)

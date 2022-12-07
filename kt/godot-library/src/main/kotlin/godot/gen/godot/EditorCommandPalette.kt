@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  * Object that holds all the available Commands and their shortcuts text. These Commands can be accessed through **Editor > Command Palette** menu.
  *
- * Command key names use slash delimiters to distinguish sections Example: `"example/command1"` then `example` will be the section name.
+ * Command key names use slash delimiters to distinguish sections, for example: `"example/command1"` then `example` will be the section name.
  *
  * [codeblocks]
  *
@@ -62,13 +62,13 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
   /**
    * Adds a custom command to EditorCommandPalette.
    *
-   * - `command_name`: [godot.String] (Name of the **Command**. This is displayed to the user.)
+   * - [commandName]: [godot.String] (Name of the **Command**. This is displayed to the user.)
    *
-   * - `key_name`: [godot.String] (Name of the key for a particular **Command**. This is used to uniquely identify the **Command**.)
+   * - [keyName]: [godot.String] (Name of the key for a particular **Command**. This is used to uniquely identify the **Command**.)
    *
-   * - `binded_callable`: [godot.Callable] (Callable of the **Command**. This will be executed when the **Command** is selected.)
+   * - [bindedCallable]: [godot.Callable] (Callable of the **Command**. This will be executed when the **Command** is selected.)
    *
-   * - `shortcut_text`: [godot.String] (Shortcut text of the **Command** if available.)
+   * - [shortcutText]: [godot.String] (Shortcut text of the **Command** if available.)
    */
   public fun addCommand(
     commandName: String,
@@ -84,7 +84,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
   /**
    * Removes the custom command from EditorCommandPalette.
    *
-   * - `key_name`: [godot.String] (Name of the key for a particular **Command**.)
+   * - [keyName]: [godot.String] (Name of the key for a particular **Command**.)
    */
   public fun removeCommand(keyName: String): Unit {
     TransferContext.writeArguments(STRING to keyName)

@@ -76,29 +76,31 @@ import kotlin.Unit
  *
  *     private HMACContext ctx = new HMACContext();
  *
+ *
+ *
  *     public override void _Ready()
  *
  *     {
  *
- *         PackedByteArray key = String("supersecret").to_utf8();
+ *         byte[] key = "supersecret".ToUTF8();
  *
- *         Error err = ctx.Start(HashingContext.HASH_SHA256, key);
+ *         Error err = ctx.Start(HashingContext.HashType.Sha256, key);
  *
- *         GD.Assert(err == OK);
+ *         Debug.Assert(err == Error.Ok);
  *
- *         PackedByteArray msg1 = String("this is ").to_utf8();
+ *         byte[] msg1 = "this is ".ToUTF8();
  *
- *         PackedByteArray msg2 = String("super duper secret").to_utf8();
+ *         byte[] msg2 = "super duper secret".ToUTF8();
  *
  *         err = ctx.Update(msg1);
  *
- *         GD.Assert(err == OK);
+ *         Debug.Assert(err == Error.Ok);
  *
  *         err = ctx.Update(msg2);
  *
- *         GD.Assert(err == OK);
+ *         Debug.Assert(err == Error.Ok);
  *
- *         PackedByteArray hmac = ctx.Finish();
+ *         byte[] hmac = ctx.Finish();
  *
  *         GD.Print(hmac.HexEncode());
  *
@@ -106,13 +108,9 @@ import kotlin.Unit
  *
  * }
  *
- *
- *
  * [/csharp]
  *
  * [/codeblocks]
- *
- * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
@@ -130,7 +128,7 @@ public open class HMACContext : RefCounted() {
   }
 
   /**
-   * Updates the message to be HMACed. This can be called multiple times before [finish] is called to append `data` to the message, but cannot be called until [start] has been called.
+   * Updates the message to be HMACed. This can be called multiple times before [finish] is called to append [data] to the message, but cannot be called until [start] has been called.
    */
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)

@@ -24,6 +24,8 @@ import kotlin.Unit
 
 /**
  * A modified version of [godot.FileDialog] used by the editor.
+ *
+ * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and ability to see files as thumbnails grid instead of list.
  */
 @GodotBaseType
 public open class EditorFileDialog internal constructor() : ConfirmationDialog() {
@@ -137,7 +139,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     }
 
   /**
-   * If `true`, hidden files and directories will be visible in the [godot.EditorFileDialog].
+   * If `true`, hidden files and directories will be visible in the [godot.EditorFileDialog]. This property is synchronized with [godot.EditorSettings.filesystem/fileDialog/showHiddenFiles].
    */
   public var showHiddenFiles: Boolean
     get() {
@@ -181,9 +183,11 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   }
 
   /**
-   * Adds a comma-delimited file extension filter option to the [godot.EditorFileDialog] with an optional semi-colon-delimited label.
+   * Adds a comma-delimited file name [filter] option to the [godot.EditorFileDialog] with an optional [description], which restricts what files can be picked.
    *
-   * For example, `"*.tscn, *.scn; Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
+   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   *
+   * For example, a [filter] of `"*.tscn, *.scn"` and a [description] of `"Scenes"` results in filter text "Scenes (*.tscn, *.scn)".
    */
   public fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)

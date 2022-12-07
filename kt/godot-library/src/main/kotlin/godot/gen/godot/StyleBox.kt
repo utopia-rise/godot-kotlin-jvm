@@ -82,7 +82,7 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Sets the default value of the specified [enum Side] to `offset` pixels.
+   * Sets the default value of the specified [enum Side] to [offset] pixels.
    */
   public fun setDefaultMargin(margin: Side, offset: Double): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset)
@@ -147,9 +147,9 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Draws this stylebox using a [godot.CanvasItem] with given [RID].
+   * Draws this stylebox using a canvas item identified by the given [RID].
    *
-   * You can get a [RID] value using [godot.Object.getInstanceId] on a [godot.CanvasItem]-derived node.
+   * The [RID] value can either be the result of [godot.CanvasItem.getCanvasItem] called on an existing [godot.CanvasItem]-derived node, or directly from creating a canvas item in the [godot.RenderingServer] with [godot.RenderingServer.canvasItemCreate].
    */
   public fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)

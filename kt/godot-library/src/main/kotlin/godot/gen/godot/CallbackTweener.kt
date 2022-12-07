@@ -28,7 +28,9 @@ public open class CallbackTweener : Tweener() {
   }
 
   /**
-   * Makes the callback call delayed by given time in seconds. Example:
+   * Makes the callback call delayed by given time in seconds.
+   *
+   * **Example:**
    *
    * ```
    * 				var tween = get_tree().create_tween()

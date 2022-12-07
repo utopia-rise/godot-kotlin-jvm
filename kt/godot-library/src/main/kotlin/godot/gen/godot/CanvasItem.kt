@@ -45,7 +45,7 @@ import kotlin.Unit
  *
  * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
  *
- * Any [godot.CanvasItem] can draw. For this, [update] must be called, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside the [godot.Object.Notification], signal or [_draw] virtual functions.
+ * Any [godot.CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
  *
  * Canvas items are drawn in tree order. By default, children are on top of their parents so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
  *
@@ -53,7 +53,7 @@ import kotlin.Unit
  *
  * Ultimately, a transform notification can be requested, which will notify the node that its global position changed in case the parent tree changed.
  *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.deg2rad].
+ * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
  */
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
@@ -68,7 +68,9 @@ public open class CanvasItem internal constructor() : Node() {
   public val itemRectChanged: Signal0 by signal()
 
   /**
-   * Emitted when the [godot.CanvasItem] must redraw. This can only be connected realtime, as deferred will not allow drawing.
+   * Emitted when the [godot.CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW] notification, and *before* [_draw] is called.
+   *
+   * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
   public val draw: Signal0 by signal()
 
@@ -154,7 +156,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   *
+   * Allows the current node to clip children nodes, essentially acting as a mask.
    */
   public var clipChildren: Boolean
     get() {
@@ -249,7 +251,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Overridable function called by the engine (if defined) to draw the canvas item.
+   * Called when [godot.CanvasItem] has been requested to redraw (after [queueRedraw] is called, either manually or by the engine).
+   *
+   * Corresponds to the [NOTIFICATION_DRAW] notification in [godot.Object.Notification].
    */
   public open fun _draw(): Unit {
   }
@@ -264,7 +268,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -288,9 +292,6 @@ public open class CanvasItem internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_HIDE, NIL)
   }
 
-  /**
-   * Queue the [godot.CanvasItem] for update. [NOTIFICATION_DRAW] will be called on idle time to request redraw.
-   */
   public fun update(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_UPDATE, NIL)
@@ -324,7 +325,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    */
   public fun drawPolyline(
     points: PackedVector2Array,
@@ -337,7 +338,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform `width` and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
+   * Draws interconnected line segments with a uniform [width] and segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    */
   public fun drawPolylineColors(
     points: PackedVector2Array,
@@ -351,7 +352,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a unfilled arc between the given angles. The larger the value of `point_count`, the smoother the curve. See also [drawCircle].
+   * Draws a unfilled arc between the given angles. The larger the value of [pointCount], the smoother the curve. See also [drawCircle].
    */
   public fun drawArc(
     center: Vector2,
@@ -368,7 +369,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform `color`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
+   * Draws multiple disconnected lines with a uniform [color]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    */
   public fun drawMultiline(
     points: PackedVector2Array,
@@ -380,7 +381,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Colors assigned to line segments match by index between [points] and [colors]. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
    */
   public fun drawMultilineColors(
     points: PackedVector2Array,
@@ -393,9 +394,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a rectangle. If `filled` is `true`, the rectangle will be filled with the `color` specified. If `filled` is `false`, the rectangle will be drawn as a stroke with the `color` and `width` specified.
+   * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color] specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and [width] specified.
    *
-   * **Note:** `width` is only effective if `filled` is `false`.
+   * **Note:** [width] is only effective if [filled] is `false`.
    */
   public fun drawRect(
     rect: Rect2,
@@ -408,7 +409,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a colored, unfilled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
+   * Draws a colored, filled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
    */
   public fun drawCircle(
     position: Vector2,
@@ -432,7 +433,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
+   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
    */
   public fun drawTextureRect(
     texture: Texture2D,
@@ -446,7 +447,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
+   * Draws a textured rectangle region at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
    */
   public fun drawTextureRectRegion(
     texture: Texture2D,
@@ -462,11 +463,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region of the multi-channel signed distance field texture at a given position, optionally modulated by a color. See [godot.FontData.multichannelSignedDistanceField] for more information and caveats about MSDF font rendering.
+   * Draws a textured rectangle region of the multi-channel signed distance field texture at a given position, optionally modulated by a color. See [godot.FontFile.multichannelSignedDistanceField] for more information and caveats about MSDF font rendering.
    *
-   * If `outline` is positive, each alpha channel value of pixel in region is set to maximum value of true distance in the `outline` radius.
+   * If [outline] is positive, each alpha channel value of pixel in region is set to maximum value of true distance in the [outline] radius.
    *
-   * Value of the `pixel_range` should the same that was used during distance field texture generation.
+   * Value of the [pixelRange] should the same that was used during distance field texture generation.
    */
   public fun drawMsdfTextureRectRegion(
     texture: Texture2D,
@@ -504,7 +505,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a solid polygon of any amount of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
+   * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
    */
   public fun drawPolygon(
     points: PackedVector2Array,
@@ -517,7 +518,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a colored polygon of any amount of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
+   * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
    */
   public fun drawColoredPolygon(
     points: PackedVector2Array,
@@ -531,7 +532,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws `text` using the specified `font` at the `position` (bottom-left corner using the baseline of the font). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Draws [text] using the specified [font] at the [pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    *
    * **Example using the default project font:**
    *
@@ -545,11 +546,11 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * # so the Control is only created once.
    *
-   * var default_font = Control.new().get_font("font")
+   * var default_font = ThemeDB.fallback_font
    *
-   * var default_font_size = Control.new().get_font_size("font_size")
+   * var default_font_size = ThemeDB.fallback_font_size
    *
-   * draw_string(default_font, Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
+   * draw_string(default_font, Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size)
    *
    * [/gdscript]
    *
@@ -557,13 +558,13 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * // If using this method in a script that redraws constantly, move the
    *
-   * // `default_font` declaration to a member variable assigned in `_ready()`
+   * // `default_font` declaration to a member variable assigned in `_Ready()`
    *
    * // so the Control is only created once.
    *
-   * Font defaultFont = new Control().GetFont("font");
+   * Font defaultFont = ThemeDB.FallbackFont;
    *
-   * int defaultFontSize = new Control().GetFontSize("font_size");
+   * int defaultFontSize = ThemeDB.FallbackFontSize;
    *
    * DrawString(defaultFont, new Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1, defaultFontSize);
    *
@@ -590,7 +591,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Breaks `text` to the lines and draws it using the specified `font` at the `position` (top-left corner). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [text] into lines and draws it using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   public fun drawMultilineString(
     font: Font,
@@ -611,7 +612,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a string character using a custom font. Returns the advance, depending on the character width and kerning with an optional next character.
+   * Draws a string first character using a custom font.
    */
   public fun drawChar(
     font: Font,
@@ -703,7 +704,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the global transform matrix of this item.
+   * Returns the global transform matrix of this item, i.e. the combined transform up to the topmost [godot.CanvasItem] node. The topmost item is a [godot.CanvasItem] that either has no parent, has non-[godot.CanvasItem] parent or it has [topLevel] enabled.
    */
   public fun getGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -802,7 +803,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If `enable` is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
+   * If [enable] is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
    */
   public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -821,7 +822,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If `enable` is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
+   * If [enable] is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
    */
   public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -849,7 +850,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Assigns `screen_point` as this node's new local transform.
+   * Assigns [screenPoint] as this node's new local transform.
    */
   public fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -859,7 +860,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Transformations issued by `event`'s inputs are applied in local space instead of global space.
+   * Transformations issued by [event]'s inputs are applied in local space instead of global space.
    */
   public fun makeInputLocal(event: InputEvent): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
@@ -891,13 +892,13 @@ public open class CanvasItem internal constructor() : Node() {
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
     /**
-     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera.
+     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      *
      * **Note:** This texture filter is rarely useful in 2D projects. [TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate.
      */
     TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
-     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing.
+     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      *
      * **Note:** This texture filter is rarely useful in 2D projects. [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate.
      */
@@ -965,7 +966,7 @@ public open class CanvasItem internal constructor() : Node() {
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 35
 
     /**
-     * The [godot.CanvasItem] is requested to draw.
+     * The [godot.CanvasItem] is requested to draw (see [_draw]).
      */
     public final const val NOTIFICATION_DRAW: Long = 30
 

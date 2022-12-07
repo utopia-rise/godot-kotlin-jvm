@@ -49,7 +49,7 @@ public open class XRPose : RefCounted() {
    *
    * - `root` defines a root location, often used for tracked objects that do not have further nodes.
    *
-   * - `aim` defines the tip of a controller with the orientation pointing outwards, for instance: add your raycasts to this.
+   * - `aim` defines the tip of a controller with the orientation pointing outwards, for example: add your raycasts to this.
    *
    * - `grip` defines the location where the user grips the controller
    *
@@ -148,7 +148,7 @@ public open class XRPose : RefCounted() {
      */
     XR_TRACKING_CONFIDENCE_NONE(0),
     /**
-     * Tracking information may be inaccurate or estimated. For instance with inside out tracking this would indicate a controller may be (partially) obscured.
+     * Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured.
      */
     XR_TRACKING_CONFIDENCE_LOW(1),
     /**

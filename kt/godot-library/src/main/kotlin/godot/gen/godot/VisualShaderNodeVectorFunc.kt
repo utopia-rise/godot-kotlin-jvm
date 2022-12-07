@@ -118,9 +118,6 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      * Finds the nearest integer less than or equal to the parameter.
      */
     FUNC_FLOOR(19),
-    /**
-     * Computes the fractional part of the argument.
-     */
     FUNC_FRAC(20),
     /**
      * Returns the inverse of the square root of the parameter.

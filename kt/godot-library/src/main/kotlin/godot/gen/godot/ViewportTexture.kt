@@ -23,6 +23,8 @@ import kotlin.Unit
  * Displays the content of a [godot.Viewport] node as a dynamic [godot.Texture2D]. This can be used to mix controls, 2D, and 3D elements in the same scene.
  *
  * To create a ViewportTexture in code, use the [godot.Viewport.getTexture] method on the target viewport.
+ *
+ * **Note:** When local to scene, this texture uses [godot.Resource.setupLocalToScene] to set the proxy texture and flags in the local viewport.
  */
 @GodotBaseType
 public open class ViewportTexture : Texture2D() {

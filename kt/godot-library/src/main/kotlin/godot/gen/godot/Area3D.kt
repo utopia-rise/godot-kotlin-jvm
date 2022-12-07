@@ -39,26 +39,30 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/127](https://godotengine.org/asset-library/asset/127)
  *
  * 3D area that detects [godot.CollisionObject3D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping) and route audio to custom audio buses.
+ *
+ * To give the area its shape, add a [godot.CollisionShape3D] or a [godot.CollisionPolygon3D] node as a *direct* child (or add multiple such nodes as direct children) of the area.
+ *
+ * **Warning:** See [godot.ConcavePolygonShape3D] (also called "trimesh") for a warning about possibly unexpected behavior when using that shape for an area.
  */
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when another Area3D exits this Area3D. Requires [monitoring] to be set to `true`.
    *
-   * `area` the other Area3D.
+   * [area] the other Area3D.
    */
   public val areaExited: Signal1<Area3D> by signal("area")
 
   /**
    * Emitted when one of another Area3D's [godot.Shape3D]s exits one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
    *
-   * `area_rid` the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
    *
-   * `area` the other Area3D.
+   * [area] the other Area3D.
    *
-   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
+   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -66,20 +70,20 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] enters this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
    *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
+   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
    */
   public val bodyEntered: Signal1<Node3D> by signal("body")
 
   /**
    * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
    *
-   * `body_rid` the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
    *
-   * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
+   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
    *
-   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -87,20 +91,20 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when another Area3D enters this Area3D. Requires [monitoring] to be set to `true`.
    *
-   * `area` the other Area3D.
+   * [area] the other Area3D.
    */
   public val areaEntered: Signal1<Area3D> by signal("area")
 
   /**
    * Emitted when one of another Area3D's [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`.
    *
-   * `area_rid` the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [areaRid] the [RID] of the other Area3D's [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
    *
-   * `area` the other Area3D.
+   * [area] the other Area3D.
    *
-   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
+   * [areaShapeIndex] the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -108,20 +112,20 @@ public open class Area3D : CollisionObject3D() {
   /**
    * Emitted when a [godot.PhysicsBody3D] or [godot.GridMap] exits this Area3D. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
    *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
+   * [body] the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody3D] or [godot.GridMap].
    */
   public val bodyExited: Signal1<Node3D> by signal("body")
 
   /**
    * Emitted when one of a [godot.PhysicsBody3D] or [godot.GridMap]'s [godot.Shape3D]s enters one of this Area3D's [godot.Shape3D]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape3D]s.
    *
-   * `body_rid` the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
+   * [bodyRid] the [RID] of the [godot.PhysicsBody3D] or [godot.MeshLibrary]'s [godot.CollisionObject3D] used by the [godot.PhysicsServer3D].
    *
-   * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
+   * [body] the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
    *
-   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * [bodyShapeIndex] the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -401,9 +405,6 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_AUDIO_BUS_NAME, NIL)
     }
 
-  /**
-   * If `true`, the area applies reverb to its associated audio.
-   */
   public var reverbBusEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -416,7 +417,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * The reverb bus name to use for this area's associated audio.
+   * The name of the reverb bus to use for this area's associated audio.
    */
   public var reverbBusName: StringName
     get() {
@@ -464,7 +465,7 @@ public open class Area3D : CollisionObject3D() {
   }
 
   /**
-   * Returns a list of intersecting [godot.PhysicsBody3D]s. The overlapping body's [godot.CollisionObject3D.collisionLayer] must be part of this area's [godot.CollisionObject3D.collisionMask] in order to be detected.
+   * Returns a list of intersecting [godot.PhysicsBody3D]s and [godot.GridMap]s. The overlapping body's [godot.CollisionObject3D.collisionLayer] must be part of this area's [godot.CollisionObject3D.collisionMask] in order to be detected.
    *
    * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
@@ -491,7 +492,7 @@ public open class Area3D : CollisionObject3D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    *
-   * The `body` argument can either be a [godot.PhysicsBody3D] or a [godot.GridMap] instance. While GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body.
+   * The [body] argument can either be a [godot.PhysicsBody3D] or a [godot.GridMap] instance. While GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body.
    */
   public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)

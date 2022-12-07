@@ -124,18 +124,12 @@ public open class LinkButton : BaseButton() {
     callConstructor(ENGINECLASS_LINKBUTTON)
   }
 
-  /**
-   * Returns OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_OPENTYPE_FEATURE,
         NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_OPENTYPE_FEATURE,
@@ -143,9 +137,6 @@ public open class LinkButton : BaseButton() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_CLEAR_OPENTYPE_FEATURES,

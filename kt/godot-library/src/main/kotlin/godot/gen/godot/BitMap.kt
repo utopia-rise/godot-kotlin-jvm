@@ -46,7 +46,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to `threshold` or less, and `true` in other case.
+   * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to [threshold] or less, and `true` in other case.
    */
   public fun createFromImageAlpha(image: Image, threshold: Double = 0.1): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold)
@@ -79,7 +79,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Returns the amount of bitmap elements that are set to `true`.
+   * Returns the number of bitmap elements that are set to `true`.
    */
   public fun getTrueBitCount(): Long {
     TransferContext.writeArguments()
@@ -97,7 +97,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Resizes the image to `new_size`.
+   * Resizes the image to [newSize].
    */
   public fun resize(newSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to newSize)
@@ -105,7 +105,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Applies morphological dilation or erosion to the bitmap. If `pixels` is positive, dilation is applied to the bitmap. If `pixels` is negative, erosion is applied to the bitmap. `rect` defines the area where the morphological operation is applied. Pixels located outside the `rect` are unaffected by [growMask].
+   * Applies morphological dilation or erosion to the bitmap. If [pixels] is positive, dilation is applied to the bitmap. If [pixels] is negative, erosion is applied to the bitmap. [rect] defines the area where the morphological operation is applied. Pixels located outside the [rect] are unaffected by [growMask].
    */
   public fun growMask(pixels: Long, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to pixels, RECT2 to rect)
@@ -113,7 +113,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Returns an image of the same size as the bitmap and with a [enum Image.Format] of type `FORMAT_L8`. `true` bits of the bitmap are being converted into white pixels, and `false` bits into black.
+   * Returns an image of the same size as the bitmap and with a [enum Image.Format] of type [godot.Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false` bits into black.
    */
   public fun convertToImage(): Image? {
     TransferContext.writeArguments()
@@ -130,7 +130,7 @@ public open class BitMap : Resource() {
    * 				Rect2(Vector2(), get_size())
    * 				```
    *
-   * `epsilon` is passed to RDP to control how accurately the polygons cover the bitmap: a lower `epsilon` corresponds to more points in the polygons.
+   * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [epsilon] corresponds to more points in the polygons.
    */
   public fun opaqueToPolygons(rect: Rect2, epsilon: Double = 2.0): VariantArray<Any?> {
     TransferContext.writeArguments(RECT2 to rect, DOUBLE to epsilon)

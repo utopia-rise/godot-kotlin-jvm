@@ -114,7 +114,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   }
 
   /**
-   * Opens the script create dialog. The script will extend `base_name`. The file extension can be omitted from `base_path`. It will be added based on the selected scripting language.
+   * Opens the script create dialog. The script will extend [baseName]. The file extension can be omitted from [basePath]. It will be added based on the selected scripting language.
    */
   public fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)

@@ -17,6 +17,9 @@ import kotlin.Unit
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
+ *
  * An audio effect that can be used to adjust the intensity of stereo panning.
  */
 @GodotBaseType

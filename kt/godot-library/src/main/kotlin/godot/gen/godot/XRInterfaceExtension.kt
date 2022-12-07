@@ -59,7 +59,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns `true` if this interface has been initialised.
+   * Returns `true` if this interface has been initialized.
    */
   public open fun _isInitialized(): Boolean {
     throw NotImplementedError("_is_initialized is not implemented for XRInterfaceExtension")
@@ -177,9 +177,6 @@ public open class XRInterfaceExtension : XRInterface() {
   public open fun _endFrame(): Unit {
   }
 
-  /**
-   * Informs the interface of an applicable system notification.
-   */
   public open fun _notification(what: Long): Unit {
   }
 

@@ -23,14 +23,14 @@ import kotlin.Unit
 /**
  * Abstract base class for range-based controls.
  *
- * Range is a base class for [godot.Control] nodes that change a floating-point *value* between a *minimum* and a *maximum*, using *step* and *page*, for example a [godot.ScrollBar].
+ * Range is a base class for [godot.Control] nodes that change a floating-point [value] between a [minValue] and [maxValue], using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher level nodes using Range.
  */
 @GodotBaseType
 public open class Range : Control() {
   /**
    * Emitted when [value] changes. When used on a [godot.Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [valueChanged], consider using a *debouncing* [godot.Timer] to call the function less often.
    *
-   * **Note:** Unlike signals such as [godot.LineEdit.textChanged], [valueChanged] is also emitted when `value` is set directly via code.
+   * **Note:** Unlike signals such as [godot.LineEdit.textChanged], [valueChanged] is also emitted when [value] is set directly via code.
    */
   public val valueChanged: Signal1<Double> by signal("value")
 
@@ -96,7 +96,7 @@ public open class Range : Control() {
     }
 
   /**
-   * Range's current value.
+   * Range's current value. Changing this property (even via code) will trigger [valueChanged] signal. Use [setValueNoSignal] if you want to avoid it.
    */
   public var `value`: Double
     get() {

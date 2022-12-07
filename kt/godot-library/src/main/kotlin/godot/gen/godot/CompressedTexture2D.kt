@@ -18,14 +18,26 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A `.ctex` texture.
+ * Texture with 2 dimensions, optionally compressed.
  *
- * A texture that is loaded from a `.ctex` file.
+ * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [godot.CompressedTexture2D] can use one of 4 compression methods (including a lack of any compression):
+ *
+ * - Uncompressed (uncompressed on the GPU)
+ *
+ * - Lossless (WebP or PNG, uncompressed on the GPU)
+ *
+ * - Lossy (WebP, uncompressed on the GPU)
+ *
+ * - VRAM Compressed (compressed on the GPU)
+ *
+ * Only **VRAM Compressed** actually reduces the memory usage on the GPU. The **Lossless** and **Lossy** compression methods will reduce the required storage on disk, but they will not reduce memory usage on the GPU as the texture is sent to the GPU uncompressed.
+ *
+ * Using **VRAM Compressed** also improves loading times, as VRAM-compressed textures are faster to load compared to textures using lossless or lossy compression. VRAM compression can exhibit noticeable artifacts and is intended to be used for 3D rendering, not 2D.
  */
 @GodotBaseType
 public open class CompressedTexture2D : Texture2D() {
   /**
-   * The CompressedTexture's file path to a `.ctex` file.
+   * The [godot.CompressedTexture2D]'s file path to a `.ctex` file.
    */
   public val loadPath: String
     get() {
@@ -40,7 +52,7 @@ public open class CompressedTexture2D : Texture2D() {
   }
 
   /**
-   * Loads the texture from the given path.
+   * Loads the texture from the specified [path].
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

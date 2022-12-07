@@ -57,7 +57,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Adds an empty action to the [godot.InputMap] with a configurable `deadzone`.
+   * Adds an empty action to the [godot.InputMap] with a configurable [deadzone].
    *
    * An [godot.InputEvent] can then be added to this action with [actionAddEvent].
    */
@@ -128,7 +128,7 @@ public object InputMap : Object() {
   /**
    * Returns an array of [godot.InputEvent]s associated with a given action.
    *
-   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input&#47;*` settings from [godot.ProjectSettings].
+   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/ *` settings from [godot.ProjectSettings].
    */
   public fun actionGetEvents(action: StringName): VariantArray<Any?> {
     TransferContext.writeArguments(STRING_NAME to action)
@@ -139,7 +139,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [godot.InputEvent] is not pressed (for proper release detection). See [actionHasEvent] if you don't want this behavior.
    *
-   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public fun eventIsAction(
     event: InputEvent,

@@ -33,6 +33,10 @@ import kotlin.Unit
  *
  * [godot.AnimatedSprite2D] is similar to the [godot.Sprite2D] node, except it carries multiple textures as animation frames. Animations are created using a [godot.SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [godot.SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
  *
+ * After setting up [frames], [play] may be called. It's also possible to select an [animation] and toggle [playing], even within the editor.
+ *
+ * To pause the current animation, call [stop] or set [playing] to `false`. Alternatively, setting [speedScale] to `0` also preserves the current frame's elapsed time.
+ *
  * **Note:** You can associate a set of normal or specular maps by creating additional [godot.SpriteFrames] resources with a `_normal` or `_specular` suffix. For example, having 3 [godot.SpriteFrames] resources `run`, `run_normal`, and `run_specular` will make it so the `run` animation uses normal and specular maps.
  */
 @GodotBaseType
@@ -94,7 +98,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   /**
-   * The animation speed is multiplied by this value.
+   * The animation speed is multiplied by this value. If set to a negative value, the animation is played in reverse. If set to `0`, the animation is paused, preserving the current frame's elapsed time.
    */
   public var speedScale: Double
     get() {
@@ -110,7 +114,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   /**
-   * If `true`, the [animation] is currently playing.
+   * If `true`, the [animation] is currently playing. Setting this property to `false` is the equivalent of calling [stop].
    */
   public var playing: Boolean
     get() {
@@ -189,7 +193,7 @@ public open class AnimatedSprite2D : Node2D() {
   }
 
   /**
-   * Plays the animation named `anim`. If no `anim` is provided, the current animation is played. If `backwards` is `true`, the animation will be played in reverse.
+   * Plays the animation named [anim]. If no [anim] is provided, the current animation is played. If [backwards] is `true`, the animation is played in reverse.
    */
   public fun play(anim: StringName = StringName(""), backwards: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to backwards)
@@ -197,7 +201,9 @@ public open class AnimatedSprite2D : Node2D() {
   }
 
   /**
-   * Stops the current animation (does not reset the frame counter).
+   * Stops the current [animation] at the current [frame].
+   *
+   * **Note:** This method resets the current frame's elapsed time. If this behavior is undesired, consider setting [speedScale] to `0`, instead.
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()

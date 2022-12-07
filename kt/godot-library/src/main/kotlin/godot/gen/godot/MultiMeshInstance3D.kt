@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  * [godot.MultiMeshInstance3D] is a specialized node to instance [godot.GeometryInstance3D]s based on a [godot.MultiMesh] resource.
  *
- * This is useful to optimize the rendering of a high amount of instances of a given mesh (for example trees in a forest or grass strands).
+ * This is useful to optimize the rendering of a high number of instances of a given mesh (for example trees in a forest or grass strands).
  */
 @GodotBaseType
 public open class MultiMeshInstance3D : GeometryInstance3D() {

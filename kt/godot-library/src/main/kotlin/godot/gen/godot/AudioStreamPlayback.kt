@@ -20,7 +20,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
  *
- * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOGGVorbis] for usage.
+ * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOggVorbis] for usage.
  */
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {

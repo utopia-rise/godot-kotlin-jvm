@@ -44,7 +44,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    *
-   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
   public fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Long = 32):
       VariantArray<Any?> {
@@ -89,7 +89,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    *
-   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */

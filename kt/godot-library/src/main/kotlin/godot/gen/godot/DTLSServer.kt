@@ -302,7 +302,7 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Setup the DTLS server to use the given `private_key` and provide the given `certificate` to clients. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
+   * Setup the DTLS server to use the given [key] and provide the given [certificate] to clients. You can pass the optional [chain] parameter to provide additional CA chain information along with the certificate.
    */
   public fun setup(
     key: CryptoKey,
@@ -315,7 +315,7 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Try to initiate the DTLS handshake with the given `udp_peer` which must be already connected (see [godot.PacketPeerUDP.connectToHost]).
+   * Try to initiate the DTLS handshake with the given [udpPeer] which must be already connected (see [godot.PacketPeerUDP.connectToHost]).
    *
    * **Note:** You must check that the state of the return PacketPeerUDP is [godot.PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50% of the new connections will be invalid due to cookie exchange.
    */

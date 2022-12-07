@@ -33,7 +33,7 @@ public object Marshalls : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns a Base64-encoded string of the [Variant] `variant`. If `full_objects` is `true`, encoding objects is allowed (and can potentially include code).
+   * Returns a Base64-encoded string of the [Variant] [variant]. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
    */
   public fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
@@ -42,7 +42,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded [Variant] corresponding to the Base64-encoded string `base64_str`. If `allow_objects` is `true`, decoding objects is allowed.
+   * Returns a decoded [Variant] corresponding to the Base64-encoded string [base64Str]. If [allowObjects] is `true`, decoding objects is allowed.
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
@@ -62,7 +62,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded [godot.PackedByteArray] corresponding to the Base64-encoded string `base64_str`.
+   * Returns a decoded [godot.PackedByteArray] corresponding to the Base64-encoded string [base64Str].
    */
   public fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
@@ -72,7 +72,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a Base64-encoded string of the UTF-8 string `utf8_str`.
+   * Returns a Base64-encoded string of the UTF-8 string [utf8Str].
    */
   public fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
@@ -81,7 +81,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded string corresponding to the Base64-encoded string `base64_str`.
+   * Returns a decoded string corresponding to the Base64-encoded string [base64Str].
    */
   public fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)

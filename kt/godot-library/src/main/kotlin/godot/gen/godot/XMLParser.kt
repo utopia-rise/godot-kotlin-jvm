@@ -81,7 +81,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the amount of attributes in the current element.
+   * Gets the number of attributes in the current element.
    */
   public fun getAttributeCount(): Long {
     TransferContext.writeArguments()
@@ -90,7 +90,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the name of the attribute specified by the index in `idx` argument.
+   * Gets the name of the attribute specified by the [idx] index.
    */
   public fun getAttributeName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -100,7 +100,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the value of the attribute specified by the index in `idx` argument.
+   * Gets the value of the attribute specified by the [idx] index.
    */
   public fun getAttributeValue(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -119,7 +119,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the value of a certain attribute of the current element by name. This will raise an error if the element has no such attribute.
+   * Gets the value of a certain attribute of the current element by [name]. This will raise an error if the element has no such attribute.
    */
   public fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -129,7 +129,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the value of a certain attribute of the current element by name. This will return an empty [godot.String] if the attribute is not found.
+   * Gets the value of a certain attribute of the current element by [name]. This will return an empty [godot.String] if the attribute is not found.
    */
   public fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -148,7 +148,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Gets the current line in the parsed file (currently not implemented).
+   * Gets the current line in the parsed file, counting from 0.
    */
   public fun getCurrentLine(): Long {
     TransferContext.writeArguments()
@@ -174,7 +174,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Opens an XML file for parsing. This returns an error code.
+   * Opens an XML [file] for parsing. This returns an error code.
    */
   public fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
@@ -183,7 +183,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Opens an XML raw buffer for parsing. This returns an error code.
+   * Opens an XML raw [buffer] for parsing. This returns an error code.
    */
   public fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)

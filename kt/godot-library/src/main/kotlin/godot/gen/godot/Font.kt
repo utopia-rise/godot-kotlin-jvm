@@ -33,123 +33,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Font class is set of font data sources used to draw text.
+ * Base class for fonts and font variations.
  *
- * Font contains a set of glyphs to represent Unicode characters, as well as the ability to draw it with variable width, ascent, descent and kerning.
- *
- * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
- *
- * **Note:** A glyph is a bitmap or shape used to draw a one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
- *
- * **Note:** If a non of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * var font = Font.new()
- *
- * font.add_data(load("res://BarlowCondensed-Bold.ttf"))
- *
- * $"Label".set("custom_fonts/font", font)
- *
- * $"Label".set("custom_fonts/font_size", 64)
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * var font = new Font();
- *
- * font.AddData(ResourceLoader.Load<FontData>("res://BarlowCondensed-Bold.ttf"));
- *
- * GetNode("Label").Set("custom_fonts/font", font);
- *
- * GetNode("Label").Set("custom_font_sizes/font_size", 64);
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * To control font substitution priority use [godot.FontData] language and script support.
- *
- * Use language overrides to use same [godot.Font] stack for multiple languages:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * # Use Naskh font for Persian and Nastaʼlīq font for Urdu text.
- *
- * var font_data_fa = load("res://NotoNaskhArabicUI_Regular.ttf");
- *
- * font_data_fa.set_language_support_override("fa", true);
- *
- * font_data_fa.set_language_support_override("ur", false);
- *
- *
- *
- * var font_data_ur = load("res://NotoNastaliqUrdu_Regular.ttf");
- *
- * font_data_ur.set_language_support_override("fa", false);
- *
- * font_data_ur.set_language_support_override("ur", true);
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * // Use Naskh font for Persian and Nastaʼlīq font for Urdu text.
- *
- * var fontDataFA = ResourceLoader.Load<FontData>("res://NotoNaskhArabicUI_Regular.ttf");
- *
- * fontDataFA.SetLanguageSupportOverride("fa", true);
- *
- * fontDataFA.SetLanguageSupportOverride("ur", false);
- *
- *
- *
- * var fontDataUR = ResourceLoader.Load<FontData>("res://NotoNastaliqUrdu_Regular.ttf");
- *
- * fontDataUR.SetLanguageSupportOverride("fa", false);
- *
- * fontDataUR.SetLanguageSupportOverride("ur", true);
- *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * Use script overrides to specify supported scripts for bitmap font or for less common scripts not directly supported by TrueType format:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
- * # Use specified font for Egyptian hieroglyphs.
- *
- * var font_data = load("res://unifont.ttf");
- *
- * font_data.set_script_support_override("Egyp", true);
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * // Use specified font for Egyptian hieroglyphs.
- *
- * var fontData = ResourceLoader.Load<FontData>("res://unifont.ttf");
- *
- * fontData.SetScriptSupportOverride("Egyp", true);
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * Font is the abstract base class for font, so it shouldn't be used directly. Other types of fonts inherit from it.
  */
 @GodotBaseType
 public open class Font : Resource() {
-  /**
-   * Default font [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
-   */
   public var variationCoordinates: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
@@ -167,68 +56,44 @@ public open class Font : Resource() {
     callConstructor(ENGINECLASS_FONT)
   }
 
-  /**
-   * Add font data source to the set.
-   */
   public fun addData(`data`: FontData): Unit {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_ADD_DATA, NIL)
   }
 
-  /**
-   * Sets the font data source at index `idx`. If the index does not exist, nothing happens.
-   */
   public fun setData(idx: Long, `data`: FontData): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_DATA, NIL)
   }
 
-  /**
-   * Returns the number of font data sources.
-   */
   public fun getDataCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Returns the font data source at index `idx`. If the index does not exist, returns `null`.
-   */
   public fun getData(idx: Long): FontData? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as FontData?
   }
 
-  /**
-   * Returns TextServer RID of the font data resources.
-   */
   public fun getDataRid(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DATA_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  /**
-   * Removes all font data sourcers for the set.
-   */
   public fun clearData(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_CLEAR_DATA, NIL)
   }
 
-  /**
-   * Removes the font data source at index `idx`. If the index does not exist, nothing happens.
-   */
   public fun removeData(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_REMOVE_DATA, NIL)
   }
 
-  /**
-   * Sets the spacing for `type` (see [enum TextServer.SpacingType]) to `value` in pixels (not relative to the font size).
-   */
   public fun setSpacing(spacing: TextServer.SpacingType, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_SET_SPACING, NIL)
@@ -300,11 +165,29 @@ public open class Font : Resource() {
   }
 
   /**
-   * Returns the size of a bounding box of a string, taking kerning and advance into account.
+   * Returns the size of a bounding box of a single-line string, taking kerning and advance into account. See also [getMultilineStringSize] and [drawString].
+   *
+   * For example, to get the string size as displayed by a single-line Label, use:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var string_size = $Label.get_theme_font("font").get_string_size($Label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Label label = GetNode<Label>("Label");
+   *
+   * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text, HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    *
    * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
-   *
-   * See also [drawString].
    */
   public fun getStringSize(
     text: String,
@@ -336,7 +219,7 @@ public open class Font : Resource() {
   }
 
   /**
-   * Draw `text` into a canvas item using the font, at a given position, with `modulate` color, optionally clipping the width and aligning horizontally. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [godot.CanvasItem.drawString].
    */
@@ -357,7 +240,7 @@ public open class Font : Resource() {
   }
 
   /**
-   * Breaks `text` to the lines using rules specified by `flags` and draws it into a canvas item using the font, at a given position, with `modulate` color, optionally clipping the width and aligning horizontally. `position` specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [godot.CanvasItem.drawMultilineString].
    */
@@ -394,7 +277,7 @@ public open class Font : Resource() {
   }
 
   /**
-   * Draw a single Unicode character `char` into a canvas item using the font, at a given position, with `modulate` color, and optionally kerning if `next` is passed. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw a single Unicode character [char] into a canvas item using the font, at a given position, with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
    */
@@ -414,7 +297,7 @@ public open class Font : Resource() {
   }
 
   /**
-   * Returns `true` if a Unicode `char` is available in the font.
+   * Returns `true` if a Unicode [char] is available in the font.
    */
   public fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)
@@ -433,16 +316,13 @@ public open class Font : Resource() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * After editing a font (changing data sources, etc.). Call this function to propagate changes to controls that might use it.
-   */
   public fun updateChanges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
   }
 
   /**
-   * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passed to the [godot.TextServer] methods.
+   * Returns [godot.Array] of valid [godot.Font] [RID]s, which can be passed to the [godot.TextServer] methods.
    */
   public fun getRids(): VariantArray<Any?> {
     TransferContext.writeArguments()

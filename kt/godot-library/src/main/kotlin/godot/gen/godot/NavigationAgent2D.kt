@@ -32,6 +32,8 @@ import kotlin.Unit
  * 2D Agent used in navigation for collision avoidance.
  *
  * 2D Agent that is used in navigation to reach a location while avoiding static and dynamic obstacles. The dynamic obstacles are avoided using RVO collision avoidance. The agent needs navigation data to work correctly. [godot.NavigationAgent2D] is physics safe.
+ *
+ * **Note:** After setting [targetLocation] it is required to use the [getNextLocation] function once every physics frame to update the internal path logic of the NavigationAgent. The returned vector position from this function should be used as the next movement position for the agent's parent Node.
  */
 @GodotBaseType
 public open class NavigationAgent2D : Node() {
@@ -41,7 +43,7 @@ public open class NavigationAgent2D : Node() {
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity].
+   * Notifies when the collision avoidance velocity is calculated. Emitted by [setVelocity]. Only emitted when [avoidanceEnabled] is true.
    */
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
@@ -51,12 +53,12 @@ public open class NavigationAgent2D : Node() {
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the player defined target, set with [setTargetLocation], is reached.
+   * Notifies when the player-defined [targetLocation] is reached.
    */
   public val targetReached: Signal0 by signal()
 
   /**
-   * The distance threshold before a target is considered to be reached. This will allow an agent to not have to hit a point on the path exactly, but in the area.
+   * The distance threshold before the final target point is considered to be reached. This will allow an agent to not have to hit the point of the final target exactly, but only the area. If this value is set to low the NavigationAgent will be stuck in a repath loop cause it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
    */
   public var targetDesiredDistance: Double
     get() {
@@ -72,7 +74,9 @@ public open class NavigationAgent2D : Node() {
     }
 
   /**
-   * The radius of the agent.
+   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the avoidance maneuver starting radius (which is controlled by [neighborDistance]).
+   *
+   * Does not affect normal pathfinding. To change an actor's pathfinding radius bake [godot.NavigationMesh] resources with a different [godot.NavigationMesh.agentRadius] property and use different navigation maps for each actor size.
    */
   public var radius: Double
     get() {
@@ -86,9 +90,6 @@ public open class NavigationAgent2D : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_RADIUS, NIL)
     }
 
-  /**
-   * The distance to search for other agents.
-   */
   public var neighborDist: Double
     get() {
       TransferContext.writeArguments()
@@ -171,7 +172,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   *
+   * Returns the [RID] of this agent on the [godot.NavigationServer2D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -179,18 +180,12 @@ public open class NavigationAgent2D : Node() {
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  /**
-   * Sets the user desired final location. This will clear the current navigation path.
-   */
   public fun setTargetLocation(location: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to location)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_LOCATION, NIL)
   }
 
-  /**
-   * Returns the user defined [godot.core.Vector2] after setting the target location.
-   */
   public fun getTargetLocation(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -199,7 +194,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns a [godot.core.Vector2] in global coordinates, that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent.
+   * Returns the next location in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
    */
   public fun getNextLocation(): Vector2 {
     TransferContext.writeArguments()
@@ -209,7 +204,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns the distance to the target location, using the agent's global position. The user must set the target location with [setTargetLocation] in order for this to be accurate.
+   * Returns the distance to the target location, using the agent's global position. The user must set [targetLocation] in order for this to be accurate.
    */
   public fun distanceToTarget(): Double {
     TransferContext.writeArguments()
@@ -227,7 +222,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns the path from start to finish in global coordinates.
+   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target location is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextLocation] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
    */
   public fun getNavPath(): PackedVector2Array {
     TransferContext.writeArguments()
@@ -247,7 +242,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns true if the target location is reached. The target location is set using [setTargetLocation]. It may not always be possible to reach the target location. It should always be possible to reach the final location though. See [getFinalLocation].
+   * Returns true if [targetLocation] is reached. It may not always be possible to reach the target location. It should always be possible to reach the final location though. See [getFinalLocation].
    */
   public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
@@ -257,7 +252,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   /**
-   * Returns true if the target location is reachable. The target location is set using [setTargetLocation].
+   * Returns true if [targetLocation] is reachable.
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()

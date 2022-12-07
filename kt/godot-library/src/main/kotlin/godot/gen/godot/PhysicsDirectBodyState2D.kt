@@ -31,7 +31,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
  *
- * Provides direct access to a physics body in the [godot.PhysicsServer2D], allowing safe changes to physics properties. This object is passed via the direct state callback of dynamic bodies, and is intended for changing the direct state of that body. See [godot.RigidDynamicBody2D.IntegrateForces].
+ * Provides direct access to a physics body in the [godot.PhysicsServer2D], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid bodies, and is intended for changing the direct state of that body. See [godot.RigidBody2D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState2D internal constructor() : Object() {
@@ -218,6 +218,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * Applies a rotational impulse to the body without affecting the position.
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
+   *
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [godot.CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
   public fun applyTorqueImpulse(impulse: Double): Unit {
     TransferContext.writeArguments(DOUBLE to impulse)
@@ -230,7 +232,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
@@ -252,7 +254,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
@@ -262,6 +264,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   /**
    * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
+   *
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [godot.CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
   public fun applyTorque(torque: Double): Unit {
     TransferContext.writeArguments(DOUBLE to torque)
@@ -283,7 +287,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.
    *
-   * `position` is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
@@ -349,7 +353,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Returns the number of contacts this body has with other bodies.
    *
-   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [godot.RigidDynamicBody2D.contactMonitor].
+   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [godot.RigidBody2D.contactMonitor].
    */
   public fun getContactCount(): Long {
     TransferContext.writeArguments()

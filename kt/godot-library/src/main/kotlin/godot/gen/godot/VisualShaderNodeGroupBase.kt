@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for a family of nodes with variable amount of input and output ports within the visual shader graph.
+ * Base class for a family of nodes with variable number of input and output ports within the visual shader graph.
  *
  * Currently, has no direct usage, use the derived classes instead.
  */
@@ -79,7 +79,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an input port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
+   * Adds an input port with the specified [type] (see [enum VisualShaderNode.PortType]) and [name].
    */
   public fun addInputPort(
     id: Long,
@@ -130,7 +130,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an output port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
+   * Adds an output port with the specified [type] (see [enum VisualShaderNode.PortType]) and [name].
    */
   public fun addOutputPort(
     id: Long,

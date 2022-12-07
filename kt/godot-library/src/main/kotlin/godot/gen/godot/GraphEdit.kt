@@ -39,11 +39,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * GraphEdit is an area capable of showing various GraphNodes. It manages connection events between them.
+ * GraphEdit is a control responsible for displaying and manipulating graph-like data using [godot.GraphNode]s. It provides access to creation, removal, connection, and disconnection of nodes.
  *
- * GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNode slots is disabled by default.
+ * GraphEdit provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
  *
- * It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
+ * GraphEdit by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represent a node in the graph, a single unit of data in the connected scheme. GraphEdit, in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or close a [godot.GraphNode], a signal is emitted in the GraphEdit, but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
+ *
+ * **Performance:** It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
  */
 @GodotBaseType
 public open class GraphEdit : Control() {
@@ -54,7 +56,7 @@ public open class GraphEdit : Control() {
       "isOutput")
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit.
+   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
    */
   public val deleteNodesRequest: Signal0 by signal()
 
@@ -74,7 +76,7 @@ public open class GraphEdit : Control() {
   public val connectionDragEnded: Signal0 by signal()
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. `position` is the position of the mouse pointer when the signal is sent.
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
    */
   public val popupRequest: Signal1<Vector2> by signal("position")
 
@@ -104,25 +106,25 @@ public open class GraphEdit : Control() {
   public val beginNodeMove: Signal0 by signal()
 
   /**
-   * Emitted when user dragging connection from output port into empty space of the graph.
+   * Emitted when user drags a connection from an output port into the empty space of the graph.
    */
   public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("from", "fromSlot",
       "releasePosition")
 
   /**
-   * Emitted to the GraphEdit when the connection between `from_slot` slot of `from` GraphNode and `to_slot` slot of `to` GraphNode is attempted to be removed.
+   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [godot.GraphNode] and [toPort] of [toNode] [godot.GraphNode] is attempted to be removed.
    */
   public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("from",
       "fromSlot", "to", "toSlot")
 
   /**
-   * Emitted to the GraphEdit when the connection between the `from_slot` slot of the `from` GraphNode and the `to_slot` slot of the `to` GraphNode is attempted to be created.
+   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode] is attempted to be created.
    */
   public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("from",
       "fromSlot", "to", "toSlot")
 
   /**
-   * Emitted when user dragging connection from input port into empty space of the graph.
+   * Emitted when user drags a connection from an input port into the empty space of the graph.
    */
   public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by signal("to", "toSlot",
       "releasePosition")
@@ -361,17 +363,17 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether the `mouse_position` is in the input hot zone.
+   * Returns whether the [mousePosition] is in the input hot zone.
    *
-   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at `graph_node`.[godot.GraphNode.getConnectionInputPosition](`slot_index`) (For output's case, call [godot.GraphNode.getConnectionOutputPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
+   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getConnectionInputPosition]([inPort]) (For output's case, call [godot.GraphNode.getConnectionOutputPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    *
    * Below is a sample code to help get started:
    *
    * ```
-   * 				func _is_in_input_hotzone(graph_node, slot_index, mouse_position):
-   * 				    var slot_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var slot_pos : Vector2 = graph_node.get_position() + graph_node.get_connection_input_position(slot_index) - slot_size / 2
-   * 				    var rect = Rect2(slot_pos, slot_size)
+   * 				func _is_in_input_hotzone(in_node, in_port, mouse_position):
+   * 				    var port_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   * 				    var port_pos : Vector2 = in_node.get_position() + in_node.get_connection_input_position(in_port) - port_size / 2
+   * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
    * 				```
@@ -385,15 +387,15 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether the `mouse_position` is in the output hot zone. For more information on hot zones, see [_isInInputHotzone].
+   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot zones, see [_isInInputHotzone].
    *
    * Below is a sample code to help get started:
    *
    * ```
-   * 				func _is_in_output_hotzone(graph_node, slot_index, mouse_position):
-   * 				    var slot_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var slot_pos : Vector2 = graph_node.get_position() + graph_node.get_connection_output_position(slot_index) - slot_size / 2
-   * 				    var rect = Rect2(slot_pos, slot_size)
+   * 				func _is_in_output_hotzone(in_node, in_port, mouse_position):
+   * 				    var port_size : Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   * 				    var port_pos : Vector2 = in_node.get_position() + in_node.get_connection_output_position(in_port) - port_size / 2
+   * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
    * 				```
@@ -414,7 +416,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Create a connection between the `from_port` slot of the `from` GraphNode and the `to_port` slot of the `to` GraphNode. If the connection already exists, no connection is created.
+   * Create a connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection already exists, no connection is created.
    */
   public fun connectNode(
     from: StringName,
@@ -428,7 +430,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns `true` if the `from_port` slot of the `from` GraphNode is connected to the `to_port` slot of the `to` GraphNode.
+   * Returns `true` if the [fromPort] of the [fromNode] [godot.GraphNode] is connected to the [toPort] of the [toNode] [godot.GraphNode].
    */
   public fun isNodeConnected(
     from: StringName,
@@ -442,7 +444,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the connection between the `from_port` slot of the `from` GraphNode and the `to_port` slot of the `to` GraphNode. If the connection does not exist, no connection is removed.
+   * Removes the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection does not exist, no connection is removed.
    */
   public fun disconnectNode(
     from: StringName,
@@ -455,7 +457,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the coloration of the connection between `from`'s `from_port` and `to`'s `to_port` with the color provided in the [theme_item activity] theme property.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property.
    */
   public fun setConnectionActivity(
     from: StringName,
@@ -501,7 +503,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Makes possible to disconnect nodes when dragging from the slot at the right if it has the specified type.
+   * Allows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidRightDisconnectType].
    */
   public fun addValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
@@ -510,7 +512,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the possibility to disconnect nodes when dragging from the slot at the right if it has the specified type.
+   * Disallows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidRightDisconnectType].
    */
   public fun removeValidRightDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
@@ -519,7 +521,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Makes possible to disconnect nodes when dragging from the slot at the left if it has the specified type.
+   * Allows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidLeftDisconnectType].
    */
   public fun addValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
@@ -528,7 +530,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the possibility to disconnect nodes when dragging from the slot at the left if it has the specified type.
+   * Disallows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidLeftDisconnectType].
    */
   public fun removeValidLeftDisconnectType(type: Long): Unit {
     TransferContext.writeArguments(LONG to type)
@@ -537,7 +539,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Makes possible the connection between two different slot types. The type is defined with the [godot.GraphNode.setSlot] method.
+   * Allows the connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
+   *
+   * See also [isValidConnectionType] and [removeValidConnectionType].
    */
   public fun addValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
@@ -546,7 +550,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Makes it not possible to connect between two different slot types. The type is defined with the [godot.GraphNode.setSlot] method.
+   * Disallows the connection between two different port types previously allowed by [addValidConnectionType]. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
+   *
+   * See also [isValidConnectionType].
    */
   public fun removeValidConnectionType(fromType: Long, toType: Long): Unit {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
@@ -555,7 +561,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether it's possible to connect slots of the specified types.
+   * Returns whether it's possible to make a connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
+   *
+   * See also [addValidConnectionType] and [removeValidConnectionType].
    */
   public fun isValidConnectionType(fromType: Long, toType: Long): Boolean {
     TransferContext.writeArguments(LONG to fromType, LONG to toType)
@@ -565,7 +573,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns the points which would make up a connection between `from` and `to`.
+   * Returns the points which would make up a connection between [fromNode] and [toNode].
    */
   public fun getConnectionLine(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
@@ -594,7 +602,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the specified `node` as the one selected.
+   * Sets the specified [node] as the one selected.
    */
   public fun setSelected(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)

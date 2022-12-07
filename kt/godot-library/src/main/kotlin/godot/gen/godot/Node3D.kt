@@ -47,7 +47,7 @@ import kotlin.Unit
  *
  * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [godot.Node3D] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [godot.Node3D]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [godot.Node3D] object itself is referred to as object-local coordinate system.
  *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.deg2rad].
+ * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
  */
 @GodotBaseType
 public open class Node3D : Node() {
@@ -145,6 +145,10 @@ public open class Node3D : Node() {
 
   /**
    * Scale part of the local transformation.
+   *
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
+   *
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light3D]s are not visually affected by [scale].
    */
   public var scale: Vector3
     get() {
@@ -485,7 +489,7 @@ public open class Node3D : Node() {
   /**
    * Changes the node's position by the given offset [godot.core.Vector3].
    *
-   * Note that the translation `offset` is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
+   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
    */
   public fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -509,13 +513,13 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the node so that the local forward axis (-Z) points toward the `target` position.
+   * Rotates the node so that the local forward axis (-Z) points toward the [target] position.
    *
-   * The local up axis (+Y) points as close to the `up` vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
+   * The local up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
    *
-   * The `target` position cannot be the same as the node's position, the `up` vector cannot be zero, and the direction from the node's position to the `target` vector cannot be parallel to the `up` vector.
+   * The [target] position cannot be the same as the node's position, the [up] vector cannot be zero, and the direction from the node's position to the [target] vector cannot be parallel to the [up] vector.
    *
-   * Operations take place in global space.
+   * Operations take place in global space, which means that the node must be in the scene tree.
    */
   public fun lookAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
@@ -523,7 +527,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the node to the specified `position`, and then rotates the node to point toward the `target` as per [lookAt]. Operations take place in global space.
+   * Moves the node to the specified [position], and then rotates the node to point toward the [target] as per [lookAt]. Operations take place in global space.
    */
   public fun lookAtFromPosition(
     position: Vector3,
@@ -535,7 +539,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms `global_point` from world space to this node's local space.
+   * Transforms [globalPoint] from world space to this node's local space.
    */
   public fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
@@ -544,7 +548,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms `local_point` from this node's local space to world space.
+   * Transforms [localPoint] from this node's local space to world space.
    */
   public fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
@@ -552,18 +556,12 @@ public open class Node3D : Node() {
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  /**
-   * Returns `true` if the property identified by `name` can be reverted to a default value.
-   */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_CAN_REVERT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns the default value of the Node3D property with given `name`.
-   */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_PROPERTY_GET_REVERT, ANY)
@@ -600,29 +598,11 @@ public open class Node3D : Node() {
   public enum class RotationOrder(
     id: Long
   ) {
-    /**
-     *
-     */
     ROTATION_ORDER_XYZ(0),
-    /**
-     *
-     */
     ROTATION_ORDER_XZY(1),
-    /**
-     *
-     */
     ROTATION_ORDER_YXZ(2),
-    /**
-     *
-     */
     ROTATION_ORDER_YZX(3),
-    /**
-     *
-     */
     ROTATION_ORDER_ZXY(4),
-    /**
-     *
-     */
     ROTATION_ORDER_ZYX(5),
     ;
 

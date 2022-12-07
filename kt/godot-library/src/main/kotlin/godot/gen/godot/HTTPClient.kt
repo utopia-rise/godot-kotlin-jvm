@@ -42,19 +42,19 @@ import kotlin.Unit
  *
  * **Note:** This client only needs to connect to a host once (see [connectToHost]) to send multiple requests. Because of this, methods that take URLs usually take just the part after the host instead of the full URL, as the client is already connected to a host. See [request] for a full example and to get started.
  *
- * A [godot.HTTPClient] should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports SSL and SSL server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
+ * A [godot.HTTPClient] should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports Transport Layer Security (TLS), including server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
  *
  * For more information on HTTP, see https://developer.mozilla.org/en-US/docs/Web/HTTP (or read RFC 2616 to get it straight from the source: https://tools.ietf.org/html/rfc2616).
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
- * **Note:** It's recommended to use transport encryption (SSL/TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
+ * **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
  *
- * **Note:** When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the `Access-Control-Allow-Origin: *` HTTP header.
+ * **Note:** When performing HTTP requests from a project exported to Web, keep in mind the remote server may not allow requests from foreign origins due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the `Access-Control-Allow-Origin: *` HTTP header.
  *
- * **Note:** SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.
+ * **Note:** TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.
  *
- * **Warning:** SSL/TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
+ * **Warning:** TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
  */
 @GodotBaseType
 public open class HTTPClient : RefCounted() {
@@ -112,9 +112,9 @@ public open class HTTPClient : RefCounted() {
    *
    * The host should not have http:// prepended but will strip the protocol identifier if provided.
    *
-   * If no `port` is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS (if `use_ssl` is enabled).
+   * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS (if [useTls] is enabled).
    *
-   * `verify_host` will check the SSL identity of the host if set to `true`.
+   * [verifyHost] will check the TLS identity of the host if set to `true`.
    */
   public fun connectToHost(
     host: String,
@@ -184,7 +184,7 @@ public open class HTTPClient : RefCounted() {
    *
    * [/codeblocks]
    *
-   * **Note:** The `request_data` parameter is ignored if `method` is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.uriEncode] for an example.
+   * **Note:** The [body] parameter is ignored if [method] is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.uriEncode] for an example.
    */
   public fun request(
     method: HTTPClient.Method,
@@ -305,7 +305,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Sets the proxy server for HTTP requests.
    *
-   * The proxy server is unset if `host` is empty or `port` is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -315,7 +315,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Sets the proxy server for HTTPS requests.
    *
-   * The proxy server is unset if `host` is empty or `port` is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpsProxy(host: String, port: Long): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -421,9 +421,6 @@ public open class HTTPClient : RefCounted() {
      * Status: Error in HTTP connection.
      */
     STATUS_CONNECTION_ERROR(8),
-    /**
-     * Status: Error in SSL handshake.
-     */
     STATUS_SSL_HANDSHAKE_ERROR(9),
     ;
 

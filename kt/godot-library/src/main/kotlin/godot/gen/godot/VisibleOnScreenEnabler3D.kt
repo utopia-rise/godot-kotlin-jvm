@@ -19,7 +19,7 @@ import kotlin.Unit
 /**
  * Enables certain nodes only when approximately visible.
  *
- * The VisibleOnScreenEnabler3D will disable [godot.RigidDynamicBody3D] and [godot.AnimationPlayer] nodes when they are not visible. It will only affect other nodes within the same scene as the VisibleOnScreenEnabler3D itself.
+ * The VisibleOnScreenEnabler3D will disable [godot.RigidBody3D] and [godot.AnimationPlayer] nodes when they are not visible. It will only affect other nodes within the same scene as the VisibleOnScreenEnabler3D itself.
  *
  * If you just want to receive notifications, use [godot.VisibleOnScreenNotifier3D] instead.
  *

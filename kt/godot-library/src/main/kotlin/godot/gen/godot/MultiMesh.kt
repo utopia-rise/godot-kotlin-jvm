@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides high-performance mesh instancing.
+ * Provides high-performance drawing of a mesh multiple times using GPU instancing.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/performance/using_multimesh.html]($DOCS_URL/tutorials/performance/using_multimesh.html)
@@ -39,6 +39,10 @@ import kotlin.Unit
  * As a drawback, if the instances are too far away from each other, performance may be reduced as every single instance will always render (they are spatially indexed as one, for the whole object).
  *
  * Since instances may have any behavior, the AABB used for visibility must be provided by the user.
+ *
+ * **Note:** A MultiMesh is a single object, therefore the same maximum lights per object restriction applies. This means, that once the maximum lights are consumed by one or more instances, the rest of the MultiMesh instances will **not** receive any lighting.
+ *
+ * **Note:** Blend Shapes will be ignored if used in a MultiMesh.
  */
 @GodotBaseType
 public open class MultiMesh : Resource() {
@@ -59,7 +63,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * If `true`, the [godot.MultiMesh] will use color data (see [colorArray]).
+   * If `true`, the [godot.MultiMesh] will use color data (see [setInstanceColor]). Can only be set when [instanceCount] is `0` or less. This means that you need to call this method before setting the instance count, or temporarily reset it to `0`.
    */
   public var useColors: Boolean
     get() {
@@ -73,7 +77,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * If `true`, the [godot.MultiMesh] will use custom data (see [customDataArray]).
+   * If `true`, the [godot.MultiMesh] will use custom data (see [setInstanceCustomData]). Can only be set when [instanceCount] is `0` or less. This means that you need to call this method before setting the instance count, or temporarily reset it to `0`.
    */
   public var useCustomData: Boolean
     get() {
@@ -89,7 +93,9 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * Number of instances that will get drawn. This clears and (re)sizes the buffers. By default, all instances are drawn but you can limit this with [visibleInstanceCount].
+   * Number of instances that will get drawn. This clears and (re)sizes the buffers. Setting data format or flags afterwards will have no effect.
+   *
+   * By default, all instances are drawn but you can limit this with [visibleInstanceCount].
    */
   public var instanceCount: Long
     get() {
@@ -120,7 +126,9 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * Mesh to be drawn.
+   * [godot.Mesh] resource to be instanced.
+   *
+   * The looks of the individual instances can be modified using [setInstanceColor] and [setInstanceCustomData].
    */
   public var mesh: Mesh?
     get() {
@@ -191,9 +199,9 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors.
+   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors. This allows for different color tinting per instance.
    *
-   * For the color to take effect, ensure that [useColors] is `true` on the [godot.MultiMesh] and [godot.BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material.
+   * For the color to take effect, ensure that [useColors] is `true` on the [godot.MultiMesh] and [godot.BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material. If you intend to set an absolute color instead of tinting, make sure the material's albedo color is set to pure white (`Color(1, 1, 1)`).
    */
   public fun setInstanceColor(instance: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to color)
@@ -201,7 +209,7 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Gets a specific instance's color.
+   * Gets a specific instance's color multiplier.
    */
   public fun getInstanceColor(instance: Long): Color {
     TransferContext.writeArguments(LONG to instance)
@@ -213,6 +221,8 @@ public open class MultiMesh : Resource() {
    * Sets custom data for a specific instance. Although [godot.core.Color] is used, it is just a container for 4 floating point numbers.
    *
    * For the custom data to be used, ensure that [useCustomData] is `true`.
+   *
+   * This custom instance data has to be manually accessed in your custom shader using `INSTANCE_CUSTOM`.
    */
   public fun setInstanceCustomData(instance: Long, customData: Color): Unit {
     TransferContext.writeArguments(LONG to instance, COLOR to customData)
@@ -231,7 +241,7 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Returns the visibility axis-aligned bounding box in local space. See also [godot.VisualInstance3D.getTransformedAabb].
+   * Returns the visibility axis-aligned bounding box in local space.
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()

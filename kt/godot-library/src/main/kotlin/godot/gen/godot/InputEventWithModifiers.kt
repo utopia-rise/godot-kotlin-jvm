@@ -24,11 +24,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
-  /**
-   * If `true`, pressing [kbd]Cmd[/kbd] on macOS or [kbd]Ctrl[/kbd] on all other platforms will both be serialized as [commandPressed]. If `false`, those same keys will be serialized as [metaPressed] on macOS and [ctrlPressed] on all other platforms.
-   *
-   * This aids with cross-platform compatibility when developing e.g. on Windows for macOS, or vice-versa.
-   */
   public var storeCommand: Boolean
     get() {
       TransferContext.writeArguments()
@@ -91,7 +86,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   /**
-   * State of the [kbd]Meta[/kbd] modifier.
+   * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
    */
   public var metaPressed: Boolean
     get() {
@@ -106,9 +101,6 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_META_PRESSED, NIL)
     }
 
-  /**
-   * State of the [kbd]Cmd[/kbd] modifier.
-   */
   public var commandPressed: Boolean
     get() {
       TransferContext.writeArguments()

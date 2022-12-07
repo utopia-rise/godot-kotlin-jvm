@@ -28,13 +28,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A GraphNode is a container with potentially several input and output slots allowing connections between GraphNodes. Slots can have different, incompatible types.
+ * GraphNode is a [godot.Container] control that represents a single data unit in a [godot.GraphEdit] graph. You can customize the number, type, and color of left- and right-side connection ports.
  *
- * A GraphNode is a container. Each GraphNode can have several input and output slots, sometimes referred to as ports, allowing connections between GraphNodes. To add a slot to GraphNode, add any [godot.Control]-derived child node to it.
+ * GraphNode allows to create nodes for a [godot.GraphEdit] graph with customizable content based on its child [godot.Control]s. GraphNode is a [godot.Container] and is responsible for placing its children on screen. This works similar to [godot.VBoxContainer]. Children, in turn, provide GraphNode with so-called slots, each of which can have a connection port on either side. This is similar to how [godot.TabContainer] uses children to create the tabs.
  *
- * After adding at least one child to GraphNode new sections will be automatically created in the Inspector called 'Slot'. When 'Slot' is expanded you will see list with index number for each slot. You can click on each of them to expand further.
+ * Each GraphNode slot is defined by its index and can provide the node with up to two ports: one on the left, and one on the right. By convention the left port is also referred to as the input port and the right port is referred to as the output port. Each port can be enabled and configured individually, using different type and color. The type is an arbitrary value that you can define using your own considerations. The parent [godot.GraphEdit] will receive this information on each connect and disconnect request.
  *
- * In the Inspector you can enable (show) or disable (hide) slots. By default, all slots are disabled so you may not see any slots on your GraphNode initially. You can assign a type to each slot. Only slots of the same type will be able to connect to each other. You can also assign colors to slots. A tuple of input and output slots is defined for each GUI element included in the GraphNode. Input connections are on the left and output connections are on the right side of GraphNode. Only enabled slots are counted as connections.
+ * Slots can be configured in the Inspector dock once you add at least one child [godot.Control]. The properties are grouped by each slot's index in the "Slot" section.
+ *
+ * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that [godot.GraphEdit] uses port's index and not slot's index. You can use [getConnectionInputSlot] and [getConnectionOutputSlot] to get the slot index from the port index.
  */
 @GodotBaseType
 public open class GraphNode : Container() {
@@ -209,17 +211,11 @@ public open class GraphNode : Container() {
     callConstructor(ENGINECLASS_GRAPHNODE)
   }
 
-  /**
-   * Sets OpenType feature `tag`. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
-   */
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {
     TransferContext.writeArguments(STRING to tag, LONG to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_OPENTYPE_FEATURE, NIL)
   }
 
-  /**
-   * Returns OpenType feature `tag`.
-   */
   public fun getOpentypeFeature(tag: String): Long {
     TransferContext.writeArguments(STRING to tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OPENTYPE_FEATURE,
@@ -227,9 +223,6 @@ public open class GraphNode : Container() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   * Removes all OpenType features.
-   */
   public fun clearOpentypeFeatures(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_CLEAR_OPENTYPE_FEATURES,
@@ -237,19 +230,19 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets properties of the slot with ID `idx`.
+   * Sets properties of the slot with the [slotIndex] index.
    *
-   * If `enable_left`/`right`, a port will appear and the slot will be able to be connected from this side.
+   * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able to be connected from this side.
    *
-   * `type_left`/`right` is an arbitrary type of the port. Only ports with the same type values can be connected.
+   * With [typeLeft]/[typeRight] an arbitrary type can be assigned to each port. Two ports can be connected if they share the same type, or if the connection between their types is allowed in the parent [godot.GraphEdit] (see [godot.GraphEdit.addValidConnectionType]). Keep in mind that the [godot.GraphEdit] has the final say in accepting the connection. Type compatibility simply allows the [godot.GraphEdit.connectionRequest] signal to be emitted.
    *
-   * `color_left`/`right` is the tint of the port's icon on this side.
+   * Ports can be further customized using [colorLeft]/[colorRight] and [customIconLeft]/[customIconRight]. The color parameter adds a tint to the icon. The custom icon can be used to override the default port dot.
    *
-   * `custom_left`/`right` is a custom texture for this side's port.
+   * Additionally, [drawStylebox] can be used to enable or disable drawing of the background stylebox for each slot. See [theme_item slot].
    *
-   * **Note:** This method only sets properties of the slot. To create the slot, add a [godot.Control]-derived child to the GraphNode.
+   * Individual properties can also be set using one of the `set_slot_*` methods.
    *
-   * Individual properties can be set using one of the `set_slot_*` methods. You must enable at least one side of the slot to do so.
+   * **Note:** This method only sets properties of the slot. To create the slot itself, add a [godot.Control]-derived child to the GraphNode.
    */
   public fun setSlot(
     idx: Long,
@@ -267,7 +260,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Disables input and output slot whose index is `idx`.
+   * Disables input and output slot whose index is [slotIndex].
    */
   public fun clearSlot(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
@@ -283,7 +276,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns `true` if left (input) side of the slot `idx` is enabled.
+   * Returns `true` if left (input) side of the slot [slotIndex] is enabled.
    */
   public fun isSlotEnabledLeft(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -293,7 +286,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Toggles the left (input) side of the slot `idx`. If `enable_left` is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
+   * Toggles the left (input) side of the slot [slotIndex]. If [enable] is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
    */
   public fun setSlotEnabledLeft(idx: Long, enableLeft: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enableLeft)
@@ -302,7 +295,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the left (input) type of the slot `idx` to `type_left`.
+   * Sets the left (input) type of the slot [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeLeft(idx: Long, typeLeft: Long): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to typeLeft)
@@ -310,7 +303,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the left (input) type of the slot `idx`.
+   * Returns the left (input) type of the slot [slotIndex].
    */
   public fun getSlotTypeLeft(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -319,7 +312,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the left (input) side of the slot `idx` to `color_left`.
+   * Sets the [godot.core.Color] of the left (input) side of the slot [slotIndex] to [color].
    */
   public fun setSlotColorLeft(idx: Long, colorLeft: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to colorLeft)
@@ -327,7 +320,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the left (input) [godot.core.Color] of the slot `idx`.
+   * Returns the left (input) [godot.core.Color] of the slot [slotIndex].
    */
   public fun getSlotColorLeft(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -337,7 +330,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns `true` if right (output) side of the slot `idx` is enabled.
+   * Returns `true` if right (output) side of the slot [slotIndex] is enabled.
    */
   public fun isSlotEnabledRight(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -347,7 +340,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Toggles the right (output) side of the slot `idx`. If `enable_right` is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
+   * Toggles the right (output) side of the slot [slotIndex]. If [enable] is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
    */
   public fun setSlotEnabledRight(idx: Long, enableRight: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enableRight)
@@ -356,7 +349,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the right (output) type of the slot `idx` to `type_right`.
+   * Sets the right (output) type of the slot [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeRight(idx: Long, typeRight: Long): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to typeRight)
@@ -364,7 +357,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the right (output) type of the slot `idx`.
+   * Returns the right (output) type of the slot [slotIndex].
    */
   public fun getSlotTypeRight(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -373,7 +366,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the right (output) side of the slot `idx` to `color_right`.
+   * Sets the [godot.core.Color] of the right (output) side of the slot [slotIndex] to [color].
    */
   public fun setSlotColorRight(idx: Long, colorRight: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to colorRight)
@@ -381,7 +374,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the right (output) [godot.core.Color] of the slot `idx`.
+   * Returns the right (output) [godot.core.Color] of the slot [slotIndex].
    */
   public fun getSlotColorRight(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -411,7 +404,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the position of the output connection `idx`.
+   * Returns the position of the output connection [port].
    */
   public fun getConnectionOutputPosition(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
@@ -421,7 +414,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the type of the output connection `idx`.
+   * Returns the type of the output connection [port].
    */
   public fun getConnectionOutputType(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -431,7 +424,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the [godot.core.Color] of the output connection `idx`.
+   * Returns the [godot.core.Color] of the output connection [port].
    */
   public fun getConnectionOutputColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -441,7 +434,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the position of the input connection `idx`.
+   * Returns the position of the input connection [port].
    */
   public fun getConnectionInputPosition(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
@@ -451,7 +444,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the type of the input connection `idx`.
+   * Returns the type of the input connection [port].
    */
   public fun getConnectionInputType(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -461,7 +454,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the [godot.core.Color] of the input connection `idx`.
+   * Returns the [godot.core.Color] of the input connection [port].
    */
   public fun getConnectionInputColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)

@@ -29,26 +29,30 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/best_practices/node_alternatives.html]($DOCS_URL/tutorials/best_practices/node_alternatives.html)
  *
- * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Since they inherit from [godot.RefCounted], resources are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a [godot.Node], which is not reference-counted and can be instantiated from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [godot.Node] or another resource.
+ * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Since they inherit from [godot.RefCounted], resources are reference-counted and freed when no longer in use. They can also be nested within other resources, and saved on disk. Once loaded from disk, further attempts to load a resource by [resourcePath] returns the same reference. [godot.PackedScene], one of the most common [godot.Object]s in a Godot project, is also a resource, uniquely capable of storing and instantiating the [godot.Node]s it contains as many times as desired.
+ *
+ * In GDScript, resources can loaded from disk by their [resourcePath] using [@GDScript.load] or [@GDScript.preload].
  *
  * **Note:** In C#, resources will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free resources that are no longer in use. This means that unused resources will linger on for a while before being removed.
  */
 @GodotBaseType
 public open class Resource : RefCounted() {
   /**
-   *
+   * Emitted when [setupLocalToScene] is called, usually by a newly duplicated resource with [resourceLocalToScene] set to `true`. Custom behavior can be defined by connecting this signal.
    */
   public val setupLocalToSceneRequested: Signal0 by signal()
 
   /**
-   * Emitted whenever the resource changes.
+   * Emitted when the resource changes, usually when one of its properties is modified. See also [emitChanged].
    *
-   * **Note:** This signal is not emitted automatically for custom resources, which means that you need to create a setter and emit the signal yourself.
+   * **Note:** This signal is not emitted automatically for properties of custom resources. If necessary, a setter needs to be created to emit the signal.
    */
   public val changed: Signal0 by signal()
 
   /**
-   * If `true`, the resource will be made unique in each instance of its local scene. It can thus be modified in a scene instance without impacting other instances of that same scene.
+   * If `true`, the resource is duplicated for each instance of all scenes using it. At run-time, the resource can be modified in one scene without affecting other instances (see [godot.PackedScene.instantiate]).
+   *
+   * **Note:** Changing this property at run-time has no effect on already created duplicate resources.
    */
   public var resourceLocalToScene: Boolean
     get() {
@@ -62,7 +66,9 @@ public open class Resource : RefCounted() {
     }
 
   /**
-   * The path to the resource. In case it has its own file, it will return its filepath. If it's tied to the scene, it will return the scene's path, followed by the resource's index.
+   * The unique path to this resource. If it has been saved to disk, the value will be its filepath. If the resource is exclusively contained within a scene, the value will be the [godot.PackedScene]'s filepath, followed by an unique identifier.
+   *
+   * **Note:** Setting this property manually may fail if a resource with the same path has already been previously loaded. If necessary, use [takeOverPath].
    */
   public var resourcePath: String
     get() {
@@ -76,7 +82,7 @@ public open class Resource : RefCounted() {
     }
 
   /**
-   * The name of the resource. This is an optional identifier. If [resourceName] is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the [resourceName] will be displayed as the tab name in the script editor.
+   * An optional name for this resource. When defined, its value is displayed to represent the resource in the Inspector dock. For built-in scripts, the name is displayed as part of the tab name in the script editor.
    */
   public var resourceName: StringName
     get() {
@@ -94,7 +100,7 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Sets the path of the resource, potentially overriding an existing cache entry for this path. This differs from setting [resourcePath], as the latter would error out if another resource was already cached for the given path.
+   * Sets the [resourcePath] to [path], potentially overriding an existing cache entry for this path. Further attempts to load an overridden resource by path will instead return this resource.
    */
   public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -102,7 +108,7 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Returns the RID of the resource (or an empty RID). Many resources (such as [godot.Texture2D], [godot.Mesh], etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
+   * Returns the [RID] of this resource (or an empty RID). Many resources (such as [godot.Texture2D], [godot.Mesh], and so on) are high-level abstractions of resources stored in a specialized server ([godot.DisplayServer], [godot.RenderingServer], etc.), so this function will return the original [RID].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -111,7 +117,7 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * If [resourceLocalToScene] is enabled and the resource was loaded from a [godot.PackedScene] instantiation, returns the local scene where this resource's unique copy is in use. Otherwise, returns `null`.
+   * If [resourceLocalToScene] is set to `true` and the resource has been loaded from a [godot.PackedScene] instantiation, returns the root [godot.Node] of the scene where this resource is used. Otherwise, returns `null`.
    */
   public fun getLocalScene(): Node? {
     TransferContext.writeArguments()
@@ -120,9 +126,23 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * This method is called when a resource with [resourceLocalToScene] enabled is loaded from a [godot.PackedScene] instantiation. Its behavior can be customized by connecting [setupLocalToSceneRequested] from script.
+   * Emits the [setupLocalToSceneRequested] signal. If [resourceLocalToScene] is set to `true`, this method is called from [godot.PackedScene.instantiate] by the newly duplicated resource within the scene instance.
    *
-   * For most resources, this method performs no base logic. [godot.ViewportTexture] performs custom logic to properly set the proxy texture and flags in the local viewport.
+   * For most resources, this method performs no logic of its own. Custom behavior can be defined by connecting [setupLocalToSceneRequested] from a script, **not** by overriding this method.
+   *
+   * **Example:** Assign a random value to `health` for every duplicated Resource from an instantiated scene, excluding the original.
+   *
+   * ```
+   * 				extends Resource
+   *
+   * 				var health = 0
+   *
+   * 				func _init():
+   * 				    setup_local_to_scene_requested.connect(randomize_health)
+   *
+   * 				func randomize_health():
+   * 				    health = randi_range(10, 40)
+   * 				```
    */
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
@@ -130,17 +150,17 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Emits the [changed] signal.
+   * Emits the [changed] signal. This method is called automatically for built-in resources.
    *
-   * If external objects which depend on this resource should be updated, this method must be called manually whenever the state of this resource has changed (such as modification of properties).
-   *
-   * The method is equivalent to:
+   * **Note:** For custom resources, it's recommended to call this method whenever a meaningful change occurs, such as a modified property. This ensures that custom [godot.Object]s depending on the resource are properly updated.
    *
    * ```
-   * 				emit_signal("changed")
+   * 				var damage:
+   * 				    set(new_value):
+   * 				        if damage != new_value:
+   * 				            damage = new_value
+   * 				            emit_changed()
    * 				```
-   *
-   * **Note:** This method is called automatically for built-in resources.
    */
   public fun emitChanged(): Unit {
     TransferContext.writeArguments()
@@ -148,13 +168,11 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Duplicates the resource, returning a new resource with the exported members copied. **Note:** To duplicate the resource the constructor is called without arguments. This method will error when the constructor doesn't have default values.
+   * Duplicates this resource, returning a new resource with its `export`ed or [PROPERTY_USAGE_STORAGE] properties copied from the original.
    *
-   * By default, sub-resources are shared between resource copies for efficiency. This can be changed by passing `true` to the `subresources` argument which will copy the subresources.
+   * If [subresources] is `false`, a shallow copy is returned. Nested resources within subresources are not duplicated and are shared from the original resource. This behavior can be overridden by the [PROPERTY_USAGE_DO_NOT_SHARE_ON_DUPLICATE] flag.
    *
-   * **Note:** If `subresources` is `true`, this method will only perform a shallow copy. Nested resources within subresources will not be duplicated and will still be shared.
-   *
-   * **Note:** When duplicating a resource, only `export`ed properties are copied. Other properties will be set to their default value in the new resource.
+   * **Note:** For custom resources, this method will fail if [godot.Object.Init] has been defined with required parameters.
    */
   public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)

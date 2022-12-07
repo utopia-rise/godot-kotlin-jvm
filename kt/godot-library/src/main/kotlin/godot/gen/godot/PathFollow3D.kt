@@ -23,13 +23,10 @@ import kotlin.Unit
  *
  * This node takes its parent [godot.Path3D], and returns the coordinates of a point within it, given a distance from the first vertex.
  *
- * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting an offset in this node.
+ * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting the [progress] in this node.
  */
 @GodotBaseType
 public open class PathFollow3D : Node3D() {
-  /**
-   * The distance from the first vertex, measured in 3D units along the path. This sets this node's position to a point within the path.
-   */
   public var offset: Double
     get() {
       TransferContext.writeArguments()
@@ -41,9 +38,6 @@ public open class PathFollow3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_OFFSET, NIL)
     }
 
-  /**
-   * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the offset within the path, as the offset supplied is multiplied internally by the path's length.
-   */
   public var unitOffset: Double
     get() {
       TransferContext.writeArguments()

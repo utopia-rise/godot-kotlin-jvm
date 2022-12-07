@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SubViewport : Viewport() {
   /**
-   * The width and height of the sub-viewport.
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
    */
   public var size: Vector2i
     get() {

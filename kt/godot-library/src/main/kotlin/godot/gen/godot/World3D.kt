@@ -40,7 +40,7 @@ public open class World3D : Resource() {
     }
 
   /**
-   * The World3D's fallback_environment will be used if the World3D's [godot.Environment] fails or is missing.
+   * The World3D's fallback environment will be used if [environment] fails or is missing.
    */
   public var fallbackEnvironment: Environment?
     get() {
@@ -55,9 +55,6 @@ public open class World3D : Resource() {
           NIL)
     }
 
-  /**
-   *
-   */
   public var cameraEffects: CameraEffects?
     get() {
       TransferContext.writeArguments()
@@ -101,7 +98,7 @@ public open class World3D : Resource() {
     }
 
   /**
-   * Direct access to the world's physics 3D space state. Used for querying current and potential collisions.
+   * Direct access to the world's physics 3D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [godot.Node.PhysicsProcess] in the main thread.
    */
   public val directSpaceState: PhysicsDirectSpaceState3D?
     get() {

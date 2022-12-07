@@ -36,7 +36,7 @@ public open class BaseButton : Control() {
   public val buttonDown: Signal0 by signal()
 
   /**
-   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the `button_pressed` argument.
+   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [buttonPressed] argument.
    */
   public val toggled: Signal1<Boolean> by signal("buttonPressed")
 
@@ -189,9 +189,6 @@ public open class BaseButton : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_GROUP, NIL)
     }
 
-  /**
-   * The [godot.Node] which must be a parent of the focused GUI [godot.Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
-   */
   public var shortcutContext: Node?
     get() {
       TransferContext.writeArguments()

@@ -16,14 +16,8 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class VelocityTracker3D : RefCounted() {
-  /**
-   *
-   */
   public var trackPhysicsStep: Boolean
     get() {
       TransferContext.writeArguments()
@@ -41,18 +35,12 @@ public open class VelocityTracker3D : RefCounted() {
     callConstructor(ENGINECLASS_VELOCITYTRACKER3D)
   }
 
-  /**
-   *
-   */
   public fun updatePosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_UPDATE_POSITION,
         NIL)
   }
 
-  /**
-   *
-   */
   public fun getTrackedLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -60,9 +48,6 @@ public open class VelocityTracker3D : RefCounted() {
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  /**
-   *
-   */
   public fun reset(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_RESET, NIL)

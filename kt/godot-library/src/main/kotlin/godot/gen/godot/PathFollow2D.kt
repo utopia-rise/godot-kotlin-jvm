@@ -21,13 +21,10 @@ import kotlin.Unit
  *
  * This node takes its parent [godot.Path2D], and returns the coordinates of a point within it, given a distance from the first vertex.
  *
- * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting an offset in this node.
+ * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting the [progress] in this node.
  */
 @GodotBaseType
 public open class PathFollow2D : Node2D() {
-  /**
-   * The distance along the path in pixels.
-   */
   public var offset: Double
     get() {
       TransferContext.writeArguments()
@@ -39,9 +36,6 @@ public open class PathFollow2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_OFFSET, NIL)
     }
 
-  /**
-   * The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the last). This is just another way of expressing the offset within the path, as the offset supplied is multiplied internally by the path's length.
-   */
   public var unitOffset: Double
     get() {
       TransferContext.writeArguments()

@@ -83,13 +83,17 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var vertices = new Godot.Collections.Array<Vector3>();
+ * var vertices = new Vector3[]
  *
- * vertices.Add(new Vector3(0, 1, 0));
+ * {
  *
- * vertices.Add(new Vector3(1, 0, 0));
+ *     new Vector3(0, 1, 0),
  *
- * vertices.Add(new Vector3(0, 0, 1));
+ *     new Vector3(1, 0, 0),
+ *
+ *     new Vector3(0, 0, 1),
+ *
+ * };
  *
  *
  *
@@ -109,7 +113,7 @@ import kotlin.Unit
  *
  * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
  *
- * var m = new MeshInstance();
+ * var m = new MeshInstance3D();
  *
  * m.Mesh = arrMesh;
  *
@@ -221,9 +225,9 @@ public open class ArrayMesh : Mesh() {
   /**
    * Creates a new surface.
    *
-   * Surfaces are created to be rendered using a `primitive`, which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
+   * Surfaces are created to be rendered using a [primitive], which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
    *
-   * The `arrays` argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
+   * The [arrays] argument is an array of arrays. See [enum Mesh.ArrayType] for the values used in this array. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
    */
   public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,

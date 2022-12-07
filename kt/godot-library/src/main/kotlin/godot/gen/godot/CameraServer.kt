@@ -48,7 +48,7 @@ public object CameraServer : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
-   * Returns the [godot.CameraFeed] corresponding to the camera with the given `index`.
+   * Returns the [godot.CameraFeed] corresponding to the camera with the given [index].
    */
   public fun getFeed(index: Long): CameraFeed? {
     TransferContext.writeArguments(LONG to index)
@@ -75,7 +75,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Adds the camera `feed` to the camera server.
+   * Adds the camera [feed] to the camera server.
    */
   public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
@@ -83,7 +83,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Removes the specified camera `feed`.
+   * Removes the specified camera [feed].
    */
   public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)

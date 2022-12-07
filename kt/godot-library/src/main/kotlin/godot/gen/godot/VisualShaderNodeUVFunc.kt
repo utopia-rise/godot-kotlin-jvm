@@ -47,7 +47,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
      */
     FUNC_PANNING(0),
     /**
-     * Scales `uv[/uv] by using `scale` and `pivot` values using the following formula: `uv = (uv - pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
+     * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv - pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
      */
     FUNC_SCALING(1),
     /**

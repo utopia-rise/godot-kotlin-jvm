@@ -21,11 +21,15 @@ import kotlin.Unit
  * [godot.Material] used with a [godot.FogVolume] to draw things with the volumetric fog effect.
  *
  * A [godot.Material] resource that can be used by [godot.FogVolume]s to draw volumetric effects.
+ *
+ * If you need more advanced effects, use a custom [fog shader]($DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html).
  */
 @GodotBaseType
 public open class FogMaterial : Material() {
   /**
-   * Sets the density of the [godot.FogVolume]. Denser objects are more opaque, but may suffer from under-sampling artifacts that look like stripes.
+   * The density of the [godot.FogVolume]. Denser objects are more opaque, but may suffer from under-sampling artifacts that look like stripes. Negative values can be used to subtract fog from other [godot.FogVolume]s or global volumetric fog.
+   *
+   * **Note:** Due to limited precision, [density] values between `-0.001` and `0.001` (exclusive) act like `0.0`. This does not apply to [godot.Environment.volumetricFogDensity].
    */
   public var density: Double
     get() {
@@ -39,7 +43,7 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * Sets the single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally [albedo] is converted into single-scattering which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
+   * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
    */
   public var albedo: Color
     get() {
@@ -53,7 +57,7 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * Sets the [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
+   * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
    */
   public var emission: Color
     get() {
@@ -67,7 +71,7 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * Sets the rate by which the height-based fog decreases in density as height increases in world space. A high falloff will result in a sharp transition, while a low falloff will result in a smoother transition. A value of `0` results in uniform-density fog. The height threshold is determined by the height of the associated [godot.FogVolume].
+   * The rate by which the height-based fog decreases in density as height increases in world space. A high falloff will result in a sharp transition, while a low falloff will result in a smoother transition. A value of `0.0` results in uniform-density fog. The height threshold is determined by the height of the associated [godot.FogVolume].
    */
   public var heightFalloff: Double
     get() {
@@ -83,7 +87,7 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * Sets the hardness of the edges of the [godot.FogVolume]. A higher number will result in softer edges while a lower number will result in harder edges.
+   * The hardness of the edges of the [godot.FogVolume]. A higher value will result in softer edges, while a lower value will result in harder edges.
    */
   public var edgeFade: Double
     get() {
@@ -97,7 +101,7 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * Sets a 3D texture that is used to scale the [density] of the [godot.FogVolume].
+   * The 3D texture that is used to scale the [density] of the [godot.FogVolume]. This can be used to vary fog density within the [godot.FogVolume] with any kind of static pattern. For animated effects, consider using a custom [fog shader]($DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html).
    */
   public var densityTexture: Texture3D?
     get() {

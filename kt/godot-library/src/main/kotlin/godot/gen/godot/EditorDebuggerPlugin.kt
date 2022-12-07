@@ -31,70 +31,114 @@ import kotlin.Unit
  *
  * [godot.EditorDebuggerPlugin] provides functions related to the editor side of the debugger.
  *
- * You don't need to instantiate this class; that is automatically handled by the debugger. [godot.Control] nodes can be added as child nodes to provide a GUI for the plugin.
+ * To interact with the debugger, an instance of this class must be added to the editor via [godot.EditorPlugin.addDebuggerPlugin].
  *
- * Do not free or reparent this node, otherwise it becomes unusable.
+ * Once added, the [_setupSession] callback will be called for every [godot.EditorDebuggerSession] available to the plugin, and when new ones are created (the sessions may be inactive during this stage).
  *
- * To use [godot.EditorDebuggerPlugin], register it using the [godot.EditorPlugin.addDebuggerPlugin] method first.
+ * You can retrieve the available [godot.EditorDebuggerSession]s via [getSessions] or get a specific one via [getSession].
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * @tool
+ *
+ * extends EditorPlugin
+ *
+ *
+ *
+ * class ExampleEditorDebugger extends EditorDebuggerPlugin:
+ *
+ *
+ *
+ *     func _has_capture(prefix):
+ *
+ *         # Return true if you wish to handle message with this prefix.
+ *
+ *         return prefix == "my_plugin"
+ *
+ *
+ *
+ *     func _capture(message, data, session_id):
+ *
+ *         if message == "my_plugin:ping":
+ *
+ *             get_session(session_id).send_message("my_plugin:echo", data)
+ *
+ *
+ *
+ *     func _setup_session(session_id):
+ *
+ *         # Add a new tab in the debugger session UI containing a label.
+ *
+ *         var label = Label.new()
+ *
+ *         label.name = "Example plugin"
+ *
+ *         label.text = "Example plugin"
+ *
+ *         var session = get_session(session_id)
+ *
+ *         # Listens to the session started and stopped signals.
+ *
+ *         session.started.connect(func (): print("Session started"))
+ *
+ *         session.stopped.connect(func (): print("Session stopped"))
+ *
+ *         session.add_session_tab(label)
+ *
+ *
+ *
+ * var debugger = ExampleEditorDebugger.new()
+ *
+ *
+ *
+ * func _enter_tree():
+ *
+ *     add_debugger_plugin(debugger)
+ *
+ *
+ *
+ * func _exit_tree():
+ *
+ *     remove_debugger_plugin(debugger)
+ *
+ * [/gdscript]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class EditorDebuggerPlugin internal constructor() : Control() {
-  /**
-   * Emitted when the game enters a break state.
-   */
   public val breaked: Signal1<Boolean> by signal("canDebug")
 
-  /**
-   * Emitted when the debugging stops.
-   */
   public val stopped: Signal0 by signal()
 
-  /**
-   * Emitted when the debugging starts.
-   */
   public val started: Signal0 by signal()
 
-  /**
-   * Emitted when the game exists a break state.
-   */
   public val continued: Signal0 by signal()
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN)
   }
 
-  /**
-   * Sends a message with given `message` and `data` array.
-   */
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_SEND_MESSAGE,
         NIL)
   }
 
-  /**
-   * Registers a message capture with given `name`. If `name` is "my_message" then messages starting with "my_message:" will be called with the given callable.
-   *
-   * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
-   */
   public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL)
   }
 
-  /**
-   * Unregisters the message capture with given name.
-   */
   public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_UNREGISTER_MESSAGE_CAPTURE, NIL)
   }
 
-  /**
-   * Returns `true` if a message capture with given name is present otherwise `false`.
-   */
   public fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_HAS_CAPTURE,
@@ -102,9 +146,6 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns `true` if the game is in break state otherwise `false`.
-   */
   public fun isBreaked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_BREAKED,
@@ -112,9 +153,6 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns `true` if the game can be debugged otherwise `false`.
-   */
   public fun isDebuggable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_IS_DEBUGGABLE,
@@ -122,9 +160,6 @@ public open class EditorDebuggerPlugin internal constructor() : Control() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns `true` if there is an instance of the game running with the attached debugger otherwise `false`.
-   */
   public fun isSessionActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

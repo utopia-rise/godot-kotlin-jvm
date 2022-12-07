@@ -17,9 +17,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a pitch-shifting audio effect to an Audio bus.
+ * Adds a pitch-shifting audio effect to an audio bus.
  *
  * Raises or lowers the pitch of original sound.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased with minimal effect on transients.
  */

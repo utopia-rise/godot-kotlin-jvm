@@ -130,7 +130,7 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer. Sets [waitTime] to `time_sec` if `time_sec > 0`. This also resets the remaining time to [waitTime].
+   * Starts the timer. Sets [waitTime] to [timeSec] if `time_sec > 0`. This also resets the remaining time to [waitTime].
    *
    * **Note:** This method will not resume a paused timer. See [paused].
    */

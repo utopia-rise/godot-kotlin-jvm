@@ -29,7 +29,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * MeshInstance3D is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used render 3D geometry and can be used to instance a single [godot.Mesh] in many places. This allows reuse of geometry which can save on resources. When a [godot.Mesh] has to be instantiated more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance3D] instead.
+ * MeshInstance3D is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used render 3D geometry and can be used to instance a single [godot.Mesh] in many places. This allows reusing geometry, which can save on resources. When a [godot.Mesh] has to be instantiated more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance3D] instead.
  */
 @GodotBaseType
 public open class MeshInstance3D : GeometryInstance3D() {
@@ -132,9 +132,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [godot.StaticBody3D] child node with a [godot.ConvexPolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
    *
-   * If `clean` is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
    *
-   * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
    */
   public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)

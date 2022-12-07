@@ -201,7 +201,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [moveAndSlide]. The snapping vector is determined by the given distance along the opposite direction of the [upDirection].
    *
-   * As long as the snapping vector is in contact with the ground and the body moves against `up_direction`, the body will remain attached to the surface. Snapping is not applied if the body moves along `up_direction`, so it will be able to detach from the ground when jumping.
+   * As long as the snapping vector is in contact with the ground and the body moves against [upDirection], the body will remain attached to the surface. Snapping is not applied if the body moves along [upDirection], so it will be able to detach from the ground when jumping.
    */
   public var floorSnapLength: Double
     get() {
@@ -216,9 +216,6 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_SNAP_LENGTH, NIL)
     }
 
-  /**
-   * Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum MovingPlatformApplyVelocityOnLeave] constants for available behavior.
-   */
   public var movingPlatformApplyVelocityOnLeave: Long
     get() {
       TransferContext.writeArguments()
@@ -233,9 +230,6 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_APPLY_VELOCITY_ON_LEAVE, NIL)
     }
 
-  /**
-   * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity.
-   */
   public var movingPlatformFloorLayers: Long
     get() {
       TransferContext.writeArguments()
@@ -249,9 +243,6 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_FLOOR_LAYERS, NIL)
     }
 
-  /**
-   * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all wall bodies are ignored.
-   */
   public var movingPlatformWallLayers: Long
     get() {
       TransferContext.writeArguments()
@@ -265,15 +256,6 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_WALL_LAYERS, NIL)
     }
 
-  /**
-   * Extra margin used for collision recovery when calling [moveAndSlide].
-   *
-   * If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.
-   *
-   * A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.
-   *
-   * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
-   */
   public var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
@@ -292,7 +274,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Moves the body based on [velocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.CharacterBody3D] or [godot.RigidDynamicBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   * Moves the body based on [velocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.CharacterBody3D] or [godot.RigidBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
    *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call [getLastSlideCollision], for more detailed information about collisions that occurred, use [getSlideCollision].
    *
@@ -415,7 +397,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the floor's collision angle at the last collision point according to `up_direction`, which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the floor's collision angle at the last collision point according to [upDirection], which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
   public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Double {
     TransferContext.writeArguments(VECTOR3 to upDirection)
@@ -490,17 +472,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public enum class MovingPlatformApplyVelocityOnLeave(
     id: Long
   ) {
-    /**
-     * Add the last platform velocity to the [velocity] when you leave a moving platform.
-     */
     PLATFORM_VEL_ON_LEAVE_ALWAYS(0),
-    /**
-     * Add the last platform velocity to the [velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
-     */
     PLATFORM_VEL_ON_LEAVE_UPWARD_ONLY(1),
-    /**
-     * Do nothing when leaving a platform.
-     */
     PLATFORM_VEL_ON_LEAVE_NEVER(2),
     ;
 

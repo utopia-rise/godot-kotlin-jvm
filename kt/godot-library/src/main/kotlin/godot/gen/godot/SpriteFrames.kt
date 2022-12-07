@@ -62,7 +62,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Changes the animation's name to `newname`.
+   * Changes the animation's name to [newname].
    */
   public fun renameAnimation(anim: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, STRING_NAME to newname)

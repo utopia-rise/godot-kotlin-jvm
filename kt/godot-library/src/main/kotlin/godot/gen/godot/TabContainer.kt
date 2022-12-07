@@ -213,7 +213,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.Control] node from the tab at index `tab_idx`.
+   * Returns the [godot.Control] node from the tab at index [tabIdx].
    */
   public fun getTabControl(tabIdx: Long): Control? {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -223,7 +223,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets a custom title for the tab at index `tab_idx` (tab titles default to the name of the indexed child node). Set it back to the child's name to make the tab default to it again.
+   * Sets a custom title for the tab at index [tabIdx] (tab titles default to the name of the indexed child node). Set it back to the child's name to make the tab default to it again.
    */
   public fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
@@ -231,7 +231,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the title of the tab at index `tab_idx`. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
+   * Returns the title of the tab at index [tabIdx]. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
    */
   public fun getTabTitle(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -240,7 +240,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets an icon for the tab at index `tab_idx`.
+   * Sets an icon for the tab at index [tabIdx].
    */
   public fun setTabIcon(tabIdx: Long, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
@@ -248,7 +248,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the tab at index `tab_idx` or `null` if the tab has no [godot.Texture2D].
+   * Returns the [godot.Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [godot.Texture2D].
    */
   public fun getTabIcon(tabIdx: Long): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -257,7 +257,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If `disabled` is `true`, disables the tab at index `tab_idx`, making it non-interactable.
+   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
   public fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
@@ -265,7 +265,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index `tab_idx` is disabled.
+   * Returns `true` if the tab at index [tabIdx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -274,7 +274,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If `hidden` is `true`, hides the tab at index `tab_idx`, making it disappear from the tab area.
+   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
   public fun setTabHidden(tabIdx: Long, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to hidden)
@@ -282,7 +282,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index `tab_idx` is hidden.
+   * Returns `true` if the tab at index [tabIdx] is hidden.
    */
   public fun isTabHidden(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -291,7 +291,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates `point`. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -301,7 +301,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab tied to the given `control`. The control must be a child of the [godot.TabContainer].
+   * Returns the index of the tab tied to the given [control]. The control must be a child of the [godot.TabContainer].
    */
   public fun getTabIdxFromControl(control: Control): Long {
     TransferContext.writeArguments(OBJECT to control)

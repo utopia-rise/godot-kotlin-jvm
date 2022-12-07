@@ -76,9 +76,6 @@ public open class ProceduralSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_CURVE, NIL)
     }
 
-  /**
-   * Amount of energy contribution from the sky.
-   */
   public var skyEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -93,7 +90,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * The sky cover texture to use. This texture must use an equirectangular projection (similar to [godot.PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergy] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
+   * The sky cover texture to use. This texture must use an equirectangular projection (similar to [godot.PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergyMultiplier] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
    */
   public var skyCover: Texture2D?
     get() {
@@ -172,9 +169,6 @@ public open class ProceduralSkyMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_GROUND_CURVE, NIL)
     }
 
-  /**
-   * Amount of energy contribution from the ground.
-   */
   public var groundEnergy: Double
     get() {
       TransferContext.writeArguments()

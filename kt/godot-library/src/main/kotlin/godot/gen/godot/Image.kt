@@ -119,7 +119,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the offset where the image's mipmap with index `mipmap` is stored in the `data` dictionary.
+   * Returns the offset where the image's mipmap with index [mipmap] is stored in the `data` dictionary.
    */
   public fun getMipmapOffset(mipmap: Long): Long {
     TransferContext.writeArguments(LONG to mipmap)
@@ -128,7 +128,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
+   * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true` then set width and height to be the same. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
   public fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
@@ -137,7 +137,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the given `width` and `height`. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
+   * Resizes the image to the given [width] and [height]. New pixels are calculated using the [interpolation] mode defined via [enum Interpolation] constants.
    */
   public fun resize(
     width: Long,
@@ -157,7 +157,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Crops the image to the given `width` and `height`. If the specified size is larger than the current size, the extra area is filled with black pixels.
+   * Crops the image to the given [width] and [height]. If the specified size is larger than the current size, the extra area is filled with black pixels.
    */
   public fun crop(width: Long, height: Long): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height)
@@ -182,8 +182,6 @@ public open class Image : Resource() {
 
   /**
    * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`.
-   *
-   * **Note:** Mipmap generation is done on the CPU, is single-threaded and is *always* done on the main thread. This means generating mipmaps will result in noticeable stuttering during gameplay, even if [generateMipmaps] is called from a [godot.Thread].
    */
   public fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
@@ -200,7 +198,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Creates an empty image of given size and format. See [enum Format] constants. If `use_mipmaps` is `true` then generate mipmaps for this image. See the [generateMipmaps].
+   * Creates an empty image of given size and format. See [enum Format] constants. If [useMipmaps] is `true`, then generate mipmaps for this image. See the [generateMipmaps].
    */
   public fun create(
     width: Long,
@@ -213,7 +211,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If `use_mipmaps` is `true` then loads mipmaps for this image from `data`. See [generateMipmaps].
+   * Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See [generateMipmaps].
    */
   public fun createFromData(
     width: Long,
@@ -236,7 +234,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Loads an image from file `path`. See [godot.Supported image formats]($DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
+   * Loads an image from file [path]. See [godot.Supported image formats]($DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.
    *
@@ -249,7 +247,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a PNG file to `path`.
+   * Saves the image as a PNG file to the file at [path].
    */
   public fun savePng(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -258,7 +256,7 @@ public open class Image : Resource() {
   }
 
   /**
-   *
+   * Saves the image as a PNG file to a byte array.
    */
   public fun savePngToBuffer(): PackedByteArray {
     TransferContext.writeArguments()
@@ -268,7 +266,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as an EXR file to `path`. If `grayscale` is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
    *
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
@@ -414,7 +412,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies `src_rect` from `src` image to this image at coordinates `dst`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
+   * Copies [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly to both image bounds. This image and [src] image **must** have the same format. [srcRect] with non-positive size is treated as empty.
    */
   public fun blitRect(
     src: Image,
@@ -426,7 +424,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Blits `src_rect` area from `src` image to this image at the coordinates given by `dst`, clipped accordingly to both image bounds. `src` pixel is copied onto `dst` if the corresponding `mask` pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
+   * Blits [srcRect] area from [src] image to this image at the coordinates given by [dst], clipped accordingly to both image bounds. [src] pixel is copied onto [dst] if the corresponding [mask] pixel's alpha value is not 0. This image and [src] image **must** have the same format. [src] image and [mask] image **must** have the same size (width and height) but they can have different formats. [srcRect] with non-positive size is treated as empty.
    */
   public fun blitRectMask(
     src: Image,
@@ -439,7 +437,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image at coordinates `dest`, clipped accordingly to both image bounds. This image and `src` image **must** have the same format. `src_rect` with not positive size is treated as empty.
+   * Alpha-blends [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly to both image bounds. This image and [src] image **must** have the same format. [srcRect] with non-positive size is treated as empty.
    */
   public fun blendRect(
     src: Image,
@@ -451,7 +449,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends `src_rect` from `src` image to this image using `mask` image at coordinates `dst`, clipped accordingly to both image bounds. Alpha channels are required for both `src` and `mask`. `dst` pixels and `src` pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and `src` image **must** have the same format. `src` image and `mask` image **must** have the same size (width and height) but they can have different formats. `src_rect` with not positive size is treated as empty.
+   * Alpha-blends [srcRect] from [src] image to this image using [mask] image at coordinates [dst], clipped accordingly to both image bounds. Alpha channels are required for both [src] and [mask]. [dst] pixels and [src] pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and [src] image **must** have the same format. [src] image and [mask] image **must** have the same size (width and height) but they can have different formats. [srcRect] with non-positive size is treated as empty.
    */
   public fun blendRectMask(
     src: Image,
@@ -464,7 +462,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Fills the image with `color`.
+   * Fills the image with [color].
    */
   public fun fill(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -472,7 +470,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Fills `rect` with `color`.
+   * Fills [rect] with [color].
    */
   public fun fillRect(rect: Rect2, color: Color): Unit {
     TransferContext.writeArguments(RECT2 to rect, COLOR to color)
@@ -480,7 +478,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns a [godot.core.Rect2] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible.
+   * Returns a [godot.Rect2i] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible.
    */
   public fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
@@ -488,9 +486,6 @@ public open class Image : Resource() {
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
-  /**
-   * Returns a new image that is a copy of the image's area specified with `rect`.
-   */
   public fun getRect(rect: Rect2): Image? {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_RECT, OBJECT)
@@ -498,7 +493,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies `src` image to this image.
+   * Copies [src] image to this image.
    */
   public fun copyFrom(src: Image): Unit {
     TransferContext.writeArguments(OBJECT to src)
@@ -506,7 +501,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the color of the pixel at `point`.
+   * Returns the color of the pixel at [point].
    *
    * This is the same as [getPixel], but with a [godot.Vector2i] argument instead of two integer arguments.
    */
@@ -528,7 +523,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the pixel at `point` to `color`. Example:
+   * Sets the [godot.core.Color] of the pixel at [point] to [color].
+   *
+   * **Example:**
    *
    * [codeblocks]
    *
@@ -574,7 +571,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the pixel at `(x, y)` to `color`. Example:
+   * Sets the [godot.core.Color] of the pixel at `(x, y)` to [color].
+   *
+   * **Example:**
    *
    * [codeblocks]
    *

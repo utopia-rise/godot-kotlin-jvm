@@ -15,7 +15,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a panner audio effect to an Audio bus. Pans sound left or right.
+ * Adds a panner audio effect to an audio bus. Pans sound left or right.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Determines how much of an audio signal is sent to the left and right buses.
  */

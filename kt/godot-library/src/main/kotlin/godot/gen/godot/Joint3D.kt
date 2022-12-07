@@ -28,9 +28,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {
-  /**
-   * The node attached to the first side (A) of the joint.
-   */
   public var nodes_nodeA: NodePath
     get() {
       TransferContext.writeArguments()
@@ -42,9 +39,6 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL)
     }
 
-  /**
-   * The node attached to the second side (B) of the joint.
-   */
   public var nodes_nodeB: NodePath
     get() {
       TransferContext.writeArguments()
@@ -56,9 +50,6 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL)
     }
 
-  /**
-   * The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority.
-   */
   public var solver_priority: Long
     get() {
       TransferContext.writeArguments()
@@ -70,9 +61,6 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY, NIL)
     }
 
-  /**
-   * If `true`, the two bodies of the nodes are not able to collide with each other.
-   */
   public var collision_excludeNodes: Boolean
     get() {
       TransferContext.writeArguments()

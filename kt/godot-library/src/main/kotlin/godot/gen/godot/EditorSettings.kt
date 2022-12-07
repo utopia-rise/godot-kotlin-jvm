@@ -88,7 +88,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the setting specified by `name` exists, `false` otherwise.
+   * Returns `true` if the setting specified by [name] exists, `false` otherwise.
    */
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -97,7 +97,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Sets the `value` of the setting specified by `name`. This is equivalent to using [godot.Object.set] on the EditorSettings instance.
+   * Sets the [value] of the setting specified by [name]. This is equivalent to using [godot.Object.set] on the EditorSettings instance.
    */
   public fun setSetting(name: String, `value`: Any): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
@@ -105,7 +105,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Returns the value of the setting specified by `name`. This is equivalent to using [godot.Object.get] on the EditorSettings instance.
+   * Returns the value of the setting specified by [name]. This is equivalent to using [godot.Object.get] on the EditorSettings instance.
    */
   public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
@@ -114,7 +114,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Erases the setting whose name is specified by `property`.
+   * Erases the setting whose name is specified by [property].
    */
   public fun erase(`property`: String): Unit {
     TransferContext.writeArguments(STRING to property)
@@ -122,7 +122,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Sets the initial value of the setting specified by `name` to `value`. This is used to provide a value for the Revert button in the Editor Settings. If `update_current` is true, the current value of the setting will be set to `value` as well.
+   * Sets the initial value of the setting specified by [name] to [value]. This is used to provide a value for the Revert button in the Editor Settings. If [updateCurrent] is true, the current value of the setting will be set to [value] as well.
    */
   public fun setInitialValue(
     name: StringName,
@@ -134,9 +134,6 @@ public open class EditorSettings internal constructor() : Resource() {
         NIL)
   }
 
-  /**
-   * Returns `true` if the setting specified by `name` can have its value reverted to the default value, `false` otherwise. When this method returns `true`, a Revert button will display next to the setting in the Editor Settings.
-   */
   public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
@@ -144,9 +141,6 @@ public open class EditorSettings internal constructor() : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Returns the default value of the setting specified by `name`. This is the value that would be applied when clicking the Revert button in the Editor Settings.
-   */
   public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
@@ -229,9 +223,6 @@ public open class EditorSettings internal constructor() : Resource() {
         NIL)
   }
 
-  /**
-   * Returns the project-specific settings path. Projects all have a unique subdirectory inside the settings path where project-specific settings are saved.
-   */
   public fun getProjectSettingsDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -240,7 +231,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Sets project-specific metadata with the `section`, `key` and `data` specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [getProjectMetadata].
+   * Sets project-specific metadata with the [section], [key] and [data] specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [getProjectMetadata].
    */
   public fun setProjectMetadata(
     section: String,
@@ -253,7 +244,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Returns project-specific metadata for the `section` and `key` specified. If the metadata doesn't exist, `default` will be returned instead. See also [setProjectMetadata].
+   * Returns project-specific metadata for the [section] and [key] specified. If the metadata doesn't exist, [default] will be returned instead. See also [setProjectMetadata].
    */
   public fun getProjectMetadata(
     section: String,
@@ -303,7 +294,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   *
+   * Overrides the built-in editor action [name] with the input actions defined in [actionsList].
    */
   public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to name, ARRAY to actionsList)
@@ -312,7 +303,7 @@ public open class EditorSettings internal constructor() : Resource() {
   }
 
   /**
-   * Checks if any settings with the prefix `setting_prefix` exist in the set of changed settings. See also [getChangedSettings].
+   * Checks if any settings with the prefix [settingPrefix] exist in the set of changed settings. See also [getChangedSettings].
    */
   public fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
     TransferContext.writeArguments(STRING to settingPrefix)
