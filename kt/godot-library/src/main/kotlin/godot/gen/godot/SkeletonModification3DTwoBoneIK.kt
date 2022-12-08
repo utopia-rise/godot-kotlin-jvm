@@ -17,6 +17,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -49,8 +50,9 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TARGET_NODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK, scriptIndex)
+    return true
   }
 
   /**

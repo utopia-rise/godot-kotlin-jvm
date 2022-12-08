@@ -19,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -77,8 +78,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHINSTANCE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MESHINSTANCE3D, scriptIndex)
+    return true
   }
 
   /**

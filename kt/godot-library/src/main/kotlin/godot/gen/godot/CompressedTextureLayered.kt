@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for texture arrays that can optionally be compressed.
@@ -47,8 +47,9 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
+    return true
   }
 
   /**

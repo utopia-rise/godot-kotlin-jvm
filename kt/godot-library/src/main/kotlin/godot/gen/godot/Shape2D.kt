@@ -25,6 +25,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -56,8 +57,9 @@ public open class Shape2D internal constructor() : Resource() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SHAPE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
+    return true
   }
 
   /**

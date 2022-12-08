@@ -17,6 +17,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -170,8 +171,9 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
           ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISABLE_OVERWRITE_WARNING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORFILEDIALOG)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORFILEDIALOG, scriptIndex)
+    return true
   }
 
   /**

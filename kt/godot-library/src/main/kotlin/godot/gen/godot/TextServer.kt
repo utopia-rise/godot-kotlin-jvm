@@ -59,8 +59,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTSERVER, scriptIndex)
+    return true
   }
 
   /**

@@ -12,6 +12,8 @@ import godot.core.TransferContext
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -55,8 +57,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorCommandPalette internal constructor() : ConfirmationDialog() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORCOMMANDPALETTE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORCOMMANDPALETTE, scriptIndex)
+    return true
   }
 
   /**

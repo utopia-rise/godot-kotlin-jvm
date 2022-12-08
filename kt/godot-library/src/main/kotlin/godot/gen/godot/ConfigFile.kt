@@ -194,8 +194,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ConfigFile : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONFIGFILE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CONFIGFILE, scriptIndex)
+    return true
   }
 
   /**

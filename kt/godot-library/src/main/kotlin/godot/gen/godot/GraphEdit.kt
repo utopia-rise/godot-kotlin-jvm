@@ -358,8 +358,9 @@ public open class GraphEdit : Control() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRAPHEDIT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GRAPHEDIT, scriptIndex)
+    return true
   }
 
   /**

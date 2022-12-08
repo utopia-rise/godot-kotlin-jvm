@@ -18,7 +18,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Creates packages that can be loaded into a running project.
@@ -57,8 +56,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PCKPACKER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PCKPACKER, scriptIndex)
+    return true
   }
 
   /**

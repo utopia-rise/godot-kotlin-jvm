@@ -31,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class XMLParser : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XMLPARSER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XMLPARSER, scriptIndex)
+    return true
   }
 
   /**

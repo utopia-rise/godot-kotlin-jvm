@@ -46,6 +46,9 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public val folderRemoved: Signal1<String> by signal("folder")
 
+  /**
+   *
+   */
   public val instance: Signal1<PackedStringArray> by signal("files")
 
   /**

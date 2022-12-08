@@ -17,10 +17,10 @@ import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Time singleton for working with time.
@@ -37,11 +37,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Time : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_TIME)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and `weekday`.

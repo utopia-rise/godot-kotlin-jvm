@@ -11,6 +11,7 @@ import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -131,8 +132,9 @@ public open class MainLoop : Object() {
    */
   public val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MAINLOOP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MAINLOOP, scriptIndex)
+    return true
   }
 
   /**

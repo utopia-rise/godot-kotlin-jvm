@@ -3369,6 +3369,9 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     public final const val BARRIER_MASK_TRANSFER: Long = 4
 
+    /**
+     *
+     */
     public final const val BARRIER_MASK_ALL: Long = 7
 
     /**

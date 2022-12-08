@@ -27,7 +27,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A class stored as a resource.
@@ -57,8 +56,9 @@ public open class Script internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_SET_SOURCE_CODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCRIPT, scriptIndex)
+    return true
   }
 
   /**

@@ -100,8 +100,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SURFACETOOL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SURFACETOOL, scriptIndex)
+    return true
   }
 
   /**

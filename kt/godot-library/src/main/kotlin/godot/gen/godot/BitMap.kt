@@ -22,6 +22,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -33,8 +34,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class BitMap : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BITMAP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_BITMAP, scriptIndex)
+    return true
   }
 
   /**

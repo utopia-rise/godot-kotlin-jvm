@@ -94,6 +94,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Animation : Resource() {
+  /**
+   * Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
+   */
   public val tracksChanged: Signal0 by signal()
 
   /**
@@ -140,8 +143,9 @@ public open class Animation : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SET_STEP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
+    return true
   }
 
   /**

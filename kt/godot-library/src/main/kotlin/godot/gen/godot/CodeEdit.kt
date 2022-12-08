@@ -32,6 +32,7 @@ import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -385,8 +386,9 @@ public open class CodeEdit : TextEdit() {
           ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_PAIRS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CODEEDIT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CODEEDIT, scriptIndex)
+    return true
   }
 
   /**

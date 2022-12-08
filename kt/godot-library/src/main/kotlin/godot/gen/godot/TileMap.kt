@@ -29,6 +29,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -128,8 +129,9 @@ public open class TileMap : Node2D() {
           ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_VISIBILITY_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TILEMAP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TILEMAP, scriptIndex)
+    return true
   }
 
   /**

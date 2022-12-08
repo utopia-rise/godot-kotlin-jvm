@@ -19,6 +19,7 @@ import godot.core.VariantType._RID
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -95,8 +96,9 @@ public open class Resource : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_NAME, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RESOURCE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RESOURCE, scriptIndex)
+    return true
   }
 
   /**

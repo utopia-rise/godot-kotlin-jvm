@@ -26,9 +26,9 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * 2D area for detection and physics and audio influence.
@@ -356,8 +356,9 @@ public open class Area2D : CollisionObject2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_AUDIO_BUS_NAME, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AREA2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AREA2D, scriptIndex)
+    return true
   }
 
   /**

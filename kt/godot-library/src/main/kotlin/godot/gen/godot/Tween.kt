@@ -24,6 +24,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -224,8 +225,9 @@ public open class Tween : RefCounted() {
    */
   public val finished: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TWEEN)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TWEEN, scriptIndex)
+    return true
   }
 
   /**

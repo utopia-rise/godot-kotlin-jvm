@@ -22,6 +22,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -207,8 +208,9 @@ public open class GraphNode : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_OVERLAY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRAPHNODE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
+    return true
   }
 
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {

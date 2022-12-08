@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Horizontal flow container.
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HFlowContainer : FlowContainer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HFLOWCONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HFLOWCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

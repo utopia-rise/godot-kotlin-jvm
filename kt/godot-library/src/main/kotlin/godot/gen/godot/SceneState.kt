@@ -23,10 +23,10 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A script interface to a scene file's data.
@@ -37,8 +37,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCENESTATE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCENESTATE, scriptIndex)
+    return true
   }
 
   /**

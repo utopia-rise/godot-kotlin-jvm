@@ -38,11 +38,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object OS : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_OS)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns an array of MIDI device names.

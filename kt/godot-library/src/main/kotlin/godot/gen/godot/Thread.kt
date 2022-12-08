@@ -22,7 +22,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A unit of execution in a process.
@@ -36,8 +35,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Thread : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_THREAD)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_THREAD, scriptIndex)
+    return true
   }
 
   /**

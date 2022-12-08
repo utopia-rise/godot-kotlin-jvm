@@ -16,6 +16,8 @@ import godot.core.VariantType.OBJECT
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -41,11 +43,10 @@ public object CameraServer : Object() {
    */
   public val cameraFeedAdded: Signal1<Long> by signal("id")
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_CAMERASERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns the [godot.CameraFeed] corresponding to the camera with the given [index].

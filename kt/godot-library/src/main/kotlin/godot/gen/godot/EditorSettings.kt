@@ -24,6 +24,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -83,8 +84,9 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public val settingsChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSETTINGS)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORSETTINGS, scriptIndex)
+    return true
   }
 
   /**

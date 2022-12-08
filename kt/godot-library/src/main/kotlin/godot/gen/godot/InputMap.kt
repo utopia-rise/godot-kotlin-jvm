@@ -19,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -32,11 +33,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object InputMap : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_INPUTMAP)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if the [godot.InputMap] has a registered action with the given name.

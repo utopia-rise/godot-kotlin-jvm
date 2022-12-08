@@ -32,6 +32,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -164,8 +165,9 @@ public open class TextLine : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_TEXTLINE_SET_TEXT_OVERRUN_BEHAVIOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTLINE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTLINE, scriptIndex)
+    return true
   }
 
   /**

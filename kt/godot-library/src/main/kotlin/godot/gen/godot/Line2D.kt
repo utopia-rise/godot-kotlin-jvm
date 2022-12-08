@@ -21,6 +21,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -222,8 +223,9 @@ public open class Line2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ANTIALIASED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LINE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LINE2D, scriptIndex)
+    return true
   }
 
   /**

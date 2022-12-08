@@ -27,6 +27,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -52,8 +53,9 @@ public open class Font : Resource() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FONT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_FONT, scriptIndex)
+    return true
   }
 
   public fun addData(`data`: FontData): Unit {

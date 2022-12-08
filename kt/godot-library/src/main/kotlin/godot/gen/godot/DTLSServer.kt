@@ -12,9 +12,9 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Helper class to implement a DTLS server.
@@ -297,8 +297,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_DTLSSERVER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_DTLSSERVER, scriptIndex)
+    return true
   }
 
   /**

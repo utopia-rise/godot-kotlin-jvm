@@ -13,9 +13,9 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for box containers.
@@ -41,8 +41,9 @@ public open class BoxContainer internal constructor() : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_ALIGNMENT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BOXCONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_BOXCONTAINER, scriptIndex)
+    return true
   }
 
   /**

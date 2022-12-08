@@ -112,7 +112,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * If `true`, the sprite will use [regionRect] and display only the specified part of its texture.
+   *
    */
   public var regionEnabled: Boolean
     get() {

@@ -74,8 +74,9 @@ public open class PortableCompressedTexture2D : Texture2D() {
           ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_COMPRESSED_BUFFER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D, scriptIndex)
+    return true
   }
 
   /**

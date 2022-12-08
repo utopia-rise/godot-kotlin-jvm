@@ -20,6 +20,7 @@ import godot.core.VariantType.STRING
 import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -38,8 +39,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN, scriptIndex)
+    return true
   }
 
   /**

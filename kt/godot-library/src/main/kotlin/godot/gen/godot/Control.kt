@@ -463,8 +463,9 @@ public open class Control : CanvasItem() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONTROL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CONTROL, scriptIndex)
+    return true
   }
 
   /**

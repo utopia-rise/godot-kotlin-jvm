@@ -16,6 +16,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,8 +32,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK, scriptIndex)
+    return true
   }
 
   /**

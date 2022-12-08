@@ -19,6 +19,7 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,8 +33,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SpriteFrames : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPRITEFRAMES)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SPRITEFRAMES, scriptIndex)
+    return true
   }
 
   /**

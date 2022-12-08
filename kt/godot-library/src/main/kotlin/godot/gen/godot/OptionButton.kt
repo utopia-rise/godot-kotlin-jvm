@@ -18,6 +18,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -69,8 +70,9 @@ public open class OptionButton : Button() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OPTIONBUTTON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OPTIONBUTTON, scriptIndex)
+    return true
   }
 
   /**

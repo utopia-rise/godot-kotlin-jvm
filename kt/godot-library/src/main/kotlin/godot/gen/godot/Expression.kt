@@ -24,7 +24,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A class that stores an expression you can execute.
@@ -117,8 +116,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Expression : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EXPRESSION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EXPRESSION, scriptIndex)
+    return true
   }
 
   /**

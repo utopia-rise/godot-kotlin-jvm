@@ -24,6 +24,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -40,8 +41,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImporterMesh : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMPORTERMESH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_IMPORTERMESH, scriptIndex)
+    return true
   }
 
   /**

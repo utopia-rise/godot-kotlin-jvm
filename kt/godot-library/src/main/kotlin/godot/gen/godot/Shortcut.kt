@@ -16,9 +16,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A shortcut for binding input.
@@ -45,8 +45,9 @@ public open class Shortcut : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_SET_EVENTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SHORTCUT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SHORTCUT, scriptIndex)
+    return true
   }
 
   /**

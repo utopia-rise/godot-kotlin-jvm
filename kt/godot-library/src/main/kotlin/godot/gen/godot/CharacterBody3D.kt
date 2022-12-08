@@ -17,9 +17,9 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Specialized 3D physics body node for characters moved by script.
@@ -269,8 +269,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CHARACTERBODY3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CHARACTERBODY3D, scriptIndex)
+    return true
   }
 
   /**

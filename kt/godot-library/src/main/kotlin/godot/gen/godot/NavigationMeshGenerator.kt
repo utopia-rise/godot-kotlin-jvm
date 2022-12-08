@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,11 +30,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_NAVIGATIONMESHGENERATOR)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Bakes navigation data to the provided [navMesh] by parsing child nodes under the provided [rootNode] or a specific group of nodes for potential source geometry. The parse behavior can be controlled with the [godot.NavigationMesh.geometryParsedGeometryType] and [godot.NavigationMesh.geometrySourceGeometryMode] properties on the [godot.NavigationMesh] resource.

@@ -20,10 +20,11 @@ import godot.core.VariantType.PLANE
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Helper node to calculate generic geometry operations in 3D space.
@@ -32,11 +33,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Geometry3D : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_GEOMETRY3D)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by [extents], which represents one (positive) corner of the box (i.e. half its actual size).

@@ -32,6 +32,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -246,8 +247,9 @@ public open class CanvasItem internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_USE_PARENT_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASITEM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CANVASITEM, scriptIndex)
+    return true
   }
 
   /**

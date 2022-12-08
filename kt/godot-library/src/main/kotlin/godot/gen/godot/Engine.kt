@@ -25,6 +25,7 @@ import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -37,11 +38,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Engine : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_ENGINE)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Long): Unit {
     TransferContext.writeArguments(LONG to physicsTicksPerSecond)

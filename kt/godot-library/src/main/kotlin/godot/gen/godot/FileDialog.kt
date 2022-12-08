@@ -18,6 +18,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -167,8 +168,9 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_PATH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FILEDIALOG)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_FILEDIALOG, scriptIndex)
+    return true
   }
 
   /**

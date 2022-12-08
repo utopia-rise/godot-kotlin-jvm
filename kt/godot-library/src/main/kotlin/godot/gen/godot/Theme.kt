@@ -24,6 +24,7 @@ import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -92,8 +93,9 @@ public open class Theme : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_THEME)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_THEME, scriptIndex)
+    return true
   }
 
   /**

@@ -71,8 +71,9 @@ public open class VisualShader : Shader() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADER, scriptIndex)
+    return true
   }
 
   /**

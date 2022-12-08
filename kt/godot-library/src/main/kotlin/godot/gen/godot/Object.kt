@@ -115,16 +115,9 @@ public open class Object : KtObject() {
    */
   public val propertyListChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OBJECT)
-  }
-
-  internal inline fun callConstructor(classIndex: Int): Unit {
-    TransferContext.invokeConstructor(classIndex)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OBJECT, scriptIndex)
+    return true
   }
 
   public fun Signal0.emit(): Unit {

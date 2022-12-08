@@ -202,8 +202,9 @@ public open class BaseButton : Control() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BASEBUTTON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_BASEBUTTON, scriptIndex)
+    return true
   }
 
   /**

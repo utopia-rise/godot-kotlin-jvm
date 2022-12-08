@@ -29,6 +29,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -606,8 +607,9 @@ public open class Viewport internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIEWPORT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
+    return true
   }
 
   /**

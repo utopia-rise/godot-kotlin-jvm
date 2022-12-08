@@ -303,8 +303,9 @@ public open class Tree : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_V_SCROLL_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TREE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TREE, scriptIndex)
+    return true
   }
 
   /**
@@ -347,7 +348,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [godot.Control.sizeFlagsStretchRatio] (see [setColumnExpandRatio]).
+   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
    */
   public fun setColumnExpand(column: Long, expand: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to expand)
@@ -355,7 +356,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets the relative expand ratio for a column. See [setColumnExpand].
+   *
    */
   public fun setColumnExpandRatio(column: Long, ratio: Long): Unit {
     TransferContext.writeArguments(LONG to column, LONG to ratio)
@@ -363,7 +364,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Allows to enable clipping for column's content, making the content size ignored.
+   *
    */
   public fun setColumnClipContent(column: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to enable)
@@ -371,7 +372,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns `true` if the column has enabled expanding (see [setColumnExpand]).
+   *
    */
   public fun isColumnExpanding(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -380,7 +381,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns `true` if the column has enabled clipping (see [setColumnClipContent]).
+   *
    */
   public fun isColumnClippingContent(column: Long): Boolean {
     TransferContext.writeArguments(LONG to column)
@@ -390,7 +391,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the expand ratio assigned to the column.
+   *
    */
   public fun getColumnExpandRatio(column: Long): Long {
     TransferContext.writeArguments(LONG to column)

@@ -21,6 +21,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -36,11 +37,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object TranslationServer : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_TRANSLATIONSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Sets the locale of the project. The [locale] string will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).

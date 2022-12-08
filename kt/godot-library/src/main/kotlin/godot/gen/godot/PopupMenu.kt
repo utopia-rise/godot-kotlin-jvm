@@ -152,8 +152,9 @@ public open class PopupMenu : Popup() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_COUNT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POPUPMENU)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_POPUPMENU, scriptIndex)
+    return true
   }
 
   /**

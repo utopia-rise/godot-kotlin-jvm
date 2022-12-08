@@ -89,8 +89,9 @@ public open class XRInterface internal constructor() : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ANCHOR_DETECTION_IS_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRINTERFACE, scriptIndex)
+    return true
   }
 
   /**

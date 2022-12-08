@@ -273,8 +273,9 @@ public open class UDPServer : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_UDPSERVER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_UDPSERVER, scriptIndex)
+    return true
   }
 
   /**

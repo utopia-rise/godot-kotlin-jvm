@@ -17,6 +17,7 @@ import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -111,8 +112,9 @@ public open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_V_AXIS_STRETCH_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NINEPATCHRECT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NINEPATCHRECT, scriptIndex)
+    return true
   }
 
   /**

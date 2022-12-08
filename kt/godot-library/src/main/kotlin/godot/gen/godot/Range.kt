@@ -17,6 +17,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -180,8 +181,9 @@ public open class Range : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RANGE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RANGE, scriptIndex)
+    return true
   }
 
   /**

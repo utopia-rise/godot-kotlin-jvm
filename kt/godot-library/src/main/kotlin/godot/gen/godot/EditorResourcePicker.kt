@@ -18,6 +18,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -107,8 +108,9 @@ public open class EditorResourcePicker internal constructor() : HBoxContainer() 
           ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_TOGGLE_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORRESOURCEPICKER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORRESOURCEPICKER, scriptIndex)
+    return true
   }
 
   /**

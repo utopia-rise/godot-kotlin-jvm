@@ -21,7 +21,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstraction and base class for packet-based protocols.
@@ -50,8 +49,9 @@ public open class PacketPeer internal constructor() : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PACKETPEER_SET_ENCODE_BUFFER_MAX_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKETPEER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PACKETPEER, scriptIndex)
+    return true
   }
 
   /**

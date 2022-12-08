@@ -34,8 +34,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKETPEERDTLS)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PACKETPEERDTLS, scriptIndex)
+    return true
   }
 
   /**

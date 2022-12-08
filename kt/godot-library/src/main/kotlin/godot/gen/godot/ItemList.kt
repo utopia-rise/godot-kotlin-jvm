@@ -279,8 +279,9 @@ public open class ItemList : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ITEMLIST)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
+    return true
   }
 
   /**

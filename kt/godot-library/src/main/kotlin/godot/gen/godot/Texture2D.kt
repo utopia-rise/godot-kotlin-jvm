@@ -21,6 +21,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -39,8 +40,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture2D : Texture() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTURE2D, scriptIndex)
+    return true
   }
 
   /**

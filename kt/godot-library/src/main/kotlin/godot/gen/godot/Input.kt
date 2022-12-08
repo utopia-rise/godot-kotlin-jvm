@@ -50,11 +50,10 @@ public object Input : Object() {
    */
   public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_INPUT)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if any action, key, joypad button, or mouse button is being pressed. This will also return `true` if any action is simulated via code by calling [actionPress].

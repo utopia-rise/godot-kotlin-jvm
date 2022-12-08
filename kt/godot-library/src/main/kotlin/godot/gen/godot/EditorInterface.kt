@@ -52,8 +52,9 @@ public open class EditorInterface internal constructor() : Node() {
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORINTERFACE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORINTERFACE, scriptIndex)
+    return true
   }
 
   /**

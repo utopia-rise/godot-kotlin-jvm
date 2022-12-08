@@ -15,10 +15,11 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Collision data for [godot.PhysicsBody2D.moveAndCollide] collisions.
@@ -29,8 +30,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_KINEMATICCOLLISION2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_KINEMATICCOLLISION2D, scriptIndex)
+    return true
   }
 
   /**

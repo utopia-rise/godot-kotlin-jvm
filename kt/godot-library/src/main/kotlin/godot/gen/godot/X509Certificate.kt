@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * An X509 certificate (e.g. for TLS).
@@ -26,8 +26,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_X509CERTIFICATE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_X509CERTIFICATE, scriptIndex)
+    return true
   }
 
   /**

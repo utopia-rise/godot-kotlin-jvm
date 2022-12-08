@@ -19,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -126,8 +127,9 @@ public open class StyleBoxTexture : StyleBox() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STYLEBOXTEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_STYLEBOXTEXTURE, scriptIndex)
+    return true
   }
 
   /**

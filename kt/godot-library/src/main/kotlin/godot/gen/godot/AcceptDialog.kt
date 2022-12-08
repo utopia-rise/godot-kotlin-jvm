@@ -17,6 +17,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -87,8 +88,9 @@ public open class AcceptDialog : Window() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_AUTOWRAP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ACCEPTDIALOG)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ACCEPTDIALOG, scriptIndex)
+    return true
   }
 
   /**

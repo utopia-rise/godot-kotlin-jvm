@@ -185,11 +185,10 @@ public object RenderingServer : Object() {
    */
   public val framePreDraw: Signal0 by signal()
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RENDERINGSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    *
@@ -4860,9 +4859,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the global RenderingDevice.
    *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -4872,9 +4869,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
    *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()

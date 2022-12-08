@@ -67,11 +67,10 @@ public object DisplayServer : Object() {
    */
   public final const val INVALID_WINDOW_ID: Long = -1
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_DISPLAYSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if the specified [feature] is supported by the current [godot.DisplayServer], `false` otherwise.

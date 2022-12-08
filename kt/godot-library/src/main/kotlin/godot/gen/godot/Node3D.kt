@@ -32,6 +32,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -234,8 +235,9 @@ public open class Node3D : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_VISIBILITY_PARENT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NODE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NODE3D, scriptIndex)
+    return true
   }
 
   /**

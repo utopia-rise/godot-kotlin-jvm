@@ -39,11 +39,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object PhysicsServer2D : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_PHYSICSSERVER2D)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    *

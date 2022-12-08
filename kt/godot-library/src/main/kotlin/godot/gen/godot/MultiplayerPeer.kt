@@ -102,8 +102,9 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_SET_TRANSFER_CHANNEL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERPEER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
+    return true
   }
 
   /**

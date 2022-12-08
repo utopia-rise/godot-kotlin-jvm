@@ -21,6 +21,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -187,8 +188,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_TRANSFORM, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D, scriptIndex)
+    return true
   }
 
   /**

@@ -19,6 +19,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,8 +53,9 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public val resourcesReload: Signal1<PackedStringArray> by signal("resources")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORFILESYSTEM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORFILESYSTEM, scriptIndex)
+    return true
   }
 
   /**

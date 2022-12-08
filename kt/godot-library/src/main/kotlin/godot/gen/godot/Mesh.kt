@@ -25,6 +25,7 @@ import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -55,8 +56,9 @@ public open class Mesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SET_LIGHTMAP_SIZE_HINT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MESH, scriptIndex)
+    return true
   }
 
   /**

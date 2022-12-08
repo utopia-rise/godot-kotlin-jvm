@@ -17,6 +17,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -79,8 +80,9 @@ public open class Curve : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_BAKE_RESOLUTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CURVE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CURVE, scriptIndex)
+    return true
   }
 
   public fun getPointCount(): Long {

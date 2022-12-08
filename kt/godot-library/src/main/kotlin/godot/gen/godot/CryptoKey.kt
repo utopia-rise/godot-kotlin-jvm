@@ -17,7 +17,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A cryptographic key (RSA).
@@ -28,8 +27,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CryptoKey : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CRYPTOKEY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CRYPTOKEY, scriptIndex)
+    return true
   }
 
   /**

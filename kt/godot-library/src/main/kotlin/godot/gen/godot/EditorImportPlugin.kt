@@ -14,11 +14,11 @@ import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
@@ -238,8 +238,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorImportPlugin internal constructor() : ResourceImporter() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN, scriptIndex)
+    return true
   }
 
   /**

@@ -15,9 +15,9 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for GUI sliders.
@@ -94,8 +94,9 @@ public open class Slider internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICKS_ON_BORDERS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SLIDER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SLIDER, scriptIndex)
+    return true
   }
 
   public companion object

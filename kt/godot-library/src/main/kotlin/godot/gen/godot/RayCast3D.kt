@@ -19,6 +19,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -184,8 +185,9 @@ public open class RayCast3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_RAYCAST3D_SET_DEBUG_SHAPE_THICKNESS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RAYCAST3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RAYCAST3D, scriptIndex)
+    return true
   }
 
   /**

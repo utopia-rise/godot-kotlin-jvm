@@ -16,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,8 +29,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ResourcePreloader : Node() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RESOURCEPRELOADER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RESOURCEPRELOADER, scriptIndex)
+    return true
   }
 
   /**

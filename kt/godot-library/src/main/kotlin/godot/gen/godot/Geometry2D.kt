@@ -25,9 +25,9 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Helper node to calculate generic geometry operations in 2D space.
@@ -36,11 +36,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Geometry2D : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_GEOMETRY2D)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if [point] is inside the circle or if it's located exactly *on* the circle's boundary, otherwise returns `false`.

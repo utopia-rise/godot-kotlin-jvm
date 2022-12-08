@@ -31,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMPEERTCP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_STREAMPEERTCP, scriptIndex)
+    return true
   }
 
   /**

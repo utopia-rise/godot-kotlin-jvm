@@ -25,7 +25,6 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A spatial node representing a spatially-tracked controller.
@@ -63,8 +62,9 @@ public open class XRController3D : XRNode3D() {
    */
   public val buttonPressed: Signal1<String> by signal("name")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRCONTROLLER3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)
+    return true
   }
 
   /**

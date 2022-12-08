@@ -16,7 +16,7 @@ import kotlin.Suppress
 /**
  * Popup is a base window container for popup-like subwindows.
  *
- * Popup is a base window container for popup-like subwindows. It's a modal by default (see [godot.Window.popupWindow]) and has helpers for custom popup behavior.
+ * Popup is a base window container for popup-like subwindows. It's a modal by default (see [popupWindow]) and has helpers for custom popup behavior.
  */
 @GodotBaseType
 public open class Popup : Window() {

@@ -21,6 +21,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -34,8 +35,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StyleBox : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STYLEBOX)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_STYLEBOX, scriptIndex)
+    return true
   }
 
   /**

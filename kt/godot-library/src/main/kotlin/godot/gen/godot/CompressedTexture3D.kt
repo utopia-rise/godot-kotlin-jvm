@@ -12,10 +12,10 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Texture with 3 dimensions, optionally compressed.
@@ -39,8 +39,9 @@ public open class CompressedTexture3D : Texture3D() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE3D, scriptIndex)
+    return true
   }
 
   /**

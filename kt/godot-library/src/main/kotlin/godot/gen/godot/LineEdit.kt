@@ -21,6 +21,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -551,8 +552,9 @@ public open class LineEdit : Control() {
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LINEEDIT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LINEEDIT, scriptIndex)
+    return true
   }
 
   /**

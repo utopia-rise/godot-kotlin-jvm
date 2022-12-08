@@ -46,11 +46,10 @@ public object AudioServer : Object() {
    */
   public val busLayoutChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_AUDIOSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   public fun setBusCount(amount: Long): Unit {
     TransferContext.writeArguments(LONG to amount)

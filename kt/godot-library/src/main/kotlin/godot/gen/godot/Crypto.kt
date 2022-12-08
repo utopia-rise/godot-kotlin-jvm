@@ -15,10 +15,10 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Access to advanced cryptographic functionalities.
@@ -153,8 +153,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Crypto : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CRYPTO)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CRYPTO, scriptIndex)
+    return true
   }
 
   /**

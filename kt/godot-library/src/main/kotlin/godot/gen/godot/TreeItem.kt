@@ -91,8 +91,9 @@ public open class TreeItem internal constructor() : Object() {
           ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_MINIMUM_HEIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TREEITEM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TREEITEM, scriptIndex)
+    return true
   }
 
   /**

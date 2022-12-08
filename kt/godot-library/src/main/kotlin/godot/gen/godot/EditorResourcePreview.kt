@@ -17,6 +17,8 @@ import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -35,8 +37,9 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public val previewInvalidated: Signal1<String> by signal("path")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW, scriptIndex)
+    return true
   }
 
   /**

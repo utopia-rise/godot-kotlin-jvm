@@ -15,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -94,8 +95,9 @@ public open class OccluderInstance3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_OCCLUDERINSTANCE3D_SET_BAKE_SIMPLIFICATION_DISTANCE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D, scriptIndex)
+    return true
   }
 
   /**

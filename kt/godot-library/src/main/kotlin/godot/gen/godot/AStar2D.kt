@@ -23,6 +23,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -35,8 +36,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ASTAR2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ASTAR2D, scriptIndex)
+    return true
   }
 
   /**

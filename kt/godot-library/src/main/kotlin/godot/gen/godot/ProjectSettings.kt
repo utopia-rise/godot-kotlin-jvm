@@ -41,11 +41,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_PROJECTSETTINGS)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if a configuration value is present.

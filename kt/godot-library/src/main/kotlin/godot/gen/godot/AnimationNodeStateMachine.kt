@@ -18,6 +18,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -55,8 +56,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeStateMachine : AnimationRootNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE, scriptIndex)
+    return true
   }
 
   /**

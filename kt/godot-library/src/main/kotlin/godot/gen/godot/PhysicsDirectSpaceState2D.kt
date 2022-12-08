@@ -15,9 +15,10 @@ import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Direct access object to a space in the [godot.PhysicsServer2D].
@@ -29,8 +30,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D, scriptIndex)
+    return true
   }
 
   /**

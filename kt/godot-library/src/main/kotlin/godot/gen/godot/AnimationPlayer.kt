@@ -254,8 +254,9 @@ public open class AnimationPlayer : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_METHOD_CALL_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONPLAYER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONPLAYER, scriptIndex)
+    return true
   }
 
   public fun addAnimation(name: StringName, animation: Animation): GodotError {

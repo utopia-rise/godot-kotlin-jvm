@@ -211,8 +211,9 @@ public open class SceneTree : MainLoop() {
           ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER_POLL_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCENETREE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCENETREE, scriptIndex)
+    return true
   }
 
   /**

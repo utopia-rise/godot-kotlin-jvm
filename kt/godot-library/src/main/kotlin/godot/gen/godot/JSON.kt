@@ -20,7 +20,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Helper class for creating and parsing JSON data.
@@ -68,8 +67,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JSON : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JSON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_JSON, scriptIndex)
+    return true
   }
 
   /**

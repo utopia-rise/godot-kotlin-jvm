@@ -19,6 +19,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -1028,8 +1029,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
           ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MAX_DISTANCE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BASEMATERIAL3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_BASEMATERIAL3D, scriptIndex)
+    return true
   }
 
   /**

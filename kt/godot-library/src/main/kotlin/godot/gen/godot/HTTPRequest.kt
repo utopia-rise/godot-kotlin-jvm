@@ -456,8 +456,9 @@ public open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HTTPREQUEST)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HTTPREQUEST, scriptIndex)
+    return true
   }
 
   /**

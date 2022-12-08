@@ -30,6 +30,7 @@ import godot.util.camelToSnakeCase
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -228,8 +229,9 @@ public open class Node : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITOR_DESCRIPTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NODE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NODE, scriptIndex)
+    return true
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
@@ -1481,6 +1483,11 @@ public open class Node : Object() {
      * Duplicate the node's scripts.
      */
     DUPLICATE_SCRIPTS(4),
+    /**
+     * Duplicate using instancing.
+     *
+     * An instance stays linked to the original so when the original changes, the instance changes too.
+     */
     DUPLICATE_USE_INSTANCING(8),
     ;
 

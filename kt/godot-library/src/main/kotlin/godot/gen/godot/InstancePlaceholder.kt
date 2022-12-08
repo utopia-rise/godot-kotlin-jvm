@@ -15,9 +15,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Placeholder for the root [godot.Node] of a [godot.PackedScene].
@@ -28,8 +28,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INSTANCEPLACEHOLDER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INSTANCEPLACEHOLDER, scriptIndex)
+    return true
   }
 
   /**

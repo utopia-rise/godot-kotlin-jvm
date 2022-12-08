@@ -52,8 +52,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Image : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMAGE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_IMAGE, scriptIndex)
+    return true
   }
 
   /**

@@ -31,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMAGETEXTURE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_IMAGETEXTURE3D, scriptIndex)
+    return true
   }
 
   /**

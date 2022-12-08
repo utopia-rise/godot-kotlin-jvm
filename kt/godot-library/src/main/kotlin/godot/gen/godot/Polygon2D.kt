@@ -30,6 +30,7 @@ import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -260,8 +261,9 @@ public open class Polygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INTERNAL_VERTEX_COUNT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POLYGON2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_POLYGON2D, scriptIndex)
+    return true
   }
 
   /**

@@ -32,8 +32,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorFeatureProfile internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORFEATUREPROFILE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORFEATUREPROFILE, scriptIndex)
+    return true
   }
 
   /**

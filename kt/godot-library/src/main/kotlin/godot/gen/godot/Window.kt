@@ -392,8 +392,9 @@ public open class Window : Viewport() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_AUTO_TRANSLATE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WINDOW)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_WINDOW, scriptIndex)
+    return true
   }
 
   /**

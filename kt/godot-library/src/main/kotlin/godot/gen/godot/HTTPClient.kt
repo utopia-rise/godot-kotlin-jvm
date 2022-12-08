@@ -103,8 +103,9 @@ public open class HTTPClient : RefCounted() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HTTPCLIENT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HTTPCLIENT, scriptIndex)
+    return true
   }
 
   /**
