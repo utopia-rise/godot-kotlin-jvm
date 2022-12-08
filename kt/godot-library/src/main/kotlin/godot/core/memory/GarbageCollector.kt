@@ -151,6 +151,9 @@ internal object GarbageCollector {
                 if (otherRef == ref) {
                     ObjectDB[index] = null
                 }
+                if(ref.id.isReference) {
+                    MemoryBridge.destroyRef(ref.id.id)
+                }
             }
         }
 
@@ -235,7 +238,8 @@ internal object GarbageCollector {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun unref(ptr: VoidPtr, counter: Int): Boolean
+        external fun bindInstance(ptr: VoidPtr, obj: KtObject)
+        external fun destroyRef(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()
     }

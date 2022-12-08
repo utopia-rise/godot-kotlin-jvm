@@ -15,7 +15,9 @@ namespace bridges {
 
         static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
 
-        static bool unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_counter);
+        static void bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jobject p_object);
+
+        static void destroy_ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
         static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
 

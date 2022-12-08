@@ -16,12 +16,17 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::check_instance
     };
 
-    jni::JNativeMethod unref_method{
-            const_cast<char*>("unref"),
-            const_cast<char*>("(JI)Z"),
-            (void*) MemoryBridge::unref
+    jni::JNativeMethod destroy_ref_method{
+            const_cast<char*>("destroyRef"),
+            const_cast<char*>("(J)Z"),
+            (void*) MemoryBridge::destroy_ref
     };
 
+    jni::JNativeMethod bind_instance_method{
+            const_cast<char*>("bindInstance"),
+            const_cast<char*>("(JLgodot/core/KtObject;)Z"),
+            (void*) MemoryBridge::bind_instance
+    };
 
     jni::JNativeMethod unref_native_core_type_method{
             const_cast<char*>("unrefNativeCoreType"),
@@ -37,7 +42,8 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
-    methods.push_back(unref_method);
+    methods.push_back(destroy_ref_method);
+    methods.push_back(bind_instance_method);
     methods.push_back(unref_native_core_type_method);
     methods.push_back(notify_leak_method);
 
@@ -51,12 +57,13 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
-bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_counter) {
-    if (auto* reference{reinterpret_cast<RefCounted*>(static_cast<uintptr_t>(p_raw_ptr))}) {
-        auto counter = static_cast<uint32_t>(p_counter);
-		reference->unreference();
-    }
-    return true;
+void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jobject p_object){
+
+}
+
+void MemoryBridge::destroy_ref(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
+    Object* ref = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
+    delete ref;
 }
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
