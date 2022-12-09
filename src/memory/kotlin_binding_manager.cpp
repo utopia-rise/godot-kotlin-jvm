@@ -74,6 +74,19 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     return static_cast<KotlinBinding*>(p_object->get_instance_binding(&get_instance(), &_instance_binding_callbacks));
 }
 
+bool KotlinBindingManager::bind_object(Object* p_object, KtObject* ktObject) {
+    KotlinBindingManager& manager = get_instance();
+    manager.spin.lock();
+    KotlinBinding* binding = &manager.binding_map.find(p_object)->value;
+    if (binding) {
+        binding->kt_object = ktObject;
+        manager.spin.unlock();
+        return true;
+    }
+    manager.spin.unlock();
+    return false;
+}
+
 KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtObject* ktObject) {
     KotlinBindingManager& manager = get_instance();
 

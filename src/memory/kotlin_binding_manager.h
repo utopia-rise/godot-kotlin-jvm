@@ -32,6 +32,8 @@ public:
 
     static KotlinBinding* get_instance_binding(Object* p_object);
 
+    static bool bind_object(Object* p_object, KtObject* ktObject);
+
     //For script bindings, they are to bind user defined Godot objects to their JVM scripts, not for native objects.
     static KotlinBinding* create_script_binding(Object* p_object, KtObject* ktObject);
 

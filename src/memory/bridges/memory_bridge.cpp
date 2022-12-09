@@ -60,8 +60,10 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object, jobject p_class_loader){
     auto* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
     if(obj){
-        KotlinBinding* binding {KotlinBindingManager::get_instance_binding(obj)};
-        binding->kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader));
+        KtObject* ktObject {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+        if(!KotlinBindingManager::bind_object(obj, ktObject)) {
+            delete ktObject;
+        }
     }
 }
 

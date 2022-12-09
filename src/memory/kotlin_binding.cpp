@@ -32,6 +32,10 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     return refcount == 0;
 }
 
+bool KotlinBinding::is_ready() {
+    return kt_object != nullptr;
+}
+
 KotlinBinding::KotlinBinding() : kt_object(nullptr), owner(nullptr) {
 
 }

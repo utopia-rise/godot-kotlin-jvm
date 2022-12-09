@@ -230,7 +230,7 @@ namespace ktvariant {
 
 		//We only need to retrieve the constructor if the binding is not ready yet.
 		int classID = 0;
-		if(!binding->kt_object){
+		if(!binding->is_ready()){
 			StringName class_name{ptr->get_class_name()};
             do {
                 if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
