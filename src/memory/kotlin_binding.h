@@ -15,7 +15,6 @@ class KotlinBinding {
 public:
     KtObject* kt_object;
     Object* owner;
-    bool is_setup;
 
 private:
     KotlinBinding();

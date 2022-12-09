@@ -122,7 +122,8 @@ private var ByteBuffer.obj: KtObject
         return GarbageCollector.getInstance(id) ?: KtObject.instantiateWith(
             ptr,
             id,
-            TypeManager.engineTypesConstructors[constructorIndex]
+            true,
+            TypeManager.engineTypesConstructors[constructorIndex],
         )
     }
     set(value) {

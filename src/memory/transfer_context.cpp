@@ -207,7 +207,10 @@ void TransferContext::create_native_object(
     } else {
         Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[script_index]};
         ScriptInstance* script{
-                new KotlinInstance(kt_object, ptr, kotlin_script->get_kotlin_class(), kotlin_script.ptr())};
+                new KotlinInstance(kt_object,
+                                   ptr,
+                                   kotlin_script->get_kotlin_class(),
+                                   kotlin_script.ptr())};
         ptr->set_script_instance(script);
     }
 

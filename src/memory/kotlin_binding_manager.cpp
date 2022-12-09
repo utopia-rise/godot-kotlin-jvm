@@ -25,11 +25,6 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     KotlinBindingManager& manager = get_instance();
 
-    if (binding->is_setup) {
-        //Destructor of KtObject is taking care of releasing the reference.
-        delete binding->kt_object;
-    }
-
     Object* owner = reinterpret_cast<Object*>(p_instance);
     //We avoid concurrent modification of the map. Before that it should be safe as the destructor of an object is not supposed to be called multiple times.
     manager.spin.lock();
@@ -63,7 +58,6 @@ void KotlinBindingManager::set_instance_binding(Object* p_object, KtObject* ktOb
 
     binding->owner = p_object;
     binding->kt_object = ktObject;
-    binding->is_setup = true;
     p_object->set_instance_binding(&get_instance(), binding, &_instance_binding_callbacks);
 }
 
@@ -90,7 +84,6 @@ KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtO
 
     binding->owner = p_object;
     binding->kt_object = ktObject;
-    binding->is_setup = true;
     return binding;
 }
 

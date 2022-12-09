@@ -4,6 +4,7 @@ import godot.core.KtObject
 import godot.core.NativeCoreType
 import godot.core.ObjectID
 import godot.core.VariantType
+import godot.global.GD.min
 import godot.util.VoidPtr
 import godot.util.info
 import godot.util.warning
@@ -41,14 +42,20 @@ internal object GarbageCollector {
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
+    /** Queue of objects that need to be bound to native objects*/
+    private val bindingQueue = ArrayDeque<KtObject>()
+
+    /** Queue of objects that need to be bound to native objects*/
+    private val bindingList =  ArrayList<KtObject>(CHECK_NUMBER)
+
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<KtObject>()
 
+    /** List of element to remove from ObjectDB*/
+    private val deleteList = ArrayList<GodotWeakReference>(CHECK_NUMBER)
+
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
-
-    /** List of element to remove from ObjectDB*/
-    private val deleteQueue = ArrayList<GodotWeakReference>()
 
     /** Holds the instances to clean up when the JVM stops.*/
     private var staticInstances = mutableSetOf<GodotStatic>()
@@ -66,8 +73,16 @@ internal object GarbageCollector {
 
     fun registerObject(instance: KtObject) {
         synchronized(ObjectDB) {
-            val index = instance.__id.index
-            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.__id)
+            val index = instance.id.index
+            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+        }
+    }
+
+    fun registerObjectAndBind(instance: KtObject) {
+        synchronized(ObjectDB) {
+            val index = instance.id.index
+            ObjectDB[index] = GodotWeakReference(instance, refReferenceQueue, instance.id)
+            bindingQueue.addLast(instance)
         }
     }
 
@@ -83,7 +98,7 @@ internal object GarbageCollector {
     fun getInstance(id: Long): KtObject? {
         val objectID = ObjectID(id)
         val ktObject = ObjectDB[objectID.index]?.get()
-        if (ktObject != null && objectID == ktObject.__id) {
+        if (ktObject != null && objectID == ktObject.id) {
             return ktObject
         }
         return null
@@ -93,7 +108,7 @@ internal object GarbageCollector {
         return nativeCoreTypeMap[ptr]?.get()
     }
 
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.__id.id)
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
         GarbageCollector.forceJvmGarbageCollector = forceJvmGarbageCollector
@@ -133,18 +148,33 @@ internal object GarbageCollector {
         var isActive = false
 
         var counter = 0
+
+        synchronized(ObjectDB) {
+            val size = min(bindingQueue.size, CHECK_NUMBER)
+            while (counter < size){
+                bindingList.add(bindingQueue.removeFirst())
+                counter++
+            }
+        }
+
+        //We don't reset the counter because we want to clear the bindingList before deleting any.
+        for(ref in bindingList){
+            MemoryBridge.bindInstance(ref.id.id, ref, ref::class.java.classLoader)
+            isActive = true
+        }
+
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        while (counter < CHECK_NUMBER || isCleanup) {
+        while (counter < CHECK_NUMBER) {
             val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
-            deleteQueue.add(ref)
+            deleteList.add(ref)
             isActive = true
             counter++
         }
 
         synchronized(ObjectDB) {
             //we remove the element from the array
-            for (ref in deleteQueue) {
+            for (ref in deleteList) {
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
@@ -157,7 +187,7 @@ internal object GarbageCollector {
             }
         }
 
-        deleteQueue.clear()
+        deleteList.clear()
         counter = 0
         // Same as before for NativeCoreTypes
         while (counter < CHECK_NUMBER || isCleanup) {
@@ -187,7 +217,6 @@ internal object GarbageCollector {
             }
         }
 
-        isCleanup = true
         var begin = Instant.now()
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
 
@@ -238,7 +267,7 @@ internal object GarbageCollector {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun bindInstance(ptr: VoidPtr, obj: KtObject)
+        external fun bindInstance(instanceId: Long, obj: KtObject, classLoader: ClassLoader)
         external fun destroyRef(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()

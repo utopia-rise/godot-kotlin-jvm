@@ -1,6 +1,9 @@
 #include "kotlin_binding.h"
 
 void KotlinBinding::refcount_incremented_unsafe() {
+    //The reference has not been set yet.
+    if(!kt_object) { return;}
+
     //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
@@ -13,6 +16,9 @@ void KotlinBinding::refcount_incremented_unsafe() {
 }
 
 bool KotlinBinding::refcount_decremented_unsafe() {
+    //The reference has not been set, we delay the destruction of the object until the GC does the job.
+    if(!kt_object) { return false;}
+
     //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
@@ -22,14 +28,11 @@ bool KotlinBinding::refcount_decremented_unsafe() {
         //The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
         kt_object->swap_to_weak_unsafe();
     }
-    if (refcount == 0) {
-        is_setup = false;
-    }
     //Return true when the counter is 0, it means that the JVM and the native side are no longer using the reference, so it can be safely deleted.
     return refcount == 0;
 }
 
-KotlinBinding::KotlinBinding() : kt_object(nullptr), owner(nullptr),  is_setup(false) {
+KotlinBinding::KotlinBinding() : kt_object(nullptr), owner(nullptr) {
 
 }
 

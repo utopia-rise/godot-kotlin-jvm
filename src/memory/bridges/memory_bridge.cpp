@@ -24,7 +24,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     jni::JNativeMethod bind_instance_method{
             const_cast<char*>("bindInstance"),
-            const_cast<char*>("(JLgodot/core/KtObject;)Z"),
+            const_cast<char*>("(JLgodot/core/KtObject;Ljava/lang/ClassLoader;)Z"),
             (void*) MemoryBridge::bind_instance
     };
 
@@ -53,17 +53,24 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 }
 
 bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
-    auto* instance{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
+    auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
-void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jobject p_object){
-
+void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object, jobject p_class_loader){
+    auto* obj {ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)))};
+    if(obj){
+        KotlinBinding* binding {KotlinBindingManager::get_instance_binding(obj)};
+        binding->kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader));
+    }
 }
 
 void MemoryBridge::destroy_ref(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
-    Object* ref = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    delete ref;
+    Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
+    RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
+    if(ref && ref->unreference()){
+        delete ref;
+    }
 }
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {

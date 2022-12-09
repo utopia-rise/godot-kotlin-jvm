@@ -230,26 +230,22 @@ namespace ktvariant {
 
 		//We only need to retrieve the constructor if the binding is not ready yet.
 		int classID = 0;
-		if(!binding->is_setup){
+		if(!binding->kt_object){
 			StringName class_name{ptr->get_class_name()};
-			if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
-				class_name = ClassDB::get_parent_class(class_name);
-
-				while (class_name == StringName()) {
-					if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
-						class_name = ClassDB::get_parent_class(class_name);
-					} else {
-						break;
-					}
-				}
-			}
-			classID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
+            do {
+                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                    class_name = ClassDB::get_parent_class(class_name);
+                } else {
+                    break;
+                }
+            } while(class_name != StringName());
+            classID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
 		}
+
 		uint64_t id = ptr->get_instance_id();
 
         set_variant_type(des, Variant::Type::OBJECT);
 
-        //TODO: Manage 32 bits systems.
         des->increment_position(encode_uint64(
                 reinterpret_cast<uintptr_t>(ptr),
                 des->get_cursor()));

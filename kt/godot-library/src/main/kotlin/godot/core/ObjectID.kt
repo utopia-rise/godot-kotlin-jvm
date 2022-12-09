@@ -9,7 +9,7 @@ value class ObjectID(val id: Long) {
         get() = (id and OBJECTDB_SLOT_MAX_COUNT_MASK).toInt()
 
     val validator: Int
-        get() = (id and OBJECTDB_VALIDATOR_MASK).toInt()
+        get() = ((id shr OBJECTDB_SLOT_MAX_COUNT_BITS) and OBJECTDB_VALIDATOR_MASK).toInt()
 
     companion object {
         //Copied from object.h, change that part if Godot does.
