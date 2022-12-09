@@ -338,7 +338,7 @@ void VariantArrayBridge::engine_call_findLast(JNIEnv* p_raw_env, jobject p_insta
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->find_last(args[0])};
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->rfind(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
