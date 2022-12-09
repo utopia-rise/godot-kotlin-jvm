@@ -149,7 +149,9 @@ internal object GarbageCollector {
 
         var counter = 0
 
+        //Objects in that list don't have a binding yet so we call c++ code to set it
         synchronized(ObjectDB) {
+            //In a synchronised block to copy the content in another list so we spend the little time blocking the thread.
             val size = min(bindingQueue.size, CHECK_NUMBER)
             while (counter < size){
                 bindingList.add(bindingQueue.removeFirst())
@@ -157,38 +159,39 @@ internal object GarbageCollector {
             }
         }
 
-        //We don't reset the counter because we want to clear the bindingList before deleting any.
         for(ref in bindingList){
             MemoryBridge.bindInstance(ref.id.id, ref, ref::class.java.classLoader)
             isActive = true
         }
+        bindingList.clear()
+        counter = 0
 
-        // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
-        // jvm instance anymore, we decrease the counter.
-        while (counter < CHECK_NUMBER) {
-            val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
-            deleteList.add(ref)
-            isActive = true
-            counter++
-        }
-
+        //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
-            //we remove the element from the array
-            for (ref in deleteList) {
+            while (counter < CHECK_NUMBER) {
+                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
                 val index = ref.id.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
                 if (otherRef == ref) {
                     ObjectDB[index] = null
                 }
-                if(ref.id.isReference) {
-                    MemoryBridge.destroyRef(ref.id.id)
-                }
+                deleteList.add(ref)
+                isActive = true
+                counter++
+            }
+        }
+
+        //we remove the element from the array
+        for (ref in deleteList) {
+            if(ref.id.isReference) {
+                MemoryBridge.destroyRef(ref.id.id)
             }
         }
 
         deleteList.clear()
         counter = 0
+
         // Same as before for NativeCoreTypes
         while (counter < CHECK_NUMBER || isCleanup) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
