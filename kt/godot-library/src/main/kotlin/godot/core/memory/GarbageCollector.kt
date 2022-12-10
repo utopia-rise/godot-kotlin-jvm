@@ -68,7 +68,6 @@ internal object GarbageCollector {
 
     private var forceJvmGarbageCollector = false
     private var shouldDisplayLeakInstancesOnClose = true
-    private var isCleanup = false
 
     private var gcState = GCState.NONE
 
@@ -215,7 +214,7 @@ internal object GarbageCollector {
         var counter = 0
 
         // Same as before for NativeCoreTypes
-        while (counter < CHECK_NUMBER || isCleanup) {
+        while (counter < CHECK_NUMBER) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
             if (MemoryBridge.unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
                 nativeCoreTypeMap.remove(ref.ptr)
