@@ -49,7 +49,7 @@ abstract class KtObject {
             id = config.id
             config.reset()
             //Singletons are never initialized from here.
-            if(config.needBind){
+            if (config.needBind) {
                 GarbageCollector.registerObjectAndBind(this)
             } else {
                 GarbageCollector.registerObject(this)

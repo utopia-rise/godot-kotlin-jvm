@@ -44,11 +44,6 @@ PackedStringArrayBridge::PackedStringArrayBridge(jni::JObject p_wrapped, jni::JO
         const_cast<char*>("(J)V"),
         (void*) PackedStringArrayBridge::engine_call_reverse
     };
-//    jni::JNativeMethod engine_call_join_method{
-//            "engine_call_join",
-//            "(J)V",
-//            (void*) PackedStringArrayBridge::engine_call_join
-//    };
     jni::JNativeMethod engine_call_pushback_method{
         const_cast<char*>("engine_call_pushback"),
         const_cast<char*>("(J)V"),

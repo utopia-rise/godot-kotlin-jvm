@@ -7,7 +7,7 @@
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
 #include "kt_class.h"
-#include <modules/kotlin_jvm/src/memory/transfer_context.h>
+#include "memory/transfer_context.h"
 
 class GDKotlin {
 private:

@@ -1,8 +1,6 @@
 #include "transfer_context.h"
-#include "core/io/marshalls.h"
 #include "modules/kotlin_jvm/src/gd_kotlin.h"
 #include "modules/kotlin_jvm/src/kotlin_instance.h"
-#include <assert.h>
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 const int VARIANT_ARG_MAX{5};

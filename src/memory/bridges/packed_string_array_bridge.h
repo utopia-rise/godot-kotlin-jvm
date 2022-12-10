@@ -17,8 +17,6 @@ namespace bridges {
         static void engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        //TODO/4.0: Find if there is a way to reimplement, or delete
-//        static void engine_call_join(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_remove_at(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

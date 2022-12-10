@@ -16,15 +16,15 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::check_instance
     };
 
-    jni::JNativeMethod destroy_ref_method{
-            const_cast<char*>("destroyRef"),
-            const_cast<char*>("(J)Z"),
-            (void*) MemoryBridge::destroy_ref
+    jni::JNativeMethod decrement_ref_counter_method{
+            const_cast<char*>("decrementRefCounter"),
+            const_cast<char*>("(J)V"),
+            (void *) MemoryBridge::decrement_ref_counter
     };
 
     jni::JNativeMethod bind_instance_method{
             const_cast<char*>("bindInstance"),
-            const_cast<char*>("(JLgodot/core/KtObject;Ljava/lang/ClassLoader;)Z"),
+            const_cast<char*>("(JLgodot/core/KtObject;Ljava/lang/ClassLoader;)V"),
             (void*) MemoryBridge::bind_instance
     };
 
@@ -42,7 +42,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
-    methods.push_back(destroy_ref_method);
+    methods.push_back(decrement_ref_counter_method);
     methods.push_back(bind_instance_method);
     methods.push_back(unref_native_core_type_method);
     methods.push_back(notify_leak_method);
@@ -67,7 +67,7 @@ void MemoryBridge::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong in
     }
 }
 
-void MemoryBridge::destroy_ref(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
+void MemoryBridge::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
     RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
     if(ref && ref->unreference()){

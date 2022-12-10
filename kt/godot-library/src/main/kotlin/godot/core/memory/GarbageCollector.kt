@@ -37,7 +37,7 @@ internal object GarbageCollector {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { _ -> null }
+    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
 
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
@@ -45,8 +45,12 @@ internal object GarbageCollector {
     /** Queue of objects that need to be bound to native objects*/
     private val bindingQueue = ArrayDeque<KtObject>()
 
-    /** Queue of objects that need to be bound to native objects*/
-    private val bindingList =  ArrayList<KtObject>(CHECK_NUMBER)
+    /**
+     * Queue of objects which will to be bound to native objects in a given iteration.
+     *
+     * At the start of a garbage collection iteration. The objects from the [bindingQueue] are copied into this list in order to spend as little time as possible in a `synchonized` block. Later we loop through this list to actually bind the objects.
+     */
+    private val bindingList = ArrayList<KtObject>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<KtObject>()
@@ -68,6 +72,7 @@ internal object GarbageCollector {
 
     private var gcState = GCState.NONE
 
+    @Suppress("unused")
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
@@ -122,7 +127,7 @@ internal object GarbageCollector {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
-            val isActive = checkAndClean()
+            val isActive = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
 
             if (isActive) {
                 current_delay -= INC_DELAY
@@ -140,31 +145,39 @@ internal object GarbageCollector {
     }
 
     /**
-     * Remove the Object pointers that died since the last GC.
-     * Decrease the counter of the References and NativeCoreType that are not reachable anymore.
-     * @return True if something has been deleted.
+     * Binding a newly created KtObject by setting itself in the c++ binding.
+     * @return True if a binding has been set.
      */
-    private fun checkAndClean(): Boolean {
+    private fun bindNewObjects(): Boolean {
         var isActive = false
-
         var counter = 0
 
         //Objects in that list don't have a binding yet so we call c++ code to set it
         synchronized(ObjectDB) {
-            //In a synchronised block to copy the content in another list so we spend the little time blocking the thread.
+            //In a synchronized block to copy the content into another list so we spend as little time time as possible blocking access to `ObjectDB`.
             val size = min(bindingQueue.size, CHECK_NUMBER)
-            while (counter < size){
+            while (counter < size) {
                 bindingList.add(bindingQueue.removeFirst())
                 counter++
             }
         }
 
-        for(ref in bindingList){
+        for (ref in bindingList) {
             MemoryBridge.bindInstance(ref.id.id, ref, ref::class.java.classLoader)
             isActive = true
         }
         bindingList.clear()
-        counter = 0
+        return isActive
+    }
+
+    /**
+     * Remove the [KtObject] references that have died.
+     * Decrement counter of [RefCounted] in the process.
+     * @return True if something has been removed.
+     */
+    private fun removeObjectsAndDecrementCounter(): Boolean {
+        var isActive = false
+        var counter = 0
 
         //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
@@ -182,15 +195,24 @@ internal object GarbageCollector {
             }
         }
 
-        //we remove the element from the array
+        // We let cpp destroy the references in `deleteList`
         for (ref in deleteList) {
-            if(ref.id.isReference) {
-                MemoryBridge.destroyRef(ref.id.id)
+            if (ref.id.isReference) {
+                MemoryBridge.decrementRefCounter(ref.id.id)
             }
         }
 
         deleteList.clear()
-        counter = 0
+        return isActive
+    }
+
+    /**
+     * Remove dead [NativeCoreType] from memory
+     * @return True if something has been removed.
+     */
+    private fun removeNativeCoreTypes(): Boolean {
+        var isActive = false
+        var counter = 0
 
         // Same as before for NativeCoreTypes
         while (counter < CHECK_NUMBER || isCleanup) {
@@ -211,6 +233,7 @@ internal object GarbageCollector {
         executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
     }
 
+    @Suppress("unused")
     fun cleanUp() {
         while (staticInstances.size > 0) {
             val iterator = staticInstances.iterator()
@@ -224,7 +247,7 @@ internal object GarbageCollector {
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
 
             forceJvmGc()
-            if (checkAndClean()) {
+            if (bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()) {
                 begin = Instant.now()
             }
 
@@ -271,7 +294,7 @@ internal object GarbageCollector {
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
         external fun bindInstance(instanceId: Long, obj: KtObject, classLoader: ClassLoader)
-        external fun destroyRef(instanceId: Long)
+        external fun decrementRefCounter(instanceId: Long)
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
         external fun notifyLeak()
     }
