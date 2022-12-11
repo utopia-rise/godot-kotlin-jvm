@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import godot.util.threadLocal
 

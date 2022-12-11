@@ -3,6 +3,7 @@ package godot.core
 import godot.Object
 import godot.core.callable.*
 import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
 class Callable internal constructor(

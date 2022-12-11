@@ -15,7 +15,6 @@ import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -35,6 +34,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector2i
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

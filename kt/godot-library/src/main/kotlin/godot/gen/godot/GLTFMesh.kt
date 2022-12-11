@@ -8,12 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

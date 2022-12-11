@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -22,6 +21,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal

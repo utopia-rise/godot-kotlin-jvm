@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -19,6 +18,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.RECT2I
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

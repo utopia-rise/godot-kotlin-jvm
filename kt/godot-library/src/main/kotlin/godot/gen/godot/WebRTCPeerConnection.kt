@@ -10,13 +10,13 @@ import godot.WebRTCPeerConnection
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3

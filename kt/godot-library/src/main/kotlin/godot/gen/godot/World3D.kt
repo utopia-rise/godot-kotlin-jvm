@@ -8,10 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

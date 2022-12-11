@@ -9,7 +9,6 @@ package godot
 import godot.XRPositionalTracker
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -17,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal

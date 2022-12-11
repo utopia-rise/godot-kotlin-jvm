@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -18,6 +17,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal

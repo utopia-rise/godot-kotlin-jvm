@@ -8,12 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean

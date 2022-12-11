@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -23,6 +22,7 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

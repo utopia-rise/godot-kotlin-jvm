@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.core.callable.KtCallable
+import godot.core.memory.TransferContext
 
 class KtCustomCallable internal constructor(
     private val target: KtObject?,

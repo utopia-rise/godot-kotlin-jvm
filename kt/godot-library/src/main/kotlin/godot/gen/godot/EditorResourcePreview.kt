@@ -8,12 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any

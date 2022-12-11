@@ -298,9 +298,9 @@ void GDKotlin::init() {
     }
 #endif
 
-    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
+    jni::JClass transfer_ctx_cls = env.load_class("godot.core.memory.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
-                                                                                    "Lgodot/core/TransferContext;");
+                                                                                    "Lgodot/core/memory/TransferContext;");
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
     JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance");
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);

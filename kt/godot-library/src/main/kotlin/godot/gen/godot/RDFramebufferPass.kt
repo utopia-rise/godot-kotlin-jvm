@@ -8,10 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

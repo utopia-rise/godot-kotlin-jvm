@@ -8,11 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

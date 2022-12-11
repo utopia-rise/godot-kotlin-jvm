@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
 class StringName : NativeCoreType {

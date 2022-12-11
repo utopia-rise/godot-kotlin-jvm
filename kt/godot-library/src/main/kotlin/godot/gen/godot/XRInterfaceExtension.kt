@@ -14,7 +14,6 @@ import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -25,6 +24,7 @@ import godot.core.VariantType.RECT2I
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

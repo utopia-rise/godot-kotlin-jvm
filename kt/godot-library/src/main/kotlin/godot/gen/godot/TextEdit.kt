@@ -12,7 +12,6 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.PackedStringArray
 import godot.core.Rect2i
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -31,6 +30,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal2
 import godot.signals.signal

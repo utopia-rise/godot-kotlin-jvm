@@ -9,7 +9,6 @@ package godot
 import godot.TileSet
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -21,6 +20,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

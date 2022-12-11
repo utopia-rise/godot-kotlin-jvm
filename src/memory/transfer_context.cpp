@@ -11,7 +11,7 @@ thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-        JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
+        JavaInstanceWrapper("godot.core.memory.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
             const_cast<char*>("icall"),
             const_cast<char*>("(JII)V"),

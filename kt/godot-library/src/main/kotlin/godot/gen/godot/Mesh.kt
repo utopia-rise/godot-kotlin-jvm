@@ -11,7 +11,6 @@ import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -22,6 +21,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

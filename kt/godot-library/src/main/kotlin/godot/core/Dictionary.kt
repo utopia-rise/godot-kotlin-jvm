@@ -4,6 +4,7 @@ package godot.core
 
 import godot.annotation.CoreTypeHelper
 import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
 

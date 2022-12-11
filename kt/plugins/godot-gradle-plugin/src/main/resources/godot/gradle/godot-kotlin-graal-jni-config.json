@@ -39,7 +39,7 @@
 
 
   {
-    "name" : "godot.core.TransferContext",
+    "name" : "godot.core.memory.TransferContext",
     "fields" : [
       { "name" : "INSTANCE" }
     ],

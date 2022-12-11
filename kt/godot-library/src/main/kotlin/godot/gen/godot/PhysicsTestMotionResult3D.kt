@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

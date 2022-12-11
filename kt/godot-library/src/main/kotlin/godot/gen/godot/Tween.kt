@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -18,6 +17,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal

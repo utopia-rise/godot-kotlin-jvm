@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -21,6 +20,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

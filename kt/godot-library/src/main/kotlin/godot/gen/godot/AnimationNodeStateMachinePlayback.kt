@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -19,6 +18,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.PLANE
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

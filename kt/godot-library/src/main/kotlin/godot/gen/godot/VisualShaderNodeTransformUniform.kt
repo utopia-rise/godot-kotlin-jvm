@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

@@ -10,7 +10,6 @@ import godot.PhysicsServer2D
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -24,6 +23,7 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

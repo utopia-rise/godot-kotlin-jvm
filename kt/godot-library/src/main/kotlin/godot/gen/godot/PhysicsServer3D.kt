@@ -11,7 +11,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Callable
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -25,6 +24,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

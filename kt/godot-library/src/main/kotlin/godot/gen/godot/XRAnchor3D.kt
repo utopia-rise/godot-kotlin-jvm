@@ -8,10 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.VariantType.PLANE
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

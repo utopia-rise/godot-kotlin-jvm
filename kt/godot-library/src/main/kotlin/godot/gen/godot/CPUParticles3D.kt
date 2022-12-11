@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -21,6 +20,7 @@ import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

@@ -7,8 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

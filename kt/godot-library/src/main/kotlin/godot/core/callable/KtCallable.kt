@@ -1,7 +1,7 @@
 package godot.core.callable
 
 import godot.core.KtObject
-import godot.core.TransferContext
+import godot.core.memory.TransferContext
 import godot.core.VariantType
 import godot.util.threadLocal
 

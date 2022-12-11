@@ -8,9 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean

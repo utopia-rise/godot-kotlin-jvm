@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -21,6 +20,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal

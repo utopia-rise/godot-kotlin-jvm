@@ -1,5 +1,8 @@
-package godot.core
+package godot.core.memory
 
+import godot.core.KtObject
+import godot.core.LongStringQueue
+import godot.core.VariantType
 import godot.util.VoidPtr
 import godot.util.threadLocalLazy
 import java.nio.ByteBuffer

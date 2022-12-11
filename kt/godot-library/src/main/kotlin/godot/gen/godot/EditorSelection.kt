@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
