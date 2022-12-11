@@ -229,7 +229,7 @@ namespace ktvariant {
 		KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
 
 		//We only need to retrieve the constructor if the binding is not ready yet.
-		int classID = 0;
+		int constructorID = 0;
 		if(!binding->is_ready()){
 			StringName class_name{ptr->get_class_name()};
             do {
@@ -239,7 +239,7 @@ namespace ktvariant {
                     break;
                 }
             } while(class_name != StringName());
-            classID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
+            constructorID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
 		}
 
 		uint64_t id = ptr->get_instance_id();
@@ -250,7 +250,7 @@ namespace ktvariant {
                 reinterpret_cast<uintptr_t>(ptr),
                 des->get_cursor()));
         des->increment_position(encode_uint32(
-				classID,
+                constructorID,
                 des->get_cursor()));
         des->increment_position(encode_uint64(
                 id,
