@@ -32,6 +32,18 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     return refcount == 0;
 }
 
+void KotlinBinding::set_kt_object(KtObject* p_kt_object) {
+    //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
+    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
+    int refcount = ref->get_reference_count();
+
+    if (refcount == 1 && !kt_object->is_ref_weak()) {
+        //The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
+        //The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        kt_object->swap_to_weak_unsafe();
+    }
+}
+
 bool KotlinBinding::is_ready() {
     return kt_object != nullptr;
 }

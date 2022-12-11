@@ -26,6 +26,8 @@ public:
 
     bool refcount_decremented_unsafe();
 
+    void set_kt_object(KtObject* p_kt_object);
+
     bool is_ready();
 };
 

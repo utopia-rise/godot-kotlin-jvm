@@ -22,7 +22,6 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     //Called in the destructor of the Object.
     // It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     //There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a Refcounted and the JVM instance is already dead.
-    KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     KotlinBindingManager& manager = get_instance();
 
     Object* owner = reinterpret_cast<Object*>(p_instance);
@@ -57,7 +56,7 @@ void KotlinBindingManager::set_instance_binding(Object* p_object, KtObject* ktOb
     manager.spin.unlock();
 
     binding->owner = p_object;
-    binding->kt_object = ktObject;
+    binding->set_kt_object(ktObject);
     p_object->set_instance_binding(&get_instance(), binding, &_instance_binding_callbacks);
 }
 
@@ -79,8 +78,8 @@ bool KotlinBindingManager::bind_object(Object* p_object, KtObject* ktObject) {
     manager.spin.lock();
     KotlinBinding* binding = &manager.binding_map.find(p_object)->value;
     if (binding) {
-        binding->kt_object = ktObject;
         manager.spin.unlock();
+        binding->set_kt_object(ktObject);
         return true;
     }
     manager.spin.unlock();
@@ -96,7 +95,7 @@ KotlinBinding* KotlinBindingManager::create_script_binding(Object* p_object, KtO
     manager.spin.unlock();
 
     binding->owner = p_object;
-    binding->kt_object = ktObject;
+    binding->set_kt_object(ktObject);
     return binding;
 }
 

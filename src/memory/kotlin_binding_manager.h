@@ -30,6 +30,7 @@ public:
     //For instance bindings, they are to bind native Godot objects to their JVM wrappers, not for the scripts.
     static void set_instance_binding(Object* p_object, KtObject* ktObject);
 
+    //Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
     static bool bind_object(Object* p_object, KtObject* ktObject);
