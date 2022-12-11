@@ -33,7 +33,7 @@ bool KotlinBinding::refcount_decremented_unsafe() {
 }
 
 void KotlinBinding::set_kt_object(KtObject* p_kt_object) {
-    //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
+    if(!owner->is_ref_counted()) { return; }
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
@@ -42,6 +42,8 @@ void KotlinBinding::set_kt_object(KtObject* p_kt_object) {
         //The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
         kt_object->swap_to_weak_unsafe();
     }
+
+    kt_object = p_kt_object;
 }
 
 bool KotlinBinding::is_ready() {

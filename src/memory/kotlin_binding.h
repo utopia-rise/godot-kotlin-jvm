@@ -21,12 +21,12 @@ private:
 
     ~KotlinBinding();
 
+    void set_kt_object(KtObject* p_kt_object);
+
 public:
     void refcount_incremented_unsafe();
 
     bool refcount_decremented_unsafe();
-
-    void set_kt_object(KtObject* p_kt_object);
 
     bool is_ready();
 };
