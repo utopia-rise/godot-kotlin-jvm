@@ -4,7 +4,7 @@ void KotlinBinding::refcount_incremented_unsafe() {
     //The reference has not been set yet.
     if(!kt_object) { return;}
 
-    //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
+    //This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
@@ -19,7 +19,7 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     //The reference has not been set, we delay the destruction of the object until the GC does the job.
     if(!kt_object) { return false;}
 
-    //This function should only be called when we know the object is a RefCounter. We directly reinterpret the point to it
+    //This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
