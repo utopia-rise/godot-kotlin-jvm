@@ -135,6 +135,14 @@ class Projection(
             _x = Vector4(value)
         }
 
+    /**
+     * Apply modifications on actual [x] [Vector4].
+     *
+     *
+     * [x] var return a copy of actual x [Vector4] of this [Projection]. This method purpose is to make changes to the
+     * actual x.
+     * See also: [x]
+     */
     @CoreTypeHelper
     inline fun <T> x(block: Vector4.() -> T): T {
         return _x.block()
@@ -154,6 +162,14 @@ class Projection(
             _y = Vector4(value)
         }
 
+    /**
+     * Apply modifications on actual [y] [Vector4].
+     *
+     *
+     * [y] var return a copy of actual y [Vector4] of this [Projection]. This method purpose is to make changes to the
+     * actual y.
+     * See also: [y]
+     */
     @CoreTypeHelper
     inline fun <T> y(block: Vector4.() -> T): T {
         return _y.block()
@@ -173,6 +189,14 @@ class Projection(
             _z = Vector4(value)
         }
 
+    /**
+     * Apply modifications on actual [z] [Vector4].
+     *
+     *
+     * [z] var return a copy of actual z [Vector4] of this [Projection]. This method purpose is to make changes to the
+     * actual z.
+     * See also: [z]
+     */
     @CoreTypeHelper
     inline fun <T> z(block: Vector4.() -> T): T {
         return _z.block()
@@ -192,6 +216,14 @@ class Projection(
             _w = Vector4(value)
         }
 
+    /**
+     * Apply modifications on actual [w] [Vector4].
+     *
+     *
+     * [w] var return a copy of actual w [Vector4] of this [Projection]. This method purpose is to make changes to the
+     * actual w.
+     * See also: [w]
+     */
     @CoreTypeHelper
     inline fun <T> w(block: Vector4.() -> T): T {
         return _w.block()
