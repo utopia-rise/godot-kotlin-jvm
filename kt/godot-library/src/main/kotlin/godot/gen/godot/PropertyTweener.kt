@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Interpolates an [godot.Object]'s property over time.
@@ -26,8 +27,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PROPERTYTWEENER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
+    return true
   }
 
   /**

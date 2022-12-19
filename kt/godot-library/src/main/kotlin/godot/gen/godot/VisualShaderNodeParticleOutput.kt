@@ -7,16 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleOutput : VisualShaderNodeOutput() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT, scriptIndex)
+    return true
   }
 
   public companion object

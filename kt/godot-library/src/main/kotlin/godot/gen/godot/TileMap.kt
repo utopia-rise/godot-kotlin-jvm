@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,10 +24,12 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -128,8 +129,9 @@ public open class TileMap : Node2D() {
           ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_VISIBILITY_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TILEMAP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TILEMAP, scriptIndex)
+    return true
   }
 
   /**

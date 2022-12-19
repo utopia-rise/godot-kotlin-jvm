@@ -8,15 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -72,8 +72,9 @@ public open class InputEventAction : InputEvent() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTACTION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
+    return true
   }
 
   public companion object

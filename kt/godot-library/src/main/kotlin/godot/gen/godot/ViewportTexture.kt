@@ -8,11 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Texture which displays the content of a [godot.Viewport].
@@ -44,8 +45,9 @@ public open class ViewportTexture : Texture2D() {
           ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_SET_VIEWPORT_PATH_IN_SCENE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIEWPORTTEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

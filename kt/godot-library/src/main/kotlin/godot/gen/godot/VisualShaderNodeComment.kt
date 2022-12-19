@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A comment node to be placed on visual shader graph.
@@ -53,8 +54,9 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_SET_DESCRIPTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
+    return true
   }
 
   public companion object

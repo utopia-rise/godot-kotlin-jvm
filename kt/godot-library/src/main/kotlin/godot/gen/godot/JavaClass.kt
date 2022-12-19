@@ -7,16 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class JavaClass : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JAVACLASS)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_JAVACLASS, scriptIndex)
+    return true
   }
 
   public companion object

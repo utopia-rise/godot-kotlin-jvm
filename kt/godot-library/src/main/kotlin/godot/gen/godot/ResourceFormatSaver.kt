@@ -9,11 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Saves a specific resource type to a file.
@@ -24,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RESOURCEFORMATSAVER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RESOURCEFORMATSAVER, scriptIndex)
+    return true
   }
 
   /**

@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Singleton that connects the engine with Android plugins to interface with native Android code.
@@ -20,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JNISingleton : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JNISINGLETON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_JNISINGLETON, scriptIndex)
+    return true
   }
 
   public companion object

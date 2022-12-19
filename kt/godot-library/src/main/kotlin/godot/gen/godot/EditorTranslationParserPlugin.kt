@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -210,8 +212,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorTranslationParserPlugin internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORTRANSLATIONPARSERPLUGIN)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORTRANSLATIONPARSERPLUGIN, scriptIndex)
+    return true
   }
 
   /**

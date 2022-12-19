@@ -9,10 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base Syntax highlighter resource for the [godot.ScriptEditor].
@@ -23,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlighter() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER, scriptIndex)
+    return true
   }
 
   /**

@@ -7,15 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Node that represents collision shape data in 2D space.
@@ -94,8 +94,9 @@ public open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COLLISIONSHAPE2D, scriptIndex)
+    return true
   }
 
   public companion object

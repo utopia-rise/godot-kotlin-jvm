@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -19,6 +18,9 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -29,8 +31,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_IMMEDIATEMESH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_IMMEDIATEMESH, scriptIndex)
+    return true
   }
 
   /**

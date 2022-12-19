@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFAnimation : Resource() {
@@ -27,8 +27,9 @@ public open class GLTFAnimation : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFANIMATION_SET_LOOP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFANIMATION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GLTFANIMATION, scriptIndex)
+    return true
   }
 
   public companion object

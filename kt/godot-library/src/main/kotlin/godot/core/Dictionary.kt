@@ -3,10 +3,12 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
+import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
 
-class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
+class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     internal var keyVariantType = VariantType.NIL
     internal var valueVariantType = VariantType.NIL
@@ -67,7 +69,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     override val values: MutableCollection<V>
         get() = object : AbstractMutableCollection<V>() {
             override fun add(element: V): Boolean =
-                    throw UnsupportedOperationException("Add is not supported on values")
+                throw UnsupportedOperationException("Add is not supported on values")
 
             override fun clear() = this@Dictionary.clear()
 
@@ -108,10 +110,10 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
 
             override operator fun iterator(): MapIterator<K, V> {
                 return MapIterator(
-                        this@Dictionary.keys.iterator(),
-                        this@Dictionary::get,
-                        this@Dictionary::set,
-                        this@Dictionary::erase
+                    this@Dictionary.keys.iterator(),
+                    this@Dictionary::get,
+                    this@Dictionary::set,
+                    this@Dictionary::erase
                 )
             }
 

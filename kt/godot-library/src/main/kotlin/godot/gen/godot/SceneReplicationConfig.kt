@@ -8,23 +8,25 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCENEREPLICATIONCONFIG)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCENEREPLICATIONCONFIG, scriptIndex)
+    return true
   }
 
   public fun getProperties(): VariantArray<Any?> {

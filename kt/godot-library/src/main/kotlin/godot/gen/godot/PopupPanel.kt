@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Class for displaying popups with a panel background.
@@ -19,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PopupPanel : Popup() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POPUPPANEL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_POPUPPANEL, scriptIndex)
+    return true
   }
 
   public companion object

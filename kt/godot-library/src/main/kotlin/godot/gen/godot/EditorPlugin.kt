@@ -10,18 +10,19 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -63,8 +64,9 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public val resourceSaved: Signal1<Resource> by signal("resource")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORPLUGIN)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORPLUGIN, scriptIndex)
+    return true
   }
 
   /**
@@ -1008,35 +1010,35 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     * Dock slot, left side, upper-left (empty in default layout).
+     *
      */
     DOCK_SLOT_LEFT_UL(0),
     /**
-     * Dock slot, left side, bottom-left (empty in default layout).
+     *
      */
     DOCK_SLOT_LEFT_BL(1),
     /**
-     * Dock slot, left side, upper-right (in default layout includes Scene and Import docks).
+     *
      */
     DOCK_SLOT_LEFT_UR(2),
     /**
-     * Dock slot, left side, bottom-right (in default layout includes FileSystem dock).
+     *
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     * Dock slot, right side, upper-left (empty in default layout).
+     *
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
-     * Dock slot, right side, bottom-left (empty in default layout).
+     *
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
+     *
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**
-     * Dock slot, right side, bottom-right (empty in default layout).
+     *
      */
     DOCK_SLOT_RIGHT_BR(7),
     /**
@@ -1059,48 +1061,48 @@ public open class EditorPlugin internal constructor() : Node() {
     id: Long
   ) {
     /**
-     * Main editor toolbar, next to play buttons.
+     *
      */
     CONTAINER_TOOLBAR(0),
     /**
-     * The toolbar that appears when 3D editor is active.
+     *
      */
     CONTAINER_SPATIAL_EDITOR_MENU(1),
     /**
-     * Left sidebar of the 3D editor.
+     *
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_LEFT(2),
     /**
-     * Right sidebar of the 3D editor.
+     *
      */
     CONTAINER_SPATIAL_EDITOR_SIDE_RIGHT(3),
     /**
-     * Bottom panel of the 3D editor.
+     *
      */
     CONTAINER_SPATIAL_EDITOR_BOTTOM(4),
     /**
-     * The toolbar that appears when 2D editor is active.
+     *
      */
     CONTAINER_CANVAS_EDITOR_MENU(5),
     /**
-     * Left sidebar of the 2D editor.
+     *
      */
     CONTAINER_CANVAS_EDITOR_SIDE_LEFT(6),
     /**
-     * Right sidebar of the 2D editor.
+     *
      */
     CONTAINER_CANVAS_EDITOR_SIDE_RIGHT(7),
     /**
-     * Bottom panel of the 2D editor.
+     *
      */
     CONTAINER_CANVAS_EDITOR_BOTTOM(8),
     CONTAINER_PROPERTY_EDITOR_BOTTOM(9),
     /**
-     * Tab of Project Settings dialog, to the left of other tabs.
+     *
      */
     CONTAINER_PROJECT_SETTING_TAB_LEFT(10),
     /**
-     * Tab of Project Settings dialog, to the right of other tabs.
+     *
      */
     CONTAINER_PROJECT_SETTING_TAB_RIGHT(11),
     ;

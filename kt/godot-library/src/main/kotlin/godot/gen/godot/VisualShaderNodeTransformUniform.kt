@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
@@ -44,8 +44,9 @@ public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM, scriptIndex)
+    return true
   }
 
   public companion object

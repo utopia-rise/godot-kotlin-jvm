@@ -7,13 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunction : VisualScriptNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTION, scriptIndex)
+    return true
   }
 
   public companion object

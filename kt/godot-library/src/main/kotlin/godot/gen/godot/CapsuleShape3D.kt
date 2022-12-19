@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Capsule shape resource for 3D collisions.
@@ -54,8 +55,9 @@ public open class CapsuleShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE3D_SET_HEIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAPSULESHAPE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CAPSULESHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -9,11 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
-import godot.core.TransferContext
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Occluder shape resource for use with occlusion culling in [godot.OccluderInstance3D].
@@ -24,8 +25,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OCCLUDER3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OCCLUDER3D, scriptIndex)
+    return true
   }
 
   /**

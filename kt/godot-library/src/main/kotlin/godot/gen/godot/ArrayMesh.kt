@@ -13,7 +13,6 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -27,7 +26,9 @@ import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.memory.TransferContext
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -83,17 +84,13 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * var vertices = new Vector3[]
+ * var vertices = new Godot.Collections.Array<Vector3>();
  *
- * {
+ * vertices.Add(new Vector3(0, 1, 0));
  *
- *     new Vector3(0, 1, 0),
+ * vertices.Add(new Vector3(1, 0, 0));
  *
- *     new Vector3(1, 0, 0),
- *
- *     new Vector3(0, 0, 1),
- *
- * };
+ * vertices.Add(new Vector3(0, 0, 1));
  *
  *
  *
@@ -113,7 +110,7 @@ import kotlin.Unit
  *
  * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
  *
- * var m = new MeshInstance3D();
+ * var m = new MeshInstance();
  *
  * m.Mesh = arrMesh;
  *
@@ -174,8 +171,9 @@ public open class ArrayMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_SHADOW_MESH, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ARRAYMESH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ARRAYMESH, scriptIndex)
+    return true
   }
 
   /**

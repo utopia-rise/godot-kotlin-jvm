@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -18,12 +17,13 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Parameters to be sent to a 3D body motion test.
@@ -148,8 +148,9 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_OBJECTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
+    return true
   }
 
   public companion object

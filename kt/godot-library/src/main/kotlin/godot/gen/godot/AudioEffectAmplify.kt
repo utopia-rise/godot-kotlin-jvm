@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds an amplifying audio effect to an audio bus.
@@ -40,8 +41,9 @@ public open class AudioEffectAmplify : AudioEffect() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY, scriptIndex)
+    return true
   }
 
   public companion object

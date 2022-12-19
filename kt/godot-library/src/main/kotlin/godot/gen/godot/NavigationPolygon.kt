@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -113,8 +115,9 @@ public open class NavigationPolygon : Resource() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON, scriptIndex)
+    return true
   }
 
   /**

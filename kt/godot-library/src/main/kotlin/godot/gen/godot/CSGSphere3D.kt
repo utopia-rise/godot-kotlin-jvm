@@ -7,17 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class CSGSphere3D : CSGPrimitive3D() {
@@ -79,8 +79,9 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE3D_SET_MATERIAL, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CSGSPHERE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CSGSPHERE3D, scriptIndex)
+    return true
   }
 
   public companion object

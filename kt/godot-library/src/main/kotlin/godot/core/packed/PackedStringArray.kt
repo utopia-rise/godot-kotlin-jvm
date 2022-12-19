@@ -1,5 +1,7 @@
 package godot.core
 
+import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
@@ -165,7 +167,6 @@ class PackedStringArray : NativeCoreType, Iterable<String> {
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
         external fun engine_call_reverse(_handle: VoidPtr)
-//        external fun engine_call_join(_handle: VoidPtr)
         external fun engine_call_pushback(_handle: VoidPtr)
         external fun engine_call_remove_at(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)

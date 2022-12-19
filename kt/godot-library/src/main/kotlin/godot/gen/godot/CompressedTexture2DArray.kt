@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Array of 2-dimensional textures, optionally compressed.
@@ -31,8 +32,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CompressedTexture2DArray : CompressedTextureLayered() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2DARRAY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2DARRAY, scriptIndex)
+    return true
   }
 
   public companion object

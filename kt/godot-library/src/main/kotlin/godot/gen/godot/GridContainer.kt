@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Grid container used to arrange Control-derived children in a grid like layout.
@@ -42,8 +43,9 @@ public open class GridContainer : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRIDCONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GRIDCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.core.memory.TransferContext
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(

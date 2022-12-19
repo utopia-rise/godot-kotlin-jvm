@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -22,12 +21,12 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A class stored as a resource.
@@ -57,8 +56,9 @@ public open class Script internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_SET_SOURCE_CODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCRIPT, scriptIndex)
+    return true
   }
 
   /**

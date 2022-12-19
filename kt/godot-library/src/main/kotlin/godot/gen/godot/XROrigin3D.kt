@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * The origin point in AR/VR.
@@ -47,8 +48,9 @@ public open class XROrigin3D : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_WORLD_SCALE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRORIGIN3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
+    return true
   }
 
   public companion object

@@ -8,17 +8,18 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -138,7 +139,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * If `true`, audio is playing or is queued to be played (see [play]).
+   * If `true`, audio is playing.
    */
   public val playing: Boolean
     get() {
@@ -343,12 +344,13 @@ public open class AudioStreamPlayer3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_DOPPLER_TRACKING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D, scriptIndex)
+    return true
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
+   * Plays the audio from the given position [fromPosition], in seconds.
    */
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)

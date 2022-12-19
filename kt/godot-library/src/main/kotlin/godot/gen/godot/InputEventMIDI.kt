@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Input event for MIDI inputs.
@@ -254,8 +255,9 @@ public open class InputEventMIDI : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_CONTROLLER_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMIDI)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INPUTEVENTMIDI, scriptIndex)
+    return true
   }
 
   public companion object

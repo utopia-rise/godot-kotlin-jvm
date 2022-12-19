@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Provides an opaque background for [godot.Control] children.
@@ -20,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Panel : Control() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PANEL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PANEL, scriptIndex)
+    return true
   }
 
   public companion object

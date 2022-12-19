@@ -14,7 +14,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -36,6 +35,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -236,8 +236,9 @@ public open class FontData : Resource() {
           ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_OPENTYPE_FEATURE_OVERRIDES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FONTDATA)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_FONTDATA, scriptIndex)
+    return true
   }
 
   public fun loadBitmapFont(path: String): GodotError {

@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Performs a 2D texture lookup within the visual shader graph.
@@ -70,8 +71,9 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_SET_TEXTURE_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE, scriptIndex)
+    return true
   }
 
   public enum class TextureType(

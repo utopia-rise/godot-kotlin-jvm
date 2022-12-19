@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -19,11 +18,13 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal5
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -139,8 +140,9 @@ public open class CollisionObject3D internal constructor() : Node3D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_CAPTURE_INPUT_ON_DRAG, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLLISIONOBJECT3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COLLISIONOBJECT3D, scriptIndex)
+    return true
   }
 
   /**

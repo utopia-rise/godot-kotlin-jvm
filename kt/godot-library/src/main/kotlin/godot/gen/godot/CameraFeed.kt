@@ -8,7 +8,6 @@ package godot
 
 import godot.CameraFeed
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -16,12 +15,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device.
@@ -61,8 +60,9 @@ public open class CameraFeed : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_SET_TRANSFORM, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CAMERAFEED)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
+    return true
   }
 
   /**

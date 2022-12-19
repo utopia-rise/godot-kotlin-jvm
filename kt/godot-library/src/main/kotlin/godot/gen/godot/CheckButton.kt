@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Checkable button. See also [godot.CheckBox].
@@ -19,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CheckButton : Button() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CHECKBUTTON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CHECKBUTTON, scriptIndex)
+    return true
   }
 
   public companion object

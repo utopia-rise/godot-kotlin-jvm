@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Calculates the determinant of a [godot.Transform3D] within the visual shader graph.
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeDeterminant : VisualShaderNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEDETERMINANT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEDETERMINANT, scriptIndex)
+    return true
   }
 
   public companion object

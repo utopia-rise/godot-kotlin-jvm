@@ -9,17 +9,17 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Singleton for saving Godot-specific resource types.
@@ -30,11 +30,10 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RESOURCESAVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Saves a resource to disk to the given path, using a [godot.ResourceFormatSaver] that recognizes the resource object. If [path] is empty, [godot.ResourceSaver] will try to use [godot.Resource.resourcePath].

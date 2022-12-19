@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Editor-only helper for setting up root motion in [godot.AnimationTree].
@@ -22,8 +23,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RootMotionView internal constructor() : VisualInstance3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ROOTMOTIONVIEW)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ROOTMOTIONVIEW, scriptIndex)
+    return true
   }
 
   public companion object

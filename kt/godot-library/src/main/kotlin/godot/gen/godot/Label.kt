@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,9 +14,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -270,8 +271,9 @@ public open class Label : Control() {
           ENGINEMETHOD_ENGINECLASS_LABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LABEL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LABEL, scriptIndex)
+    return true
   }
 
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {

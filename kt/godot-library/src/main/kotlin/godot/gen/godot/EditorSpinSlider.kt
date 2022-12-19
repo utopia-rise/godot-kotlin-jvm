@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Godot editor's control for editing numeric values.
@@ -83,8 +83,9 @@ public open class EditorSpinSlider internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSPINSLIDER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORSPINSLIDER, scriptIndex)
+    return true
   }
 
   public companion object

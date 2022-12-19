@@ -8,18 +8,19 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class RegExMatch : RefCounted() {
@@ -44,8 +45,9 @@ public open class RegExMatch : RefCounted() {
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REGEXMATCH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
+    return true
   }
 
   public fun getGroupCount(): Long {

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -20,9 +19,11 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -35,8 +36,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ASTAR2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ASTAR2D, scriptIndex)
+    return true
   }
 
   /**

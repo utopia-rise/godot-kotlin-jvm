@@ -8,11 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Concave polygon shape resource for 2D physics.
@@ -43,8 +44,9 @@ public open class ConcavePolygonShape2D : Shape2D() {
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE2D_SET_SEGMENTS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D, scriptIndex)
+    return true
   }
 
   public companion object

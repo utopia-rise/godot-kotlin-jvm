@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * The built-in GPU-based lightmapper for use with [godot.LightmapGI].
@@ -19,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPPERRD)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LIGHTMAPPERRD, scriptIndex)
+    return true
   }
 
   public companion object

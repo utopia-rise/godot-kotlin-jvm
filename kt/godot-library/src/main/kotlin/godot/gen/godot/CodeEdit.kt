@@ -11,7 +11,6 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -26,12 +25,14 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -385,8 +386,9 @@ public open class CodeEdit : TextEdit() {
           ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_AUTO_BRACE_COMPLETION_PAIRS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CODEEDIT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CODEEDIT, scriptIndex)
+    return true
   }
 
   /**

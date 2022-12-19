@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds a panner audio effect to an audio bus. Pans sound left or right.
@@ -38,8 +39,9 @@ public open class AudioEffectPanner : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPANNER_SET_PAN, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTPANNER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AUDIOEFFECTPANNER, scriptIndex)
+    return true
   }
 
   public companion object

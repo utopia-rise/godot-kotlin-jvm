@@ -12,7 +12,6 @@ import godot.core.Dictionary
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -31,9 +30,11 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -195,8 +196,9 @@ public open class TextParagraph : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_TEXTPARAGRAPH_SET_MAX_LINES_VISIBLE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTPARAGRAPH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTPARAGRAPH, scriptIndex)
+    return true
   }
 
   /**

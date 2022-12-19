@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Panel container type.
@@ -20,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PanelContainer : Container() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PANELCONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PANELCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

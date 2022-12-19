@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,8 +67,9 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
    */
   public val scriptCreated: Signal1<Script> by signal("script")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG, scriptIndex)
+    return true
   }
 
   /**

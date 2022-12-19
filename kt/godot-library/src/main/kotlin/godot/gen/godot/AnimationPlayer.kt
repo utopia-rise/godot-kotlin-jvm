@@ -11,7 +11,6 @@ import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -21,6 +20,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
@@ -254,8 +254,9 @@ public open class AnimationPlayer : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_METHOD_CALL_MODE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONPLAYER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONPLAYER, scriptIndex)
+    return true
   }
 
   public fun addAnimation(name: StringName, animation: Animation): GodotError {

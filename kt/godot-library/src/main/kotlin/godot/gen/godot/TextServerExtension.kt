@@ -24,6 +24,7 @@ import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -37,8 +38,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVEREXTENSION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTSERVEREXTENSION, scriptIndex)
+    return true
   }
 
   public open fun _hasFeature(feature: TextServer.Feature): Boolean {

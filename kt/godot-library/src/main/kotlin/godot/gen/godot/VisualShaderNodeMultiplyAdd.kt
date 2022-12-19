@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Performs a fused multiply-add operation within the visual shader graph.
@@ -37,8 +38,9 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEMULTIPLYADD_SET_OP_TYPE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEMULTIPLYADD)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEMULTIPLYADD, scriptIndex)
+    return true
   }
 
   public enum class OpType(

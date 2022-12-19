@@ -7,6 +7,7 @@ import godot.ResourceLoader
 import godot.core.*
 import godot.extensions.godotStatic
 import godot.core.Dictionary
+import godot.core.memory.GarbageCollector
 import godot.extensions.loadAs
 
 import godot.util.nullptr

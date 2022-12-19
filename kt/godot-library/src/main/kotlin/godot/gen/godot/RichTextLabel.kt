@@ -11,7 +11,6 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -27,11 +26,13 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -384,8 +385,9 @@ public open class RichTextLabel : Control() {
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RICHTEXTLABEL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RICHTEXTLABEL, scriptIndex)
+    return true
   }
 
   /**

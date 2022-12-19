@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Group of Buttons.
@@ -31,8 +32,9 @@ public open class ButtonGroup : Resource() {
    */
   public val pressed: Signal1<BaseButton> by signal("button")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_BUTTONGROUP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_BUTTONGROUP, scriptIndex)
+    return true
   }
 
   /**

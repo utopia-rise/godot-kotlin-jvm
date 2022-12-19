@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -20,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MultiplayerPeerExtension : MultiplayerPeer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERPEEREXTENSION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MULTIPLAYERPEEREXTENSION, scriptIndex)
+    return true
   }
 
   /**

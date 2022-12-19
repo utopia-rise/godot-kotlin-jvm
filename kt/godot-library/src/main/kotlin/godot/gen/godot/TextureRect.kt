@@ -7,15 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Control for drawing textures.
@@ -100,8 +100,9 @@ public open class TextureRect : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_V, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURERECT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
+    return true
   }
 
   public enum class StretchMode(

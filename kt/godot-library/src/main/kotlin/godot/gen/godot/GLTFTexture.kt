@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
@@ -27,8 +28,9 @@ public open class GLTFTexture : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_SET_SRC_IMAGE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFTEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GLTFTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

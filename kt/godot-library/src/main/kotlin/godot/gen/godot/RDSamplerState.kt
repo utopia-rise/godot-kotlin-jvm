@@ -7,16 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
@@ -254,8 +254,9 @@ public open class RDSamplerState : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_RDSAMPLERSTATE_SET_UNNORMALIZED_UVW, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDSAMPLERSTATE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RDSAMPLERSTATE, scriptIndex)
+    return true
   }
 
   public companion object

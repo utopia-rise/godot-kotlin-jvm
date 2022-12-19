@@ -8,23 +8,24 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
+import godot.core.memory.TransferContext
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKEDDATACONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PACKEDDATACONTAINER, scriptIndex)
+    return true
   }
 
   /**

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -17,14 +16,15 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSpawner : Node() {
@@ -84,8 +84,9 @@ public open class MultiplayerSpawner : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
+    return true
   }
 
   public open fun _spawnCustom(`data`: Any): Object? {

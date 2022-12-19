@@ -8,9 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A custom effect for use with [godot.RichTextLabel].
@@ -46,8 +46,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RichTextEffect : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RICHTEXTEFFECT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RICHTEXTEFFECT, scriptIndex)
+    return true
   }
 
   /**

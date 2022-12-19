@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -17,11 +16,13 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -83,7 +84,7 @@ public open class EditorProperty internal constructor() : Container() {
   /**
    * Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.
    *
-   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instantiation chain, a script or a builtin class.
+   * The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instancing chain, a script or a builtin class.
    */
   public val propertyPinned: Signal2<StringName, Boolean> by signal("property", "pinned")
 
@@ -187,8 +188,9 @@ public open class EditorProperty internal constructor() : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DELETABLE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORPROPERTY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORPROPERTY, scriptIndex)
+    return true
   }
 
   /**

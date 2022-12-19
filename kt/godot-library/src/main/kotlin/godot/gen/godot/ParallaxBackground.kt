@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A node used to create a parallax scrolling background.
@@ -119,8 +119,9 @@ public open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PARALLAXBACKGROUND)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PARALLAXBACKGROUND, scriptIndex)
+    return true
   }
 
   public companion object

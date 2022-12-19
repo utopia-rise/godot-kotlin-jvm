@@ -7,14 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Adds a delay audio effect to an audio bus. Plays input signal back after a period of time.
@@ -198,8 +198,9 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_LOWPASS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTDELAY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_AUDIOEFFECTDELAY, scriptIndex)
+    return true
   }
 
   public companion object

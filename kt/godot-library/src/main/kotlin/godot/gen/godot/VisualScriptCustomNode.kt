@@ -10,16 +10,17 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptCustomNode : VisualScriptNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE, scriptIndex)
+    return true
   }
 
   public open fun _getOutputSequencePortCount(): Long {

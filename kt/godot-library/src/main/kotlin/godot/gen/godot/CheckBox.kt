@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Binary choice user interface widget. See also [godot.CheckButton].
@@ -19,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CheckBox : Button() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CHECKBOX)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CHECKBOX, scriptIndex)
+    return true
   }
 
   public companion object

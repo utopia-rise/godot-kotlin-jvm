@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Calls the specified method after optional delay.
@@ -23,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CALLBACKTWEENER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CALLBACKTWEENER, scriptIndex)
+    return true
   }
 
   /**

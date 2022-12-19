@@ -8,17 +8,17 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
@@ -75,8 +75,9 @@ public open class PrimitiveMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PRIMITIVEMESH)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
+    return true
   }
 
   /**

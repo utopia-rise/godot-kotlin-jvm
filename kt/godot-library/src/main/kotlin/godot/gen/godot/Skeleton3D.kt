@@ -11,7 +11,6 @@ import godot.core.Basis
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -28,12 +27,14 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -105,8 +106,9 @@ public open class Skeleton3D : Node3D() {
           ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_ANIMATE_PHYSICAL_BONES, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETON3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SKELETON3D, scriptIndex)
+    return true
   }
 
   /**

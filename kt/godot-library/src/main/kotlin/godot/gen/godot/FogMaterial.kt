@@ -8,14 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [godot.Material] used with a [godot.FogVolume] to draw things with the volumetric fog effect.
@@ -116,8 +117,9 @@ public open class FogMaterial : Material() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FOGMATERIAL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_FOGMATERIAL, scriptIndex)
+    return true
   }
 
   public companion object

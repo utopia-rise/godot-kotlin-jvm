@@ -8,12 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.VariantType.PLANE
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * An anchor point in AR space.
@@ -26,8 +27,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRANCHOR3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRANCHOR3D, scriptIndex)
+    return true
   }
 
   /**

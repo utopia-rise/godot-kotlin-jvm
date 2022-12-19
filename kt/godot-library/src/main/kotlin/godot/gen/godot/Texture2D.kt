@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -20,7 +19,9 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -39,8 +40,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture2D : Texture() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTURE2D, scriptIndex)
+    return true
   }
 
   /**

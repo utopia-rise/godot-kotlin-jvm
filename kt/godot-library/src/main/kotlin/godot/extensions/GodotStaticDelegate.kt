@@ -4,7 +4,7 @@ package godot.extensions
 
 import godot.Object
 import godot.RefCounted
-import godot.core.GarbageCollector
+import godot.core.memory.GarbageCollector
 import godot.core.memory.GodotStatic
 import godot.core.variantMapper
 import kotlin.properties.ReadWriteProperty

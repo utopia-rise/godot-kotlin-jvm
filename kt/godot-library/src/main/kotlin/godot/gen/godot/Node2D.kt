@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -17,8 +16,10 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -206,8 +207,9 @@ public open class Node2D : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Y_SORT_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NODE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NODE2D, scriptIndex)
+    return true
   }
 
   /**

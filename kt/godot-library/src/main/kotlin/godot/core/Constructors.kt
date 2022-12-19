@@ -2,13 +2,14 @@
 
 package godot.core
 
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import godot.util.threadLocal
 
 // Change also in kt_class.h when changing it.
 const val CONSTRUCTOR_MAX_ARGS = 5
 
-abstract class KtConstructor<T: KtObject>(
+abstract class KtConstructor<T : KtObject>(
     vararg argsTypes: Pair<VariantType, Boolean>
 ) {
     val parameterCount: Int = argsTypes.size
@@ -17,7 +18,7 @@ abstract class KtConstructor<T: KtObject>(
 
     abstract operator fun invoke(): T
 
-    fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.instantiateWith(rawPtr, instanceId) {
+    fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.instantiateWith(rawPtr, instanceId, false) {
         val argsSize = TransferContext.buffer.int
         require(argsSize == parameterCount) {
             "Expecting $parameterCount parameter(s) for constructor, but got $argsSize instead."
@@ -40,7 +41,7 @@ abstract class KtConstructor<T: KtObject>(
     }
 }
 
-class KtConstructor0<T: KtObject>(
+class KtConstructor0<T : KtObject>(
     private val constructor: () -> T
 ) : KtConstructor<T>() {
     override fun invoke(): T {
@@ -48,7 +49,7 @@ class KtConstructor0<T: KtObject>(
     }
 }
 
-class KtConstructor1<T: KtObject, P0: Any?>(
+class KtConstructor1<T : KtObject, P0 : Any?>(
     private val constructor: (P0) -> T,
     p0Type: Pair<VariantType, Boolean>
 ) : KtConstructor<T>(p0Type) {
@@ -59,7 +60,7 @@ class KtConstructor1<T: KtObject, P0: Any?>(
     }
 }
 
-class KtConstructor2<T: KtObject, P0: Any?, P1: Any?>(
+class KtConstructor2<T : KtObject, P0 : Any?, P1 : Any?>(
     private val constructor: (P0, P1) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>
@@ -72,7 +73,7 @@ class KtConstructor2<T: KtObject, P0: Any?, P1: Any?>(
     }
 }
 
-class KtConstructor3<T: KtObject, P0: Any?, P1: Any?, P2: Any?>(
+class KtConstructor3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?>(
     private val constructor: (P0, P1, P2) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,
@@ -87,7 +88,7 @@ class KtConstructor3<T: KtObject, P0: Any?, P1: Any?, P2: Any?>(
     }
 }
 
-class KtConstructor4<T: KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?>(
+class KtConstructor4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?>(
     private val constructor: (P0, P1, P2, P3) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,
@@ -104,7 +105,7 @@ class KtConstructor4<T: KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?>(
     }
 }
 
-class KtConstructor5<T: KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, P4: Any?>(
+class KtConstructor5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?>(
     private val constructor: (P0, P1, P2, P3, P4) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,

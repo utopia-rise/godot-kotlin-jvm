@@ -11,7 +11,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -20,6 +19,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Boolean
@@ -456,8 +456,9 @@ public open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HTTPREQUEST)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HTTPREQUEST, scriptIndex)
+    return true
   }
 
   /**

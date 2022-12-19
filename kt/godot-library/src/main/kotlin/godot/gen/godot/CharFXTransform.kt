@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
@@ -22,12 +21,13 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
@@ -214,8 +214,9 @@ public open class CharFXTransform : RefCounted() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CHARFXTRANSFORM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
+    return true
   }
 
   public companion object

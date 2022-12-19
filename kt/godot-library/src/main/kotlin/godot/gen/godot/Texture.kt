@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for all texture types.
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Texture : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Godot editor's control for selecting the `script` property of a [godot.Node].
@@ -38,8 +39,9 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
           ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_SET_SCRIPT_OWNER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSCRIPTPICKER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORSCRIPTPICKER, scriptIndex)
+    return true
   }
 
   public companion object

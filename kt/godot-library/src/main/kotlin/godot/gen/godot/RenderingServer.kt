@@ -24,7 +24,6 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.VariantArray
@@ -61,6 +60,7 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
@@ -185,11 +185,10 @@ public object RenderingServer : Object() {
    */
   public val framePreDraw: Signal0 by signal()
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_RENDERINGSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    *
@@ -4860,9 +4859,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the global RenderingDevice.
    *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -4872,9 +4869,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
    *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
    */
   public fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()

@@ -34,13 +34,6 @@ class GenerationService(
 
         classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
-        classTypeBuilder.addFunction(
-            FunSpec.builder("____DO_NOT_TOUCH_THIS_isSingleton____")
-                .addModifiers(KModifier.OVERRIDE)
-                .addStatement("return true")
-                .build()
-        )
-
         return generateCommonsForClass(classTypeBuilder, singletonClass, classTypeBuilder)
     }
 
@@ -96,16 +89,7 @@ class GenerationService(
 
         if (name == KotlinTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
-            classTypeBuilder.generateConstructorMethod()
             classTypeBuilder.generateSignalExtensions()
-        }
-        if (name == KotlinTypes.refCounted) {
-            classTypeBuilder.addFunction(
-                FunSpec.builder("____DO_NOT_TOUCH_THIS_isRef____")
-                    .addModifiers(KModifier.OVERRIDE)
-                    .addStatement("return true")
-                    .build()
-            )
         }
         if (name == "Node") {
             classTypeBuilder.generateTypesafeRpc()
@@ -543,35 +527,19 @@ class GenerationService(
             if (method.isSameSignature(jvmReservedMethod) && !method.internal.isVirtual) {
                 generatedFunBuilder.addAnnotation(
                     AnnotationSpec.builder(JvmName::class)
-                        .addMember(CodeBlock.of("\"%L%L\"", enrichedClass.name.decapitalize(), method.name.capitalize()))
+                        .addMember(
+                            CodeBlock.of(
+                                "\"%L%L\"",
+                                enrichedClass.name.decapitalize(),
+                                method.name.capitalize()
+                            )
+                        )
                         .build()
                 )
             }
         }
 
         return generatedFunBuilder.build()
-    }
-
-    private fun TypeSpec.Builder.generateConstructorMethod() {
-        val constructorFun = FunSpec.builder("callConstructor")
-            .addModifiers(KModifier.INLINE)
-            .addModifiers(KModifier.INTERNAL)
-            .addParameter(
-                ParameterSpec.builder("classIndex", Int::class)
-                    .build()
-            )
-            .addStatement(
-                "%T.invokeConstructor(classIndex)",
-                TRANSFER_CONTEXT
-            )
-            .addStatement(
-                "val buffer = %T.buffer",
-                TRANSFER_CONTEXT
-            )
-            .addStatement("rawPtr = buffer.long")
-            .addStatement("__id = buffer.long")
-            .addStatement("buffer.rewind()")
-        addFunction(constructorFun.build())
     }
 
     private fun TypeSpec.Builder.generateSignalExtensions() {
@@ -714,11 +682,16 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateClassConstructor(classIndexName: String) {
         addFunction(
-            FunSpec.builder("__new")
+            FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
+                .addParameter("scriptIndex", Int::class)
+                .returns(Boolean::class)
                 .addStatement(
-                    "callConstructor(%M)",
-                    MemberName(godotApiPackage, classIndexName)
+                    "callConstructor(%M, scriptIndex)",
+                    MemberName(godotApiPackage, classIndexName),
+                )
+                .addStatement(
+                    "return true"
                 )
                 .build()
         )
@@ -726,12 +699,17 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateSingletonConstructor(classIndexName: String) {
         addFunction(
-            FunSpec.builder("__new")
+            FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
+                .addParameter("scriptIndex", Int::class)
+                .returns(Boolean::class)
                 .addStatement(
                     "rawPtr = %T.getSingleton(%M)",
                     TRANSFER_CONTEXT,
-                    MemberName(godotApiPackage, classIndexName)
+                    MemberName(godotApiPackage, classIndexName),
+                )
+                .addStatement(
+                    "return false"
                 )
                 .build()
         )
@@ -859,9 +837,9 @@ class GenerationService(
             AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
                 .addMember(
                     "\"PackageDirectoryMismatch\", \"unused\", \"FunctionName\", \"RedundantModalityModifier\", " +
-                            "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
-                            "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\", " +
-                            "\"RedundantUnitReturnType\", \"MemberVisibilityCanBePrivate\""
+                        "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
+                        "\"NOTHING_TO_INLINE\", \"NON_FINAL_MEMBER_IN_OBJECT\", \"RedundantVisibilityModifier\", " +
+                        "\"RedundantUnitReturnType\", \"MemberVisibilityCanBePrivate\""
                 )
                 .build()
         )

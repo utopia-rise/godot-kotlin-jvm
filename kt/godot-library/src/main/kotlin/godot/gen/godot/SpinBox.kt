@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -69,7 +70,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpinBox : Range() {
   /**
-   * Changes the alignment of the underlying [godot.LineEdit].
+   *
    */
   public var alignment: Long
     get() {
@@ -142,8 +143,9 @@ public open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SPINBOX)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SPINBOX, scriptIndex)
+    return true
   }
 
   /**

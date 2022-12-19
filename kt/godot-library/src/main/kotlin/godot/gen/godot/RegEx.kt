@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -17,6 +16,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -27,8 +27,9 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class RegEx : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_REGEX)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_REGEX, scriptIndex)
+    return true
   }
 
   public fun clear(): Unit {

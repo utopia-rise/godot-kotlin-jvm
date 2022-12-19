@@ -9,14 +9,15 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -140,8 +141,9 @@ public open class CodeHighlighter : SyntaxHighlighter() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CODEHIGHLIGHTER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CODEHIGHLIGHTER, scriptIndex)
+    return true
   }
 
   /**

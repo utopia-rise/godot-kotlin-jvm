@@ -9,10 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Vector2i
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Custom generator of previews.
@@ -21,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorResourcePreviewGenerator internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR, scriptIndex)
+    return true
   }
 
   /**

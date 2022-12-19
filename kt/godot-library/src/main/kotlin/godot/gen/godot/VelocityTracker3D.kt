@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -31,8 +32,9 @@ public open class VelocityTracker3D : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_SET_TRACK_PHYSICS_STEP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VELOCITYTRACKER3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VELOCITYTRACKER3D, scriptIndex)
+    return true
   }
 
   public fun updatePosition(position: Vector3): Unit {

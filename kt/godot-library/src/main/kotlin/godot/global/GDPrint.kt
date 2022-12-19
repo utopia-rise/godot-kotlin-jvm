@@ -1,6 +1,6 @@
 package godot.global
 
-import godot.core.TransferContext
+import godot.core.memory.TransferContext
 import godot.core.VariantType
 
 

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -17,8 +16,10 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -103,8 +104,9 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
           ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_CHAIN_MAX_ITERATIONS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DFABRIK)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SKELETONMODIFICATION3DFABRIK, scriptIndex)
+    return true
   }
 
   /**

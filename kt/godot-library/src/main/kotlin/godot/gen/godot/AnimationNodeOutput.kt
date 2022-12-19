@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Generic output node to be added to [godot.AnimationNodeBlendTree].
@@ -18,8 +19,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeOutput : AnimationNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT, scriptIndex)
+    return true
   }
 
   public companion object

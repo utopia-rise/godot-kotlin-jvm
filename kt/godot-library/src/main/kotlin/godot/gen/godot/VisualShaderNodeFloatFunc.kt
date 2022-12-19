@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A scalar floating-point function to be used within the visual shader graph.
@@ -37,8 +38,9 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_SET_FUNCTION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATFUNC)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATFUNC, scriptIndex)
+    return true
   }
 
   public enum class Function(

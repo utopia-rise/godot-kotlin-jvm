@@ -8,6 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -16,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER, scriptIndex)
+    return true
   }
 
   /**

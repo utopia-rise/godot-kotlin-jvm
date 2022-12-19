@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.core.callable.KtCallable
+import godot.core.memory.TransferContext
 
 class KtCustomCallable internal constructor(
     private val target: KtObject?,
@@ -8,7 +9,7 @@ class KtCustomCallable internal constructor(
     private val jvmCall: (() -> Any?)?
 ) {
     internal constructor(target: KtObject, ktCallable: KtCallable<KtObject, *>) : this(target, ktCallable, null)
-    internal constructor(jvmCall: () -> Any?) : this(null,null, jvmCall)
+    internal constructor(jvmCall: () -> Any?) : this(null, null, jvmCall)
 
     fun sendTargetToNative() {
         TransferContext.writeReturnValue(target, VariantType.OBJECT)

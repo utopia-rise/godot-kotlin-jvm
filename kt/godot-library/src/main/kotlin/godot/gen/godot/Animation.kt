@@ -12,7 +12,6 @@ import godot.core.NodePath
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -30,6 +29,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
@@ -94,6 +94,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Animation : Resource() {
+  /**
+   * Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
+   */
   public val tracksChanged: Signal0 by signal()
 
   /**
@@ -140,8 +143,9 @@ public open class Animation : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SET_STEP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
+    return true
   }
 
   /**

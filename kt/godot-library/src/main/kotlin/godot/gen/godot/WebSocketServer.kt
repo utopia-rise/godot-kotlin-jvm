@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -18,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
@@ -104,8 +104,9 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_HANDSHAKE_TIMEOUT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_WEBSOCKETSERVER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_WEBSOCKETSERVER, scriptIndex)
+    return true
   }
 
   public fun isListening(): Boolean {

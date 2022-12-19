@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,12 +19,13 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Generic input event.
@@ -53,8 +53,9 @@ public open class InputEvent internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_SET_DEVICE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INPUTEVENT, scriptIndex)
+    return true
   }
 
   /**

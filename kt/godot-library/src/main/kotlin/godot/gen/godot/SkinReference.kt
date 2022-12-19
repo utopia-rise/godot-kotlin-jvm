@@ -8,19 +8,21 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKINREFERENCE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SKINREFERENCE, scriptIndex)
+    return true
   }
 
   /**

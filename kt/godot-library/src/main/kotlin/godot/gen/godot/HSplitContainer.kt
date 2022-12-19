@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Horizontal split container.
@@ -20,8 +21,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HSplitContainer : SplitContainer() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HSPLITCONTAINER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HSPLITCONTAINER, scriptIndex)
+    return true
   }
 
   public companion object

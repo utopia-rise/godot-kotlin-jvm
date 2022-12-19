@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,8 +25,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PINJOINT3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PINJOINT3D, scriptIndex)
+    return true
   }
 
   /**

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Blends two of three animations linearly inside of an [godot.AnimationNodeBlendTree].
@@ -45,8 +45,9 @@ public open class AnimationNodeBlend3 : AnimationNode() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEBLEND3)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONNODEBLEND3, scriptIndex)
+    return true
   }
 
   public companion object

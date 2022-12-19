@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -17,11 +16,13 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -207,8 +208,9 @@ public open class GraphNode : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_OVERLAY, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GRAPHNODE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
+    return true
   }
 
   public fun setOpentypeFeature(tag: String, `value`: Long): Unit {

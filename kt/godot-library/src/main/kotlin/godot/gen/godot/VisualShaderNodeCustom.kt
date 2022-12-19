@@ -10,11 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Virtual class to define custom [godot.VisualShaderNode]s for use in the Visual Shader Editor.
@@ -34,8 +34,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM, scriptIndex)
+    return true
   }
 
   /**

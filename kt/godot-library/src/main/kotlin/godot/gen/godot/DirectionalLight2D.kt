@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -51,8 +52,9 @@ public open class DirectionalLight2D : Light2D() {
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT2D_SET_MAX_DISTANCE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_DIRECTIONALLIGHT2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_DIRECTIONALLIGHT2D, scriptIndex)
+    return true
   }
 
   public companion object

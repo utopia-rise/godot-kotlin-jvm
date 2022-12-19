@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for keys events with modifiers.
@@ -114,8 +114,9 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND_PRESSED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
+    return true
   }
 
   public companion object

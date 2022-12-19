@@ -11,6 +11,7 @@ import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ENGINEPROFILER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ENGINEPROFILER, scriptIndex)
+    return true
   }
 
   /**

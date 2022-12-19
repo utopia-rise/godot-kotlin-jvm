@@ -1,4 +1,3 @@
-#include <scene/main/multiplayer_api.h>
 #include "kt_function.h"
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"

@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstract class extended by lightmappers, for use in [godot.LightmapGI].
@@ -19,8 +20,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPPER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LIGHTMAPPER, scriptIndex)
+    return true
   }
 
   public companion object

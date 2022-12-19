@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A [godot.Transform3D] constant for use within the visual shader graph.
@@ -37,8 +38,9 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_SET_CONSTANT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT, scriptIndex)
+    return true
   }
 
   public companion object

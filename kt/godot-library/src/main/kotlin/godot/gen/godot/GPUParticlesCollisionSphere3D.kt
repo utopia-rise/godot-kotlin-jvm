@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Sphere-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
@@ -41,8 +42,9 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
           ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D_SET_RADIUS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D, scriptIndex)
+    return true
   }
 
   public companion object

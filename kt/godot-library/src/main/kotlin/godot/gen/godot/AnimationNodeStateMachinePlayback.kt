@@ -9,14 +9,15 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -52,8 +53,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK, scriptIndex)
+    return true
   }
 
   /**

@@ -16,7 +16,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -39,6 +38,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -100,8 +100,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SURFACETOOL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SURFACETOOL, scriptIndex)
+    return true
   }
 
   /**

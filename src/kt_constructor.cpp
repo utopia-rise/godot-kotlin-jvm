@@ -15,12 +15,7 @@ KtObject* KtConstructor::create_instance(const Variant **p_args, Object *p_owner
     jni::Env env{jni::Jvm::current_env()};
     GDKotlin::get_instance().transfer_context->write_args(env, p_args, parameter_count);
 
-    uint64_t id;
-    if (auto* ref{Object::cast_to<RefCounted>(p_owner)}) {
-        id = RefDB::get_instance().get_ref_id(ref);
-    } else {
-        id = p_owner->get_instance_id();
-    }
+    uint64_t id = p_owner->get_instance_id();
     jvalue args[2] = {
             jni::to_jni_arg(p_owner),
             jni::to_jni_arg(id)

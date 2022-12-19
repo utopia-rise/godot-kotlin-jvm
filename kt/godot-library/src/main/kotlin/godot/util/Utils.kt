@@ -1,5 +1,6 @@
 package godot.util
 
+import godot.core.ObjectID
 import godot.core.VariantType
 import java.util.*
 import kotlin.math.abs
@@ -10,7 +11,8 @@ internal val realTVariantType = VariantType.DOUBLE
 internal val NaturalTVariantType = VariantType.LONG
 
 typealias VoidPtr = Long
-const val nullptr: VoidPtr = 0L
+const val nullptr: VoidPtr = -1L
+val nullObjectID = ObjectID(-1)
 
 fun String.camelToSnakeCase(): String {
     return "(?<=[a-zA-Z0-9])[A-Z]".toRegex().replace(this) {

@@ -8,15 +8,16 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -45,8 +46,9 @@ public open class ShaderMaterial : Material() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SHADERMATERIAL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SHADERMATERIAL, scriptIndex)
+    return true
   }
 
   public fun setShaderParam(`param`: StringName, `value`: Any): Unit {

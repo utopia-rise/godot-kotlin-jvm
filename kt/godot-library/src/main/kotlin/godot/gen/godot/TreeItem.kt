@@ -13,7 +13,6 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Rect2
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -28,6 +27,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -91,8 +91,9 @@ public open class TreeItem internal constructor() : Object() {
           ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_CUSTOM_MINIMUM_HEIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TREEITEM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TREEITEM, scriptIndex)
+    return true
   }
 
   /**

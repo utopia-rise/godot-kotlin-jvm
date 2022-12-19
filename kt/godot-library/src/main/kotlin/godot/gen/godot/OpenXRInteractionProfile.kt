@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class OpenXRInteractionProfile : Resource() {
@@ -43,8 +44,9 @@ public open class OpenXRInteractionProfile : Resource() {
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_SET_BINDINGS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILE, scriptIndex)
+    return true
   }
 
   public companion object

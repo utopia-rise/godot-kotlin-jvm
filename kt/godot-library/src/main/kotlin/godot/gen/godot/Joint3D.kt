@@ -8,15 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class for all 3D joints.
@@ -74,8 +74,9 @@ public open class Joint3D internal constructor() : Node3D() {
           ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_JOINT3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
+    return true
   }
 
   public companion object

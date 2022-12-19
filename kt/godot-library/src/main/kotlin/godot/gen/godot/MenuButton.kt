@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -63,8 +64,9 @@ public open class MenuButton : Button() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MENUBUTTON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MENUBUTTON, scriptIndex)
+    return true
   }
 
   /**

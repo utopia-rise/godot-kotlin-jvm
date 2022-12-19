@@ -12,7 +12,6 @@ import godot.core.GodotError
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.JVM_INT
@@ -26,7 +25,9 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -123,8 +124,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MESHDATATOOL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MESHDATATOOL, scriptIndex)
+    return true
   }
 
   /**

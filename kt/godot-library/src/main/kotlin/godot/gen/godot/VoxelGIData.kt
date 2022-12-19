@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,8 +19,10 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -141,8 +142,9 @@ public open class VoxelGIData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_SET_INTERIOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VOXELGIDATA)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VOXELGIDATA, scriptIndex)
+    return true
   }
 
   /**

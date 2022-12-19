@@ -8,17 +8,16 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Creates packages that can be loaded into a running project.
@@ -57,8 +56,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PCKPACKER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PCKPACKER, scriptIndex)
+    return true
   }
 
   /**

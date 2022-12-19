@@ -7,18 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * This object contains all data related to a pose on a tracked object.
@@ -126,8 +126,9 @@ public open class XRPose : RefCounted() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRPOSE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRPOSE, scriptIndex)
+    return true
   }
 
   /**

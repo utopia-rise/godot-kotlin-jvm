@@ -8,13 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -44,6 +46,9 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public val folderRemoved: Signal1<String> by signal("folder")
 
+  /**
+   *
+   */
   public val instance: Signal1<PackedStringArray> by signal("files")
 
   /**
@@ -56,8 +61,9 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public val fileRemoved: Signal1<String> by signal("file")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_FILESYSTEMDOCK)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_FILESYSTEMDOCK, scriptIndex)
+    return true
   }
 
   /**

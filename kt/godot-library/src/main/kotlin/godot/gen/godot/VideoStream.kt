@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base resource for video streams.
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class VideoStream internal constructor() : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VIDEOSTREAM, scriptIndex)
+    return true
   }
 
   public companion object

@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -82,8 +83,9 @@ public open class CurveXYZTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVEXYZTEXTURE_SET_CURVE_Z, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CURVEXYZTEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

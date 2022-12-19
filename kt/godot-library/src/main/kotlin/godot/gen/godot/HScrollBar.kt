@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Horizontal scroll bar.
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HScrollBar : ScrollBar() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_HSCROLLBAR)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_HSCROLLBAR, scriptIndex)
+    return true
   }
 
   public companion object

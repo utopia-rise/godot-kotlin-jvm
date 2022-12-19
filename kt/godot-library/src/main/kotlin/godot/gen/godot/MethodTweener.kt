@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Interpolates an abstract value and supplies it to a method called over time.
@@ -24,8 +25,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MethodTweener : Tweener() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_METHODTWEENER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_METHODTWEENER, scriptIndex)
+    return true
   }
 
   /**

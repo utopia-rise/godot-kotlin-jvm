@@ -13,7 +13,6 @@ import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -27,6 +26,7 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.asStringName
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal10
@@ -115,16 +115,9 @@ public open class Object : KtObject() {
    */
   public val propertyListChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_OBJECT)
-  }
-
-  internal inline fun callConstructor(classIndex: Int): Unit {
-    TransferContext.invokeConstructor(classIndex)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_OBJECT, scriptIndex)
+    return true
   }
 
   public fun Signal0.emit(): Unit {

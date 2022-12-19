@@ -45,13 +45,13 @@ class Vector2(
 
     //CONSTRUCTOR
     constructor() :
-            this(0.0, 0.0)
+        this(0.0, 0.0)
 
     constructor(vec: Vector2) :
-            this(vec.x, vec.y)
+        this(vec.x, vec.y)
 
     constructor(x: Number, y: Number) :
-            this(x.toRealT(), y.toRealT())
+        this(x.toRealT(), y.toRealT())
 
 
     //API
@@ -132,9 +132,9 @@ class Vector2(
         val t3: RealT = t2 * t
 
         return ((p1 * 2.0) +
-                (-p0 + p2) * t +
-                (p0 * 2.0 - p1 * 5.0 + p2 * 4.0 - p3) * t2 +
-                (-p0 + p1 * 3.0 - p2 * 3.0 + p3) * t3) * 0.5
+            (-p0 + p2) * t +
+            (p0 * 2.0 - p1 * 5.0 + p2 * 4.0 - p3) * t2 +
+            (-p0 + p1 * 3.0 - p2 * 3.0 + p3) * t3) * 0.5
     }
 
     /**

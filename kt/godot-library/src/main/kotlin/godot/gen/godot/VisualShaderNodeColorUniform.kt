@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
@@ -44,8 +44,9 @@ public open class VisualShaderNodeColorUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORUNIFORM_SET_DEFAULT_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM, scriptIndex)
+    return true
   }
 
   public companion object

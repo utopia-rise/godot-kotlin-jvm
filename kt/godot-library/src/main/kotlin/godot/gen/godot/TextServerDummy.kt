@@ -7,16 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVERDUMMY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTSERVERDUMMY, scriptIndex)
+    return true
   }
 
   public companion object

@@ -7,14 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
@@ -58,8 +59,9 @@ public open class InputEventJoypadMotion : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_SET_AXIS_VALUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION, scriptIndex)
+    return true
   }
 
   public companion object

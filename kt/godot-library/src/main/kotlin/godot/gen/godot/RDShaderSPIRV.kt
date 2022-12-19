@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -22,8 +24,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RDShaderSPIRV : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RDSHADERSPIRV)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
+    return true
   }
 
   /**

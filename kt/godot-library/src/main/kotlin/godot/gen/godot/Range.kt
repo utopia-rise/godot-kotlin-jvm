@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -180,8 +181,9 @@ public open class Range : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ALLOW_LESSER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RANGE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RANGE, scriptIndex)
+    return true
   }
 
   /**

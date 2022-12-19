@@ -5,6 +5,7 @@
 
 class KotlinLanguage : public ScriptLanguage {
 public:
+
     KotlinLanguage();
     ~KotlinLanguage() override = default;
     KotlinLanguage(const KotlinLanguage&) = delete;

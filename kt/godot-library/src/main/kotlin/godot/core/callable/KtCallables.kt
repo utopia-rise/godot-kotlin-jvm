@@ -4,7 +4,6 @@ package godot.core.callable
 
 import godot.core.KtObject
 import godot.core.VariantType
-import godot.core.variantMapper
 
 class TargetedCall<T : KtObject, R : Any?>(
     private val function: T.() -> R,
@@ -13,7 +12,7 @@ class TargetedCall<T : KtObject, R : Any?>(
     override fun invokeKt(instance: T) = instance.function()
 }
 
-class TargetedCall1<T : KtObject, P0: Any?, R : Any?>(
+class TargetedCall1<T : KtObject, P0 : Any?, R : Any?>(
     private val function: T.(P0) -> R,
     variantType: VariantType,
     p0Type: Pair<VariantType, Boolean>
@@ -21,7 +20,7 @@ class TargetedCall1<T : KtObject, P0: Any?, R : Any?>(
     override fun invokeKt(instance: T): R = instance.function(paramsArray[0] as P0)
 }
 
-class TargetedCall2<T : KtObject, P0: Any?, P1: Any?, R : Any?>(
+class TargetedCall2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
     private val function: T.(P0, P1) -> R,
     variantType: VariantType,
     p0Type: Pair<VariantType, Boolean>,
@@ -33,7 +32,7 @@ class TargetedCall2<T : KtObject, P0: Any?, P1: Any?, R : Any?>(
     )
 }
 
-class TargetedCall3<T : KtObject, P0: Any?, P1: Any?, P2: Any?, R : Any?>(
+class TargetedCall3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
     private val function: T.(P0, P1, P2) -> R,
     variantType: VariantType,
     p0Type: Pair<VariantType, Boolean>,
@@ -47,7 +46,7 @@ class TargetedCall3<T : KtObject, P0: Any?, P1: Any?, P2: Any?, R : Any?>(
     )
 }
 
-class TargetedCall4<T : KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, R : Any?>(
+class TargetedCall4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : Any?>(
     private val function: T.(P0, P1, P2, P3) -> R,
     variantType: VariantType,
     p0Type: Pair<VariantType, Boolean>,
@@ -63,7 +62,7 @@ class TargetedCall4<T : KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, R : An
     )
 }
 
-class TargetedCall5<T : KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, P4: Any?, R : Any?>(
+class TargetedCall5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, R : Any?>(
     private val function: T.(P0, P1, P2, P3, P4) -> R,
     variantType: VariantType,
     p0Type: Pair<VariantType, Boolean>,

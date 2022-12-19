@@ -1,7 +1,7 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.util.*
+import godot.util.RealT
 
 class Transform3D(
     p_basis: Basis,
@@ -10,6 +10,7 @@ class Transform3D(
 
     @PublishedApi
     internal var _basis = Basis(p_basis)
+
     @PublishedApi
     internal var _origin = Vector3(p_origin)
 
@@ -61,10 +62,10 @@ class Transform3D(
 
     //CONSTRUCTOR
     constructor() :
-            this(Basis(), Vector3(0, 0, 0))
+        this(Basis(), Vector3(0, 0, 0))
 
     constructor(other: Transform3D) :
-            this(other._basis, other._origin)
+        this(other._basis, other._origin)
 
     constructor(
         xx: Number,
@@ -80,10 +81,10 @@ class Transform3D(
         ty: Number,
         tz: Number
     ) :
-            this(Basis(xx, xy, xz, yx, yy, yz, zx, zy, zz), Vector3(tx, ty, tz))
+        this(Basis(xx, xy, xz, yx, yy, yz, zx, zy, zz), Vector3(tx, ty, tz))
 
     constructor(from: Quaternion) :
-            this(Basis(from))
+        this(Basis(from))
 
     //API
     /**
@@ -353,5 +354,5 @@ class Transform3D(
      * GDScript related members
      */
     constructor(x: Vector3, y: Vector3, z: Vector3, origin: Vector3) :
-            this(Basis(x, y, z), origin)
+        this(Basis(x, y, z), origin)
 }

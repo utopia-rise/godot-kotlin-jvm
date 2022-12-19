@@ -8,16 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * An abstraction of a serialized scene.
@@ -161,8 +160,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PACKEDSCENE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PACKEDSCENE, scriptIndex)
+    return true
   }
 
   /**

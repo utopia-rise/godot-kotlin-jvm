@@ -8,14 +8,15 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class MultiplayerSynchronizer : Node() {
@@ -58,8 +59,9 @@ public open class MultiplayerSynchronizer : Node() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_CONFIG, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
+    return true
   }
 
   public companion object

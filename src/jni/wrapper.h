@@ -23,6 +23,13 @@ namespace jni {
         return T{JObject(ref).obj};
     }
 
+	template<class T>
+	inline T JObject::new_weak_ref(Env& env) {
+		auto ref = env.env->NewWeakGlobalRef(obj);
+		env.check_exceptions();
+		return T{JObject(ref).obj};
+	}
+
     static inline jvalue to_jni_arg(JObject j_object)  {
         return static_cast<JValue>(j_object.obj).value;
     }

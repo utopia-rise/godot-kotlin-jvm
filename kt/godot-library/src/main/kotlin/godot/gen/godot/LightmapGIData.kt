@@ -9,14 +9,15 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -57,8 +58,9 @@ public open class LightmapGIData : Resource() {
           ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_SET_USES_SPHERICAL_HARMONICS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPGIDATA)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_LIGHTMAPGIDATA, scriptIndex)
+    return true
   }
 
   /**

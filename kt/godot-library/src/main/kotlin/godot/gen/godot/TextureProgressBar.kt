@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -17,8 +16,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -226,12 +227,13 @@ public open class TextureProgressBar : Range() {
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
+    return true
   }
 
   /**
-   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
+   *
    */
   public fun setStretchMargin(margin: Side, `value`: Long): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value)
@@ -240,7 +242,7 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related properties.
+   *
    */
   public fun getStretchMargin(margin: Side): Long {
     TransferContext.writeArguments(LONG to margin.id)

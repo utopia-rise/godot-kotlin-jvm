@@ -8,14 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Texture with 2 dimensions, optionally compressed.
@@ -47,8 +47,9 @@ public open class CompressedTexture2D : Texture2D() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D, scriptIndex)
+    return true
   }
 
   /**

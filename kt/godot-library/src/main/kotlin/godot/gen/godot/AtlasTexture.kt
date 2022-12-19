@@ -8,14 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A texture that crops out part of another Texture2D.
@@ -85,8 +85,9 @@ public open class AtlasTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ATLASTEXTURE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_ATLASTEXTURE, scriptIndex)
+    return true
   }
 
   public companion object

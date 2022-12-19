@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -18,9 +17,11 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -34,12 +35,13 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PHYSICSBODY2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PHYSICSBODY2D, scriptIndex)
+    return true
   }
 
   /**
-   * Moves the body along the vector [motion]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
+   * Moves the body along the vector [distance]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [distance] should be computed using `delta`.
    *
    * Returns a [godot.KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.
    *
@@ -61,9 +63,9 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
-   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
+   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [distance] should be computed using `delta`.
    *
-   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector [motion]. Returns `true` if a collision would stop the body from moving along the whole path.
+   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector [distance]. Returns `true` if a collision would stop the body from moving along the whole path.
    *
    * [collision] is an optional object of type [godot.KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.
    *

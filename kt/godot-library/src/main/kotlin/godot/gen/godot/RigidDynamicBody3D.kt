@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
@@ -20,6 +19,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal4
@@ -27,6 +27,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -343,8 +344,9 @@ public open class RigidDynamicBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY3D_SET_CONSTANT_TORQUE, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_RIGIDDYNAMICBODY3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_RIGIDDYNAMICBODY3D, scriptIndex)
+    return true
   }
 
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {

@@ -2,6 +2,8 @@
 
 package godot.core
 
+import godot.core.memory.GarbageCollector
+import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
@@ -83,7 +85,10 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      * Set buffer_size to the size of the uncompressed data.
      * Set the compression mode using one of CompressionMode's constants.
      */
-    fun decompress(bufferSize: Int, compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PackedByteArray {
+    fun decompress(
+        bufferSize: Int,
+        compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ
+    ): PackedByteArray {
         TransferContext.writeArguments(
             VariantType.JVM_INT to bufferSize,
             VariantType.JVM_INT to compressionMode.ordinal

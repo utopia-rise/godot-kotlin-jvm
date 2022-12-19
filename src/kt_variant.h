@@ -1,18 +1,16 @@
 #ifndef GODOT_JVM_KT_VARIANT_H
 #define GODOT_JVM_KT_VARIANT_H
 
-
-#include <core/io/marshalls.h>
-#include <core/os/os.h>
 #include <core/variant/variant.h>
 #include "jni/wrapper.h"
-#include "shared_buffer.h"
-#include "type_manager.h"
-#include "ref_db.h"
+#include "kt_custom_callable.h"
 #include "logging.h"
 #include "long_string_queue.h"
-#include "kt_custom_callable.h"
-
+#include "modules/kotlin_jvm/src/memory/kotlin_binding_manager.h"
+#include "modules/kotlin_jvm/src/memory/shared_buffer.h"
+#include "type_manager.h"
+#include <core/io/marshalls.h>
+#include <core/os/os.h>
 
 //TODO/4.0 implement new types
 namespace ktvariant {
@@ -220,7 +218,6 @@ namespace ktvariant {
     }
 
     static void append_object(SharedBuffer* des, Object* ptr) {
-        //TODO/4.0: rework object cpp -> jvm
 
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
         if (!ptr) {
@@ -228,41 +225,32 @@ namespace ktvariant {
             return;
         }
 
-        StringName class_name{ptr->get_class_name()};
+		//Create a binding if it doesn't exist yet.
+		KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
 
-        if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
-            class_name = ClassDB::get_parent_class(class_name);
-
-            while (class_name == String()) {
+		//We only need to retrieve the constructor if the binding is not ready yet.
+		int constructorID = 0;
+		if(!binding->is_ready()){
+			StringName class_name{ptr->get_class_name()};
+            do {
                 if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
                     class_name = ClassDB::get_parent_class(class_name);
                 } else {
                     break;
                 }
-            }
-        }
+            } while(class_name != StringName());
+            constructorID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
+		}
 
-        bool is_ref{ptr->is_ref_counted()};
-        uint64_t id;
-        if (is_ref) {
-            auto* ref = reinterpret_cast<RefCounted*>(ptr);
-            id = RefDB::get_instance().get_ref_id(ref);
-
-        } else {
-            id = ptr->get_instance_id();
-        }
+		uint64_t id = ptr->get_instance_id();
 
         set_variant_type(des, Variant::Type::OBJECT);
 
-        //TODO: Manage 32 bits systems.
         des->increment_position(encode_uint64(
                 reinterpret_cast<uintptr_t>(ptr),
                 des->get_cursor()));
         des->increment_position(encode_uint32(
-                TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name],
-                des->get_cursor()));
-        des->increment_position(encode_uint32(
-                is_ref,
+                constructorID,
                 des->get_cursor()));
         des->increment_position(encode_uint64(
                 id,
@@ -551,18 +539,9 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
-        //TODO/4.0: rework object jvm -> cpp
-
         auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
-        bool is_ref{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(BOOL_SIZE);
-        /*if (is_ref) {
-            REF ref{REF(reinterpret_cast<RefCounted*>(ptr))};
-            return Variant(ref.get_ref_ptr());
-        } else {*/
-            return Variant(reinterpret_cast<Object*>(ptr));
-        //}
+		return Variant(reinterpret_cast<Object*>(ptr));
     }
 
     static void init_to_gd_methods(Variant (* to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -16,16 +15,18 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NOISE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_NOISE, scriptIndex)
+    return true
   }
 
   public fun getNoise1d(x: Double): Double {

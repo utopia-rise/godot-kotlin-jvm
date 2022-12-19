@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -22,6 +21,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
@@ -36,8 +36,9 @@ import kotlin.Unit
 public open class VisualScript : Script() {
   public val nodePortsChanged: Signal1<Long> by signal("id")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSCRIPT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSCRIPT, scriptIndex)
+    return true
   }
 
   public fun addFunction(name: StringName, funcNodeId: Long): Unit {

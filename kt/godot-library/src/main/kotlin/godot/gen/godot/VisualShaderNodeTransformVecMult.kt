@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Multiplies a [godot.Transform3D] and a [godot.core.Vector3] within the visual shader graph.
@@ -37,8 +38,9 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT_SET_OPERATOR, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT, scriptIndex)
+    return true
   }
 
   public enum class Operator(

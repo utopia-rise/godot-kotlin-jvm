@@ -8,13 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Concave polygon shape resource (also called "trimesh") for 3D physics.
@@ -61,8 +61,9 @@ public open class ConcavePolygonShape3D : Shape3D() {
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D, scriptIndex)
+    return true
   }
 
   public companion object

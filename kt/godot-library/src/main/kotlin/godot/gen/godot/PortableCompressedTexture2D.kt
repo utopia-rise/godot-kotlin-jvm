@@ -9,7 +9,6 @@ package godot
 import godot.Image
 import godot.PortableCompressedTexture2D
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -18,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -74,8 +74,9 @@ public open class PortableCompressedTexture2D : Texture2D() {
           ENGINEMETHOD_ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D_SET_KEEP_COMPRESSED_BUFFER, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D, scriptIndex)
+    return true
   }
 
   /**

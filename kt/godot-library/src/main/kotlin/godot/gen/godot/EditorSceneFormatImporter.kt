@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -25,8 +27,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EditorSceneFormatImporter internal constructor() : RefCounted() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTER)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTER, scriptIndex)
+    return true
   }
 
   /**

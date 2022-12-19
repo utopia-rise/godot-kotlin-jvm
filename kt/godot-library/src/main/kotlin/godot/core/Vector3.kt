@@ -63,13 +63,13 @@ class Vector3(
 
     //CONSTRUCTOR
     constructor() :
-            this(0.0, 0.0, 0.0)
+        this(0.0, 0.0, 0.0)
 
     constructor(vec: Vector3) :
-            this(vec.x, vec.y, vec.z)
+        this(vec.x, vec.y, vec.z)
 
     constructor(x: Number, y: Number, z: Number) :
-            this(x.toRealT(), y.toRealT(), z.toRealT())
+        this(x.toRealT(), y.toRealT(), z.toRealT())
 
     //API
 
@@ -132,9 +132,9 @@ class Vector3(
         val t3 = t2 * t
 
         return ((p1 * 2.0) +
-                (-p0 + p2) * t +
-                (p0 * 2.0 - p1 * 5.0 + p2 * 4.0 - p3) * t2 +
-                (-p0 + p1 * 3.0 - p2 * 3.0 + p3) * t3) * 0.5
+            (-p0 + p2) * t +
+            (p0 * 2.0 - p1 * 5.0 + p2 * 4.0 - p3) * t2 +
+            (-p0 + p1 * 3.0 - p2 * 3.0 + p3) * t3) * 0.5
     }
 
     /**

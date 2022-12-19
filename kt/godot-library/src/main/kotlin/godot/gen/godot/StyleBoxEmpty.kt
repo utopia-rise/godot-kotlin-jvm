@@ -7,8 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Empty stylebox (does not display anything).
@@ -17,8 +18,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class StyleBoxEmpty : StyleBox() {
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STYLEBOXEMPTY)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_STYLEBOXEMPTY, scriptIndex)
+    return true
   }
 
   public companion object

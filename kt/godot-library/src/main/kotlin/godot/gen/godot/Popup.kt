@@ -9,13 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Popup is a base window container for popup-like subwindows.
  *
- * Popup is a base window container for popup-like subwindows. It's a modal by default (see [godot.Window.popupWindow]) and has helpers for custom popup behavior.
+ * Popup is a base window container for popup-like subwindows. It's a modal by default (see [popupWindow]) and has helpers for custom popup behavior.
  */
 @GodotBaseType
 public open class Popup : Window() {
@@ -24,8 +25,9 @@ public open class Popup : Window() {
    */
   public val popupHide: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_POPUP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_POPUP, scriptIndex)
+    return true
   }
 
   public companion object

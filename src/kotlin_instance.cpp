@@ -2,108 +2,94 @@
 #include "kotlin_language.h"
 #include "kt_class.h"
 
-KotlinInstance::KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, Script* p_script)
-        : wrapped_object(p_wrapped_object),
-          owner(nullptr), kt_class(p_kt_class), script(p_script) {
-    set_owner(p_owner);
+KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtClass *p_kt_class, KotlinScript *p_script)
+        :
+        kt_class(p_kt_class), script(p_script) {
+    binding = KotlinBindingManager::create_script_binding(p_owner, p_wrapped_object);
 }
 
 KotlinInstance::~KotlinInstance() {
-    delete wrapped_object;
+    KotlinBindingManager::delete_script_binding(binding);
+    binding = nullptr;
 }
 
-bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
+Object *KotlinInstance::get_owner() {
+    return binding->owner;
+}
+
+bool KotlinInstance::set(const StringName &p_name, const Variant &p_value) {
     jni::LocalFrame localFrame(1000);
 
-    KtProperty* ktProperty { kt_class->get_property(p_name) };
+    KtProperty *ktProperty{kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->setCall(wrapped_object, p_value);
+        ktProperty->setCall(binding->kt_object, p_value);
         return true;
     } else {
         return false;
     }
 }
 
-bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
+bool KotlinInstance::get(const StringName &p_name, Variant &r_ret) const {
     jni::LocalFrame localFrame(1000);
 
-    KtProperty* ktProperty { kt_class->get_property(p_name) };
+    KtProperty *ktProperty{kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->callGet(wrapped_object, r_ret);
+        ktProperty->callGet(binding->kt_object, r_ret);
         return true;
     } else {
         return false;
     }
 }
 
-void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
+void KotlinInstance::get_property_list(List<PropertyInfo> *p_properties) const {
     kt_class->get_property_list(p_properties);
 }
 
-Variant::Type KotlinInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
+Variant::Type KotlinInstance::get_property_type(const StringName &p_name, bool *r_is_valid) const {
     return Variant::VECTOR3;
 }
 
-Object* KotlinInstance::get_owner() {
-    return owner;
-}
-
-void KotlinInstance::set_owner(Object *object) {
-    owner = object;
-}
-
-void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
+void KotlinInstance::get_property_state(List<Pair<StringName, Variant>> &state) {
     ScriptInstance::get_property_state(state);
 }
 
-void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
+void KotlinInstance::get_method_list(List<MethodInfo> *p_list) const {
     kt_class->get_method_list(p_list);
 }
 
-bool KotlinInstance::has_method(const StringName& p_method) const {
+bool KotlinInstance::has_method(const StringName &p_method) const {
     return kt_class->get_method(p_method) != nullptr;
 }
 
-Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
+Variant KotlinInstance::callp(const StringName &p_method, const Variant **p_args, int p_argcount,
+                              Callable::CallError &r_error) {
     jni::LocalFrame local_frame(100);
 
-    KtFunction* function { kt_class->get_method(p_method) };
+    KtFunction *function{kt_class->get_method(p_method)};
     Variant ret_var;
     if (function) {
-        function->invoke(this->wrapped_object, p_args, p_argcount, ret_var);
+        function->invoke(binding->kt_object, p_args, p_argcount, ret_var);
     } else {
         r_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
     }
     return ret_var;
 }
 
-//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
-//                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5) {
-//    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
-//}
-//
-//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) {
-//    ScriptInstance::call_multilevel(p_method, p_args, p_argcount);
-//}
-//
-//void KotlinInstance::call_multilevel_reversed(const StringName& p_method, const Variant** p_args, int p_argcount) {
-//    ScriptInstance::call_multilevel_reversed(p_method, p_args, p_argcount);
-//}
-
 void KotlinInstance::notification(int p_notification) {
-
 }
 
-String KotlinInstance::to_string(bool* r_valid) {
+String KotlinInstance::to_string(bool *r_valid) {
     return ScriptInstance::to_string(r_valid);
 }
 
 void KotlinInstance::refcount_incremented() {
-    ScriptInstance::refcount_incremented();
+    //Godot only calls that function for Refcounted instance.
+    binding->refcount_incremented_unsafe();
 }
 
 bool KotlinInstance::refcount_decremented() {
-    return ScriptInstance::refcount_decremented();
+    //Godot only calls that function for Refcounted instance.
+    return binding->refcount_decremented_unsafe();
 }
 
 Ref<Script> KotlinInstance::get_script() const {
@@ -114,29 +100,28 @@ bool KotlinInstance::is_placeholder() const {
     return ScriptInstance::is_placeholder();
 }
 
-void KotlinInstance::property_set_fallback(const StringName& p_name, const Variant& p_value, bool* r_valid) {
+void KotlinInstance::property_set_fallback(const StringName &p_name, const Variant &p_value, bool *r_valid) {
     ScriptInstance::property_set_fallback(p_name, p_value, r_valid);
 }
 
-Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_valid) {
+Variant KotlinInstance::property_get_fallback(const StringName &p_name, bool *r_valid) {
     return ScriptInstance::property_get_fallback(p_name, r_valid);
 }
 
-// Variant is of type Dictionary
 const Variant KotlinInstance::get_rpc_config() const {
     return kt_class->get_rpc_config();
 }
 
-ScriptLanguage* KotlinInstance::get_language() {
+ScriptLanguage *KotlinInstance::get_language() {
     return &KotlinLanguage::get_instance();
 }
 
-bool KotlinInstance::property_can_revert(const StringName& p_name) const {
+bool KotlinInstance::property_can_revert(const StringName &p_name) const {
     //TODO/4.0: Implement
     return false;
 }
 
-bool KotlinInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
+bool KotlinInstance::property_get_revert(const StringName &p_name, Variant &r_ret) const {
     //TODO/4.0: Implement
     return false;
 }

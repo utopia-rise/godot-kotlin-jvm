@@ -15,7 +15,6 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.Rect2i
-import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -34,6 +33,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -67,11 +67,10 @@ public object DisplayServer : Object() {
    */
   public final const val INVALID_WINDOW_ID: Long = -1
 
-  public override fun __new(): Unit {
+  public override fun new(scriptIndex: Int): Boolean {
     rawPtr = TransferContext.getSingleton(ENGINECLASS_DISPLAYSERVER)
+    return false
   }
-
-  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns `true` if the specified [feature] is supported by the current [godot.DisplayServer], `false` otherwise.

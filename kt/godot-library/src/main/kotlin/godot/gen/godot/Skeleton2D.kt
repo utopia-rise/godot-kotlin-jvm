@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -17,10 +16,12 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType._RID
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,8 +43,9 @@ public open class Skeleton2D : Node2D() {
    */
   public val boneSetupChanged: Signal0 by signal()
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_SKELETON2D)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_SKELETON2D, scriptIndex)
+    return true
   }
 
   /**

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
-import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -19,10 +18,11 @@ import godot.core.VariantType.QUATERNION
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
+import godot.core.memory.TransferContext
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFNode : Resource() {
@@ -170,8 +170,9 @@ public open class GLTFNode : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_LIGHT, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_GLTFNODE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
+    return true
   }
 
   public companion object

@@ -9,13 +9,13 @@ package godot
 import godot.StreamPeerSSL
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,8 +38,9 @@ public open class StreamPeerSSL : StreamPeer() {
           ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMPEERSSL)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_STREAMPEERSSL, scriptIndex)
+    return true
   }
 
   public fun poll(): Unit {

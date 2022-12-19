@@ -7,21 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Merges several 2D nodes into a single draw operation.
  *
- * Child [godot.CanvasItem] nodes of a [godot.CanvasGroup] are drawn as a single object. It allows to e.g. draw overlapping translucent 2D nodes without blending (set [godot.CanvasItem.selfModulate] property of [godot.CanvasGroup] to achieve this effect).
- *
- * **Note:** Since [godot.CanvasGroup] and [godot.CanvasItem.clipChildren] both utilize the backbuffer, children of a [godot.CanvasGroup] who have their [godot.CanvasItem.clipChildren] set to anything other than [godot.CanvasItem.CLIP_CHILDREN_DISABLED] will not function correctly.
  */
 @GodotBaseType
 public open class CanvasGroup : Node2D() {
@@ -70,8 +66,9 @@ public open class CanvasGroup : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_SET_USE_MIPMAPS, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_CANVASGROUP)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
+    return true
   }
 
   public companion object

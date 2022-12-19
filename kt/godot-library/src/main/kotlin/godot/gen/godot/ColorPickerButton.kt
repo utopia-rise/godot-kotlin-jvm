@@ -8,17 +8,17 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Button that pops out a [godot.ColorPicker].
@@ -81,8 +81,9 @@ public open class ColorPickerButton : Button() {
           NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_COLORPICKERBUTTON)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_COLORPICKERBUTTON, scriptIndex)
+    return true
   }
 
   /**

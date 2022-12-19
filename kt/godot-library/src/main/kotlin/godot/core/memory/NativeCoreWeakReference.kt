@@ -8,7 +8,8 @@ import java.lang.ref.WeakReference
 internal class NativeCoreWeakReference(
     ref: NativeCoreType,
     queue: ReferenceQueue<NativeCoreType>,
-    val variantType: VariantType) :
+    val variantType: VariantType
+) :
     WeakReference<NativeCoreType>(ref, queue) {
     val ptr = ref._handle
 }

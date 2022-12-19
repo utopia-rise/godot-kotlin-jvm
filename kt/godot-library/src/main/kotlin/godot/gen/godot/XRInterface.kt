@@ -10,7 +10,6 @@ import godot.XRInterface
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.StringName
-import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -21,6 +20,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -89,8 +89,9 @@ public open class XRInterface internal constructor() : RefCounted() {
           ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ANCHOR_DETECTION_IS_ENABLED, NIL)
     }
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACE)
+  public override fun new(scriptIndex: Int): Boolean {
+    callConstructor(ENGINECLASS_XRINTERFACE, scriptIndex)
+    return true
   }
 
   /**
