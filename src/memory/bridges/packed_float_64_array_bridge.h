@@ -1,6 +1,8 @@
 #ifndef GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H
 
+#include "java_instance_wrapper.h"
+
 namespace bridges {
 
     class PackedFloat64ArrayBridge : JavaInstanceWrapper<PackedFloat64ArrayBridge> {
@@ -22,8 +24,10 @@ namespace bridges {
         static void engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
+        // clang-format off
         DECLARE_JNI_METHODS()
+        // clang-format on
     };
-}
+}// namespace bridges
 
-#endif //GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H
+#endif// GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H

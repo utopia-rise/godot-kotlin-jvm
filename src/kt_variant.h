@@ -1,18 +1,19 @@
 #ifndef GODOT_JVM_KT_VARIANT_H
 #define GODOT_JVM_KT_VARIANT_H
 
-#include <core/variant/variant.h>
 #include "jni/wrapper.h"
 #include "kt_custom_callable.h"
 #include "logging.h"
 #include "long_string_queue.h"
-#include "modules/kotlin_jvm/src/memory/kotlin_binding_manager.h"
-#include "modules/kotlin_jvm/src/memory/shared_buffer.h"
+#include "memory/kotlin_binding_manager.h"
+#include "memory/shared_buffer.h"
 #include "type_manager.h"
+
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
+#include <core/variant/variant.h>
 
-//TODO/4.0 implement new types
+// TODO/4.0 implement new types
 namespace ktvariant {
 
     const int LONG_SIZE = 8;
@@ -23,7 +24,6 @@ namespace ktvariant {
 
     const int INT_SIZE = 4;
     const int FLOAT32_SIZE = 4;
-
 
     static void set_variant_type(SharedBuffer* des, Variant::Type variant_type) {
         des->increment_position(encode_uint32(variant_type, des->get_cursor()));
@@ -44,8 +44,8 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromSTRING(SharedBuffer* des, const Variant& src) {
-        String str{src};
-        const CharString& char_string{str.utf8()};
+        String str {src};
+        const CharString& char_string {str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
         int size = char_string.size();
         if (unlikely(size > LongStringQueue::max_string_size)) {
@@ -54,9 +54,7 @@ namespace ktvariant {
         } else {
             des->increment_position(encode_uint32(false, des->get_cursor()));
             des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
-            if (likely(size > 0)) {
-                des->increment_position(encode_cstring(char_string, des->get_cursor()));
-            }
+            if (likely(size > 0)) { des->increment_position(encode_cstring(char_string, des->get_cursor())); }
         }
     }
 
@@ -86,14 +84,14 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromRECT2(SharedBuffer* des, const Variant& src) {
-        Rect2 src_rect2{src};
+        Rect2 src_rect2 {src};
         set_variant_type(des, Variant::Type::RECT2);
         append_vector2(des, src_rect2.position);
         append_vector2(des, src_rect2.size);
     }
 
     static void to_kvariant_fromRECT2I(SharedBuffer* des, const Variant& src) {
-        Rect2i rect2i{src};
+        Rect2i rect2i {src};
         set_variant_type(des, Variant::Type::RECT2I);
         append_vector2i(des, rect2i.position);
         append_vector2i(des, rect2i.size);
@@ -122,7 +120,7 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant& src) {
-        Transform2D src_transform_2d{src};
+        Transform2D src_transform_2d {src};
         set_variant_type(des, Variant::Type::TRANSFORM2D);
         append_vector2(des, src_transform_2d[0]);
         append_vector2(des, src_transform_2d[1]);
@@ -154,14 +152,14 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant& src) {
-        Plane src_plane{src.operator Plane()};
+        Plane src_plane {src.operator Plane()};
         set_variant_type(des, Variant::Type::PLANE);
         append_vector3(des, src_plane.normal);
         des->increment_position(encode_float(src_plane.d, des->get_cursor()));
     }
 
     static void to_kvariant_fromQUATERNION(SharedBuffer* des, const Variant& src) {
-        Quaternion src_quat{src.operator Quaternion()};
+        Quaternion src_quat {src.operator Quaternion()};
         set_variant_type(des, Variant::Type::QUATERNION);
         des->increment_position(encode_float(src_quat.x, des->get_cursor()));
         des->increment_position(encode_float(src_quat.y, des->get_cursor()));
@@ -170,7 +168,7 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromAABB(SharedBuffer* des, const Variant& src) {
-        AABB src_aabb{src};
+        AABB src_aabb {src};
         set_variant_type(des, Variant::Type::AABB);
         append_vector3(des, src_aabb.position);
         append_vector3(des, src_aabb.size);
@@ -188,14 +186,14 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromTRANSFORM3D(SharedBuffer* des, const Variant& src) {
-        Transform3D src_transform{src.operator Transform3D()};
+        Transform3D src_transform {src.operator Transform3D()};
         set_variant_type(des, Variant::Type::TRANSFORM3D);
         append_basis(des, src_transform.basis);
         append_vector3(des, src_transform.origin);
     }
 
     static void to_kvariant_fromCOLOR(SharedBuffer* des, const Variant& src) {
-        Color src_color{src.operator Color()};
+        Color src_color {src.operator Color()};
         set_variant_type(des, Variant::Type::COLOR);
         des->increment_position(encode_float(src_color.r, des->get_cursor()));
         des->increment_position(encode_float(src_color.g, des->get_cursor()));
@@ -206,55 +204,47 @@ namespace ktvariant {
     template<class TNativeCoreType>
     inline static void append_nativecoretype(SharedBuffer* des, TNativeCoreType native_core_type) {
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(native_core_type))),
-                              des->get_cursor())
+          encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(native_core_type))), des->get_cursor())
         );
     }
 
-    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
+    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::*converter)() const>
     static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, variantType);
         append_nativecoretype(des, (src.*converter)());
     }
 
     static void append_object(SharedBuffer* des, Object* ptr) {
-
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
         if (!ptr) {
             to_kvariant_fromNIL(des, ptr);
             return;
         }
 
-		//Create a binding if it doesn't exist yet.
-		KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
+        // Create a binding if it doesn't exist yet.
+        KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
 
-		//We only need to retrieve the constructor if the binding is not ready yet.
-		int constructorID = 0;
-		if(!binding->is_ready()){
-			StringName class_name{ptr->get_class_name()};
+        // We only need to retrieve the constructor if the binding is not ready yet.
+        int constructorID = 0;
+        if (!binding->is_ready()) {
+            StringName class_name {ptr->get_class_name()};
             do {
                 if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
                     class_name = ClassDB::get_parent_class(class_name);
                 } else {
                     break;
                 }
-            } while(class_name != StringName());
+            } while (class_name != StringName());
             constructorID = TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name];
-		}
+        }
 
-		uint64_t id = ptr->get_instance_id();
+        uint64_t id = ptr->get_instance_id();
 
         set_variant_type(des, Variant::Type::OBJECT);
 
-        des->increment_position(encode_uint64(
-                reinterpret_cast<uintptr_t>(ptr),
-                des->get_cursor()));
-        des->increment_position(encode_uint32(
-                constructorID,
-                des->get_cursor()));
-        des->increment_position(encode_uint64(
-                id,
-                des->get_cursor()));
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
+        des->increment_position(encode_uint32(constructorID, des->get_cursor()));
+        des->increment_position(encode_uint64(id, des->get_cursor()));
     }
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
@@ -263,9 +253,9 @@ namespace ktvariant {
 
     static void to_kvariant_from_CALLABLE(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::CALLABLE);
-        Callable src_callable{src.operator Callable()};
+        Callable src_callable {src.operator Callable()};
 
-        bool is_callable_custom{src_callable.is_custom()};
+        bool is_callable_custom {src_callable.is_custom()};
         des->increment_position(encode_uint32(is_callable_custom, des->get_cursor()));
         append_nativecoretype(des, src_callable);
         if (!is_callable_custom) {
@@ -274,7 +264,7 @@ namespace ktvariant {
         }
     }
 
-    static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
+    static void init_to_kt_methods(void (*to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
         to_kt_array[Variant::INT] = to_kvariant_fromINT;
@@ -296,29 +286,39 @@ namespace ktvariant {
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
         to_kt_array[Variant::STRING_NAME] = to_kvariant_from_CALLABLE;
-        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE<Variant::DICTIONARY, Dictionary, &Variant::operator Dictionary>;
-        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::ARRAY, Array, &Variant::operator Array>;
-        to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE<Variant::STRING_NAME, StringName, &Variant::operator StringName>;
-        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE<Variant::NODE_PATH, NodePath, &Variant::operator NodePath>;
-        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE<Variant::RID, RID, &Variant::operator ::RID>;
-        to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_BYTE_ARRAY, PackedByteArray, &Variant::operator PackedByteArray>;
-        to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT32_ARRAY, PackedInt32Array, &Variant::operator PackedInt32Array>;
-        to_kt_array[Variant::PACKED_INT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT64_ARRAY, PackedInt64Array, &Variant::operator PackedInt64Array>;
-        to_kt_array[Variant::PACKED_FLOAT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT32_ARRAY, PackedFloat32Array, &Variant::operator PackedFloat32Array>;
-        to_kt_array[Variant::PACKED_FLOAT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT64_ARRAY, PackedFloat64Array, &Variant::operator PackedFloat64Array>;
-        to_kt_array[Variant::PACKED_STRING_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_STRING_ARRAY, PackedStringArray, &Variant::operator PackedStringArray>;
-        to_kt_array[Variant::PACKED_VECTOR2_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR2_ARRAY, PackedVector2Array, &Variant::operator PackedVector2Array>;
-        to_kt_array[Variant::PACKED_VECTOR3_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR3_ARRAY, PackedVector3Array, &Variant::operator PackedVector3Array>;
-        to_kt_array[Variant::PACKED_COLOR_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_COLOR_ARRAY, PackedColorArray, &Variant::operator PackedColorArray>;
+        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
+        &Variant::operator Dictionary>;
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::ARRAY, Array, &Variant::operator Array>;
+        to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE < Variant::STRING_NAME, StringName,
+        &Variant::operator StringName>;
+        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE < Variant::NODE_PATH, NodePath,
+        &Variant::operator NodePath>;
+        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE < Variant::RID, RID, &Variant::operator ::RID>;
+        to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_BYTE_ARRAY,
+        PackedByteArray, &Variant::operator PackedByteArray>;
+        to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_INT32_ARRAY,
+        PackedInt32Array, &Variant::operator PackedInt32Array>;
+        to_kt_array[Variant::PACKED_INT64_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_INT64_ARRAY,
+        PackedInt64Array, &Variant::operator PackedInt64Array>;
+        to_kt_array[Variant::PACKED_FLOAT32_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_FLOAT32_ARRAY,
+        PackedFloat32Array, &Variant::operator PackedFloat32Array>;
+        to_kt_array[Variant::PACKED_FLOAT64_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_FLOAT64_ARRAY,
+        PackedFloat64Array, &Variant::operator PackedFloat64Array>;
+        to_kt_array[Variant::PACKED_STRING_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_STRING_ARRAY,
+        PackedStringArray, &Variant::operator PackedStringArray>;
+        to_kt_array[Variant::PACKED_VECTOR2_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_VECTOR2_ARRAY,
+        PackedVector2Array, &Variant::operator PackedVector2Array>;
+        to_kt_array[Variant::PACKED_VECTOR3_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_VECTOR3_ARRAY,
+        PackedVector3Array, &Variant::operator PackedVector3Array>;
+        to_kt_array[Variant::PACKED_COLOR_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_COLOR_ARRAY,
+        PackedColorArray, &Variant::operator PackedColorArray>;
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
 
     static void send_variant_to_buffer(const Variant& variant, SharedBuffer* byte_buffer) {
         // must match the value order of godot_variant_type
-        static void (* TO_KT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&);
-        if (unlikely(!TO_KT_VARIANT_FROM[0])) {
-            init_to_kt_methods(TO_KT_VARIANT_FROM);
-        }
+        static void (*TO_KT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&);
+        if (unlikely(!TO_KT_VARIANT_FROM[0])) { init_to_kt_methods(TO_KT_VARIANT_FROM); }
         Variant::Type type = variant.get_type();
         TO_KT_VARIANT_FROM[type](byte_buffer, variant);
     }
@@ -328,25 +328,25 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokLongValue(SharedBuffer* byte_buffer) {
-        uint64_t ulong{decode_uint64(byte_buffer->get_cursor())};
+        uint64_t ulong {decode_uint64(byte_buffer->get_cursor())};
         byte_buffer->increment_position(LONG_SIZE);
         return Variant(ulong);
     }
 
     static Variant from_kvariant_tokFloat64Value(SharedBuffer* byte_buffer) {
-        double real{decode_double(byte_buffer->get_cursor())};
+        double real {decode_double(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT64_SIZE);
         return Variant(real);
     }
 
     static Variant from_kvariant_tokStringValue(SharedBuffer* byte_buffer) {
-        bool is_long{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
+        bool is_long {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
         if (unlikely(is_long)) {
             String str = LongStringQueue::get_instance().poll_string();
             return Variant(str);
         } else {
-            uint32_t size{decode_uint32(byte_buffer->get_cursor())};
+            uint32_t size {decode_uint32(byte_buffer->get_cursor())};
             byte_buffer->increment_position(INT_SIZE);
             String str;
             str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
@@ -356,15 +356,15 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokBoolValue(SharedBuffer* byte_buffer) {
-        bool b{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
+        bool b {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
         return Variant(b);
     }
 
     static inline Vector2 to_godot_vector2(SharedBuffer* byte_buffer) {
-        float x{decode_float(byte_buffer->get_cursor())};
+        float x {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float y{decode_float(byte_buffer->get_cursor())};
+        float y {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
         return {x, y};
     }
@@ -374,9 +374,9 @@ namespace ktvariant {
     }
 
     static inline Vector2i to_godot_vector2i(SharedBuffer* byte_buffer) {
-        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
         return {x, y};
     }
@@ -386,27 +386,23 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokRect2Value(SharedBuffer* byte_buffer) {
-        const Vector2 pos{to_godot_vector2(byte_buffer)};
-        const Vector2 size{to_godot_vector2(byte_buffer)};
-        return Variant(
-                Rect2(pos, size)
-        );
+        const Vector2 pos {to_godot_vector2(byte_buffer)};
+        const Vector2 size {to_godot_vector2(byte_buffer)};
+        return Variant(Rect2(pos, size));
     }
 
     static Variant from_kvariant_tokRect2iValue(SharedBuffer* byte_buffer) {
-        const Vector2i pos{to_godot_vector2i(byte_buffer)};
-        const Vector2i size{to_godot_vector2i(byte_buffer)};
-        return Variant(
-                Rect2i(pos, size)
-        );
+        const Vector2i pos {to_godot_vector2i(byte_buffer)};
+        const Vector2i size {to_godot_vector2i(byte_buffer)};
+        return Variant(Rect2i(pos, size));
     }
 
     static inline Vector3 to_godot_vector3(SharedBuffer* byte_buffer) {
-        float x{decode_float(byte_buffer->get_cursor())};
+        float x {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
-        float y{decode_float(byte_buffer->get_cursor())};
+        float y {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
-        float z{decode_float(byte_buffer->get_cursor())};
+        float z {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
         return {x, y, z};
     }
@@ -416,11 +412,11 @@ namespace ktvariant {
     }
 
     static inline Vector3i to_godot_vector3i(SharedBuffer* byte_buffer) {
-        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto z{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto z {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
         return {x, y, z};
     }
@@ -438,13 +434,13 @@ namespace ktvariant {
     }
 
     static inline Vector4 to_godot_vector4(SharedBuffer* byte_buffer) {
-        float x{decode_float(byte_buffer->get_cursor())};
+        float x {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
-        float y{decode_float(byte_buffer->get_cursor())};
+        float y {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
-        float z{decode_float(byte_buffer->get_cursor())};
+        float z {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
-        float w{decode_float(byte_buffer->get_cursor())};
+        float w {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
         return {x, y, z, w};
     }
@@ -454,13 +450,13 @@ namespace ktvariant {
     }
 
     static inline Vector4i to_godot_vector4i(SharedBuffer* byte_buffer) {
-        auto x{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto y{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto z{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto z {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
-        auto w{static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
+        auto w {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(INT_SIZE);
         return {x, y, z, w};
     }
@@ -470,34 +466,28 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokPlaneValue(SharedBuffer* byte_buffer) {
-        Vector3 norm{to_godot_vector3(byte_buffer)};
-        float d{decode_float(byte_buffer->get_cursor())};
+        Vector3 norm {to_godot_vector3(byte_buffer)};
+        float d {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        return Variant(
-                Plane(norm, d)
-        );
+        return Variant(Plane(norm, d));
     }
 
     static Variant from_kvariant_tokQuaternionValue(SharedBuffer* byte_buffer) {
-        float x{decode_float(byte_buffer->get_cursor())};
+        float x {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float y{decode_float(byte_buffer->get_cursor())};
+        float y {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float z{decode_float(byte_buffer->get_cursor())};
+        float z {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float w{decode_float(byte_buffer->get_cursor())};
+        float w {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        return Variant(
-                Quaternion(x, y, z, w)
-        );
+        return Variant(Quaternion(x, y, z, w));
     }
 
     static Variant from_kvariant_tokAabbValue(SharedBuffer* byte_buffer) {
-        const Vector3& pos{to_godot_vector3(byte_buffer)};
-        const Vector3& size{to_godot_vector3(byte_buffer)};
-        return Variant(
-                AABB(pos, size)
-        );
+        const Vector3& pos {to_godot_vector3(byte_buffer)};
+        const Vector3& size {to_godot_vector3(byte_buffer)};
+        return Variant(AABB(pos, size));
     }
 
     static inline Basis to_godot_basis(SharedBuffer* byte_buffer) {
@@ -512,39 +502,37 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokTransform3DValue(SharedBuffer* byte_buffer) {
-        const Basis& basis{to_godot_basis(byte_buffer)};
-        const Vector3& origin{to_godot_vector3(byte_buffer)};
-        return Variant(
-                Transform3D(basis, origin)
-        );
+        const Basis& basis {to_godot_basis(byte_buffer)};
+        const Vector3& origin {to_godot_vector3(byte_buffer)};
+        return Variant(Transform3D(basis, origin));
     }
 
     static Variant from_kvariant_tokColorValue(SharedBuffer* byte_buffer) {
-        float r{decode_float(byte_buffer->get_cursor())};
+        float r {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float g{decode_float(byte_buffer->get_cursor())};
+        float g {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float b{decode_float(byte_buffer->get_cursor())};
+        float b {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
-        float a{decode_float(byte_buffer->get_cursor())};
+        float a {decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(FLOAT32_SIZE);
         return Variant(Color(r, g, b, a));
     }
 
     template<class T>
     static Variant from_kvariant_tokVariantNativeCoreTypeValue(SharedBuffer* byte_buffer) {
-        auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
+        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         return Variant(*reinterpret_cast<T*>(ptr));
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
-        auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
+        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
-		return Variant(reinterpret_cast<Object*>(ptr));
+        return Variant(reinterpret_cast<Object*>(ptr));
     }
 
-    static void init_to_gd_methods(Variant (* to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {
+    static void init_to_gd_methods(Variant (*to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {
         to_gd_array[Variant::NIL] = from_kvariant_tokNilValue;
         to_gd_array[Variant::BOOL] = from_kvariant_tokBoolValue;
         to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
@@ -584,16 +572,13 @@ namespace ktvariant {
     }
 
     static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
-        static Variant (* TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer);
-        if (unlikely(!TO_GODOT_VARIANT_FROM[0])) {
-            init_to_gd_methods(TO_GODOT_VARIANT_FROM);
-        }
-        uint32_t variant_type_int{decode_uint32(byte_buffer->get_cursor())};
+        static Variant (*TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer * byte_buffer);
+        if (unlikely(!TO_GODOT_VARIANT_FROM[0])) { init_to_gd_methods(TO_GODOT_VARIANT_FROM); }
+        uint32_t variant_type_int {decode_uint32(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
         res = TO_GODOT_VARIANT_FROM[static_cast<Variant::Type>(variant_type_int)](byte_buffer);
     }
 
-}
+}// namespace ktvariant
 
-
-#endif //GODOT_JVM_KT_VARIANT_H
+#endif// GODOT_JVM_KT_VARIANT_H

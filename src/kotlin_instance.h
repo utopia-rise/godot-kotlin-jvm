@@ -1,15 +1,15 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
 
+#include "kotlin_script.h"
 #include "kt_class.h"
 #include "memory/kotlin_binding_manager.h"
-#include "kotlin_script.h"
-#include <core/object/script_language.h>
 
+#include <core/object/script_language.h>
 
 class KotlinInstance : public ScriptInstance {
 private:
-	KotlinBinding* binding;
+    KotlinBinding* binding;
     KtClass* kt_class;
     Ref<KotlinScript> script;
 
@@ -33,8 +33,7 @@ public:
 
     bool has_method(const StringName& p_method) const override;
 
-    Variant
-    callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
+    Variant callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
 
     void notification(int p_notification) override;
 
@@ -61,5 +60,4 @@ public:
     bool property_get_revert(const StringName& p_name, Variant& r_ret) const override;
 };
 
-
-#endif //GODOT_JVM_KOTLIN_INSTANCE_H
+#endif// GODOT_JVM_KOTLIN_INSTANCE_H

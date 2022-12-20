@@ -5,7 +5,6 @@
 
 class KotlinLanguage : public ScriptLanguage {
 public:
-
     KotlinLanguage();
     ~KotlinLanguage() override = default;
     KotlinLanguage(const KotlinLanguage&) = delete;
@@ -39,9 +38,14 @@ public:
 
     bool is_using_templates() override;
 
-    bool validate(const String& p_script, const String& p_path, List<String>* r_functions,
-                  List<ScriptLanguage::ScriptError>* r_errors = nullptr, List<ScriptLanguage::Warning>* r_warnings = nullptr,
-                  HashSet<int>* r_safe_lines = nullptr) const override;
+    bool validate(
+      const String& p_script,
+      const String& p_path,
+      List<String>* r_functions,
+      List<ScriptLanguage::ScriptError>* r_errors = nullptr,
+      List<ScriptLanguage::Warning>* r_warnings = nullptr,
+      HashSet<int>* r_safe_lines = nullptr
+    ) const override;
 
     String validate_path(const String& p_path) const override;
 
@@ -59,11 +63,9 @@ public:
 
     bool overrides_external_editor() override;
 
-    Error complete_code(const String& p_code, const String& p_path, Object* p_owner,
-                        List<CodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
+    Error complete_code(const String& p_code, const String& p_path, Object* p_owner, List<CodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
 
-    Error lookup_code(const String& p_code, const String& p_symbol, const String& p_path, Object* p_owner,
-                      LookupResult& r_result) override;
+    Error lookup_code(const String& p_code, const String& p_symbol, const String& p_path, Object* p_owner, LookupResult& r_result) override;
 
     void auto_indent_code(String& p_code, int p_from_line, int p_to_line) const override;
 
@@ -87,20 +89,15 @@ public:
 
     String debug_get_stack_level_source(int p_level) const override;
 
-    void debug_get_stack_level_locals(int p_level, List<String>* p_locals, List<Variant>* p_values, int p_max_subitems,
-                                      int p_max_depth) override;
+    void debug_get_stack_level_locals(int p_level, List<String>* p_locals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
 
-    void
-    debug_get_stack_level_members(int p_level, List<String>* p_members, List<Variant>* p_values, int p_max_subitems,
-                                  int p_max_depth) override;
+    void debug_get_stack_level_members(int p_level, List<String>* p_members, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
 
     ScriptInstance* debug_get_stack_level_instance(int p_level) override;
 
-    void
-    debug_get_globals(List<String>* p_globals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
+    void debug_get_globals(List<String>* p_globals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
 
-    String debug_parse_stack_level_expression(int p_level, const String& p_expression, int p_max_subitems,
-                                              int p_max_depth) override;
+    String debug_parse_stack_level_expression(int p_level, const String& p_expression, int p_max_subitems, int p_max_depth) override;
 
     Vector<StackInfo> debug_get_current_stack_info() override;
 
@@ -114,7 +111,7 @@ public:
 
     void get_public_constants(List<Pair<String, Variant>>* p_constants) const override;
 
-    void get_public_annotations(List<MethodInfo> *p_annotations) const override;
+    void get_public_annotations(List<MethodInfo>* p_annotations) const override;
 
     void profiling_start() override;
 
@@ -144,5 +141,4 @@ private:
     Object* kt_custom_callable_middleman;
 };
 
-
-#endif //GODOT_JVM_KOTLIN_LANGUAGE_H
+#endif// GODOT_JVM_KOTLIN_LANGUAGE_H

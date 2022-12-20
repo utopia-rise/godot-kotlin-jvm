@@ -1,7 +1,8 @@
 #include "kotlin_script.h"
-#include "kotlin_language.h"
-#include "kotlin_instance.h"
+
 #include "gd_kotlin.h"
+#include "kotlin_instance.h"
+#include "kotlin_language.h"
 #include "logging.h"
 
 bool KotlinScript::can_instantiate() const {
@@ -17,20 +18,14 @@ bool KotlinScript::can_instantiate() const {
 }
 
 bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
-    Ref<KotlinScript> script{p_script};
-    if (script.is_null()) {
-        return false;
-    }
+    Ref<KotlinScript> script {p_script};
+    if (script.is_null()) { return false; }
 
-    KtClass* inheritor_class{get_kotlin_class()};
-    KtClass* parent_class{script->get_kotlin_class()};
-    if (inheritor_class == nullptr || parent_class == nullptr) {
-        return false;
-    }
+    KtClass* inheritor_class {get_kotlin_class()};
+    KtClass* parent_class {script->get_kotlin_class()};
+    if (inheritor_class == nullptr || parent_class == nullptr) { return false; }
 
-    if (inheritor_class == parent_class) {
-        return true;
-    }
+    if (inheritor_class == parent_class) { return true; }
 
     return parent_class->is_assignable_from(inheritor_class);
 }
@@ -40,9 +35,7 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass* kt_class{get_kotlin_class()}) {
-        return kt_class->base_godot_class;
-    }
+    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
     // not found
     return StringName();
 }
@@ -52,7 +45,7 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
 }
 
 ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
-    KtClass* kt_class{get_kotlin_class()};
+    KtClass* kt_class {get_kotlin_class()};
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name));
 #endif
@@ -74,13 +67,11 @@ String KotlinScript::get_source_code() const {
 }
 
 void KotlinScript::set_source_code(const String& p_code) {
-    if (source == p_code) {
-        return;
-    }
+    if (source == p_code) { return; }
 
     source = p_code;
 
-    //TODO : deal with tool mode
+    // TODO : deal with tool mode
 }
 
 Error KotlinScript::reload(bool p_keep_state) {
@@ -88,15 +79,13 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
-    KtClass* kt_class{get_kotlin_class()};
+    KtClass* kt_class {get_kotlin_class()};
     return kt_class != nullptr && kt_class->get_method(p_method) != nullptr;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass* kt_class{get_kotlin_class()}) {
-        if (KtFunction* method{kt_class->get_method(p_method)}) {
-            return method->get_member_info();
-        }
+    if (KtClass * kt_class {get_kotlin_class()}) {
+        if (KtFunction * method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return MethodInfo();
 }
@@ -114,20 +103,18 @@ ScriptLanguage* KotlinScript::get_language() const {
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
-    KtClass* kt_class{get_kotlin_class()};
+    KtClass* kt_class {get_kotlin_class()};
     return kt_class != nullptr && kt_class->get_signal(p_signal) != nullptr;
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (KtClass* kt_class{get_kotlin_class()}) {
-        kt_class->get_signal_list(r_signals);
-    }
+    if (KtClass * kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
-    bool has_default{false};
-    if (KtClass* kt_class{get_kotlin_class()}) {
-        if (KtProperty* property{kt_class->get_property(p_property)}) {
+    bool has_default {false};
+    if (KtClass * kt_class {get_kotlin_class()}) {
+        if (KtProperty * property {kt_class->get_property(p_property)}) {
             property->get_default_value(r_value);
             has_default = true;
         }
@@ -136,17 +123,13 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-    KtClass* kt_class{get_kotlin_class()};
-    if (kt_class) {
-        kt_class->get_method_list(p_list);
-    }
+    KtClass* kt_class {get_kotlin_class()};
+    if (kt_class) { kt_class->get_method_list(p_list); }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
-    KtClass* kt_class{get_kotlin_class()};
-    if (kt_class) {
-        kt_class->get_property_list(p_list);
-    }
+    KtClass* kt_class {get_kotlin_class()};
+    if (kt_class) { kt_class->get_property_list(p_list); }
 }
 
 KtClass* KotlinScript::get_kotlin_class() const {
@@ -160,19 +143,17 @@ KtClass* KotlinScript::get_kotlin_class() const {
 Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     r_error.error = Callable::CallError::CALL_OK;
 
-    Object* owner{ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
+    Object* owner {ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
 
     Ref<Resource> ref;
-    auto* r{Object::cast_to<RefCounted>(owner)};
-    if (r) {
-        ref = Ref<Resource>(r);
-    }
+    auto* r {Object::cast_to<RefCounted>(owner)};
+    if (r) { ref = Ref<Resource>(r); }
 
-    ScriptInstance* instance{_instance_create(p_args, p_argcount, owner)};
+    ScriptInstance* instance {_instance_create(p_args, p_argcount, owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         if (ref.is_null()) {
-            memdelete(owner); //no owner, sorry
+            memdelete(owner);// no owner, sorry
         }
         return Variant();
     }
@@ -188,19 +169,15 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
 
 #ifndef TOOLS_ENABLED
-    if (!kotlin_class) {
-        kotlin_class = GDKotlin::get_instance().find_class(p_path);
-    }
+    if (!kotlin_class) { kotlin_class = GDKotlin::get_instance().find_class(p_path); }
 #else
-    String package{p_path.replace("src/main/kotlin/", "")
-                           .trim_prefix("res://")
-                           .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
-                           .trim_suffix("/")
-                           .replace("/", ".")};
+    String package {p_path.replace("src/main/kotlin/", "")
+                      .trim_prefix("res://")
+                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
+                      .trim_suffix("/")
+                      .replace("/", ".")};
 
-    if (!package.is_empty()) {
-        package = "package " + package + "\n\n";
-    }
+    if (!package.is_empty()) { package = "package " + package + "\n\n"; }
 
     String source_code = get_source_code().replace("%PACKAGE%", package);
     set_source_code(source_code);
@@ -214,24 +191,22 @@ const Variant KotlinScript::get_rpc_config() const {
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
-    //TODO/4.0:
+    // TODO/4.0:
     return {};
 }
+
 PropertyInfo KotlinScript::get_class_category() const {
-    //TODO/4.0:
+    // TODO/4.0:
     return {};
 }
 #endif
 
-KotlinScript::KotlinScript() : kotlin_class(nullptr) {
-
-}
+KotlinScript::KotlinScript() : kotlin_class(nullptr) {}
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
 #ifdef TOOLS_ENABLED
-    PlaceHolderScriptInstance* placeholder{
-            memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))
-    };
+    PlaceHolderScriptInstance* placeholder {
+      memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
     p_this->set_script_instance(placeholder);
     placeholders.insert(placeholder);
     _update_exports(placeholder);
@@ -255,7 +230,7 @@ void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) const
     HashMap<StringName, Variant> default_values;
     get_script_property_list(&properties);
     for (int i = 0; i < properties.size(); ++i) {
-        StringName property_name{properties[i].name};
+        StringName property_name {properties[i].name};
         Variant ret;
         get_property_default_value(property_name, ret);
         default_values[property_name] = ret;

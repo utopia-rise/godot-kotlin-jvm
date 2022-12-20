@@ -1,24 +1,21 @@
 
 #ifdef TOOLS_ENABLED
 
-#include <editor/editor_node.h>
-#include <core/config/project_settings.h>
+#include "build_manager.h"
 
 #include "../godot_kotlin_jvm_editor.h"
-#include "build_manager.h"
+
+#include <core/config/project_settings.h>
+#include <editor/editor_node.h>
 
 void background_trigger_build(void* p_userdata) {
     BuildManager::get_instance().build_blocking();
 }
 
-BuildManager::BuildManager() : build_mutex(), build_thread(), build_finished(false), last_build_exit_code(0) {
-
-}
+BuildManager::BuildManager() : build_mutex(), build_thread(), build_finished(false), last_build_exit_code(0) {}
 
 bool BuildManager::build_project_blocking() {
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
-        return true;
-    }
+    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) { return true; }
 
     clear_log();
 
@@ -27,10 +24,10 @@ bool BuildManager::build_project_blocking() {
 
     Error result = build_blocking();
 
-    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2); //dummy to not start at 0% or 100%
+    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2);// dummy to not start at 0% or 100%
     EditorNode::progress_end_task("build_godot_kotlin_jvm");
 
-    GodotKotlinJvmEditor::get_instance()->on_build_check_timeout(); //manually call what timer would call to update ui
+    GodotKotlinJvmEditor::get_instance()->on_build_check_timeout();// manually call what timer would call to update ui
     return result == Error::OK && last_build_successful();
 }
 
@@ -61,9 +58,7 @@ void BuildManager::update_build_state() {
     }
 
     build_mutex.lock();
-    if (build_finished) {
-        build_thread.wait_to_finish();
-    }
+    if (build_finished) { build_thread.wait_to_finish(); }
     build_mutex.unlock();
 }
 
@@ -89,37 +84,24 @@ Error BuildManager::build_blocking() {
     build_finished = false;
     build_mutex.unlock();
 
-    List<String> args{};
+    List<String> args {};
     args.push_back("build");
 
 #if defined _WIN32 || defined _WIN64
-    String gradle_wrapper{"gradlew.bat"};
+    String gradle_wrapper {"gradlew.bat"};
 #else
-    String gradle_wrapper{"gradlew"};
+    String gradle_wrapper {"gradlew"};
 #endif
 
-    String gradle_wrapper_path{
-            ProjectSettings::get_singleton()->globalize_path(
-                    ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir")
-            )
-    };
+    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir"
+    ))};
 
-    if (!gradle_wrapper_path.ends_with("/")) {
-        gradle_wrapper_path = gradle_wrapper_path + "/";
-    }
+    if (!gradle_wrapper_path.ends_with("/")) { gradle_wrapper_path = gradle_wrapper_path + "/"; }
 
-    String gradle_command{gradle_wrapper_path + gradle_wrapper};
+    String gradle_command {gradle_wrapper_path + gradle_wrapper};
 
     int exit_code;
-    Error result = OS::get_singleton()->execute(
-            gradle_command,
-            args,
-            &build_log,
-            &exit_code,
-            true,
-            &build_mutex,
-            false
-    );
+    Error result = OS::get_singleton()->execute(gradle_command, args, &build_log, &exit_code, true, &build_mutex, false);
 
     build_mutex.lock();
     last_build_exit_code = exit_code;
@@ -141,4 +123,4 @@ BuildManager& BuildManager::get_instance() {
     return instance;
 }
 
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

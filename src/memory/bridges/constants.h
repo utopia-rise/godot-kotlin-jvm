@@ -22,6 +22,6 @@ namespace bridges {
     static const char* PACKED_STRING_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedStringArray$Bridge";
     static const char* PACKED_VECTOR2_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedVector2Array$Bridge";
     static const char* PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedVector3Array$Bridge";
-}
+}// namespace bridges
 
-#endif //GODOT_JVM_CONSTANTS_H
+#endif// GODOT_JVM_CONSTANTS_H

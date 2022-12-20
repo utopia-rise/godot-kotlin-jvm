@@ -1,7 +1,8 @@
 #if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
 
+#include "logging.h"
+
 #include <cassert>
-#include <modules/kotlin_jvm/src/logging.h>
 
 #ifndef NO_USE_STDLIB
 #include <locale>
@@ -13,14 +14,12 @@ namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
-    Jvm::Type Jvm::vm_type{Jvm::JVM};
+    Jvm::Type Jvm::vm_type {Jvm::JVM};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
         vm_type = type;
-        JavaVM* res{get_existing()};
-        if (res == nullptr) {
-            res = create(initArgs);
-        }
+        JavaVM* res {get_existing()};
+        if (res == nullptr) { res = create(initArgs); }
         assert(res != nullptr);
         vm = res;
         version = initArgs.version;
@@ -33,8 +32,8 @@ namespace jni {
     }
 
     JavaVM* Jvm::create(const InitArgs& initArgs) {
-        size_t nOptions { initArgs.options.size() };
-        auto *options = new JavaVMOption[nOptions];
+        size_t nOptions {initArgs.options.size()};
+        auto* options = new JavaVMOption[nOptions];
         JavaVMInitArgs args;
         args.version = initArgs.version;
         args.nOptions = nOptions;
@@ -44,14 +43,14 @@ namespace jni {
             args.options[i].optionString = (char*) initArgs.options[i].c_str();
         }
 
-        JavaVM* java_vm{nullptr};
-        JNIEnv* jni_env{nullptr};
+        JavaVM* java_vm {nullptr};
+        JNIEnv* jni_env {nullptr};
 
 #ifndef NO_USE_STDLIB
         std::locale global;
 #endif
 
-        jint result{JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+        jint result {JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
         // Set std::local::global to value it was before creating JVM.
         // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
@@ -70,9 +69,7 @@ namespace jni {
         jsize count;
         auto result = JvmLoader::get_get_created_java_vm_function()(buffer, 1, &count);
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to retrieve existing vm!");
-        if (count > 0) {
-            return buffer[0];
-        }
+        if (count > 0) { return buffer[0]; }
         return nullptr;
     }
 
@@ -104,6 +101,6 @@ namespace jni {
     Jvm::Type Jvm::get_type() {
         return vm_type;
     }
-}
+}// namespace jni
 
 #endif

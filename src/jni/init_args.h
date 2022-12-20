@@ -1,8 +1,9 @@
 #ifndef GODOT_LOADER_INIT_ARGS_H
 #define GODOT_LOADER_INIT_ARGS_H
+#include <jni.h>
+
 #include <string>
 #include <vector>
-#include <jni.h>
 
 namespace jni {
     class InitArgs {
@@ -20,6 +21,6 @@ namespace jni {
         friend class Jvm;
     };
 
-}
+}// namespace jni
 
-#endif //GODOT_LOADER_INIT_ARGS_H
+#endif// GODOT_LOADER_INIT_ARGS_H

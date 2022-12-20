@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KT_PROPERTY_H
 #define GODOT_JVM_KT_PROPERTY_H
 
-#include <core/object/object.h>
+#include "java_instance_wrapper.h"
 #include "jni/wrapper.h"
 #include "kt_object.h"
-#include "java_instance_wrapper.h"
+
+#include <core/object/object.h>
 
 struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -19,14 +20,16 @@ struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
 
     PropertyInfo toPropertyInfo();
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_TYPE, "getType", "()I")
-        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_HINT, "getHint", "()I")
-        JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
-        JNI_METHOD(GET_VISIBLE_IN_EDITOR, "getVisibleInEditor", "()Z")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_TYPE, "getType", "()I")
+            JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_HINT, "getHint", "()I")
+            JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
+            JNI_METHOD(GET_VISIBLE_IN_EDITOR, "getVisibleInEditor", "()Z")
+    )
+    // clang-format on
 };
 
 class KtProperty : JavaInstanceWrapper<KtProperty> {
@@ -47,14 +50,15 @@ public:
 
     void get_default_value(Variant& r_value);
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
-        JNI_METHOD(IS_REF, "isRef", "()Z")
-        JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
-        JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
-        JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()V")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
+            JNI_METHOD(IS_REF, "isRef", "()Z")
+            JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
+            JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
+            JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()V")
+    )
+    // clang-format on
 };
 
-
-#endif //GODOT_JVM_KT_PROPERTY_H
+#endif// GODOT_JVM_KT_PROPERTY_H

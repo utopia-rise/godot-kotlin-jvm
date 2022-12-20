@@ -1,15 +1,16 @@
 #include "jvm_loader.h"
+
 #include "jni_constants.h"
 
-#include <core/os/os.h>
 #include <core/config/project_settings.h>
+#include <core/os/os.h>
 
 #ifndef __ANDROID__
 
-void* jni::JvmLoader::jvmLib{nullptr};
+void* jni::JvmLoader::jvmLib {nullptr};
 
 void jni::JvmLoader::load_jvm_lib() {
-    String libPath{get_jvm_lib_path()};
+    String libPath {get_jvm_lib_path()};
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
         LOG_ERROR(String("Failed to load the jvm dynamic library from path ") + libPath + "!");
@@ -24,12 +25,9 @@ void jni::JvmLoader::close_jvm_lib() {
 }
 
 jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
-    if (jvmLib == nullptr) {
-        load_jvm_lib();
-    }
+    if (jvmLib == nullptr) { load_jvm_lib(); }
     void* createJavaVMSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) !=
-        OK) {
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
         LOG_ERROR("Failed to get JNI_CreateJavaVM symbol handle");
         exit(1);
     }
@@ -37,12 +35,9 @@ jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
 }
 
 jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
-    if (jvmLib == nullptr) {
-        load_jvm_lib();
-    }
+    if (jvmLib == nullptr) { load_jvm_lib(); }
     void* getCreatedJavaVMsSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs",
-                                                               getCreatedJavaVMsSymbolHandle) != OK) {
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {
         LOG_ERROR("Failed to get JNI_GetCreatedJavaVMs symbol handle");
         exit(1);
     }
@@ -50,7 +45,7 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
 }
 
 String jni::JvmLoader::get_jvm_lib_path() {
-    String embeddedJrePath{get_embedded_jre_path()};
+    String embeddedJrePath {get_embedded_jre_path()};
     if (!FileAccess::exists(embeddedJrePath)) {
         // Cannot find graal usercode, so no JVM can be found, make crash.
         if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
@@ -63,7 +58,8 @@ String jni::JvmLoader::get_jvm_lib_path() {
 #endif
         LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath));
 #ifdef DEBUG_ENABLED
-        LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation if you don't know how to do that"));
+        LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation "
+                            "if you don't know how to do that"));
 #endif
 
         // Can only happen in TOOL mode, with hotspot.
@@ -73,14 +69,14 @@ String jni::JvmLoader::get_jvm_lib_path() {
 }
 
 String jni::JvmLoader::get_path_to_locally_installed_jvm() {
-    String javaHome{OS::get_singleton()->get_environment("JAVA_HOME")};
+    String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
 
     if (javaHome.is_empty()) {
         LOG_ERROR("JAVA_HOME is not defined! Exiting...");
         exit(1);
     }
 
-    String pathToLocallyInstalledJvmLib{javaHome + FILE_SEPARATOR + LIB_JVM_RELATIVE_PATH};
+    String pathToLocallyInstalledJvmLib {javaHome + FILE_SEPARATOR + LIB_JVM_RELATIVE_PATH};
 
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Trying to use locally installed jdk at %s", pathToLocallyInstalledJvmLib));
@@ -96,39 +92,35 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
 String jni::JvmLoader::get_embedded_jre_path() {
     String jre_path;
     if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
-        String user_code_dir{
+        String user_code_dir {
 #ifdef TOOLS_ENABLED
-            "res://build/libs/"
+          "res://build/libs/"
 #else
-            "user://"
+          "user://"
 #endif
         };
         jre_path = vformat("%s%s", user_code_dir, LIB_GRAAL_VM_RELATIVE_PATH);
     } else {
-        String jre_folder{
-                vformat(
-                        "%s%s",
+        String jre_folder {vformat(
+          "%s%s",
 #ifdef TOOLS_ENABLED
-                        "res://"
+          "res://"
 #elif defined(MACOS_ENABLED)
-                        "../PlugIns/"
+          "../PlugIns/"
 #else
-                        ""
+          ""
 #endif
-                        ,
-                        jni::JniConstants::CURRENT_RUNTIME_JRE
-                )
-        };
-        String jre_location{
+          ,
+          jni::JniConstants::CURRENT_RUNTIME_JRE
+        )};
+        String jre_location {
 #ifdef TOOLS_ENABLED
-            ""
+          ""
 #else
-            OS::get_singleton()->get_executable_path().get_base_dir()
+          OS::get_singleton()->get_executable_path().get_base_dir()
 #endif
         };
-        jre_path = jre_location
-                .path_join(jre_folder)
-                .path_join(LIB_JVM_RELATIVE_PATH);
+        jre_path = jre_location.path_join(jre_folder).path_join(LIB_JVM_RELATIVE_PATH);
     }
     return ProjectSettings::get_singleton()->globalize_path(jre_path);
 }

@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_TRANSFER_CONTEXT_H
 #define GODOT_JVM_TRANSFER_CONTEXT_H
 
-#include "modules/kotlin_jvm/src/java_instance_wrapper.h"
-#include "modules/kotlin_jvm/src/kt_variant.h"
+#include "java_instance_wrapper.h"
+#include "kt_variant.h"
 #include "shared_buffer.h"
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
@@ -27,18 +27,9 @@ public:
 
     void read_args(jni::Env& p_env, Variant* args);
 
-    static void icall(JNIEnv* rawEnv,
-                      jobject instance,
-                      jlong j_ptr,
-                      jint p_method_index,
-                      jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType);
 
-    static void create_native_object(JNIEnv* p_raw_env,
-                                     jobject instance,
-                                     jint p_class_index,
-                                     jobject p_object,
-                                     jobject p_class_loader,
-                                     jint p_script_index);
+    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index);
 
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 
@@ -48,7 +39,7 @@ private:
     SharedBuffer* get_buffer(jni::Env& p_env);
 
     _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
-        uint32_t args_size{decode_uint32(buffer->get_cursor())};
+        uint32_t args_size {decode_uint32(buffer->get_cursor())};
         buffer->increment_position(4);
         return args_size;
     }
@@ -66,8 +57,11 @@ private:
         buffer->rewind();
     }
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;"))
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+    )
+    // clang-format on
 };
 
-#endif //GODOT_JVM_TRANSFER_CONTEXT_H
+#endif// GODOT_JVM_TRANSFER_CONTEXT_H

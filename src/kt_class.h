@@ -1,20 +1,20 @@
 #ifndef GODOT_JVM_KTCLASS_H
 #define GODOT_JVM_KTCLASS_H
 
-#include "jni/wrapper.h"
-#include <core/object/ref_counted.h>
-#include "kt_object.h"
-#include "kt_function.h"
-#include "kt_signal_info.h"
 #include "java_instance_wrapper.h"
+#include "jni/wrapper.h"
 #include "kt_constructor.h"
+#include "kt_function.h"
+#include "kt_object.h"
+#include "kt_signal_info.h"
+
+#include <core/object/ref_counted.h>
 
 // Change also in Constructors.kt when changing it.
 const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
 const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 
 class KtClass : public JavaInstanceWrapper<KtClass> {
-
 public:
     StringName name;
     String registered_class_name;
@@ -44,6 +44,7 @@ public:
     bool is_assignable_from(KtClass* p_class) const;
 
     const Dictionary get_rpc_config();
+
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
@@ -81,16 +82,18 @@ private:
         members.clear();
     }
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
-        JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
-        JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-        JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-        JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
+            JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
+            JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
+            JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
+            JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
+            JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
+    )
+    // clang-format on
 };
 
-#endif //GODOT_JVM_KTCLASS_H
+#endif// GODOT_JVM_KTCLASS_H

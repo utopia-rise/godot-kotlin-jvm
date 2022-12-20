@@ -24,12 +24,9 @@ public:
     SharedBuffer(uint8_t* p_ptr, int p_position);
 #endif
 
-
     ~SharedBuffer() = default;
 
-    _FORCE_INLINE_ uint8_t* get_cursor() const {
-        return ptr + position;
-    }
+    _FORCE_INLINE_ uint8_t* get_cursor() const { return ptr + position; }
 
     _FORCE_INLINE_ void increment_position(uint32_t increment) {
         position += increment;
@@ -45,13 +42,9 @@ public:
 #endif
     }
 
-    _FORCE_INLINE_ bool is_init() const {
-        return ptr != nullptr;
-    }
+    _FORCE_INLINE_ bool is_init() const { return ptr != nullptr; }
 
-    _FORCE_INLINE_ void rewind() {
-        position = 0;
-    }
+    _FORCE_INLINE_ void rewind() { position = 0; }
 };
 
-#endif //GODOT_JVM_SHARED_BUFFER_H
+#endif// GODOT_JVM_SHARED_BUFFER_H

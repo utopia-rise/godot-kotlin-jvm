@@ -22,7 +22,6 @@ namespace jni {
         LocalFrame(int p_capacity);
         ~LocalFrame();
     };
-}
+}// namespace jni
 
-
-#endif //GODOT_JVM_LOCAL_FRAME_H
+#endif// GODOT_JVM_LOCAL_FRAME_H

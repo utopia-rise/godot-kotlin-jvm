@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_JAVA_METHOD_SIGNATURE_H
 #define GODOT_JVM_JAVA_METHOD_SIGNATURE_H
 
-
 #include "types.h"
 
 namespace jni {
@@ -16,7 +15,6 @@ namespace jni {
 
         void init(Env& env, JClass cls);
     };
-}
+}// namespace jni
 
-
-#endif //GODOT_JVM_JAVA_METHOD_SIGNATURE_H
+#endif// GODOT_JVM_JAVA_METHOD_SIGNATURE_H

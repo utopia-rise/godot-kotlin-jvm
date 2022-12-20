@@ -43,7 +43,6 @@ private:
     int last_build_exit_code;
 };
 
+#endif// GODOT_JVM_BUILD_MANAGER_H
 
-#endif //GODOT_JVM_BUILD_MANAGER_H
-
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

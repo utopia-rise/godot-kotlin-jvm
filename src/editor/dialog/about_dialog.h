@@ -4,9 +4,9 @@
 #ifndef GODOT_JVM_ABOUT_DIALOG_H
 #define GODOT_JVM_ABOUT_DIALOG_H
 
-#include <scene/gui/dialogs.h>
-#include <scene/gui/check_box.h>
 #include <editor/editor_settings.h>
+#include <scene/gui/check_box.h>
+#include <scene/gui/dialogs.h>
 
 class AboutDialog : public AcceptDialog {
 public:
@@ -25,7 +25,6 @@ private:
     void on_url_clicked(const String& url);
 };
 
+#endif// GODOT_JVM_ABOUT_DIALOG_H
 
-#endif //GODOT_JVM_ABOUT_DIALOG_H
-
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

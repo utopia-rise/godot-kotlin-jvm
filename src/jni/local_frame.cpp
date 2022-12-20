@@ -1,4 +1,5 @@
 #include "local_frame.h"
+
 #include "jvm.h"
 
 namespace jni {
@@ -10,4 +11,4 @@ namespace jni {
         jni::Jvm::current_env().pop_local_frame();
     }
 
-}
+}// namespace jni

@@ -1,8 +1,7 @@
 #ifndef GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 #define GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
-
+#include "java_instance_wrapper.h"
 
 namespace bridges {
 
@@ -44,11 +43,11 @@ namespace bridges {
         static void engine_call_operator_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
-
-    DECLARE_JNI_METHODS()
+        // clang-format off
+        DECLARE_JNI_METHODS()
+        // clang-format on
     };
 
-}
+}// namespace bridges
 
-
-#endif //GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
+#endif// GODOT_JVM_VARIANT_ARRAY_BRIDGE_H

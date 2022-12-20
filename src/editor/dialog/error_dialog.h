@@ -3,7 +3,6 @@
 #ifndef GODOT_JVM_ERROR_DIALOG_H
 #define GODOT_JVM_ERROR_DIALOG_H
 
-
 #include <scene/gui/dialogs.h>
 #include <scene/gui/rich_text_label.h>
 
@@ -18,6 +17,5 @@ private:
     RichTextLabel* error_message_label;
 };
 
-
-#endif //GODOT_JVM_ERROR_DIALOG_H
-#endif //TOOLS_ENABLED
+#endif// GODOT_JVM_ERROR_DIALOG_H
+#endif// TOOLS_ENABLED

@@ -1,10 +1,10 @@
 #ifndef GODOT_JVM_KT_SIGNAL_INFO_H
 #define GODOT_JVM_KT_SIGNAL_INFO_H
 
+#include "java_instance_wrapper.h"
+#include "kt_property.h"
 
 #include <core/object/object.h>
-#include "kt_property.h"
-#include "java_instance_wrapper.h"
 
 struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
     KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -15,11 +15,12 @@ struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
 
     MethodInfo get_member_info() const;
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
+    )
+    // clang-format on
 };
 
-
-#endif //GODOT_JVM_KT_SIGNAL_INFO_H
+#endif// GODOT_JVM_KT_SIGNAL_INFO_H

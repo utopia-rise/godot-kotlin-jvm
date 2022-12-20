@@ -4,9 +4,7 @@
 #include "wrapper.h"
 
 class ClassLoader {
-
 private:
-
     jni::JObject class_loader;
 
     ClassLoader();
@@ -19,19 +17,15 @@ public:
     void operator=(const ClassLoader&) = delete;
 
     ClassLoader(ClassLoader&& instance) = delete;
-    void operator=(ClassLoader&$) = delete;
+    void operator=(ClassLoader& $) = delete;
 
     static void set_default_loader(jni::JObject& p_class_loader);
 
     static jni::JObject& get_default_loader();
 
-    static jni::JObject provide_loader(
-            jni::Env& env,
-            const String& full_jar_path,
-            const jni::JObject& p_parent_loader);
+    static jni::JObject provide_loader(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader);
 
     static void delete_default_loader(jni::Env& env);
 };
 
-
-#endif //GODOT_JVM_CLASS_LOADER_H
+#endif// GODOT_JVM_CLASS_LOADER_H

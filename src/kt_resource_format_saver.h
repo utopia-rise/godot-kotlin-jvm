@@ -13,5 +13,4 @@ public:
     bool recognize(const Ref<Resource>& p_resource) const override;
 };
 
-
-#endif //GODOT_JVM_KT_RESOURCE_FORMAT_SAVER_H
+#endif// GODOT_JVM_KT_RESOURCE_FORMAT_SAVER_H

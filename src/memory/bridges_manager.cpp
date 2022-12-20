@@ -1,5 +1,6 @@
-#include "bridges/constants.h"
 #include "bridges_manager.h"
+
+#include "bridges/constants.h"
 
 BridgesManager& BridgesManager::get_instance() {
     static BridgesManager bridgesManager;
@@ -8,7 +9,7 @@ BridgesManager& BridgesManager::get_instance() {
 
 void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader) {
     initialize_bridge(env, class_loader, bridges::MEMORY_BRIDGE_CLASS_NAME, memory_bridge);
-    
+
     initialize_bridge(env, class_loader, bridges::GD_PRINT_BRIDGE_CLASS_NAME, gd_print_bridge);
 
     initialize_bridge(env, class_loader, bridges::VARIANT_ARRAY_BRIDGE_CLASS_NAME, variant_array_bridge);
@@ -28,15 +29,23 @@ void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader
     initialize_bridge(env, class_loader, bridges::PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME, packed_vector3_array_bridge);
 }
 
-BridgesManager::BridgesManager() : memory_bridge(nullptr), gd_print_bridge(nullptr), variant_array_bridge(nullptr), dictionary_bridge(nullptr),
-                                   rid_bridge(nullptr), node_path_bridge(nullptr), string_name_bridge(nullptr),
-                                   packed_byte_array_bridge(nullptr), packed_color_array_bridge(nullptr),
-                                   packed_int_32_array_bridge(nullptr), packed_int_64_array_bridge(nullptr),
-                                   packed_float_32_array_bridge(nullptr), packed_float_64_array_bridge(nullptr),
-                                   packed_string_array_bridge(nullptr), packed_vector2_array_bridge(nullptr),
-                                   packed_vector3_array_bridge(nullptr) {
-
-}
+BridgesManager::BridgesManager() :
+  memory_bridge(nullptr),
+  gd_print_bridge(nullptr),
+  variant_array_bridge(nullptr),
+  dictionary_bridge(nullptr),
+  rid_bridge(nullptr),
+  node_path_bridge(nullptr),
+  string_name_bridge(nullptr),
+  packed_byte_array_bridge(nullptr),
+  packed_color_array_bridge(nullptr),
+  packed_int_32_array_bridge(nullptr),
+  packed_int_64_array_bridge(nullptr),
+  packed_float_32_array_bridge(nullptr),
+  packed_float_64_array_bridge(nullptr),
+  packed_string_array_bridge(nullptr),
+  packed_vector2_array_bridge(nullptr),
+  packed_vector3_array_bridge(nullptr) {}
 
 void BridgesManager::delete_bridges() {
     delete memory_bridge;
