@@ -45,7 +45,9 @@ namespace bridges {
         static void engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 
-    DECLARE_JNI_METHODS()
+        // clang-format off
+        DECLARE_JNI_METHODS()
+        // clang-format on
     };
 
 }

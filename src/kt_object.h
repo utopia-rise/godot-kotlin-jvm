@@ -15,8 +15,12 @@ public:
 
 	const jni::JObject &get_wrapped() const;
 
-	DECLARE_JNI_METHODS(
-			JNI_METHOD(ON_DESTROY, "_onDestroy", "()V"))
+	// clang-format off
+    DECLARE_JNI_METHODS(
+                JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
+    )
+    // clang-format on
+
 };
 
 #endif //GODOT_JVM_KT_OBJECT_H

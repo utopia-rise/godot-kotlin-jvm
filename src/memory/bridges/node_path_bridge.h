@@ -24,7 +24,9 @@ namespace bridges {
         static void engine_call_getConcatenatedSubnames(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
+        // clang-format off
         DECLARE_JNI_METHODS()
+        // clang-format on
     };
 }
 

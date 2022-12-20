@@ -6,13 +6,18 @@
 
 class Bootstrap : public JavaInstanceWrapper<Bootstrap> {
 public:
+
+    // clang-format off
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
     typedef void (*UnloadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
-    typedef void (*RegisterManagedEngineTypesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
-                                                   jobjectArray singleton_names, jobjectArray method_names,
-                                                   jobjectArray types_of_methods);
+    typedef void (*RegisterManagedEngineTypesHook)(
+      JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
+      jobjectArray singleton_names, jobjectArray method_names,
+      jobjectArray types_of_methods
+      );
     typedef void (*RegisterUserTypesNamesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names);
     typedef void (*RegisterUserTypesMembersHook)(JNIEnv* p_env, jobject p_this);
+    // clang-format on
 
     Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~Bootstrap() = default;
@@ -24,10 +29,12 @@ public:
               const jni::JObject& p_class_loader);
     void finish(jni::Env& p_env);
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(INIT, "init", "(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
-        JNI_METHOD(FINISH, "finish", "()V")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(INIT, "init", "(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
+            JNI_METHOD(FINISH, "finish", "()V")
+    )
+    // clang-format on
 };
 
 

@@ -25,13 +25,15 @@ private:
 
     bool equals(const KtCustomCallable* other) const;
 
+    // clang-format off
     DECLARE_JNI_METHODS(
-            JNI_METHOD(SEND_TARGET_TO_NATIVE, "sendTargetToNative", "()V")
-            JNI_METHOD(CALL_TARGETED, "callTargeted", "()V")
-            JNI_METHOD(CALL_NOT_TARGETED, "callNotTargeted", "()V")
-            JNI_METHOD(HASHCODE, "hashcode", "()I")
-            JNI_METHOD(EQUALS, "equals", "(Ljava/lang/Object;)Z")
-    )
+                JNI_METHOD(SEND_TARGET_TO_NATIVE, "sendTargetToNative", "()V")
+                JNI_METHOD(CALL_TARGETED, "callTargeted", "()V")
+                JNI_METHOD(CALL_NOT_TARGETED, "callNotTargeted", "()V")
+                JNI_METHOD(HASHCODE, "hashcode", "()I")
+                JNI_METHOD(EQUALS, "equals", "(Ljava/lang/Object;)Z")
+        )
+    // clang-format on
 };
 
 #endif //GODOT_JVM_KT_CUSTOM_CALLABLE_H

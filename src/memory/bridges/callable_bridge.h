@@ -23,7 +23,9 @@ namespace bridges {
         CallableBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
         ~CallableBridge() = default;
 
+        // clang-format off
         DECLARE_JNI_METHODS()
+        // clang-format on
     };
 }
 

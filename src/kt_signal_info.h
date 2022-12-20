@@ -15,10 +15,12 @@ struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
 
     MethodInfo get_member_info() const;
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+            JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
+    )
+    // clang-format on
 };
 
 

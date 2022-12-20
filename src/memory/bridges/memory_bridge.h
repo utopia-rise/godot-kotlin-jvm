@@ -22,7 +22,10 @@ namespace bridges {
         static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
 
         static void notify_leak(JNIEnv* p_raw_env, jobject p_instance);
-    DECLARE_JNI_METHODS()
+
+        // clang-format off
+        DECLARE_JNI_METHODS()
+        // clang-format on
     };
 
 }

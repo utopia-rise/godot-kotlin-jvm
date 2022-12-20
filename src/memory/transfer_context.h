@@ -66,8 +66,11 @@ private:
         buffer->rewind();
     }
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;"))
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+    )
+    // clang-format on
 };
 
 #endif //GODOT_JVM_TRANSFER_CONTEXT_H

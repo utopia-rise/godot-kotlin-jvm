@@ -14,10 +14,12 @@ public:
 private:
     int parameter_count;
 
-DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
-        JNI_METHOD(CONSTRUCT, "construct", "(JJ)Lgodot/core/KtObject;")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+            JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
+            JNI_METHOD(CONSTRUCT, "construct", "(JJ)Lgodot/core/KtObject;")
+    )
+    // clang-format on
 
 };
 

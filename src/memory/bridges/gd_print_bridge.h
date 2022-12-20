@@ -15,7 +15,9 @@ namespace bridges {
         static void print_raw(JNIEnv* p_raw_env, jobject p_instance);
 
 
+    // clang-format off
     DECLARE_JNI_METHODS()
+    // clang-format on
     };
 
 }

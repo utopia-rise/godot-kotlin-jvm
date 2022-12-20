@@ -18,12 +18,14 @@ struct KtRpcConfig : public JavaInstanceWrapper<KtRpcConfig> {
 
     Dictionary toRpcConfigDictionary();
 
-DECLARE_JNI_METHODS(
-    JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
-    JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
-    JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
-    JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
-)
+    // clang-format off
+    DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
+        JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
+        JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
+        JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
+    )
+    // clang-format on
 };
 
 
