@@ -1,6 +1,8 @@
 #ifndef GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 
+#include "java_instance_wrapper.h"
+
 namespace bridges {
 
     class PackedByteArrayBridge : JavaInstanceWrapper<PackedByteArrayBridge> {

@@ -1,6 +1,8 @@
 #ifndef GODOT_JVM_PACKED_VECTOR3_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_VECTOR3_ARRAY_BRIDGE_H
 
+#include "java_instance_wrapper.h"
+
 namespace bridges {
 
     class PackedVector3ArrayBridge : JavaInstanceWrapper<PackedVector3ArrayBridge> {
