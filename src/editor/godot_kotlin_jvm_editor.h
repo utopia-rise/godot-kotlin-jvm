@@ -4,13 +4,13 @@
 #ifndef GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
 #define GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
 
-
-#include <editor/editor_plugin.h>
-#include "dialog/error_dialog.h"
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
+#include "dialog/error_dialog.h"
 #include "menu_option.h"
 #include "panel/bottom_panel.h"
+
+#include <editor/editor_plugin.h>
 
 class GodotKotlinJvmEditor : public EditorPlugin {
 public:
@@ -48,7 +48,6 @@ private:
     void on_file_system_dock_folder_moved(const String& folder, const String& new_folder);
 };
 
+#endif// GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
 
-#endif //GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
-
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

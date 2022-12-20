@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_RIDBRIDGE_H
 #define GODOT_JVM_RIDBRIDGE_H
 
-
 #include "java_instance_wrapper.h"
 
 namespace bridges {
@@ -21,7 +20,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
+}// namespace bridges
 
-
-#endif //GODOT_JVM_RIDBRIDGE_H
+#endif// GODOT_JVM_RIDBRIDGE_H

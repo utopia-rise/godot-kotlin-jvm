@@ -1,17 +1,18 @@
 #include "kt_function.h"
+
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtFunction)
 JNI_INIT_STATICS_FOR_CLASS(KtFunctionInfo)
 
-KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameter_count(-1) {
-    jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getFunctionInfoMethod{get_method_id(env, jni_methods.GET_FUNCTION_INFO)};
-    method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod),
-                                     ClassLoader::get_default_loader());
-    jni::MethodId getParameterCountMethod{get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
+KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
+  JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader),
+  parameter_count(-1) {
+    jni::Env env {jni::Jvm::current_env()};
+    jni::MethodId getFunctionInfoMethod {get_method_id(env, jni_methods.GET_FUNCTION_INFO)};
+    method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod), ClassLoader::get_default_loader());
+    jni::MethodId getParameterCountMethod {get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
     parameter_count = wrapped.call_int_method(env, getParameterCountMethod);
 }
 
@@ -40,7 +41,7 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
 }
 
 void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env {jni::Jvm::current_env()};
 
     jni::MethodId methodId {get_method_id(env, jni_methods.INVOKE)};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
@@ -50,24 +51,21 @@ void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int ar
     transferContext->read_return_value(env, r_ret);
 }
 
-KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtFunctionInfo", p_wrapped, p_class_loader) {
-    jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getNameMethod{get_method_id(env, jni_methods.GET_NAME)};
+KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
+  JavaInstanceWrapper("godot.core.KtFunctionInfo", p_wrapped, p_class_loader) {
+    jni::Env env {jni::Jvm::current_env()};
+    jni::MethodId getNameMethod {get_method_id(env, jni_methods.GET_NAME)};
     name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
-    jni::MethodId getPropertyInfosMethod{get_method_id(env, jni_methods.GET_ARGUMENTS)};
-    jni::JObjectArray propertyInfoArray{wrapped.call_object_method(env, getPropertyInfosMethod)};
+    jni::MethodId getPropertyInfosMethod {get_method_id(env, jni_methods.GET_ARGUMENTS)};
+    jni::JObjectArray propertyInfoArray {wrapped.call_object_method(env, getPropertyInfosMethod)};
     for (int i = 0; i < propertyInfoArray.length(env); i++) {
-        arguments.push_back(
-                new KtPropertyInfo(propertyInfoArray.get(env, i), ClassLoader::get_default_loader()));
+        arguments.push_back(new KtPropertyInfo(propertyInfoArray.get(env, i), ClassLoader::get_default_loader()));
     }
-    jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
-    return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
-                                    ClassLoader::get_default_loader());
+    jni::MethodId getReturnValMethod {get_method_id(env, jni_methods.GET_RETURN_VAL)};
+    return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod), ClassLoader::get_default_loader());
 
-    jni::MethodId getRpcConfigMethod{get_method_id(env, jni_methods.GET_RPC_CONFIG)};
-    rpc_config = new KtRpcConfig(wrapped.call_object_method(env, getRpcConfigMethod),
-                                    ClassLoader::get_default_loader());
+    jni::MethodId getRpcConfigMethod {get_method_id(env, jni_methods.GET_RPC_CONFIG)};
+    rpc_config = new KtRpcConfig(wrapped.call_object_method(env, getRpcConfigMethod), ClassLoader::get_default_loader());
 }
 
 KtFunctionInfo::~KtFunctionInfo() {

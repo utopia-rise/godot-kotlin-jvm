@@ -1,11 +1,13 @@
 #include "kt_class.h"
+
 #include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtClass)
 
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
-    JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader), constructors{} {
-    jni::Env env { jni::Jvm::current_env() };
+  JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader),
+  constructors {} {
+    jni::Env env {jni::Jvm::current_env()};
     name = get_name(env);
     registered_class_name = get_registered_name(env);
     super_class = get_super_class(env);
@@ -24,21 +26,18 @@ KtClass::~KtClass() {
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(
-            p_arg_count > MAX_CONSTRUCTOR_SIZE,
-            vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
+      p_arg_count > MAX_CONSTRUCTOR_SIZE,
+      vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
     );
 #endif
 
-    KtConstructor* constructor{constructors[p_arg_count]};
+    KtConstructor* constructor {constructors[p_arg_count]};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(
-            constructor == nullptr,
-            vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, name)
-    );
+    JVM_CRASH_COND_MSG(constructor == nullptr, vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, name));
 #endif
 
-    KtObject* jvm_instance{constructor->create_instance(p_args, p_owner)};
+    KtObject* jvm_instance {constructor->create_instance(p_args, p_owner)};
 
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Instantiated an object of type %s", name));
@@ -63,34 +62,34 @@ KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
 }
 
 StringName KtClass::get_name(jni::Env& env) {
-    jni::MethodId getter { get_method_id(env, jni_methods.GET_NAME) };
-    jni::JObject ret { wrapped.call_object_method(env, getter) };
+    jni::MethodId getter {get_method_id(env, jni_methods.GET_NAME)};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 String KtClass::get_registered_name(jni::Env& env) {
-    jni::MethodId getter{get_method_id(env, jni_methods.GET_REGISTERED_NAME)};
-    jni::JObject ret{wrapped.call_object_method(env, getter)};
+    jni::MethodId getter {get_method_id(env, jni_methods.GET_REGISTERED_NAME)};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
 StringName KtClass::get_super_class(jni::Env& env) {
-    jni::MethodId getter { get_method_id(env, jni_methods.GET_SUPER_CLASS) };
-    jni::JObject ret { wrapped.call_object_method(env, getter) };
+    jni::MethodId getter {get_method_id(env, jni_methods.GET_SUPER_CLASS)};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 StringName KtClass::get_base_godot_class(jni::Env& env) {
-    jni::MethodId getter{get_method_id(env, jni_methods.GET_BASE_GODOT_CLASS)};
-    jni::JObject ret{wrapped.call_object_method(env, getter)};
+    jni::MethodId getter {get_method_id(env, jni_methods.GET_BASE_GODOT_CLASS)};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 void KtClass::fetch_methods(jni::Env& env) {
-    jni::MethodId getFunctionsMethod { get_method_id(env, jni_methods.GET_FUNCTIONS) };
-    jni::JObjectArray functionsArray { wrapped.call_object_method(env, getFunctionsMethod) };
+    jni::MethodId getFunctionsMethod {get_method_id(env, jni_methods.GET_FUNCTIONS)};
+    jni::JObjectArray functionsArray {wrapped.call_object_method(env, getFunctionsMethod)};
     for (int i = 0; i < functionsArray.length(env); i++) {
-        auto* ktFunction { new KtFunction(functionsArray.get(env, i), ClassLoader::get_default_loader()) };
+        auto* ktFunction {new KtFunction(functionsArray.get(env, i), ClassLoader::get_default_loader())};
         methods[ktFunction->get_name()] = ktFunction;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), name));
@@ -99,10 +98,10 @@ void KtClass::fetch_methods(jni::Env& env) {
 }
 
 void KtClass::fetch_properties(jni::Env& env) {
-    jni::MethodId getPropertiesMethod { get_method_id(env, jni_methods.GET_PROPERTIES) };
-    jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
+    jni::MethodId getPropertiesMethod {get_method_id(env, jni_methods.GET_PROPERTIES)};
+    jni::JObjectArray propertiesArray {wrapped.call_object_method(env, getPropertiesMethod)};
     for (int i = 0; i < propertiesArray.length(env); i++) {
-        auto* ktProperty { new KtProperty(propertiesArray.get(env, i), ClassLoader::get_default_loader()) };
+        auto* ktProperty {new KtProperty(propertiesArray.get(env, i), ClassLoader::get_default_loader())};
         properties[ktProperty->get_name()] = ktProperty;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), name));
@@ -111,12 +110,10 @@ void KtClass::fetch_properties(jni::Env& env) {
 }
 
 void KtClass::fetch_signals(jni::Env& env) {
-    jni::MethodId get_signal_infos_method{get_method_id(env, jni_methods.GET_SIGNAL_INFOS)};
-    jni::JObjectArray signal_info_array{wrapped.call_object_method(env, get_signal_infos_method)};
+    jni::MethodId get_signal_infos_method {get_method_id(env, jni_methods.GET_SIGNAL_INFOS)};
+    jni::JObjectArray signal_info_array {wrapped.call_object_method(env, get_signal_infos_method)};
     for (int i = 0; i < signal_info_array.length(env); i++) {
-        auto* kt_signal_info{
-            new KtSignalInfo(signal_info_array.get(env, i), ClassLoader::get_default_loader())
-        };
+        auto* kt_signal_info {new KtSignalInfo(signal_info_array.get(env, i), ClassLoader::get_default_loader())};
         signal_infos[kt_signal_info->name] = kt_signal_info;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, name));
@@ -124,12 +121,12 @@ void KtClass::fetch_signals(jni::Env& env) {
     }
 }
 
-void KtClass::fetch_constructors(jni::Env &env) {
-    jni::MethodId get_constructors_method{get_method_id(env, jni_methods.GET_CONSTRUCTORS)};
-    jni::JObjectArray constructors_array{wrapped.call_object_method(env, get_constructors_method)};
+void KtClass::fetch_constructors(jni::Env& env) {
+    jni::MethodId get_constructors_method {get_method_id(env, jni_methods.GET_CONSTRUCTORS)};
+    jni::JObjectArray constructors_array {wrapped.call_object_method(env, get_constructors_method)};
     for (int i = 0; i < constructors_array.length(env); ++i) {
-        const jni::JObject& constructor{constructors_array.get(env, i)};
-        KtConstructor* kt_constructor{nullptr};
+        const jni::JObject& constructor {constructors_array.get(env, i)};
+        KtConstructor* kt_constructor {nullptr};
         if (constructor.obj != nullptr) {
             kt_constructor = new KtConstructor(constructor, ClassLoader::get_default_loader());
 #ifdef DEBUG_ENABLED
@@ -153,7 +150,7 @@ void KtClass::get_signal_list(List<MethodInfo>* p_list) {
 }
 
 const Dictionary KtClass::get_rpc_config() {
-    Dictionary rpc_configs{};
+    Dictionary rpc_configs {};
 
     for (const KeyValue<StringName, KtFunction*>& E : methods) {
         rpc_configs[E.key] = E.value->get_rpc_config()->toRpcConfigDictionary();
@@ -163,7 +160,7 @@ const Dictionary KtClass::get_rpc_config() {
 }
 
 void KtClass::fetch_members() {
-    jni::Env env { jni::Jvm::current_env() };
+    jni::Env env {jni::Jvm::current_env()};
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
@@ -171,6 +168,6 @@ void KtClass::fetch_members() {
 }
 
 bool KtClass::is_assignable_from(KtClass* p_class) const {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env {jni::Jvm::current_env()};
     return j_class.is_assignable_from(env, p_class->j_class);
 }

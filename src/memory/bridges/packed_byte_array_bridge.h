@@ -1,13 +1,11 @@
 #ifndef GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 
-
 namespace bridges {
 
     class PackedByteArrayBridge : JavaInstanceWrapper<PackedByteArrayBridge> {
     private:
-
-        struct StringNames{
+        struct StringNames {
             StringName func_compress_name;
             StringName func_decompress_name;
             StringName func_get_string_from_ascii_name;
@@ -61,7 +59,6 @@ namespace bridges {
         // clang-format on
     };
 
-}
-
+}// namespace bridges
 
 #endif

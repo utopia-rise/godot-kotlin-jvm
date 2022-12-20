@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KT_PROPERTY_H
 #define GODOT_JVM_KT_PROPERTY_H
 
-#include <core/object/object.h>
+#include "java_instance_wrapper.h"
 #include "jni/wrapper.h"
 #include "kt_object.h"
-#include "java_instance_wrapper.h"
+
+#include <core/object/object.h>
 
 struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -60,5 +61,4 @@ public:
     // clang-format on
 };
 
-
-#endif //GODOT_JVM_KT_PROPERTY_H
+#endif// GODOT_JVM_KT_PROPERTY_H

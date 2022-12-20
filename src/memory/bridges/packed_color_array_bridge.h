@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_PACKED_COLOR_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_COLOR_ARRAY_BRIDGE_H
 
-
 namespace bridges {
 
     class PackedColorArrayBridge : JavaInstanceWrapper<PackedColorArrayBridge> {
@@ -28,7 +27,6 @@ namespace bridges {
         // clang-format on
     };
 
-}
-
+}// namespace bridges
 
 #endif

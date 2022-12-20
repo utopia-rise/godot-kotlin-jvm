@@ -1,4 +1,5 @@
 #include "env.h"
+
 #include "jvm.h"
 
 namespace jni {
@@ -19,14 +20,14 @@ namespace jni {
         return env != nullptr;
     }
 
-    JClass Env::find_class(const char *name) {
+    JClass Env::find_class(const char* name) {
         auto cls = env->FindClass(name);
         JVM_CRASH_COND_MSG(cls == nullptr, vformat("Class not found: %s", name));
         return JClass(cls);
     }
 
     JClass Env::load_class(const char* name, JObject class_loader) {
-        static bool is_graal_vm{Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE};
+        static bool is_graal_vm {Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE};
         if (is_graal_vm) {
             return find_class(String(name).replace(".", "/").utf8());
         } else {
@@ -42,7 +43,7 @@ namespace jni {
         }
     }
 
-    JObject Env::new_string(const char *str) {
+    JObject Env::new_string(const char* str) {
         auto jstr = env->NewStringUTF(str);
         check_exceptions();
         return JObject(jstr);
@@ -92,4 +93,4 @@ namespace jni {
         env->ReleaseStringUTFChars(jstr, utfString);
         return ret;
     }
-}
+}// namespace jni

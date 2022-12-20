@@ -2,17 +2,17 @@
 #define GODOT_JVM_WRAPPER_H
 
 #include "env.h"
-#include "types.h"
 #include "init_args.h"
 #include "jvm.h"
+#include "types.h"
 
 #ifndef __ANDROID__
 #include "jvm_loader.h"
 #endif
 
-#include "types.h"
-#include "local_frame.h"
 #include "java_method_signature.h"
+#include "local_frame.h"
+#include "types.h"
 
 namespace jni {
 
@@ -20,17 +20,17 @@ namespace jni {
     inline T JObject::new_global_ref(Env& env) {
         auto ref = env.env->NewGlobalRef(obj);
         env.check_exceptions();
-        return T{JObject(ref).obj};
+        return T {JObject(ref).obj};
     }
 
-	template<class T>
-	inline T JObject::new_weak_ref(Env& env) {
-		auto ref = env.env->NewWeakGlobalRef(obj);
-		env.check_exceptions();
-		return T{JObject(ref).obj};
-	}
+    template<class T>
+    inline T JObject::new_weak_ref(Env& env) {
+        auto ref = env.env->NewWeakGlobalRef(obj);
+        env.check_exceptions();
+        return T {JObject(ref).obj};
+    }
 
-    static inline jvalue to_jni_arg(JObject j_object)  {
+    static inline jvalue to_jni_arg(JObject j_object) {
         return static_cast<JValue>(j_object.obj).value;
     }
 
@@ -54,6 +54,6 @@ namespace jni {
         return static_cast<JValue>(static_cast<jboolean>(b)).value;
     }
 
-}
+}// namespace jni
 
-#endif //GODOT_JVM_WRAPPER_H
+#endif// GODOT_JVM_WRAPPER_H

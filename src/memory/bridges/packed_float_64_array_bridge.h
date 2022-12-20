@@ -26,6 +26,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
+}// namespace bridges
 
-#endif //GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H
+#endif// GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H

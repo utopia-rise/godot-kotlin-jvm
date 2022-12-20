@@ -14,7 +14,6 @@
  */
 template<class Derived>
 class JavaSingletonWrapper : public JavaInstanceWrapper<Derived> {
-
 public:
     static Derived& get_instance();
     static void destroy();
@@ -33,13 +32,11 @@ private:
 };
 
 template<class Derived>
-Derived* JavaSingletonWrapper<Derived>::instance{nullptr};
+Derived* JavaSingletonWrapper<Derived>::instance {nullptr};
 
 template<class Derived>
 Derived& JavaSingletonWrapper<Derived>::get_instance() {
-    if (unlikely(!instance)) {
-        instance = Derived::init();
-    }
+    if (unlikely(!instance)) { instance = Derived::init(); }
     return *instance;
 }
 
@@ -50,11 +47,7 @@ void JavaSingletonWrapper<Derived>::destroy() {
 }
 
 template<class Derived>
-JavaSingletonWrapper<Derived>::JavaSingletonWrapper(const char *p_class_name, jni::JObject p_wrapped,
-                                                    jni::JObject &p_class_loader): JavaInstanceWrapper<Derived>(p_class_name,
-                                                                                                      p_wrapped,
-                                                                                                      p_class_loader) {
+JavaSingletonWrapper<Derived>::JavaSingletonWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader) :
+  JavaInstanceWrapper<Derived>(p_class_name, p_wrapped, p_class_loader) {}
 
-}
-
-#endif //GODOT_JVM_JAVA_SINGLETON_WRAPPER_H
+#endif// GODOT_JVM_JAVA_SINGLETON_WRAPPER_H

@@ -1,11 +1,10 @@
 #ifndef GODOT_JVM_KT_RPC_CONFIG_H
 #define GODOT_JVM_KT_RPC_CONFIG_H
 
-
-#include "jni/types.h"
 #include "core/variant/dictionary.h"
-#include "scene/main/multiplayer_api.h"
 #include "java_instance_wrapper.h"
+#include "jni/types.h"
+#include "scene/main/multiplayer_api.h"
 
 struct KtRpcConfig : public JavaInstanceWrapper<KtRpcConfig> {
     KtRpcConfig(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -28,5 +27,4 @@ struct KtRpcConfig : public JavaInstanceWrapper<KtRpcConfig> {
     // clang-format on
 };
 
-
-#endif //GODOT_JVM_KT_RPC_CONFIG_H
+#endif// GODOT_JVM_KT_RPC_CONFIG_H

@@ -4,13 +4,10 @@
 #include "java_singleton_wrapper.h"
 
 class LongStringQueue : public JavaSingletonWrapper<LongStringQueue> {
-
 private:
-
-    LongStringQueue(jni::JObject p_wrapped,  jni::JObject& p_class_loader);
+    LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_loader);
 
 public:
-
     static int max_string_size;
 
     void set_string_max_size(int max_size);
@@ -31,7 +28,6 @@ public:
             JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(I)V")
     )
     // clang-format on
-
 };
 
-#endif //GODOT_JVM_LONG_STRING_QUEUE_H
+#endif// GODOT_JVM_LONG_STRING_QUEUE_H

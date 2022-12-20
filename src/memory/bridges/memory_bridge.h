@@ -1,10 +1,10 @@
 #ifndef GODOT_JVM_MEMORY_BRIDGE_H
 #define GODOT_JVM_MEMORY_BRIDGE_H
 
+#include "java_instance_wrapper.h"
+#include "jni/types.h"
 
 #include <jni.h>
-#include "jni/types.h"
-#include "java_instance_wrapper.h"
 
 namespace bridges {
 
@@ -28,6 +28,6 @@ namespace bridges {
         // clang-format on
     };
 
-}
+}// namespace bridges
 
-#endif //GODOT_JVM_MEMORY_BRIDGE_H
+#endif// GODOT_JVM_MEMORY_BRIDGE_H

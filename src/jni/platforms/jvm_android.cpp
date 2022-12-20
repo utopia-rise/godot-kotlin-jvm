@@ -1,13 +1,14 @@
 #ifdef __ANDROID__
 
-#include <platform/android/thread_jandroid.h>
 #include "../jvm.h"
+
+#include <platform/android/thread_jandroid.h>
 
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
-    Jvm::Type Jvm::vm_type{Jvm::ART};
+    Jvm::Type Jvm::vm_type {Jvm::ART};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
         // Do nothing, jvm is already there.
@@ -44,6 +45,6 @@ namespace jni {
     Jvm::Type Jvm::get_type() {
         return vm_type;
     }
-}
+}// namespace jni
 
 #endif

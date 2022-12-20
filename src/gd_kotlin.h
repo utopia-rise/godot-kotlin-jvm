@@ -2,12 +2,13 @@
 #define GODOT_JVM_GD_KOTLIN_H
 
 #include "bootstrap.h"
-#include <core/string/ustring.h>
-#include "kotlin_script.h"
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
+#include "kotlin_script.h"
 #include "kt_class.h"
 #include "memory/transfer_context.h"
+
+#include <core/string/ustring.h>
 
 class GDKotlin {
 private:
@@ -67,5 +68,4 @@ public:
     const Vector<Pair<String, String>>& get_configuration_errors() const;
 };
 
-
-#endif //GODOT_JVM_GD_KOTLIN_H
+#endif// GODOT_JVM_GD_KOTLIN_H

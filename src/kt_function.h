@@ -1,10 +1,9 @@
 #ifndef GODOT_JVM_KT_FUNCTION_H
 #define GODOT_JVM_KT_FUNCTION_H
 
-
-#include "kt_property.h"
-#include "kt_object.h"
 #include "java_instance_wrapper.h"
+#include "kt_object.h"
+#include "kt_property.h"
 #include "kt_rpc_config.h"
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
@@ -33,7 +32,6 @@ private:
     int parameter_count;
     KtFunctionInfo* method_info;
 
-
 public:
     KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtFunction();
@@ -56,5 +54,4 @@ public:
     // clang-format on
 };
 
-
-#endif //GODOT_JVM_KT_FUNCTION_H
+#endif// GODOT_JVM_KT_FUNCTION_H

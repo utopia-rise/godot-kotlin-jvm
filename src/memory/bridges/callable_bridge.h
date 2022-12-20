@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_CALLABLE_BRIDGE_H
 #define GODOT_JVM_CALLABLE_BRIDGE_H
 
-
 #include "java_instance_wrapper.h"
 
 namespace bridges {
@@ -11,9 +10,7 @@ namespace bridges {
 
         static uintptr_t engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance);
 
-        static uintptr_t
-        engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
-                                                   jobject p_kt_custom_callable_instance);
+        static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance);
 
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
@@ -27,7 +24,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
+}// namespace bridges
 
-
-#endif //GODOT_JVM_CALLABLE_BRIDGE_H
+#endif// GODOT_JVM_CALLABLE_BRIDGE_H

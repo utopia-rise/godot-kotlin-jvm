@@ -1,25 +1,26 @@
 
 #ifdef TOOLS_ENABLED
 
-#include <editor/editor_settings.h>
-#include <scene/gui/texture_rect.h>
-#include <scene/gui/rich_text_label.h>
-#include <editor/editor_scale.h>
 #include "error_dialog.h"
 
-ErrorDialog::ErrorDialog(): AcceptDialog(), error_message_label(memnew(RichTextLabel)) {
-    VBoxContainer* about_vbox{memnew(VBoxContainer)};
+#include <editor/editor_scale.h>
+#include <editor/editor_settings.h>
+#include <scene/gui/rich_text_label.h>
+#include <scene/gui/texture_rect.h>
+
+ErrorDialog::ErrorDialog() : AcceptDialog(), error_message_label(memnew(RichTextLabel)) {
+    VBoxContainer* about_vbox {memnew(VBoxContainer)};
     add_child(about_vbox);
 
-    HBoxContainer* about_hbox{memnew(HBoxContainer)};
+    HBoxContainer* about_hbox {memnew(HBoxContainer)};
     about_vbox->add_child(about_hbox);
 
-    TextureRect* icon{memnew(TextureRect)};
+    TextureRect* icon {memnew(TextureRect)};
     icon->set_texture(get_theme_icon("Warning", "EditorIcons"));
     about_hbox->add_child(icon);
 
     about_hbox->add_child(error_message_label);
-    error_message_label->set_custom_minimum_size(Size2{600, 300} * EDSCALE);
+    error_message_label->set_custom_minimum_size(Size2 {600, 300} * EDSCALE);
     error_message_label->set_v_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
 
     error_message_label->set_scroll_active(true);
@@ -34,17 +35,15 @@ void ErrorDialog::show_with_error(const String& error_title, const String& error
 
 void ErrorDialog::show_with_errors(const String& dialog_title, const Vector<Pair<String, String>>& errors) {
     set_title(dialog_title);
-    String error_message{};
+    String error_message {};
 
     for (int i = 0; i < errors.size(); i++) {
         Pair<String, String> error = errors[i];
 
-        if (i != 0) {
-            error_message += String{"\n\n"};
-        }
+        if (i != 0) { error_message += String {"\n\n"}; }
 
-        error_message += String{"[u]"} + error.first + String{"[/u]"};
-        error_message += String{"\n"};
+        error_message += String {"[u]"} + error.first + String {"[/u]"};
+        error_message += String {"\n"};
         error_message += error.second;
     }
 
@@ -52,4 +51,4 @@ void ErrorDialog::show_with_errors(const String& dialog_title, const Vector<Pair
     popup_centered();
 }
 
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

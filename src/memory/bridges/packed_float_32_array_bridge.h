@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_PACKED_FLOAT_32_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_FLOAT_32_ARRAY_BRIDGE_H
 
-
 namespace bridges {
 
     class PackedFloat32ArrayBridge : JavaInstanceWrapper<PackedFloat32ArrayBridge> {
@@ -27,7 +26,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
-
+}// namespace bridges
 
 #endif

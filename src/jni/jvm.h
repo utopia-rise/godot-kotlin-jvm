@@ -1,12 +1,12 @@
 #ifndef GODOT_LOADER_JVM_H
 #define GODOT_LOADER_JVM_H
-#include "jni.h"
-#include "init_args.h"
 #include "env.h"
+#include "init_args.h"
+#include "jni.h"
 
 namespace jni {
-    typedef jint(JNICALL *CreateJavaVM)(JavaVM **, void **, void *);
-    typedef jint(JNICALL *GetCreatedJavaVMs)(JavaVM **, jsize, jsize *);
+    typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
+    typedef jint(JNICALL* GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
 
     class Jvm {
     public:
@@ -15,6 +15,7 @@ namespace jni {
             GRAAL_NATIVE_IMAGE,
             ART
         };
+
         Jvm(const Jvm&) = delete;
         void operator=(const Jvm&) = delete;
 
@@ -38,6 +39,6 @@ namespace jni {
         static JavaVM* create(const InitArgs& initArgs);
         static JavaVM* get_existing();
     };
-}
+}// namespace jni
 
-#endif //GODOT_LOADER_JVM_H
+#endif// GODOT_LOADER_JVM_H

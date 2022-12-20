@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_PACKED_VECTOR3_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_VECTOR3_ARRAY_BRIDGE_H
 
-
 namespace bridges {
 
     class PackedVector3ArrayBridge : JavaInstanceWrapper<PackedVector3ArrayBridge> {
@@ -27,7 +26,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
-
+}// namespace bridges
 
 #endif

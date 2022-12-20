@@ -1,11 +1,12 @@
 #ifndef GODOT_JVM_KOTLIN_SCRIPT_H
 #define GODOT_JVM_KOTLIN_SCRIPT_H
 
-#include <core/object/script_language.h>
 #include "kt_class.h"
 
+#include <core/object/script_language.h>
+
 class KotlinScript : public Script {
-GDCLASS(KotlinScript, Script);
+    GDCLASS(KotlinScript, Script);
 
 private:
     String source;
@@ -26,7 +27,7 @@ public:
 
     bool can_instantiate() const override;
 
-    bool inherits_script(const Ref<Script> &p_script) const override;
+    bool inherits_script(const Ref<Script>& p_script) const override;
 
     Ref<Script> get_base_script() const override;
 
@@ -73,8 +74,8 @@ public:
     PropertyInfo get_class_category() const override;
 #endif
 
+    // This concerns placeholders script instances only
 
-// This concerns placeholders script instances only
 private:
     HashSet<PlaceHolderScriptInstance*> placeholders;
 
@@ -87,9 +88,10 @@ public:
 
     void update_exports() override;
 
-// JNI methods
+    // JNI methods
+
 protected:
     static void _bind_methods();
 };
 
-#endif //GODOT_JVM_KOTLIN_SCRIPT_H
+#endif// GODOT_JVM_KOTLIN_SCRIPT_H

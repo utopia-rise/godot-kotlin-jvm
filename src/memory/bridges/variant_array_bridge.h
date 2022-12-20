@@ -3,7 +3,6 @@
 
 #include "java_instance_wrapper.h"
 
-
 namespace bridges {
 
     class VariantArrayBridge : public JavaInstanceWrapper<VariantArrayBridge> {
@@ -44,13 +43,11 @@ namespace bridges {
         static void engine_call_operator_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
-
         // clang-format off
         DECLARE_JNI_METHODS()
         // clang-format on
     };
 
-}
+}// namespace bridges
 
-
-#endif //GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
+#endif// GODOT_JVM_VARIANT_ARRAY_BRIDGE_H

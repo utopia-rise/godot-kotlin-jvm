@@ -1,7 +1,9 @@
-#include <vector>
-#include "logging.h"
 #include "types.h"
+
 #include "env.h"
+#include "logging.h"
+
+#include <vector>
 
 namespace jni {
 
@@ -48,10 +50,10 @@ namespace jni {
         p_env.check_exceptions();
     }
 
-	void JObject::delete_weak_ref(Env& p_env) {
-		p_env.env->DeleteWeakGlobalRef(obj);
-		p_env.check_exceptions();
-	}
+    void JObject::delete_weak_ref(Env& p_env) {
+        p_env.env->DeleteWeakGlobalRef(obj);
+        p_env.check_exceptions();
+    }
 
     void JObject::delete_local_ref(Env& p_env) {
         p_env.env->DeleteLocalRef(obj);
@@ -62,7 +64,7 @@ namespace jni {
         return obj == nullptr;
     }
 
-    JObject JObject::call_object_method(Env &env, MethodId method, jvalue* args) const {
+    JObject JObject::call_object_method(Env& env, MethodId method, jvalue* args) const {
         auto ret = env.env->CallObjectMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return JObject(ret);
@@ -97,14 +99,14 @@ namespace jni {
         env.check_exceptions();
     }
 
-    MethodId JClass::get_method_id(Env &env, const char *name, const char *signature) {
+    MethodId JClass::get_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetMethodID((jclass) obj, name, signature);
         JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature));
         env.check_exceptions();
         return id;
     }
 
-    MethodId JClass::get_static_method_id(Env &env, const char *name, const char *signature) {
+    MethodId JClass::get_static_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticMethodID((jclass) obj, name, signature);
         JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature));
         env.check_exceptions();
@@ -123,18 +125,18 @@ namespace jni {
         env.check_exceptions();
     }
 
-    MethodId JClass::get_constructor_method_id(Env &env, const char *signature) {
+    MethodId JClass::get_constructor_method_id(Env& env, const char* signature) {
         return get_method_id(env, "<init>", signature);
     }
 
-    JObject JClass::new_instance(Env &env, MethodId ctor, jvalue* args) {
+    JObject JClass::new_instance(Env& env, MethodId ctor, jvalue* args) {
         auto ret = env.env->NewObjectA((jclass) obj, ctor, args);
         JVM_CRASH_COND_MSG(ret == nullptr, "Failed to instantiated object!");
         env.check_exceptions();
         return JObject(ret);
     }
 
-    JObject JClass::call_static_object_method(Env &env, MethodId method, jvalue* args) {
+    JObject JClass::call_static_object_method(Env& env, MethodId method, jvalue* args) {
         auto ret = env.env->CallStaticObjectMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return JObject(ret);
@@ -153,9 +155,7 @@ namespace jni {
     }
 
     bool JClass::is_assignable_from(Env& env, JClass p_other) const {
-        return static_cast<bool>(
-                env.env->IsAssignableFrom(static_cast<jclass>(p_other.obj), static_cast<jclass>(obj))
-        );
+        return static_cast<bool>(env.env->IsAssignableFrom(static_cast<jclass>(p_other.obj), static_cast<jclass>(obj)));
     }
 
     int JArray::length(Env& env) {
@@ -170,4 +170,4 @@ namespace jni {
         auto ret = env.env->GetObjectArrayElement((jobjectArray) obj, index);
         return JObject(ret);
     }
-}
+}// namespace jni

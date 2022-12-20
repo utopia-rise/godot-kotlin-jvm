@@ -1,11 +1,9 @@
 #ifndef GODOT_JVM_GD_KOTLIN_CONFIGURATION_H
 #define GODOT_JVM_GD_KOTLIN_CONFIGURATION_H
 
-
 #include "jni/jvm.h"
 
 class GdKotlinConfiguration {
-
 public:
     String to_json();
     static GdKotlinConfiguration from_json(const String& json_string);
@@ -19,9 +17,9 @@ public:
 
     ~GdKotlinConfiguration() = default;
 
-    static constexpr const char* jvm_string_identifier{"jvm"};
-    static constexpr const char* graal_native_image_string_identifier{"graal_native_image"};
-    static constexpr const char* art_string_identifier{"art"};
+    static constexpr const char* jvm_string_identifier {"jvm"};
+    static constexpr const char* graal_native_image_string_identifier {"graal_native_image"};
+    static constexpr const char* art_string_identifier {"art"};
 
     GdKotlinConfiguration();
 
@@ -29,11 +27,10 @@ private:
     jni::Jvm::Type vm_type;
     int max_string_size;
 
-    static constexpr const char* vm_type_identifier{"vm_type"};
-    static constexpr const char* max_string_size_identifier{"max_string_size"};
+    static constexpr const char* vm_type_identifier {"vm_type"};
+    static constexpr const char* max_string_size_identifier {"max_string_size"};
 
     GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size);
 };
 
-
-#endif //GODOT_JVM_GD_KOTLIN_CONFIGURATION_H
+#endif// GODOT_JVM_GD_KOTLIN_CONFIGURATION_H

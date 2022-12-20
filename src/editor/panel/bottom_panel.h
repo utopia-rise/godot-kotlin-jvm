@@ -4,11 +4,10 @@
 #ifndef GODOT_JVM_BOTTOM_PANEL_H
 #define GODOT_JVM_BOTTOM_PANEL_H
 
-
-#include <scene/gui/box_container.h>
 #include <editor/editor_plugin.h>
-#include <scene/gui/tab_container.h>
+#include <scene/gui/box_container.h>
 #include <scene/gui/scroll_container.h>
+#include <scene/gui/tab_container.h>
 
 class BottomPanel : public VBoxContainer {
 public:
@@ -32,7 +31,6 @@ private:
     void update_log_output();
 };
 
+#endif// GODOT_JVM_BOTTOM_PANEL_H
 
-#endif //GODOT_JVM_BOTTOM_PANEL_H
-
-#endif //TOOLS_ENABLED
+#endif// TOOLS_ENABLED

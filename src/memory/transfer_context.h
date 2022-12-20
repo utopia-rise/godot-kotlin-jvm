@@ -27,18 +27,9 @@ public:
 
     void read_args(jni::Env& p_env, Variant* args);
 
-    static void icall(JNIEnv* rawEnv,
-                      jobject instance,
-                      jlong j_ptr,
-                      jint p_method_index,
-                      jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType);
 
-    static void create_native_object(JNIEnv* p_raw_env,
-                                     jobject instance,
-                                     jint p_class_index,
-                                     jobject p_object,
-                                     jobject p_class_loader,
-                                     jint p_script_index);
+    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jobject p_class_loader, jint p_script_index);
 
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
 
@@ -48,7 +39,7 @@ private:
     SharedBuffer* get_buffer(jni::Env& p_env);
 
     _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
-        uint32_t args_size{decode_uint32(buffer->get_cursor())};
+        uint32_t args_size {decode_uint32(buffer->get_cursor())};
         buffer->increment_position(4);
         return args_size;
     }
@@ -73,4 +64,4 @@ private:
     // clang-format on
 };
 
-#endif //GODOT_JVM_TRANSFER_CONTEXT_H
+#endif// GODOT_JVM_TRANSFER_CONTEXT_H

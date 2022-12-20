@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_PACKED_INT_32_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_INT_32_ARRAY_BRIDGE_H
 
-
 namespace bridges {
 
     class PackedInt32IntArrayBridge : JavaInstanceWrapper<PackedInt32IntArrayBridge> {
@@ -27,7 +26,6 @@ namespace bridges {
         DECLARE_JNI_METHODS()
         // clang-format on
     };
-}
-
+}// namespace bridges
 
 #endif
