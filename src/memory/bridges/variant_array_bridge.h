@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 #define GODOT_JVM_VARIANT_ARRAY_BRIDGE_H
 
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
+#include "java_instance_wrapper.h"
 
 
 namespace bridges {

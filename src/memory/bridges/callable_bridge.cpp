@@ -1,5 +1,5 @@
-#include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include <modules/kotlin_jvm/src/jni/class_loader.h>
+#include "gd_kotlin.h"
+#include "jni/class_loader.h"
 #include "callable_bridge.h"
 #include "constants.h"
 #include "bridges_utils.h"

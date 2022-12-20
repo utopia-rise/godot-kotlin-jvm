@@ -2,7 +2,7 @@
 #define GODOT_JVM_KT_RPC_CONFIG_H
 
 
-#include "modules/kotlin_jvm/src/jni/types.h"
+#include "jni/types.h"
 #include "core/variant/dictionary.h"
 #include "scene/main/multiplayer_api.h"
 #include "java_instance_wrapper.h"

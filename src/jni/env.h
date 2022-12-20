@@ -3,7 +3,7 @@
 #include <jni.h>
 #include "types.h"
 #include <core/string/ustring.h>
-#include <modules/kotlin_jvm/src/logging.h>
+#include "logging.h"
 
 
 #ifdef TOOLS_ENABLED

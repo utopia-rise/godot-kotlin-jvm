@@ -1,8 +1,8 @@
 #include "memory_bridge.h"
 #include "constants.h"
-#include <modules/kotlin_jvm/src/memory/kotlin_binding_manager.h>
+#include "memory/kotlin_binding_manager.h"
 #include "core/object/object.h"
-#include <modules/kotlin_jvm/src/logging.h>
+#include "logging.h"
 
 using namespace bridges;
 

@@ -1,5 +1,5 @@
 #include <vector>
-#include <modules/kotlin_jvm/src/logging.h>
+#include "logging.h"
 #include "types.h"
 #include "env.h"
 

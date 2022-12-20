@@ -2,7 +2,7 @@
 #define GODOT_JVM_NODE_PATH_BRIDGE_H
 
 
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
+#include "java_instance_wrapper.h"
 
 namespace bridges {
 

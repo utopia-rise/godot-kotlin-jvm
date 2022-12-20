@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_TRANSFER_CONTEXT_H
 #define GODOT_JVM_TRANSFER_CONTEXT_H
 
-#include "modules/kotlin_jvm/src/java_instance_wrapper.h"
-#include "modules/kotlin_jvm/src/kt_variant.h"
+#include "java_instance_wrapper.h"
+#include "kt_variant.h"
 #include "shared_buffer.h"
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {

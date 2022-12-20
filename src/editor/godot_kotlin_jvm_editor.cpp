@@ -3,8 +3,8 @@
 #include "godot_kotlin_jvm_editor.h"
 #include "../logging.h"
 #include <editor/filesystem_dock.h>
-#include <modules/kotlin_jvm/src/editor/build/build_manager.h>
-#include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include "editor/build/build_manager.h"
+#include "gd_kotlin.h"
 #include <core/config/project_settings.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)

@@ -4,7 +4,7 @@
 #include "build_dialog.h"
 
 #include <editor/editor_scale.h>
-#include <modules/kotlin_jvm/src/editor/build/build_manager.h>
+#include "editor/build/build_manager.h"
 
 BuildDialog::BuildDialog(): scroll_container(memnew(ScrollContainer)), log_label(memnew(Label)) {
     ClassDB::bind_method(D_METHOD("on_build_dialog_hide"), &BuildDialog::on_build_dialog_hide);

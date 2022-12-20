@@ -2,9 +2,9 @@
 #ifdef TOOLS_ENABLED
 
 #include <editor/editor_scale.h>
-#include <modules/kotlin_jvm/src/editor/build/build_manager.h>
+#include "editor/build/build_manager.h"
 #include "bottom_panel.h"
-#include "modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h"
+#include "editor/godot_kotlin_jvm_editor.h"
 
 BottomPanel::BottomPanel() :
         build_button(memnew(Button)),

@@ -1,4 +1,4 @@
-#include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include "gd_kotlin.h"
 #include "node_path_bridge.h"
 #include "constants.h"
 #include "bridges_utils.h"

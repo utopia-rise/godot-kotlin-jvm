@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_H
 #define GODOT_JVM_KOTLIN_BINDING_H
 
-#include "modules/kotlin_jvm/src/kt_object.h"
+#include "kt_object.h"
 
 //forward declaration
 class KotlinBindingManager;

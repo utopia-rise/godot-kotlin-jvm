@@ -6,8 +6,8 @@
 #include "kt_custom_callable.h"
 #include "logging.h"
 #include "long_string_queue.h"
-#include "modules/kotlin_jvm/src/memory/kotlin_binding_manager.h"
-#include "modules/kotlin_jvm/src/memory/shared_buffer.h"
+#include "memory/kotlin_binding_manager.h"
+#include "memory/shared_buffer.h"
 #include "type_manager.h"
 #include <core/io/marshalls.h>
 #include <core/os/os.h>

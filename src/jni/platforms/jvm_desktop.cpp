@@ -1,7 +1,7 @@
 #if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
 
 #include <cassert>
-#include <modules/kotlin_jvm/src/logging.h>
+#include "logging.h"
 
 #ifndef NO_USE_STDLIB
 #include <locale>

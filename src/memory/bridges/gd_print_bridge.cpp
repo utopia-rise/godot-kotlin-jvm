@@ -1,4 +1,4 @@
-#include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include "gd_kotlin.h"
 #include "gd_print_bridge.h"
 #include "constants.h"
 

@@ -4,6 +4,12 @@ Import("env")
 
 java_home = os.environ["JAVA_HOME"]
 
+module_env = env.Clone()
+
+# For header includes
+module_env.Append(CPPPATH=["src/"])
+
+# Android
 if env["platform"] != "android":
     java_include_dirs = [
         java_home + "/include",
@@ -11,12 +17,9 @@ if env["platform"] != "android":
         java_home + "/include/win32",
         java_home + "/include/darwin"
     ]
-
-module_env = env.Clone()
-
-if env["platform"] != "android":
     module_env.Append(CPPPATH=[java_include_dirs])
 
+# Common
 module_env.add_source_files(module_env.modules_sources, "register_types.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/*.cpp")
@@ -27,4 +30,3 @@ module_env.add_source_files(module_env.modules_sources, "src/jni/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jni/platforms/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/memory/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/memory/bridges/*.cpp")
-

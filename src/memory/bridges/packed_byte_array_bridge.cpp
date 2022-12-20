@@ -1,4 +1,4 @@
-#include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include "gd_kotlin.h"
 #include "bridges_utils.h"
 #include "constants.h"
 #include "packed_byte_array_bridge.h"

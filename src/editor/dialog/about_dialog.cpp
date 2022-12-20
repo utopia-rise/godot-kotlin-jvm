@@ -6,7 +6,7 @@
 #include <scene/gui/check_box.h>
 #include <editor/editor_scale.h>
 #include <core/os/os.h>
-#include <modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h>
+#include "editor/godot_kotlin_jvm_editor.h"
 #include "about_dialog.h"
 
 AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckBox)) {
