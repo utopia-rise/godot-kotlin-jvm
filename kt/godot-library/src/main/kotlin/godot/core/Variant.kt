@@ -36,6 +36,7 @@ internal val variantMapper = mutableMapOf(
     Vector3i::class to VECTOR3I,
     Vector4::class to VECTOR4,
     Vector4i::class to VECTOR4I,
+    Projection::class to PROJECTION,
     PackedByteArray::class to PACKED_BYTE_ARRAY,
     PackedColorArray::class to PACKED_COLOR_ARRAY,
     PackedInt32Array::class to PACKED_INT_32_ARRAY,
@@ -413,6 +414,25 @@ enum class VariantType(
             buffer.variantType = TRANSFORM3D.ordinal
             buffer.basis = any._basis
             buffer.vector3 = any._origin
+        }
+    ),
+    PROJECTION(
+        19,
+        { buffer: ByteBuffer, _: Int ->
+            Projection(
+                buffer.vector4,
+                buffer.vector4,
+                buffer.vector4,
+                buffer.vector4
+            )
+        },
+        { buffer: ByteBuffer, any: Any ->
+            require(any is Projection)
+            buffer.variantType = PROJECTION.ordinal
+            buffer.vector4 = any._x
+            buffer.vector4 = any._y
+            buffer.vector4 = any._z
+            buffer.vector4 = any._w
         }
     ),
 
