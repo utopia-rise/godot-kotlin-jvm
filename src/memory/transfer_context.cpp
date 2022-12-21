@@ -164,7 +164,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject instance, 
 #endif
 
     KtObject* kt_object {new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
-    int script_index {static_cast<int>(p_class_index)};
+    int script_index {static_cast<int>(p_script_index)};
     if (script_index == -1) {
         KotlinBindingManager::set_instance_binding(ptr, kt_object);
     } else {
