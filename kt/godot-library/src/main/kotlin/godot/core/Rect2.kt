@@ -5,31 +5,41 @@ import godot.util.RealT
 import kotlin.math.max
 import kotlin.math.min
 
+private typealias Point2 = Vector2
+private typealias Size2 = Vector2
+
 class Rect2(
-    p_position: Vector2,
-    p_size: Vector2
+    p_position: Point2,
+    p_size: Size2
 ) : CoreType {
 
     @PublishedApi
-    internal var _position = Vector2(p_position)
-
+    internal var _position = Point2(p_position)
     @PublishedApi
-    internal var _size = Vector2(p_size)
+    internal var _size = Size2(p_size)
 
 
     //PROPERTIES
-    /** Return a copy of the position Vector3
+    /** Return a copy of the position Vector2
      * Warning: Writing position.x = 2 will only modify a copy, not the actual object.
      * To modify it, use position().
      * */
     var position
-        get() = Vector2(_position)
+        get() = Point2(_position)
         set(value) {
-            _position = Vector2(value)
+            _position = Point2(value)
         }
 
+    /**
+     * Apply modifications on actual [position] [Vector2].
+     *
+     *
+     * [position] var return a copy of actual position of this [Rect2]. This method purpose is to make changes to the
+     * actual position.
+     * See also: [position]
+     */
     @CoreTypeHelper
-    inline fun <T> position(block: Vector2.() -> T): T {
+    inline fun <T> position(block: Point2.() -> T): T {
         return _position.block()
     }
 
@@ -38,13 +48,21 @@ class Rect2(
      * To modify it, use size().
      * */
     var size
-        get() = Vector2(_size)
+        get() = Size2(_size)
         set(value) {
-            _size = Vector2(value)
+            _size = Size2(value)
         }
 
+    /**
+     * Apply modifications on actual [size] [Vector2].
+     *
+     *
+     * [size] var return a copy of actual size of this [Rect2]. This method purpose is to make changes to the
+     * actual size.
+     * See also: [size]
+     */
     @CoreTypeHelper
-    inline fun <T> size(block: Vector2.() -> T): T {
+    inline fun <T> size(block: Size2.() -> T): T {
         return _size.block()
     }
 
@@ -108,7 +126,7 @@ class Rect2(
     /**
      * Returns the intersection of this Rect2 and b.
      */
-    fun clip(b: Rect2): Rect2 {
+    fun intersection(b: Rect2): Rect2 {
         if (!intersects(b)) return Rect2()
 
         b._position.x = max(b._position.x, _position.x)
@@ -143,7 +161,7 @@ class Rect2(
 
 
     internal fun expandTo(vector: Vector2) {
-        val begin = _position
+        val begin = Vector2(_position)
         val end = _position + _size
 
         if (vector.x < begin.x) {
