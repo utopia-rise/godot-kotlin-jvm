@@ -19,8 +19,8 @@ PackedFloat64ArrayBridge::PackedFloat64ArrayBridge(jni::JObject p_wrapped, jni::
       const_cast<char*>("(J)V"),
       (void*) PackedFloat64ArrayBridge::engine_call_append};
     jni::JNativeMethod engine_call_appendArray_method {
-      const_cast<char*>("(J)V"),
       const_cast<char*>("engine_call_appendArray"),
+      const_cast<char*>("(J)V"),
       (void*) PackedFloat64ArrayBridge::engine_call_appendArray};
     jni::JNativeMethod engine_call_is_empty_method {
       const_cast<char*>("engine_call_is_empty"),
