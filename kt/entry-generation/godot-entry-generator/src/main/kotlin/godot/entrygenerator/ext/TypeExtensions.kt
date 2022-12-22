@@ -21,6 +21,11 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "godot.core.RID" -> ClassName("godot.core.VariantType", "_RID")
     fqName == "godot.core.AABB" -> ClassName("godot.core.VariantType", "AABB")
     fqName == "godot.core.Transform2D" -> ClassName("godot.core.VariantType", "TRANSFORM2D")
+    fqName == "godot.core.Transform3D" -> ClassName("godot.core.VariantType", "TRANSFORM3D")
+    fqName == "godot.core.PackedInt32Array" -> ClassName("godot.core.VariantType", "PACKED_INT_32_ARRAY")
+    fqName == "godot.core.PackedInt64Array" -> ClassName("godot.core.VariantType", "PACKED_INT_64_ARRAY")
+    fqName == "godot.core.PackedFloat32Array" -> ClassName("godot.core.VariantType", "PACKED_FLOAT_32_ARRAY")
+    fqName == "godot.core.PackedFloat64Array" -> ClassName("godot.core.VariantType", "PACKED_FLOAT_64_ARRAY")
     isCoreType() -> ClassName(
         "godot.core.VariantType",
         fqName.substringAfterLast(".").camelToSnakeCase().uppercase(Locale.getDefault())
@@ -89,27 +94,38 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "kotlin.Double" -> 3
     "kotlin.String" -> 4
     "godot.core.Vector2" -> 5
-    "godot.core.Rect2" -> 6
-    "godot.core.Vector3" -> 7
-    "godot.core.Transform2D" -> 8
-    "godot.core.Plane" -> 9
-    "godot.core.Quat" -> 10
-    "godot.core.AABB" -> 11
-    "godot.core.Basis" -> 12
-    "godot.core.Transform" -> 13
-    "godot.core.Color" -> 14
-    "godot.core.NodePath" -> 15
-    "godot.core.RID" -> 16
-    "godot.core.OBJECT" -> 17
-    "godot.core.Dictionary" -> 18
+    "godot.core.Vector2i" -> 6
+    "godot.core.Rect2" -> 7
+    "godot.core.Rect2i" -> 8
+    "godot.core.Vector3" -> 9
+    "godot.core.Vector3i" -> 10
+    "godot.core.Transform2D" -> 11
+    "godot.core.Vector4" -> 12
+    "godot.core.Vector4i" -> 13
+    "godot.core.Plane" -> 14
+    "godot.core.Quaternion" -> 15
+    "godot.core.AABB" -> 16
+    "godot.core.Basis" -> 17
+    "godot.core.Transform3D" -> 18
+    "godot.core.Projection" -> 19
+    "godot.core.Color" -> 20
+    "godot.core.StringName" -> 21
+    "godot.core.NodePath" -> 22
+    "godot.core.RID" -> 23
+    "godot.core.OBJECT" -> 24
+    "godot.core.Callable" -> 25
+    "godot.core.Signal" -> 26
+    "godot.core.Dictionary" -> 27
     //Array -> handled in else branch
-    "godot.core.PoolByteArray" -> 20
-    "godot.core.PoolIntArray" -> 21
-    "godot.core.PoolRealArray" -> 22
-    "godot.core.PoolStringArray" -> 23
-    "godot.core.PoolColorArray" -> 24
-    "godot.core.PoolVector2Array" -> 25
-    "godot.core.PoolVector3Array" -> 26
+    "godot.core.PackedByteArray" -> 29
+    "godot.core.PackedInt32Array" -> 30
+    "godot.core.PackedInt64Array" -> 31
+    "godot.core.PackedFloat32Array" -> 32
+    "godot.core.PackedFloat64Array" -> 33
+    "godot.core.PackedStringArray" -> 34
+    "godot.core.PackedVector2Array" -> 35
+    "godot.core.PackedVector3Array" -> 36
+    "godot.core.PackedColorArray" -> 37
     else -> if (this.isCompatibleListType()) {
         19
     } else {
@@ -146,26 +162,37 @@ fun Type.getCompatibleListType() = when (fqName) {
 
 private val coreTypes = listOf(
     "godot.core.Vector2",
+    "godot.core.Vector2i",
     "godot.core.Rect2",
+    "godot.core.Rect2i",
     "godot.core.Vector3",
+    "godot.core.Vector3i",
     "godot.core.Transform2D",
+    "godot.core.Vector4",
+    "godot.core.Vector4i",
     "godot.core.Plane",
-    "godot.core.Quat",
+    "godot.core.Quaternion",
     "godot.core.AABB",
     "godot.core.Basis",
-    "godot.core.Transform",
+    "godot.core.Transform3D",
+    "godot.core.Projection",
     "godot.core.Color",
+    "godot.core.StringName",
     "godot.core.NodePath",
     "godot.core.RID",
     "godot.Object",
+    "godot.core.Callable",
+    "godot.core.Signal",
     "godot.core.Dictionary",
-    "godot.core.PoolByteArray",
-    "godot.core.PoolIntArray",
-    "godot.core.PoolRealArray",
-    "godot.core.PoolStringArray",
-    "godot.core.PoolColorArray",
-    "godot.core.PoolVector2Array",
-    "godot.core.PoolVector3Array",
+    "godot.core.PackedByteArray",
+    "godot.core.PackedInt32Array",
+    "godot.core.PackedInt64Array",
+    "godot.core.PackedFloat32Array",
+    "godot.core.PackedFloat64Array",
+    "godot.core.PackedStringArray",
+    "godot.core.PackedVector2Array",
+    "godot.core.PackedVector3Array",
+    "godot.core.PackedColorArray",
     "godot.core.VariantArray",
     "godot.core.ObjectArray",
     "godot.core.EnumArray",
@@ -184,5 +211,9 @@ private val coreTypes = listOf(
     "godot.core.Transform2DArray",
     "godot.core.TransformArray",
     "godot.core.Vector2Array",
-    "godot.core.Vector3Array"
+    "godot.core.Vector2iArray",
+    "godot.core.Vector3Array",
+    "godot.core.Vector3iArray",
+    "godot.core.Vector4Array",
+    "godot.core.Vector4iArray"
 )
