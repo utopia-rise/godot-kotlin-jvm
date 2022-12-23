@@ -60,7 +60,11 @@ object GodotTypes {
     const val vector2i = "Vector2i"
     val vector3 = CoreTypeTraits.VECTOR3.type!!
     const val vector3i = "Vector3i"
+    const val vector4 = "Vector4"
+    const val vector4i = "Vector4i"
+    const val projection = "Projection"
     const val callable = "Callable"
+    const val signal = "Signal"
     const val variant = "Variant"
     const val variantType = "enum::Variant.Type"
 
@@ -94,7 +98,11 @@ object GodotTypes {
         vector2i,
         vector3,
         vector3i,
+        vector4,
+        vector4i,
+        projection,
         callable,
+        signal,
         variant
     )
 
@@ -111,7 +119,10 @@ object GodotTypes {
         vector2,
         vector2i,
         vector3,
-        vector3i
+        vector3i,
+        vector4,
+        vector4i,
+        projection
     )
 
     val primitives = listOf(
