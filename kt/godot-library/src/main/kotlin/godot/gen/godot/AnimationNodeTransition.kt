@@ -63,7 +63,7 @@ public open class AnimationNodeTransition : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_CROSS_FADE_TIME, NIL)
     }
 
-  public val input0_name: String
+  public val input0Name: String
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
@@ -71,7 +71,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input0_autoAdvance: Boolean
+  public val input0AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
@@ -79,7 +79,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input1_name: String
+  public val input1Name: String
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
@@ -87,7 +87,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input1_autoAdvance: Boolean
+  public val input1AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
@@ -95,7 +95,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input2_name: String
+  public val input2Name: String
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
@@ -103,7 +103,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input2_autoAdvance: Boolean
+  public val input2AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
@@ -111,7 +111,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input3_name: String
+  public val input3Name: String
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
@@ -119,7 +119,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input3_autoAdvance: Boolean
+  public val input3AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
@@ -127,7 +127,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input4_name: String
+  public val input4Name: String
     get() {
       TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr,
@@ -135,7 +135,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input4_autoAdvance: Boolean
+  public val input4AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr,
@@ -143,7 +143,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input5_name: String
+  public val input5Name: String
     get() {
       TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr,
@@ -151,7 +151,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input5_autoAdvance: Boolean
+  public val input5AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input6_name: String
+  public val input6Name: String
     get() {
       TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr,
@@ -167,7 +167,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input6_autoAdvance: Boolean
+  public val input6AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr,
@@ -175,7 +175,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input7_name: String
+  public val input7Name: String
     get() {
       TransferContext.writeArguments(LONG to 7)
       TransferContext.callMethod(rawPtr,
@@ -183,7 +183,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input7_autoAdvance: Boolean
+  public val input7AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 7)
       TransferContext.callMethod(rawPtr,
@@ -191,7 +191,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input8_name: String
+  public val input8Name: String
     get() {
       TransferContext.writeArguments(LONG to 8)
       TransferContext.callMethod(rawPtr,
@@ -199,7 +199,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input8_autoAdvance: Boolean
+  public val input8AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 8)
       TransferContext.callMethod(rawPtr,
@@ -207,7 +207,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input9_name: String
+  public val input9Name: String
     get() {
       TransferContext.writeArguments(LONG to 9)
       TransferContext.callMethod(rawPtr,
@@ -215,7 +215,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input9_autoAdvance: Boolean
+  public val input9AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 9)
       TransferContext.callMethod(rawPtr,
@@ -223,7 +223,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input10_name: String
+  public val input10Name: String
     get() {
       TransferContext.writeArguments(LONG to 10)
       TransferContext.callMethod(rawPtr,
@@ -231,7 +231,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input10_autoAdvance: Boolean
+  public val input10AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 10)
       TransferContext.callMethod(rawPtr,
@@ -239,7 +239,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input11_name: String
+  public val input11Name: String
     get() {
       TransferContext.writeArguments(LONG to 11)
       TransferContext.callMethod(rawPtr,
@@ -247,7 +247,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input11_autoAdvance: Boolean
+  public val input11AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 11)
       TransferContext.callMethod(rawPtr,
@@ -255,7 +255,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input12_name: String
+  public val input12Name: String
     get() {
       TransferContext.writeArguments(LONG to 12)
       TransferContext.callMethod(rawPtr,
@@ -263,7 +263,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input12_autoAdvance: Boolean
+  public val input12AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 12)
       TransferContext.callMethod(rawPtr,
@@ -271,7 +271,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input13_name: String
+  public val input13Name: String
     get() {
       TransferContext.writeArguments(LONG to 13)
       TransferContext.callMethod(rawPtr,
@@ -279,7 +279,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input13_autoAdvance: Boolean
+  public val input13AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 13)
       TransferContext.callMethod(rawPtr,
@@ -287,7 +287,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input14_name: String
+  public val input14Name: String
     get() {
       TransferContext.writeArguments(LONG to 14)
       TransferContext.callMethod(rawPtr,
@@ -295,7 +295,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input14_autoAdvance: Boolean
+  public val input14AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 14)
       TransferContext.callMethod(rawPtr,
@@ -303,7 +303,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input15_name: String
+  public val input15Name: String
     get() {
       TransferContext.writeArguments(LONG to 15)
       TransferContext.callMethod(rawPtr,
@@ -311,7 +311,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input15_autoAdvance: Boolean
+  public val input15AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 15)
       TransferContext.callMethod(rawPtr,
@@ -319,7 +319,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input16_name: String
+  public val input16Name: String
     get() {
       TransferContext.writeArguments(LONG to 16)
       TransferContext.callMethod(rawPtr,
@@ -327,7 +327,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input16_autoAdvance: Boolean
+  public val input16AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 16)
       TransferContext.callMethod(rawPtr,
@@ -335,7 +335,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input17_name: String
+  public val input17Name: String
     get() {
       TransferContext.writeArguments(LONG to 17)
       TransferContext.callMethod(rawPtr,
@@ -343,7 +343,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input17_autoAdvance: Boolean
+  public val input17AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 17)
       TransferContext.callMethod(rawPtr,
@@ -351,7 +351,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input18_name: String
+  public val input18Name: String
     get() {
       TransferContext.writeArguments(LONG to 18)
       TransferContext.callMethod(rawPtr,
@@ -359,7 +359,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input18_autoAdvance: Boolean
+  public val input18AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 18)
       TransferContext.callMethod(rawPtr,
@@ -367,7 +367,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input19_name: String
+  public val input19Name: String
     get() {
       TransferContext.writeArguments(LONG to 19)
       TransferContext.callMethod(rawPtr,
@@ -375,7 +375,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input19_autoAdvance: Boolean
+  public val input19AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 19)
       TransferContext.callMethod(rawPtr,
@@ -383,7 +383,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input20_name: String
+  public val input20Name: String
     get() {
       TransferContext.writeArguments(LONG to 20)
       TransferContext.callMethod(rawPtr,
@@ -391,7 +391,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input20_autoAdvance: Boolean
+  public val input20AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 20)
       TransferContext.callMethod(rawPtr,
@@ -399,7 +399,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input21_name: String
+  public val input21Name: String
     get() {
       TransferContext.writeArguments(LONG to 21)
       TransferContext.callMethod(rawPtr,
@@ -407,7 +407,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input21_autoAdvance: Boolean
+  public val input21AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 21)
       TransferContext.callMethod(rawPtr,
@@ -415,7 +415,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input22_name: String
+  public val input22Name: String
     get() {
       TransferContext.writeArguments(LONG to 22)
       TransferContext.callMethod(rawPtr,
@@ -423,7 +423,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input22_autoAdvance: Boolean
+  public val input22AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 22)
       TransferContext.callMethod(rawPtr,
@@ -431,7 +431,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input23_name: String
+  public val input23Name: String
     get() {
       TransferContext.writeArguments(LONG to 23)
       TransferContext.callMethod(rawPtr,
@@ -439,7 +439,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input23_autoAdvance: Boolean
+  public val input23AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 23)
       TransferContext.callMethod(rawPtr,
@@ -447,7 +447,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input24_name: String
+  public val input24Name: String
     get() {
       TransferContext.writeArguments(LONG to 24)
       TransferContext.callMethod(rawPtr,
@@ -455,7 +455,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input24_autoAdvance: Boolean
+  public val input24AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 24)
       TransferContext.callMethod(rawPtr,
@@ -463,7 +463,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input25_name: String
+  public val input25Name: String
     get() {
       TransferContext.writeArguments(LONG to 25)
       TransferContext.callMethod(rawPtr,
@@ -471,7 +471,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input25_autoAdvance: Boolean
+  public val input25AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 25)
       TransferContext.callMethod(rawPtr,
@@ -479,7 +479,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input26_name: String
+  public val input26Name: String
     get() {
       TransferContext.writeArguments(LONG to 26)
       TransferContext.callMethod(rawPtr,
@@ -487,7 +487,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input26_autoAdvance: Boolean
+  public val input26AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 26)
       TransferContext.callMethod(rawPtr,
@@ -495,7 +495,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input27_name: String
+  public val input27Name: String
     get() {
       TransferContext.writeArguments(LONG to 27)
       TransferContext.callMethod(rawPtr,
@@ -503,7 +503,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input27_autoAdvance: Boolean
+  public val input27AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 27)
       TransferContext.callMethod(rawPtr,
@@ -511,7 +511,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input28_name: String
+  public val input28Name: String
     get() {
       TransferContext.writeArguments(LONG to 28)
       TransferContext.callMethod(rawPtr,
@@ -519,7 +519,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input28_autoAdvance: Boolean
+  public val input28AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 28)
       TransferContext.callMethod(rawPtr,
@@ -527,7 +527,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input29_name: String
+  public val input29Name: String
     get() {
       TransferContext.writeArguments(LONG to 29)
       TransferContext.callMethod(rawPtr,
@@ -535,7 +535,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input29_autoAdvance: Boolean
+  public val input29AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 29)
       TransferContext.callMethod(rawPtr,
@@ -543,7 +543,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input30_name: String
+  public val input30Name: String
     get() {
       TransferContext.writeArguments(LONG to 30)
       TransferContext.callMethod(rawPtr,
@@ -551,7 +551,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input30_autoAdvance: Boolean
+  public val input30AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 30)
       TransferContext.callMethod(rawPtr,
@@ -559,7 +559,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
-  public val input31_name: String
+  public val input31Name: String
     get() {
       TransferContext.writeArguments(LONG to 31)
       TransferContext.callMethod(rawPtr,
@@ -567,7 +567,7 @@ public open class AnimationNodeTransition : AnimationNode() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  public val input31_autoAdvance: Boolean
+  public val input31AutoAdvance: Boolean
     get() {
       TransferContext.writeArguments(LONG to 31)
       TransferContext.callMethod(rawPtr,

@@ -48,7 +48,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES, NIL)
     }
 
-  public var samplePartitionType_samplePartitionType: Long
+  public var samplePartitionTypeSamplePartitionType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +61,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
     }
 
-  public var geometry_parsedGeometryType: Long
+  public var geometryParsedGeometryType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -74,7 +74,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_PARSED_GEOMETRY_TYPE, NIL)
     }
 
-  public var geometry_collisionMask: Long
+  public var geometryCollisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK,
@@ -87,7 +87,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var geometry_sourceGeometryMode: Long
+  public var geometrySourceGeometryMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -100,7 +100,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GEOMETRY_MODE, NIL)
     }
 
-  public var geometry_sourceGroupName: String
+  public var geometrySourceGroupName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -113,7 +113,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GROUP_NAME, NIL)
     }
 
-  public var cell_size: Double
+  public var cellSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_SIZE,
@@ -125,7 +125,7 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_CELL_SIZE, NIL)
     }
 
-  public var cell_height: Double
+  public var cellHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_HEIGHT,
@@ -138,7 +138,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var agent_height: Double
+  public var agentHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_HEIGHT,
@@ -151,7 +151,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var agent_radius: Double
+  public var agentRadius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_RADIUS,
@@ -164,7 +164,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var agent_maxClimb: Double
+  public var agentMaxClimb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -177,7 +177,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_CLIMB, NIL)
     }
 
-  public var agent_maxSlope: Double
+  public var agentMaxSlope: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -190,7 +190,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_SLOPE, NIL)
     }
 
-  public var region_minSize: Double
+  public var regionMinSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -203,7 +203,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MIN_SIZE, NIL)
     }
 
-  public var region_mergeSize: Double
+  public var regionMergeSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -216,7 +216,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MERGE_SIZE, NIL)
     }
 
-  public var edge_maxLength: Double
+  public var edgeMaxLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -229,7 +229,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_EDGE_MAX_LENGTH, NIL)
     }
 
-  public var edge_maxError: Double
+  public var edgeMaxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_EDGE_MAX_ERROR,
@@ -242,7 +242,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var polygon_vertsPerPoly: Double
+  public var polygonVertsPerPoly: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTS_PER_POLY,
@@ -255,7 +255,7 @@ public open class NavigationMesh : Resource() {
           NIL)
     }
 
-  public var detail_sampleDistance: Double
+  public var detailSampleDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -268,7 +268,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_DISTANCE, NIL)
     }
 
-  public var detail_sampleMaxError: Double
+  public var detailSampleMaxError: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -281,7 +281,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_MAX_ERROR, NIL)
     }
 
-  public var filter_lowHangingObstacles: Boolean
+  public var filterLowHangingObstacles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -294,7 +294,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LOW_HANGING_OBSTACLES, NIL)
     }
 
-  public var filter_ledgeSpans: Boolean
+  public var filterLedgeSpans: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -307,7 +307,7 @@ public open class NavigationMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LEDGE_SPANS, NIL)
     }
 
-  public var filter_filterWalkableLowHeightSpans: Boolean
+  public var filterFilterWalkableLowHeightSpans: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

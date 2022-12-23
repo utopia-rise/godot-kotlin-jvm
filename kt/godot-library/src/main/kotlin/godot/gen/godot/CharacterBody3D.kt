@@ -256,7 +256,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOVING_PLATFORM_WALL_LAYERS, NIL)
     }
 
-  public var collision_safeMargin: Double
+  public var collisionSafeMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,

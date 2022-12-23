@@ -28,7 +28,7 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {
-  public var nodes_nodeA: NodePath
+  public var nodesNodeA: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
@@ -39,7 +39,7 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL)
     }
 
-  public var nodes_nodeB: NodePath
+  public var nodesNodeB: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
@@ -50,7 +50,7 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL)
     }
 
-  public var solver_priority: Long
+  public var solverPriority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_SOLVER_PRIORITY, LONG)
@@ -61,7 +61,7 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_SOLVER_PRIORITY, NIL)
     }
 
-  public var collision_excludeNodes: Boolean
+  public var collisionExcludeNodes: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,

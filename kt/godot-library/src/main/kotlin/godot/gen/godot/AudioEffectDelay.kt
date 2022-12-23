@@ -42,7 +42,7 @@ public open class AudioEffectDelay : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_DRY, NIL)
     }
 
-  public var tap1_active: Boolean
+  public var tap1Active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_IS_TAP1_ACTIVE,
@@ -55,7 +55,7 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
-  public var tap1_delayMs: Double
+  public var tap1DelayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -68,7 +68,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP1_DELAY_MS, NIL)
     }
 
-  public var tap1_levelDb: Double
+  public var tap1LevelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -81,7 +81,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP1_LEVEL_DB, NIL)
     }
 
-  public var tap1_pan: Double
+  public var tap1Pan: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_GET_TAP1_PAN,
@@ -94,7 +94,7 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
-  public var tap2_active: Boolean
+  public var tap2Active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_IS_TAP2_ACTIVE,
@@ -107,7 +107,7 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
-  public var tap2_delayMs: Double
+  public var tap2DelayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +120,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP2_DELAY_MS, NIL)
     }
 
-  public var tap2_levelDb: Double
+  public var tap2LevelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -133,7 +133,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_TAP2_LEVEL_DB, NIL)
     }
 
-  public var tap2_pan: Double
+  public var tap2Pan: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_GET_TAP2_PAN,
@@ -146,7 +146,7 @@ public open class AudioEffectDelay : AudioEffect() {
           NIL)
     }
 
-  public var feedback_active: Boolean
+  public var feedbackActive: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -159,7 +159,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_ACTIVE, NIL)
     }
 
-  public var feedback_delayMs: Double
+  public var feedbackDelayMs: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -172,7 +172,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_DELAY_MS, NIL)
     }
 
-  public var feedback_levelDb: Double
+  public var feedbackLevelDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -185,7 +185,7 @@ public open class AudioEffectDelay : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDELAY_SET_FEEDBACK_LEVEL_DB, NIL)
     }
 
-  public var feedback_lowpass: Double
+  public var feedbackLowpass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
