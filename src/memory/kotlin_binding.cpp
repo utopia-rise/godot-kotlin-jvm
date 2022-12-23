@@ -33,7 +33,11 @@ bool KotlinBinding::refcount_decremented_unsafe() {
 }
 
 void KotlinBinding::set_kt_object(KtObject* p_kt_object) {
-    if (!owner->is_ref_counted()) { return; }
+    if (!owner->is_ref_counted()) {
+        kt_object = p_kt_object;
+        return;
+    }
+
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
