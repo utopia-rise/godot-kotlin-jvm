@@ -59,7 +59,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_AUTO_TRIANGLES, NIL)
     }
 
-  public val blendPoint0_node: AnimationRootNode?
+  public val blendPoint0Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
@@ -67,7 +67,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint0_pos: Vector2
+  public val blendPoint0Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
@@ -75,7 +75,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint1_node: AnimationRootNode?
+  public val blendPoint1Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
@@ -83,7 +83,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint1_pos: Vector2
+  public val blendPoint1Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
@@ -91,7 +91,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint2_node: AnimationRootNode?
+  public val blendPoint2Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
@@ -99,7 +99,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint2_pos: Vector2
+  public val blendPoint2Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
@@ -107,7 +107,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint3_node: AnimationRootNode?
+  public val blendPoint3Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
@@ -115,7 +115,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint3_pos: Vector2
+  public val blendPoint3Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
@@ -123,7 +123,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint4_node: AnimationRootNode?
+  public val blendPoint4Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr,
@@ -131,7 +131,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint4_pos: Vector2
+  public val blendPoint4Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr,
@@ -139,7 +139,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint5_node: AnimationRootNode?
+  public val blendPoint5Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr,
@@ -147,7 +147,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint5_pos: Vector2
+  public val blendPoint5Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr,
@@ -155,7 +155,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint6_node: AnimationRootNode?
+  public val blendPoint6Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr,
@@ -163,7 +163,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint6_pos: Vector2
+  public val blendPoint6Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr,
@@ -171,7 +171,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint7_node: AnimationRootNode?
+  public val blendPoint7Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 7)
       TransferContext.callMethod(rawPtr,
@@ -179,7 +179,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint7_pos: Vector2
+  public val blendPoint7Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 7)
       TransferContext.callMethod(rawPtr,
@@ -187,7 +187,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint8_node: AnimationRootNode?
+  public val blendPoint8Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 8)
       TransferContext.callMethod(rawPtr,
@@ -195,7 +195,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint8_pos: Vector2
+  public val blendPoint8Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 8)
       TransferContext.callMethod(rawPtr,
@@ -203,7 +203,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint9_node: AnimationRootNode?
+  public val blendPoint9Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 9)
       TransferContext.callMethod(rawPtr,
@@ -211,7 +211,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint9_pos: Vector2
+  public val blendPoint9Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 9)
       TransferContext.callMethod(rawPtr,
@@ -219,7 +219,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint10_node: AnimationRootNode?
+  public val blendPoint10Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 10)
       TransferContext.callMethod(rawPtr,
@@ -227,7 +227,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint10_pos: Vector2
+  public val blendPoint10Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 10)
       TransferContext.callMethod(rawPtr,
@@ -235,7 +235,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint11_node: AnimationRootNode?
+  public val blendPoint11Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 11)
       TransferContext.callMethod(rawPtr,
@@ -243,7 +243,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint11_pos: Vector2
+  public val blendPoint11Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 11)
       TransferContext.callMethod(rawPtr,
@@ -251,7 +251,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint12_node: AnimationRootNode?
+  public val blendPoint12Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 12)
       TransferContext.callMethod(rawPtr,
@@ -259,7 +259,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint12_pos: Vector2
+  public val blendPoint12Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 12)
       TransferContext.callMethod(rawPtr,
@@ -267,7 +267,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint13_node: AnimationRootNode?
+  public val blendPoint13Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 13)
       TransferContext.callMethod(rawPtr,
@@ -275,7 +275,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint13_pos: Vector2
+  public val blendPoint13Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 13)
       TransferContext.callMethod(rawPtr,
@@ -283,7 +283,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint14_node: AnimationRootNode?
+  public val blendPoint14Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 14)
       TransferContext.callMethod(rawPtr,
@@ -291,7 +291,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint14_pos: Vector2
+  public val blendPoint14Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 14)
       TransferContext.callMethod(rawPtr,
@@ -299,7 +299,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint15_node: AnimationRootNode?
+  public val blendPoint15Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 15)
       TransferContext.callMethod(rawPtr,
@@ -307,7 +307,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint15_pos: Vector2
+  public val blendPoint15Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 15)
       TransferContext.callMethod(rawPtr,
@@ -315,7 +315,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint16_node: AnimationRootNode?
+  public val blendPoint16Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 16)
       TransferContext.callMethod(rawPtr,
@@ -323,7 +323,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint16_pos: Vector2
+  public val blendPoint16Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 16)
       TransferContext.callMethod(rawPtr,
@@ -331,7 +331,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint17_node: AnimationRootNode?
+  public val blendPoint17Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 17)
       TransferContext.callMethod(rawPtr,
@@ -339,7 +339,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint17_pos: Vector2
+  public val blendPoint17Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 17)
       TransferContext.callMethod(rawPtr,
@@ -347,7 +347,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint18_node: AnimationRootNode?
+  public val blendPoint18Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 18)
       TransferContext.callMethod(rawPtr,
@@ -355,7 +355,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint18_pos: Vector2
+  public val blendPoint18Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 18)
       TransferContext.callMethod(rawPtr,
@@ -363,7 +363,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint19_node: AnimationRootNode?
+  public val blendPoint19Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 19)
       TransferContext.callMethod(rawPtr,
@@ -371,7 +371,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint19_pos: Vector2
+  public val blendPoint19Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 19)
       TransferContext.callMethod(rawPtr,
@@ -379,7 +379,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint20_node: AnimationRootNode?
+  public val blendPoint20Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 20)
       TransferContext.callMethod(rawPtr,
@@ -387,7 +387,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint20_pos: Vector2
+  public val blendPoint20Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 20)
       TransferContext.callMethod(rawPtr,
@@ -395,7 +395,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint21_node: AnimationRootNode?
+  public val blendPoint21Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 21)
       TransferContext.callMethod(rawPtr,
@@ -403,7 +403,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint21_pos: Vector2
+  public val blendPoint21Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 21)
       TransferContext.callMethod(rawPtr,
@@ -411,7 +411,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint22_node: AnimationRootNode?
+  public val blendPoint22Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 22)
       TransferContext.callMethod(rawPtr,
@@ -419,7 +419,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint22_pos: Vector2
+  public val blendPoint22Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 22)
       TransferContext.callMethod(rawPtr,
@@ -427,7 +427,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint23_node: AnimationRootNode?
+  public val blendPoint23Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 23)
       TransferContext.callMethod(rawPtr,
@@ -435,7 +435,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint23_pos: Vector2
+  public val blendPoint23Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 23)
       TransferContext.callMethod(rawPtr,
@@ -443,7 +443,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint24_node: AnimationRootNode?
+  public val blendPoint24Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 24)
       TransferContext.callMethod(rawPtr,
@@ -451,7 +451,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint24_pos: Vector2
+  public val blendPoint24Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 24)
       TransferContext.callMethod(rawPtr,
@@ -459,7 +459,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint25_node: AnimationRootNode?
+  public val blendPoint25Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 25)
       TransferContext.callMethod(rawPtr,
@@ -467,7 +467,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint25_pos: Vector2
+  public val blendPoint25Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 25)
       TransferContext.callMethod(rawPtr,
@@ -475,7 +475,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint26_node: AnimationRootNode?
+  public val blendPoint26Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 26)
       TransferContext.callMethod(rawPtr,
@@ -483,7 +483,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint26_pos: Vector2
+  public val blendPoint26Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 26)
       TransferContext.callMethod(rawPtr,
@@ -491,7 +491,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint27_node: AnimationRootNode?
+  public val blendPoint27Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 27)
       TransferContext.callMethod(rawPtr,
@@ -499,7 +499,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint27_pos: Vector2
+  public val blendPoint27Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 27)
       TransferContext.callMethod(rawPtr,
@@ -507,7 +507,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint28_node: AnimationRootNode?
+  public val blendPoint28Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 28)
       TransferContext.callMethod(rawPtr,
@@ -515,7 +515,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint28_pos: Vector2
+  public val blendPoint28Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 28)
       TransferContext.callMethod(rawPtr,
@@ -523,7 +523,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint29_node: AnimationRootNode?
+  public val blendPoint29Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 29)
       TransferContext.callMethod(rawPtr,
@@ -531,7 +531,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint29_pos: Vector2
+  public val blendPoint29Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 29)
       TransferContext.callMethod(rawPtr,
@@ -539,7 +539,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint30_node: AnimationRootNode?
+  public val blendPoint30Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 30)
       TransferContext.callMethod(rawPtr,
@@ -547,7 +547,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint30_pos: Vector2
+  public val blendPoint30Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 30)
       TransferContext.callMethod(rawPtr,
@@ -555,7 +555,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint31_node: AnimationRootNode?
+  public val blendPoint31Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 31)
       TransferContext.callMethod(rawPtr,
@@ -563,7 +563,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint31_pos: Vector2
+  public val blendPoint31Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 31)
       TransferContext.callMethod(rawPtr,
@@ -571,7 +571,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint32_node: AnimationRootNode?
+  public val blendPoint32Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 32)
       TransferContext.callMethod(rawPtr,
@@ -579,7 +579,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint32_pos: Vector2
+  public val blendPoint32Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 32)
       TransferContext.callMethod(rawPtr,
@@ -587,7 +587,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint33_node: AnimationRootNode?
+  public val blendPoint33Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 33)
       TransferContext.callMethod(rawPtr,
@@ -595,7 +595,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint33_pos: Vector2
+  public val blendPoint33Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 33)
       TransferContext.callMethod(rawPtr,
@@ -603,7 +603,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint34_node: AnimationRootNode?
+  public val blendPoint34Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 34)
       TransferContext.callMethod(rawPtr,
@@ -611,7 +611,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint34_pos: Vector2
+  public val blendPoint34Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 34)
       TransferContext.callMethod(rawPtr,
@@ -619,7 +619,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint35_node: AnimationRootNode?
+  public val blendPoint35Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 35)
       TransferContext.callMethod(rawPtr,
@@ -627,7 +627,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint35_pos: Vector2
+  public val blendPoint35Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 35)
       TransferContext.callMethod(rawPtr,
@@ -635,7 +635,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint36_node: AnimationRootNode?
+  public val blendPoint36Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 36)
       TransferContext.callMethod(rawPtr,
@@ -643,7 +643,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint36_pos: Vector2
+  public val blendPoint36Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 36)
       TransferContext.callMethod(rawPtr,
@@ -651,7 +651,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint37_node: AnimationRootNode?
+  public val blendPoint37Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 37)
       TransferContext.callMethod(rawPtr,
@@ -659,7 +659,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint37_pos: Vector2
+  public val blendPoint37Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 37)
       TransferContext.callMethod(rawPtr,
@@ -667,7 +667,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint38_node: AnimationRootNode?
+  public val blendPoint38Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 38)
       TransferContext.callMethod(rawPtr,
@@ -675,7 +675,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint38_pos: Vector2
+  public val blendPoint38Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 38)
       TransferContext.callMethod(rawPtr,
@@ -683,7 +683,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint39_node: AnimationRootNode?
+  public val blendPoint39Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 39)
       TransferContext.callMethod(rawPtr,
@@ -691,7 +691,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint39_pos: Vector2
+  public val blendPoint39Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 39)
       TransferContext.callMethod(rawPtr,
@@ -699,7 +699,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint40_node: AnimationRootNode?
+  public val blendPoint40Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 40)
       TransferContext.callMethod(rawPtr,
@@ -707,7 +707,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint40_pos: Vector2
+  public val blendPoint40Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 40)
       TransferContext.callMethod(rawPtr,
@@ -715,7 +715,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint41_node: AnimationRootNode?
+  public val blendPoint41Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 41)
       TransferContext.callMethod(rawPtr,
@@ -723,7 +723,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint41_pos: Vector2
+  public val blendPoint41Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 41)
       TransferContext.callMethod(rawPtr,
@@ -731,7 +731,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint42_node: AnimationRootNode?
+  public val blendPoint42Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 42)
       TransferContext.callMethod(rawPtr,
@@ -739,7 +739,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint42_pos: Vector2
+  public val blendPoint42Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 42)
       TransferContext.callMethod(rawPtr,
@@ -747,7 +747,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint43_node: AnimationRootNode?
+  public val blendPoint43Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 43)
       TransferContext.callMethod(rawPtr,
@@ -755,7 +755,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint43_pos: Vector2
+  public val blendPoint43Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 43)
       TransferContext.callMethod(rawPtr,
@@ -763,7 +763,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint44_node: AnimationRootNode?
+  public val blendPoint44Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 44)
       TransferContext.callMethod(rawPtr,
@@ -771,7 +771,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint44_pos: Vector2
+  public val blendPoint44Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 44)
       TransferContext.callMethod(rawPtr,
@@ -779,7 +779,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint45_node: AnimationRootNode?
+  public val blendPoint45Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 45)
       TransferContext.callMethod(rawPtr,
@@ -787,7 +787,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint45_pos: Vector2
+  public val blendPoint45Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 45)
       TransferContext.callMethod(rawPtr,
@@ -795,7 +795,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint46_node: AnimationRootNode?
+  public val blendPoint46Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 46)
       TransferContext.callMethod(rawPtr,
@@ -803,7 +803,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint46_pos: Vector2
+  public val blendPoint46Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 46)
       TransferContext.callMethod(rawPtr,
@@ -811,7 +811,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint47_node: AnimationRootNode?
+  public val blendPoint47Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 47)
       TransferContext.callMethod(rawPtr,
@@ -819,7 +819,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint47_pos: Vector2
+  public val blendPoint47Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 47)
       TransferContext.callMethod(rawPtr,
@@ -827,7 +827,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint48_node: AnimationRootNode?
+  public val blendPoint48Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 48)
       TransferContext.callMethod(rawPtr,
@@ -835,7 +835,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint48_pos: Vector2
+  public val blendPoint48Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 48)
       TransferContext.callMethod(rawPtr,
@@ -843,7 +843,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint49_node: AnimationRootNode?
+  public val blendPoint49Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 49)
       TransferContext.callMethod(rawPtr,
@@ -851,7 +851,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint49_pos: Vector2
+  public val blendPoint49Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 49)
       TransferContext.callMethod(rawPtr,
@@ -859,7 +859,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint50_node: AnimationRootNode?
+  public val blendPoint50Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 50)
       TransferContext.callMethod(rawPtr,
@@ -867,7 +867,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint50_pos: Vector2
+  public val blendPoint50Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 50)
       TransferContext.callMethod(rawPtr,
@@ -875,7 +875,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint51_node: AnimationRootNode?
+  public val blendPoint51Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 51)
       TransferContext.callMethod(rawPtr,
@@ -883,7 +883,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint51_pos: Vector2
+  public val blendPoint51Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 51)
       TransferContext.callMethod(rawPtr,
@@ -891,7 +891,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint52_node: AnimationRootNode?
+  public val blendPoint52Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 52)
       TransferContext.callMethod(rawPtr,
@@ -899,7 +899,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint52_pos: Vector2
+  public val blendPoint52Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 52)
       TransferContext.callMethod(rawPtr,
@@ -907,7 +907,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint53_node: AnimationRootNode?
+  public val blendPoint53Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 53)
       TransferContext.callMethod(rawPtr,
@@ -915,7 +915,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint53_pos: Vector2
+  public val blendPoint53Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 53)
       TransferContext.callMethod(rawPtr,
@@ -923,7 +923,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint54_node: AnimationRootNode?
+  public val blendPoint54Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 54)
       TransferContext.callMethod(rawPtr,
@@ -931,7 +931,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint54_pos: Vector2
+  public val blendPoint54Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 54)
       TransferContext.callMethod(rawPtr,
@@ -939,7 +939,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint55_node: AnimationRootNode?
+  public val blendPoint55Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 55)
       TransferContext.callMethod(rawPtr,
@@ -947,7 +947,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint55_pos: Vector2
+  public val blendPoint55Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 55)
       TransferContext.callMethod(rawPtr,
@@ -955,7 +955,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint56_node: AnimationRootNode?
+  public val blendPoint56Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 56)
       TransferContext.callMethod(rawPtr,
@@ -963,7 +963,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint56_pos: Vector2
+  public val blendPoint56Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 56)
       TransferContext.callMethod(rawPtr,
@@ -971,7 +971,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint57_node: AnimationRootNode?
+  public val blendPoint57Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 57)
       TransferContext.callMethod(rawPtr,
@@ -979,7 +979,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint57_pos: Vector2
+  public val blendPoint57Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 57)
       TransferContext.callMethod(rawPtr,
@@ -987,7 +987,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint58_node: AnimationRootNode?
+  public val blendPoint58Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 58)
       TransferContext.callMethod(rawPtr,
@@ -995,7 +995,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint58_pos: Vector2
+  public val blendPoint58Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 58)
       TransferContext.callMethod(rawPtr,
@@ -1003,7 +1003,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint59_node: AnimationRootNode?
+  public val blendPoint59Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 59)
       TransferContext.callMethod(rawPtr,
@@ -1011,7 +1011,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint59_pos: Vector2
+  public val blendPoint59Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 59)
       TransferContext.callMethod(rawPtr,
@@ -1019,7 +1019,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint60_node: AnimationRootNode?
+  public val blendPoint60Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 60)
       TransferContext.callMethod(rawPtr,
@@ -1027,7 +1027,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint60_pos: Vector2
+  public val blendPoint60Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 60)
       TransferContext.callMethod(rawPtr,
@@ -1035,7 +1035,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint61_node: AnimationRootNode?
+  public val blendPoint61Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 61)
       TransferContext.callMethod(rawPtr,
@@ -1043,7 +1043,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint61_pos: Vector2
+  public val blendPoint61Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 61)
       TransferContext.callMethod(rawPtr,
@@ -1051,7 +1051,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint62_node: AnimationRootNode?
+  public val blendPoint62Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 62)
       TransferContext.callMethod(rawPtr,
@@ -1059,7 +1059,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint62_pos: Vector2
+  public val blendPoint62Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 62)
       TransferContext.callMethod(rawPtr,
@@ -1067,7 +1067,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  public val blendPoint63_node: AnimationRootNode?
+  public val blendPoint63Node: AnimationRootNode?
     get() {
       TransferContext.writeArguments(LONG to 63)
       TransferContext.callMethod(rawPtr,
@@ -1075,7 +1075,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
-  public val blendPoint63_pos: Vector2
+  public val blendPoint63Pos: Vector2
     get() {
       TransferContext.writeArguments(LONG to 63)
       TransferContext.callMethod(rawPtr,

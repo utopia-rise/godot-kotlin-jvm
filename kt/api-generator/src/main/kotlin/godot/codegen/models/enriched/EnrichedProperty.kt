@@ -12,7 +12,7 @@ import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
 
 class EnrichedProperty(val internal: Property) : TypedTrait, NullableTrait {
-    val name = internal.name.convertToCamelCase().replace("/", "_")
+    val name = internal.name.replace("/", "_").convertToCamelCase()
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter.convertToCamelCase()
     val isIndexed = internal.index != -1

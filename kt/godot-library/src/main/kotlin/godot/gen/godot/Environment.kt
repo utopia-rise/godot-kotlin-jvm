@@ -862,7 +862,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 1st level of glow. This is the most "local" level (least blurry).
    */
-  public val glowLevels_1: Double
+  public val glowLevels1: Double
     get() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -873,7 +873,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 2nd level of glow.
    */
-  public val glowLevels_2: Double
+  public val glowLevels2: Double
     get() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -884,7 +884,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 3rd level of glow.
    */
-  public val glowLevels_3: Double
+  public val glowLevels3: Double
     get() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -895,7 +895,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 4th level of glow.
    */
-  public val glowLevels_4: Double
+  public val glowLevels4: Double
     get() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -906,7 +906,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 5th level of glow.
    */
-  public val glowLevels_5: Double
+  public val glowLevels5: Double
     get() {
       TransferContext.writeArguments(LONG to 4)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -917,7 +917,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 6th level of glow.
    */
-  public val glowLevels_6: Double
+  public val glowLevels6: Double
     get() {
       TransferContext.writeArguments(LONG to 5)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
@@ -928,7 +928,7 @@ public open class Environment : Resource() {
   /**
    * The intensity of the 7th level of glow. This is the most "global" level (blurriest).
    */
-  public val glowLevels_7: Double
+  public val glowLevels7: Double
     get() {
       TransferContext.writeArguments(LONG to 6)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
