@@ -63,7 +63,7 @@ class RegisterPropertiesAnnotator : Annotator {
             }
             if (
                 ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.Object" } == true &&
-                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.Reference" } == false
+                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.RefCounted" } == false
             ) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.property.export.triedToExportObject"),
