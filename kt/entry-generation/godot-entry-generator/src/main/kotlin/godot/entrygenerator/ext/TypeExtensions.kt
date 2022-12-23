@@ -61,11 +61,11 @@ fun Type.isCompatibleList(): Boolean = when (fqName) {
     else -> supertypes.any { it.fqName == "godot.core.GodotArray" || it.fqName == "godot.core.VariantArray" }
 }
 
-fun Type.isReference(): Boolean = fqName == "godot.Reference" ||
+fun Type.isReference(): Boolean = fqName == "godot.RefCounted" ||
     this
         .supertypes
         .map { it.fqName }
-        .any { it == "godot.Reference" }
+        .any { it == "godot.RefCounted" }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     "kotlin.Int",
