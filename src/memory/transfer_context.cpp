@@ -88,7 +88,8 @@ Variant TransferContext::read_single_arg(jni::Env& p_env) {
 
 void TransferContext::read_args(jni::Env& p_env, Variant* args) {
     SharedBuffer* buffer {get_buffer(p_env)};
-    for (int i = 0; i < read_args_size(p_env); ++i) {
+    uint32_t size {read_args_size(p_env)};
+    for (uint32_t i = 0; i < size; ++i) {
         ktvariant::get_variant_from_buffer(buffer, args[i]);
     }
     buffer->rewind();
@@ -128,7 +129,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         read_args_to_array(buffer, args, args_size);
 
         const Variant* args_ptr[VARIANT_ARG_MAX];
-        for (int i = 0; i < args_size; i++) {
+        for (uint32_t i = 0; i < args_size; i++) {
             args_ptr[i] = &args[i];
         }
 

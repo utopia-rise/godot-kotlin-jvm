@@ -39,7 +39,7 @@ void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlo
 
     Variant arg_store[5];
     const Variant* arg_pointers[5];
-    for (int i = 0; i < args_size; ++i) {
+    for (uint32_t i = 0; i < args_size; ++i) {
         arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
         arg_pointers[i] = &arg_store[i];
     }
@@ -55,7 +55,7 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
 
     Variant arg_store[5];
     const Variant* arg_pointers[5];
-    for (int i = 0; i < args_size; ++i) {
+    for (uint32_t i = 0; i < args_size; ++i) {
         arg_store[i] = GDKotlin::get_instance().transfer_context->read_single_arg(env);
         arg_pointers[i] = &arg_store[i];
     }
