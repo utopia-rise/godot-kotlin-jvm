@@ -63,9 +63,12 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     //  Use this function to bind an existing object to the JVM, the callbacks provided will handle the creation of the binding.
     KotlinBindingManager& manager = get_instance();
     manager.spin.lock();
-    KotlinBinding* binding = &manager.binding_map.find(p_object)->value;
+    if (HashMap<Object*, KotlinBinding>::Iterator cached {manager.binding_map.find(p_object)}) {
+        KotlinBinding* ret {&cached->value};
+        manager.spin.unlock();
+        return ret;
+    }
     manager.spin.unlock();
-    if (binding) { return binding; }
     return static_cast<KotlinBinding*>(p_object->get_instance_binding(&get_instance(), &_instance_binding_callbacks));
 }
 
