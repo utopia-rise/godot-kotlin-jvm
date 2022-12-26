@@ -17,11 +17,11 @@ internal object TransferContext {
             /**
              * String is the largest type you can send in a buffer, so the buffer size has to be proportional to it.
              * We add +12 to the size because we need 3 extra integers (4 bytes each): The VariantType, the long/short check and the size
-             * Finally we had another + 4 because the buffer always starts with the number of arguments sent.
-             * In case, the size of the String become too small for the other types. We force a value of at least 52 bytes.
-             * 52 bytes is the size of the second biggest CoreType: Transform ( 48 for the data, 4 for the VariantType)
+             * Finally we add another +4 because the buffer always starts with the number of arguments sent.
+             * In case, the size of the String become smaller than any other types, we force a value of at least 68 bytes.
+             * 68 bytes is the size of the second largest CoreType: Projection (64 for the data, 4 for the VariantType)
              */
-            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(52) * ARGUMENT_MAX_COUNT + 4
+            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * ARGUMENT_MAX_COUNT + 4
         }
 
     val buffer by threadLocalLazy<ByteBuffer> {
